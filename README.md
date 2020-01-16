@@ -59,4 +59,3 @@ Then you are all set to run and build the website. Follow the build instruction 
 2. Update site_config/docs.js, add a new entry in either en-us or zh-cn.
 3. Run docsite start locally to verify the article can be displayed correctly.
 4. Send the pull request contains the *.md and development.js only.
-
