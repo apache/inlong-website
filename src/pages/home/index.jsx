@@ -39,7 +39,7 @@ class Home extends Language {
     const { headerType } = this.state;
     return (
       <div className="home-page">
-        <section className="top-section">
+        <section className="top-section" style={{backgroundImage: 'url(' + getLink("/img/first-page-bg.png") + ')'}}>
           <Header
             currentKey="home"
             type={headerType}
@@ -48,7 +48,7 @@ class Home extends Language {
           />
           <div className="vertical-middle">
             <div className="product-name">
-              <img src="/img/bandname.svg" alt=""/>
+              <img src={getLink('/img/bandname.svg')} alt=""/>
             </div>
             <p className="product-desc">{dataSource.brand.briefIntroduction}</p>
             <div className="button-area">
@@ -58,7 +58,7 @@ class Home extends Language {
             </div>
           </div>
         </section>
-        <section className="feature-section">
+        <section className="feature-section" style={{backgroundImage: 'url(' + getLink('/img/sec-page-bg.png') + ')'}}>
           <h3>{dataSource.features.title}</h3>
           <ul>
           {
@@ -67,9 +67,8 @@ class Home extends Language {
             ))
           }
           </ul>
-          <div className="bg"></div>
-          <div className="ball1"></div>
-          <div className="ball2"></div>
+          <div className="ball1" style={{backgroundImage: 'url(' + getLink('/img/blue-ball.png') + ')'}}></div>
+          <div className="ball2" style={{backgroundImage: 'url(' + getLink('/img/yellow-ball.png') + ')'}}></div>
         </section>
         <Footer logo="/img/incubator-logo.svg" language={language} />
       </div>

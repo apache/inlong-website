@@ -25320,7 +25320,6 @@ h1, h2, h3, h4, h5, h6 {
 .home-page .top-section {
   position: relative;
   height: 800px;
-  background-image: url(/img/first-page-bg.png);
   background-size: cover;
   background-position: bottom; }
   .home-page .top-section .vertical-middle {
@@ -25431,7 +25430,7 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   padding: 80px 20%;
   background-size: cover;
-  background: url(/img/sec-page-bg.png) no-repeat 50% 50%; }
+  background: no-repeat 50% 50%; }
   .home-page .feature-section .index {
     font-family: DINAlternate-Bold;
     font-size: 24px;
@@ -25450,7 +25449,6 @@ h1, h2, h3, h4, h5, h6 {
     position: absolute;
     top: 100px;
     right: -75px;
-    background: url(/img/blue-ball.png);
     background-size: contain;
     width: 150px;
     height: 150px; }
@@ -25459,7 +25457,6 @@ h1, h2, h3, h4, h5, h6 {
     bottom: 70px;
     left: 18%;
     background-size: contain;
-    background: url(/img/yellow-ball.png);
     width: 124px;
     height: 124px;
     transform: scale(0.8); }
@@ -25636,7 +25633,7 @@ h1, h2, h3, h4, h5, h6 {
     padding-left: 20px;
     padding-right: 20px;
     background-size: cover;
-    background: url(/img/sec-page-bg.png) no-repeat 50% 50%; }
+    background: no-repeat 50% 50%; }
     .home-page .feature-section .index, .home-page .users-section .index {
       font-family: DINAlternate-Bold;
       font-size: 24px;
