@@ -18,14 +18,45 @@ export default {
         link: '/en-us/docs/tubemq_user_guide.html',
       },
       {
-        key: 'community',
-        text: 'COMMUNITY',
-        link: '/en-us/community/index.html',
-      },
+        key: 'Apache',
+        text: 'Apache',
+        children: [
+          {
+            key: 'foundation',
+            text: 'Foundation',
+            link: 'http://www.apache.org',
+          },
+          {
+            key: 'licenses',
+            text: 'License',
+            link: 'http://www.apache.org/licenses/',
+          },
+          {
+            key: 'current',
+            text: 'Events',
+            link: 'http://www.apache.org/events/current-event',
+          },
+          {
+            key: 'sponsorship',
+            text: 'Sponsorship',
+            link: 'http://www.apache.org/foundation/sponsorship.html',
+          },
+          {
+            key: 'thanks',
+            text: 'Thanks',
+            link: 'http://www.apache.org/foundation/thanks.html',
+          }
+        ]
+      }
+      // {
+      //   key: 'community',
+      //   text: 'COMMUNITY',
+      //   link: '/en-us/community/index.html',
+      // },
     ],
     disclaimer: {
       title: 'Disclaimer',
-      content: 'Apache DolphinScheduler (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. \n' +
+      content: 'Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. \n' +
           'Incubation is required of all newly accepted projects until a further review indicates \n' +
           'that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. \n' +
           'While incubation status is not necessarily a reflection of the completeness or stability of the code, \n' +
@@ -48,31 +79,6 @@ export default {
         },
       ],
     },
-    asf: {
-      title: 'ASF',
-      list: [
-        {
-          text: 'Foundation',
-          link: 'http://www.apache.org',
-        },
-        {
-          text: 'License',
-          link: 'http://www.apache.org/licenses/',
-        },
-        {
-          text: 'Events',
-          link: 'http://www.apache.org/events/current-event',
-        },
-        {
-          text: 'Sponsorship',
-          link: 'http://www.apache.org/foundation/sponsorship.html',
-        },
-        {
-          text: 'Thanks',
-          link: 'http://www.apache.org/foundation/thanks.html',
-        },
-      ],
-    },
     copyright: 'Copyright © 2018-2019 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.',
   },
   'zh-cn': {
@@ -88,14 +94,45 @@ export default {
         link: '/zh-cn/docs/tubemq_user_guide.html',
       },
       {
-        key: 'community',
-        text: '社区',
-        link: '/zh-cn/community/index.html',
+        key: 'Apache',
+        text: 'Apache',
+        children: [
+          {
+            key: 'foundation',
+            text: '基金会',
+            link: 'http://www.apache.org',
+          },
+          {
+            key: 'licenses',
+            text: '证书',
+            link: 'http://www.apache.org/licenses/',
+          },
+          {
+            key: 'events',
+            text: '事件',
+            link: 'http://www.apache.org/events/current-event',
+          },
+          {
+            key: 'sponsorship',
+            text: '赞助',
+            link: 'http://www.apache.org/foundation/sponsorship.html',
+          },
+          {
+            key: 'thanks',
+            text: '致谢',
+            link: 'http://www.apache.org/foundation/thanks.html',
+          }
+        ]
       },
+      // {
+      //   key: 'community',
+      //   text: '社区',
+      //   link: '/zh-cn/community/index.html',
+      // },
     ],
     disclaimer: {
       title: '免责声明',
-      content: 'Apache DolphinScheduler (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. \n' +
+      content: 'Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. \n' +
           'Incubation is required of all newly accepted projects until a further review indicates \n' +
           'that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. \n' +
           'While incubation status is not necessarily a reflection of the completeness or stability of the code, \n' +
@@ -115,31 +152,6 @@ export default {
         {
           text: '开发者指南',
           link: '/zh-cn/docs/tubemq_user_guide.html',
-        },
-      ],
-    },
-    asf: {
-      title: 'ASF',
-      list: [
-        {
-          text: '基金会',
-          link: 'http://www.apache.org',
-        },
-        {
-          text: '证书',
-          link: 'http://www.apache.org/licenses/',
-        },
-        {
-          text: '事件',
-          link: 'http://www.apache.org/events/current-event',
-        },
-        {
-          text: '赞助',
-          link: 'http://www.apache.org/foundation/sponsorship.html',
-        },
-        {
-          text: '致谢',
-          link: 'http://www.apache.org/foundation/thanks.html',
         },
       ],
     },

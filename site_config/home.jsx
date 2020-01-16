@@ -3,17 +3,17 @@ import React from 'react';
 export default {
   'zh-cn': {
     brand: {
-      brandName: '开源产品品牌名称',
-      briefIntroduction: '关于开源产品的简单介绍',
+      brandName: 'tubeMQ',
+      briefIntroduction: 'Apache TubeMQ（孵化中）是一个万亿级的分布式消息队列',
       buttons: [
         {
           text: '立即开始',
-          link: '/zh-cn/docs/demo1.html',
+          link: '/zh-cn/docs/tubemq_user_guide.html',
           type: 'primary',
         },
         {
-          text: '查看Github',
-          link: '',
+          text: 'Github',
+          link: 'https://github.com/apache/incubator-tubemq',
           type: 'normal',
         },
       ],
@@ -24,38 +24,28 @@ export default {
       img: '/img/architecture.png',
     },
     features: {
-      title: '特性一览',
+      title: '特性',
       list: [
         {
-          img: '/img/feature_transpart.png',
-          title: '特性1',
-          content: '特性1的简单概括',
+          img: '/img/advantage-01.png',
+          title: 'High Throughput',
+          content: 'Throughput arrives 14W TPS under a full load of massive data while the system runs stably.',
         },
         {
-          img: '/img/feature_loadbalances.png',
-          title: '特性2',
-          content: '特性2的简单概括',
+          img: '/img/advantage-02.png',
+          title: 'Low Latency',
+          content: 'Latency is less than 5ms from producer to consumer under a full load of massive data.',
         },
         {
-          img: '/img/feature_service.png',
-          title: '特性3',
-          content: '特性3的简单概括',
+          img: '/img/advantage-03.png',
+          title: 'Proven in Production',
+          content: 'TubeMQ has been serving over 35 trillion messages process everyday. The operation cost only 1500 machiens and 1 operator.',
         },
         {
-          img: '/img/feature_hogh.png',
-          title: '特性4',
-          content: '特性4的简单概括',
-        },
-        {
-          img: '/img/feature_runtime.png',
-          title: '特性5',
-          content: '特性5的简单概括',
-        },
-        {
-          img: '/img/feature_maintenance.png',
-          title: '特性6',
-          content: '特性6的简单概括',
-        },
+          img: '/img/advantage-04.png',
+          title: 'Low Cost',
+          content: 'Compared with similar systems such as Kafka, for serving the same workload, TubeMQ only requires the utilization of  20% resources according to cross-sectional results.',
+        }
       ],
     },
     start: {
@@ -67,42 +57,20 @@ export default {
         link: '/zh-cn/docs/demo1.html',
       },
     },
-    users: {
-      title: '用户',
-      desc: <span>简单描述</span>,
-      list: [
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-      ],
-    },
   },
   'en-us': {
     brand: {
-      brandName: 'brandName',
-      briefIntroduction: 'some description of product',
+      brandName: 'TubeMQ',
+      briefIntroduction: 'Apache TubeMQ（incubating） is a trillion-records-scale distributed messaging system',
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/demo1.html',
+          link: '/en-us/docs/tubemq_user_guide.html',
           type: 'primary',
         },
         {
-          text: 'View on Github',
-          link: '',
+          text: 'Github',
+          link: 'https://github.com/apache/incubator-tubemq',
           type: 'normal',
         },
       ],
@@ -113,37 +81,27 @@ export default {
       img: '/img/architecture.png',
     },
     features: {
-      title: 'Feature List',
+      title: 'Feature',
       list: [
         {
-          img: '/img/feature_transpart.png',
-          title: 'feature1',
-          content: 'feature description',
+          img: '/img/advantage-01.png',
+          title: 'High Throughput',
+          content: 'Throughput arrives 14W TPS under a full load of massive data while the system runs stably.',
         },
         {
-          img: '/img/feature_loadbalances.png',
-          title: 'feature2',
-          content: 'feature description',
+          img: '/img/advantage-02.png',
+          title: 'Low Latency',
+          content: 'Latency is less than 5ms from producer to consumer under a full load of massive data.',
         },
         {
-          img: '/img/feature_service.png',
-          title: 'feature3',
-          content: 'feature description',
+          img: '/img/advantage-03.png',
+          title: 'Proven in Production',
+          content: 'TubeMQ has been serving over 35 trillion messages process everyday. The operation cost only 1500 machiens and 1 operator.',
         },
         {
-          img: '/img/feature_hogh.png',
-          title: 'feature4',
-          content: 'feature description',
-        },
-        {
-          img: '/img/feature_runtime.png',
-          title: 'feature5',
-          content: 'feature description',
-        },
-        {
-          img: '/img/feature_maintenance.png',
-          title: 'feature6',
-          content: 'feature description',
+          img: '/img/advantage-04.png',
+          title: 'Low Cost',
+          content: 'Compared with similar systems such as Kafka, for serving the same workload, TubeMQ only requires the utilization of  20% resources according to cross-sectional results.',
         }
       ]
     },
@@ -155,28 +113,6 @@ export default {
         text: 'READ MORE',
         link: '/en-us/docs/demo1.html',
       },
-    },
-    users: {
-      title: 'users',
-      desc: <span>some description</span>,
-      list: [
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-      ],
     },
   },
 };

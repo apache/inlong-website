@@ -3,9 +3,12 @@ import PropTypes from 'prop-types';
 import classnames from 'classnames';
 import { autobind } from 'core-decorators';
 import siteConfig from '../../../site_config/site';
-import { getLink } from '../../../utils';
+import { getScrollTop,getLink } from '../../../utils';
+import 'antd/dist/antd.css';
 import './index.scss';
+import { Menu } from 'antd'
 
+const { SubMenu } = Menu;
 const languageSwitch = [
   {
     text: '中',
@@ -45,12 +48,27 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      current: '',
       menuBodyVisible: false,
       language: props.language,
       search: siteConfig.defaultSearch,
       searchValue: '',
       inputVisible: false,
     };
+  }
+  componentDidMount() {
+    window.addEventListener('scroll', () => {
+      const scrollTop = getScrollTop();
+      if (scrollTop > 66) {
+        this.setState({
+          type: 'normal',
+        });
+      } else {
+        this.setState({
+          type: 'primary',
+        });
+      }
+    });
   }
 
   componentWillReceiveProps(nextProps) {
@@ -59,9 +77,11 @@ class Header extends React.Component {
     });
   }
 
-  toggleMenu() {
+
+
+  handleClick = e => {
     this.setState({
-      menuBodyVisible: !this.state.menuBodyVisible,
+      current: e.key,
     });
   }
 
@@ -114,88 +134,99 @@ class Header extends React.Component {
   }
 
   render() {
-    const { type, logo, onLanguageChange, currentKey } = this.props;
+    const { type, onLanguageChange, currentKey } = this.props;
     const { menuBodyVisible, language, search, searchVisible } = this.state;
     return (
-      <header
-        className={
-          classnames({
-            'header-container': true,
-            [`header-container-${type}`]: true,
-          })
-        }
-      >
-        <div className="header-body">
-          <a href={getLink(`/${language}/index.html`)}>
-            <img className="logo" alt={siteConfig.name} title={siteConfig.name} src={getLink(logo)} />
-          </a>
-          {
-            siteConfig.defaultSearch ?
-            (
-              <div
-                className={classnames({
-                  search: true,
-                  [`search-${type}`]: true,
-                })}
-              >
-                <span className="icon-search" onClick={this.toggleSearch} />
-                {
-                  searchVisible ?
-                  (
-                    <div className="search-input">
-                      <img src={searchSwitch[search].logo} onClick={this.switchSearch} />
-                      <input autoFocus onChange={this.onInputChange} onKeyDown={this.onKeyDown} />
-                    </div>
-                  ) : null
-                }
-              </div>
-            ) : null
-          }
-          {
-            onLanguageChange !== noop ?
-            (<span
-              className={
-                classnames({
-                  'language-switch': true,
-                  [`language-switch-${type}`]: true,
-                })
-              }
-              onClick={this.switchLang}
-            >
-              {languageSwitch.find(lang => lang.value === language).text}
-            </span>)
-            :
-            null
-          }
-          <div
+        <header
             className={
               classnames({
-                'header-menu': true,
-                'header-menu-open': menuBodyVisible,
+                'header-container': true,
+                [`header-container-${type}`]: true,
               })
             }
-          >
-            <img
-              className="header-menu-toggle"
-              onClick={this.toggleMenu}
-              src={type === 'primary' ? getLink('/img/system/menu_white.png') : getLink('/img/system/menu_gray.png')}
-            />
-            <ul>
-              {siteConfig[language].pageMenu.map(item => (
-                <li
-                  className={classnames({
-                    'menu-item': true,
-                    [`menu-item-${type}`]: true,
-                    [`menu-item-${type}-active`]: currentKey === item.key,
-                  })}
-                  key={item.key}
-                >
-                  <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
-                </li>))}
-            </ul>
+        >
+          <div className="header-body">
+            <a href={getLink(`/${language}/index.html`)}>
+              <img className="logo apache" style={{width: '97px', height: '39px'}} alt={siteConfig.name} title={siteConfig.name} src={getLink('/img/asf_logo.svg')} />
+              <div className="logo-split"></div>
+              <img className="logo tube" style={{width: '64px', height: '38px'}} alt={siteConfig.name} title={siteConfig.name} src={getLink('/img/Tube logo.svg')} />
+            </a>
+            {
+              siteConfig.defaultSearch ?
+                  (
+                      <div
+                          className={classnames({
+                            search: true,
+                            [`search-${type}`]: true,
+                          })}
+                      >
+                        <span className="icon-search" onClick={this.toggleSearch} />
+                        {
+                          searchVisible ?
+                              (
+                                  <div className="search-input">
+                                    <img src={searchSwitch[search].logo} onClick={this.switchSearch} />
+                                    <input autoFocus onChange={this.onInputChange} onKeyDown={this.onKeyDown} />
+                                  </div>
+                              ) : null
+                        }
+                      </div>
+                  ) : null
+            }
+            {
+              onLanguageChange !== noop ?
+                  (<span
+                      className={
+                        classnames({
+                          'language-switch': true,
+                          [`language-switch-${type}`]: true,
+                        })
+                      }
+                      onClick={this.switchLang}
+                  >
+              {languageSwitch.find(lang => lang.value === language).text}
+            </span>)
+                  :
+                  null
+            }
+            <div
+                className={
+                  classnames({
+                    'header-menu': true,
+                    'header-menu-open': menuBodyVisible,
+                  })
+                }
+            >
+              <img
+                  className="header-menu-toggle"
+                  onClick={this.toggleMenu}
+                  src={type === 'primary' ? getLink('/img/system/menu_white.png') : getLink('/img/system/menu_gray.png')}
+              />
+              <div>
+                <Menu className={type === 'primary'? 'whiteClass': 'blackClass'} onClick={this.handleClick} selectedKeys={[this.state.current]} mode="horizontal">
+                  {siteConfig[language].pageMenu.map(item => (
+                      item.children ? <SubMenu
+                          title={
+                            <span className="submenu-title-wrapper">
+                  {item.text}
+                </span>
+                          }
+                      >
+                        <Menu.ItemGroup>
+                          {item.children.map(items => (
+                              <Menu.Item key={items.key} ><a href={getLink(items.link)} target={items.target || '_self'}>{items.text}</a></Menu.Item>
+                          ))}
+                        </Menu.ItemGroup>
+                      </SubMenu> : <Menu.Item key={item.key}>
+                        <a href={getLink(item.link)} target={item.target || '_self'}>{item.text}</a>
+                      </Menu.Item>
+                  ))}
+                </Menu>
+              </div>
+            </div>
           </div>
-        </div>
-      </header>
+          <div className="header-background"></div>
+        </header>
     );
   }
 }
