@@ -147,9 +147,9 @@ class Header extends React.Component {
         >
           <div className="header-body">
             <a href={getLink(`/${language}/index.html`)}>
-              <img className="logo apache" style={{width: '97px', height: '39px'}} alt={siteConfig.name} title={siteConfig.name} src={getLink('/img/asf_logo.svg')} />
+              <img className="logo apache" style={{width: '108px'}} alt={siteConfig.name} title={siteConfig.name} src={getLink('/img/asf_logo.svg')} />
               <div className="logo-split"></div>
-              <img className="logo tube" style={{width: '64px', height: '38px'}} alt={siteConfig.name} title={siteConfig.name} src={getLink('/img/Tube logo.svg')} />
+              <img className="logo tube" style={{width: '72px'}} alt={siteConfig.name} title={siteConfig.name} src={getLink('/img/Tube logo.svg')} />
             </a>
             {
               siteConfig.defaultSearch ?

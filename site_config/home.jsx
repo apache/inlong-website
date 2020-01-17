@@ -3,18 +3,14 @@ import React from 'react';
 export default {
   'zh-cn': {
     brand: {
-      brandName: 'tubeMQ',
-      briefIntroduction: 'TubeMQ，万亿级分布式消息中间件，专注于海量数据下的数据传输和存储，与许多开源MQ项目相比，TubeMQ在稳定性、性能和低成本方面具有独特的优势',
+      brandName: 'Apache',
+      projectName: 'TubeMQ',
+      briefIntroduction: 'Apache TubeMQ，万亿级分布式消息中间件，专注于海量数据下的数据传输和存储，与许多开源MQ项目相比，TubeMQ在稳定性、性能和低成本方面具有独特的优势',
       buttons: [
         {
           text: '立即开始',
           link: '/zh-cn/docs/tubemq_user_guide.html',
           type: 'primary',
-        },
-        {
-          text: 'Github',
-          link: 'https://github.com/apache/incubator-tubemq',
-          type: 'normal',
         },
       ],
     },
@@ -60,18 +56,14 @@ export default {
   },
   'en-us': {
     brand: {
-      brandName: 'TubeMQ',
-      briefIntroduction: 'TubeMQ, a trillion-records-scale distributed messaging queue (MQ) system, focuses on data transmission and storage under massive data. Compared to many open source MQ projects, TubeMQ has unique advantages in terms of stability, performance, and low cost',
+      brandName: 'Apache',
+      projectName: 'TubeMQ',
+      briefIntroduction: 'Apache TubeMQ, a trillion-records-scale distributed messaging queue (MQ) system, focuses on data transmission and storage under massive data. Compared to many open source MQ projects, TubeMQ has unique advantages in terms of stability, performance, and low cost',
       buttons: [
         {
           text: 'Quick Start',
           link: '/en-us/docs/tubemq_user_guide.html',
           type: 'primary',
-        },
-        {
-          text: 'Github',
-          link: 'https://github.com/apache/incubator-tubemq',
-          type: 'normal',
         },
       ],
     },

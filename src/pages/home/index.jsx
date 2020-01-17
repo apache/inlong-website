@@ -39,7 +39,7 @@ class Home extends Language {
     const { headerType } = this.state;
     return (
       <div className="home-page">
-        <section className="top-section" style={{backgroundImage: 'url(' + getLink("/img/first-page-bg.png") + ')'}}>
+        <section className="top-section" style={{backgroundImage: 'url(' + getLink("/img/first-page-bg.jpg") + ')'}}>
           <Header
             currentKey="home"
             type={headerType}
@@ -48,7 +48,9 @@ class Home extends Language {
           />
           <div className="vertical-middle">
             <div className="product-name">
-              <img src={getLink('/img/bandname.svg')} alt=""/>
+              <div className="brandname">{dataSource.brand.brandName}</div>
+              <div className="projectname">{dataSource.brand.projectName}</div>
+              <img src={getLink("/img/incubating.svg")}></img>
             </div>
             <p className="product-desc">{dataSource.brand.briefIntroduction}</p>
             <div className="button-area">
