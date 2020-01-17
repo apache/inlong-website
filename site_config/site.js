@@ -79,7 +79,7 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2019 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.',
   },
   'zh-cn': {
     pageMenu: [
@@ -155,6 +155,6 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2018-2019 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.',
   },
 };

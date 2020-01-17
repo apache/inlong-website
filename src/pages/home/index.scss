@@ -17,14 +17,31 @@
     .product-name {
       position: relative;
       display: inline-block;
-      width: 100%;
+      max-width: 500px;
 
       img {
-        width: 35%;
+        position: absolute;
+        right: -70px;
+        bottom: 120px;
+      }
+
+      .brandname {
+        font-family: HelveticaNeue-Bold;
+        font-size: 88px;
+        color: #000000;
+        letter-spacing: 0;
+        line-height: 120px;
+      }
+      .projectname {
+        font-family: HelveticaNeue-Bold;
+        font-size: 120px;
+        color: #000000;
+        letter-spacing: 0;
+        line-height: 120px;
       }
     }
     .product-desc {
-      width: 60%;
+      width: 500px;
       font-family: HelveticaNeue-Medium;
       font-size: 20px;
       color: rgba(0,0,0,0.85);
@@ -209,16 +226,15 @@
 
           h4 {
             font-family: Avenir-Heavy;
-            font-size: 20px;
-            color: #333;
+            font-size: 22px;
             margin-top: 32px;
           }
           p {
             font-family: Avenir-Medium;
-            font-size: 14px;
-            line-height: 20px;
-            color: #999;
+            font-size: 16px;
+            line-height: 22px;
             margin-top: 16px;
+            text-align: justify;
           }
         }
       }
