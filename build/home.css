@@ -23625,7 +23625,7 @@ div.ant-typography-edit-content {
     line-height: 66px; }
     .header-container .header-body .apache {
       margin-left: 40px;
-      margin-top: 13px; }
+      margin-top: 9px; }
     .header-container .header-body .logo-split {
       display: inline-block;
       border: 1px solid #000;
@@ -23762,7 +23762,7 @@ div.ant-typography-edit-content {
     opacity: 0.2; }
   .header-container .header-body .apache {
     margin-left: 40px;
-    margin-top: 13px; }
+    margin-top: 9px; }
   .header-container .header-body .logo-split {
     display: inline-block;
     border: 1px solid #000;
@@ -23807,7 +23807,7 @@ div.ant-typography-edit-content {
       color: #fff;
       opacity: 1; } }
 .footer-container {
-  background: #F8F8F8; }
+  background: #E6EBFF; }
   .footer-container .footer-body {
     max-width: 1280px;
     margin: 0 auto;
@@ -23818,8 +23818,8 @@ div.ant-typography-edit-content {
         padding-left: 20px;
         padding-right: 20px; } }
     .footer-container .footer-body img {
-      width: 125px;
-      height: 56px;
+      width: 150px;
+      height: 60px;
       margin-bottom: 10px;
       vertical-align: middle; }
     .footer-container .footer-body .cols-container {
@@ -23841,9 +23841,9 @@ div.ant-typography-edit-content {
         margin-bottom: 20px; }
       .footer-container .footer-body .cols-container p {
         font-family: Avenir-Medium;
-        font-size: 12px;
+        font-size: 14px;
         color: #999;
-        line-height: 18px; }
+        line-height: 20px; }
       .footer-container .footer-body .cols-container dl {
         font-family: Avenir-Heavy;
         line-height: 18px; }
@@ -23869,7 +23869,7 @@ div.ant-typography-edit-content {
       line-height: 20px;
       text-align: center;
       font-family: Avenir-Medium;
-      font-size: 12px;
+      font-size: 14px;
       color: #999;
       display: flex;
       align-items: center; }
@@ -25331,11 +25331,25 @@ h1, h2, h3, h4, h5, h6 {
   .home-page .top-section .product-name {
     position: relative;
     display: inline-block;
-    width: 100%; }
+    max-width: 500px; }
     .home-page .top-section .product-name img {
-      width: 35%; }
+      position: absolute;
+      right: -70px;
+      bottom: 120px; }
+    .home-page .top-section .product-name .brandname {
+      font-family: HelveticaNeue-Bold;
+      font-size: 88px;
+      color: #000000;
+      letter-spacing: 0;
+      line-height: 120px; }
+    .home-page .top-section .product-name .projectname {
+      font-family: HelveticaNeue-Bold;
+      font-size: 120px;
+      color: #000000;
+      letter-spacing: 0;
+      line-height: 120px; }
   .home-page .top-section .product-desc {
-    width: 60%;
+    width: 500px;
     font-family: HelveticaNeue-Medium;
     font-size: 20px;
     color: rgba(0, 0, 0, 0.85);
@@ -25488,15 +25502,14 @@ h1, h2, h3, h4, h5, h6 {
         width: 80%; }
         .home-page .feature-section ul li div h4 {
           font-family: Avenir-Heavy;
-          font-size: 20px;
-          color: #333;
+          font-size: 22px;
           margin-top: 32px; }
         .home-page .feature-section ul li div p {
           font-family: Avenir-Medium;
-          font-size: 14px;
-          line-height: 20px;
-          color: #999;
-          margin-top: 16px; }
+          font-size: 16px;
+          line-height: 22px;
+          margin-top: 16px;
+          text-align: justify; }
     @media screen and (max-width: 768px) {
       .home-page .feature-section ul li {
         width: 100%; } }

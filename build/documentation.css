@@ -23625,7 +23625,7 @@ div.ant-typography-edit-content {
     line-height: 66px; }
     .header-container .header-body .apache {
       margin-left: 40px;
-      margin-top: 13px; }
+      margin-top: 9px; }
     .header-container .header-body .logo-split {
       display: inline-block;
       border: 1px solid #000;
@@ -23762,7 +23762,7 @@ div.ant-typography-edit-content {
     opacity: 0.2; }
   .header-container .header-body .apache {
     margin-left: 40px;
-    margin-top: 13px; }
+    margin-top: 9px; }
   .header-container .header-body .logo-split {
     display: inline-block;
     border: 1px solid #000;
@@ -23854,7 +23854,7 @@ div.ant-typography-edit-content {
       .bar .bar-body .front-img {
         margin-left: 50px; } }
 .footer-container {
-  background: #F8F8F8; }
+  background: #E6EBFF; }
   .footer-container .footer-body {
     max-width: 1280px;
     margin: 0 auto;
@@ -23865,8 +23865,8 @@ div.ant-typography-edit-content {
         padding-left: 20px;
         padding-right: 20px; } }
     .footer-container .footer-body img {
-      width: 125px;
-      height: 56px;
+      width: 150px;
+      height: 60px;
       margin-bottom: 10px;
       vertical-align: middle; }
     .footer-container .footer-body .cols-container {
@@ -23888,9 +23888,9 @@ div.ant-typography-edit-content {
         margin-bottom: 20px; }
       .footer-container .footer-body .cols-container p {
         font-family: Avenir-Medium;
-        font-size: 12px;
+        font-size: 14px;
         color: #999;
-        line-height: 18px; }
+        line-height: 20px; }
       .footer-container .footer-body .cols-container dl {
         font-family: Avenir-Heavy;
         line-height: 18px; }
@@ -23916,7 +23916,7 @@ div.ant-typography-edit-content {
       line-height: 20px;
       text-align: center;
       font-family: Avenir-Medium;
-      font-size: 12px;
+      font-size: 14px;
       color: #999;
       display: flex;
       align-items: center; }
