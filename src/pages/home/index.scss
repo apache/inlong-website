@@ -45,7 +45,7 @@
       font-family: HelveticaNeue-Medium;
       font-size: 20px;
       color: rgba(0,0,0,0.85);
-      line-height: 40px;
+      line-height: 30px;
       opacity: 0.6;
       margin-top: 48px;
     }
@@ -152,7 +152,7 @@
   .feature-section {
     box-sizing: border-box;
     position: relative;
-    padding: 80px 20%;
+    padding: 80px 15%;
     background-size: cover;
     background: no-repeat 50% 50%;
 
@@ -232,7 +232,6 @@
           p {
             font-family: Avenir-Medium;
             font-size: 16px;
-            line-height: 22px;
             margin-top: 16px;
             text-align: justify;
           }
