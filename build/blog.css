@@ -25409,6 +25409,9 @@ a {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400; }
 
+html, body {
+  overflow-x: hidden; }
+
 .blog-list-page .blog-container {
   max-width: 1280px;
   margin: 0 auto;

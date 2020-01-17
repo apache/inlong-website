@@ -25317,6 +25317,9 @@ a {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 400; }
 
+html, body {
+  overflow-x: hidden; }
+
 .home-page .top-section {
   position: relative;
   height: 800px;
@@ -25353,7 +25356,7 @@ h1, h2, h3, h4, h5, h6 {
     font-family: HelveticaNeue-Medium;
     font-size: 20px;
     color: rgba(0, 0, 0, 0.85);
-    line-height: 40px;
+    line-height: 30px;
     opacity: 0.6;
     margin-top: 48px; }
   .home-page .top-section .button-area {
@@ -25442,7 +25445,7 @@ h1, h2, h3, h4, h5, h6 {
 .home-page .feature-section {
   box-sizing: border-box;
   position: relative;
-  padding: 80px 20%;
+  padding: 80px 15%;
   background-size: cover;
   background: no-repeat 50% 50%; }
   .home-page .feature-section .index {
@@ -25507,7 +25510,6 @@ h1, h2, h3, h4, h5, h6 {
         .home-page .feature-section ul li div p {
           font-family: Avenir-Medium;
           font-size: 16px;
-          line-height: 22px;
           margin-top: 16px;
           text-align: justify; }
     @media screen and (max-width: 768px) {
