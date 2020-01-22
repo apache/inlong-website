@@ -1,4 +1,4 @@
-# TubeMq Official Website
+# TubeMQ Official Website
 
 This project keeps all sources used for building up TubeMQ official website which's served at 
 https://tubemq.apache.org/
