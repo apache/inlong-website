@@ -24,27 +24,27 @@ export default {
           {
             key: 'foundation',
             text: 'Foundation',
-            link: 'http://www.apache.org',
+            link: '//www.apache.org',
           },
           {
             key: 'licenses',
             text: 'License',
-            link: 'http://www.apache.org/licenses/',
+            link: '//www.apache.org/licenses/',
           },
           {
             key: 'current',
             text: 'Events',
-            link: 'http://www.apache.org/events/current-event',
+            link: '//www.apache.org/events/current-event',
           },
           {
             key: 'sponsorship',
             text: 'Sponsorship',
-            link: 'http://www.apache.org/foundation/sponsorship.html',
+            link: '//www.apache.org/foundation/sponsorship.html',
           },
           {
             key: 'thanks',
             text: 'Thanks',
-            link: 'http://www.apache.org/foundation/thanks.html',
+            link: '//www.apache.org/foundation/thanks.html',
           }
         ]
       }
@@ -56,11 +56,7 @@ export default {
     ],
     disclaimer: {
       title: 'Disclaimer',
-      content: 'Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. \n' +
-          'Incubation is required of all newly accepted projects until a further review indicates \n' +
-          'that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. \n' +
-          'While incubation status is not necessarily a reflection of the completeness or stability of the code, \n' +
-          'it does indicate that the project has yet to be fully endorsed by the ASF.',
+      content: 'Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
     },
     documentation: {
       title: 'Documentation',
@@ -100,27 +96,27 @@ export default {
           {
             key: 'foundation',
             text: '基金会',
-            link: 'http://www.apache.org',
+            link: '//www.apache.org',
           },
           {
             key: 'licenses',
             text: '证书',
-            link: 'http://www.apache.org/licenses/',
+            link: '//www.apache.org/licenses/',
           },
           {
             key: 'events',
             text: '事件',
-            link: 'http://www.apache.org/events/current-event',
+            link: '//www.apache.org/events/current-event',
           },
           {
             key: 'sponsorship',
             text: '赞助',
-            link: 'http://www.apache.org/foundation/sponsorship.html',
+            link: '//www.apache.org/foundation/sponsorship.html',
           },
           {
             key: 'thanks',
             text: '致谢',
-            link: 'http://www.apache.org/foundation/thanks.html',
+            link: '//www.apache.org/foundation/thanks.html',
           }
         ]
       },
@@ -132,11 +128,7 @@ export default {
     ],
     disclaimer: {
       title: '免责声明',
-      content: 'Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. \n' +
-          'Incubation is required of all newly accepted projects until a further review indicates \n' +
-          'that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. \n' +
-          'While incubation status is not necessarily a reflection of the completeness or stability of the code, \n' +
-          'it does indicate that the project has yet to be fully endorsed by the ASF.',
+      content: 'Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
     },
     documentation: {
       title: '文档',
