@@ -45,6 +45,11 @@ export default {
             key: 'thanks',
             text: 'Thanks',
             link: '//www.apache.org/foundation/thanks.html',
+          },
+          {
+            key: 'security',
+            text: 'Security',
+            link: '//www.apache.org/security/',
           }
         ]
       }
@@ -117,6 +122,11 @@ export default {
             key: 'thanks',
             text: '致谢',
             link: '//www.apache.org/foundation/thanks.html',
+          },
+          {
+            key: 'security',
+            text: 'Security',
+            link: '//www.apache.org/security/',
           }
         ]
       },

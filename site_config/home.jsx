@@ -88,7 +88,7 @@ export default {
         {
           img: '/img/advantage-03.png',
           title: 'High stability',
-          content: 'TubeMQ has been successfully operating for nearly seven years. Currently, there are over 35 trillion messages processed everyday. The operation costs 1500 machines and 1 operator. Besides, TubeMQ is able to run continuously except during releasing',
+          content: 'TubeMQ has been successfully operating for nearly seven years. Currently, there are over 35 trillion messages processed every day. The operation costs 1500 machines and 1 operator. Besides, TubeMQ can run continuously except during releasing',
         },
         {
           img: '/img/advantage-04.png',
