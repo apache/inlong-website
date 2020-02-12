@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default {
   'zh-cn': {
     brand: {
@@ -10,6 +8,11 @@ export default {
         {
           text: '立即开始',
           link: '/zh-cn/docs/tubemq_user_guide.html',
+          type: 'primary',
+        },
+        {
+          text: '联系我们',
+          link: '/zh-cn/docs/contact.html',
           type: 'primary',
         },
       ],
@@ -65,6 +68,11 @@ export default {
           link: '/en-us/docs/tubemq_user_guide.html',
           type: 'primary',
         },
+        {
+          text: 'Contact',
+          link: '/en-us/docs/contact.html',
+          type: 'primary',
+        }
       ],
     },
     introduction: {

@@ -1,6 +1,11 @@
 {
   "en-us": [
     {
+      "filename": "contact.md",
+      "link": "/en-us/docs/contact.html",
+      "meta": {}
+    },
+    {
       "filename": "http_access_API_definition.md",
       "link": "/en-us/docs/http_access_API_definition.html",
       "meta": {}
@@ -42,6 +47,11 @@
     }
   ],
   "zh-cn": [
+    {
+      "filename": "contact.md",
+      "link": "/zh-cn/docs/contact.html",
+      "meta": {}
+    },
     {
       "filename": "http_access_API_definition.md",
       "link": "/zh-cn/docs/http_access_API_definition.html",

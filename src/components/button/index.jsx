@@ -25,6 +25,7 @@ const Button = (props) => {
       }
       target={props.target || '_self'}
       href={getLink(props.link)}
+      style={{marginRight: '50px'}}
     >
       {props.children}
     </a>

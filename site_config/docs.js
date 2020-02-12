@@ -8,6 +8,10 @@ export default {
             title: 'user guide',
             link: '/en-us/docs/tubemq_user_guide.html',
           },
+          {
+            title: 'contact',
+            link: '/en-us/docs/contact.html'
+          }
           // {
           //   title: 'demo2',
           //   link: '/en-us/docs/demo2.html',
@@ -36,6 +40,10 @@ export default {
             title: '用户指南',
             link: '/zh-cn/docs/tubemq_user_guide.html',
           },
+          {
+            title: '联系我们',
+            link: '/zh-cn/docs/contact.html'
+          }
           // {
           //   title: '示例2',
           //   link: '/zh-cn/docs/demo2.html',
