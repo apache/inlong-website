@@ -18,6 +18,11 @@ export default {
         link: '/en-us/docs/tubemq_user_guide.html',
       },
       {
+        key: 'github',
+        text: 'GITHUB',
+        link: 'https://github.com/apache/incubator-tubemq-website',
+      },
+      {
         key: 'Apache',
         text: 'Apache',
         children: [
@@ -93,6 +98,11 @@ export default {
         key: 'docs',
         text: '文档',
         link: '/zh-cn/docs/tubemq_user_guide.html',
+      },
+      {
+        key: 'github',
+        text: 'GITHUB',
+        link: 'https://github.com/apache/incubator-tubemq-website',
       },
       {
         key: 'Apache',
