@@ -58,6 +58,11 @@ class Home extends Language {
               dataSource.brand.buttons.map((b, index) => <Button type={b.type} key={index} link={b.link} target={b.target}>{b.text}</Button>)
             }
             </div>
+            <div className="github-btns">
+              <a className="github-button" href="https://github.com/apache/incubator-tubemq-website" data-size="large" data-icon="octicon-star" aria-label="Star apache/incubator-tubemq-website on GitHub">Star </a>
+              <br />
+              <a className="github-button" href="https://github.com/apache/incubator-tubemq-website" data-size="large" data-icon="octicon-fork" aria-label="Fork apache/incubator-tubemq-website on GitHub">Fork</a>
+            </div>
           </div>
         </section>
         <section className="feature-section" style={{backgroundImage: 'url(' + getLink('/img/sec-page-bg.png') + ')'}}>

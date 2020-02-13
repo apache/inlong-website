@@ -11,21 +11,11 @@ export default {
           {
             title: 'contact',
             link: '/en-us/docs/contact.html'
+          },
+          {
+            title: 'contribution',
+            link: '/en-us/docs/contribution.html'
           }
-          // {
-          //   title: 'demo2',
-          //   link: '/en-us/docs/demo2.html',
-          // },
-          // {
-          //   title: 'dir',
-          //   opened: true,
-          //   children: [
-          //     {
-          //       title: 'demo3',
-          //       link: '/en-us/docs/dir/demo3.html',
-          //     },
-          //   ],
-          // },
         ],
       },
     ],
@@ -43,21 +33,11 @@ export default {
           {
             title: '联系我们',
             link: '/zh-cn/docs/contact.html'
+          },
+          {
+            title: '如何贡献',
+            link: '/zh-cn/docs/contribution.html'
           }
-          // {
-          //   title: '示例2',
-          //   link: '/zh-cn/docs/demo2.html',
-          // },
-          // {
-          //   title: '目录',
-          //   opened: true,
-          //   children: [
-          //     {
-          //       title: '示例3',
-          //       link: '/zh-cn/docs/dir/demo3.html',
-          //     },
-          //   ],
-          // },
         ],
       },
     ],

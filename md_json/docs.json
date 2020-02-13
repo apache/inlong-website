@@ -6,6 +6,11 @@
       "meta": {}
     },
     {
+      "filename": "contribution.md",
+      "link": "/en-us/docs/contribution.html",
+      "meta": {}
+    },
+    {
       "filename": "http_access_API_definition.md",
       "link": "/en-us/docs/http_access_API_definition.html",
       "meta": {}
@@ -50,6 +55,11 @@
     {
       "filename": "contact.md",
       "link": "/zh-cn/docs/contact.html",
+      "meta": {}
+    },
+    {
+      "filename": "contribution.md",
+      "link": "/zh-cn/docs/contribution.html",
       "meta": {}
     },
     {

@@ -13,7 +13,7 @@ export default {
         {
           text: '联系我们',
           link: '/zh-cn/docs/contact.html',
-          type: 'primary',
+          type: 'normal',
         },
       ],
     },
@@ -71,7 +71,7 @@ export default {
         {
           text: 'Contact',
           link: '/en-us/docs/contact.html',
-          type: 'primary',
+          type: 'normal',
         }
       ],
     },
