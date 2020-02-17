@@ -20,7 +20,7 @@ export default {
       {
         key: 'github',
         text: 'GITHUB',
-        link: 'https://github.com/apache/incubator-tubemq-website',
+        link: 'https://github.com/apache/incubator-tubemq',
       },
       {
         key: 'Apache',
@@ -102,7 +102,7 @@ export default {
       {
         key: 'github',
         text: 'GITHUB',
-        link: 'https://github.com/apache/incubator-tubemq-website',
+        link: 'https://github.com/apache/incubator-tubemq',
       },
       {
         key: 'Apache',
