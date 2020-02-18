@@ -195,12 +195,12 @@ the master service.</p>
 </code></pre>
 <p>You should be able to access <code>http://your-master-ip:8080/config/topic_list.htm</code> to see the
 web GUI now.</p>
-<p><img src="img/tubemq-console-gui.png" alt="TubeMQ Console GUI"></p>
+<p><img src="./img/tubemq-console-gui.png" alt="TubeMQ Console GUI"></p>
 <h2>Start Broker</h2>
 <p>Before we start a broker service, we need to configure it on master web GUI first.</p>
 <p>Go to the <code>Broker List</code> page, click <code>Add Single Broker</code>, and input the new broker
 information.</p>
-<p><img src="img/tubemq-add-broker-1.png" alt="Add Broker 1"></p>
+<p><img src="./img/tubemq-add-broker-1.png" alt="Add Broker 1"></p>
 <p>In this example, we only need to input broker IP and authToken:</p>
 <ol>
 <li>broker IP: broker server ip</li>
@@ -208,27 +208,27 @@ information.</p>
 <code>confModAuthToken</code> field in your <code>master.ini</code> file.</li>
 </ol>
 <p>Click the online link to activate the new added broker.</p>
-<p><img src="img/tubemq-add-broker-2.png" alt="Add Broker 2"></p>
+<p><img src="./img/tubemq-add-broker-2.png" alt="Add Broker 2"></p>
 <p>Go to the broker server, under the <code>bin</code> folder run this command to start the broker service</p>
 <pre><code class="language-bash">./broker.sh start
 </code></pre>
 <p>Refresh the GUI broker list page, you can see that the broker now is registered.</p>
 <p>After the sub-state of the broker changed to <code>idle</code>, we can add topics to that broker.</p>
-<p><img src="img/tubemq-add-broker-3.png" alt="Add Broker 3"></p>
+<p><img src="./img/tubemq-add-broker-3.png" alt="Add Broker 3"></p>
 <h2>Add Topic</h2>
 <p>We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
 topic list page and click the add new topic button</p>
-<p><img src="img/tubemq-add-topic-1.png" alt="Add Topic 1"></p>
+<p><img src="./img/tubemq-add-topic-1.png" alt="Add Topic 1"></p>
 <p>Then select the brokers which you want to deploy the topics to.</p>
-<p><img src="img/tubemq-add-topic-5.png" alt="Add Topic 5"></p>
+<p><img src="./img/tubemq-add-topic-5.png" alt="Add Topic 5"></p>
 <p>We can see the publish and subscribe state of the new added topic is still grey. We need
 to go to the broker list page to reload the broker configuration.</p>
-<p><img src="img/tubemq-add-topic-6.png" alt="Add Topic 6"></p>
-<p><img src="img/tubemq-add-topic-2.png" alt="Add Topic 2"></p>
+<p><img src="./img/tubemq-add-topic-6.png" alt="Add Topic 6"></p>
+<p><img src="./img/tubemq-add-topic-2.png" alt="Add Topic 2"></p>
 <p>When the broker sub-state changed to idle, go to the topic list page. We can see
 that the topic publish/subscribe state is active now.</p>
-<p><img src="img/tubemq-add-topic-3.png" alt="Add Topic 3"></p>
-<p><img src="img/tubemq-add-topic-4.png" alt="Add Topic 4"></p>
+<p><img src="./img/tubemq-add-topic-3.png" alt="Add Topic 3"></p>
+<p><img src="./img/tubemq-add-topic-4.png" alt="Add Topic 4"></p>
 <p>Now we can use the topic to send messages.</p>
 <h2>Demo</h2>
 <p>Now we can run the example to test our cluster. First let's run the produce data demo. Please don't
