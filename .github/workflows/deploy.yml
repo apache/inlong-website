@@ -15,7 +15,7 @@ jobs:
         node-version: 10.16.0
     - name: Build
       run: |
-        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r 404.html .asf.yaml index.html en-us zh-cn build img dist/ && cp -r docs/en-us/img dist/en-us/docs/img && cp -r docs/zh-cn/img dist/zh-cn/docs/img
+        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r 404.html .asf.yaml index.html en-us zh-cn build img dist/ && cp -r docs/en-us/img dist/docs/en-us/img && cp -r docs/zh-cn/img dist/docs/zh-cn/img
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.4.0
       env:

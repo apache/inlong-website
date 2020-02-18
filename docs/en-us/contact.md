@@ -22,7 +22,7 @@ Contact
 
 Build and Deploy
 -------
-- [See user guide](./docs/tubemq_user_guide.md)
+- [See user guide](./tubemq_user_guide.md)
 
 
 License
