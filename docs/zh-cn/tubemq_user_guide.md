@@ -157,7 +157,7 @@ the master service.
 You should be able to access `http://your-master-ip:8080/config/topic_list.htm` to see the
 web GUI now.
 
-![TubeMQ Console GUI](img/tubemq-console-gui.png)
+![TubeMQ Console GUI](./img/tubemq-console-gui.png)
 
 ## Start Broker
 Before we start a broker service, we need to configure it on master web GUI first.
@@ -165,7 +165,7 @@ Before we start a broker service, we need to configure it on master web GUI firs
 Go to the `Broker List` page, click `Add Single Broker`, and input the new broker 
 information.
 
-![Add Broker 1](img/tubemq-add-broker-1.png)
+![Add Broker 1](./img/tubemq-add-broker-1.png)
 
 In this example, we only need to input broker IP and authToken:
 1. broker IP: broker server ip
@@ -174,7 +174,7 @@ In this example, we only need to input broker IP and authToken:
 
 Click the online link to activate the new added broker.
 
-![Add Broker 2](img/tubemq-add-broker-2.png)
+![Add Broker 2](./img/tubemq-add-broker-2.png)
 
 Go to the broker server, under the `bin` folder run this command to start the broker service
 ```bash
@@ -185,31 +185,31 @@ Refresh the GUI broker list page, you can see that the broker now is registered.
 
 After the sub-state of the broker changed to `idle`, we can add topics to that broker.
 
-![Add Broker 3](img/tubemq-add-broker-3.png)
+![Add Broker 3](./img/tubemq-add-broker-3.png)
 
 ## Add Topic
 We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
 topic list page and click the add new topic button
 
-![Add Topic 1](img/tubemq-add-topic-1.png)
+![Add Topic 1](./img/tubemq-add-topic-1.png)
 
 Then select the brokers which you want to deploy the topics to.
 
-![Add Topic 5](img/tubemq-add-topic-5.png)
+![Add Topic 5](./img/tubemq-add-topic-5.png)
 
 We can see the publish and subscribe state of the new added topic is still grey. We need
 to go to the broker list page to reload the broker configuration.
 
-![Add Topic 6](img/tubemq-add-topic-6.png)
+![Add Topic 6](./img/tubemq-add-topic-6.png)
 
-![Add Topic 2](img/tubemq-add-topic-2.png)
+![Add Topic 2](./img/tubemq-add-topic-2.png)
 
 When the broker sub-state changed to idle, go to the topic list page. We can see
 that the topic publish/subscribe state is active now.
 
-![Add Topic 3](img/tubemq-add-topic-3.png)
+![Add Topic 3](./img/tubemq-add-topic-3.png)
 
-![Add Topic 4](img/tubemq-add-topic-4.png)
+![Add Topic 4](./img/tubemq-add-topic-4.png)
 
 Now we can use the topic to send messages.
 
