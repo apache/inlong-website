@@ -18,6 +18,10 @@ export default {
           }
         ],
       },
+      {
+          title: 'user guide',
+          link: '/en-us/docs/xx.html',
+      }
     ],
     barText: 'Documentation',
   },

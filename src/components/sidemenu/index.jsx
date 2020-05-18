@@ -3,6 +3,7 @@ import classnames from 'classnames';
 import { autobind } from 'core-decorators';
 import Item from './item.jsx';
 import './index.scss';
+import {getLink} from "../../../utils";
 
 @autobind
 class SideMenu extends React.Component {
@@ -41,10 +42,17 @@ class SideMenu extends React.Component {
               return (
                 <li className={itemCls} key={i}>
                   <span>
-                  {data.title}
+                  {data.children ? data.title : <div
+                      className={classnames({
+                      'menu-item': true,
+                      'menu-item-level-1': true,
+                      'menu-item-selected': getLink(data.link) === window.location.pathname,
+                  })} style={{ marginLeft: '-20px' }} >
+                      <a href={getLink(data.link)} target={'_self'} style={{ paddingLeft: '20px' }}>{data.title}</a>
+                  </div>}
                   </span>
                   <ul>
-                    {data.children.map((item, j) => <Item item={item} key={j} toggleMenuBody={this.toggleMenuBody} />)}
+                    {data.children && data.children.map((item, j) => <Item item={item} key={j} toggleMenuBody={this.toggleMenuBody} />)}
                   </ul>
                 </li>
               );
