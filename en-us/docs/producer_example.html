@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="producer_example" />
+	<meta name="description" content="producer_example" />
+	<!-- 网页标签标题 -->
+	<title>producer_example</title>
+	<link rel="shortcut icon" href="/img/apache.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><a href="//www.apache.org"><img class="logo apache" style="width:120px" src="/img/asf_logo.svg"/></a><div class="logo-split"></div><img class="logo tube" style="width:72px" src="/img/Tube logo.svg"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><div><ul class="ant-menu blackClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/docs/tubemq_user_guide.html" target="_self">DOCS</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="https://github.com/apache/incubator-tubemq" target="_self">GITHUB</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper">Apache</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div></div><div class="header-background"></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>Documentation</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>User Guide</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/quick_start.html" target="_self">Quick Start</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/producer_example.html" target="_self">Producer Example</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/consumer_example.html" target="_self">Consumer Example</a></li></ul></li><li class="menu-item menu-item-level-1"><span>Architecture &amp; Deployment</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/architecture.html" target="_self">Architecture</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/deployment.html" target="_self">Deployment</a></li></ul></li><li class="menu-item menu-item-level-1"><span><div class="menu-item menu-item-level-1" style="margin-left:-20px"><a href="/en-us/docs/contact.html" target="_self" style="padding-left:20px">Contact</a></div></span><ul></ul></li><li class="menu-item menu-item-level-1"><span><div class="menu-item menu-item-level-1" style="margin-left:-20px"><a href="/en-us/docs/contribution.html" target="_self" style="padding-left:20px">Contribution</a></div></span><ul></ul></li></ul></div><div class="doc-content markdown-body"><h2>Producer Example</h2>
+<p>TubeMQ provides two ways to initialize session factory, TubeSingleSessionFactory and TubeMultiSessionFactory:</p>
+<ul>
+<li>TubeSingleSessionFactory creates only one session in the lifecycle, this is very useful in streaming scenarios.</li>
+<li>TubeMultiSessionFactory creates new session on every call.</li>
+</ul>
+<ol>
+<li>TubeSingleSessionFactory
+<ul>
+<li>
+<p>Send Message Synchronously</p>
+<pre><code>public final class SyncProducerExample {
+
+   public static void main(String[] args) throws Exception{
+       final String localHostIP = &quot;127.0.0.1&quot;;
+       final String masterHostAndPort = &quot;localhost:8000&quot;;
+       final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
+       final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
+       final MessageProducer messageProducer = messageSessionFactory.createProducer();
+       final String topic = &quot;test&quot;;
+       final String body = &quot;This is a test message from single-session-factory!&quot;;
+       byte[] bodyData = StringUtils.getBytesUtf8(body);
+       messageProducer.publish(topic);
+       Message message = new Message(topic, bodyData);
+       MessageSentResult result = messageProducer.sendMessage(message);
+       if (result.isSuccess()) {
+           System.out.println(&quot;sync send message : &quot; + message);
+       }
+       messageProducer.shutdown();
+   }
+}
+</code></pre>
+</li>
+<li>
+<p>Send Message Asynchronously</p>
+<pre><code>public final class AsyncProducerExample {
+
+    public static void main(String[] args) throws Throwable {
+        final String localHostIP = &quot;127.0.0.1&quot;;
+        final String masterHostAndPort = &quot;localhost:8000&quot;;
+        final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
+        final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
+        final MessageProducer messageProducer = messageSessionFactory.createProducer();
+        final String topic = &quot;test&quot;;
+        final String body = &quot;async send message from single-session-factory!&quot;;
+        byte[] bodyData = StringUtils.getBytesUtf8(body);
+        messageProducer.publish(topic);
+        Message message = new Message(topic, bodyData);
+        messageProducer.sendMessage(message, new MessageSentCallback(){
+            @Override
+            public void onMessageSent(MessageSentResult result) {
+                if (result.isSuccess()) {
+                    System.out.println(&quot;async send message : &quot; + message);
+                } else {
+                    System.out.println(&quot;async send message failed : &quot; + result.getErrMsg());
+                }
+            }
+            @Override
+            public void onException(Throwable e) {
+                System.out.println(&quot;async send message error : &quot; + e);
+            }
+        });
+        messageProducer.shutdown();
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>Send Message With Attributes</p>
+<pre><code>public final class ProducerWithAttributeExample {
+
+    public static void main(String[] args) throws Throwable {
+        final String localHostIP = &quot;127.0.0.1&quot;;
+        final String masterHostAndPort = &quot;localhost:8000&quot;;
+        final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
+        final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
+        final MessageProducer messageProducer = messageSessionFactory.createProducer();
+        final String topic = &quot;test&quot;;
+        final String body = &quot;send message with attribute from single-session-factory!&quot;;
+        byte[] bodyData = StringUtils.getBytesUtf8(body);
+        messageProducer.publish(topic);
+        Message message = new Message(topic, bodyData);
+        //set attribute
+        message.setAttrKeyVal(&quot;test_key&quot;, &quot;test value&quot;);
+        //msgType is used for consumer filtering, and msgTime(accurate to minute) is used as the pipe to send and receive statistics
+        SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;);
+        message.putSystemHeader(&quot;test&quot;, sdf.format(new Date()));
+        messageProducer.sendMessage(message);
+        messageProducer.shutdown();
+    }
+}
+</code></pre>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>
+<p>TubeMultiSessionFactory</p>
+<pre><code>public class MultiSessionProducerExample {
+    
+    public static void main(String[] args) throws Exception{
+        final int SESSION_FACTORY_NUM = 10;
+        final String localHostIP = &quot;127.0.0.1&quot;;
+        final String masterHostAndPort = &quot;localhost:8000&quot;;
+        final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
+        final List&lt;MessageSessionFactory&gt; sessionFactoryList = new ArrayList&lt;&gt;(SESSION_FACTORY_NUM);
+        final ExecutorService sendExecutorService = Executors.newFixedThreadPool(SESSION_FACTORY_NUM);
+        final CountDownLatch latch = new CountDownLatch(SESSION_FACTORY_NUM);
+        for (int i = 0; i &lt; SESSION_FACTORY_NUM; i++) {
+            TubeMultiSessionFactory tubeMultiSessionFactory = new TubeMultiSessionFactory(clientConfig);
+            sessionFactoryList.add(tubeMultiSessionFactory);
+            MessageProducer producer = tubeMultiSessionFactory.createProducer();
+            Sender sender = new Sender(producer, latch);
+            sendExecutorService.submit(sender);
+        }
+        latch.await();
+        sendExecutorService.shutdownNow();
+        for(MessageSessionFactory sessionFactory : sessionFactoryList){
+            sessionFactory.shutdown();
+        }
+    }
+
+    private static class Sender implements Runnable {
+        
+        private MessageProducer producer;
+        
+        private CountDownLatch latch;
+
+        public Sender(MessageProducer producer, CountDownLatch latch) {
+            this.producer = producer;
+            this.latch = latch;
+        }
+
+        @Override
+        public void run() {
+            final String topic = &quot;test&quot;;
+            try {
+                producer.publish(topic);
+                final byte[] bodyData = StringUtils.getBytesUtf8(&quot;This is a test message from multi-session factory&quot;);
+                Message message = new Message(topic, bodyData);
+                producer.sendMessage(message);
+                producer.shutdown();
+            } catch (Throwable ex) {
+                System.out.println(&quot;send message error : &quot; + ex);
+            } finally {
+                latch.countDown();
+            }
+        }
+    }
+}
+</code></pre>
+</li>
+</ul>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><div class="cols-container"><div class="col col-24"><p>Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script src="https://buttons.github.io/buttons.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>

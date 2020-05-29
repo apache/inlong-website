@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="consumer_example" />
+	<meta name="description" content="consumer_example" />
+	<!-- 网页标签标题 -->
+	<title>consumer_example</title>
+	<link rel="shortcut icon" href="/img/apache.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><a href="//www.apache.org"><img class="logo apache" style="width:120px" src="/img/asf_logo.svg"/></a><div class="logo-split"></div><img class="logo tube" style="width:72px" src="/img/Tube logo.svg"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><div><ul class="ant-menu blackClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/docs/tubemq_user_guide.html" target="_self">文档</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="https://github.com/apache/incubator-tubemq" target="_self">GITHUB</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper">Apache</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div></div><div class="header-background"></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>文档</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>引导</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/quick_start.html" target="_self">快速开始</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/producer_example.html" target="_self">生产者示例</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/consumer_example.html" target="_self">消费者示例</a></li></ul></li><li class="menu-item menu-item-level-1"><span>架构和部署</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/architecture.html" target="_self">架构</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/deployment.html" target="_self">部署</a></li></ul></li><li class="menu-item menu-item-level-1"><span><div class="menu-item menu-item-level-1" style="margin-left:-20px"><a href="/zh-cn/docs/contact.html" target="_self" style="padding-left:20px">联系我们</a></div></span><ul></ul></li><li class="menu-item menu-item-level-1"><span><div class="menu-item menu-item-level-1" style="margin-left:-20px"><a href="/zh-cn/docs/contribution.html" target="_self" style="padding-left:20px">如何贡献</a></div></span><ul></ul></li></ul></div><div class="doc-content markdown-body"><h2>Consumer Example</h2>
+<p>TubeMQ provides two ways to consumer message, PullConsumer and PushConsumer:</p>
+<ol>
+<li>
+<p>PullConsumer</p>
+<pre><code>public class PullConsumerExample {
+
+    public static void main(String[] args) throws Throwable {
+        final String localHostIP = &quot;127.0.0.1&quot;;
+        final String masterHostAndPort = &quot;localhost:8000&quot;;
+        final String topic = &quot;test&quot;;
+        final String group = &quot;test-group&quot;;
+        final ConsumerConfig consumerConfig = new ConsumerConfig(localHostIP, masterHostAndPort, group);
+        /* consumeModel
+         *  Set the start position of the consumer group. The value can be [-1, 0, 1]. Default value is 0.
+         * -1: Start from 0 for the first time. Otherwise start from last consume position.
+         *  0: Start from the latest position for the first time. Otherwise start from last consume position.
+         *  1: Start from the latest consume position.
+        */
+        consumerConfig.setConsumeModel(0);
+        final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(consumerConfig);
+        final PullMessageConsumer messagePullConsumer = messageSessionFactory.createPullConsumer(consumerConfig);
+        messagePullConsumer.subscribe(topic, null);
+        messagePullConsumer.completeSubscribe();
+        // wait for client to join the exact consumer queue that consumer group allocated
+        while (!messagePullConsumer.isPartitionsReady(1000)) {
+            ThreadUtils.sleep(1000);
+        }
+        while(true){
+            ConsumerResult result = messagePullConsumer.getMessage();
+            if (result.isSuccess()) {
+                List&lt;Message&gt; messageList = result.getMessageList();
+                for (Message message : messageList) {
+                    System.out.println(&quot;received message : &quot; + message);
+                }
+                messagePullConsumer.confirmConsume(result.getConfirmContext(), true);
+            } else{
+                if (result.getErrCode() == 400) {
+                    ThreadUtils.sleep(100);
+                } else {
+                    if (result.getErrCode() != 404) {
+                        System.out.println(String.format(&quot;Receive messages errorCode is %d, Error message is %s&quot;, result.getErrCode(), result.getErrMsg()));
+                    }
+                }
+            }
+        }
+    }
+}
+</code></pre>
+</li>
+<li>
+<p>PushConsumer</p>
+<pre><code>public class PushConsumerExample {
+
+    public static void main(String[] args) throws Throwable {
+        final String localHostIP = &quot;127.0.0.1&quot;;
+        final String masterHostAndPort = &quot;localhost:8000&quot;;
+        final String topic = &quot;test&quot;;
+        final String group = &quot;test-group&quot;;
+        final ConsumerConfig consumerConfig = new ConsumerConfig(localHostIP, masterHostAndPort, group);
+        /* consumeModel
+         *  Set the start position of the consumer group. The value can be [-1, 0, 1]. Default value is 0.
+         * -1: Start from 0 for the first time. Otherwise start from last consume position.
+         *  0: Start from the latest position for the first time. Otherwise start from last consume position.
+         *  1: Start from the latest consume position.
+        */
+        consumerConfig.setConsumeModel(0);
+        final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(consumerConfig);
+        final PushMessageConsumer pushConsumer = messageSessionFactory.createPushConsumer(consumerConfig);
+        pushConsumer.subscribe(topic, null, new MessageListener() {
+
+            @Override
+            public void receiveMessages(List&lt;Message&gt; messages) throws InterruptedException {
+                for (Message message : messages) {
+                    System.out.println(&quot;received message : &quot; + new String(message.getData()));
+                }
+            }
+
+            @Override
+            public Executor getExecutor() {
+                return null;
+            }
+
+            @Override
+            public void stop() {
+                //
+            }
+        });
+        pushConsumer.completeSubscribe();
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.await(10, TimeUnit.MINUTES);
+    }
+}
+</code></pre>
+</li>
+</ol>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><div class="cols-container"><div class="col col-24"><p>Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script src="https://buttons.github.io/buttons.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>
