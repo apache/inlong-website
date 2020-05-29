@@ -40,14 +40,6 @@ To avoid potential frustration during the code review cycle, we encourage you to
 
 We are using "TubeMQ Improvement Proposals" for managing major changes to TubeMQ. The list of all proposals is maintained in the TubeMQ wiki at [this page](https://cwiki.apache.org/confluence/display/TUBEMQ/TubeMQ+Improvement+Proposals).
 
-## Code
-
-TBD
-
-## Review
-
-TBD
-
 ## Commit (committers only)
 
 Once the code has been peer reviewed by a committer, the next step is for the committer to merge it into the Github repo.
@@ -55,4 +47,15 @@ Once the code has been peer reviewed by a committer, the next step is for the co
 Pull requests should not be merged before the review has approved from at least 1 committer.
 
 For more about merging pull request, please refer to [this page](https://cwiki.apache.org/confluence/display/TUBEMQ/Merging+Pull+Requests)
+
+## Website Contributor List
+We are very pleased to announce some contributors here. They have made a lot of contributions in the translation of TubeMQ. Thanks again to the following participants.
+ - deepEvolution
+ - missy
+ - min.yang
+ - goson
+ - stillcoolme
+ - tboy
+ - viviel
+ - yuecai.liu
 
