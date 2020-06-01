@@ -67,7 +67,7 @@ class Community extends Language {
           }
           </div>
         </section>
-        <Footer logo="/img/dubbo_gray.png" language={language} />
+        <Footer logo="/img/incubator-logo.svg" language={language} />
       </div>
     );
   }
