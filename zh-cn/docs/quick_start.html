@@ -20,22 +20,20 @@
 </ul>
 <h2>Build</h2>
 <h3>Build distribution tarball</h3>
-<p>Go to the project root, and run</p>
+<p>在TubeMQ根目录下执行命令：</p>
 <pre><code class="language-bash">mvn clean package -DskipTests
 </code></pre>
-<p>If you want to build each module of the project separately, you need to run <code>mvn install</code> in the project root at first.</p>
+<p>在根目录执行 <code>mvn clean install</code> 之后，可以单独对每个 module 进行构建。</p>
 <h3>Build source code</h3>
-<p>If you want to build and debug source code in IDE, go to the project root, and run</p>
+<p>在IDE中构建和调试源码，需要先运行以下命令：</p>
 <pre><code class="language-bash">mvn compile
 </code></pre>
-<p>This command will generate the Java source files from the <code>protoc</code> files, the generated files located in <code>target/generated-sources</code>.</p>
-<p>When this command finished, you can use IDE import the project as maven project.</p>
+<p>执行之后，会生成 <code>protoc</code> 文件对应的 java source file，位于 <code>target/generated-sources</code> 目录。</p>
+<p>然后就可以在 IDE 中打开 TubeMQ 工程。</p>
 <h2>Deploy</h2>
-<p>After the build, please go to <code>tubemq-server/target</code>. You can find the
-<strong>tubemq-server-x.x.x-bin.tar.gz</strong> file. It is the server deployment package, which includes
-scripts, configuration files, dependency jars and web GUI code.</p>
-<p>For the first time deployment, we just need to extract the package file. For example, we put these
-files into the <code>/opt/tubemq-server</code>, here's the folder structure.</p>
+<p>构建完成之后，在 <code>tubemq-server/target</code> 目录下会有 <strong>tubemq-server-x.x.x-bin.tar.gz</strong> 文件.
+这是 Server 的部署包，包含了脚本、配置文件、依赖以及 web GUI相关的内容。</p>
+<p>首次部署，只需要解压部署包，解压之后的目录结构如下：</p>
 <pre><code>/opt/tubemq-server
 ├── bin
 ├── conf
@@ -43,10 +41,9 @@ files into the <code>/opt/tubemq-server</code>, here's the folder structure.</p>
 ├── logs
 └── resources
 </code></pre>
-<h2>Configure</h2>
-<p>There're two roles in the cluster: <strong>Master</strong> and <strong>Broker</strong>. Master and Broker
-can be deployed on the same server or different servers. In this example, we setup our cluster
-like this, and all services run on the same node. Zookeeper should be setup in your environment also.</p>
+<h3>Configure</h3>
+<p>TubeMQ 集群有两个角色: <strong>Master</strong> 和 <strong>Broker</strong>. Master 和 Broker 可以部署在相同或者不同的节点上。下面是
+一个集群的配置示例：</p>
 <table>
 <thead>
 <tr>
@@ -63,27 +60,26 @@ like this, and all services run on the same node. Zookeeper should be setup in y
 <td>8099</td>
 <td>8199</td>
 <td>8080</td>
-<td>Meta data is stored at /stage/metadata</td>
+<td>元数据存储在 /stage/metadata</td>
 </tr>
 <tr>
 <td>Broker</td>
 <td>8123</td>
 <td>8124</td>
 <td>8081</td>
-<td>Message is stored at /stage/msgdata</td>
+<td>消息存储在 /stage/msgdata</td>
 </tr>
 <tr>
 <td>Zookeeper</td>
 <td>2181</td>
 <td></td>
 <td></td>
-<td>Offset is stored at /tubemq</td>
+<td>Offset 存储在 /tubemq</td>
 </tr>
 </tbody>
 </table>
-<p>You can follow the example below to update the corresponding config files. Please notice that the <strong>YOUR_SERVER_IP</strong> should
-be replaced with your server IP.</p>
-<h5>conf/master.ini</h5>
+<p>详细的配置信息如下所示，注意将 <code>YOUR_SERVER_IP</code> 替换为真实的IP。</p>
+<h4>master.ini</h4>
 <pre><code class="language-ini"><span class="hljs-section">[master]</span>
 <span class="hljs-attr">hostName</span>=YOUR_SERVER_IP
 <span class="hljs-attr">port</span>=<span class="hljs-number">8000</span>
@@ -151,68 +147,61 @@ be replaced with your server IP.</p>
 <span class="hljs-attr">zkCommitFailRetries</span>=<span class="hljs-number">10</span>
 
 </code></pre>
-<p>You also need to update your <code>/etc/hosts</code> file on the master servers. Add other master
-server IPs in this way, assume the ip is <code>192.168.1.2</code>:</p>
-<h5>/etc/hosts</h5>
-<pre><code>192.168.1.2 192-168-1-2
+<p>特别的，对于 Master 节点，需要在 <code>/etc/hosts</code> 中配置其他 Master 节点的信息，如果有三个 Master 节点：</p>
+<pre><code>192.168.1.2 hostname-2
+192.168.1.3 hostname-3
+192.168.1.4 hostname-4
 </code></pre>
-<h2>Start Master</h2>
-<p>After update the config file, please go to the <code>bin</code> folder and run this command to start
-the master service.</p>
+<h2>Start Cluster</h2>
+<p>配置完成之后，就可以按照以下步骤启动集群。</p>
+<h3>Start Master</h3>
+<p>完成如上配置设置后，首先进入主备Master所在的TubeMQ环境的 <code>bin</code> 目录，进行服务启动操作。</p>
 <pre><code class="language-bash">./master.sh start
 </code></pre>
-<p>You should be able to access <code>http://your-master-ip:8080/config/topic_list.htm</code> to see the
-web GUI now.</p>
+<p>访问Master的管控台 <code>http://your-master-ip:8080/config/topic_list.htm</code> ，页面可查则表示 master 已成功启动。</p>
 <p><img src="img/tubemq-console-gui.png" alt="TubeMQ Console GUI"></p>
 <h2>Start Broker</h2>
-<p>Before we start a broker service, we need to configure it on master web GUI first.</p>
-<p>Go to the <code>Broker List</code> page, click <code>Add Single Broker</code>, and input the new broker
-information.</p>
+<p>Broker启动前，首先要在Master上配置Broker元数据，增加Broker相关的管理信息。</p>
+<p>在<code>Broker List</code> 页面,  <code>Add Single Broker</code>，然后填写相关信息。</p>
 <p><img src="img/tubemq-add-broker-1.png" alt="Add Broker 1"></p>
-<p>In this example, we only need to input broker IP and authToken:</p>
+<p>需要填写的内容包括：</p>
 <ol>
 <li>broker IP: broker server ip</li>
-<li>authToken: A token pre-configured in the <code>conf/master.ini</code> file. Please check the
-<code>confModAuthToken</code> field in your <code>master.ini</code> file.</li>
+<li>authToken:  <code>conf/master.ini</code> 文件中 <code>confModAuthToken</code> 字段配置的 token</li>
 </ol>
-<p>Click the online link to activate the new added broker.</p>
+<p>然后上线Broker：</p>
 <p><img src="img/tubemq-add-broker-2.png" alt="Add Broker 2"></p>
-<p>Go to the broker server, under the <code>bin</code> folder run this command to start the broker service</p>
+<p>到 Broker 节点的 <code>bin</code> 目录下，执行以下命令启动 Broker服务：</p>
 <pre><code class="language-bash">./broker.sh start
 </code></pre>
-<p>Refresh the GUI broker list page, you can see that the broker now is registered.</p>
-<p>After the sub-state of the broker changed to <code>idle</code>, we can add topics to that broker.</p>
+<p>刷新页面可以看到 Broker 已经注册，当 <code>当前运行子状态</code> 为 <code>idle</code> 时， 可以增加topic。</p>
 <p><img src="img/tubemq-add-broker-3.png" alt="Add Broker 3"></p>
 <h2>Add Topic</h2>
-<p>We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
-topic list page and click the add new topic button</p>
+<p>可以通过 web GUI 添加 Topic， 在 <code>Topic列表</code>页面添加，需要填写相关信息</p>
 <p><img src="img/tubemq-add-topic-1.png" alt="Add Topic 1"></p>
-<p>Then select the brokers which you want to deploy the topics to.</p>
+<p>然后选择部署 Topic 的 Broker</p>
 <p><img src="img/tubemq-add-topic-5.png" alt="Add Topic 5"></p>
-<p>We can see the publish and subscribe state of the new added topic is still grey. We need
-to go to the broker list page to reload the broker configuration.</p>
+<p>此时 Broker的 <code>可发布</code> 和 <code>可订阅</code> 依旧是灰色的</p>
 <p><img src="img/tubemq-add-topic-6.png" alt="Add Topic 6"></p>
+<p>需要在 <code>Broker列表</code>页面重载Broker 配置</p>
 <p><img src="img/tubemq-add-topic-2.png" alt="Add Topic 2"></p>
-<p>When the broker sub-state changed to idle, go to the topic list page. We can see
-that the topic publish/subscribe state is active now.</p>
 <p><img src="img/tubemq-add-topic-3.png" alt="Add Topic 3"></p>
+<p>之后就可以在页面查看Topic信息。</p>
 <p><img src="img/tubemq-add-topic-4.png" alt="Add Topic 4"></p>
-<p>Now we can use the topic to send messages.</p>
 <h2>Demo</h2>
-<p>Now we can run the example to test our cluster. First let's run the produce data demo. Please don't
-forget replace <code>YOUR_SERVER_IP</code> with your server ip.</p>
+<p>可以使用 Example 来测试集群。首先，我们运行 producer的demo，注意将 <code>YOUR_SERVER_IP</code> 替换为实际的IP.</p>
 <pre><code class="language-bash">java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  -Djava.net.preferIPv4Stack=<span class="hljs-literal">true</span> -cp  /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageProducerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo 10000000
 </code></pre>
-<p>From the log, we can see the message is sent out.</p>
+<p>从日志我们可以看到，数据发送成功</p>
 <pre><code class="language-bash">[2019-09-11 16:09:08,287] INFO Send demo 1000 message, keyCount is 268 (com.tencent.tubemq.example.MessageProducerExample)
 [2019-09-11 16:09:08,505] INFO Send demo 2000 message, keyCount is 501 (com.tencent.tubemq.example.MessageProducerExample)
 [2019-09-11 16:09:08,958] INFO Send demo 3000 message, keyCount is 755 (com.tencent.tubemq.example.MessageProducerExample)
 [2019-09-11 16:09:09,085] INFO Send demo 4000 message, keyCount is 1001 (com.tencent.tubemq.example.MessageProducerExample)
 </code></pre>
-<p>Then we run the consume data demo. Also replace the server ip</p>
+<p>然后运行 consume 的 demo，<code>YOUR_SERVER_IP</code> 也需要替换</p>
 <pre><code class="language-bash">java -Xmx512m -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=<span class="hljs-literal">true</span> -cp /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageConsumerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo demoGroup 3 1 1
 </code></pre>
-<p>From the log, we can see the message received by the consumer.</p>
+<p>从日志我们可以看到，数据被消费者消费到</p>
 <pre><code class="language-bash">[2019-09-11 16:09:29,720] INFO Receive messages:2500 (com.tencent.tubemq.example.MsgRecvStats)
 [2019-09-11 16:09:30,059] INFO Receive messages:5000 (com.tencent.tubemq.example.MsgRecvStats)
 [2019-09-11 16:09:34,493] INFO Receive messages:10000 (com.tencent.tubemq.example.MsgRecvStats)
