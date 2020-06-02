@@ -5,13 +5,12 @@
 
 1. TubeSingleSessionFactory
    - Send Message Synchronously
-     ```
-     public final class SyncProducerExample {
+    ```
+    public final class SyncProducerExample {
     
-        public static void main(String[] args) throws Exception{
-            final String localHostIP = "127.0.0.1";
+        public static void main(String[] args) throws Throwable {
             final String masterHostAndPort = "localhost:8000";
-            final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
+            final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
             final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
             final MessageProducer messageProducer = messageSessionFactory.createProducer();
             final String topic = "test";
@@ -25,79 +24,78 @@
             }
             messageProducer.shutdown();
         }
-     }
-     ```
+    }
+    ```
      
    - Send Message Asynchronously
-     ```
-     public final class AsyncProducerExample {
+    ```
+    public final class AsyncProducerExample {
      
-         public static void main(String[] args) throws Throwable {
-             final String localHostIP = "127.0.0.1";
-             final String masterHostAndPort = "localhost:8000";
-             final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
-             final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
-             final MessageProducer messageProducer = messageSessionFactory.createProducer();
-             final String topic = "test";
-             final String body = "async send message from single-session-factory!";
-             byte[] bodyData = StringUtils.getBytesUtf8(body);
-             messageProducer.publish(topic);
-             Message message = new Message(topic, bodyData);
-             messageProducer.sendMessage(message, new MessageSentCallback(){
-                 @Override
-                 public void onMessageSent(MessageSentResult result) {
-                     if (result.isSuccess()) {
-                         System.out.println("async send message : " + message);
-                     } else {
-                         System.out.println("async send message failed : " + result.getErrMsg());
-                     }
-                 }
-                 @Override
-                 public void onException(Throwable e) {
-                     System.out.println("async send message error : " + e);
-                 }
-             });
-             messageProducer.shutdown();
-         }
-     }
-     ```
+        public static void main(String[] args) throws Throwable {
+            final String masterHostAndPort = "localhost:8000";
+            final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
+            final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
+            final MessageProducer messageProducer = messageSessionFactory.createProducer();
+            final String topic = "test";
+            final String body = "async send message from single-session-factory!";
+            byte[] bodyData = StringUtils.getBytesUtf8(body);
+            messageProducer.publish(topic);
+            final Message message = new Message(topic, bodyData);
+            messageProducer.sendMessage(message, new MessageSentCallback(){
+                @Override
+                public void onMessageSent(MessageSentResult result) {
+                    if (result.isSuccess()) {
+                        System.out.println("async send message : " + message);
+                    } else {
+                        System.out.println("async send message failed : " + result.getErrMsg());
+                    }
+                }
+                @Override
+                public void onException(Throwable e) {
+                    System.out.println("async send message error : " + e);
+                }
+            });
+            messageProducer.shutdown();
+        }
+
+    }
+    ```
      
    - Send Message With Attributes
-     ```
-     public final class ProducerWithAttributeExample {
+    ```
+    public final class ProducerWithAttributeExample {
      
-         public static void main(String[] args) throws Throwable {
-             final String localHostIP = "127.0.0.1";
-             final String masterHostAndPort = "localhost:8000";
-             final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
-             final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
-             final MessageProducer messageProducer = messageSessionFactory.createProducer();
-             final String topic = "test";
-             final String body = "send message with attribute from single-session-factory!";
-             byte[] bodyData = StringUtils.getBytesUtf8(body);
-             messageProducer.publish(topic);
-             Message message = new Message(topic, bodyData);
-             //set attribute
-             message.setAttrKeyVal("test_key", "test value");
-             //msgType is used for consumer filtering, and msgTime(accurate to minute) is used as the pipe to send and receive statistics
-             SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
-             message.putSystemHeader("test", sdf.format(new Date()));
-             messageProducer.sendMessage(message);
-             messageProducer.shutdown();
-         }
-     }
-     ```  
+        public static void main(String[] args) throws Throwable {
+            final String masterHostAndPort = "localhost:8000";
+            final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
+            final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
+            final MessageProducer messageProducer = messageSessionFactory.createProducer();
+            final String topic = "test";
+            final String body = "send message with attribute from single-session-factory!";
+            byte[] bodyData = StringUtils.getBytesUtf8(body);
+            messageProducer.publish(topic);
+            Message message = new Message(topic, bodyData);
+            //set attribute
+            message.setAttrKeyVal("test_key", "test value");
+            //msgType is used for consumer filtering, and msgTime(accurate to minute) is used as the pipe to send and receive statistics
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
+            message.putSystemHeader("test", sdf.format(new Date()));
+            messageProducer.sendMessage(message);
+            messageProducer.shutdown();
+        }
+
+    }
+    ```  
      
 - TubeMultiSessionFactory
 
     ```
     public class MultiSessionProducerExample {
         
-        public static void main(String[] args) throws Exception{
+        public static void main(String[] args) throws Throwable {
             final int SESSION_FACTORY_NUM = 10;
-            final String localHostIP = "127.0.0.1";
             final String masterHostAndPort = "localhost:8000";
-            final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
+            final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
             final List<MessageSessionFactory> sessionFactoryList = new ArrayList<>(SESSION_FACTORY_NUM);
             final ExecutorService sendExecutorService = Executors.newFixedThreadPool(SESSION_FACTORY_NUM);
             final CountDownLatch latch = new CountDownLatch(SESSION_FACTORY_NUM);
@@ -110,7 +108,7 @@
             }
             latch.await();
             sendExecutorService.shutdownNow();
-            for(MessageSessionFactory sessionFactory : sessionFactoryList){
+            for (MessageSessionFactory sessionFactory : sessionFactoryList) {
                 sessionFactory.shutdown();
             }
         }
@@ -142,6 +140,7 @@
                 }
             }
         }
+
     }
     ```
 

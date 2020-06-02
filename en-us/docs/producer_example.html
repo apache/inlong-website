@@ -19,47 +19,46 @@
 <li>TubeMultiSessionFactory creates new session on every call.</li>
 </ul>
 <ol>
-<li>TubeSingleSessionFactory
-<ul>
 <li>
-<p>Send Message Synchronously</p>
+<p>TubeSingleSessionFactory</p>
+<ul>
+<li>Send Message Synchronously</li>
+</ul>
 <pre><code>public final class SyncProducerExample {
 
-   public static void main(String[] args) throws Exception{
-       final String localHostIP = &quot;127.0.0.1&quot;;
-       final String masterHostAndPort = &quot;localhost:8000&quot;;
-       final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
-       final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
-       final MessageProducer messageProducer = messageSessionFactory.createProducer();
-       final String topic = &quot;test&quot;;
-       final String body = &quot;This is a test message from single-session-factory!&quot;;
-       byte[] bodyData = StringUtils.getBytesUtf8(body);
-       messageProducer.publish(topic);
-       Message message = new Message(topic, bodyData);
-       MessageSentResult result = messageProducer.sendMessage(message);
-       if (result.isSuccess()) {
-           System.out.println(&quot;sync send message : &quot; + message);
-       }
-       messageProducer.shutdown();
-   }
+    public static void main(String[] args) throws Throwable {
+        final String masterHostAndPort = &quot;localhost:8000&quot;;
+        final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
+        final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
+        final MessageProducer messageProducer = messageSessionFactory.createProducer();
+        final String topic = &quot;test&quot;;
+        final String body = &quot;This is a test message from single-session-factory!&quot;;
+        byte[] bodyData = StringUtils.getBytesUtf8(body);
+        messageProducer.publish(topic);
+        Message message = new Message(topic, bodyData);
+        MessageSentResult result = messageProducer.sendMessage(message);
+        if (result.isSuccess()) {
+            System.out.println(&quot;sync send message : &quot; + message);
+        }
+        messageProducer.shutdown();
+    }
 }
 </code></pre>
-</li>
-<li>
-<p>Send Message Asynchronously</p>
+<ul>
+<li>Send Message Asynchronously</li>
+</ul>
 <pre><code>public final class AsyncProducerExample {
-
+ 
     public static void main(String[] args) throws Throwable {
-        final String localHostIP = &quot;127.0.0.1&quot;;
         final String masterHostAndPort = &quot;localhost:8000&quot;;
-        final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
+        final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
         final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
         final MessageProducer messageProducer = messageSessionFactory.createProducer();
         final String topic = &quot;test&quot;;
         final String body = &quot;async send message from single-session-factory!&quot;;
         byte[] bodyData = StringUtils.getBytesUtf8(body);
         messageProducer.publish(topic);
-        Message message = new Message(topic, bodyData);
+        final Message message = new Message(topic, bodyData);
         messageProducer.sendMessage(message, new MessageSentCallback(){
             @Override
             public void onMessageSent(MessageSentResult result) {
@@ -76,17 +75,17 @@
         });
         messageProducer.shutdown();
     }
+
 }
 </code></pre>
-</li>
-<li>
-<p>Send Message With Attributes</p>
+<ul>
+<li>Send Message With Attributes</li>
+</ul>
 <pre><code>public final class ProducerWithAttributeExample {
-
+ 
     public static void main(String[] args) throws Throwable {
-        final String localHostIP = &quot;127.0.0.1&quot;;
         final String masterHostAndPort = &quot;localhost:8000&quot;;
-        final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
+        final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
         final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
         final MessageProducer messageProducer = messageSessionFactory.createProducer();
         final String topic = &quot;test&quot;;
@@ -102,10 +101,9 @@
         messageProducer.sendMessage(message);
         messageProducer.shutdown();
     }
+
 }
 </code></pre>
-</li>
-</ul>
 </li>
 </ol>
 <ul>
@@ -113,11 +111,10 @@
 <p>TubeMultiSessionFactory</p>
 <pre><code>public class MultiSessionProducerExample {
     
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Throwable {
         final int SESSION_FACTORY_NUM = 10;
-        final String localHostIP = &quot;127.0.0.1&quot;;
         final String masterHostAndPort = &quot;localhost:8000&quot;;
-        final TubeClientConfig clientConfig = new TubeClientConfig(localHostIP, masterHostAndPort);
+        final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
         final List&lt;MessageSessionFactory&gt; sessionFactoryList = new ArrayList&lt;&gt;(SESSION_FACTORY_NUM);
         final ExecutorService sendExecutorService = Executors.newFixedThreadPool(SESSION_FACTORY_NUM);
         final CountDownLatch latch = new CountDownLatch(SESSION_FACTORY_NUM);
@@ -130,7 +127,7 @@
         }
         latch.await();
         sendExecutorService.shutdownNow();
-        for(MessageSessionFactory sessionFactory : sessionFactoryList){
+        for (MessageSessionFactory sessionFactory : sessionFactoryList) {
             sessionFactory.shutdown();
         }
     }
@@ -162,6 +159,7 @@
             }
         }
     }
+
 }
 </code></pre>
 </li>
