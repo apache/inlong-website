@@ -1,12 +1,12 @@
 ## Producer Example
-  TubeMQ provides two ways to initialize session factory, TubeSingleSessionFactory and TubeMultiSessionFactory:
-  - TubeSingleSessionFactory creates only one session in the lifecycle, this is very useful in streaming scenarios.
-  - TubeMultiSessionFactory creates new session on every call.
+TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactory 和 TubeMultiSessionFactory。
+  - TubeSingleSessionFactory 在整个生命周期只会创建一个 session
+  - TubeMultiSessionFactory 每次调用都会创建一个session
 
-1. TubeSingleSessionFactory
-   - Send Message Synchronously
-    ```
-    public final class SyncProducerExample {
+### TubeSingleSessionFactory
+   #### Send Message Synchronously
+     ```
+     public final class SyncProducerExample {
     
         public static void main(String[] args) throws Throwable {
             final String masterHostAndPort = "localhost:8000";
@@ -27,9 +27,9 @@
     }
     ```
      
-   - Send Message Asynchronously
-    ```
-    public final class AsyncProducerExample {
+   #### Send Message Asynchronously
+     ```
+     public final class AsyncProducerExample {
      
         public static void main(String[] args) throws Throwable {
             final String masterHostAndPort = "localhost:8000";
@@ -61,9 +61,9 @@
     }
     ```
      
-   - Send Message With Attributes
-    ```
-    public final class ProducerWithAttributeExample {
+   #### Send Message With Attributes
+     ```
+     public final class ProducerWithAttributeExample {
      
         public static void main(String[] args) throws Throwable {
             final String masterHostAndPort = "localhost:8000";
@@ -87,7 +87,7 @@
     }
     ```  
      
-- TubeMultiSessionFactory
+### TubeMultiSessionFactory
 
     ```
     public class MultiSessionProducerExample {

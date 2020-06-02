@@ -1,8 +1,9 @@
-## Consumer Example
-  TubeMQ provides two ways to consumer message, PullConsumer and PushConsumer:
+## Consumer 示例
+  TubeMQ 提供了两种方式来消费消息： PullConsumer and PushConsumer。
 
-1. PullConsumer 
-    ```
+
+### PullConsumer 
+   ```
     public class PullConsumerExample {
 
         public static void main(String[] args) throws Throwable {
@@ -40,11 +41,11 @@
         }   
 
     }
-    ``` 
+   ``` 
    
-2. PushConsumer
-    ```
-    public class PushConsumerExample {
+### PushConsumer
+   ```
+   public class PushConsumerExample {
    
         public static void test(String[] args) throws Throwable {
             final String masterHostAndPort = "localhost:8000";
