@@ -18,6 +18,11 @@ export default {
         link: '/en-us/docs/tubemq_user_guide.html',
       },
       {
+        key: 'development',
+        text: 'DEVELOPMENT',
+        link: '/en-us/docs/development/how-to-contribute.html',
+      },
+      {
         key: 'github',
         text: 'GITHUB',
         link: 'https://github.com/apache/incubator-tubemq',
@@ -98,6 +103,11 @@ export default {
         key: 'docs',
         text: '文档',
         link: '/zh-cn/docs/tubemq_user_guide.html',
+      },
+      {
+        key: 'development',
+        text: '开发',
+        link: '/zh-cn/docs/development/how-to-contribute.html',
       },
       {
         key: 'github',
