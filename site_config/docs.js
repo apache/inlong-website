@@ -66,11 +66,11 @@ export default {
             children: [
                 {
                     title: '架构',
-                    link: '/en-us/docs/architecture.html',
+                    link: '/zh-cn/docs/architecture.html',
                 },
                 {
                     title: '部署',
-                    link: '/en-us/docs/deployment.html',
+                    link: '/zh-cn/docs/deployment.html',
                 },
             ],
         },
