@@ -1,10 +1,10 @@
 ## Producer Example
-  TubeMQ provides two ways to initialize session factory, TubeSingleSessionFactory and TubeMultiSessionFactory:
-  - TubeSingleSessionFactory creates only one session in the lifecycle, this is very useful in streaming scenarios.
-  - TubeMultiSessionFactory creates new session on every call.
+TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactory 和 TubeMultiSessionFactory。
+  - TubeSingleSessionFactory 在整个生命周期只会创建一个 session
+  - TubeMultiSessionFactory 每次调用都会创建一个session
 
-1. TubeSingleSessionFactory
-   - Send Message Synchronously
+### TubeSingleSessionFactory
+   #### Send Message Synchronously
      ```
      public final class SyncProducerExample {
     
@@ -28,7 +28,7 @@
      }
      ```
      
-   - Send Message Asynchronously
+   #### Send Message Asynchronously
      ```
      public final class AsyncProducerExample {
      
@@ -62,7 +62,7 @@
      }
      ```
      
-   - Send Message With Attributes
+   #### Send Message With Attributes
      ```
      public final class ProducerWithAttributeExample {
      
@@ -88,7 +88,7 @@
      }
      ```  
      
-- TubeMultiSessionFactory
+### TubeMultiSessionFactory
 
     ```
     public class MultiSessionProducerExample {

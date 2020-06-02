@@ -1,4 +1,4 @@
-Contact us
+联系我们
 -------
 
 - Mailing lists
