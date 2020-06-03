@@ -44,15 +44,24 @@ export default {
           },
           {
             title: 'Console introduction',
-            link: '/en-us/docs/deployment.html',
+            link: '/en-us/docs/console_introduction.html',
           },
           {
             title: 'Error code',
             link: '/en-us/docs/error_code.html',
           },
           {
-            title: 'HTTP API',
-            link: '/en-us/docs/http_access_api.html',
+            title: 'API introduction',
+            children: [
+               {
+                 title: 'HTTP API',
+                 link: '/zh-cn/docs/http_access_api.html',
+               },
+ 			   {
+				 title: 'JAVA SDK API',
+				 link: '/zh-cn/docs/clients_java.html',
+			   },
+			]   
           },
         ],
       },
@@ -108,7 +117,7 @@ export default {
           },
           {
             title: '管控台操作指引',
-            link: '/zh-cn/docs/deployment.html',
+            link: '/zh-cn/docs/console_introduction.html',
           },
           {
             title: '错误码',
@@ -116,7 +125,16 @@ export default {
           },
           {
             title: 'API介绍',
-            link: '/zh-cn/docs/http_access_api.html',
+            children: [
+               {
+                 title: 'HTTP API介绍',
+                 link: '/zh-cn/docs/http_access_api.html',
+               },
+ 			   {
+				 title: 'JAVA SDK API介绍',
+				 link: '/zh-cn/docs/clients_java.html',
+			   },
+			]   
           },
         ],
       },
