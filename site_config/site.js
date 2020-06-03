@@ -15,7 +15,7 @@ export default {
       {
         key: 'docs',
         text: 'DOCS',
-        link: '/en-us/docs/tubemq_user_guide.html',
+        link: '/en-us/docs/quick_start.html',
       },
       {
         key: 'development',
@@ -102,7 +102,7 @@ export default {
       {
         key: 'docs',
         text: '文档',
-        link: '/zh-cn/docs/tubemq_user_guide.html',
+        link: '/zh-cn/docs/quick_start.html',
       },
       {
         key: 'development',
