@@ -43,6 +43,7 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | startConsumeAuthenticate | 否 | boolean | 是否启用消费端用户认证，缺省为false |
 | startConsumeAuthorize | 否 | boolean | 是否启用消费端消费授权认证，缺省为false |
 | maxGroupBrokerConsumeRate | 否 | int | 集群Broker数与消费组里成员数的最大比值，可选项，缺省为50，50台Broker集群里允许1个消费组最少启动1个客户端消费 |
+| metaDataPath | 否 | String | Metadata存储路径，可以是绝对路径、或者相对TubeMQ安装目录（&quot;$BASE_DIR&quot;）的相对路径。缺省为&quot;var/meta_data&quot; |
 |
  |
 | [zookeeper] | Master对应的TubeMQ集群存储Offset的ZooKeeper集群相关信息，必填单元，值固定为&quot;[zookeeper]&quot; |
@@ -54,7 +55,18 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | zkCommitPeriodMs | 否 | long | Master缓存数据刷新到zk上的时间间隔，单位毫秒，默认5秒 |
 |
  |
-| [bdbStore] | Master所属BDB集群的相关配置，Master采用BDB进行元数据存储以及多节点热备，必填单元，值固定为&quot;[bdbStore]&quot; |
+| [replication] | 集群数据复制的相关配置，用于实现元数据多节点热备，必填单元，值固定为&quot;[replication]&quot; |
+| [replication] | repGroupName | 否 | String | 集群名，所属主备Master节点值必须相同，可选字段，缺省为&quot;tubemqMasterGroup&quot; |
+| repNodeName | 是 | String | 所属Master在集群中的节点名，该值各个节点必须不重复，必填字段 |
+| repNodePort | 否 | int | 节点复制通讯端口，可选字段，缺省为9001 |
+| repHelperHost | 否 | String | 集群启动时的主节点，可选字段，缺省为&quot;127.0.0.1:9001&quot; |
+| metaLocalSyncPolicy | 否 | int | 数据节点本地保存方式，该字段取值范围[1，2，3]，缺省为1：其中1为数据保存到磁盘，2为数据只保存到内存，3为只将数据写文件系统buffer，但不刷盘 |
+| metaReplicaSyncPolicy | 否 | int | 数据节点同步保存方式，该字段取值范围[1，2，3]，缺省为1：其中1为数据保存到磁盘，2为数据只保存到内存，3为只将数据写文件系统buffer，但不刷盘 |
+| repReplicaAckPolicy | 否 | int | 节点数据同步时的应答策略，该字段取值范围为[1，2，3]，缺省为1：其中1为超过1/2多数为有效，2为所有节点应答才有效；3为不需要节点应答 |
+| repStatusCheckTimeoutMs | 否 | long | 节点状态检查间隔，可选字段，单位毫秒，缺省为10秒 |
+|
+ |
+| [bdbStore] | 已弃用，请在&quot;[replication]&quot;单元进行相关配置。Master所属BDB集群的相关配置，Master采用BDB进行元数据存储以及多节点热备，必填单元，值固定为&quot;[bdbStore]&quot; |
 | [bdbStore] | bdbRepGroupName | 是 | String | BDB集群名，所属主备Master节点值必须相同，必填字段 |
 | bdbNodeName | 是 | String | 所属Master在BDB集群中的节点名，该值各个BDB节点必须不重复，必填字段 |
 | bdbNodePort | 否 | int | BDB节点通讯端口，可选字段，缺省为9001 |
