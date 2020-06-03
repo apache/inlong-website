@@ -40,9 +40,6 @@
 <h3>内存块缓存</h3>
 <p>在文件存储基础上，我们针对每个存储实例又额外增加了一个单独的内存缓存块，即在原有写磁盘基础上增加一块内存，隔离硬盘的慢速影响，数据先刷到内存，然后由内存控制块批量地将数据刷到磁盘文件。
 <img src="img/store_mem.png" alt=""></p>
-<h3>SSD辅助存储</h3>
-<p>针对除了由磁盘存储外还带SSD硬件的服务器，我们又做了一层SSD辅助存储，该方案有别于外界系统先将数据存SSD，然后再将数据由SSD转到磁盘的通常做法：按照我们的分析，正常情况下磁盘的顺序读写性能已足够满足数据持久化的需求，磁盘IO到100%时的性能下降主要是由于滞后消费引起，滞后的比例越大影响越大；SSD相比磁盘，虽然读写速度近似内存但写入次数有限，像MQ这种每天大量写的系统很有可能因为SSD突然变得不可写带来系统风险。基于这些考虑，我们采用了动态的SSD转存储消费方案：正常情况下数据走磁盘读写消费；数据挤压情况出现，并且持续的状态触发运维设置的阀值时，滞后的数据消费将被转移到SSD上进行；数据挤压情况解除后，SSD停用数据继续走磁盘进行读写，这样在磁盘IO飙升时候将滞后消费读进行转移，避免读写集中在SATA盘上。
-<img src="img/store_ssd.png" alt=""></p>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
 	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
