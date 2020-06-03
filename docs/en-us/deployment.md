@@ -1,161 +1,171 @@
-## Deployment
-  The TubeMQ server includes two modules for the Master and the Broker. The Master also includes a Web front-end module for external page access (this part is stored in the resources). Considering the actual deployment, two modules are often deployed in the same machine, TubeMQ. The contents of the three parts of the two modules are packaged and delivered to the operation and maintenance; the client does not include the lib package of the server part and is delivered to the user separately.
-   Master and Broker use the ini configuration file format, and the relevant configuration files are placed in the master.ini and broker.ini files in the tubemq-server-3.8.0/conf/ directory.
-   Their configuration is defined by a set of configuration units. The Master configuration consists of four mandatory units: [master], [zookeeper], [bdbStore], and optional [tlsSetting]. The Broker configuration is mandatory. Broker], [zookeeper] and optional [tlsSetting] consist of a total of 3 configuration units; in actual use, you can also combine the contents of the two configuration files into one ini file.
-   In addition to the back-end system configuration file, the Master also stores the Web front-end page module in the resources. The root directory velocity.properties file of the resources is the Web front-end page configuration file of the Master.
+# TubeMQ编译、部署及简单使用：
 
-### Master
-  In real production environment, you need to run multiple master services on different servers for high availability purpose. Here's
-  the introduction of availability level.
-  
-  | HA Level | Master Number | Description |
-  | -------- | ------------- | ----------- |
-  | High     | 3 masters     | After any master crashed, the cluster meta data is still in read/write state and can accept new producers/consumers. |
-  | Medium   | 2 masters     | After one master crashed, the cluster meta data is in read only state. There's no affect on existing producers and consumers. |
-  | Minimum  | 1 master      | After the master crashed, there's no affect on existing producer and consumer. |
-  
-  Please notice that the master servers should be clock synchronized.
-  
-### Master Configuration item details:
- 
- ### master.ini file:
- [master]
- > Master system runs the main configuration unit, required unit, the value is fixed to "[master]"
- 
- | Name                          | Required                          | Type                          | Description                                                  |
- | ----------------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
- | hostName                      | yes      | string  | The host address of the master external service, required, must be configured on the NIC, is enabled, non-loopback and cannot be IP of 127.0.0.1 |
- | port                          | no       | int     | Master listening port, optional, default is 8715             |
- | webPort                       | no       | int     | Master web console access port, the default value is 8080    |
- | webResourcePath               | yes      | string  | Master Web Resource deploys an absolute path, which is required. If the value is set incorrectly, the web page will not display properly. |
- | confModAuthToken              | no       | string  | The authorization Token provided by the operator when the change operation (including adding, deleting, changing configuration, and changing the master and managed Broker status) is performed by the Master's Web or API. The value is optional. The default is "ASDFGHJKL". |
- | firstBalanceDelayAfterStartMs | no       | long    | Master starts to the interval of the first time to start Rebalance, optional, default 30000 milliseconds |
- | consumerBalancePeriodMs       | no       | long    | The master balances the rebalance period of the consumer group. The default is 60000 milliseconds. When the cluster size is large, increase the value. |
- | consumerHeartbeatTimeoutMs    | no       | long    | Consumer heartbeat timeout period, optional, default 30000 milliseconds, when the cluster size is large, please increase the value |
- | producerHeartbeatTimeoutMs    | no       | long    | Producer heartbeat timeout period, optional, default 30000 milliseconds, when the cluster size is large, please increase the value |
- | brokerHeartbeatTimeoutMs      | no       | long    | Broker heartbeat timeout period, optional, default 30000 milliseconds, when the cluster size is large, please increase the value |
- | socketRecvBuffer              | no       | long    | Socket receives the size of the Buffer buffer SO_RCVBUF, the unit byte, the negative number is set as the default value |
- | socketSendBuffer              | no       | long    | Socket sends Buffer buffer SO_SNDBUF size, unit byte, negative number is  set as the default value |
- | maxAutoForbiddenCnt           | no       | int     | When the broker has an IO failure, the maximum number of masters allowed to automatically go offline is the number of options. The default value is 5. It is recommended that the value does not exceed 10% of the total number of brokers in the cluster. |
- | startOffsetResetCheck         | no       | boolean | Whether to enable the check function of the client Offset reset function, optional, the default is false |
- | needBrokerVisitAuth           | no       | boolean | Whether to enable Broker access authentication, the default is false. If true, the message reported by the broker must carry the correct username and signature information. |
- | visitName                     | no       | string  | The username of the Broker access authentication. The default is an empty string. This value must exist when needBrokerVisitAuth is true. This value must be the same as the value of the visitName field in broker.ini. |
- | visitPassword                 | no       | string  | The password for the Broker access authentication. The default is an empty string. This value must exist when needBrokerVisitAuth is true. This value must be the same as the value of the visitPassword field in broker.ini. |
- | startVisitTokenCheck      | no       | boolean | Whether to enable client visitToken check, the default is false |
- | startProduceAuthenticate      | no       | boolean | Whether to enable production end user authentication, the default is false |
- | startProduceAuthorize         | no       | boolean | Whether to enable production-side production authorization authentication, the default is false |
- | startConsumeAuthenticate      | no       | boolean | Whether to enable consumer user authentication, the default is false |
- | startConsumeAuthorize         | no       | boolean | Whether to enable consumer consumption authorization authentication, the default is false |
- | maxGroupBrokerConsumeRate     | no       | int     | The maximum ratio of the number of clustered brokers to the number of members in the consumer group. The default is 50. In a 50-kerrow cluster, one consumer group is allowed to start at least one client. |
- 
- [zookeeper]
- >The corresponding Tom MQ cluster of the Master stores the information about the ZooKeeper cluster of the Offset. The required unit has a fixed value of "[zookeeper]".
- 
- | Name                  | Required                          | Type                          | Description                                                  |
- | --------------------- |  -----------------------------|  ----------------------------- | ------------------------------------------------------------ |
- | zkServerAddr          | no       | string | Zk server address, optional configuration, defaults to "localhost:2181" |
- | zkNodeRoot            | no       | string | The root path of the node on zk, optional configuration. The default is "/tube". |
- | zkSessionTimeoutMs    | no       | long   | Zk heartbeat timeout, in milliseconds, default 30 seconds    |
- | zkConnectionTimeoutMs | no       | long   | Zk connection timeout, in milliseconds, default 30 seconds   |
- | zkSyncTimeMs          | no       | long   | Zk data synchronization time, in milliseconds, default 5 seconds |
- | zkCommitPeriodMs      | no       | long   | The interval at which the Master cache data is flushed to zk, in milliseconds, default 5 seconds. |
- 
- [bdbStore]
- >Master configuration of the BDB cluster to which the master belongs. The master uses BDB for metadata storage and multi-node hot standby. The required unit has a fixed value of "[bdbStore]".
- 
- | Name                    | Required                          | Type                          | Description                                                  |
- | ----------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
- | bdbRepGroupName         | yes      | string | BDB cluster name, the primary and backup master node values must be the same, required field |
- | bdbNodeName             | yes      | string | The name of the node of the master in the BDB cluster. The value of each BDB node must not be repeated. Required field. |
- | bdbNodePort             | no       | int    | BDB node communication port, optional field, default is 9001 |
- | bdbEnvHome              | yes      | string | BDB data storage path, required field                        |
- | bdbHelperHost           | yes      | string | Primary node when the BDB cluster starts, required field     |
- | bdbLocalSync            | no       | int    | BDB data node local storage mode, the value range of this field is [1, 2, 3]. The default is 1: 1 is data saved to disk, 2 is data only saved to memory, and 3 is only data is written to file system buffer. But not brush |
- | bdbReplicaSync          | no       | int    | BDB data node synchronization save mode, the value range of this field is [1, 2, 3]. The default is 1: 1 is data saved to disk, 2 is data only saved to memory, and 3 is only data is written to file system buffer. But not brush |
- | bdbReplicaAck           | no       | int    | The response policy of the BDB node data synchronization, the value range of this field is [1, 2, 3], the default is 1: 1 is more than 1/2 majority is valid, 2 is valid for all nodes, 3 is not Need node response |
- | bdbStatusCheckTimeoutMs | no       | long   | BDB status check interval, optional field, in milliseconds, defaults to 10 seconds |
- 
- [tlsSetting]
- >The Master uses TLS to encrypt the transport layer data. When TLS is enabled, the configuration unit provides related settings. The optional unit has a fixed value of "[tlsSetting]".
- 
- | Name                  | Required                          | Type                          | Description                                                  |
- | --------------------- |  -----------------------------|  ----------------------------- | ------------------------------------------------------------ |
- | tlsEnable             | no       | boolean | Whether to enable TLS function, optional configuration, default is false |
- | tlsPort               | no       | int     | Master TLS port number, optional configuration, default is 8716 |
- | tlsKeyStorePath       | no       | string  | The absolute storage path of the TLS keyStore file + the name of the keyStore file. This field is required and cannot be empty when the TLS function is enabled. |
- | tlsKeyStorePassword   | no       | string  | The absolute storage path of the TLS keyStorePassword file + the name of the keyStorePassword file. This field is required and cannot be empty when the TLS function is enabled. |
- | tlsTwoWayAuthEnable   | no       | boolean | Whether to enable TLS mutual authentication, optional configuration, the default is false |
- | tlsTrustStorePath     | no       | string  | The absolute storage path of the TLS TrustStore file + the TrustStore file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
- | tlsTrustStorePassword | no       | string  | The absolute storage path of the TLS TrustStorePassword file + the TrustStorePassword file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
- 
- ### velocity.properties file:
- 
- | Name                      | Required                          | Type                          | Description                                                  |
- | ------------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
- | file.resource.loader.path | yes      | string | The absolute path of the master web template. This part is the absolute path plus /resources/templates of the project when the master is deployed. The configuration is consistent with the actual deployment. If the configuration fails, the master front page access fails. |
+## 工程编译打包：
 
- 
-### Broker
-  In real production environment, you need to run multiple at least 2 broker services on different servers for high availability purpose.
+进入工程根目录,执行命令：
 
-### Broker Configuration item details:
+```
+mvn clean package -Dmaven.test.skip
+```
 
-### broker.ini file:
+例如将TubeMQ源码包放在E盘根目录，按照如下方式执行上述命令，当各个子目录都编译成功时工程编译完成：
 
-[broker]
->The broker system runs the main configuration unit, required unit, and the value is fixed to "[broker]"
+![](img/sysdeployment/sys_compile.png)
 
-| Name                  | Required                          | Type                          | Description                                                  |
-| --------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
-| brokerId              | yes      | int     | Server unique flag, required field, can be set to 0; when set to 0, the system will default to take the local IP to int value |
-| hostName              | yes      | string  | The host address of the broker external service, required, must be configured in the NIC, is enabled, non-loopback and cannot be IP of 127.0.0.1 |
-| port                  | no       | int     | Broker listening port, optional, default is 8123             |
-| webPort               | no       | int     | Broker's http management access port, optional, default is 8081 |
-| masterAddressList     | yes      | string  | Master address list of the cluster to which the broker belongs. Required fields. The format must be ip1:port1, ip2:port2, ip3:port3. |
-| primaryPath           | yes      | string  | Broker stores the absolute path of the message, mandatory field |
-| maxSegmentSize        | no       | int     | Broker stores the file size of the message data content, optional field, default 512M, maximum 1G |
-| maxIndexSegmentSize   | no       | int     | Broker stores the file size of the message Index content, optional field, default 18M, about 70W messages per file |
-| transferSize          | no       | int     | Broker allows the maximum message content size to be transmitted to the client each time, optional field, default is 512K |
-| consumerRegTimeoutMs  | no       | long    | Consumer heartbeat timeout, optional, in milliseconds, default 30 seconds |
-| socketRecvBuffer      | no       | long    | Socket receives the size of the Buffer buffer SO_RCVBUF, the unit byte, the negative number is not set, the default value is |
-| socketSendBuffer      | no       | long    | Socket sends Buffer buffer SO_SNDBUF size, unit byte, negative number is not set, the default value is |
-| secondDataPath        | no       | string  | The SSD to storage location where the broker is located, optional field. The default is blank to indicate that the machine has no SSD. |
-| maxSSDTotalFileCnt    | no       | int     | The maximum number of Data files allowed by the SSD where the Broker is located, optional field, default 70 |
-| maxSSDTotalFileSizes  | no       | long    | The SSD where the Broker is located allows the maximum size of the data file to be saved. The optional field is 32G by default. |
-| tcpWriteServiceThread | no       | int     | Broker supports the number of socket worker threads for TCP production services, optional fields, and defaults to 2 times the number of CPUs of the machine. |
-| tcpReadServiceThread  | no       | int     | Broker supports the number of socket worker threads for TCP consumer services, optional fields, defaults to 2 times the number of CPUs of the machine |
-| logClearupDurationMs  | no       | long    | The aging cleanup period of the message file, in milliseconds. The default is 30 minutes for a log cleanup operation. The minimum is 30 minutes. |
-| logFlushDiskDurMs     | no       | long    | Batch check message persistence to file check cycle, in milliseconds, default is 20 seconds for a full check and brush |
-| visitTokenCheckInValidTimeMs       | no       | long | The length of the delay check for the visitToken check since the Broker is registered, in ms, the default is 120000, the value range [60000, 300000]. |
-| visitMasterAuth       | no       | boolean | Whether the authentication of the master is enabled, the default is false. If true, the user name and signature information are added to the signaling reported to the master. |
-| visitName             | no       | string  | User name of the access master. The default is an empty string. This value must exist when visitMasterAuth is true. The value must be the same as the value of the visitName field in master.ini. |
-| visitPassword         | no       | string  | The password for accessing the master. The default is an empty string. This value must exist when visitMasterAuth is true. The value must be the same as the value of the visitPassword field in master.ini. |
-| logFlushMemDurMs      | no       | long    | Batch check message memory persistence to file check cycle, in milliseconds, default is 10 seconds for a full check and brush |
+大家也可以进入各个子目录进行单独编译，编译过程与普通的工程编译处理过程一致。
 
-[zookeeper]
->The Tube MQ cluster corresponding to the Broker stores the information about the ZooKeeper cluster of the Offset. The required unit has a fixed value of "[zookeeper]".
+**部署服务端：**
+
+如上例子，进入E:\GIT\TubeMQ\tubemq-server\target目录，服务侧的相关内容如下，其中tubemq-server-3.8.0-bin.tar.gz为完整的服务端安装包，里面包括执行脚本，配置文件，依赖包，以及前端的源码；tubemq-server-3.8.0.jar为服务端处理逻辑包，包含于完整工程安装包的lib里，单独提出是考虑到日常变更升级时改动点多在服务器处理逻辑上，升级的时候只需要单独替换该jar包即可：
+
+![](img/sysdeployment/sys_package.png)
+
+这里我们是全新安装，将上述完整的工程安装包部署到待安装机器上，我们这里是放置在/data/tubemq目录下：
+
+![](img/sysdeployment/sys_package_list.png)
 
 
-| Name                  | Required                          | Type                          | Description                                                  |
-| --------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
-| zkServerAddr          | no       | string | Zk server address, optional configuration, defaults to "localhost:2181" |
-| zkNodeRoot            | no       | string | The root path of the node on zk, optional configuration. The default is "/tube". |
-| zkSessionTimeoutMs    | no       | long   | Zk heartbeat timeout, in milliseconds, default 30 seconds    |
-| zkConnectionTimeoutMs | no       | long   | Zk connection timeout, in milliseconds, default 30 seconds   |
-| zkSyncTimeMs          | no       | long   | Zk data synchronization time, in milliseconds, default 5 seconds |
-| zkCommitPeriodMs      | no       | long   | The interval at which the broker cache data is flushed to zk, in milliseconds, default 5 seconds |
-| zkCommitFailRetries   | no       | int    | The maximum number of re-brushings after Broker fails to flush cached data to Zk |
+**配置系统：**
 
-[tlsSetting]
->The Master uses TLS to encrypt the transport layer data. When TLS is enabled, the configuration unit provides related settings. The optional unit has a fixed value of "[tlsSetting]".
+服务包里打包了3种角色：Master、Broker、Tools，业务使用时可以将Master和Broker放置在一起，也可以单独分开不同机器放置，依照业务对机器的规划进行处理。我们通过如下4台机器搭建一个完整的有2台Master的生产、消费环境：
+
+| 机器 | 所属角色 | 端口设置 | 备注 |
+| --- | --- | --- | --- |
+| TCP端口 | TLS端口 | WEB端口 |
+| 10.224.148.145 | **Master** | 8099 | 8199 | 8080 | 元数据存储在/stage/metadata |
+| Broker | 8123 | 8124 | 8081 | 消息存储在/stage/msgdata |
+| ZK | 2181 |
+ |
+ | Offset存储于根目录/tubemq |
+| 100.115.158.208 | Master | 8099 | 8199 | 8080 | 元数据存储在/stage/metadata |
+| Broker | 8123 | 8124 | 8081 | 消息存储在/stage/ msgdata |
+| 10.224.155.80 | Producer |
+ |
+ |
+ |
+ |
+| Consumer |
+ |
+ |
+ |
+ |
+
+部署Master时需要注意：
+
+1. 部署Master的机器，Master集群可以部署1台、2台或者3台：如果要保证高可靠建议3台（任意坏1台Master对外仍然可读写配置及接入新的生产或者消费），如果只需要保证一般情况2台（任意坏1台Master对外仍然可读配置及已接入的生产和消费不受影响），最低1台（坏1台Master对外配置不可读写及已接入的生产和消费不受影响）；
+2. 在完成Master的规划后，对于配置Master的机器，需要将Master所在机器加入时间同步，同时Master各个机器的IP要在各个Master机器的/etc/hosts配置里进行设置，如：
+
+![](img/sysdeployment/sys_address_host.png)
+
+以10.224.148.145和100.115.158.208为例，我们部署了Master和Broker两种角色，需要在/conf/master.ini，/resources/velocity.properties，/conf/broker.ini里进行如下配置，首先是10.224.148.145的配置：
+
+![](img/sysdeployment/sys_configure_1.png)
+
+然后是配置100.115.158.208：
+
+![](img/sysdeployment/sys_configure_2.png)
+
+要注意的是右上角的配置为Master的Web前台配置信息，需要根据Master的安装路径修改/resources/velocity.properties里的file.resource.loader.path信息。
+
+**启动Master**：
+
+完成如上配置设置后，首先进入主备Master所在的TubeMQ环境的bin目录，进行服务启动操作：
+
+![](img/sysdeployment/sys_master_start.png)
+
+我们首先启动10.224.148.145，然后启动100.115.158.208上的Master，如下打印可以表示主备Master都已启动成功并开启了对外服务端口：
+
+![](img/sysdeployment/sys_master_startted.png)
+
+访问Master的管控台([http://100.115.158.208:8080/config/topic\_list.htm](http://100.115.158.208:8080/config/topic_list.htm))，页面可查则表示master已成功启动：
+
+![](img/sysdeployment/sys_master_console.png)
+
+**启动Broker**：
+
+启动Broker和启动master有些差别：Master负责管理整个TubeMQ集群，包括Broker节点运行管理以及节点上部署的Topic配置管理，还有生产和消费管理等，因此，实体的Broker启动前，首先要在Master上配置Broker元数据，增加Broker相关的管理信息，如下图示：
+
+![](img/sysdeployment/sys_broker_configure.png)
+
+点击确认后形成一个草稿的Broker记录：
+
+![](img/sysdeployment/sys_broker_online.png)
+
+我们对该broker节点进行启动操作：
+
+![](img/sysdeployment/sys_broker_start.png)
+
+结果发现报错信息：
+
+![](img/sysdeployment/sys_broker_start_error.png)
+
+因为该broker目前还处在草稿状态Broker信息没有正式生效，我们回到Master管控台进行上线生效操作：
+
+![](img/sysdeployment/sys_broker_online_2.png)
+
+Master上所有的变更操作在点击确认的时候，都会弹出如上输入框，要求输入操作授权码。该信息由运维通过Master的配置文件master.ini的confModAuthToken字段进行定义：如果你知道这个集群的密码，你就可以进行该项操作，比如你是管理员，你是授权人员，或者你能登陆这个master的机器拿到这个密码，都认为你是有权操作该项功能：
+
+![](img/sysdeployment/sys_broker_deploy.png)
 
 
-| Name                  | Required                          | Type                           | Description                                                  |
-| --------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
-| tlsEnable             | no       | boolean | Whether to enable TLS function, optional configuration, default is false |
-| tlsPort               | no       | int     | Broker TLS port number, optional configuration, default is 8124 |
-| tlsKeyStorePath       | no       | string  | The absolute storage path of the TLS keyStore file + the name of the keyStore file. This field is required and cannot be empty when the TLS function is enabled. |
-| tlsKeyStorePassword   | no       | string  | The absolute storage path of the TLS keyStorePassword file + the name of the keyStorePassword file. This field is required and cannot be empty when the TLS function is enabled. |
-| tlsTwoWayAuthEnable   | no       | boolean | Whether to enable TLS mutual authentication, optional configuration, the default is false |
-| tlsTrustStorePath     | no       | string  | The absolute storage path of the TLS TrustStore file + the TrustStore file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
-| tlsTrustStorePassword | no       | string  | The absolute storage path of the TLS TrustStorePassword file + the TrustStorePassword file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
+然后我们再重启Broker：
+
+![](img/sysdeployment/sys_broker_restart_1.png)
+
+![](img/sysdeployment/sys_broker_restart_2.png)
+
+查看Master管控台，broker已经注册成功：
+
+![](img/sysdeployment/sys_broker_finished.png)
+
+
+**配置及生效Topic**：
+
+配置Topic和配置Broker信息类似，都需要先在Master上新增元数据信息，然后才能开始使用，要不生产和消费时候会报topic不存在错误，如我们用安装包里的example对不存在的Topic名test进行生产：
+```
+/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
+```
+
+Demo实例会报如下错误信息：
+
+![](img/sysdeployment/sys_topic_error.png)
+
+我们在Master管控台的Topic列表上加入该Topic先：
+
+![](img/sysdeployment/sys_topic_create.png)
+
+![](img/sysdeployment/sys_topic_select.png)
+
+点击确认后会有一个选择部署该新增Topic的Broker列表，选择部署范围后进行确认操作；在完成新增Topic的操作后，我们还需要对刚进行变更的配置对Broker进行重载操作，如下图示：
+
+![](img/sysdeployment/sys_topic_deploy.png)
+
+重载完成后Topic才能对外使用，我们会发现如下配置变更部分在重启完成后已改变状态：
+
+![](img/sysdeployment/sys_topic_finished.png)
+
+
+**大家需要注意的是：** 我们在重载的时候，要对待重载的Broker集合分批次进行。我们的重载通过状态机进行控制，会先进行不可读写—〉只读操作—〉可读写—〉上线运行各个子状态处理，如果所有待重启Broker全量重载，会使得已在线对外服务的Topic对外出现短暂的不可读写状况，使得生产、消费，特别是生产发送失败。
+
+**数据生产和消费**：
+
+在安装包里，我们打包了example的测试Demo，业务也可以直接使用tubemq-client-3.8.0.jar封装自己的生产和消费逻辑，总的形式是类似，我们先执行生产者的Demo，我们可以看到Broker上已开始有数据接收：
+```
+	/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
+```
+
+![](img/sysdeployment/sys_node_status.png)
+
+我们再执行消费Demo，我们也可以看到消费也正常：
+```
+ /usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageConsumerExample 10.224.148.145 10.224.148.145:8000,100.115.158.208:8000 test testGroup 3 1 1 
+
+```
+
+![](img/sysdeployment/sys_node_status_2.png)
+
+在Broker的生产和消费指标日志里，相关数据已经存在：
+
+![](img/sysdeployment/sys_node_log.png)
+
+在这里，已经完成了TubeMQ的编译，部署，系统配置，启动，生产和消费。如果需要了解更深入的内容，就需要查看《TubeMQ HTTP API》里的相关内容，进行相应的配置设置。
