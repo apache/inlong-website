@@ -44,7 +44,7 @@ export default {
           },
           {
             title: 'Console introduction',
-            link: '/en-us/docs/deployment.html',
+            link: '/en-us/docs/console_introduction.html',
           },
           {
             title: 'Error code',
@@ -108,7 +108,7 @@ export default {
           },
           {
             title: '管控台操作指引',
-            link: '/zh-cn/docs/deployment.html',
+            link: '/zh-cn/docs/console_introduction.html',
           },
           {
             title: '错误码',
