@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="how-to-release" />
+	<meta name="description" content="how-to-release" />
+	<!-- 网页标签标题 -->
+	<title>how-to-release</title>
+	<link rel="shortcut icon" href="/img/apache.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><a href="//www.apache.org"><img class="logo apache" style="width:120px" src="/img/asf_logo.svg"/></a><div class="logo-split"></div><img class="logo tube" style="width:72px" src="/img/Tube logo.svg"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><div><ul class="ant-menu blackClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/docs/tubemq_user_guide.html" target="_self">DOCS</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/en-us/docs/development/how-to-contribute.html" target="_self">DEVELOPMENT</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="https://github.com/apache/incubator-tubemq" target="_self">GITHUB</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper">Apache</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div></div><div class="header-background"></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>Documentation</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>User Guide</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/quick_start.html" target="_self">Quick Start</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/producer_example.html" target="_self">Producer Example</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/consumer_example.html" target="_self">Consumer Example</a></li></ul></li><li class="menu-item menu-item-level-1"><span>Architecture &amp; Deployment</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/architecture.html" target="_self">Architecture</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/en-us/docs/deployment.html" target="_self">Deployment</a></li></ul></li><li class="menu-item menu-item-level-1"><span><div class="menu-item menu-item-level-1" style="margin-left:-20px"><a href="/en-us/docs/contact.html" target="_self" style="padding-left:20px">Contact</a></div></span><ul></ul></li></ul></div><div class="doc-content markdown-body"><h1>如何发布版本</h1>
+<p><font color="#dd0000" size="4">TODO: This page needs to be translated into English. If you are interested, just do it.</font></p>
+<blockquote>
+<p>本文主要介绍了Release Manager如何按照Apache的流程发布版本，</p>
+</blockquote>
+<h2>0. 前言</h2>
+<p>Source Release是Apache关注的重点，也是发布的必须内容；
+Binary Release是可选项，TubeMQ可以选择是否发布二进制包到Apache仓库或者发布到Maven中央仓库。</p>
+<p>请参考以下链接，找到更多关于ASF的发布指南:</p>
+<p><a href="https://incubator.apache.org/guides/releasemanagement.html">Apache Release Guide</a></p>
+<p><a href="https://incubator.apache.org/">Apache incubator 官网</a></p>
+<h2>1. 添加GPG KEY</h2>
+<blockquote>
+<p>本章节主要参考：<a href="https://infra.apache.org/openpgp.html">https://infra.apache.org/openpgp.html</a>
+<strong>该章节仅仅对第一次当该项目的Release Manager需要。</strong></p>
+</blockquote>
+<h3>1.1 安装gpg</h3>
+<p>详细的安装文档可以参考<a href="https://www.gnupg.org/download/index.html">官网</a>, Mac OS环境配置如下</p>
+<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> brew install gpg</span>
+<span class="hljs-meta">$</span><span class="bash"> gpg --version <span class="hljs-comment">#检查版本，应该为2.x</span></span>
+</code></pre>
+<h3>1.2 生成gpg Key</h3>
+<h4>需要注意以下几点：</h4>
+<ul>
+<li>输入名字时最好与Apache中登记的Full name保持一致</li>
+<li>使用的邮箱应该是apache邮箱</li>
+<li>名字最好使用拼音或者英文，否则会出现乱码</li>
+</ul>
+<h4>根据提示，生成key</h4>
+<pre><code class="language-shell">➜  ~ gpg --full-gen-key
+gpg (GnuPG) 2.2.20; Copyright (C) 2020 Free Software Foundation, Inc.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Please select what kind of key you want:
+   (1) RSA and RSA (default)
+   (2) DSA and Elgamal
+   (3) DSA (sign only)
+   (4) RSA (sign only)
+  (14) Existing key from card
+Your selection? 1 # 这里输入1
+RSA keys may be between 1024 and 4096 bits long.
+What keysize do you want? (2048) 4096 # 这里输入4096
+Requested keysize is 4096 bits       
+Please specify how long the key should be valid.
+         0 = key does not expire
+      &lt;n&gt;  = key expires in n days
+      &lt;n&gt;w = key expires in n weeks
+      &lt;n&gt;m = key expires in n months
+      &lt;n&gt;y = key expires in n years
+Key is valid for? (0) 0 # 这里输入0
+Key does not expire at all
+Is this correct? (y/N) y # 这里输入y
+
+GnuPG needs to construct a user ID to identify your key.
+
+Real name: Guangxu Cheng # 这里输入你的名字
+Email address: gxcheng@apache.org # 这里输入你的邮箱
+Comment:                          # 这里输入一些注释，可以为空
+You selected this USER-ID:
+    "Guangxu Cheng &lt;gxcheng@apache.org&gt;"
+
+Change (N)ame, (C)omment, (E)mail or (O)kay/(Q)uit? O #这里输入O
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+We need to generate a lot of random bytes. It is a good idea to perform
+some other action (type on the keyboard, move the mouse, utilize the
+disks) during the prime generation; this gives the random number
+generator a better chance to gain enough entropy.
+<span class="hljs-meta">
+#</span><span class="bash"> 此时会弹出对话框，要求你为这个gpg输入密钥。</span>
+┌──────────────────────────────────────────────────────┐
+│ Please enter this passphrase                         │
+│                                                      │
+│ Passphrase: _______________________________          │
+│                                                      │
+│       &lt;OK&gt;                              &lt;Cancel&gt;     │
+└──────────────────────────────────────────────────────┘
+<span class="hljs-meta">#</span><span class="bash">输入秘钥完毕后就创建好了。并会输出以下信息</span>
+gpg: key 2DD587E7B10F3B1F marked as ultimately trusted
+gpg: revocation certificate stored as '/Users/cheng/.gnupg/openpgp-revocs.d/41936314E25F402D5F7D73152DD587E7B10F3B1F.rev'
+public and secret key created and signed.
+
+pub   rsa4096 2020-05-19 [SC]
+      41936314E25F402D5F7D73152DD587E7B10F3B1F
+uid                      Guangxu Cheng &lt;gxcheng@apache.org&gt;
+sub   rsa4096 2020-05-19 [E]
+</code></pre>
+<h3>1.3 上传生成的key到公共服务器</h3>
+<pre><code class="language-shell">➜  ~ gpg --list-keys                                                        
+-------------------------------
+pub   rsa4096 2020-05-18 [SC]
+      5931F8CFD04B37A325E4465D8C0D31C4149B3A87
+uid           [ultimate] Guangxu Cheng &lt;gxcheng@apache.org&gt;
+sub   rsa4096 2020-05-18 [E]
+<span class="hljs-meta">
+#</span><span class="bash"> 通过key id发送public key到keyserver</span>
+<span class="hljs-meta">$</span><span class="bash"> gpg --keyserver pgpkeys.mit.edu --send-key &lt;key id&gt;</span>
+<span class="hljs-meta">#</span><span class="bash"> 其中，pgpkeys.mit.edu为随意挑选的keyserver，keyserver列表为：https://sks-keyservers.net/status/，为相互之间是自动同步的，选任意一个都可以。</span>
+</code></pre>
+<h3>1.4 查看key是否创建成功</h3>
+<p>通过下面的网址，使用邮箱查询上传成功没，大概需要一分钟才能查到，查询时候把 advance 下边的 show full-key hashes 勾上
+<a href="http://keys.gnupg.net">http://keys.gnupg.net</a></p>
+<p>查询结果如下：</p>
+<h3>1.5 将你的gpg公钥加入KEYS文件</h3>
+<blockquote>
+<p>这个步骤需要使用SVN</p>
+</blockquote>
+<p>DEV分支的svn库是 <a href="https://dist.apache.org/repos/dist/dev/incubator/tubemq">https://dist.apache.org/repos/dist/dev/incubator/tubemq</a></p>
+<p>Release分支的SVN库是 <a href="https://dist.apache.org/repos/dist/release/incubator/tubemq">https://dist.apache.org/repos/dist/release/incubator/tubemq</a></p>
+<h4>1.5.1 在dev分支中添加公钥到KEYS，用于发布RC版本</h4>
+<pre><code class="language-shell">➜  ~ svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq /tmp/tubemq-dist-dev
+<span class="hljs-meta">#</span><span class="bash"> 这个步骤比较慢，会把所有版本都考下来，如果网断了，用svn cleanup删掉锁，重新执行一下，会断点续传</span>
+➜  ~ cd tubemq-dist-dev
+➜  tubemq-dist-dev ~ (gpg --list-sigs YOUR_NAME@apache.org &amp;&amp; gpg --export --armor YOUR_NAME@apache.org) &gt;&gt; KEYS # 追加你生成的KEY到文件KEYS中, 追加后最好检查一下是否正确
+➜  tubemq-dist-dev ~ svn add .
+➜  tubemq-dist-dev ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
+</code></pre>
+<h4>1.5.2 在release分支中添加公钥到KEYS，用于发布正式版本</h4>
+<pre><code class="language-shell">➜  ~ svn co https://dist.apache.org/repos/dist/release/incubator/tubemq /tmp/tubemq-dist-release
+➜  ~ cd tubemq-dist-release
+➜  tubemq-dist-release ~ (gpg --list-sigs YOUR_NAME@apache.org &amp;&amp; gpg --export --armor YOUR_NAME@apache.org) &gt;&gt; KEYS
+➜  tubemq-dist-release ~ svn add .
+➜  tubemq-dist-release ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
+</code></pre>
+<h3>1.6 上传GPG公钥到Github账户</h3>
+<ol>
+<li>进入 <a href="https://github.com/settings/keys">https://github.com/settings/keys</a> ，添加GPG KEYS。</li>
+<li>如果添加后你发现这个密钥后面写了“未经过验证” (unverified)，记得去将GPG key中用到的邮箱绑定到你的github账户上 (<a href="https://github.com/settings/emails">https://github.com/settings/emails</a>)。</li>
+</ol>
+<h2>2. 设置maven设置</h2>
+<p><strong>如果已经设置过则跳过</strong></p>
+<p>在maven的配置文件~/.m2/settings.xml中，则添加下面的<server>项</p>
+<pre><code class="language-xml"><span class="hljs-meta">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">settings</span> <span class="hljs-attr">xsi:schemaLocation</span>=<span class="hljs-string">"http://maven.apache.org/SETTINGS/1.1.0 http://maven.apache.org/xsd/settings-1.1.0.xsd"</span> <span class="hljs-attr">xmlns</span>=<span class="hljs-string">"http://maven.apache.org/SETTINGS/1.1.0"</span>
+    <span class="hljs-attr">xmlns:xsi</span>=<span class="hljs-string">"http://www.w3.org/2001/XMLSchema-instance"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-name">servers</span>&gt;</span>
+    <span class="hljs-comment">&lt;!-- Apache Repo Settings --&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">server</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>apache.snapshots.https<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">username</span>&gt;</span>{user-id}<span class="hljs-tag">&lt;/<span class="hljs-name">username</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span>{user-pass}<span class="hljs-tag">&lt;/<span class="hljs-name">password</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">server</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">server</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>apache.releases.https<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">username</span>&gt;</span>{user-id}<span class="hljs-tag">&lt;/<span class="hljs-name">username</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span>{user-pass}<span class="hljs-tag">&lt;/<span class="hljs-name">password</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">server</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-name">servers</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-name">profiles</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>apache-release<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-name">properties</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">gpg.keyname</span>&gt;</span>你的KEYID<span class="hljs-tag">&lt;/<span class="hljs-name">gpg.keyname</span>&gt;</span><span class="hljs-comment">&lt;!-- Your GPG Keyname here --&gt;</span>
+        <span class="hljs-comment">&lt;!-- Use an agent: Prevents being asked for the password during the build --&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">gpg.useagent</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">gpg.useagent</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-name">gpg.passphrase</span>&gt;</span>你的私钥的密码<span class="hljs-tag">&lt;/<span class="hljs-name">gpg.passphrase</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">profiles</span>&gt;</span>
+</code></pre>
+<h2>3. 编译打包</h2>
+<h3>3.1 准备分支</h3>
+<ul>
+<li>从主干分支拉取新分支作为发布分支，release-${release_version}</li>
+<li>更新<code>CHANGES.md</code></li>
+<li>检查代码是否正常，包括编译成功、单元测试全部成功，RAT检查成功等等</li>
+<li>更改版本号</li>
+</ul>
+<h3>3.2 创建tag</h3>
+<blockquote>
+<p>创建tag前，要确保代码已经检查无误，包括：编译成功、单元测试全部成功，RAT检查成功等</p>
+</blockquote>
+<p><strong>创建一个带签名的tag</strong></p>
+<pre><code class="language-shell">git tag -s ${release_version}-${rc_version} -m "Tagging the ${release_version} first Releae Candidate (Candidates start at zero)"
+</code></pre>
+<h3>3.3 打包源码</h3>
+<blockquote>
+<p>tag创建成功后，我需要将tag源码打包成一个tar包</p>
+</blockquote>
+<pre><code class="language-shell">mkdir /tmp/apache-tubemq-${release_version}-${rc_version}
+git archive --format=tar.gz --output="/tmp/apache-tubemq-${release_version}-${rc_version}/apache-tubemq-${release_version}-src.tar.gz" --prefix="apache-tubemq-${release_version}/" $git_tag
+</code></pre>
+<h3>3.4 打包二进制包</h3>
+<blockquote>
+<p>编译上一步打包的源码</p>
+</blockquote>
+<pre><code class="language-shell">cd /tmp/apache-tubemq-${release_version}-${rc_version} # 进入源码包目录
+tar xzvf apache-tubemq-${release_version}-src.tar.gz #解压源码包
+cd apache-tubemq-${release_version} # 进入源码目录
+mvn compile clean install package -DskipTests # 编译
+cp ./tubemq-client/target/apache-tubemq-client-${release_version}-bin.tar.gz /tmp/apache-tubemq-${release_version}-${rc_version}/ # 拷贝client包到源码包目录下，方面下一步对包进行签名
+cp ./tubemq-server/target/apache-tubemq-server-${release_version}-bin.tar.gz /tmp/apache-tubemq-${release_version}-${rc_version}/ # 拷贝server包到源码包目录下，方面下一步对包进行签名
+</code></pre>
+<h3>3.5 对源码包/二进制包进行签名/sha512/md5</h3>
+<pre><code class="language-shell">for i in *.tar.gz; do echo $i; gpg --print-md MD5 $i &gt; $i.md5 ; done # 计算MD5
+for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i &gt; $i.sha512 ; done # 计算SHA512
+for i in *.tar.gz; do echo $i; gpg --armor --output $i.asc --detach-sig $i ; done # 计算签名
+</code></pre>
+<h3>3.6 检查生成的签名/sha512/md5是否正确</h3>
+<p>具体可以参考：<a href="how-to-verify.md">验证候选版本</a>
+比如验证签名是否正确如下：</p>
+<pre><code class="language-shell">for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
+</code></pre>
+<h2>4. 准备Apache发布</h2>
+<h3>4.1 发布jar包到Apache Nexus仓库</h3>
+<pre><code class="language-shell">cd /tmp/apache-tubemq-${release_version}-${rc_version} # 进入源码包目录
+tar xzvf apache-tubemq-${release_version}-src.tar.gz #解压源码包
+cd apache-tubemq-${release_version}
+mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true  # 开始上传
+</code></pre>
+<h3>4.2 上传tag到git仓库</h3>
+<pre><code class="language-shell">git push origin ${release_version}-${rc_version}
+</code></pre>
+<h3>4.3 上传编译好的文件到dist</h3>
+<blockquote>
+<p>这个步骤需要使用SVN, DEV分支的svn库是 <a href="https://dist.apache.org/repos/dist/dev/incubator/tubemq">https://dist.apache.org/repos/dist/dev/incubator/tubemq</a></p>
+</blockquote>
+<h3>4.3.1 将TubeMQ checkout到本地目录</h3>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 这个步骤可能会比较慢，会把所有版本都考下来，如果网断了，用svn cleanup删掉锁，重新执行一下，会断点续传</span>
+svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq /tmp/tubemq-dist-dev
+</code></pre>
+<h3>4.3.2 添加public key到KEYS文件并提交到SVN仓库</h3>
+<pre><code class="language-shell">cd /tmp/tubemq-dist-dev
+mkdir ${release_version}-${rc_version} #创建版本目录
+<span class="hljs-meta">#</span><span class="bash"> 将源码包和签名包拷贝到此处</span>
+cp /tmp/apache-tubemq-${release_version}-${rc_version}/*tar.gz* ${release_version}-${rc_version}/
+svn status # 检查svn状态
+svn add ${release_version}-${rc_version} # 添加到svn版本
+svn status # 检查svn状态
+svn commit -m 'prepare for ${release_version} ${rc_version}'# 提交至svn远程服务器
+</code></pre>
+<h3>4.4 关闭Apache Staging仓库</h3>
+<blockquote>
+<p>请确保所有的artifact都是ok的</p>
+</blockquote>
+<ol>
+<li>登录http://repository.apache.org , 使用Apache账号登录</li>
+<li>点击左侧的Staging repositories，</li>
+<li>搜索TubeMQ关键字，选择你最近上传的仓库</li>
+<li>点击上方的Close按钮，这个过程会进行一系列检查</li>
+<li>检查通过以后, 在下方的Summary标签页上出现一个连接，请保存好这个链接，需要放在接下来的投票邮件当中。
+链接应该是类似这样的: <code>https://repository.apache.org/content/repositories/orgapachetubemq-xxxx</code></li>
+</ol>
+<p>WARN: 请注意点击Close可能会出现失败，请检查失败原因并处理</p>
+<h2>5. 进入投票</h2>
+<blockquote>
+<p>TubeMQ仍旧在孵化中，需要进行两次投票，</p>
+</blockquote>
+<ul>
+<li>TubeMQ社区投票，发邮件至：<code>dev@tubemq.apache.org</code></li>
+<li>incubator社区投票，发邮件至：<code>general@incubator.apache.org</code>
+TubeMQ毕业之后，只需要在TubeMQ社区投票</li>
+</ul>
+<h3>5.1 TubeMQ社区投票</h3>
+<h4>5.1.1 投票模板</h4>
+<pre><code class="language-html">标题：[VOTE] Release Apache TubeMQ ${release_version} ${rc_version}
+
+内容：
+
+Hello Apache TubeMQ PPMC and Community,
+
+    This is a call for vote to release Apache TubeMQ version ${release_version}-${rc_version}.
+
+    The tag to be voted on is ${release_version}-${rc_version}:
+
+    https://github.com/apache/incubator-tubemq/tree/${release_version}-${rc_version}
+
+    The release tarball, signature, and checksums can be found at:
+
+    https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version}/
+
+    Maven artifacts are available in a staging repository at:
+
+    https://repository.apache.org/content/repositories/orgapachetubemq-{staging-id}
+
+    Artifacts were signed with the {YOUR_PUB_KEY} key which can be found in:
+
+    https://dist.apache.org/repos/dist/dev/incubator/tubemq/KEYS
+
+    ${release_version} includes ~ ${issue_count} bug and improvement fixes done since last versions which can be found at:
+
+    https://github.com/apache/incubator-tubemq/blob/${release_version}-${rc_version}/CHANGES.md
+
+    Please download, verify, and test.
+
+    The VOTE will remain open for at least 72 hours.
+
+    [ ] +1 Release this package as Apache TubeMQ 0.3.0-incubating
+    [ ] +0
+    [ ] -1 Do not release this package because...
+
+    To learn more about apache tubemq, please see
+    http://tubemq.apache.org/
+
+    Checklist for reference:
+
+      [ ] Download links are valid.
+      [ ] Checksums and signatures.
+      [ ] LICENSE/NOTICE/DISCLAIMER-WIP files exist
+      [ ] No unexpected binary files
+      [ ] All source files have ASF headers
+      [ ] Can compile from source
+      [ ] All Tests Passed
+
+      More detail checklist  please refer:
+      https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
+
+Thanks,
+Your TubeMQ Release Manager
+</code></pre>
+<h4>5.1.2 宣布投票结果模板</h4>
+<pre><code class="language-html">标题：[RESULT][VOTE] Release Apache TubeMQ ${release_version} ${rc_version}
+
+内容：
+
+Hello Apache TubeMQ PPMC and Community,
+
+    The vote closes now as 72hr have passed. The vote PASSES with
+    xx (+1 non-binding) votes from the PPMC,
+    xx (+1 binding) vote from the IPMC,
+    xx (+1 non-binding) vote from the rest of the developer community,
+    and no further 0 or -1 votes.
+
+    The vote thread: {vote_mail_address}
+
+    I will now bring the vote to general@incubator.apache.org to get approval by the IPMC.
+    If this vote passes also, the release is accepted and will be published.
+
+Thank you for your support.
+Your TubeMQ Release Manager
+</code></pre>
+<h3>5.2 incubator社区投票</h3>
+<h4>5.2.1 投票模板</h4>
+<pre><code class="language-html">标题：[VOTE] Release Apache TubeMQ (Incubating) ${release_version} ${rc_version}
+
+内容：
+
+Hello Incubator Community,
+
+    This is a call for a vote to release Apache TubeMQ (Incubating) version
+    ${release_version} ${rc_version}
+
+    The Apache TubeMQ community has voted on and approved a proposal to release
+    Apache TubeMQ (Incubating) version ${release_version} ${rc_version}
+
+    We now kindly request the Incubator PMC members review and vote on this
+    incubator release.
+
+    TubeMQ community vote thread:
+    • [投票链接]
+
+    Vote result thread:
+    • [投票结果链接]
+
+    The release candidate:
+    • https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version}/
+
+    Git tag for the release:
+    • https://github.com/apache/incubator-tubemq/tree/${release_version}-${rc_version}
+
+    Release notes:
+    • https://github.com/apache/incubator-tubemq/releases/tag/${release_version}
+
+    The artifacts signed with PGP key [填写你个人的KEY], corresponding to [填写你个人的邮箱], that can be found in keys file:
+    • https://dist.apache.org/repos/dist/dev/incubator/tubemq/KEYS
+
+    The vote will be open for at least 72 hours or until necessary number of votes are reached.
+
+    Please vote accordingly:
+
+    [ ] +1 approve
+    [ ] +0 no opinion
+    [ ] -1 disapprove with the reason
+
+Thanks,
+On behalf of Apache TubeMQ (Incubating) community
+
+</code></pre>
+<h4>5.2.2 宣布投票结果模板</h4>
+<pre><code class="language-html">标题：[RESULT][VOTE] Release Apache TubeMQ ${release_version} {rc_version}
+
+内容：
+Hi all
+
+Thanks for reviewing and voting for Apache TubeMQ (Incubating) ${release_version} {rc_version}
+release, I am happy to announce the release voting has passed with [投票结果数]
+binding votes, no +0 or -1 votes. Binding votes are from IPMC
+
+   - xxx
+   - xxx
+   - xxx
+
+The voting thread is:
+[投票链接]
+
+Many thanks for all our mentors helping us with the release procedure, and
+all IPMC helped us to review and vote for Apache TubeMQ (Incubating) release. I will
+be working on publishing the artifacts soon.
+
+Thanks
+On behalf of Apache TubeMQ (Incubating) community
+</code></pre>
+<h2>6. 正式发布</h2>
+<h3>6.1 合并release-${release_version}分支的改动到master分支</h3>
+<h3>6.2 将源码和二进制包从svn的dev目录移动到release目录</h3>
+<pre><code class="language-shell">svn mv https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/tubemq/${release_version}
+</code></pre>
+<h3>6.3 确认dev和release下的包是否正确</h3>
+<ol>
+<li>确认<a href="https://dist.apache.org/repos/dist/dev/incubator/tubemq/">dev</a>下的<code>${release_version}-${rc_version}</code>已被删除</li>
+<li>删除<a href="https://dist.apache.org/repos/dist/release/incubator/tubemq/">release</a>目录下上一个版本的发布包，这些包会被自动保存在<a href="https://archive.apache.org/dist/incubator/tubemq/">这里</a></li>
+</ol>
+<h3>6.4 在Apache Staging仓库发布版本</h3>
+<blockquote>
+<p>请确保所有的artifact都是ok的</p>
+</blockquote>
+<ol>
+<li>登录http://repository.apache.org , 使用Apache账号登录</li>
+<li>点击左侧的Staging repositories，</li>
+<li>搜索TubeMQ关键字，选择你最近上传的仓库，投票邮件中指定的仓库</li>
+<li>点击上方的<code>Release</code>按钮，这个过程会进行一系列检查</li>
+</ol>
+<p><strong>等仓库同步到其他数据源，一般需要24小时</strong></p>
+<h3>6.5 更新官网链接</h3>
+<h3>6.6. 发邮件到 <code>dev@tubemq.apache.org</code> 和 <code>general@incubator.apache.org</code></h3>
+<p><strong>请确保6.4中的仓库已发布成功，一般是在6.4后的24小时后发布邮件</strong></p>
+<p>宣布release邮件模板：</p>
+<pre><code class="language-html">标题： [ANNOUNCE] Release Apache TubeMQ(incubating) ${release_version}
+内容：
+Hi all,
+
+The Apache TubeMQ(incubating) community is pleased to announce 
+that Apache TubeMQ (incubating) ${release_version} has been released!
+
+Apache TubeMQ is a trillion-records-scale distributed messaging queue (MQ) system, 
+focuses on data transmission and storage under massive data. 
+
+Download Links: xxx
+
+Release Notes: xxx
+
+Website: https://tubemq.apache.org/
+
+TubeMQ Resources:
+- Issue: https://issues.apache.org/jira/projects/TUBEMQ/issues
+- Mailing list: dev@tubemq.apache.org
+
+Thanks
+On behalf of Apache TubeMQ (Incubating) community
+</code></pre>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script src="https://buttons.github.io/buttons.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>

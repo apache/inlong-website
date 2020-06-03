@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="how-to-verify" />
+	<meta name="description" content="how-to-verify" />
+	<!-- 网页标签标题 -->
+	<title>how-to-verify</title>
+	<link rel="shortcut icon" href="/img/apache.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><a href="//www.apache.org"><img class="logo apache" style="width:120px" src="/img/asf_logo.svg"/></a><div class="logo-split"></div><img class="logo tube" style="width:72px" src="/img/Tube logo.svg"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><div><ul class="ant-menu blackClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/docs/tubemq_user_guide.html" target="_self">文档</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/docs/development/how-to-contribute.html" target="_self">开发</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="https://github.com/apache/incubator-tubemq" target="_self">GITHUB</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper">Apache</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div></div><div class="header-background"></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>文档</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>引导</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/quick_start.html" target="_self">快速开始</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/producer_example.html" target="_self">生产者示例</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/consumer_example.html" target="_self">消费者示例</a></li></ul></li><li class="menu-item menu-item-level-1"><span>架构和部署</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/architecture.html" target="_self">架构</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/deployment.html" target="_self">部署</a></li></ul></li><li class="menu-item menu-item-level-1"><span><div class="menu-item menu-item-level-1" style="margin-left:-20px"><a href="/zh-cn/docs/contact.html" target="_self" style="padding-left:20px">联系我们</a></div></span><ul></ul></li></ul></div><div class="doc-content markdown-body"><h1>验证候选版本</h1>
+<p>详细的检查列表请参考: <a href="https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist">check list</a></p>
+<h2>1. 下载要发布的候选版本到本地环境</h2>
+<pre><code class="language-shell">svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version}/
+</code></pre>
+<h2>2. 验证上传的版本是否合规</h2>
+<blockquote>
+<p>开始验证环节，验证包含但不局限于以下内容和形式</p>
+</blockquote>
+<h3>2.1 查看发布包是否完整</h3>
+<blockquote>
+<p>上传到dist的包必须包含源码包，二进制包可选</p>
+</blockquote>
+<ol>
+<li>是否包含源码包</li>
+<li>是否包含源码包的签名</li>
+<li>是否包含源码包的sha512</li>
+<li>是否包含源码包的md5</li>
+<li>如果上传了二进制包，则同样检查(2)-(4)所列的内容</li>
+</ol>
+<h3>2.2 检查gpg签名</h3>
+<ul>
+<li>导入公钥</li>
+</ul>
+<pre><code class="language-shell">curl https://dist.apache.org/repos/dist/dev/tubemq/KEYS &gt;&gt; KEYS # 下载KEYS
+gpg --import KEYS # 导入KEYS到本地
+</code></pre>
+<ul>
+<li>使用如下命令检查签名</li>
+</ul>
+<pre><code class="language-shell">for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
+<span class="hljs-meta">#</span><span class="bash">或者</span>
+gpg --verify apache-tubemq-${release_version}-src.tar.gz.asc apache-tubemq-${release_version}-src.tar.gz
+<span class="hljs-meta">#</span><span class="bash"> 如果上传二进制包，则同样需要检查二进制包的签名是否正确</span>
+gpg --verify apache-tubemq-server-${release_version}-bin.tar.gz.asc apache-tubemq-server-${release_version}-bin.tar.gz
+gpg --verify apache-tubemq-client-${release_version}-bin.tar.gz.asc apache-tubemq-client-${release_version}-bin.tar.gz
+</code></pre>
+<ul>
+<li>检查结果
+出现类似以下内容则说明签名正确，关键字：<code>Good signature</code></li>
+</ul>
+<pre><code class="language-shell">apache-tubemq-0.3.0-incubating-src.tar.gz
+gpg: Signature made Sat May 30 11:45:01 2020 CST
+gpg:                using RSA key 9B12C2228BDFF4F4CFE849445EF3A66D57EC647A
+gpg: Good signature from "Guangxu Cheng &lt;gxcheng@apache.org&gt;" [ultimate]gular2
+</code></pre>
+<h3>2.3 检查sha512哈希</h3>
+<blockquote>
+<p>本地计算sha512哈希后，验证是否与dist上的一致</p>
+</blockquote>
+<pre><code class="language-shell">for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i; done
+<span class="hljs-meta">#</span><span class="bash">或者</span>
+gpg --print-md SHA512 apache-tubemq-${release_version}-src.tar.gz
+<span class="hljs-meta">#</span><span class="bash"> 如果上传二进制包，则同样需要检查二进制包的sha512哈希</span>
+gpg --print-md SHA512 apache-tubemq-server-${release_version}-bin.tar.gz
+gpg --print-md SHA512 apache-tubemq-client-${release_version}-bin.tar.gz
+<span class="hljs-meta">#</span><span class="bash"> 或者</span>
+for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
+</code></pre>
+<h4>2.4 检查MD5</h4>
+<blockquote>
+<p>本地计算MD5后，验证是否与dist上的一致</p>
+</blockquote>
+<pre><code class="language-shell">for i in *.tar.gz; do echo $i; gpg --print-md MD5 $i; done
+<span class="hljs-meta">#</span><span class="bash">或者</span>
+gpg --print-md MD5 apache-tubemq-${release_version}-src.tar.gz
+<span class="hljs-meta">#</span><span class="bash"> 如果上传二进制包，则同样需要检查二进制包的MD5</span>
+gpg --print-md MD5 apache-tubemq-server-${release_version}-bin.tar.gz
+gpg --print-md MD5 apache-tubemq-client-${release_version}-bin.tar.gz
+</code></pre>
+<h3>2.5. 检查源码包的文件内容</h3>
+<p>解压缩<code>apache-tubemq-${release_version}-src.tar.gz</code>，进行如下检查:</p>
+<ul>
+<li>DISCLAIMER文件是否存在及内容是否正确</li>
+<li>LICENSE and NOTICE文件是否存在及内容是否正确</li>
+<li>所有文件是否带有ASF License头</li>
+<li>源码是否能够正常编译</li>
+<li>单测是否能够跑通</li>
+<li>....</li>
+</ul>
+<h3>2.6 检查二进制包(如果上传了二进制包)</h3>
+<p>解压缩<code>apache-tubemq-client-${release_version}-src.tar.gz</code>和<code>apache-tubemq-server-${release_version}-src.tar.gz</code>，进行如下检查:</p>
+<ul>
+<li>DISCLAIMER文件是否存在及内容是否正确</li>
+<li>LICENSE and NOTICE文件是否存在及内容是否正确</li>
+<li>能否正常部署成功</li>
+<li>部署测试环境、验证生产消费能否正常运行</li>
+<li>验证你认为可能会出问题的地方</li>
+<li>....</li>
+</ul>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script src="https://buttons.github.io/buttons.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>
