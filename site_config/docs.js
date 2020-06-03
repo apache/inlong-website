@@ -27,7 +27,7 @@ export default {
           },
           {
             title: 'Client RPC',
-            link: '/en-us/docs/deployment.html',
+            link: '/en-us/docs/client_rpc.html',
           },
         ],
       },
@@ -40,7 +40,7 @@ export default {
           },
           {
             title: 'Configure introduction',
-            link: '/en-us/docs/deployment.html',
+            link: '/en-us/docs/configure_introduction.html',
           },
           {
             title: 'Console introduction',
@@ -91,7 +91,7 @@ export default {
           },
           {
             title: '客户端RPC',
-            link: '/zh-cn/docs/deployment.html',
+            link: '/zh-cn/docs/client_rpc.html',
           },
         ],
       },
@@ -104,7 +104,7 @@ export default {
           },
           {
             title: '配置参数介绍',
-            link: '/zh-cn/docs/deployment.html',
+            link: '/zh-cn/docs/configure_introduction.html',
           },
           {
             title: '管控台操作指引',

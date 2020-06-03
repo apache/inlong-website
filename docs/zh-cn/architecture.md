@@ -1,4 +1,4 @@
-## TubeMQ Architecture 
+## TubeMQ 架构 
 经过多年演变，TubeMQ集群分为如下5个部分：
 ![](img/sys_structure.png)
 
