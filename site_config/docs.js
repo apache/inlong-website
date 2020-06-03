@@ -19,15 +19,40 @@ export default {
         ],
       },
       {
-        title: 'Architecture & Deployment',
+        title: 'Architecture & Principle',
         children: [
           {
             title: 'Architecture',
             link: '/en-us/docs/architecture.html',
           },
           {
+            title: 'Client RPC',
+            link: '/en-us/docs/deployment.html',
+          },
+        ],
+      },
+      {
+        title: 'User manual',
+        children: [
+          {
             title: 'Deployment',
             link: '/en-us/docs/deployment.html',
+          },
+          {
+            title: 'Configure introduction',
+            link: '/en-us/docs/deployment.html',
+          },
+          {
+            title: 'Console introduction',
+            link: '/en-us/docs/deployment.html',
+          },
+          {
+            title: 'Error code',
+            link: '/en-us/docs/error_code.html',
+          },
+          {
+            title: 'HTTP API',
+            link: '/en-us/docs/http_access_api.html',
           },
         ],
       },
@@ -58,14 +83,14 @@ export default {
         ],
       },
       {
-        title: '原理介绍',
+        title: '架构及原理',
         children: [
           {
             title: '架构介绍',
             link: '/zh-cn/docs/architecture.html',
           },
           {
-            title: 'Client交互',
+            title: '客户端RPC',
             link: '/zh-cn/docs/deployment.html',
           },
         ],
@@ -75,7 +100,7 @@ export default {
         children: [
           {
             title: '部署指引',
-            link: '/zh-cn/docs/architecture.html',
+            link: '/zh-cn/docs/deployment.html',
           },
           {
             title: '配置参数介绍',
