@@ -58,15 +58,40 @@ export default {
         ],
       },
       {
-        title: '架构和部署',
+        title: '原理介绍',
         children: [
           {
-            title: '架构',
+            title: '架构介绍',
             link: '/zh-cn/docs/architecture.html',
           },
           {
-            title: '部署',
+            title: 'Client交互',
             link: '/zh-cn/docs/deployment.html',
+          },
+        ],
+      },
+      {
+        title: '用户手册',
+        children: [
+          {
+            title: '部署指引',
+            link: '/zh-cn/docs/architecture.html',
+          },
+          {
+            title: '配置参数介绍',
+            link: '/zh-cn/docs/deployment.html',
+          },
+          {
+            title: '管控台操作指引',
+            link: '/zh-cn/docs/deployment.html',
+          },
+          {
+            title: '错误码',
+            link: '/zh-cn/docs/error_code.html',
+          },
+          {
+            title: 'API介绍',
+            link: '/zh-cn/docs/http_access_api.html',
           },
         ],
       },
