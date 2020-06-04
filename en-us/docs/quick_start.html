@@ -151,15 +151,48 @@ server IPs in this way, assume the ip is <code>192.168.1.2</code>:</p>
 <h5>/etc/hosts</h5>
 <pre><code>192.168.1.2 192-168-1-2
 </code></pre>
-<h2>Start Master</h2>
+<h2>High Availability</h2>
+<p>In the example above, we run the services on a single node. However, in real production environment, you
+need to run multiple master services on different servers for high availability purpose. Here's
+the introduction of availability level.</p>
+<table>
+<thead>
+<tr>
+<th>HA Level</th>
+<th>Master Number</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>High</td>
+<td>3 masters</td>
+<td>After any master crashed, the cluster meta data is still in read/write state and can accept new producers/consumers.</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>2 masters</td>
+<td>After one master crashed, the cluster meta data is in read only state. There's no affect on existing producers and consumers.</td>
+</tr>
+<tr>
+<td>Minimum</td>
+<td>1 master</td>
+<td>After the master crashed, there's no affect on existing producer and consumer.</td>
+</tr>
+</tbody>
+</table>
+<p>Please notice that the master servers should be clock synchronized.</p>
+<h2>Start Cluster</h2>
+<p>After configuration, we can start the cluster by following these steps.</p>
+<h3>Start Master</h3>
 <p>After update the config file, please go to the <code>bin</code> folder and run this command to start
 the master service.</p>
-<pre><code class="language-bash">./master.sh start
+<pre><code class="language-bash">./tubemq master start
 </code></pre>
 <p>You should be able to access <code>http://your-master-ip:8080</code> to see the
 web GUI now.</p>
 <p><img src="img/tubemq-console-gui.png" alt="TubeMQ Console GUI"></p>
-<h2>Start Broker</h2>
+<h3>Start Broker</h3>
 <p>Before we start a broker service, we need to configure it on master web GUI first.</p>
 <p>Go to the <code>Broker List</code> page, click <code>Add Single Broker</code>, and input the new broker
 information.</p>
@@ -173,11 +206,22 @@ information.</p>
 <p>Click the online link to activate the new added broker.</p>
 <p><img src="img/tubemq-add-broker-2.png" alt="Add Broker 2"></p>
 <p>Go to the broker server, under the <code>bin</code> folder run this command to start the broker service</p>
-<pre><code class="language-bash">./broker.sh start
+<pre><code class="language-bash">./tubemq broker start
 </code></pre>
 <p>Refresh the GUI broker list page, you can see that the broker now is registered.</p>
 <p>After the sub-state of the broker changed to <code>idle</code>, we can add topics to that broker.</p>
 <p><img src="img/tubemq-add-broker-3.png" alt="Add Broker 3"></p>
+<h2>Set Environment Variable (optional)</h2>
+<p>We can set the path of TubeMQ to the environment variable for easy use.</p>
+<pre><code class="language-bash">TUBEMQ_HOME=/opt/tubemq-server
+PATH=<span class="hljs-variable">$TUBEMQ_HOME</span>/bin:<span class="hljs-variable">$PATH</span>
+</code></pre>
+<p>After that, we can use the following commands to start/stop and restart the master/broker service anywhere.</p>
+<pre><code class="language-bash">Usage: tubemq {master|broker} {start|stop|restart}
+       start:      start the master/broker server
+       stop:       stop the master/broker server
+       restart:    restart the master/broker server
+</code></pre>
 <h2>Add Topic</h2>
 <p>We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
 topic list page and click the add new topic button</p>
@@ -196,22 +240,28 @@ that the topic publish/subscribe state is active now.</p>
 <h2>Demo</h2>
 <p>Now we can run the example to test our cluster. First let's run the produce data demo. Please don't
 forget replace <code>YOUR_SERVER_IP</code> with your server ip.</p>
-<pre><code class="language-bash">java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  -Djava.net.preferIPv4Stack=<span class="hljs-literal">true</span> -cp  /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageProducerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo 10000000
+<pre><code class="language-bash">java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  \
+-Djava.net.preferIPv4Stack=<span class="hljs-literal">true</span> -cp  /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/* \
+org.apache.tubemq.example.MessageProducerExample \
+YOUR_SERVER_IP:8000 demo 10000000
 </code></pre>
 <p>From the log, we can see the message is sent out.</p>
-<pre><code class="language-bash">[2019-09-11 16:09:08,287] INFO Send demo 1000 message, keyCount is 268 (com.tencent.tubemq.example.MessageProducerExample)
-[2019-09-11 16:09:08,505] INFO Send demo 2000 message, keyCount is 501 (com.tencent.tubemq.example.MessageProducerExample)
-[2019-09-11 16:09:08,958] INFO Send demo 3000 message, keyCount is 755 (com.tencent.tubemq.example.MessageProducerExample)
-[2019-09-11 16:09:09,085] INFO Send demo 4000 message, keyCount is 1001 (com.tencent.tubemq.example.MessageProducerExample)
+<pre><code class="language-bash">[2020-06-04 11:19:04,405] INFO Send demo 1000 message, keyCount is 252 (org.apache.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:04,652] INFO Send demo 2000 message, keyCount is 502 (org.apache.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:05,096] INFO Send demo 3000 message, keyCount is 752 (org.apache.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:05,181] INFO Send demo 4000 message, keyCount is 1002 (org.apache.tubemq.example.MessageProducerExample)
 </code></pre>
 <p>Then we run the consume data demo. Also replace the server ip</p>
-<pre><code class="language-bash">java -Xmx512m -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=<span class="hljs-literal">true</span> -cp /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageConsumerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo demoGroup 3 1 1
+<pre><code class="language-bash">java -Xmx512m -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties \
+-Djava.net.preferIPv4Stack=<span class="hljs-literal">true</span> -cp /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/* \
+org.apache.tubemq.example.MessageConsumerExample \
+YOUR_SERVER_IP:8000 demo demoGroup 3 1 1
 </code></pre>
 <p>From the log, we can see the message received by the consumer.</p>
-<pre><code class="language-bash">[2019-09-11 16:09:29,720] INFO Receive messages:2500 (com.tencent.tubemq.example.MsgRecvStats)
-[2019-09-11 16:09:30,059] INFO Receive messages:5000 (com.tencent.tubemq.example.MsgRecvStats)
-[2019-09-11 16:09:34,493] INFO Receive messages:10000 (com.tencent.tubemq.example.MsgRecvStats)
-[2019-09-11 16:09:34,783] INFO Receive messages:12500 (com.tencent.tubemq.example.MsgRecvStats)
+<pre><code class="language-bash">[2020-06-04 11:20:29,107] INFO Receive messages:270000 (org.apache.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:31,206] INFO Receive messages:272500 (org.apache.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:31,590] INFO Receive messages:275000 (org.apache.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:31,910] INFO Receive messages:277500 (org.apache.tubemq.example.MsgRecvStats)
 </code></pre>
 <hr>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
