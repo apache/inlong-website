@@ -78,7 +78,7 @@ export default {
       list: [
         {
           text: 'Overview',
-          link: '/en-us/docs/tubemq_user_guide.html',
+          link: '/en-us/docs/quick_start.html',
         },
         {
           text: 'Quick start',
@@ -86,7 +86,7 @@ export default {
         },
         {
           text: 'Developer guide',
-          link: '/en-us/docs/tubemq_user_guide.html',
+          link: '/en-us/docs/quick_start.html',
         },
       ],
     },
@@ -165,7 +165,7 @@ export default {
       list: [
         {
           text: '概览',
-          link: '/zh-cn/docs/tubemq_user_guide.html',
+          link: '/zh-cn/docs/quick_start.html',
         },
         {
           text: '快速开始',
@@ -173,7 +173,7 @@ export default {
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/tubemq_user_guide.html',
+          link: '/zh-cn/docs/quick_start.html',
         },
       ],
     },
