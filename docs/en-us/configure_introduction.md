@@ -41,6 +41,7 @@ In addition to the back-end system configuration file, the Master also stores th
 | startConsumeAuthenticate      | no       | boolean | Whether to enable consumer user authentication, the default is false |
 | startConsumeAuthorize         | no       | boolean | Whether to enable consumer consumption authorization authentication, the default is false |
 | maxGroupBrokerConsumeRate     | no       | int     | The maximum ratio of the number of clustered brokers to the number of members in the consumer group. The default is 50. In a 50-kerrow cluster, one consumer group is allowed to start at least one client. |
+| metaDataPath                  | no       | string  | Metadata storage path. Absolute, or relative to TubeMQ base directory (`$BASE_DIR`). Optional field, default is "var/meta_data". Should be the same as "[bdbStore].bdbEnvHome" if upgrade from version prior `0.5.0`. |
 
 [zookeeper]
 >The corresponding Tom MQ cluster of the Master stores the information about the ZooKeeper cluster of the Offset. The required unit has a fixed value of "[zookeeper]".
@@ -54,7 +55,23 @@ In addition to the back-end system configuration file, the Master also stores th
 | zkSyncTimeMs          | no       | long   | Zk data synchronization time, in milliseconds, default 5 seconds |
 | zkCommitPeriodMs      | no       | long   | The interval at which the Master cache data is flushed to zk, in milliseconds, default 5 seconds. |
 
+[replication]
+>Replication configuration for metadata storage replication and multi-node hot standby between Masters. The required unit has a fixed value of "[replication]".
+
+| Name                    | Required                          | Type                          | Description                                                  |
+| ----------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
+| repGroupName            | no       | string | Cluster name, the primary and backup master node values must be the same. Optional field, default is "tubemqMasterGroup". |
+| repNodeName             | yes      | string | The name of the master node in the cluster. The value of each node MUST BE DIFFERENT. Required field. |
+| repNodePort             | no       | int    | Node communication port, optional field, default is 9001. |
+| repHelperHost           | no       | string | Primary node when the master cluster starts, optional field, default is "127.0.0.1:9001". |
+| metaLocalSyncPolicy     | no       | int    | Replication data node local storage mode, the value range of this field is [1, 2, 3]. The default is 1: 1 is data saved to disk, 2 is data only saved to memory, and 3 is only data is written to file system buffer without flush. |
+| metaReplicaSyncPolicy   | no       | int    | Replication data node synchronization save mode, the value range of this field is [1, 2, 3]. The default is 1: 1 is data saved to disk, 2 is data only saved to memory, and 3 is only data is written to file system buffer without flush. |
+| repReplicaAckPolicy     | no       | int    | The response policy of the replication node data synchronization, the value range of this field is [1, 2, 3], the default is 1: 1 is more than 1/2 majority is valid, 2 is valid for all nodes, 3 is not Need node response. |
+| repStatusCheckTimeoutMs | no       | long   | Replication status check interval, optional field, in milliseconds, defaults to 10 seconds. |
+
 [bdbStore]
+>Deprecated, config in "[replication]" instead.
+
 >Master configuration of the BDB cluster to which the master belongs. The master uses BDB for metadata storage and multi-node hot standby. The required unit has a fixed value of "[bdbStore]".
 
 | Name                    | Required                          | Type                          | Description                                                  |

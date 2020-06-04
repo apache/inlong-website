@@ -104,16 +104,11 @@ be replaced with your server IP.</p>
 <span class="hljs-attr">zkSyncTimeMs</span>=<span class="hljs-number">5000</span>
 <span class="hljs-attr">zkCommitPeriodMs</span>=<span class="hljs-number">5000</span>
 
-<span class="hljs-section">[bdbStore]</span>
-<span class="hljs-attr">bdbRepGroupName</span>=tubemqMasterGroup
-<span class="hljs-attr">bdbNodeName</span>=tubemqMasterGroupNode1
-<span class="hljs-attr">bdbNodePort</span>=<span class="hljs-number">9001</span>
-<span class="hljs-attr">bdbEnvHome</span>=/stage/metadata
-<span class="hljs-attr">bdbHelperHost</span>=<span class="hljs-number">9.134</span>.<span class="hljs-number">8.170</span>:<span class="hljs-number">9001</span>
-<span class="hljs-attr">bdbLocalSync</span>= <span class="hljs-number">1</span>
-<span class="hljs-attr">bdbReplicaSync</span>= <span class="hljs-number">3</span>
-<span class="hljs-attr">bdbReplicaAck</span>= <span class="hljs-number">1</span>
-<span class="hljs-attr">bdbStatusCheckTimeoutMs</span>=<span class="hljs-number">10000</span>
+<span class="hljs-section">[replication]</span>
+<span class="hljs-comment">; name of current node; MUST BE DIFFERENT for every node in the cluster</span>
+<span class="hljs-attr">repNodeName</span>=tubemqMasterGroupNode1
+<span class="hljs-comment">; helperHost(and port) for nodes to join master cluster</span>
+<span class="hljs-attr">repHelperHost</span>=YOUR_SERVER_IP:<span class="hljs-number">9001</span>
 </code></pre>
 <h5>resources/velocity.properties</h5>
 <pre><code class="language-properties"><span class="hljs-meta">resource.loader</span>=<span class="hljs-string">file</span>

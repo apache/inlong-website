@@ -171,6 +171,12 @@
 <td>int</td>
 <td>The maximum ratio of the number of clustered brokers to the number of members in the consumer group. The default is 50. In a 50-kerrow cluster, one consumer group is allowed to start at least one client.</td>
 </tr>
+<tr>
+<td>metaDataPath</td>
+<td>no</td>
+<td>string</td>
+<td>Metadata storage path. Absolute, or relative to TubeMQ base directory (<code>$BASE_DIR</code>). Optional field, default is &quot;var/meta_data&quot;. Should be the same as &quot;[bdbStore].bdbEnvHome&quot; if upgrade from version prior <code>0.5.0</code>.</td>
+</tr>
 </tbody>
 </table>
 <p>[zookeeper]</p>
@@ -225,7 +231,74 @@
 </tr>
 </tbody>
 </table>
+<p>[replication]</p>
+<blockquote>
+<p>Replication configuration for metadata storage replication and multi-node hot standby between Masters. The required unit has a fixed value of &quot;[replication]&quot;.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Required</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>repGroupName</td>
+<td>no</td>
+<td>string</td>
+<td>Cluster name, the primary and backup master node values must be the same. Optional field, default is &quot;tubemqMasterGroup&quot;.</td>
+</tr>
+<tr>
+<td>repNodeName</td>
+<td>yes</td>
+<td>string</td>
+<td>The name of the master node in the cluster. The value of each node MUST BE DIFFERENT. Required field.</td>
+</tr>
+<tr>
+<td>repNodePort</td>
+<td>no</td>
+<td>int</td>
+<td>Node communication port, optional field, default is 9001.</td>
+</tr>
+<tr>
+<td>repHelperHost</td>
+<td>no</td>
+<td>string</td>
+<td>Primary node when the master cluster starts, optional field, default is &quot;127.0.0.1:9001&quot;.</td>
+</tr>
+<tr>
+<td>metaLocalSyncPolicy</td>
+<td>no</td>
+<td>int</td>
+<td>Replication data node local storage mode, the value range of this field is [1, 2, 3]. The default is 1: 1 is data saved to disk, 2 is data only saved to memory, and 3 is only data is written to file system buffer without flush.</td>
+</tr>
+<tr>
+<td>metaReplicaSyncPolicy</td>
+<td>no</td>
+<td>int</td>
+<td>Replication data node synchronization save mode, the value range of this field is [1, 2, 3]. The default is 1: 1 is data saved to disk, 2 is data only saved to memory, and 3 is only data is written to file system buffer without flush.</td>
+</tr>
+<tr>
+<td>repReplicaAckPolicy</td>
+<td>no</td>
+<td>int</td>
+<td>The response policy of the replication node data synchronization, the value range of this field is [1, 2, 3], the default is 1: 1 is more than 1/2 majority is valid, 2 is valid for all nodes, 3 is not Need node response.</td>
+</tr>
+<tr>
+<td>repStatusCheckTimeoutMs</td>
+<td>no</td>
+<td>long</td>
+<td>Replication status check interval, optional field, in milliseconds, defaults to 10 seconds.</td>
+</tr>
+</tbody>
+</table>
 <p>[bdbStore]</p>
+<blockquote>
+<p>Deprecated, config in &quot;[replication]&quot; instead.</p>
+</blockquote>
 <blockquote>
 <p>Master configuration of the BDB cluster to which the master belongs. The master uses BDB for metadata storage and multi-node hot standby. The required unit has a fixed value of &quot;[bdbStore]&quot;.</p>
 </blockquote>
