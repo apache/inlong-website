@@ -116,12 +116,25 @@ zkCommitFailRetries=10
 
 ```
 
-特别的，对于 Master 节点，需要在 `/etc/hosts` 中配置其他 Master 节点的信息，如果有三个 Master 节点：
+特别的，对于 Master 节点，需要在 `/etc/hosts` 中配置其他 Master 节点的信息，如果 Master 节点的IP地址为`192.168.1.2`：
 ```
-192.168.1.2 hostname-2
-192.168.1.3 hostname-3
-192.168.1.4 hostname-4
+192.168.1.2 192-168-1-2
 ```
+
+## 高可用性介紹
+
+在上面的例子中，我们在单个节点上运行服务。然而，在实际的生产环境中，
+你需要在不同的服务器上运行多个 Master 服务以达到高可用性的目的。
+下面是可用性级别的介绍：
+
+| HA级别 | Master数量 | 描述 |
+| -------- | ------------- | ----------- |
+| 高 | 3 masters | 任何主节点崩溃后，集群元数据仍处于读/写状态，可以接受新的生产者/消费者。 |
+| 中 | 2 masters | 一个主节点崩溃后，集群元数据处于只读状态。对现有的生产者和消费者没有任何影响。 |
+| 低 | 1 master | 主节点崩溃后，对现有的生产者和消费者没有影响。 |
+
+请注意，主服务器的时钟应该是同步的。
+
 ## 启动集群
 
 配置完成之后，就可以按照以下步骤启动集群。
@@ -130,10 +143,10 @@ zkCommitFailRetries=10
 
 完成如上配置设置后，首先进入主备Master所在的TubeMQ环境的 `bin` 目录，进行服务启动操作。
 ```bash
-./master.sh start
+./tubemq master start
 ```
 
-访问Master的管控台 `http://your-master-ip:8080/config/topic_list.htm` ，页面可查则表示 master 已成功启动。
+访问Master的管控台 `http://your-master-ip:8080` ，页面可查则表示 master 已成功启动。
 
 ![TubeMQ Console GUI](img/tubemq-console-gui.png)
 
@@ -155,7 +168,7 @@ Broker启动前，首先要在Master上配置Broker元数据，增加Broker相�
 到 Broker 节点的 `bin` 目录下，执行以下命令启动 Broker服务：
 
 ```bash
-./broker.sh start
+./tubemq broker start
 ```
 
 刷新页面可以看到 Broker 已经注册，当 `当前运行子状态` 为 `idle` 时， 可以增加topic。
@@ -188,29 +201,35 @@ Broker启动前，首先要在Master上配置Broker元数据，增加Broker相�
 
 
 ## 运行示例
-可以使用 Example 来测试集群。首先，我们运行 producer的demo，注意将 `YOUR_SERVER_IP` 替换为实际的IP. 例如：localhost
+可以使用 Example 来测试集群。首先，我们运行 producer的demo，注意将 `YOUR_SERVER_IP` 替换为实际的IP（例如：localhost）
 ```bash
-java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  -Djava.net.preferIPv4Stack=true -cp  /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageProducerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo 10000000
+java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  \
+-Djava.net.preferIPv4Stack=true -cp  /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/* \
+org.apache.tubemq.example.MessageProducerExample \
+YOUR_SERVER_IP:8000 demo 10000000
 ```
 从日志我们可以看到，数据发送成功
 ```bash
-[2019-09-11 16:09:08,287] INFO Send demo 1000 message, keyCount is 268 (com.tencent.tubemq.example.MessageProducerExample)
-[2019-09-11 16:09:08,505] INFO Send demo 2000 message, keyCount is 501 (com.tencent.tubemq.example.MessageProducerExample)
-[2019-09-11 16:09:08,958] INFO Send demo 3000 message, keyCount is 755 (com.tencent.tubemq.example.MessageProducerExample)
-[2019-09-11 16:09:09,085] INFO Send demo 4000 message, keyCount is 1001 (com.tencent.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:04,405] INFO Send demo 1000 message, keyCount is 252 (org.apache.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:04,652] INFO Send demo 2000 message, keyCount is 502 (org.apache.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:05,096] INFO Send demo 3000 message, keyCount is 752 (org.apache.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:05,181] INFO Send demo 4000 message, keyCount is 1002 (org.apache.tubemq.example.MessageProducerExample)
 ```
 
-然后运行 consume 的 demo，`YOUR_SERVER_IP` 也需要替换，例如： localhost
+然后运行 consume 的 demo，`YOUR_SERVER_IP` 也需要替换（例如： localhost）
 ```bash
-java -Xmx512m -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageConsumerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo demoGroup 3 1 1
+java -Xmx512m -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties \
+-Djava.net.preferIPv4Stack=true -cp /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/* \
+org.apache.tubemq.example.MessageConsumerExample \
+YOUR_SERVER_IP:8000 demo demoGroup 3 1 1
 ```
 从日志我们可以看到，数据被消费者消费到
 
 ```bash
-[2019-09-11 16:09:29,720] INFO Receive messages:2500 (com.tencent.tubemq.example.MsgRecvStats)
-[2019-09-11 16:09:30,059] INFO Receive messages:5000 (com.tencent.tubemq.example.MsgRecvStats)
-[2019-09-11 16:09:34,493] INFO Receive messages:10000 (com.tencent.tubemq.example.MsgRecvStats)
-[2019-09-11 16:09:34,783] INFO Receive messages:12500 (com.tencent.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:29,107] INFO Receive messages:270000 (org.apache.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:31,206] INFO Receive messages:272500 (org.apache.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:31,590] INFO Receive messages:275000 (org.apache.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:31,910] INFO Receive messages:277500 (org.apache.tubemq.example.MsgRecvStats)
 ```
 
 ---
