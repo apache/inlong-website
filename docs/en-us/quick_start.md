@@ -128,18 +128,36 @@ server IPs in this way, assume the ip is `192.168.1.2`:
 192.168.1.2 192-168-1-2
 ```
 
-## Start Master
+## High Availability
+
+In the example above, we run the services on a single node. However, in real production environment, you
+need to run multiple master services on different servers for high availability purpose. Here's
+the introduction of availability level.
+
+| HA Level | Master Number | Description |
+| -------- | ------------- | ----------- |
+| High | 3 masters | After any master crashed, the cluster meta data is still in read/write state and can accept new producers/consumers. |
+| Medium | 2 masters | After one master crashed, the cluster meta data is in read only state. There's no affect on existing producers and consumers. |
+| Minimum | 1 master | After the master crashed, there's no affect on existing producer and consumer. |
+
+Please notice that the master servers should be clock synchronized.
+
+## Start Cluster
+
+After configuration, we can start the cluster by following these steps.
+
+### Start Master
 After update the config file, please go to the `bin` folder and run this command to start
 the master service.
 ```bash
-./master.sh start
+./tubemq master start
 ```
 You should be able to access `http://your-master-ip:8080` to see the
 web GUI now.
 
 ![TubeMQ Console GUI](img/tubemq-console-gui.png)
 
-## Start Broker
+### Start Broker
 Before we start a broker service, we need to configure it on master web GUI first.
 
 Go to the `Broker List` page, click `Add Single Broker`, and input the new broker 
@@ -158,7 +176,7 @@ Click the online link to activate the new added broker.
 
 Go to the broker server, under the `bin` folder run this command to start the broker service
 ```bash
-./broker.sh start
+./tubemq broker start
 ```
 
 Refresh the GUI broker list page, you can see that the broker now is registered.
@@ -166,6 +184,20 @@ Refresh the GUI broker list page, you can see that the broker now is registered.
 After the sub-state of the broker changed to `idle`, we can add topics to that broker.
 
 ![Add Broker 3](img/tubemq-add-broker-3.png)
+
+## Set Environment Variable (optional)
+We can set the path of TubeMQ to the environment variable for easy use.
+```bash
+TUBEMQ_HOME=/opt/tubemq-server
+PATH=$TUBEMQ_HOME/bin:$PATH
+```
+After that, we can use the following commands to start/stop and restart the master/broker service anywhere.
+```bash
+Usage: tubemq {master|broker} {start|stop|restart}
+       start:      start the master/broker server
+       stop:       stop the master/broker server
+       restart:    restart the master/broker server
+```
 
 ## Add Topic
 We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
@@ -197,27 +229,33 @@ Now we can use the topic to send messages.
 Now we can run the example to test our cluster. First let's run the produce data demo. Please don't
 forget replace `YOUR_SERVER_IP` with your server ip.
 ```bash
-java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  -Djava.net.preferIPv4Stack=true -cp  /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageProducerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo 10000000
+java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  \
+-Djava.net.preferIPv4Stack=true -cp  /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/* \
+org.apache.tubemq.example.MessageProducerExample \
+YOUR_SERVER_IP:8000 demo 10000000
 ```
 From the log, we can see the message is sent out.
 ```bash
-[2019-09-11 16:09:08,287] INFO Send demo 1000 message, keyCount is 268 (com.tencent.tubemq.example.MessageProducerExample)
-[2019-09-11 16:09:08,505] INFO Send demo 2000 message, keyCount is 501 (com.tencent.tubemq.example.MessageProducerExample)
-[2019-09-11 16:09:08,958] INFO Send demo 3000 message, keyCount is 755 (com.tencent.tubemq.example.MessageProducerExample)
-[2019-09-11 16:09:09,085] INFO Send demo 4000 message, keyCount is 1001 (com.tencent.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:04,405] INFO Send demo 1000 message, keyCount is 252 (org.apache.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:04,652] INFO Send demo 2000 message, keyCount is 502 (org.apache.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:05,096] INFO Send demo 3000 message, keyCount is 752 (org.apache.tubemq.example.MessageProducerExample)
+[2020-06-04 11:19:05,181] INFO Send demo 4000 message, keyCount is 1002 (org.apache.tubemq.example.MessageProducerExample)
 ```
 
 Then we run the consume data demo. Also replace the server ip
 ```bash
-java -Xmx512m -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageConsumerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo demoGroup 3 1 1
+java -Xmx512m -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties \
+-Djava.net.preferIPv4Stack=true -cp /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/* \
+org.apache.tubemq.example.MessageConsumerExample \
+YOUR_SERVER_IP:8000 demo demoGroup 3 1 1
 ```
 From the log, we can see the message received by the consumer.
 
 ```bash
-[2019-09-11 16:09:29,720] INFO Receive messages:2500 (com.tencent.tubemq.example.MsgRecvStats)
-[2019-09-11 16:09:30,059] INFO Receive messages:5000 (com.tencent.tubemq.example.MsgRecvStats)
-[2019-09-11 16:09:34,493] INFO Receive messages:10000 (com.tencent.tubemq.example.MsgRecvStats)
-[2019-09-11 16:09:34,783] INFO Receive messages:12500 (com.tencent.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:29,107] INFO Receive messages:270000 (org.apache.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:31,206] INFO Receive messages:272500 (org.apache.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:31,590] INFO Receive messages:275000 (org.apache.tubemq.example.MsgRecvStats)
+[2020-06-04 11:20:31,910] INFO Receive messages:277500 (org.apache.tubemq.example.MsgRecvStats)
 ```
 
 ---
