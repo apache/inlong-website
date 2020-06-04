@@ -82,7 +82,7 @@ export default {
         },
         {
           text: 'Quick start',
-          link: '/en-us/docs/tubemq_user_guide.html',
+          link: '/en-us/docs/quick_start.html',
         },
         {
           text: 'Developer guide',
@@ -169,7 +169,7 @@ export default {
         },
         {
           text: '快速开始',
-          link: '/zh-cn/docs/tubemq_user_guide.html',
+          link: '/zh-cn/docs/quick_start.html',
         },
         {
           text: '开发者指南',
