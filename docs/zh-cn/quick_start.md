@@ -1,18 +1,18 @@
-## Prerequisites
+## 准备工作
 
-- Java 1.7 or 1.8(Java 9 and above haven't been verified yet)
-- Maven
+- Java 1.7 或 1.8(Java 9 及以上，未经测试验证)
+- Maven 3.* 及以上
 - [protoc 2.5.0](https://github.com/protocolbuffers/protobuf/releases/tag/v2.5.0)
 
-## Build
+## 构建
 
-### Build distribution tarball
+### 从下载的发行版代码包构建
 在TubeMQ根目录下执行命令：
 ```bash
 mvn clean package -DskipTests
 ```
 在根目录执行 `mvn clean install` 之后，可以单独对每个 module 进行构建。
-### Build source code
+### 基于源代码构建
 在IDE中构建和调试源码，需要先运行以下命令：
 ```bash
 mvn compile
@@ -21,7 +21,7 @@ mvn compile
 
 然后就可以在 IDE 中打开 TubeMQ 工程。
 
-## Deploy
+## 部署运行
 构建完成之后，在 `tubemq-server/target` 目录下会有 **tubemq-server-x.x.x-bin.tar.gz** 文件. 
 这是 Server 的部署包，包含了脚本、配置文件、依赖以及 web GUI相关的内容。
 
@@ -35,7 +35,7 @@ mvn compile
 ├── logs
 └── resources
 ```
-### Configure
+### 配置
 TubeMQ 集群有两个角色: **Master** 和 **Broker**. Master 和 Broker 可以部署在相同或者不同的节点上。下面是
 一个集群的配置示例：
 
@@ -122,11 +122,11 @@ zkCommitFailRetries=10
 192.168.1.3 hostname-3
 192.168.1.4 hostname-4
 ```
-## Start Cluster
+## 启动集群
 
 配置完成之后，就可以按照以下步骤启动集群。
 
-### Start Master
+### 启动主节点
 
 完成如上配置设置后，首先进入主备Master所在的TubeMQ环境的 `bin` 目录，进行服务启动操作。
 ```bash
@@ -137,7 +137,7 @@ zkCommitFailRetries=10
 
 ![TubeMQ Console GUI](img/tubemq-console-gui.png)
 
-## Start Broker
+## 启动代理
 Broker启动前，首先要在Master上配置Broker元数据，增加Broker相关的管理信息。
 
 在`Broker List` 页面,  `Add Single Broker`，然后填写相关信息。
@@ -162,7 +162,7 @@ Broker启动前，首先要在Master上配置Broker元数据，增加Broker相�
 
 ![Add Broker 3](img/tubemq-add-broker-3.png)
 
-## Add Topic
+## 新增 Topic
 可以通过 web GUI 添加 Topic， 在 `Topic列表`页面添加，需要填写相关信息
 
 ![Add Topic 1](img/tubemq-add-topic-1.png)
@@ -187,8 +187,8 @@ Broker启动前，首先要在Master上配置Broker元数据，增加Broker相�
 ![Add Topic 4](img/tubemq-add-topic-4.png)
 
 
-## Demo
-可以使用 Example 来测试集群。首先，我们运行 producer的demo，注意将 `YOUR_SERVER_IP` 替换为实际的IP.
+## 运行示例
+可以使用 Example 来测试集群。首先，我们运行 producer的demo，注意将 `YOUR_SERVER_IP` 替换为实际的IP. 例如：localhost
 ```bash
 java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  -Djava.net.preferIPv4Stack=true -cp  /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageProducerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo 10000000
 ```
@@ -200,7 +200,7 @@ java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  
 [2019-09-11 16:09:09,085] INFO Send demo 4000 message, keyCount is 1001 (com.tencent.tubemq.example.MessageProducerExample)
 ```
 
-然后运行 consume 的 demo，`YOUR_SERVER_IP` 也需要替换
+然后运行 consume 的 demo，`YOUR_SERVER_IP` 也需要替换，例如： localhost
 ```bash
 java -Xmx512m -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/*: com.tencent.tubemq.example.MessageConsumerExample YOUR_SERVER_IP YOUR_SERVER_IP:8000 demo demoGroup 3 1 1
 ```
