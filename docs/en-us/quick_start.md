@@ -74,16 +74,11 @@ zkConnectionTimeoutMs=30000
 zkSyncTimeMs=5000
 zkCommitPeriodMs=5000
 
-[bdbStore]
-bdbRepGroupName=tubemqMasterGroup
-bdbNodeName=tubemqMasterGroupNode1
-bdbNodePort=9001
-bdbEnvHome=/stage/metadata
-bdbHelperHost=9.134.8.170:9001
-bdbLocalSync= 1
-bdbReplicaSync= 3
-bdbReplicaAck= 1
-bdbStatusCheckTimeoutMs=10000
+[replication]
+; name of current node; MUST BE DIFFERENT for every node in the cluster
+repNodeName=tubemqMasterGroupNode1
+; helperHost(and port) for nodes to join master cluster
+repHelperHost=YOUR_SERVER_IP:9001
 ```
 
 ##### resources/velocity.properties
