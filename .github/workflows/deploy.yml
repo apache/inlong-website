@@ -1,6 +1,11 @@
 name: Build and Deploy
 
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [closed]
 
 jobs:
   build-and-deploy:
@@ -15,9 +20,10 @@ jobs:
         node-version: 10.16.0
     - name: Build
       run: |
-        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r 404.html .asf.yaml index.html en-us zh-cn build img docs dist/ && cp -r docs/zh-cn ./zh-cn && cp -r docs/en-us ./en-us
+        mkdir dist && npm install && npm i docsite && node_modules/docsite/bin/docsite.js build && cp -r 404.html .asf.yaml index.html en-us zh-cn build img docs dist/ && cp -r docs/ ./
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.4.0
       env:
+        GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
         PUBLISH_BRANCH: asf-site
         PUBLISH_DIR: ./dist
