@@ -24,6 +24,6 @@ jobs:
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.4.0
       env:
-        GITHUB_TOKEN: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         PUBLISH_BRANCH: asf-site
         PUBLISH_DIR: ./dist
