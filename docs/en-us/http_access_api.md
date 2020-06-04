@@ -907,5 +907,8 @@ __Request__
 |topicName|yes|the topic name|String|
 |needRefresh|no|whether it needs to refresh, default false|Boolean|
 
+More API see:
+<a href="appendixfiles/http_access_api_definition_cn.xls" target="_blank">TubeMQ HTTP API</a>
+
 ---
 <a href="#top">Back to top</a>
