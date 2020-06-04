@@ -55,11 +55,11 @@ export default {
             children: [
                {
                  title: 'HTTP API',
-                 link: '/zh-cn/docs/http_access_api.html',
+                 link: '/en-us/docs/http_access_api.html',
                },
  			   {
 				 title: 'JAVA SDK API',
-				 link: '/zh-cn/docs/clients_java.html',
+				 link: '/en-us/docs/clients_java.html',
 			   },
 			]   
           },
