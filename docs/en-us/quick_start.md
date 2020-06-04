@@ -139,7 +139,7 @@ the master service.
 ```bash
 ./master.sh start
 ```
-You should be able to access `http://your-master-ip:8080/config/topic_list.htm` to see the
+You should be able to access `http://your-master-ip:8080` to see the
 web GUI now.
 
 ![TubeMQ Console GUI](img/tubemq-console-gui.png)
