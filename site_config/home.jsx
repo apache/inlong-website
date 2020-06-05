@@ -7,7 +7,7 @@ export default {
       buttons: [
         {
           text: '立即开始',
-          link: '/zh-cn/docs/tubemq_user_guide.html',
+          link: '/zh-cn/docs/quick_start.html',
           type: 'primary',
         },
         {
@@ -65,7 +65,7 @@ export default {
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/tubemq_user_guide.html',
+          link: '/en-us/docs/quick_start.html',
           type: 'primary',
         },
         {
