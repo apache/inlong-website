@@ -5,7 +5,7 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
 
 ### TubeSingleSessionFactory
    #### Send Message Synchronously
-     ```
+     ```java
      public final class SyncProducerExample {
     
         public static void main(String[] args) throws Throwable {
@@ -28,7 +28,7 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
     ```
      
    #### Send Message Asynchronously
-     ```
+     ```java
      public final class AsyncProducerExample {
      
         public static void main(String[] args) throws Throwable {
@@ -62,7 +62,7 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
     ```
      
    #### Send Message With Attributes
-     ```
+     ```java
      public final class ProducerWithAttributeExample {
      
         public static void main(String[] args) throws Throwable {
@@ -85,11 +85,11 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
         }
 
     }
-    ```  
+    ```
      
 ### TubeMultiSessionFactory
 
-    ```
+    ```java
     public class MultiSessionProducerExample {
         
         public static void main(String[] args) throws Throwable {
@@ -140,8 +140,5 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
                 }
             }
         }
-
     }
     ```
-
-

@@ -2,7 +2,7 @@
   TubeMQ provides two ways to consumer message, PullConsumer and PushConsumer:
 
 1. PullConsumer 
-    ```
+    ```java
     public class PullConsumerExample {
 
         public static void main(String[] args) throws Throwable {
@@ -43,7 +43,7 @@
     ``` 
    
 2. PushConsumer
-    ```
+    ```java
     public class PushConsumerExample {
    
         public static void test(String[] args) throws Throwable {
@@ -77,8 +77,5 @@
             CountDownLatch latch = new CountDownLatch(1);
             latch.await(10, TimeUnit.MINUTES);
         }
-
     }
     ```
-
-

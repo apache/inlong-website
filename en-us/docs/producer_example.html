@@ -24,21 +24,21 @@
 <ul>
 <li>Send Message Synchronously</li>
 </ul>
-<pre><code>public final class SyncProducerExample {
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">SyncProducerExample</span> </span>{
 
-    public static void main(String[] args) throws Throwable {
-        final String masterHostAndPort = &quot;localhost:8000&quot;;
-        final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
-        final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
-        final MessageProducer messageProducer = messageSessionFactory.createProducer();
-        final String topic = &quot;test&quot;;
-        final String body = &quot;This is a test message from single-session-factory!&quot;;
-        byte[] bodyData = StringUtils.getBytesUtf8(body);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
+        <span class="hljs-keyword">final</span> String masterHostAndPort = <span class="hljs-string">"localhost:8000"</span>;
+        <span class="hljs-keyword">final</span> TubeClientConfig clientConfig = <span class="hljs-keyword">new</span> TubeClientConfig(masterHostAndPort);
+        <span class="hljs-keyword">final</span> MessageSessionFactory messageSessionFactory = <span class="hljs-keyword">new</span> TubeSingleSessionFactory(clientConfig);
+        <span class="hljs-keyword">final</span> MessageProducer messageProducer = messageSessionFactory.createProducer();
+        <span class="hljs-keyword">final</span> String topic = <span class="hljs-string">"test"</span>;
+        <span class="hljs-keyword">final</span> String body = <span class="hljs-string">"This is a test message from single-session-factory!"</span>;
+        <span class="hljs-keyword">byte</span>[] bodyData = StringUtils.getBytesUtf8(body);
         messageProducer.publish(topic);
-        Message message = new Message(topic, bodyData);
+        Message message = <span class="hljs-keyword">new</span> Message(topic, bodyData);
         MessageSentResult result = messageProducer.sendMessage(message);
-        if (result.isSuccess()) {
-            System.out.println(&quot;sync send message : &quot; + message);
+        <span class="hljs-keyword">if</span> (result.isSuccess()) {
+            System.out.println(<span class="hljs-string">"sync send message : "</span> + message);
         }
         messageProducer.shutdown();
     }
@@ -47,30 +47,30 @@
 <ul>
 <li>Send Message Asynchronously</li>
 </ul>
-<pre><code>public final class AsyncProducerExample {
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AsyncProducerExample</span> </span>{
  
-    public static void main(String[] args) throws Throwable {
-        final String masterHostAndPort = &quot;localhost:8000&quot;;
-        final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
-        final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
-        final MessageProducer messageProducer = messageSessionFactory.createProducer();
-        final String topic = &quot;test&quot;;
-        final String body = &quot;async send message from single-session-factory!&quot;;
-        byte[] bodyData = StringUtils.getBytesUtf8(body);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
+        <span class="hljs-keyword">final</span> String masterHostAndPort = <span class="hljs-string">"localhost:8000"</span>;
+        <span class="hljs-keyword">final</span> TubeClientConfig clientConfig = <span class="hljs-keyword">new</span> TubeClientConfig(masterHostAndPort);
+        <span class="hljs-keyword">final</span> MessageSessionFactory messageSessionFactory = <span class="hljs-keyword">new</span> TubeSingleSessionFactory(clientConfig);
+        <span class="hljs-keyword">final</span> MessageProducer messageProducer = messageSessionFactory.createProducer();
+        <span class="hljs-keyword">final</span> String topic = <span class="hljs-string">"test"</span>;
+        <span class="hljs-keyword">final</span> String body = <span class="hljs-string">"async send message from single-session-factory!"</span>;
+        <span class="hljs-keyword">byte</span>[] bodyData = StringUtils.getBytesUtf8(body);
         messageProducer.publish(topic);
-        final Message message = new Message(topic, bodyData);
-        messageProducer.sendMessage(message, new MessageSentCallback(){
-            @Override
-            public void onMessageSent(MessageSentResult result) {
-                if (result.isSuccess()) {
-                    System.out.println(&quot;async send message : &quot; + message);
-                } else {
-                    System.out.println(&quot;async send message failed : &quot; + result.getErrMsg());
+        <span class="hljs-keyword">final</span> Message message = <span class="hljs-keyword">new</span> Message(topic, bodyData);
+        messageProducer.sendMessage(message, <span class="hljs-keyword">new</span> MessageSentCallback(){
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onMessageSent</span><span class="hljs-params">(MessageSentResult result)</span> </span>{
+                <span class="hljs-keyword">if</span> (result.isSuccess()) {
+                    System.out.println(<span class="hljs-string">"async send message : "</span> + message);
+                } <span class="hljs-keyword">else</span> {
+                    System.out.println(<span class="hljs-string">"async send message failed : "</span> + result.getErrMsg());
                 }
             }
-            @Override
-            public void onException(Throwable e) {
-                System.out.println(&quot;async send message error : &quot; + e);
+            <span class="hljs-meta">@Override</span>
+            <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">onException</span><span class="hljs-params">(Throwable e)</span> </span>{
+                System.out.println(<span class="hljs-string">"async send message error : "</span> + e);
             }
         });
         messageProducer.shutdown();
@@ -81,23 +81,23 @@
 <ul>
 <li>Send Message With Attributes</li>
 </ul>
-<pre><code>public final class ProducerWithAttributeExample {
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-keyword">final</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ProducerWithAttributeExample</span> </span>{
  
-    public static void main(String[] args) throws Throwable {
-        final String masterHostAndPort = &quot;localhost:8000&quot;;
-        final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
-        final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
-        final MessageProducer messageProducer = messageSessionFactory.createProducer();
-        final String topic = &quot;test&quot;;
-        final String body = &quot;send message with attribute from single-session-factory!&quot;;
-        byte[] bodyData = StringUtils.getBytesUtf8(body);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
+        <span class="hljs-keyword">final</span> String masterHostAndPort = <span class="hljs-string">"localhost:8000"</span>;
+        <span class="hljs-keyword">final</span> TubeClientConfig clientConfig = <span class="hljs-keyword">new</span> TubeClientConfig(masterHostAndPort);
+        <span class="hljs-keyword">final</span> MessageSessionFactory messageSessionFactory = <span class="hljs-keyword">new</span> TubeSingleSessionFactory(clientConfig);
+        <span class="hljs-keyword">final</span> MessageProducer messageProducer = messageSessionFactory.createProducer();
+        <span class="hljs-keyword">final</span> String topic = <span class="hljs-string">"test"</span>;
+        <span class="hljs-keyword">final</span> String body = <span class="hljs-string">"send message with attribute from single-session-factory!"</span>;
+        <span class="hljs-keyword">byte</span>[] bodyData = StringUtils.getBytesUtf8(body);
         messageProducer.publish(topic);
-        Message message = new Message(topic, bodyData);
-        //set attribute
-        message.setAttrKeyVal(&quot;test_key&quot;, &quot;test value&quot;);
-        //msgType is used for consumer filtering, and msgTime(accurate to minute) is used as the pipe to send and receive statistics
-        SimpleDateFormat sdf = new SimpleDateFormat(&quot;yyyyMMddHHmm&quot;);
-        message.putSystemHeader(&quot;test&quot;, sdf.format(new Date()));
+        Message message = <span class="hljs-keyword">new</span> Message(topic, bodyData);
+        <span class="hljs-comment">//set attribute</span>
+        message.setAttrKeyVal(<span class="hljs-string">"test_key"</span>, <span class="hljs-string">"test value"</span>);
+        <span class="hljs-comment">//msgType is used for consumer filtering, and msgTime(accurate to minute) is used as the pipe to send and receive statistics</span>
+        SimpleDateFormat sdf = <span class="hljs-keyword">new</span> SimpleDateFormat(<span class="hljs-string">"yyyyMMddHHmm"</span>);
+        message.putSystemHeader(<span class="hljs-string">"test"</span>, sdf.format(<span class="hljs-keyword">new</span> Date()));
         messageProducer.sendMessage(message);
         messageProducer.shutdown();
     }
@@ -109,57 +109,56 @@
 <ul>
 <li>
 <p>TubeMultiSessionFactory</p>
-<pre><code>public class MultiSessionProducerExample {
+<pre><code class="language-java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MultiSessionProducerExample</span> </span>{
     
-    public static void main(String[] args) throws Throwable {
-        final int SESSION_FACTORY_NUM = 10;
-        final String masterHostAndPort = &quot;localhost:8000&quot;;
-        final TubeClientConfig clientConfig = new TubeClientConfig(masterHostAndPort);
-        final List&lt;MessageSessionFactory&gt; sessionFactoryList = new ArrayList&lt;&gt;(SESSION_FACTORY_NUM);
-        final ExecutorService sendExecutorService = Executors.newFixedThreadPool(SESSION_FACTORY_NUM);
-        final CountDownLatch latch = new CountDownLatch(SESSION_FACTORY_NUM);
-        for (int i = 0; i &lt; SESSION_FACTORY_NUM; i++) {
-            TubeMultiSessionFactory tubeMultiSessionFactory = new TubeMultiSessionFactory(clientConfig);
+    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> <span class="hljs-keyword">throws</span> Throwable </span>{
+        <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> SESSION_FACTORY_NUM = <span class="hljs-number">10</span>;
+        <span class="hljs-keyword">final</span> String masterHostAndPort = <span class="hljs-string">"localhost:8000"</span>;
+        <span class="hljs-keyword">final</span> TubeClientConfig clientConfig = <span class="hljs-keyword">new</span> TubeClientConfig(masterHostAndPort);
+        <span class="hljs-keyword">final</span> List&lt;MessageSessionFactory&gt; sessionFactoryList = <span class="hljs-keyword">new</span> ArrayList&lt;&gt;(SESSION_FACTORY_NUM);
+        <span class="hljs-keyword">final</span> ExecutorService sendExecutorService = Executors.newFixedThreadPool(SESSION_FACTORY_NUM);
+        <span class="hljs-keyword">final</span> CountDownLatch latch = <span class="hljs-keyword">new</span> CountDownLatch(SESSION_FACTORY_NUM);
+        <span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; SESSION_FACTORY_NUM; i++) {
+            TubeMultiSessionFactory tubeMultiSessionFactory = <span class="hljs-keyword">new</span> TubeMultiSessionFactory(clientConfig);
             sessionFactoryList.add(tubeMultiSessionFactory);
             MessageProducer producer = tubeMultiSessionFactory.createProducer();
-            Sender sender = new Sender(producer, latch);
+            Sender sender = <span class="hljs-keyword">new</span> Sender(producer, latch);
             sendExecutorService.submit(sender);
         }
         latch.await();
         sendExecutorService.shutdownNow();
-        for (MessageSessionFactory sessionFactory : sessionFactoryList) {
+        <span class="hljs-keyword">for</span> (MessageSessionFactory sessionFactory : sessionFactoryList) {
             sessionFactory.shutdown();
         }
     }
 
-    private static class Sender implements Runnable {
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Sender</span> <span class="hljs-keyword">implements</span> <span class="hljs-title">Runnable</span> </span>{
         
-        private MessageProducer producer;
+        <span class="hljs-keyword">private</span> MessageProducer producer;
         
-        private CountDownLatch latch;
+        <span class="hljs-keyword">private</span> CountDownLatch latch;
 
-        public Sender(MessageProducer producer, CountDownLatch latch) {
-            this.producer = producer;
-            this.latch = latch;
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Sender</span><span class="hljs-params">(MessageProducer producer, CountDownLatch latch)</span> </span>{
+            <span class="hljs-keyword">this</span>.producer = producer;
+            <span class="hljs-keyword">this</span>.latch = latch;
         }
 
-        @Override
-        public void run() {
-            final String topic = &quot;test&quot;;
-            try {
+        <span class="hljs-meta">@Override</span>
+        <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">run</span><span class="hljs-params">()</span> </span>{
+            <span class="hljs-keyword">final</span> String topic = <span class="hljs-string">"test"</span>;
+            <span class="hljs-keyword">try</span> {
                 producer.publish(topic);
-                final byte[] bodyData = StringUtils.getBytesUtf8(&quot;This is a test message from multi-session factory&quot;);
-                Message message = new Message(topic, bodyData);
+                <span class="hljs-keyword">final</span> <span class="hljs-keyword">byte</span>[] bodyData = StringUtils.getBytesUtf8(<span class="hljs-string">"This is a test message from multi-session factory"</span>);
+                Message message = <span class="hljs-keyword">new</span> Message(topic, bodyData);
                 producer.sendMessage(message);
                 producer.shutdown();
-            } catch (Throwable ex) {
-                System.out.println(&quot;send message error : &quot; + ex);
-            } finally {
+            } <span class="hljs-keyword">catch</span> (Throwable ex) {
+                System.out.println(<span class="hljs-string">"send message error : "</span> + ex);
+            } <span class="hljs-keyword">finally</span> {
                 latch.countDown();
             }
         }
     }
-
 }
 </code></pre>
 </li>
