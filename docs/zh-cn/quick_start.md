@@ -20,6 +20,8 @@ mvn compile
 
 然后就可以在 IDE 中打开 TubeMQ 工程。
 
+你可以跳到 下一章 部署运行 ， 除非你准备自己编译proto 文件。（通常不需要，mvn会自动下载protoc 构建)。
+
 如果你打算使用本地的 `protoc` 可执行文件，你可以修改 `tubemq-core/pom.xml` 下的 `protobuf-maven-plugin` 的配置，如下所示。
 
 ```xml
