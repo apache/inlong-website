@@ -16,7 +16,6 @@
 <ul>
 <li>Java 1.7 或 1.8(Java 9 及以上，未经测试验证)</li>
 <li>Maven 3.* 及以上</li>
-<li><a href="https://github.com/protocolbuffers/protobuf/releases/tag/v2.5.0">protoc 2.5.0</a></li>
 </ul>
 <h2>构建</h2>
 <h3>从下载的发行版代码包构建</h3>
@@ -30,6 +29,12 @@
 </code></pre>
 <p>执行之后，会生成 <code>protoc</code> 文件对应的 java source file，位于 <code>target/generated-sources</code> 目录。</p>
 <p>然后就可以在 IDE 中打开 TubeMQ 工程。</p>
+<p>如果你打算使用本地的 <code>protoc</code> 可执行文件，你可以修改 <code>tubemq-core/pom.xml</code> 下的 <code>protobuf-maven-plugin</code> 的配置，如下所示。</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">outputDirectory</span>&gt;</span>${project.build.directory}/generated-sources/java<span class="hljs-tag">&lt;/<span class="hljs-name">outputDirectory</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">protocExecutable</span>&gt;</span>/usr/local/bin/protoc<span class="hljs-tag">&lt;/<span class="hljs-name">protocExecutable</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
+</code></pre>
 <h2>部署运行</h2>
 <p>构建完成之后，在 <code>tubemq-server/target</code> 目录下会有 <strong>tubemq-server-x.x.x-bin.tar.gz</strong> 文件.
 这是 Server 的部署包，包含了脚本、配置文件、依赖以及 web GUI相关的内容。</p>
