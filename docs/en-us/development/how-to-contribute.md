@@ -6,7 +6,7 @@ We use a review-then-commit workflow in TubeMQ for all contributions.
 
 **For larger contributions or those that affect multiple components:**
 
-1. **Engage**: We encourage you to work with the TubeMQ community on the [JIRA](https://jira.apache.org/jira/browse/TUBEMQ) and [developer’s mailing list](/contact) to identify good areas for contribution.
+1. **Engage**: We encourage you to work with the TubeMQ community on the [JIRA](https://jira.apache.org/jira/browse/TUBEMQ) and [developer’s mailing list](../contact.html) to identify good areas for contribution.
 2. **Design:** More complicated contributions will likely benefit from some early discussion in order to scope and design them well.
 
 **For all contributions:**
