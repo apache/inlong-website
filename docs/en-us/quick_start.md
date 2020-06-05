@@ -2,7 +2,6 @@
 
 - Java 1.7 or 1.8(Java 9 and above haven't been verified yet)
 - Maven
-- [protoc 2.5.0](https://github.com/protocolbuffers/protobuf/releases/tag/v2.5.0)
 
 ## Build
 
@@ -22,6 +21,15 @@ mvn compile
 This command will generate the Java source files from the `protoc` files, the generated files located in `target/generated-sources`.
 
 When this command finished, you can use IDE import the project as maven project.
+
+If you want to use local `protoc` executable, you can change the configuration of `protobuf-maven-plugin` in `tubemq-core/pom.xml` as below
+
+```xml
+<configuration>
+    <outputDirectory>${project.build.directory}/generated-sources/java</outputDirectory>
+    <protocExecutable>/usr/local/bin/protoc</protocExecutable>
+</configuration>
+```
 
 ## Deploy
 After the build, please go to `tubemq-server/target`. You can find the

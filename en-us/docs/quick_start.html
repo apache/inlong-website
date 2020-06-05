@@ -16,7 +16,6 @@
 <ul>
 <li>Java 1.7 or 1.8(Java 9 and above haven't been verified yet)</li>
 <li>Maven</li>
-<li><a href="https://github.com/protocolbuffers/protobuf/releases/tag/v2.5.0">protoc 2.5.0</a></li>
 </ul>
 <h2>Build</h2>
 <h3>Build distribution tarball</h3>
@@ -30,6 +29,12 @@
 </code></pre>
 <p>This command will generate the Java source files from the <code>protoc</code> files, the generated files located in <code>target/generated-sources</code>.</p>
 <p>When this command finished, you can use IDE import the project as maven project.</p>
+<p>If you want to use local <code>protoc</code> executable, you can change the configuration of <code>protobuf-maven-plugin</code> in <code>tubemq-core/pom.xml</code> as below</p>
+<pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">outputDirectory</span>&gt;</span>${project.build.directory}/generated-sources/java<span class="hljs-tag">&lt;/<span class="hljs-name">outputDirectory</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-name">protocExecutable</span>&gt;</span>/usr/local/bin/protoc<span class="hljs-tag">&lt;/<span class="hljs-name">protocExecutable</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">configuration</span>&gt;</span>
+</code></pre>
 <h2>Deploy</h2>
 <p>After the build, please go to <code>tubemq-server/target</code>. You can find the
 <strong>tubemq-server-x.x.x-bin.tar.gz</strong> file. It is the server deployment package, which includes
