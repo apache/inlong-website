@@ -22,6 +22,8 @@ This command will generate the Java source files from the `protoc` files, the ge
 
 When this command finished, you can use IDE import the project as maven project.
 
+You can skip to the next chapter, Deploy and Run, unless you plan to compile the proto file yourself. (Normally not needed, mvn will automatically download the protoc then build).
+
 If you want to use local `protoc` executable, you can change the configuration of `protobuf-maven-plugin` in `tubemq-core/pom.xml` as below
 
 ```xml
