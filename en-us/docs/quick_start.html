@@ -29,6 +29,7 @@
 </code></pre>
 <p>This command will generate the Java source files from the <code>protoc</code> files, the generated files located in <code>target/generated-sources</code>.</p>
 <p>When this command finished, you can use IDE import the project as maven project.</p>
+<p>You can skip to the next chapter, Deploy and Run, unless you plan to compile the proto file yourself. (Normally not needed, mvn will automatically download the protoc then build).</p>
 <p>If you want to use local <code>protoc</code> executable, you can change the configuration of <code>protobuf-maven-plugin</code> in <code>tubemq-core/pom.xml</code> as below</p>
 <pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">outputDirectory</span>&gt;</span>${project.build.directory}/generated-sources/java<span class="hljs-tag">&lt;/<span class="hljs-name">outputDirectory</span>&gt;</span>

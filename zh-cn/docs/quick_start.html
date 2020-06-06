@@ -29,6 +29,7 @@
 </code></pre>
 <p>执行之后，会生成 <code>protoc</code> 文件对应的 java source file，位于 <code>target/generated-sources</code> 目录。</p>
 <p>然后就可以在 IDE 中打开 TubeMQ 工程。</p>
+<p>你可以跳到 下一章 部署运行 ， 除非你准备自己编译proto 文件。（通常不需要，mvn会自动下载protoc 构建)。</p>
 <p>如果你打算使用本地的 <code>protoc</code> 可执行文件，你可以修改 <code>tubemq-core/pom.xml</code> 下的 <code>protobuf-maven-plugin</code> 的配置，如下所示。</p>
 <pre><code class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">configuration</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">outputDirectory</span>&gt;</span>${project.build.directory}/generated-sources/java<span class="hljs-tag">&lt;/<span class="hljs-name">outputDirectory</span>&gt;</span>
