@@ -28,6 +28,11 @@ export default {
         link: 'https://github.com/apache/incubator-tubemq',
       },
       {
+        key: 'download',
+        text: 'DOWNLOAD',
+        link: '/en-us/docs/download/download.html',
+      },
+      {
         key: 'Apache',
         text: 'Apache',
         children: [
@@ -113,6 +118,11 @@ export default {
         key: 'github',
         text: 'GITHUB',
         link: 'https://github.com/apache/incubator-tubemq',
+      },
+      {
+        key: 'download',
+        text: '下载',
+        link: '/zh-cn/docs/download/download.html',
       },
       {
         key: 'Apache',
