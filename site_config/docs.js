@@ -47,6 +47,10 @@ export default {
             link: '/en-us/docs/console_introduction.html',
           },
           {
+            title: 'Performance comparison',
+            link: '/en-cn/docs/tubemq_perf_test_vs_Kafka.html',
+          },
+          {
             title: 'Error code',
             link: '/en-us/docs/error_code.html',
           },
@@ -118,6 +122,10 @@ export default {
           {
             title: '管控台操作指引',
             link: '/zh-cn/docs/console_introduction.html',
+          },
+          {
+            title: '性能对比',
+            link: '/zh-cn/docs/tubemq_perf_test_vs_Kafka.html',
           },
           {
             title: '错误码',
