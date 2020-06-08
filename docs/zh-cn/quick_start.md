@@ -2,7 +2,6 @@
 
 - Java 1.7 或 1.8(Java 9 及以上，未经测试验证)
 - Maven 3.* 及以上
-- [protoc 2.5.0](https://github.com/protocolbuffers/protobuf/releases/tag/v2.5.0)
 
 ## 构建
 
@@ -21,6 +20,16 @@ mvn compile
 
 然后就可以在 IDE 中打开 TubeMQ 工程。
 
+你可以跳到 下一章 部署运行 ， 除非你准备自己编译proto 文件。（通常不需要，mvn会自动下载protoc 构建)。
+
+如果你打算使用本地的 `protoc` 可执行文件，你可以修改 `tubemq-core/pom.xml` 下的 `protobuf-maven-plugin` 的配置，如下所示。
+
+```xml
+<configuration>
+    <outputDirectory>${project.build.directory}/generated-sources/java</outputDirectory>
+    <protocExecutable>/usr/local/bin/protoc</protocExecutable>
+</configuration>
+```
 ## 部署运行
 构建完成之后，在 `tubemq-server/target` 目录下会有 **tubemq-server-x.x.x-bin.tar.gz** 文件. 
 这是 Server 的部署包，包含了脚本、配置文件、依赖以及 web GUI相关的内容。
