@@ -147,8 +147,8 @@ class Header extends React.Component {
         >
           <div className="header-body">
             <a href={getLink(`/${language}/index.html`)}>
-              <a href="https://www.apache.org/" target="_blank">
-                <img className="logo apache" style={{width: '108px'}} alt={siteConfig.name} title={siteConfig.name} src={getLink('/img/asf_logo.svg')} />
+              <a href="//www.apache.org">
+                <img className="logo apache" style={{width: '120px'}} alt={siteConfig.name} title={siteConfig.name} src={getLink('/img/asf_logo.svg')} />
               </a>
               <div className="logo-split"></div>
               <a href="">

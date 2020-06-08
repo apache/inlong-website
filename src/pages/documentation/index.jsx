@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { scroller } from 'react-scroll';
+import {scroller} from 'react-scroll';
 import 'whatwg-fetch'; // fetch polyfill
 import path from 'path';
 import Language from '../../components/language';
@@ -9,6 +9,7 @@ import Bar from '../../components/bar';
 import Sidemenu from '../../components/sidemenu';
 import Footer from '../../components/footer';
 import docsConfig from '../../../site_config/docs';
+import devConfig from '../../../site_config/development';
 import './index.scss';
 
 // 锚点正则
@@ -28,12 +29,12 @@ class Documentation extends Language {
   componentDidMount() {
     // 通过请求获取生成好的json数据，静态页和json文件在同一个目录下
     fetch(window.location.pathname.replace(/\.html$/i, '.json'))
-    .then(res => res.json())
-    .then((md) => {
-      this.setState({
-        __html: md && md.__html ? md.__html : '',
+      .then(res => res.json())
+      .then((md) => {
+        this.setState({
+          __html: md && md.__html ? md.__html : '',
+        });
       });
-    });
     this.markdownContainer.addEventListener('click', (e) => {
       const isAnchor = e.target.nodeName.toLowerCase() === 'a' && e.target.getAttribute('href') && anchorReg.test(e.target.getAttribute('href'));
       if (isAnchor) {
@@ -87,7 +88,10 @@ class Documentation extends Language {
 
   render() {
     const language = this.getLanguage();
-    const dataSource = docsConfig[language];
+    let dataSource = docsConfig[language];
+    if (window.location.pathname.indexOf('/development/') >= 0) {
+      dataSource = devConfig[language];
+    }
     const __html = this.props.__html || this.state.__html;
     return (
       <div className="documentation-page">
@@ -97,21 +101,24 @@ class Documentation extends Language {
           language={language}
           onLanguageChange={this.onLanguageChange}
         />
-        <Bar img="/img/system/docs.png" text={dataSource.barText} />
+        <Bar img="/img/system/docs.png" text={dataSource.barText}/>
         <section className="content-section">
-          <Sidemenu dataSource={dataSource.sidemenu} />
+          <Sidemenu dataSource={dataSource.sidemenu}/>
           <div
             className="doc-content markdown-body"
-            ref={(node) => { this.markdownContainer = node; }}
-            dangerouslySetInnerHTML={{ __html }}
+            ref={(node) => {
+              this.markdownContainer = node;
+            }}
+            dangerouslySetInnerHTML={{__html}}
           />
         </section>
-        <Footer logo="/img/dubbo_gray.png" language={language} />
+        <Footer logo="/img/incubator-logo.svg" language={language}/>
       </div>
     );
   }
 }
 
-document.getElementById('root') && ReactDOM.render(<Documentation />, document.getElementById('root'));
+document.getElementById('root') && ReactDOM.render(
+  <Documentation/>, document.getElementById('root'));
 
 export default Documentation;

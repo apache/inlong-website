@@ -1,0 +1,7 @@
+/.idea/
+/en-us/
+/zh-cn/
+/build/
+/node_modules/
+/md_json/
+package-lock.json
