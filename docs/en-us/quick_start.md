@@ -1,17 +1,33 @@
-## Prerequisites
+## Build TubeMQ
+### Prerequisites
 
-- Java 1.7 or 1.8(Java 9 and above haven't been verified yet)
-- Maven
+- Java JDK 1.7 or 1.8
+- Maven 3.3+
 
-## Build
-
-### Build distribution tarball
-Go to the project root, and run
+### Build Distribution Tarball
+- Compile and Package
 ```bash
 mvn clean package -DskipTests
 ```
-If you want to build each module of the project separately, you need to run `mvn install` in the project root at first.
-### Build source code
+- (Optional) Build Using Docker：
+```bash
+docker run -v REPLACE_WITH_SOURCE_PATH:/tubemq  apachetubemq/tubemq-build clean package -DskipTests
+```
+- Run Unit Tests：
+```bash
+mvn test
+```
+- Build Individual Module：
+```bash
+mvn clean install
+cd module-name (比如: tubemq-client)
+mvn test
+```
+After the build, please go to `tubemq-server/target`. You can find the
+**tubemq-server-[TUBEMQ-VERSION]-bin.tar.gz** file. It is the TubeMQ deployment package, which includes
+scripts, configuration files, dependency jars and web GUI code.
+
+### Setting Up Your IDE
 If you want to build and debug source code in IDE, go to the project root, and run
 
 ```bash
@@ -20,11 +36,7 @@ mvn compile
 
 This command will generate the Java source files from the `protoc` files, the generated files located in `target/generated-sources`.
 
-When this command finished, you can use IDE import the project as maven project.
-
-You can skip to the next chapter, Deploy and Run, unless you plan to compile the proto file yourself. (Normally not needed, mvn will automatically download the protoc then build).
-
-If you want to use local `protoc` executable, you can change the configuration of `protobuf-maven-plugin` in `tubemq-core/pom.xml` as below
+(Optional) If you want to use local `protoc` executable, you can change the configuration of `protobuf-maven-plugin` in `tubemq-core/pom.xml` as below
 
 ```xml
 <configuration>
@@ -33,23 +45,32 @@ If you want to use local `protoc` executable, you can change the configuration o
 </configuration>
 ```
 
-## Deploy
-After the build, please go to `tubemq-server/target`. You can find the
-**tubemq-server-x.x.x-bin.tar.gz** file. It is the server deployment package, which includes
-scripts, configuration files, dependency jars and web GUI code.
-
-For the first time deployment, we just need to extract the package file. For example, we put these
-files into the `/opt/tubemq-server`, here's the folder structure.
+## Deploy and Start
+### Deploy TubeMQ Standalone
+Standalone mode starts zookeeper/master/broker services in one docker container：
 ```
-/opt/tubemq-server
+docker run -p 8080:8080 -p 8000:8000 --name tubemq -d apachetubemq/tubemq-all:latest
+```
+Afater container is running, you can access ` http://127.0.0.1:8080`, and reference to next `Quick Start` chapter for experience.
+
+**Tips**：Standalone Mode is only available for development and experience, it's not designed for production environment.
+
+### Deploy TubeMQ Cluster
+#### Prerequisites
+- ZooKeeper Cluster
+- [tubemq-server-[TUBEMQ-VERSION]-bin.tar.gz](download/download.md) package file
+
+After you extract the package file, here's the folder structure.
+```
+/INSTALL_PATH/tubemq-server-[TUBEMQ-VERSION]-bin/
 ├── bin
 ├── conf
 ├── lib
 ├── logs
 └── resources
 ```
-## Configure
-There're two roles in the cluster: **Master** and **Broker**. Master and Broker
+#### Configuration Example
+There're two components in the cluster: **Master** and **Broker**. Master and Broker
 can be deployed on the same server or different servers. In this example, we setup our cluster
 like this, and all services run on the same node. Zookeeper should be setup in your environment also.
 
@@ -59,86 +80,39 @@ like this, and all services run on the same node. Zookeeper should be setup in y
 | Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msgdata |
 | Zookeeper | 2181 | | | Offset is stored at /tubemq |
 
-You can follow the example below to update the corresponding config files. Please notice that the **YOUR_SERVER_IP** should
-be replaced with your server IP.
-
-##### conf/master.ini
+#### Configure Master
+You can change configurations in `conf/master.ini` according to cluster information.
+- Master IP and Port
 ```ini
 [master]
-hostName=YOUR_SERVER_IP
+hostName=YOUR_SERVER_IP                  // replaced with your server IP
 port=8000
 webPort=8080
-consumerBalancePeriodMs=30000
-firstBalanceDelayAfterStartMs=60000
-consumerHeartbeatTimeoutMs=30000
-producerHeartbeatTimeoutMs=45000
-brokerHeartbeatTimeoutMs=25000
-confModAuthToken=abc
-webResourcePath=/opt/tubemq-server/resources
-
-[zookeeper]
-zkNodeRoot=/tubemq
-zkServerAddr=localhost:2181
-zkSessionTimeoutMs=30000
-zkConnectionTimeoutMs=30000
-zkSyncTimeMs=5000
-zkCommitPeriodMs=5000
-
-[replication]
-; name of current node; MUST BE DIFFERENT for every node in the cluster
-repNodeName=tubemqMasterGroupNode1
-; helperHost(and port) for nodes to join master cluster
-repHelperHost=YOUR_SERVER_IP:9001
 ```
-
-##### resources/velocity.properties
-```properties
-resource.loader=file
-file.resource.loader.description=Velocity File Resource Loader
-file.resource.loader.class=org.apache.velocity.runtime.resource.loader.FileResourceLoader
-file.resource.loader.path=/opt/tubemq-server/resources/templates
-file.resource.loader.cache=false
-file.resource.loader.modificationCheckInterval=2
-string.resource.loader.description=Velocity String Resource Loader
-string.resource.loader.class=org.apache.velocity.runtime.resource.loader.StringResourceLoader
-input.encoding=UTF-8
-output.encoding=UTF-8
-```
-
-##### conf/broker.ini
+- Access Authorization Token
 ```ini
-[broker]
-brokerId=0
-hostName=YOUR_SERVER_IP
-port=8123
-webPort=8081
-masterAddressList=YOUR_SERVER_IP:8000
-primaryPath=/stage/msgdata
-maxSegmentSize=1073741824
-maxIndexSegmentSize=22020096
-transferSize= 524288
-loadMessageStoresInParallel=true
-consumerRegTimeoutMs=35000
-
+confModAuthToken=abc                    // for configuring Web Resources\API etc
+```
+- ZooKeeper Cluster
+```ini
 [zookeeper]
 zkNodeRoot=/tubemq
-zkServerAddr=localhost:2181
-zkSessionTimeoutMs=30000
-zkConnectionTimeoutMs=30000
-zkSyncTimeMs=5000
-zkCommitPeriodMs=5000
-zkCommitFailRetries=10
+zkServerAddr=localhost:2181             // multi zookeeper addresses can separate with ","
+```
+- Replication Strategy 
+```ini
+[replication]
+repNodeName=tubemqMasterGroupNode1       // using different name for each master node
+repHelperHost=FIRST_MASTER_NODE_IP:9001  // helperHost is used for building HA master.
+```
+- Resource Path of Web
 
+You can change configurations in `resources/velocity.properties`
+```properties
+file.resource.loader.path=/INSTALL_PATH/tubemq-server-[TUBEMQ-VERSION]-bin/resources/templates
 ```
 
-You also need to update your `/etc/hosts` file on the master servers. Add other master
-server IPs in this way, assume the ip is `192.168.1.2`:
-##### /etc/hosts
-```
-192.168.1.2 192-168-1-2
-```
-
-## High Availability
+- (Optional) Master High Availability
 
 In the example above, we run the services on a single node. However, in real production environment, you
 need to run multiple master services on different servers for high availability purpose. Here's
@@ -150,14 +124,35 @@ the introduction of availability level.
 | Medium | 2 masters | After one master crashed, the cluster meta data is in read only state. There's no affect on existing producers and consumers. |
 | Minimum | 1 master | After the master crashed, there's no affect on existing producer and consumer. |
 
-Please notice that the master servers should be clock synchronized.
+**Tips**：Please notice that the master servers should be clock synchronized.
 
-## Start Cluster
+#### Configure Broker
+You can change configurations in `conf/broker.ini` according to cluster information.
+- Broker IP and Port
+```ini
+[broker]
+brokerId=0
+hostName=YOUR_SERVER_IP                 // replaced with your server IP
+port=8123
+webPort=8081
+```
+- Master Address
+```ini
+masterAddressList=MASTER_NODE_IP:8000   // multi addresses can separate with ","
+```
+- Metadata Path
+```ini
+primaryPath=/stage/msgdata
+```
+- ZooKeeper Cluster
+```ini
+[zookeeper]
+zkNodeRoot=/tubemq
+zkServerAddr=localhost:2181             // multi zookeeper addresses can separate with ","
+```
 
-After configuration, we can start the cluster by following these steps.
-
-### Start Master
-After update the config file, please go to the `bin` folder and run this command to start
+#### Start Master
+Please go to the `bin` folder and run this command to start
 the master service.
 ```bash
 ./tubemq master start
@@ -167,7 +162,7 @@ web GUI now.
 
 ![TubeMQ Console GUI](img/tubemq-console-gui.png)
 
-### Start Broker
+#### Configure Broker Metadata
 Before we start a broker service, we need to configure it on master web GUI first.
 
 Go to the `Broker List` page, click `Add Single Broker`, and input the new broker 
@@ -184,7 +179,8 @@ Click the online link to activate the new added broker.
 
 ![Add Broker 2](img/tubemq-add-broker-2.png)
 
-Go to the broker server, under the `bin` folder run this command to start the broker service
+#### Start Broker
+Please go to the `bin` folder and run this command to start the broker service
 ```bash
 ./tubemq broker start
 ```
@@ -195,21 +191,8 @@ After the sub-state of the broker changed to `idle`, we can add topics to that b
 
 ![Add Broker 3](img/tubemq-add-broker-3.png)
 
-## Set Environment Variable (optional)
-We can set the path of TubeMQ to the environment variable for easy use.
-```bash
-TUBEMQ_HOME=/opt/tubemq-server
-PATH=$TUBEMQ_HOME/bin:$PATH
-```
-After that, we can use the following commands to start/stop and restart the master/broker service anywhere.
-```bash
-Usage: tubemq {master|broker} {start|stop|restart}
-       start:      start the master/broker server
-       stop:       stop the master/broker server
-       restart:    restart the master/broker server
-```
-
-## Add Topic
+## Quick Start
+### Add Topic
 We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
 topic list page and click the add new topic button
 
@@ -235,14 +218,18 @@ that the topic publish/subscribe state is active now.
 
 Now we can use the topic to send messages.
 
-## Demo
-Now we can run the example to test our cluster. First let's run the produce data demo. Please don't
-forget replace `YOUR_SERVER_IP` with your server ip.
+### Run Example
+Now we can use `demo` topic which created before to test our cluster.
+
+- Produce Messages
+
+Please don't forget replace `YOUR_MASTER_IP` with your server ip, and start producer.
 ```bash
-java -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties  \
--Djava.net.preferIPv4Stack=true -cp  /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/* \
+install_path=/INSTALL_PATH/tubemq-server-[TUBEMQ-VERSION]-bin
+java -Dlog4j.configuration=file:${install_path}/conf/tools.log4j.properties  \
+-Djava.net.preferIPv4Stack=true -cp  ${install_path}/lib/*:${install_path}/conf/* \
 org.apache.tubemq.example.MessageProducerExample \
-YOUR_SERVER_IP:8000 demo 10000000
+YOUR_MASTER_IP:8000 demo 100000
 ```
 From the log, we can see the message is sent out.
 ```bash
@@ -252,7 +239,9 @@ From the log, we can see the message is sent out.
 [2020-06-04 11:19:05,181] INFO Send demo 4000 message, keyCount is 1002 (org.apache.tubemq.example.MessageProducerExample)
 ```
 
-Then we run the consume data demo. Also replace the server ip
+- Consume Messages
+
+Please don't forget replace YOUR_MASTER_IP with your server ip, and start consumer.
 ```bash
 java -Xmx512m -Dlog4j.configuration=file:/opt/tubemq-server/conf/tools.log4j.properties \
 -Djava.net.preferIPv4Stack=true -cp /opt/tubemq-server/lib/*:/opt/tubemq-server/conf/* \
