@@ -18,6 +18,11 @@ export default {
         link: '/en-us/docs/quick_start.html',
       },
       {
+        key: 'download',
+        text: 'DOWNLOAD',
+        link: '/en-us/docs/download/download.html',
+      },
+      {
         key: 'development',
         text: 'DEVELOPMENT',
         link: '/en-us/docs/development/how-to-contribute.html',
@@ -103,6 +108,11 @@ export default {
         key: 'docs',
         text: '文档',
         link: '/zh-cn/docs/quick_start.html',
+      },
+      {
+        key: 'download',
+        text: '下载',
+        link: '/zh-cn/docs/download/download.html',
       },
       {
         key: 'development',
