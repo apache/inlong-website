@@ -1,6 +1,8 @@
-# 如何参与贡献
-## 0. 前言
+---
+title: 如何参与贡献 - Apache TubeMQ
+---
 
+# 如何参与贡献
 Apache TubeMQ社区欢迎大家为Apache TubeMQ做贡献，您可以通过很多方式为TubeMQ项目成长贡献一份力量：
  - 贡献文档：浏览文档可以加深您对TubeMQ的了解，一旦发现文档写得不清晰或逻辑混乱的地方，可以订正、修改、补充或[联系我们](mailto:dev@tubemq.apache.org)
  - 贡献代码：欢迎大家为TubeMQ社区贡献代码

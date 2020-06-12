@@ -1,3 +1,7 @@
+---
+title: Subscribe Mailing list - Apache TubeMQ
+---
+
 # 订阅邮件列表
 
 <font color="#dd0000" size="4">TODO: This page needs to be translated into English. If you are interested, just do it.</font>

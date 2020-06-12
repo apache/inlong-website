@@ -1,8 +1,11 @@
+---
+title: 如何发布版本- Apache TubeMQ
+---
+
 # 如何发布版本
 
 > 本文主要介绍了Release Manager如何按照Apache的流程发布版本，
 
-## 0. 前言
 Source Release是Apache关注的重点，也是发布的必须内容；
 Binary Release是可选项，TubeMQ可以选择是否发布二进制包到Apache仓库或者发布到Maven中央仓库。
 

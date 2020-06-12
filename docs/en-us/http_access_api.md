@@ -1,3 +1,7 @@
+---
+title: HTTP API - Apache TubeMQ
+---
+
 # HTTP access API definition
 
 ## Master metadata configuration API

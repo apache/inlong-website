@@ -1,6 +1,8 @@
-# 如何提交代码
+---
+title: 如何提交代码 - Apache TubeMQ
+---
 
-## 0. 前言
+# 如何提交代码
 Apache TubeMQ使用Github的Pull Request (PR)来接收贡献的代码，本文将详细介绍提交代码的详细流程。
 
 - TubeMQ代码库：https://github.com/apache/incubator-tubemq

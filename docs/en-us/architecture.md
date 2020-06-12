@@ -1,3 +1,7 @@
+---
+title: Architecture - Apache TubeMQ
+---
+
 ## TubeMQ Architecture： ##
 After years of evolution, the TubeMQ cluster is divided into the following 5 parts: 
 ![](img/sys_structure.png)

@@ -1,4 +1,8 @@
-# How to contribute
+---
+title: How to Contribute - Apache TubeMQ
+---
+
+# How to Contribute
 
 The Apache TubeMQ(incubating) community welcomes contributions from anyone with a passion for distributed systems! TubeMQ has many different opportunities for contributions -- write new examples/tutorials, add new user-facing libraries or participate on the documentation effort.
 

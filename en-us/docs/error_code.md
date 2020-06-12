@@ -1,4 +1,8 @@
-# Introduction of Tube Error
+---
+title: Error Code - Apache TubeMQ
+---
+
+# Introduction of TubeMQ Error
 
 ​        TubeMQ use `errCode` and `errMsg` combined to return specific operation result. 
         Firstly, determine the type of result(problem) by errCode, and then determine the specific reson of the errCode based on errMsg.
