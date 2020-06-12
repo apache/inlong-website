@@ -1,3 +1,7 @@
+---
+title: Configure Introduction - Apache TubeMQ
+---
+
 # TubeMQ configuration item description
 
 The TubeMQ server includes two modules for the Master and the Broker. The Master also includes a Web front-end module for external page access (this part is stored in the resources). Considering the actual deployment, two modules are often deployed in the same machine, TubeMQ. The contents of the three parts of the two modules are packaged and delivered to the operation and maintenance; the client does not include the lib package of the server part and is delivered to the user separately.

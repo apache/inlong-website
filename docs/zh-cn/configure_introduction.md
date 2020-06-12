@@ -1,3 +1,7 @@
+---
+title: 配置参数介绍 - Apache TubeMQ
+---
+
 # TubeMQ服务端配置文件说明：
 
 TubeMQ服务端包括Master和Broker共2个模块，Master又包含供外部页面访问的Web前端模块（该部分存放在resources中），考虑到实际部署时2个模块常常部署在同1台机器中，TubeMQ将2个模块3个部分的内容打包在一起交付给运维使用；客户端则不包含服务端部分的lib包单独交付给业务使用。

@@ -1,3 +1,7 @@
+---
+title: 如何验证版本- Apache TubeMQ
+---
+
 # 验证候选版本
 
 详细的检查列表请参考: [check list](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist)

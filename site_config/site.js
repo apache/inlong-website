@@ -155,7 +155,7 @@ export default {
           },
           {
             key: 'security',
-            text: 'Security',
+            text: '安全',
             link: '//www.apache.org/security/',
           }
         ]
