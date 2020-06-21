@@ -26,6 +26,10 @@ export default {
             link: '/en-us/docs/architecture.html',
           },
           {
+            title: 'Performance comparison',
+            link: '/en-us/docs/tubemq_perf_test_vs_Kafka.html',
+          },
+          {
             title: 'Client RPC',
             link: '/en-us/docs/client_rpc.html',
           },
@@ -97,6 +101,10 @@ export default {
           {
             title: '架构介绍',
             link: '/zh-cn/docs/architecture.html',
+          },
+          {
+            title: '性能对比',
+            link: '/zh-cn/docs/tubemq_perf_test_vs_Kafka.html',
           },
           {
             title: '客户端RPC',
