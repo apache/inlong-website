@@ -2,16 +2,18 @@
 title: Client RPC - Apache TubeMQ
 ---
 
-# Apache TubeMQ RPC定义：
+# Definition of Apache TubeMQ RPC
 
-## 总体介绍：
+## General Introduction
 
-这部分介绍内容在/org/apache/tubemq/corerpc模块下可以找到对应实现，Apache TubeMQ 各个节点间（Client、Master、Broker）通过TCP协议长连接交互，其消息采用的是 【二进制 + Protobuf编码】组合方式进行定义，如下图示：
+Implements of this part can be found in `org.apache.tubemq.corerpc`. Each node in Apache TubeMQ Cluster Communicates by TCP Keep-Alive. Mseeages are definded using binary and protobuf combined.
 ![](img/client_rpc/rpc_bytes_def.png)
 
-在TCP里我们看到的都是二进制流，我们定义了4字节的msgToken消息头字段RPC\_PROTOCOL\_BEGIN\_TOKEN，用来区分每一条消息以及识别对端的合法性，客户端收到的消息不是以该字段开始的响应消息时，说明连接方非本系统支持的协议，或者返回数据出现了异常，这个时候需要关闭该连接，提示错误退出或者重连；紧接着的是4字节的消息序列号serialNo，该字段由请求方生成通过请求消息携带给服务端，服务器端完成该请求消息服务后通过请求消息的对应响应消息原样返回，主要用于客户端关联请求响应的上下文；4字节的listSize字段表示接下来按照PB编码的数据块个数，即后面跟随的[\&lt;len\&gt;\&lt;data\&gt;]内容的块数，目前协议定义下该字段不为0；[\&lt;len\&gt;\&lt;data\&gt;]是2个字段组合，即数据块长度，数据，主要是表示这个数据块长度及具体的数据。
+All we can see in TCP are binary streams. We defind a 4-byte msgToken message `RPC\_PROTOCOL\_BEGIN\_TOKEN` in header, which are used to distinguish each message and identify the legitimacy of the counterpart. When message client received is not started with these header field, client needs to close the connection and prompt the error and quit or reconnect because the protocal is not supported by TubeMQ or something wrong may happended. Follows is a 4-byte serialNo, this field is sent by client to server and returned by server exactly the same when after handling the request. It is mainly used to associate the context of the client request and response. And a 4-byte `listSize` field shows the number of data blocks in pb next, precisely the number of following `\&lt;len\&gt;\&lt;data\&gt;` blocks. This field would not be 0 in current definition. `\&lt;len\&gt;\&lt;data\&gt;` field is a combination of 2 filelds. That is, a length number and data, which mainly represents the length of this data block and the specific data.
 
-为什么会以listSize [\&lt;len\&gt;\&lt;data\&gt;]形式定义pb数据内容？因为在TubeMQ的这个实现中，序列化后的PB数据是通过ByteBuffer对象保存的，Java里ByteBuffer存在一个最大块长8196，超过单个块长度的PB消息内容就需要用多个ByteBuffer保存，序列化到TCP消息时候，这块没有统计总长，直接按照PB序列化的ByteBuffer列表写入到了消息中。 **在多语言实现时候，这块需要特别注意：** 需要将PB数据内容序列化成块数组（pb编解码里有对应支持）。
+We defined `listSize` as `\&lt;len\&gt;\&lt;data\&gt;` because serialized PB data is saved as a ByteBuffer object in TubeMQ, and in Java, there a maximum(8196) length of ByteBuffer block, an overlength PB message needs to be saved in several ByteBuffer. No total length was counted, and the ByteBuffer is directly written when Serializing in to TCP message.
+
+**Pay more attention when implementing multiple languages and SDKs.** Need to serialize PB data content into arrays of blocks(supported in PB codecs).
 
 
 ## PB格式编码：
