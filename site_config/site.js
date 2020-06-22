@@ -18,6 +18,11 @@ export default {
         link: '/en-us/docs/quick_start.html',
       },
       {
+        key: 'download',
+        text: 'DOWNLOAD',
+        link: '/en-us/docs/download/download.html',
+      },
+      {
         key: 'development',
         text: 'DEVELOPMENT',
         link: '/en-us/docs/development/how-to-contribute.html',
@@ -105,6 +110,11 @@ export default {
         link: '/zh-cn/docs/quick_start.html',
       },
       {
+        key: 'download',
+        text: '下载',
+        link: '/zh-cn/docs/download/download.html',
+      },
+      {
         key: 'development',
         text: '开发',
         link: '/zh-cn/docs/development/how-to-contribute.html',
@@ -145,7 +155,7 @@ export default {
           },
           {
             key: 'security',
-            text: 'Security',
+            text: '安全',
             link: '//www.apache.org/security/',
           }
         ]

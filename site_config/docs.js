@@ -32,26 +32,26 @@ export default {
         ],
       },
       {
-        title: 'User manual',
+        title: 'User Manual',
         children: [
           {
             title: 'Deployment',
             link: '/en-us/docs/deployment.html',
           },
           {
-            title: 'Configure introduction',
+            title: 'Configure Introduction',
             link: '/en-us/docs/configure_introduction.html',
           },
           {
-            title: 'Console introduction',
+            title: 'Console Introduction',
             link: '/en-us/docs/console_introduction.html',
           },
           {
-            title: 'Error code',
+            title: 'Error Code',
             link: '/en-us/docs/error_code.html',
           },
           {
-            title: 'API introduction',
+            title: 'API Introduction',
             children: [
                {
                  title: 'HTTP API',
@@ -66,7 +66,7 @@ export default {
         ],
       },
       {
-        title: 'Contact',
+        title: 'Contact Us',
         link: '/en-us/docs/contact.html',
       }
     ],

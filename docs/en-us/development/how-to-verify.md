@@ -1,3 +1,7 @@
+---
+title: How to Verify - Apache TubeMQ
+---
+
 # 验证候选版本
 
 <font color="#dd0000" size="4">TODO: This page needs to be translated into English. If you are interested, just do it.</font>

@@ -1,5 +1,9 @@
+---
+title: 如何使用JIRA - Apache TubeMQ
+---
+
 # JIRA使用指南
-## 0. 前言
+
 JIRA是Apache官方推荐的任务管理平台，被Apache下的大部分项目用于缺陷跟踪、需求收集、任务跟踪，其丰富的功能更加便于
 项目的管理，基于此TubeMQ项目同样使用JIRA来进行管理项目。本文将简单介绍在TubeMQ的开发过程中如何使用JIRA。
 
