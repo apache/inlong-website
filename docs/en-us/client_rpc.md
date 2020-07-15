@@ -2,186 +2,192 @@
 title: Client RPC - Apache TubeMQ
 ---
 
-# Apache TubeMQ RPC定义：
+# Definition of Apache TubeMQ RPC
 
-## 总体介绍：
+## General Introduction
 
-这部分介绍内容在/org/apache/tubemq/corerpc模块下可以找到对应实现，Apache TubeMQ 各个节点间（Client、Master、Broker）通过TCP协议长连接交互，其消息采用的是 【二进制 + Protobuf编码】组合方式进行定义，如下图示：
+Implements of this part can be found in `org.apache.tubemq.corerpc`. Each node in Apache TubeMQ Cluster Communicates by TCP Keep-Alive. Mseeages are definded using binary and protobuf combined.
 ![](img/client_rpc/rpc_bytes_def.png)
 
-在TCP里我们看到的都是二进制流，我们定义了4字节的msgToken消息头字段RPC\_PROTOCOL\_BEGIN\_TOKEN，用来区分每一条消息以及识别对端的合法性，客户端收到的消息不是以该字段开始的响应消息时，说明连接方非本系统支持的协议，或者返回数据出现了异常，这个时候需要关闭该连接，提示错误退出或者重连；紧接着的是4字节的消息序列号serialNo，该字段由请求方生成通过请求消息携带给服务端，服务器端完成该请求消息服务后通过请求消息的对应响应消息原样返回，主要用于客户端关联请求响应的上下文；4字节的listSize字段表示接下来按照PB编码的数据块个数，即后面跟随的[\&lt;len\&gt;\&lt;data\&gt;]内容的块数，目前协议定义下该字段不为0；[\&lt;len\&gt;\&lt;data\&gt;]是2个字段组合，即数据块长度，数据，主要是表示这个数据块长度及具体的数据。
+All we can see in TCP are binary streams. We defind a 4-byte msgToken message `RPC\_PROTOCOL\_BEGIN\_TOKEN` in header, which are used to distinguish each message and identify the legitimacy of the counterpart. When message client received is not started with these header field, client needs to close the connection and prompt the error and quit or reconnect because the protocal is not supported by TubeMQ or something wrong may happended. Follows is a 4-byte serialNo, this field is sent by client to server and returned by server exactly the same when after handling the request. It is mainly used to associate the context of the client request and response. And a 4-byte `listSize` field shows the number of data blocks in pb next, precisely the number of following `\&lt;len\&gt;\&lt;data\&gt;` blocks. This field would not be 0 in current definition. `\&lt;len\&gt;\&lt;data\&gt;` field is a combination of 2 filelds. That is, a length number and data, which mainly represents the length of this data block and the specific data.
 
-为什么会以listSize [\&lt;len\&gt;\&lt;data\&gt;]形式定义pb数据内容？因为在TubeMQ的这个实现中，序列化后的PB数据是通过ByteBuffer对象保存的，Java里ByteBuffer存在一个最大块长8196，超过单个块长度的PB消息内容就需要用多个ByteBuffer保存，序列化到TCP消息时候，这块没有统计总长，直接按照PB序列化的ByteBuffer列表写入到了消息中。 **在多语言实现时候，这块需要特别注意：** 需要将PB数据内容序列化成块数组（pb编解码里有对应支持）。
+We defined `listSize` as `\&lt;len\&gt;\&lt;data\&gt;` because serialized PB data is saved as a ByteBuffer object in TubeMQ, and in Java, there a maximum(8196) length of ByteBuffer block, an overlength PB message needs to be saved in several ByteBuffer. No total length was counted, and the ByteBuffer is directly written when Serializing in to TCP message.
+
+**Pay more attention when implementing multiple languages and SDKs.** Need to serialize PB data content into arrays of blocks(supported in PB codecs).
 
 
-## PB格式编码：
+## PB format code:
 
-PB格式编码分为RPC框架定义，到Master的消息编码和到Broker的消息编码三个部分，大家采用protobuf直接编译就可以获得不同语言的编解码，使用起来非常的方便：
+PB format encoding is divided into RPC framework definition, to the Master message encoding and to the Broker message encoding of three parts, you can use protobuf directly compiled to get different language codecs, it is very convenient to use.
 ![](img/client_rpc/rpc_proto_def.png)
 
-RPC.proto定义了6个结构，分为2大类：请求消息与响应消息，响应消息里又分为正常的响应返回以及抛异常情况下的响应返回：
+`RPC.proto` defines 6 struct, which divided into 2 class: Request message and Response message. Response message is divided into Successful Response and Exception Response.
 ![](img/client_rpc/rpc_pbmsg_structure.png)
 
-请求消息编码及响应消息解码可以参考NettyClient.java类实现，这个部分的定义存在一些改进空间，具体见【[TUBEMQ-109](https://issues.apache.org/jira/browse/TUBEMQ-109)】，但由于兼容性考虑，会逐步的替换，我们按照当前proto版本实现至少在1.0.0版本前交互不是问题，但1.0.0时会考虑用新协议，协议实现模块需要各个SDK预留出改进空间。以请求消息填写为例，RpcConnHeader等相关结构如下：
+The request message encoding and response message decoding can be implemented in the `NettyClient.java` class. There is some room for improvement in this part of the definition and can be found in [TUBEMQ-109](https://issues.apache.org/jira/browse/TUBEMQ-109). However, due to compatibility concerns, it will be gradually replaced. We have implemented the current protobuf version, which is not a problem until at least 1.0.0. With the new protocol, the protocol implementation module requires each SDK to allow room for improvement. Take request message as an example, `RpcConnHeader` and other related structures are as follows：
 ![](img/client_rpc/rpc_conn_detail.png)
 
-其中flag标记的是否请求消息，后面3个标记的是消息跟踪的相关内容，目前没有使用；相关的服务类型，协议版本，服务类型等是固定的映射关系，比较关键的一个参数RequestBody.timeout是一个请求被服务器收到到实际处理时的最大允许等待时间长，超过就丢弃，目前缺省为10秒，请求填写具体见如下部分：
+Flag marks whether the message is requested or not, and the next three marks represent the content of the message trace, which is not currently used; the related is a fixed mapping of the service type, protocol version, service type, etc., the more critical parameter RequestBody.timeout is the maximum allowable time from when a request is received by the server to when it is actually processed. Long wait time, discarded if exceeded, current default is 10 seconds, request filled as follows.
 ![](img/client_rpc/rpc_header_fill.png)
 
 
-## 客户端的PB请求响应交互图：
+## Interactive diagram of the client's PB request & response：
 
-**Producer交互图**：
+**Producer Interaction**：
 
-Producer在系统中一共4对指令，到master是要做注册，心跳，退出操作；到broker只有发送消息：
+The Producer has four pairs of instructions in the system, registration to master, heartbeat to master, exit from master and sending message to brokers.
 ![](img/client_rpc/rpc_producer_diagram.png)
 
-从这里我们可以看到，Producer实现逻辑就是从Master侧获取指定Topic对应的分区列表等元数据信息，获得这些信息后按照客户端的规则选择分区并把消息发送给对应的Broker，而到Broker的发送是直接进行TCP连接方式进行。有同学会疑惑这样是否不安全，不注册直接发消息方式，最初考虑是内部使用尽可能的接纳消息，后来考虑安全问题，我们在这个基础上增加了授权信息携带，在服务端进行认证和授权检查，解决客户端绕开Master直连以及无授权乱发消息的情况，但这种只会在严格环境开启。生产端这块 **多语言实现的时候需要注意：**
+Here we can see, Producer's implementation logic is to get metadata such as the list of partitions of specified topic from master, then select a partition and send message via TCP connection according to the rules of the client. It may be unsafe to send message without registration to master, the initial consideration was to use internal intake messages as much as possible and after that, considering security issues, we added authorization information carrying on top of this to perform authentication and authorization checks on the server side, solving the situation where the client bypasses the direct connection to the master and sends messages without authorization. But this will only enable in production environment.
 
-1. 我们Master是主备实时热切换方式运行，切换时候是通过RspExceptionBody携带的信息，这个时候，需要按照字符串查找方式检索关键字&quot;StandbyException&quot;，如果异常是这类异常，要主动切换到其他的Master节点上进行重注册；这块有相关issue计划调整该问题；
+**Note in producer side of multiple languages implementation:**
 
-2. 生产过程中遇到Master连接失败时，比如超时，链接被动断开等，Producer要进行重注册；
+1. Our Master is running as a hot-swap master, and the switchover is based on the information carried by the `RspExceptionBody`. In this case, you need to search for the keywords `&quot;StandbyException&quot;`, If this type of exception occurs, switch to another Master node for re-registration. This part has some relevant issues to adjust to the problem.
 
-3. Producer要注意提前做到Broker的预连接操作：后端集群的Broker节点可达上百台，再叠加每个Broker有十个左右的分区，关于分区记录就会存在上千条可能，SDK从Master收到元数据信息后，要提前对暂未建链的Broker进行连接建立操作；
+2. Producer should re-register in the event of a Master connection failure during production, e.g. timeout, passive connection break, etc.
 
-4. Producer到Broker的连接要注意异常检测，长期运行场景，要能检测出Broker坏点，以及长期不发消息，要将到Broker的连接回收，避免运行不稳定。
+3. Producer side should pay attention to the Broker pre-connection operation in advance: the back-end cluster can have hundreds of Broker nodes, and each Broker has about  ten partitions, so there will be thousands of possible records about the partition, after the SDK receives the metadata information from the Master, it should perform the connection establishment operation on the Broker that has not yet built the chain in advance.
 
+4. The Producer to Broker connection should be aware of anomaly detection and should be able to detect Broker bad spots and long periods of no messages, and to recycle the connection to Broker to avoid unstable operation in long-term running scene.
 
-**Consumer交互图**：
+**Consumer Interaction Diagram**:
 
-Consumer一共7对指令，到master是要做注册，心跳，退出操作；到broker包括注册，注销，心跳，拉取消息，确认消息4对，其中到Broker的注册注销是同一个命令，用了不同的状态码表示：
+Consumer has 7 pairs of command in all, Register, Heartbeat, Exit to Master; Register, Logout, Heartbeat, Pulling mseeage to Broker. Registration and Logout to Broker is the same command, indicated by a different status code.
+
 ![](img/client_rpc/rpc_consumer_diagram.png)
 
-从上图我们可以看到，Consumer首先要注册到Master，但注册到Master时并没有立即获取到元数据信息，原因是TubeMQ是采用的是服务器端负载均衡模式，客户端需要等待服务器派发消费分区信息；Consumer到Broker需要进行注册注销操作，原因在于消费时候分区是独占消费，即同一时刻同一分区者只能被同组的一个消费者进行消费，为了解决这个问题，需要客户端进行注册，获得分区的消费权限；消息拉取与消费确认需要成对出现，虽然协议支持多次拉取然后最后一次确认处理，但从客户端可能超时丢失分区的消费权限，从而导致数据回滚重复消费触发，数据积攒的越多重复消费的量就越多，所以按照1：1的提交比较合适。
+As we can see from the above picture, the Consumer first has to register to the Master, but registering to the Master can not get Metadata information immediately because TubeMQ is using a server-side load-balancing model, and the client needs to wait for the server to dispatch the consumption partition information; Consumer to Broker needs to register the logout operation. Partition is exclusive at the time of consumption, i.e., the same partition can only be consumed by one consumer in the same group at the same time. To solve this problem, the client needs to register and get consumption access to the partition; message pull and consumption confirmation need to appear in pairs. Although the protocol supports multiple pulls and then the last acknowledgement process, it is possible that the consumer permissions of a partition may be lost timeout from the client, thus This causes the data rollback to be triggered by repetitive consumption, and the more data is saved the more repetitive consumption will occur, so follow the 1:1 submission comparison fit.
 
-##客户端功能集合：
+##Client feature:
 
-| **特性** | **Java** | **C/C++** | **Go** | **Python** | **Rust** | **备注** |
+| **FEATURE** | **Java** | **C/C++** | **Go** | **Python** | **Rust** | **NOTE** |
 | --- | --- | --- | --- | --- | --- | --- |
 | TLS | ✅ | | | | | |
-| 认证授权 | ✅ | | | | | |
-| 防绕Master生产消费 | ✅ | | | | | |
-| 分布式系统里放置客户端不经过Master的认证授权即访问Broker | ✅ | | | | | |
+| Authorization | ✅ | | | | | |
+| Anti-bypass-master production/consumption | ✅ | | | | | |
+| Distributed system with clients accessing Broker without Master's authentication authorization | ✅ | | | | | |
 | Effectively-Once | ✅ | | | | | |
-| 精确指定分区Offset消费 | ✅ | | | | | |
-| 单个组消费多个Topic消费 | ✅ | | | | | |
-| 服务器过滤消费 | ✅ | | | | | |
-| 生产节点坏点自动屏蔽 | ✅ | | | | | | 
-| 通过算法检测坏点，自动屏蔽故障Broker的数据发送 | ✅ | | | | | | 
-| 断链自动重连 | ✅ | | | | | |
-| 空闲连接自动回收 | ✅ | | | | | |
-| 超过指定分钟不活跃，主要是生产端，比如3分钟 | ✅ | | | | | | 
-| 连接复用 | ✅ | | | | | |
-| 连接按照sessionFactory共用或者不共用 | ✅ | | | | | | 
-| 非连接复用 | ✅ | | | | | | 
-| 异步生产 | ✅ | | | | | |
-| 同步生产 | ✅ | | | | | |
-| Pull消费 | ✅ | | | | | |
-| Push消费 | ✅ | | | | | |
-| 消费限流 | ✅ | | | | | |
-| 控制单位时间消费者消费的数据量 | ✅ | | | | | |
-| 消费拉取频控 | ✅ | | | | | |
-| 控制消费者拉取消息的频度 | ✅ | | | | | |
+| Partition offset consumption | ✅ | | | | | |
+| Multiple Topic Consumption for a single Consumer group | ✅ | | | | | |
+| Server Consumption filter | ✅ | | | | | |
+| Auto shielding inactive Nodes| ✅ | | | | | | 
+| Auto shielding bad Brokers | ✅ | | | | | | 
+| Auto reconnect | ✅ | | | | | |
+| Auto recycling of Idle Connection | ✅ | | | | | |
+| Inactive for more than a specified period(e.g. 3min, mainly the producer side)| ✅ | | | | | | 
+| Connection reuse | ✅ | | | | | |
+| Connection sharing according to the sessionFactory | ✅ | | | | | | 
+| Unconnection reuse | ✅ | | | | | | 
+| Asynchrounous Production | ✅ | | | | | |
+| Synchrounous Production | ✅ | | | | | |
+| Pull Consumption | ✅ | | | | | |
+| Push Consumption | ✅ | | | | | |
+| Consumption limit (QOS) | ✅ | | | | | |
+| Limit the amount of data per unit of time consumed by consumers | ✅ | | | | | |
+| Pull Consumption frequency limit | ✅ | | | | | |
+| Consumer Pull Consumption frequency limit | ✅ | | | | | |
 
 
-## 客户端功能CaseByCase实现介绍：
+## Client function Induction CaseByCase：
 
-**客户端与服务器端RPC交互过程**：
+**Client side and server side RPC interaction process**：
 
 ----------
 
 ![](img/client_rpc/rpc_inner_structure.png)
 
-如上图示，客户端要维持已发请求消息的本地保存，直到RPC超时，或者收到响应消息，响应消息通过请求发送时生成的SerialNo关联；从服务器端收到的Broker信息，以及Topic信息，SDK要保存在本地，并根据最新的返回信息进行更新，以及定期的上报给服务器端；SDK要维持到Master或者Broker的心跳，如果发现Master反馈注册超时错误时，要进行重注册操作；SDK要基于Broker进行连接建立，同一个进程不同对象之间，要允许业务进行选择，是支持按对象建立连接，还是按照进程建立连接。
+As shown above, the client has to maintain local preservation of the sent request message until the RPC times out, or a response message is received and the response The message is associated by the SerialNo generated when the request is sent; the Broker information received from the server side, and the Topic information, which the SDK stores locally and updates with the latest returned information, as well as periodic reports to the Server side; the SDK is maintained to the heartbeat of the Master or Broker, and if Master feedback is found When the registration timeout error, re-registration operation should be carried out; SDK should be based on Broker connection establishment, the same process different Between objects, to allow the business to choose whether to support per-object or per-process connections.
 
-**Producer到Master注册**:
+**Message: Producer register to Master**:
 ----------
 ![](img/client_rpc/rpc_producer_register2M.png)
 
-**ClientId**：Producer需要在启动时候构造一个ClientId，目前的构造规则是：
+**ClientId**：Producer needs to construct a ClientId at startup, and the current construction rule is: 
 
-Java的SDK版本里ClientId = 节点IP地址（IPV4） + &quot;-&quot; + 进程ID + &quot;-&quot; + createTime+&quot;-&quot; +本进程内第n个实例+&quot;-&quot; +客户端版本ID 【+ &quot;-&quot; + SDK实现语言】，建议其他语言增加如上标记，以便于问题排查。该ID值在Producer生命周期内有效；
+Java: ClientId = IPV4 + `&quot;-&quot;` + Thread ID + `&quot;-&quot;` + createTime + `&quot;-&quot;` + Instance ID + `&quot;-&quot;` + Client Version ID [+ `&quot;-&quot;` + SDK]. it is recommended that other languages add the above markup for easier access to the issue Exclusion. The ID value is valid for the lifetime of the Producer.
 
-**TopicList**：是用户发布的Topic列表，Producer在初始化时候会提供初始的待发布数据的Topic列表，在运行中也允许业务通过publish函数延迟的增加新的Topic，但不支持运行中减少topic；
+**TopicList**: The list of topics published by the user, Producer provides the initial list of topics for the data to be published at initialization, and also allows the business to defer adding new topics via the publish function in runtime, but does not support reducing topics in runtime.
 
-**brokerCheckSum**：客户端本地保存的Broker元数据信息的校验值，初始启动时候Producer本地是没有该数据的，取-1值；SDK需要在每次请求时把上次的brokerCheckSum值携带上，Master通过比较该值来确定客户端的元数据是否需要更新；
+**brokerCheckSum**: The check value of the Broker metadata information stored locally by the client, which is not available locally in Producer at initial startup, takes the value as -1; the SDK needs to carry the last BrokerCheckSum value on each request, and the Master determines whether the client's metadata needs to be updated by comparing the value.
 
-**hostname**：Producer所在机器的IPV4地址值；
+**hostname**: The IPV4 address value of the machine where the Producer is located.
 
-**success**:操作是否成功，成功为true，失败为false；
+**success**: Whether the operation is successful, success is true, failure is false.
 
-**errCode**：如果失败，错误码时多少，目前错误码是大类错误码，具体错误原因需要由errMsg具体判明；
+**errCode**: The code of error, currently one error code represents a large class of error, the specific cause of the error needs to be specifically identified by `errMsg`.
 
-**errMsg**：具体的错误信息，如果出错，SDK需要把具体错误信息打出来
+**errMsg**: The specific error message that the SDK needs to print out if something goes wrong.
 
-**authInfo**：认证授权信息，如果用户配置里填写了启动认证处理，则进行填写；如果是要求认证，则按照用户名及密码的签名进行上报，如果是运行中，比如心跳时，如果Master强制认证处理，则按照用户名及密码签名上报，没有的话则根据之前交互时Master提供的授权Token进行认证；该授权Token在生产时候也用于到Broker的消息生产时携带。
+**authInfo**：Authentication authorization information, if the user configuration is filled in to start authentication processing, then fill in; if authentication is required, then report according to the signature of the user name and password; if it is running, such as heartbeat, if the Master forces authentication processing, then report according to the signature of the user name and password; if not, then authenticate according to the authorization Token provided by the Master during the previous interaction; this authorization Token is also used to carry the message to Broker during production.
 
-**brokerInfos**：Broker元数据信息，该字段里主要是Master反馈给Producer的整个集群的Broker信息列表；其格式如下：
+**brokerInfos**: Broker metadata information, which is primarily a list of Broker information for the entire cluster that the Master feeds back to the Producer in this field; the format is as follows.
 
 ![](img/client_rpc/rpc_broker_info.png)
 
-**authorizedInfo**：Master提供的授权信息，格式如下：
+**authorizedInfo**: Master provides authorization information in the following format.
 
 ![](img/client_rpc/rpc_master_authorizedinfo.png)
 
-**visitAuthorizedToken**：防客户端绕开Master的访问授权Token，如果有该数据，SDK要保存本地，并且在后续访问Broker时携带该信息；如果后续心跳时该字段有变更，则需要更新本地缓存的该字段数据；
+**visitAuthorizedToken**: To prevent clients from bypassing the Master's access authorization token, if that data is available, the SDK should save it locally and carry that information on subsequent visits to the Broker; if the field is changed on subsequent heartbeats, the locally cached data for that field needs to be updated.
 
-**authAuthorizedToken**：认证通过的授权Token，如果有该字段数据，要保存，并且在后续访问Master及Broker时携带该字段信息；如果后续心跳时该字段有变更，则需要更新本地缓存的该字段数据；
+**authAuthorizedToken**：Authenticated authorization tokens, if they have data for that field, they need to save and carry that field information for subsequent accesses to the Master and Broker; if the field is changed on subsequent heartbeats, the local cache of that field data needs to be updated.
 
 
-**Producer到Master保持心跳**:
+**Mseeage: Heartbeat from Producer to Master**:
 ----------
 ![](img/client_rpc/rpc_producer_heartbeat2M.png)
 
-**topicInfos**：SDK发布的Topic对应的元数据信息，包括分区信息以及所在的Broker，具体解码方式如下，由于元数据非常的多，如果将对象数据原样透传所产生的出流量会非常的大，所以我们通过编码方式做了改进：
+**topicInfos**: The metadata information corresponding to the Topic published by the SDK, including partition information and the Broker where it is located, is decoded. Since there is a lot of metadata, the outflow generated by passing the object data through as is would be very large, so we made Improvements.
 
 ![](img/client_rpc/rpc_convert_topicinfo.png)
 
-**requireAuth**：标识Master之前的授权访问码（authAuthorizedToken）过期，要求SDK下一次请求，进行用户名及密码的签名信息上报；
+**requireAuth**: Code to indicates the expiration of the previous authAuthorizedToken of the Master, requiring the SDK to report the username and password signatures on the next request.
 
-**Producer到Master关闭退出**:
+**Message: Producer exits from Master**:
 ----------
 ![](img/client_rpc/rpc_producer_close2M.png)
 
-需要注意的是，如果认证开启，关闭会做认证，以避免外部干扰操作。
+Note that if authentication is enable, closing operation will do the authentication to avoid external interference with the operation.
 
-**Producer到Broker发送消息**:
+**Message: Producer to Broker**:
 ----------
-该部分的内容主要和Message的定义由关联，其中
+This part is related to the definition of RPC Message.
 
 ![](img/client_rpc/rpc_producer_sendmsg2B.png)
 
-**Data**是Message的二进制字节流：
+**Data** is the binary byte stream of Message.
 
 ![](img/client_rpc/rpc_message_data.png)
 
-**sentAddr**是SDK所在的本机IPv4地址转成32位的数字ID；
+**sentAddr** is the local IPv4 address of the machine where the SDK is located converted to a 32-bit numeric ID.
 
-**msgType**是过滤的消息类型，msgTime是SDK发消息时的消息时间，其值来源于构造Message时通过putSystemHeader填写的值，在Message里有对应的API获取;
+**msgType** is the type of filter message. `msgTime` is the message time when the SDK sends a message, its value comes from the value filled in by `putSystemHeader` when constructing Message, and there is a corresponding API in Message to get it.
 
-**requireAuth**：到Broker进行数据生产的要求认证操作，考虑性能问题，目前未生效，发送消息里填写的authAuthorizedToken值以Master侧提供的值为准，并且随Master侧改变而改变。
+**requireAuth**: Required authentication operations to Broker for data production, not currently in effect due to performance issues. The authAuthorizedToken value in the sent message is based on the value provided by the Master and will change with the change of the Master.
 
-**分区负载均衡过程**:
+**Partition Loadbalance**:
 ----------
-Apache TubeMQ目前采用的是服务器端负载均衡模式，均衡过程由服务器管理维护；后续版本会增加客户端负载均衡模式，形成2种模式共存的情况，由业务根据需要选择不同的均衡方式。
+Apache TubeMQ currently uses a server-side load balancing mode, where the balancing process is managed and maintained by the server; subsequent versions will add a client-side load balancing mode, so that two modes can co-exist.
 
-**服务器端负载均衡过程如下**：
+**Server side load balancing**:
 
-- Master进程启动后，会启动负载均衡线程balancerChore，balancerChore定时检查当前已注册的消费组，进行负载均衡处理。过程简单来说就是将消费组订阅的分区均匀的分配给已注册的客户端，并定期检测客户端当前分区数是否超过预定的数量，如果超过则将多余的分区拆分给其他数量少的客户端。具体过程：首先Master检查当前消费组是否需要做负载均衡，如果需要，则将消费组订阅的topic集合的所有分区，以及这个消费组的所有消费者ID进行排序，然后按照消费组的所有分区数以及客户端个数进行整除及取模，获得每个客户端至多订阅的分区数；然后给每个客户端分配分区，并在消费者订阅时将分区信息在心跳响应里携带；如果客户端当前已有的分区有多，则给该客户端一条分区释放指令，将该分区从该消费者这里进行分区释放，同时给被分配的消费者一条分区分配的指令，告知分区分配给了对应客户端，具体指令如下：
+- When the Master process starts, it starts the load-balancing thread balancerChore. balancerChore periodically checks the current registered consumer group for load balancing. The process is simply to evenly distribute the consumer group subscription partitions to registered clients, and periodically detect the current partition of the client If so, the extra partitions will be split to other clients with less number of subscriptions. First, the master checks if the current consumer group needs load balancing. The topic collection is sorted by all partitions of the topic, and all consumer IDs of this consumer group, and then by the consumer group's all Divide and model the number of partitions and the number of clients to get the number of partitions each client subscribes to at most; then give each client the Assign partitions and carry the partition information in the heartbeat response when the consumer subscribes; if the client has more than one partition currently in place Give the client a partition release command to partition the partition away from the consumer, and to the assigned consumer A partition assignment instruction that informs that the partition is assigned to the corresponding client is as follows.
+
+Translated with www.DeepL.com/Translator (free version)
 
 ![](img/client_rpc/rpc_event_proto.png)
 
-**rebalanceId**：是一个自增ID的long数值，表示负载均衡的轮次；
+**rebalanceId**：A long-type auto-increment number that indicates the round of load balance.
 
-**opType**：为操作码，值在EventType中定义，目前已实现的操作码只有如下4个部分：释放连接，建立连接；only\_xxx目前没有扩展开，收到心跳里携带的负载均衡信息后，Consumer根据这个值做对应的业务操作；
+**opType**：Operation code, and its value defined in EventType. There are only four parts of the opcode that have been implemented, as follows: `DISCONNECT`, `CONNECT`, `REPORT` and `ONLY_`. Opcode started with `ONLY` is not detailed developed.
 
 ![](img/client_rpc/rpc_event_proto_optype.png)
 
-**status**：表示该事件状态，在EventStatus里定义。Master构造好负载均衡处理任务时设置指令时状态为TODO；客户端心跳请求过来时，master将该任务写到响应消息里，设置该指令状态为PROCESSING；客户端从心跳响应里收到负载均衡指令，进行实际的连接或者断链操作，操作结束后，设置指令状态为DONE，并等待下一次心跳请求发出时反馈给Master；
+**status**：Defined in `EventStatus`, indicates the status of the event. When Master constructs a load balancing task, it sets the status to `TODO`. When receiving the client heartbeat request, master writes the task to the response message and sets the status to `PROCESSING`. The client receives a load balancing command from the heartbeat response, and then it can perform the actual connection or disconnection operation, after the operation is finished, set the command status to `DONE` until sending next heartbeat to master.
 
 ![](img/client_rpc/rpc_event_proto_status.png)
 
-**subscribeInfo**表示分配的分区信息，格式如注释提示。
+**subscribeInfo** indicates assigned partition information, in the format suggested by the comment.
 
 
-- 消费端操作：消费端收到Master返回的元数据信息后，就进行连接建立和释放操作，见上面opType的注解，在连接建立好后，返回事件的处理结果给到Master，从而完成相关的收到任务，执行任务，以及返回任务处理结果的操作；需要注意的是，负载均衡的注册是尽力而为的操作，如果消费端发起连接操作，但之前占用分区的消费者还没有来得及退出时，会收到PARTITION\_OCCUPIED的错误响应，这个时候就将该分区从尝试队列删除；而之前分区消费者在收到对应响应后仍会做删除操作，从而下一轮的负载均衡时分配到这个分区的消费者成功注册到分区上。
+- Consumer Operation: When consumer receives metadata returned from master, it should establish the connection and release the operation(Refer to the opType note above). When connection established, return the operation result to master so that consumer can receive some relative job and perform. What we need to know is the LoadBalance of registration is a best-effort operation, if a new consumer send a request for connection before the consumer who occupanies the partition quits, it will receive `PARTITION\_OCCUPIED` exception response. And at this time partition tries to remove it from its queue. And partition consumer will also remove it when receiving corresponding response so that the consumer could successfully register to this partition in next load balance.
