@@ -224,14 +224,13 @@ cp ./tubemq-client/target/apache-tubemq-client-${release_version}-bin.tar.gz /tm
 cp ./tubemq-server/target/apache-tubemq-server-${release_version}-bin.tar.gz /tmp/apache-tubemq-${release_version}-${rc_version}/ # 拷贝server包到源码包目录下，方面下一步对包进行签名
 ```
 
-### 3.5 对源码包/二进制包进行签名/sha512/md5
+### 3.5 对源码包/二进制包进行签名/sha512
 ```shell
-for i in *.tar.gz; do echo $i; gpg --print-md MD5 $i > $i.md5 ; done # 计算MD5
 for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i > $i.sha512 ; done # 计算SHA512
 for i in *.tar.gz; do echo $i; gpg --armor --output $i.asc --detach-sig $i ; done # 计算签名
 ```
 
-### 3.6 检查生成的签名/sha512/md5是否正确
+### 3.6 检查生成的签名/sha512是否正确
 具体可以参考：[验证候选版本](how-to-verify.md)
 比如验证签名是否正确如下：
 ```shell
