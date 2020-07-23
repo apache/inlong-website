@@ -19,8 +19,7 @@ svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version
 1. 是否包含源码包
 2. 是否包含源码包的签名
 3. 是否包含源码包的sha512
-4. 是否包含源码包的md5
-5. 如果上传了二进制包，则同样检查(2)-(4)所列的内容
+4. 如果上传了二进制包，则同样检查(2)-(4)所列的内容
 
 ### 2.2 检查gpg签名
   - 导入公钥
