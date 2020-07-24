@@ -21,8 +21,7 @@ svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version
 1. 是否包含源码包
 2. 是否包含源码包的签名
 3. 是否包含源码包的sha512
-4. 是否包含源码包的md5
-5. 如果上传了二进制包，则同样检查(2)-(4)所列的内容
+4. 如果上传了二进制包，则同样检查(2)-(4)所列的内容
 
 ### 2.2 检查gpg签名
   - 导入公钥
@@ -61,18 +60,7 @@ gpg --print-md SHA512 apache-tubemq-client-${release_version}-bin.tar.gz
 for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 ```
 
-#### 2.4 检查MD5
-> 本地计算MD5后，验证是否与dist上的一致
-```shell
-for i in *.tar.gz; do echo $i; gpg --print-md MD5 $i; done
-#或者
-gpg --print-md MD5 apache-tubemq-${release_version}-src.tar.gz
-# 如果上传二进制包，则同样需要检查二进制包的MD5
-gpg --print-md MD5 apache-tubemq-server-${release_version}-bin.tar.gz
-gpg --print-md MD5 apache-tubemq-client-${release_version}-bin.tar.gz
-```
-
-### 2.5. 检查源码包的文件内容
+### 2.4. 检查源码包的文件内容
 
   解压缩`apache-tubemq-${release_version}-src.tar.gz`，进行如下检查:
 
@@ -83,7 +71,7 @@ gpg --print-md MD5 apache-tubemq-client-${release_version}-bin.tar.gz
   - 单测是否能够跑通
   - ....
 
-### 2.6 检查二进制包(如果上传了二进制包)
+### 2.5 检查二进制包(如果上传了二进制包)
   解压缩`apache-tubemq-client-${release_version}-src.tar.gz`和`
   apache-tubemq-server-${release_version}-src.tar.gz`，进行如下检查:
   - DISCLAIMER文件是否存在及内容是否正确

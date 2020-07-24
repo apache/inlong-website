@@ -30,7 +30,6 @@
 <li>是否包含源码包</li>
 <li>是否包含源码包的签名</li>
 <li>是否包含源码包的sha512</li>
-<li>是否包含源码包的md5</li>
 <li>如果上传了二进制包，则同样检查(2)-(4)所列的内容</li>
 </ol>
 <h3>2.2 检查gpg签名</h3>
@@ -72,18 +71,7 @@ gpg --print-md SHA512 apache-tubemq-client-${release_version}-bin.tar.gz
 <span class="hljs-meta">#</span><span class="bash"> 或者</span>
 for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 </code></pre>
-<h4>2.4 检查MD5</h4>
-<blockquote>
-<p>本地计算MD5后，验证是否与dist上的一致</p>
-</blockquote>
-<pre><code class="language-shell">for i in *.tar.gz; do echo $i; gpg --print-md MD5 $i; done
-<span class="hljs-meta">#</span><span class="bash">或者</span>
-gpg --print-md MD5 apache-tubemq-${release_version}-src.tar.gz
-<span class="hljs-meta">#</span><span class="bash"> 如果上传二进制包，则同样需要检查二进制包的MD5</span>
-gpg --print-md MD5 apache-tubemq-server-${release_version}-bin.tar.gz
-gpg --print-md MD5 apache-tubemq-client-${release_version}-bin.tar.gz
-</code></pre>
-<h3>2.5. 检查源码包的文件内容</h3>
+<h3>2.4. 检查源码包的文件内容</h3>
 <p>解压缩<code>apache-tubemq-${release_version}-src.tar.gz</code>，进行如下检查:</p>
 <ul>
 <li>DISCLAIMER文件是否存在及内容是否正确</li>
@@ -93,7 +81,7 @@ gpg --print-md MD5 apache-tubemq-client-${release_version}-bin.tar.gz
 <li>单测是否能够跑通</li>
 <li>....</li>
 </ul>
-<h3>2.6 检查二进制包(如果上传了二进制包)</h3>
+<h3>2.5 检查二进制包(如果上传了二进制包)</h3>
 <p>解压缩<code>apache-tubemq-client-${release_version}-src.tar.gz</code>和<code>apache-tubemq-server-${release_version}-src.tar.gz</code>，进行如下检查:</p>
 <ul>
 <li>DISCLAIMER文件是否存在及内容是否正确</li>
