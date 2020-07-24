@@ -329,7 +329,7 @@ Hello Apache TubeMQ PPMC and Community,
 
     The VOTE will remain open for at least 72 hours.
 
-    [ ] +1 Release this package as Apache TubeMQ 0.3.0-incubating
+    [ ] +1 Release this package as Apache TubeMQ ${release_version}
     [ ] +0
     [ ] -1 Do not release this package because...
 
