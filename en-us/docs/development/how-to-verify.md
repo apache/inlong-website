@@ -26,8 +26,62 @@ svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version
 ### 2.2 检查gpg签名
   - 导入公钥
   ```shell
-  curl https://dist.apache.org/repos/dist/dev/tubemq/KEYS >> KEYS # 下载KEYS
+  curl https://dist.apache.org/repos/dist/dev/incubator/tubemq/KEYS > KEYS # 下载KEYS
   gpg --import KEYS # 导入KEYS到本地
+  ```
+  - 信任公钥
+  > 信任此次版本所使用的KEY
+  ```shell
+    gpg --edit-key xxxxxxxxxx #此次版本所使用的KEY
+    gpg (GnuPG) 2.2.21; Copyright (C) 2020 Free Software Foundation, Inc.
+    This is free software: you are free to change and redistribute it.
+    There is NO WARRANTY, to the extent permitted by law.
+    
+    Secret key is available.
+    
+    sec  rsa4096/5EF3A66D57EC647A
+         created: 2020-05-19  expires: never       usage: SC  
+         trust: ultimate      validity: ultimate
+    ssb  rsa4096/17628566FEED6AF7
+         created: 2020-05-19  expires: never       usage: E   
+    [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
+    
+    gpg> trust #信任
+    sec  rsa4096/5EF3A66D57EC647A
+         created: 2020-05-19  expires: never       usage: SC  
+         trust: ultimate      validity: ultimate
+    ssb  rsa4096/17628566FEED6AF7
+         created: 2020-05-19  expires: never       usage: E   
+    [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
+    
+    Please decide how far you trust this user to correctly verify other users' keys
+    (by looking at passports, checking fingerprints from different sources, etc.)
+    
+      1 = I don't know or won't say
+      2 = I do NOT trust
+      3 = I trust marginally
+      4 = I trust fully
+      5 = I trust ultimately
+      m = back to the main menu
+    
+    Your decision? 5 #选择5
+    Do you really want to set this key to ultimate trust? (y/N) y #选择y
+                                                                 
+    sec  rsa4096/5EF3A66D57EC647A
+         created: 2020-05-19  expires: never       usage: SC  
+         trust: ultimate      validity: ultimate
+    ssb  rsa4096/17628566FEED6AF7
+         created: 2020-05-19  expires: never       usage: E   
+    [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
+    
+    gpg> 
+         
+    sec  rsa4096/5EF3A66D57EC647A
+         created: 2020-05-19  expires: never       usage: SC  
+         trust: ultimate      validity: ultimate
+    ssb  rsa4096/17628566FEED6AF7
+         created: 2020-05-19  expires: never       usage: E   
+    [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
   ```
   - 使用如下命令检查签名
   ```shell
@@ -39,7 +93,7 @@ svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version
   gpg --verify apache-tubemq-client-${release_version}-bin.tar.gz.asc apache-tubemq-client-${release_version}-bin.tar.gz
 ```
   - 检查结果
-出现类似以下内容则说明签名正确，关键字：`Good signature`
+  > 出现类似以下内容则说明签名正确，关键字：**`Good signature`**
 ```shell
 apache-tubemq-0.3.0-incubating-src.tar.gz
 gpg: Signature made Sat May 30 11:45:01 2020 CST
