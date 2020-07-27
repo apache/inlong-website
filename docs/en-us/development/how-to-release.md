@@ -408,7 +408,7 @@ Hello Incubator Community,
     • https://github.com/apache/incubator-tubemq/tree/${release_version}-${rc_version}
 
     Release notes:
-    • https://github.com/apache/incubator-tubemq/releases/tag/${release_version}
+    • https://github.com/apache/incubator-tubemq/releases/tag/${release_version}-${rc_version}
 
     The artifacts signed with PGP key [填写你个人的KEY], corresponding to [填写你个人的邮箱], that can be found in keys file:
     • https://dist.apache.org/repos/dist/dev/incubator/tubemq/KEYS
