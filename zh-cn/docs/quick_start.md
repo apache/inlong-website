@@ -46,7 +46,7 @@ mvn compile
 ### 部署TubeMQ Standalone
 Standalone模式可以在一个容器中启动zookeeper/master/broker服务：
 ```
-docker run -p 8080:8080 -p 8000:8000 --name tubemq -d apachetubemq/tubemq-all:latest
+docker run -p 8080:8080 -p 8000:8000 -p 8123:8123 --name tubemq -d apachetubemq/tubemq-all:latest
 ```
 容器拉起后，可在浏览器访问` http://127.0.0.1:8080`，然后参考下面`快速使用`部分开始使用。
 

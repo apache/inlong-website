@@ -58,7 +58,7 @@ scripts, configuration files, dependency jars and web GUI code.</p>
 <h2>Deploy and Start</h2>
 <h3>Deploy TubeMQ Standalone</h3>
 <p>Standalone mode starts zookeeper/master/broker services in one docker container：</p>
-<pre><code>docker run -p 8080:8080 -p 8000:8000 --name tubemq -d apachetubemq/tubemq-all:latest
+<pre><code>docker run -p 8080:8080 -p 8000:8000 -p 8123:8123 --name tubemq -d apachetubemq/tubemq-all:latest
 </code></pre>
 <p>Afater container is running, you can access <code>http://127.0.0.1:8080</code>, and reference to next <code>Quick Start</code> chapter for experience.</p>
 <p><strong>Tips</strong>：Standalone Mode is only available for development and experience, it's not designed for production environment.</p>
