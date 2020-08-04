@@ -454,11 +454,15 @@ On behalf of Apache TubeMQ (Incubating) community
 ### 6.1 合并release-${release_version}分支的改动到master分支
 ### 6.2 将源码和二进制包从svn的dev目录移动到release目录
 ```shell
-svn mv https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/tubemq/${release_version}
+svn mv https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/tubemq/${release_version} -m "Release ${release_version}"
 ```
 ### 6.3 确认dev和release下的包是否正确
 1. 确认[dev](https://dist.apache.org/repos/dist/dev/incubator/tubemq/)下的`${release_version}-${rc_version}`已被删除
 2. 删除[release](https://dist.apache.org/repos/dist/release/incubator/tubemq/)目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/incubator/tubemq/)
+```shell
+svn delete https://dist.apache.org/repos/dist/release/incubator/tubemq/${last_release_version} -m "Delete ${last_release_version}"
+```
+
 ### 6.4 在Apache Staging仓库发布版本
 > 请确保所有的artifact都是ok的
 1. 登录http://repository.apache.org , 使用Apache账号登录

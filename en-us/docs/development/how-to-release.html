@@ -420,13 +420,15 @@ On behalf of Apache TubeMQ (Incubating) community
 <h2>6. 正式发布</h2>
 <h3>6.1 合并release-${release_version}分支的改动到master分支</h3>
 <h3>6.2 将源码和二进制包从svn的dev目录移动到release目录</h3>
-<pre><code class="language-shell">svn mv https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/tubemq/${release_version}
+<pre><code class="language-shell">svn mv https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/tubemq/${release_version} -m "Release ${release_version}"
 </code></pre>
 <h3>6.3 确认dev和release下的包是否正确</h3>
 <ol>
 <li>确认<a href="https://dist.apache.org/repos/dist/dev/incubator/tubemq/">dev</a>下的<code>${release_version}-${rc_version}</code>已被删除</li>
 <li>删除<a href="https://dist.apache.org/repos/dist/release/incubator/tubemq/">release</a>目录下上一个版本的发布包，这些包会被自动保存在<a href="https://archive.apache.org/dist/incubator/tubemq/">这里</a></li>
 </ol>
+<pre><code class="language-shell">svn delete https://dist.apache.org/repos/dist/release/incubator/tubemq/${last_release_version} -m "Delete ${last_release_version}"
+</code></pre>
 <h3>6.4 在Apache Staging仓库发布版本</h3>
 <blockquote>
 <p>请确保所有的artifact都是ok的</p>
