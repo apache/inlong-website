@@ -463,7 +463,7 @@ svn mv https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version
 1. 确认[dev](https://dist.apache.org/repos/dist/dev/incubator/tubemq/)下的`${release_version}-${rc_version}`已被删除
 2. 删除[release](https://dist.apache.org/repos/dist/release/incubator/tubemq/)目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/incubator/tubemq/)
 ```shell
-svn delete https://dist.apache.org/repos/dist/release/incubator/tubemq/${release_version} -m "Delete ${release_version}"
+svn delete https://dist.apache.org/repos/dist/release/incubator/tubemq/${last_release_version} -m "Delete ${last_release_version}"
 ```
 
 ### 6.4 在Apache Staging仓库发布版本
