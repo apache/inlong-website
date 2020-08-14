@@ -52,7 +52,7 @@ This command will generate the Java source files from the `protoc` files, the ge
 ### Deploy TubeMQ Standalone
 Standalone mode starts zookeeper/master/broker services in one docker container：
 ```
-docker run -p 8080:8080 -p 8000:8000 --name tubemq -d apachetubemq/tubemq-all:latest
+docker run -p 8080:8080 -p 8000:8000 -p 8123:8123 --name tubemq -d apachetubemq/tubemq-all:latest
 ```
 Afater container is running, you can access ` http://127.0.0.1:8080`, and reference to next `Quick Start` chapter for experience.
 

@@ -224,14 +224,13 @@ cp ./tubemq-client/target/apache-tubemq-client-${release_version}-bin.tar.gz /tm
 cp ./tubemq-server/target/apache-tubemq-server-${release_version}-bin.tar.gz /tmp/apache-tubemq-${release_version}-${rc_version}/ # 拷贝server包到源码包目录下，方面下一步对包进行签名
 ```
 
-### 3.5 对源码包/二进制包进行签名/sha512/md5
+### 3.5 对源码包/二进制包进行签名/sha512
 ```shell
-for i in *.tar.gz; do echo $i; gpg --print-md MD5 $i > $i.md5 ; done # 计算MD5
 for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i > $i.sha512 ; done # 计算SHA512
 for i in *.tar.gz; do echo $i; gpg --armor --output $i.asc --detach-sig $i ; done # 计算签名
 ```
 
-### 3.6 检查生成的签名/sha512/md5是否正确
+### 3.6 检查生成的签名/sha512是否正确
 具体可以参考：[验证候选版本](how-to-verify.md)
 比如验证签名是否正确如下：
 ```shell
@@ -326,7 +325,7 @@ Hello Apache TubeMQ PPMC and Community,
 
     The VOTE will remain open for at least 72 hours.
 
-    [ ] +1 Release this package as Apache TubeMQ 0.3.0-incubating
+    [ ] +1 Release this package as Apache TubeMQ ${release_version}
     [ ] +0
     [ ] -1 Do not release this package because...
 
@@ -406,7 +405,7 @@ Hello Incubator Community,
     • https://github.com/apache/incubator-tubemq/tree/${release_version}-${rc_version}
 
     Release notes:
-    • https://github.com/apache/incubator-tubemq/releases/tag/${release_version}
+    • https://github.com/apache/incubator-tubemq/releases/tag/${release_version}-${rc_version}
 
     The artifacts signed with PGP key [填写你个人的KEY], corresponding to [填写你个人的邮箱], that can be found in keys file:
     • https://dist.apache.org/repos/dist/dev/incubator/tubemq/KEYS
@@ -455,11 +454,15 @@ On behalf of Apache TubeMQ (Incubating) community
 ### 6.1 合并release-${release_version}分支的改动到master分支
 ### 6.2 将源码和二进制包从svn的dev目录移动到release目录
 ```shell
-svn mv https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/tubemq/${release_version}
+svn mv https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/tubemq/${release_version} -m "Release ${release_version}"
 ```
 ### 6.3 确认dev和release下的包是否正确
 1. 确认[dev](https://dist.apache.org/repos/dist/dev/incubator/tubemq/)下的`${release_version}-${rc_version}`已被删除
 2. 删除[release](https://dist.apache.org/repos/dist/release/incubator/tubemq/)目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/incubator/tubemq/)
+```shell
+svn delete https://dist.apache.org/repos/dist/release/incubator/tubemq/${last_release_version} -m "Delete ${last_release_version}"
+```
+
 ### 6.4 在Apache Staging仓库发布版本
 > 请确保所有的artifact都是ok的
 1. 登录http://repository.apache.org , 使用Apache账号登录
