@@ -79,6 +79,34 @@ The following table summarizes all the errCodes and errMsgs that may return duri
 </tr>
 <tr>
 <td>Client Error</td>
+<td>405</td>
+<td>ALL_PARTITION_FROZEN</td>
+<td>All available partitions are frozen.</td>
+<td>The available partition has been frozen by the client, and it needs to be unfrozen or wait a while and try again.</td>
+</tr>
+<tr>
+<td>Client Error</td>
+<td>406</td>
+<td>NO_PARTITION_ASSIGNED</td>
+<td>The current client is not allocated a partition for consumption.</td>
+<td>The number of clients exceeds the number of partitions, or the server has not performed load balancing operations, so you need to wait and try again.</td>
+</tr>
+<tr>
+<td>Client Error</td>
+<td>407</td>
+<td>ALL_PARTITION_WAITING</td>
+<td>The current available partitions have reached the maximum consumption position.</td>
+<td>Need to wait and try again.</td>
+</tr>
+<tr>
+<td>Client Error</td>
+<td>408</td>
+<td>ALL_PARTITION_INUSE</td>
+<td>Currently available partitions are all used by business but not released.</td>
+<td>Need to wait for the business logic to call the confirm API to release the partition, wait and try again.</td>
+</tr>
+<tr>
+<td>Client Error</td>
 <td>410</td>
 <td>PARTITION_OCCUPIED</td>
 <td>Partition consumption conflicts. Ignore it.</td>
@@ -562,6 +590,24 @@ The following table summarizes all the errCodes and errMsgs that may return duri
 <td>The request offset reached maxOffset</td>
 <td>The request partition has reached the max offset</td>
 <td>Modify the period of waiting for new message in a partition by <code>ConsumerConfig.setMsgNotFoundWaitPeriodMs()</code></td>
+</tr>
+<tr>
+<td>67</td>
+<td>No partition info in local, please wait and try later</td>
+<td>There is no partition information locally, you need to wait and try again</td>
+<td>Possible situations include that the server has not rebalanced, or the number of clients is greater than the number of partitions</td>
+</tr>
+<tr>
+<td>68</td>
+<td>No idle partition to consume, please wait and try later</td>
+<td>There is no free partition for consumption, need to wait and try again</td>
+<td>Need to wait for the business logic to call the confirm API to release the partition, wait and try again</td>
+</tr>
+<tr>
+<td>69</td>
+<td>All partition are frozen to consume, please unfreeze partition(s) or wait</td>
+<td>All partitions are frozen</td>
+<td>It is possible that the business calls the freeze interface to freeze the partitionable consumption, and the business needs to call the unfreeze API to unfreeze</td>
 </tr>
 </tbody>
 </table>

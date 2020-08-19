@@ -19,6 +19,10 @@ title: Error Code - Apache TubeMQ
 | Client Error | 401| UNAUTHORIZED| Unauthorized operation, make sure that the client has permission to perform the operation. | Need to check configuration. ||
 | Client Error | 403| FORBIDDEN | Topic not found or already deleted. |||
 | Client Error | 404| NOT_FOUND | Consumer has reach the max offset of the topic. |||
+| Client Error | 405| ALL_PARTITION_FROZEN | All available partitions are frozen. | The available partition has been frozen by the client, and it needs to be unfrozen or wait a while and try again. ||
+| Client Error | 406| NO_PARTITION_ASSIGNED | The current client is not allocated a partition for consumption. | The number of clients exceeds the number of partitions, or the server has not performed load balancing operations, so you need to wait and try again. ||
+| Client Error | 407| ALL_PARTITION_WAITING | The current available partitions have reached the maximum consumption position. | Need to wait and try again. ||
+| Client Error | 408| ALL_PARTITION_INUSE | Currently available partitions are all used by business but not released. | Need to wait for the business logic to call the confirm API to release the partition, wait and try again. ||
 | Client Error | 410| PARTITION_OCCUPIED| Partition consumption conflicts. Ignore it. | Temporary status of internal registration. ||
 | Client Error | 411| HB_NO_NODE| Node timeout, need to reduce the frequency of the operation and wait a while before retrying. | It usually occurs when the heartbeat sent from client to the server is timeout, try to reduce the operation frequency and wait for a while for the lib to register successfully before retrying the process. ||
 | Client Error | 412| DUPLICATE_PARTITION | Partition consumption conflicts. Ignore it. | Usually caused by node timeout, retry it. ||
@@ -101,6 +105,9 @@ title: Error Code - Apache TubeMQ
 | 64     | Status error: consumer has been shutdown | The consumer has called shutdown and should not continue to call other functions. ||
 | 65     | All partition in waiting, retry later! | All partition in waiting status, retry later. | This erMsg can be ignored, pulling thread will sleep 200-400ms in this case. |
 | 66     | The request offset reached maxOffset | The request partition has reached the max offset | Modify the period of waiting for new message in a partition by `ConsumerConfig.setMsgNotFoundWaitPeriodMs()` |
+| 67     | No partition info in local, please wait and try later | There is no partition information locally, you need to wait and try again | Possible situations include that the server has not rebalanced, or the number of clients is greater than the number of partitions |
+| 68     | No idle partition to consume, please wait and try later | There is no free partition for consumption, need to wait and try again | Need to wait for the business logic to call the confirm API to release the partition, wait and try again |
+| 69     | All partition are frozen to consume, please unfreeze partition(s) or wait | All partitions are frozen | It is possible that the business calls the freeze interface to freeze the partitionable consumption, and the business needs to call the unfreeze API to unfreeze |
 
 If there is error not mentioned above, please do contact us.
 

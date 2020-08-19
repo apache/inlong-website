@@ -77,6 +77,34 @@
 </tr>
 <tr>
 <td>客户端错误</td>
+<td>405</td>
+<td>ALL_PARTITION_FROZEN</td>
+<td>所有可用分区都被冻结</td>
+<td>可用分区已被客户端冻结，需要解冻处理或者等待一段时间再重试</td>
+</tr>
+<tr>
+<td>客户端错误</td>
+<td>406</td>
+<td>NO_PARTITION_ASSIGNED</td>
+<td>当前客户端没有被分配分区进行消费</td>
+<td>客户端个数超过分区个数，或者服务器还没有进行负载均衡操作，需要等待并重试</td>
+</tr>
+<tr>
+<td>客户端错误</td>
+<td>407</td>
+<td>ALL_PARTITION_WAITING</td>
+<td>当前可用分区都达到了最大消费位置</td>
+<td>需要等待再重试</td>
+</tr>
+<tr>
+<td>客户端错误</td>
+<td>408</td>
+<td>ALL_PARTITION_INUSE</td>
+<td>当前可用分区都被业务使用未释放</td>
+<td>需要等待业务逻辑调用confirm接口释放分区，需要等待并再重试</td>
+</tr>
+<tr>
+<td>客户端错误</td>
 <td>410</td>
 <td>PARTITION_OCCUPIED</td>
 <td>分区消费冲突，忽略即可</td>
@@ -560,6 +588,24 @@
 <td>The request offset reached   maxOffset</td>
 <td>请求的分区已经消费到最新位置</td>
 <td>可以通过ConsumerConfig.setMsgNotFoundWaitPeriodMs()设置该情况时分区停止拉取的时间段来等待最新消息的到来</td>
+</tr>
+<tr>
+<td>67</td>
+<td>No partition info in local, please wait and try later</td>
+<td>本地没有分区信息，需要等待并重试</td>
+<td>可能情况包括服务器还没有进行rebalance，或者客户端个数大于了分区个数</td>
+</tr>
+<tr>
+<td>68</td>
+<td>No idle partition to consume, please wait and try later</td>
+<td>没有空闲分区进行消费，需要等待并重试</td>
+<td>可能情况业务占用了分区还没有释放，需要等待业务confirm消费后才能获取到空闲分区</td>
+</tr>
+<tr>
+<td>69</td>
+<td>All partition are frozen to consume, please unfreeze partition(s) or wait</td>
+<td>所有分区都被冻结</td>
+<td>可能情况业务调用freeze接口冻结可分区消费，需要业务调用unfreeze接口进行解冻处理</td>
 </tr>
 </tbody>
 </table>
