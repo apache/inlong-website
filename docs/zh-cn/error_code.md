@@ -17,6 +17,10 @@ title: 错误码 - Apache TubeMQ
 | 客户端错误| 401          | UNAUTHORIZED                      | 未授权的操作，确认客户端有权限进行该项操作                   | 需要检查配置，同时与管理员确认原因                           |                                                |
 | 客户端错误| 403          | FORBIDDEN                         | 操作的Topic不存在，或者已删除                                | 需要与管理员确认具体问题原因                                 |                                                |
 | 客户端错误| 404          | NOT_FOUND                         | 消费offset已经达到最大位置                                   |                                                              |                                                |
+| 客户端错误| 405          | ALL_PARTITION_FROZEN              | 所有可用分区都被冻结                                   |  可用分区已被客户端冻结，需要解冻处理或者等待一段时间再重试                                                |                                                |
+| 客户端错误| 406          | NO_PARTITION_ASSIGNED              | 当前客户端没有被分配分区进行消费                      |  客户端个数超过分区个数，或者服务器还没有进行负载均衡操作，需要等待并重试                            |                                                |
+| 客户端错误| 407          | ALL_PARTITION_WAITING              | 当前可用分区都达到了最大消费位置                      |  需要等待再重试                            |                                                |
+| 客户端错误| 408          | ALL_PARTITION_INUSE                | 当前可用分区都被业务使用未释放                        |  需要等待业务逻辑调用confirm接口释放分区，需要等待并再重试                            |                                                |
 | 客户端错误| 410          | PARTITION_OCCUPIED                | 分区消费冲突，忽略即可                                       | 内部注册的临时状态，业务接口一般不会遇到该报错               |                                                |
 | 客户端错误| 411          | HB_NO_NODE                        | 节点超时，需要降低操作等待一阵后再重试处理                   | 一般出现在客户端在服务器侧心跳超时，这个时候需要降低操作频率，等待一阵待lib注册成功后再重试处理 |                                                |
 | 客户端错误| 412          | DUPLICATE_PARTITION               | 分区消费冲突，忽略即可                                       | 一般是由于节点超时引起，重试即可                             |                                                |
@@ -99,6 +103,9 @@ title: 错误码 - Apache TubeMQ
 | 64     | Status error: consumer has been   shutdown                   | 消费者已调用shutdown，不应该继续调用其它函数进行业务处理     |                                                              |
 | 65     | All partition in waiting, retry   later!                      | 所有分区都在等待,请稍候                                      | 该错误信息可以不做打印,遇到该情况时拉取县城sleep 200 ~   400ms |
 | 66     | The request offset reached   maxOffset                       | 请求的分区已经消费到最新位置                                 | 可以通过ConsumerConfig.setMsgNotFoundWaitPeriodMs()设置该情况时分区停止拉取的时间段来等待最新消息的到来 |
+| 67     | No partition info in local, please wait and try later                       | 本地没有分区信息，需要等待并重试                                 | 可能情况包括服务器还没有进行rebalance，或者客户端个数大于了分区个数 |
+| 68     | No idle partition to consume, please wait and try later                     | 没有空闲分区进行消费，需要等待并重试                                 | 可能情况业务占用了分区还没有释放，需要等待业务confirm消费后才能获取到空闲分区 |
+| 69     | All partition are frozen to consume, please unfreeze partition(s) or wait                    | 所有分区都被冻结                                 | 可能情况业务调用freeze接口冻结可分区消费，需要业务调用unfreeze接口进行解冻处理 |
 
 ---
 <a href="#top">Back to top</a>
