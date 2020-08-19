@@ -2,165 +2,157 @@
 title: Deployment - Apache TubeMQ
 ---
 
-# TubeMQ编译、部署及简单使用：
+# Compile, Deploy and Examples of TubeMQ ：
 
-## 工程编译打包：
+## Compile and Package Project：
 
-进入工程根目录,执行命令：
+Enter the root directory of project and run:
 
 ```
 mvn clean package -Dmaven.test.skip
 ```
 
-例如将TubeMQ源码包放在E盘根目录，按照如下方式执行上述命令，当各个子目录都编译成功时工程编译完成：
+e.g. We put the TubeMQ project package at `E:/`, then run the above command. Compilation is complete when all subdirectories are compiled successfully.
 
 ![](img/sysdeployment/sys_compile.png)
 
-大家也可以进入各个子目录进行单独编译，编译过程与普通的工程编译处理过程一致。
+We can also run individual compilation in each subdirectory. Steps are the same as the whole project's compilation.
 
-**部署服务端：**
+**Server Deployment**
 
-如上例子，进入E:\GIT\TubeMQ\tubemq-server\target目录，服务侧的相关内容如下，其中tubemq-server-3.8.0-bin.tar.gz为完整的服务端安装包，里面包括执行脚本，配置文件，依赖包，以及前端的源码；tubemq-server-3.8.0.jar为服务端处理逻辑包，包含于完整工程安装包的lib里，单独提出是考虑到日常变更升级时改动点多在服务器处理逻辑上，升级的时候只需要单独替换该jar包即可：
+As example above, entry directory `E:\GIT\TubeMQ\tubemq-server\target`, we can see several JARs. `tubemq-server-3.8.0-bin.tar.gz` is the complete server-side installation package， including execution scripts, configuration files, dependencies, and frontend source code. `tubemq-server-3.8.0.jar` is a server-side processing package included in `lib` of the complete project installer. Consider to daily changes and upgrades are most made to server side, we place this jar separately so that we just need to replace this jar during upgrade.
+
 
 ![](img/sysdeployment/sys_package.png)
 
-这里我们是全新安装，将上述完整的工程安装包部署到待安装机器上，我们这里是放置在/data/tubemq目录下：
+Here we have a complete package deployed onto server and we place it in `/data/tubemq`
 
 ![](img/sysdeployment/sys_package_list.png)
 
 
-**配置系统：**
+**Configuration System**
 
-服务包里打包了3种角色：Master、Broker、Tools，业务使用时可以将Master和Broker放置在一起，也可以单独分开不同机器放置，依照业务对机器的规划进行处理。我们通过如下4台机器搭建一个完整的有2台Master的生产、消费环境：
+There are 3 roles in server package: Master, Broker and Tools. Master and Broker can be deployed on the same or different machine. It depends on the bussiness layouts. As example below, we have 3 machine to startup a complete production and consumption cluster with 2 Masters.
 
-| 机器 | 所属角色 | 端口设置 | 备注 |
-| --- | --- | --- | --- |
-| TCP端口 | TLS端口 | WEB端口 |
-| 10.224.148.145 | **Master** | 8099 | 8199 | 8080 | 元数据存储在/stage/metadata |
-| Broker | 8123 | 8124 | 8081 | 消息存储在/stage/msgdata |
-| ZK | 2181 |
- |
- | Offset存储于根目录/tubemq |
-| 100.115.158.208 | Master | 8099 | 8199 | 8080 | 元数据存储在/stage/metadata |
-| Broker | 8123 | 8124 | 8081 | 消息存储在/stage/ msgdata |
-| 10.224.155.80 | Producer |
- |
- |
- |
- |
-| Consumer |
- |
- |
- |
- |
+| Machine | Role | TCP Port | TLS Port | WEB Port | Note |
+| --- | --- | --- | --- | --- | --- |
+| 10.224.148.145 | **Master** | 8099 | 8199 | 8080 | Metadata stored at `/stage/metadata` |
+| | Broker | 8123 | 8124 | 8081 | Message stored at`/stage/msgdata` |
+| | ZK | 2181 | | | Offset stored at root directory`/tubemq` |
+| 100.115.158.208 | **Master** | 8099 | 8199 | 8080 | Metadata stored at `/stage/metadata` |
+| | Broker | 8123 | 8124 | 8081 | Message stored at`/stage/msgdata` |
+| 10.224.155.80 | Producer ||||
+| | Consumer ||||
+|
 
-部署Master时需要注意：
+Something should be noticed during deploying Master:
 
-1. 部署Master的机器，Master集群可以部署1台、2台或者3台：如果要保证高可靠建议3台（任意坏1台Master对外仍然可读写配置及接入新的生产或者消费），如果只需要保证一般情况2台（任意坏1台Master对外仍然可读配置及已接入的生产和消费不受影响），最低1台（坏1台Master对外配置不可读写及已接入的生产和消费不受影响）；
-2. 在完成Master的规划后，对于配置Master的机器，需要将Master所在机器加入时间同步，同时Master各个机器的IP要在各个Master机器的/etc/hosts配置里进行设置，如：
+1. Master cluster can be deployed in 1, 2 or 3 machines. 3 machines is suggested if HA is necessary so that reading/writing configuration and access to new production/consumption is still available when one of them is shutdown. In common situation, 2 machines provide readable configuration and proper state of production/consumption already registered when one is shutdown. The minimum is 1 and it provides proper state of production/consumption already registered when is shutdown.
+2. For machines with Master Role, we should promise clock synchronization. At the same time, IP address of each Master machine should be set in `/etc/hosts` on each Master machine.
 
 ![](img/sysdeployment/sys_address_host.png)
 
-以10.224.148.145和100.115.158.208为例，我们部署了Master和Broker两种角色，需要在/conf/master.ini，/resources/velocity.properties，/conf/broker.ini里进行如下配置，首先是10.224.148.145的配置：
+Take `10.224.148.145` and `100.115.158.208` as examples, if we want to deploy both Master and Broker role on them, we need to configure in `/conf/master.ini`, `/resources/velocity.properties` and `/conf/broker.ini`. First set up the configuration of `10.224.148.145`,
 
 ![](img/sysdeployment/sys_configure_1.png)
 
-然后是配置100.115.158.208：
+then it is `100.115.158.208`.
 
 ![](img/sysdeployment/sys_configure_2.png)
 
-要注意的是右上角的配置为Master的Web前台配置信息，需要根据Master的安装路径修改/resources/velocity.properties里的file.resource.loader.path信息。
+Note that the upper right corner is configured with Master's web frontend configuration and configuration `file.resource.loader.path` in `/resources/velocity.properties` need to be modified according to the Master's installation path.
 
-**启动Master**：
+**Start up Master**：
 
-完成如上配置设置后，首先进入主备Master所在的TubeMQ环境的bin目录，进行服务启动操作：
+After configuration, entry directory `bin` of Master environment and start up master.
 
 ![](img/sysdeployment/sys_master_start.png)
 
-我们首先启动10.224.148.145，然后启动100.115.158.208上的Master，如下打印可以表示主备Master都已启动成功并开启了对外服务端口：
+We First start up `10.224.148.145`, and then start up Master on `100.115.158.208`. The following messages indicate that the master and backup master have been successfully started up and the external service ports are reachable.
 
 ![](img/sysdeployment/sys_master_startted.png)
 
-访问Master的管控台([http://100.115.158.208:8080/config/topic\_list.htm](http://100.115.158.208:8080/config/topic_list.htm))，页面可查则表示master已成功启动：
+Visiting Master's Administrator panel([http://100.115.158.208:8080/config/topic\_list.htm](http://100.115.158.208:8080/config/topic_list.htm)), search operation working well indicates that master has been successfully started up.
 
 ![](img/sysdeployment/sys_master_console.png)
 
-**启动Broker**：
+**Start up Broker**：
 
-启动Broker和启动master有些差别：Master负责管理整个TubeMQ集群，包括Broker节点运行管理以及节点上部署的Topic配置管理，还有生产和消费管理等，因此，实体的Broker启动前，首先要在Master上配置Broker元数据，增加Broker相关的管理信息，如下图示：
+Starting up Broker is a little bit different to starting Master: Master is responsible for managing the entire TubeMQ cluster, including Broker node with Topic configuration on them, production and consumption managament. So we need to add metadata on Master before starting up Broker.
 
 ![](img/sysdeployment/sys_broker_configure.png)
 
-点击确认后形成一个草稿的Broker记录：
+Confirm and create a draft record of Broker.
 
 ![](img/sysdeployment/sys_broker_online.png)
 
-我们对该broker节点进行启动操作：
+We try to start up the Broker.
 
 ![](img/sysdeployment/sys_broker_start.png)
 
-结果发现报错信息：
+But we got an error message.
 
 ![](img/sysdeployment/sys_broker_start_error.png)
 
-因为该broker目前还处在草稿状态Broker信息没有正式生效，我们回到Master管控台进行上线生效操作：
+Because the broker record is currently in draft status and it is not available now. Let's go back to Master Administrator panel and publish.
 
 ![](img/sysdeployment/sys_broker_online_2.png)
 
-Master上所有的变更操作在点击确认的时候，都会弹出如上输入框，要求输入操作授权码。该信息由运维通过Master的配置文件master.ini的confModAuthToken字段进行定义：如果你知道这个集群的密码，你就可以进行该项操作，比如你是管理员，你是授权人员，或者你能登陆这个master的机器拿到这个密码，都认为你是有权操作该项功能：
+Every changing operation need to text in an Authorization Code when submited to Master. Authorization Code is defined by `confModAuthToken` in `master.ini`. If you have the Code of this cluster, we consider you as administrator and you have permission to operate the modification.
 
 ![](img/sysdeployment/sys_broker_deploy.png)
 
 
-然后我们再重启Broker：
+Then we restart the Broker.
 
 ![](img/sysdeployment/sys_broker_restart_1.png)
 
 ![](img/sysdeployment/sys_broker_restart_2.png)
 
-查看Master管控台，broker已经注册成功：
+Check the Master Control Panel, broker has successfully registered.
 
 ![](img/sysdeployment/sys_broker_finished.png)
 
 
-**配置及生效Topic**：
+**Topic Configuration and Activation**：
 
-配置Topic和配置Broker信息类似，都需要先在Master上新增元数据信息，然后才能开始使用，要不生产和消费时候会报topic不存在错误，如我们用安装包里的example对不存在的Topic名test进行生产：
+Configuration of Topic is similar with Broker's, we should add metadata on Master before using them, otherwise it will report an Not Found Error during production/consumption. For example, if we try to consum a non-existent topic `test`,
 ```
 /usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
 ```
 
-Demo实例会报如下错误信息：
+Demo returns error message.
 
 ![](img/sysdeployment/sys_topic_error.png)
 
-我们在Master管控台的Topic列表上加入该Topic先：
+First we add a topic in topic list page in Master Control Panel.
 
 ![](img/sysdeployment/sys_topic_create.png)
 
 ![](img/sysdeployment/sys_topic_select.png)
 
-点击确认后会有一个选择部署该新增Topic的Broker列表，选择部署范围后进行确认操作；在完成新增Topic的操作后，我们还需要对刚进行变更的配置对Broker进行重载操作，如下图示：
+Choose publish scope and confirm after submit topic detail. After adding a new topic, we need to overload the topic.
 
 ![](img/sysdeployment/sys_topic_deploy.png)
 
-重载完成后Topic才能对外使用，我们会发现如下配置变更部分在重启完成后已改变状态：
+Topic is available after overload. We can see some status of topic has changed after overload.
 
 ![](img/sysdeployment/sys_topic_finished.png)
 
 
-**大家需要注意的是：** 我们在重载的时候，要对待重载的Broker集合分批次进行。我们的重载通过状态机进行控制，会先进行不可读写—〉只读操作—〉可读写—〉上线运行各个子状态处理，如果所有待重启Broker全量重载，会使得已在线对外服务的Topic对外出现短暂的不可读写状况，使得生产、消费，特别是生产发送失败。
+**Note** When we are executing overload opertaion, we should make it in batches. Overload operations are controlled by state machines. It would become unwritable and un readale, read-only, readable and writable in order before published. Waiting for overloads on all brokers make topic temporary unreadable and unwritable, which result in production and consumption failure, especially production failure.
 
-**数据生产和消费**：
+**Message Production and Consumption**：
 
-在安装包里，我们打包了example的测试Demo，业务也可以直接使用tubemq-client-3.8.0.jar封装自己的生产和消费逻辑，总的形式是类似，我们先执行生产者的Demo，我们可以看到Broker上已开始有数据接收：
+We pack Demo for test in package or `tubemq-client-3.8.0.jar` can be used for implementing your own production and consumption.
+We run Producer Demo in below script and we can see data accepted on Broker.
 ```
-	/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
+/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
 ```
 
 ![](img/sysdeployment/sys_node_status.png)
 
-我们再执行消费Demo，我们也可以看到消费也正常：
+Then we run the Consumption Demo and we can see that consumption is also working properly.
 ```
  /usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageConsumerExample 10.224.148.145 10.224.148.145:8000,100.115.158.208:8000 test testGroup 3 1 1 
 
@@ -168,8 +160,9 @@ Demo实例会报如下错误信息：
 
 ![](img/sysdeployment/sys_node_status_2.png)
 
-在Broker的生产和消费指标日志里，相关数据已经存在：
+As we can see, files relative to broker's production and consumption already exist.
 
 ![](img/sysdeployment/sys_node_log.png)
 
-在这里，已经完成了TubeMQ的编译，部署，系统配置，启动，生产和消费。如果需要了解更深入的内容，就需要查看《TubeMQ HTTP API》里的相关内容，进行相应的配置设置。
+Here, the compilation, deployment, system configuration, startup, production and consumption of TubeMQ has been completed!
+If you need to get further, please refer to "TubeMQ HTTP API" and make your appropriate configuration settings.
