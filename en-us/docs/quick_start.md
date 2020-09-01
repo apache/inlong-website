@@ -23,7 +23,7 @@ mvn test
 - Build Individual Module：
 ```bash
 mvn clean install
-cd module-name (比如: tubemq-client)
+cd module-name (e.g. tubemq-client)
 mvn test
 ```
 After the build, please go to `tubemq-server/target`. You can find the
