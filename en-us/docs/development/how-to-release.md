@@ -133,10 +133,10 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/t
 
 ```shell
 ➜  ~ svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq /tmp/tubemq-dist-dev
-# 这个步骤比较慢，会把所有版本都拷贝下来，如果网断了，用svn cleanup删掉锁，重新执行一下，会断点续传
+# 这个步骤比较慢，会把所有版本都考下来，如果网断了，用svn cleanup删掉锁，重新执行一下，会断点续传
 ➜  ~ cd tubemq-dist-dev
 ➜  tubemq-dist-dev ~ (gpg --list-sigs YOUR_NAME@apache.org && gpg --export --armor YOUR_NAME@apache.org) >> KEYS # 追加你生成的KEY到文件KEYS中, 追加后最好检查一下是否正确
-➜  tubemq-dist-dev ~ svn add .	# 如果之前存在KEYS文件，则不需要
+➜  tubemq-dist-dev ~ svn add .
 ➜  tubemq-dist-dev ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
 ```
 
@@ -145,8 +145,8 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/t
 ```shell
 ➜  ~ svn co https://dist.apache.org/repos/dist/release/incubator/tubemq /tmp/tubemq-dist-release
 ➜  ~ cd tubemq-dist-release
-➜  tubemq-dist-release ~ (gpg --list-sigs YOUR_NAME@apache.org && gpg --export --armor YOUR_NAME@apache.org) >> KEYS	# 追加你生成的KEY到文件KEYS中, 追加后最好检查一下是否正确
-➜  tubemq-dist-release ~ svn add .	# 如果之前存在KEYS文件，则不需要
+➜  tubemq-dist-release ~ (gpg --list-sigs YOUR_NAME@apache.org && gpg --export --armor YOUR_NAME@apache.org) >> KEYS
+➜  tubemq-dist-release ~ svn add .
 ➜  tubemq-dist-release ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
 ```
 
@@ -194,28 +194,17 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/t
 ## 3. 编译打包
 ### 3.1 准备分支
   - 从主干分支拉取新分支作为发布分支，release-${release_version}
-
   - 更新`CHANGES.md`
-
   - 检查代码是否正常，包括编译成功、单元测试全部成功，RAT检查成功等等
-
-    ```shell
-    # build检查
-    $ mvn clean package -Dmaven.javadoc.skip=true
-    # RAT检查
-    $ mvn apache-rat:check
-    ```
-
   - 更改版本号
+
 
 ### 3.2 创建tag
 > 创建tag前，要确保代码已经检查无误，包括：编译成功、单元测试全部成功，RAT检查成功等
 
 **创建一个带签名的tag**
 ```shell
-$ git tag -s ${release_version}-${rc_version} -m "Tagging the ${release_version} first Releae Candidate (Candidates start at zero)"
-# 如果遇到错误 gpg: signing failed: secret key not available，先配置下私钥
-$ git config user.signingkey ${KEY_ID}
+git tag -s ${release_version}-${rc_version} -m "Tagging the ${release_version} first Releae Candidate (Candidates start at zero)"
 ```
 ### 3.3 打包源码
 
@@ -287,7 +276,7 @@ svn commit -m 'prepare for ${release_version} ${rc_version}'# 提交至svn远程
 ```
 ### 4.4 关闭Apache Staging仓库
 > 请确保所有的artifact都是ok的
-1. **先登录**http://repository.apache.org , 使用Apache账号登录
+1. 登录http://repository.apache.org , 使用Apache账号登录
 2. 点击左侧的Staging repositories，
 3. 搜索TubeMQ关键字，选择你最近上传的仓库
 4. 点击上方的Close按钮，这个过程会进行一系列检查
