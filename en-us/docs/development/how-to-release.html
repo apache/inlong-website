@@ -126,17 +126,17 @@ sub   rsa4096 2020-05-18 [E]
 <p>Release分支的SVN库是 <a href="https://dist.apache.org/repos/dist/release/incubator/tubemq">https://dist.apache.org/repos/dist/release/incubator/tubemq</a></p>
 <h4>1.5.1 在dev分支中添加公钥到KEYS，用于发布RC版本</h4>
 <pre><code class="language-shell">➜  ~ svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq /tmp/tubemq-dist-dev
-<span class="hljs-meta">#</span><span class="bash"> 这个步骤比较慢，会把所有版本都考下来，如果网断了，用svn cleanup删掉锁，重新执行一下，会断点续传</span>
+<span class="hljs-meta">#</span><span class="bash"> 这个步骤比较慢，会把所有版本都拷贝下来，如果网断了，用svn cleanup删掉锁，重新执行一下，会断点续传</span>
 ➜  ~ cd tubemq-dist-dev
 ➜  tubemq-dist-dev ~ (gpg --list-sigs YOUR_NAME@apache.org &amp;&amp; gpg --export --armor YOUR_NAME@apache.org) &gt;&gt; KEYS # 追加你生成的KEY到文件KEYS中, 追加后最好检查一下是否正确
-➜  tubemq-dist-dev ~ svn add .
+➜  tubemq-dist-dev ~ svn add .	# 如果之前存在KEYS文件，则不需要
 ➜  tubemq-dist-dev ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
 </code></pre>
 <h4>1.5.2 在release分支中添加公钥到KEYS，用于发布正式版本</h4>
 <pre><code class="language-shell">➜  ~ svn co https://dist.apache.org/repos/dist/release/incubator/tubemq /tmp/tubemq-dist-release
 ➜  ~ cd tubemq-dist-release
-➜  tubemq-dist-release ~ (gpg --list-sigs YOUR_NAME@apache.org &amp;&amp; gpg --export --armor YOUR_NAME@apache.org) &gt;&gt; KEYS
-➜  tubemq-dist-release ~ svn add .
+➜  tubemq-dist-release ~ (gpg --list-sigs YOUR_NAME@apache.org &amp;&amp; gpg --export --armor YOUR_NAME@apache.org) &gt;&gt; KEYS	# 追加你生成的KEY到文件KEYS中, 追加后最好检查一下是否正确
+➜  tubemq-dist-release ~ svn add .	# 如果之前存在KEYS文件，则不需要
 ➜  tubemq-dist-release ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
 </code></pre>
 <h3>1.6 上传GPG公钥到Github账户</h3>
@@ -179,17 +179,32 @@ sub   rsa4096 2020-05-18 [E]
 <h2>3. 编译打包</h2>
 <h3>3.1 准备分支</h3>
 <ul>
-<li>从主干分支拉取新分支作为发布分支，release-${release_version}</li>
-<li>更新<code>CHANGES.md</code></li>
-<li>检查代码是否正常，包括编译成功、单元测试全部成功，RAT检查成功等等</li>
-<li>更改版本号</li>
+<li>
+<p>从主干分支拉取新分支作为发布分支，release-${release_version}</p>
+</li>
+<li>
+<p>更新<code>CHANGES.md</code></p>
+</li>
+<li>
+<p>检查代码是否正常，包括编译成功、单元测试全部成功，RAT检查成功等等</p>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> build检查</span>
+<span class="hljs-meta">$</span><span class="bash"> mvn clean package -Dmaven.javadoc.skip=<span class="hljs-literal">true</span></span>
+<span class="hljs-meta">#</span><span class="bash"> RAT检查</span>
+<span class="hljs-meta">$</span><span class="bash"> mvn apache-rat:check</span>
+</code></pre>
+</li>
+<li>
+<p>更改版本号</p>
+</li>
 </ul>
 <h3>3.2 创建tag</h3>
 <blockquote>
 <p>创建tag前，要确保代码已经检查无误，包括：编译成功、单元测试全部成功，RAT检查成功等</p>
 </blockquote>
 <p><strong>创建一个带签名的tag</strong></p>
-<pre><code class="language-shell">git tag -s ${release_version}-${rc_version} -m "Tagging the ${release_version} first Releae Candidate (Candidates start at zero)"
+<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> git tag -s <span class="hljs-variable">${release_version}</span>-<span class="hljs-variable">${rc_version}</span> -m <span class="hljs-string">"Tagging the <span class="hljs-variable">${release_version}</span> first Releae Candidate (Candidates start at zero)"</span></span>
+<span class="hljs-meta">#</span><span class="bash"> 如果遇到错误 gpg: signing failed: secret key not available，先配置下私钥</span>
+<span class="hljs-meta">$</span><span class="bash"> git config user.signingkey <span class="hljs-variable">${KEY_ID}</span></span>
 </code></pre>
 <h3>3.3 打包源码</h3>
 <blockquote>
@@ -251,7 +266,7 @@ svn commit -m 'prepare for ${release_version} ${rc_version}'# 提交至svn远程
 <p>请确保所有的artifact都是ok的</p>
 </blockquote>
 <ol>
-<li>登录http://repository.apache.org , 使用Apache账号登录</li>
+<li><strong>先登录</strong><a href="http://repository.apache.org">http://repository.apache.org</a> , 使用Apache账号登录</li>
 <li>点击左侧的Staging repositories，</li>
 <li>搜索TubeMQ关键字，选择你最近上传的仓库</li>
 <li>点击上方的Close按钮，这个过程会进行一系列检查</li>
