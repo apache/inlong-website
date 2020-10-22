@@ -88,7 +88,7 @@ title: Console Introduction - Apache TubeMQ
 | unflushInterval     | 最大允许的待刷新的间隔                | int      | 最大允许的未flush间隔时间，毫秒，默认10000，缺省为broker的对应字段缺省配置 |
 | numTopicStores      | 允许建立Topic数据块和分区管理组的个数 | int      | 缺省为1个,如果大于1则分区和topic对列按照该值倍乘关系         |
 | memCacheMsgCntInK   | 缺省最大内存缓存包量                  | int      | 内存最大允许缓存的消息包总条数，单位为千条，缺省为10K，最少允许1K |
-| memCacheMsgSizeInMB | 缺省内存缓存包总的Size大小            | int      | 内存最大允许缓存的消息包size总大小，单位为MB，缺省为2M，最小需要为2M |
+| memCacheMsgSizeInMB | 缺省内存缓存包总的Size大小            | int      | 内存最大允许缓存的消息包size总大小，单位为MB，缺省为3M，最小需要为2M |
 | memCacheFlushIntvl  | 内存缓存最大允许的待刷新间隔          | int      | 内存最大允许未flush时间间隔，毫秒，默认20000ms,最小4000ms    |
 | acceptPublish       | topic是否接收发布请求                 | boolean  | 缺省为true，取值范围[true，false]                            |
 | acceptSubscribe     | topic是否接收订阅请求                 | boolean  | 缺省为true，取值范围[true，false]                            |
