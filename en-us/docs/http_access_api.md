@@ -179,7 +179,7 @@ __Request__
 |numTopicStores|no|the number of data block and partition group allowed to create, default 1. If it is larger than 1, the partition number and topic number should be mapping with this value|Int|
 |unflushInterval|no|the maximum interval for unflush, default 1000ms|Int|
 |memCacheMsgCntInK|no|the max cached message package, default is 10, the unit is K|Int|
-|memCacheMsgSizeInMB|no|the max cache message size in MB, default 2|Int|
+|memCacheMsgSizeInMB|no|the max cache message size in MB, default 3|Int|
 |memCacheFlushIntvl|no|the max unflush interval in ms, default 20000|Int|
 |brokerTLSPort|no|the port of TLS of the broker, it has no default value|Int|
 |acceptPublish|no|whether the broker accept publish, default true|Boolean|
@@ -221,7 +221,7 @@ __Request__
 |numTopicStores|no|the number of data block and partition group allowed to create, default 1. If it is larger than 1, the partition number and topic number should be mapping with this value|Int|
 |unflushInterval|no|the maximum interval for unflush, default 1000ms|Int|
 |memCacheMsgCntInK|no|the max cached message package, default is 10, the unit is K|Int|
-|memCacheMsgSizeInMB|no|the max cache message size in MB, default 2|Int|
+|memCacheMsgSizeInMB|no|the max cache message size in MB, default 3|Int|
 |memCacheFlushIntvl|no|the max unflush interval in ms, default 20000|Int|
 |brokerTLSPort|no|the port of TLS of the broker, it has no default value|Int|
 |acceptPublish|no|whether the broker accept publish, default true|Boolean|
@@ -247,7 +247,7 @@ __Request__
 |numTopicStores|no|the number of data block and partition group allowed to create, default 1. If it is larger than 1, the partition number and topic number should be mapping with this value|Int|
 |unflushInterval|no|the maximum interval for unflush, default 1000ms|Int|
 |memCacheMsgCntInK|no|the max cached message package, default is 10, the unit is K|Int|
-|memCacheMsgSizeInMB|no|the max cache message size in MB, default 2|Int|
+|memCacheMsgSizeInMB|no|the max cache message size in MB, default 3|Int|
 |memCacheFlushIntvl|no|the max unflush interval in ms, default 20000|Int|
 |brokerTLSPort|no|the port of TLS of the broker, it has no default value|Int|
 |acceptPublish|no|whether the broker accept publish, default true|Boolean|
@@ -288,7 +288,7 @@ __Request__
 |numTopicStores|no|the number of data block and partition group allowed to create, default 1. If it is larger than 1, the partition number and topic number should be mapping with this value|Int|
 |unflushInterval|no|the maximum interval for unflush, default 1000ms|Int|
 |memCacheMsgCntInK|no|the max cached message package, default is 10, the unit is K|Int|
-|memCacheMsgSizeInMB|no|the max cache message size in MB, default 2|Int|
+|memCacheMsgSizeInMB|no|the max cache message size in MB, default 3|Int|
 |memCacheFlushIntvl|no|the max unflush interval in ms, default 20000|Int|
 |brokerTLSPort|no|the port of TLS of the broker, it has no default value|Int|
 |acceptPublish|no|whether the broker accept publish, default true|Boolean|
@@ -315,7 +315,7 @@ __Request__
 |numTopicStores|no|the number of data block and partition group allowed to create, default 1. If it is larger than 1, the partition number and topic number should be mapping with this value|Int|
 |unflushInterval|no|the maximum interval for unflush, default 1000ms|Int|
 |memCacheMsgCntInK|no|the max cached message package, default is 10, the unit is K|Int|
-|memCacheMsgSizeInMB|no|the max cache message size in MB, default 2|Int|
+|memCacheMsgSizeInMB|no|the max cache message size in MB, default 3|Int|
 |memCacheFlushIntvl|no|the max unflush interval in ms, default 20000|Int|
 |brokerTLSPort|no|the port of TLS of the broker, it has no default value|Int|
 |acceptPublish|no|whether the broker accept publish, default true|Boolean|
@@ -341,7 +341,7 @@ __Request__
 |numTopicStores|no|the number of data block and partition group allowed to create, default 1. If it is larger than 1, the partition number and topic number should be mapping with this value|Int|
 |unflushInterval|no|the maximum interval for unflush, default 1000ms|Int|
 |memCacheMsgCntInK|no|the max cached message package, default is 10, the unit is K|Int|
-|memCacheMsgSizeInMB|no|the max cache message size in MB, default 2|Int|
+|memCacheMsgSizeInMB|no|the max cache message size in MB, default 3|Int|
 |memCacheFlushIntvl|no|the max unflush interval in ms, default 20000|Int|
 |brokerTLSPort|no|the port of TLS of the broker, it has no default value|Int|
 |acceptPublish|no|whether the broker accept publish, default true|Boolean|
