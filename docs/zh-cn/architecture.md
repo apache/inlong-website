@@ -12,7 +12,7 @@ title: 架构介绍 - Apache TubeMQ
 
 - **Broker**： 负责实际数据存储的Store部分，该部分由相互之间独立的Broker节点组成，每个Broker节点对本节点内的Topic集合进行管理，包括Topic的增、删、改、查，Topic内的消息存储、消费、老化、分区扩容、数据消费的offset记录等，集群对外能力，包括Topic数目、吞吐量、容量等，通过水平扩展Broker节点来完成；
 
-- **Client**： 负责数据生产和消费的Client部分，该部分我们以Lib形式对外提供，大家用得最多的是消费端，相比之前，消费端现支持Push、Pull两种数据拉取模式，数据消费行为支持顺序和过滤消费两种。对于Pull消费模式，支持业务通过客户端重置精确offset以支持业务extractly-once消费，同时，消费端新推出跨集群切换免重启的BidConsumer客户端；
+- **Client**： 负责数据生产和消费的Client部分，该部分我们以Lib形式对外提供，大家用得最多的是消费端，相比之前，消费端现支持Push、Pull两种数据拉取模式，数据消费行为支持顺序和过滤消费两种。对于Pull消费模式，支持业务通过客户端重置精确offset以支持业务exactly-once消费，同时，消费端新推出跨集群切换免重启的BidConsumer客户端；
 
 - **Zookeeper**： 负责offset存储的zk部分，该部分功能已弱化到仅做offset的持久化存储，考虑到接下来的多节点副本功能该模块暂时保留。- **Zookeeper：** Responsible for the zk part of the offset storage. This part of the function has been weakened to only the persistent storage of the offset. Considering the next multi-node copy function, this module is temporarily reserved;
 
@@ -76,7 +76,7 @@ TubeMQ采用连接复用模式，减少连接资源消耗；通过逻辑分区�
 
 - **数据消费行为支持顺序和过滤消费：** 在TubeMQ设计初我们考虑是不同业务使用不同的Topic，实际运营中我们发现不少业务实际上是通过代理模式上报的数据，数据通过Topic下的文件ID或者表ID属性来区分，业务为了消费自己的一份数据是需要全量消费该Topic下的所有数据。我们通过tid字段支持指定属性的过滤消费模式，将数据过滤放到服务端来做，减少出流量以及客户端的数据处理压力。
 
-- **支持业务extractly-once消费：** 为了解决业务处理数据时需要精确回档的需求，在客户端版本里提供了通过客户端重置精确offset功能，业务重启系统时，只需通过客户端提供待回拨时间点的消费上下文，TubeMQ即可按照指定的精确位置接续消费。该特性目前已在Flink这类实时计算框架使用，依托Flink基于checkpoint机制进行extractly-once数据处理。
+- **支持业务exactly-once消费：** 为了解决业务处理数据时需要精确回档的需求，在客户端版本里提供了通过客户端重置精确offset功能，业务重启系统时，只需通过客户端提供待回拨时间点的消费上下文，TubeMQ即可按照指定的精确位置接续消费。该特性目前已在Flink这类实时计算框架使用，依托Flink基于checkpoint机制进行exactly-once数据处理。
 
 
 ---
