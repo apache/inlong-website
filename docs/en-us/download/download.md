@@ -3,7 +3,16 @@ title: Download - Apache TubeMQ
 ---
 
 ## Download links
-  Use the links below to download the Apache TubeMQ Releases, the latest release is 0.6.0.
+  Use the links below to download the Apache TubeMQ Releases, the latest release is 0.7.0.
+
+
+## 0.7.0 release
+
+ - Released: December 4th, 2020
+ - [Release Notes](release-0.7.0.md)
+ - Source: [tubemq-0.7.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/tubemq/0.7.0-incubating/apache-tubemq-0.7.0-incubating-src.tar.gz)              [[PGP](https://downloads.apache.org/incubator/tubemq/0.7.0-incubating/apache-tubemq-0.7.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/tubemq/0.7.0-incubating/apache-tubemq-0.7.0-incubating-src.tar.gz.sha512)]
+ - Client: [tubemq-client-0.7.0-incubating-bin.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/tubemq/0.7.0-incubating/apache-tubemq-client-0.7.0-incubating-bin.tar.gz)       [[PGP](https://downloads.apache.org/incubator/tubemq/0.7.0-incubating/apache-tubemq-client-0.7.0-incubating-bin.tar.gz.asc)] [[SHA512](https://downloads.apache.org/incubator/tubemq/0.7.0-incubating/apache-tubemq-client-0.7.0-incubating-bin.tar.gz.sha512)]
+ - Server: [tubemq-server-0.7.0-incubating-bin.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/tubemq/0.7.0-incubating/apache-tubemq-server-0.7.0-incubating-bin.tar.gz)       [[PGP](https://downloads.apache.org/incubator/tubemq/0.7.0-incubating/apache-tubemq-server-0.7.0-incubating-bin.tar.gz.asc)] [[SHA512](https://downloads.apache.org/incubator/tubemq/0.7.0-incubating/apache-tubemq-server-0.7.0-incubating-bin.tar.gz.sha512)]
 
 ## 0.6.0 release
 
