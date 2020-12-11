@@ -2,7 +2,7 @@
 title: 如何成为Committer - Apache TubeMQ
 ---
 
-# 如何成为TubeMQ Committer
+# 如何成为TubeMQ Committer 和 PPMC
 
 > Apache TubeMQ是完全按照Apache的规则来构建社区的，Apache Committer是ASF（Apache软件基金会）中用来表示提交特定项目的人的术语，
 Apache TubeMQ Committer拥有TubeMQ代码库的写权限，可以合并PR，任何人只要为社区做出了足够的贡献并获取到足够的信任就可以成为Apache TubeMQ Committer。
