@@ -2,7 +2,7 @@
 title: How to Become a Committer - Apache TubeMQ
 ---
 
-# 如何成为Apache TubeMQ Committer
+# 如何成为Apache TubeMQ Committer 和 PPMC
 
 <font color="#dd0000" size="4">TODO: This page needs to be translated into English. If you are interested, just do it.</font>
 
