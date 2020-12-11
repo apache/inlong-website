@@ -23,6 +23,10 @@ export default {
           {
             title: 'How to become a committer',
             link: '/en-us/docs/development/how-to-become-a-committer.html',
+          },
+          {
+            title: 'How to vote a committer or PPMC',
+            link: '/en-us/docs/development/how-to-vote-a-committer-ppmc.html',
           }
         ],
       }, {
@@ -35,10 +39,6 @@ export default {
           {
             title: 'How to verify',
             link: '/en-us/docs/development/how-to-verify.html',
-          },
-          {
-            title: 'How to vote a committer or PPMC',
-            link: '/en-us/docs/development/how-to-vote-a-committer-ppmc.html',
           }
         ],
       }
@@ -69,6 +69,10 @@ export default {
           {
             title: '如何成为Committer',
             link: '/zh-cn/docs/development/how-to-become-a-committer.html',
+          },
+          {
+            title: '如何选举Committer或PPMC',
+            link: '/zh-cn/docs/development/how-to-vote-a-committer-ppmc.html',
           }
         ],
       }, {
@@ -81,10 +85,6 @@ export default {
           {
             title: '如何验证版本',
             link: '/zh-cn/docs/development/how-to-verify.html',
-          },
-          {
-            title: '如何选举Committer或PPMC',
-            link: '/zh-cn/docs/development/how-to-vote-a-committer-ppmc.html',
           }
         ],
       }
