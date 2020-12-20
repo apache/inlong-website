@@ -32,6 +32,7 @@ In addition to the back-end system configuration file, the Master also stores th
 | consumerHeartbeatTimeoutMs    | no       | long    | Consumer heartbeat timeout period, optional, default 30000 milliseconds, when the cluster size is large, please increase the value |
 | producerHeartbeatTimeoutMs    | no       | long    | Producer heartbeat timeout period, optional, default 30000 milliseconds, when the cluster size is large, please increase the value |
 | brokerHeartbeatTimeoutMs      | no       | long    | Broker heartbeat timeout period, optional, default 30000 milliseconds, when the cluster size is large, please increase the value |
+| rebalanceParallel      | no       | int    | Master rebalance parallelism, optional, default 4, the value range of this field is [1, 20], when the cluster size is large, please increase the value |
 | socketRecvBuffer              | no       | long    | Socket receives the size of the Buffer buffer SO_RCVBUF, the unit byte, the negative number is set as the default value |
 | socketSendBuffer              | no       | long    | Socket sends Buffer buffer SO_SNDBUF size, unit byte, negative number is  set as the default value |
 | maxAutoForbiddenCnt           | no       | int     | When the broker has an IO failure, the maximum number of masters allowed to automatically go offline is the number of options. The default value is 5. It is recommended that the value does not exceed 10% of the total number of brokers in the cluster. |

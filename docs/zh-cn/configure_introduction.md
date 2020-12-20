@@ -34,6 +34,7 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | consumerHeartbeatTimeoutMs | 否 | long | 消费者心跳超时周期，可选项，缺省30000毫秒，当集群规模较大时，请调大该值 |
 | producerHeartbeatTimeoutMs | 否 | long | 生产者心跳超时周期，可选项，缺省30000毫秒，当集群规模较大时，请调大该值 |
 | brokerHeartbeatTimeoutMs | 否 | long | Broker心跳超时周期，可选项，缺省30000毫秒，当集群规模较大时，请调大该值 |
+| rebalanceParallel | 否 | int | Master Rebalance处理并行度，可选项，缺省4，取值范围[1, 20], 当集群规模较大时，请调大该值 |
 | socketRecvBuffer | 否 | long | Socket接收Buffer缓冲区SO\_RCVBUF大小,单位字节, 负数为不做设置以缺省值为准 |
 | socketSendBuffer | 否 | long | Socket发送Buffer缓冲区SO\_SNDBUF大小,单位字节, 负数为不做设置以缺省值为准 |
 | maxAutoForbiddenCnt | 否 | int | Broker出现IO故障时最大允许Master自动下线Broker个数，可选项，缺省为5，建议该值不超过集群内Broker总数的10% |
