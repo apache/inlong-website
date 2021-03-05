@@ -3,8 +3,15 @@ title: Download - Apache TubeMQ
 ---
 
 ## Download links
-  Use the links below to download the Apache TubeMQ Releases, the latest release is 0.7.0.
+  Use the links below to download the Apache TubeMQ Releases, the latest release is 0.8.0.
 
+## 0.8.0 release
+
+ - Released: March 4th, 2021
+ - [Release Notes](release-0.8.0.md)
+ - Source: [tubemq-0.8.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/tubemq/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz)              [[PGP](https://downloads.apache.org/incubator/tubemq/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/tubemq/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz.sha512)]
+ - Client: [tubemq-client-0.8.0-incubating-bin.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/tubemq/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz)       [[PGP](https://downloads.apache.org/incubator/tubemq/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz.asc)] [[SHA512](https://downloads.apache.org/incubator/tubemq/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz.sha512)]
+ - Server: [tubemq-server-0.8.0-incubating-bin.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/tubemq/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz)       [[PGP](https://downloads.apache.org/incubator/tubemq/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz.asc)] [[SHA512](https://downloads.apache.org/incubator/tubemq/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz.sha512)]
 
 ## 0.7.0 release
 
