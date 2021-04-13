@@ -25334,6 +25334,15 @@ h1, h2, h3, h4, h5, h6 {
 html, body {
   overflow-x: hidden; }
 
+.home-page .show-tips {
+  width: 100%;
+  background: rgba(255, 255, 0, 0.5);
+  height: 30px;
+  text-align: center;
+  font-size: 18px;
+  top: 67px;
+  position: absolute; }
+
 .home-page .top-section {
   position: relative;
   height: 800px;
