@@ -1,12 +1,12 @@
 ---
-title: 配置参数介绍 - Apache TubeMQ
+title: 配置参数介绍 - Apache inlong
 ---
 
-# TubeMQ服务端配置文件说明：
+# inlong服务端配置文件说明：
 
-TubeMQ服务端包括Master和Broker共2个模块，Master又包含供外部页面访问的Web前端模块（该部分存放在resources中），考虑到实际部署时2个模块常常部署在同1台机器中，TubeMQ将2个模块3个部分的内容打包在一起交付给运维使用；客户端则不包含服务端部分的lib包单独交付给业务使用。
+inlong服务端包括Master和Broker共2个模块，Master又包含供外部页面访问的Web前端模块（该部分存放在resources中），考虑到实际部署时2个模块常常部署在同1台机器中，inlong将2个模块3个部分的内容打包在一起交付给运维使用；客户端则不包含服务端部分的lib包单独交付给业务使用。
 
-Master与Broker采用ini配置文件格式，相关配置文件分别放置在tubemq-server-3.8.0/conf/目录的master.ini和broker.ini文件中：
+Master与Broker采用ini配置文件格式，相关配置文件分别放置在inlong-server-3.8.0/conf/目录的master.ini和broker.ini文件中：
 
 ![](img/configure/conf_ini_pos.png)
 
@@ -48,12 +48,12 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | startConsumeAuthenticate | 否 | boolean | 是否启用消费端用户认证，缺省为false |
 | startConsumeAuthorize | 否 | boolean | 是否启用消费端消费授权认证，缺省为false |
 | maxGroupBrokerConsumeRate | 否 | int | 集群Broker数与消费组里成员数的最大比值，可选项，缺省为50，50台Broker集群里允许1个消费组最少启动1个客户端消费 |
-| metaDataPath | 否 | String | Metadata存储路径，可以是绝对路径、或者相对TubeMQ安装目录（&quot;$BASE_DIR&quot;）的相对路径。缺省为&quot;var/meta_data&quot; |
+| metaDataPath | 否 | String | Metadata存储路径，可以是绝对路径、或者相对inlong安装目录（&quot;$BASE_DIR&quot;）的相对路径。缺省为&quot;var/meta_data&quot; |
 |
  |
-| [zookeeper] | Master对应的TubeMQ集群存储Offset的ZooKeeper集群相关信息，必填单元，值固定为&quot;[zookeeper]&quot; |
+| [zookeeper] | Master对应的inlong集群存储Offset的ZooKeeper集群相关信息，必填单元，值固定为&quot;[zookeeper]&quot; |
 | [zookeeper] | zkServerAddr | 否 | String | zk服务器地址，可选配置，缺省为&quot;localhost:2181&quot; |
-| zkNodeRoot | 否 | String | zk上的节点根目录路径，可选配置，缺省为&quot;/tubemq&quot; |
+| zkNodeRoot | 否 | String | zk上的节点根目录路径，可选配置，缺省为&quot;/inlong&quot; |
 | zkSessionTimeoutMs | 否 | long | zk心跳超时，单位毫秒，默认30秒 |
 | zkConnectionTimeoutMs | 否 | long | zk连接超时时间，单位毫秒，默认30秒 |
 | zkSyncTimeMs | 否 | long | zk数据同步时间，单位毫秒，默认5秒 |
@@ -61,7 +61,7 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 |
  |
 | [replication] | 集群数据复制的相关配置，用于实现元数据多节点热备，必填单元，值固定为&quot;[replication]&quot; |
-| [replication] | repGroupName | 否 | String | 集群名，所属主备Master节点值必须相同，可选字段，缺省为&quot;tubemqMasterGroup&quot; |
+| [replication] | repGroupName | 否 | String | 集群名，所属主备Master节点值必须相同，可选字段，缺省为&quot;inlongMasterGroup&quot; |
 | repNodeName | 是 | String | 所属Master在集群中的节点名，该值各个节点必须不重复，必填字段 |
 | repNodePort | 否 | int | 节点复制通讯端口，可选字段，缺省为9001 |
 | repHelperHost | 否 | String | 集群启动时的主节点，可选字段，缺省为&quot;127.0.0.1:9001&quot; |
@@ -130,7 +130,7 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
  |
 | [zookeeper] | Broker对应的Tube MQ集群存储Offset的ZooKeeper集群相关信息，必填单元，值固定为&quot;[zookeeper]&quot; |
 | [zookeeper] | zkServerAddr | 否 | String | zk服务器地址，可选配置，缺省为&quot;localhost:2181&quot; |
-| zkNodeRoot | 否 | String | zk上的节点根目录路径，可选配置，缺省为&quot;/tubemq&quot; |
+| zkNodeRoot | 否 | String | zk上的节点根目录路径，可选配置，缺省为&quot;/inlong&quot; |
 | zkSessionTimeoutMs | 否 | long | zk心跳超时，单位毫秒，默认30秒 |
 | zkConnectionTimeoutMs | 否 | long | zk连接超时时间，单位毫秒，默认30秒 |
 | zkSyncTimeMs | 否 | long | zk数据同步时间，单位毫秒，默认5秒 |

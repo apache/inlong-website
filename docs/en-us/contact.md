@@ -1,5 +1,5 @@
 ---
-title: Contact Us - Apache TubeMQ
+title: Contact Us - Apache inlong
 ---
 
 Contact us
@@ -9,10 +9,10 @@ Contact us
 
     | Name                                                                          | Scope                           |                                                                 |                                                                     |                                                                              |
     |:------------------------------------------------------------------------------|:--------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------|:-----------------------------------------------------------------------------|
-    | [dev@tubemq.apache.org](mailto:dev@tubemq.apache.org)     | Development-related discussions | [Subscribe](mailto:dev-subscribe@tubemq.apache.org)   | [Unsubscribe](mailto:dev-unsubscribe@tubemq.apache.org)   | [Archives](http://mail-archives.apache.org/mod_mbox/tubemq-dev/)   |
+    | [dev@inlong.apache.org](mailto:dev@inlong.apache.org)     | Development-related discussions | [Subscribe](mailto:dev-subscribe@inlong.apache.org)   | [Unsubscribe](mailto:dev-unsubscribe@inlong.apache.org)   | [Archives](http://mail-archives.apache.org/mod_mbox/inlong-dev/)   |
 
-- Home page: https://tubemq.apache.org
-- Issues: https://issues.apache.org/jira/browse/TubeMQ
+- Home page: https://inlong.apache.org
+- Issues: https://issues.apache.org/jira/browse/inlong
 
 
 

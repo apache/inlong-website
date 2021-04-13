@@ -1,9 +1,9 @@
 ---
-title: Consumer Example - Apache TubeMQ
+title: Consumer Example - Apache inlong
 ---
 
 ## Consumer Example
-  TubeMQ provides two ways to consumer message, PullConsumer and PushConsumer:
+  inlong provides two ways to consumer message, PullConsumer and PushConsumer:
 
 1. PullConsumer 
     ```java

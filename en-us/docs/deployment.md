@@ -1,8 +1,8 @@
 ---
-title: Deployment - Apache TubeMQ
+title: Deployment - Apache inlong
 ---
 
-# Compile, Deploy and Examples of TubeMQ ：
+# Compile, Deploy and Examples of inlong ：
 
 ## Compile and Package Project：
 
@@ -12,7 +12,7 @@ Enter the root directory of project and run:
 mvn clean package -Dmaven.test.skip
 ```
 
-e.g. We put the TubeMQ project package at `E:/`, then run the above command. Compilation is complete when all subdirectories are compiled successfully.
+e.g. We put the inlong project package at `E:/`, then run the above command. Compilation is complete when all subdirectories are compiled successfully.
 
 ![](img/sysdeployment/sys_compile.png)
 
@@ -20,12 +20,12 @@ We can also run individual compilation in each subdirectory. Steps are the same 
 
 **Server Deployment**
 
-As example above, entry directory `E:\GIT\TubeMQ\tubemq-server\target`, we can see several JARs. `tubemq-server-3.8.0-bin.tar.gz` is the complete server-side installation package， including execution scripts, configuration files, dependencies, and frontend source code. `tubemq-server-3.8.0.jar` is a server-side processing package included in `lib` of the complete project installer. Consider to daily changes and upgrades are most made to server side, we place this jar separately so that we just need to replace this jar during upgrade.
+As example above, entry directory `E:\GIT\inlong\inlong-server\target`, we can see several JARs. `inlong-server-3.8.0-bin.tar.gz` is the complete server-side installation package， including execution scripts, configuration files, dependencies, and frontend source code. `inlong-server-3.8.0.jar` is a server-side processing package included in `lib` of the complete project installer. Consider to daily changes and upgrades are most made to server side, we place this jar separately so that we just need to replace this jar during upgrade.
 
 
 ![](img/sysdeployment/sys_package.png)
 
-Here we have a complete package deployed onto server and we place it in `/data/tubemq`
+Here we have a complete package deployed onto server and we place it in `/data/inlong`
 
 ![](img/sysdeployment/sys_package_list.png)
 
@@ -38,7 +38,7 @@ There are 3 roles in server package: Master, Broker and Tools. Master and Broker
 | --- | --- | --- | --- | --- | --- |
 | 10.224.148.145 | **Master** | 8099 | 8199 | 8080 | Metadata stored at `/stage/metadata` |
 | | Broker | 8123 | 8124 | 8081 | Message stored at`/stage/msgdata` |
-| | ZK | 2181 | | | Offset stored at root directory`/tubemq` |
+| | ZK | 2181 | | | Offset stored at root directory`/inlong` |
 | 100.115.158.208 | **Master** | 8099 | 8199 | 8080 | Metadata stored at `/stage/metadata` |
 | | Broker | 8123 | 8124 | 8081 | Message stored at`/stage/msgdata` |
 | 10.224.155.80 | Producer ||||
@@ -78,7 +78,7 @@ Visiting Master's Administrator panel([http://100.115.158.208:8080/config/topic\
 
 **Start up Broker**：
 
-Starting up Broker is a little bit different to starting Master: Master is responsible for managing the entire TubeMQ cluster, including Broker node with Topic configuration on them, production and consumption managament. So we need to add metadata on Master before starting up Broker.
+Starting up Broker is a little bit different to starting Master: Master is responsible for managing the entire inlong cluster, including Broker node with Topic configuration on them, production and consumption managament. So we need to add metadata on Master before starting up Broker.
 
 ![](img/sysdeployment/sys_broker_configure.png)
 
@@ -118,7 +118,7 @@ Check the Master Control Panel, broker has successfully registered.
 
 Configuration of Topic is similar with Broker's, we should add metadata on Master before using them, otherwise it will report an Not Found Error during production/consumption. For example, if we try to consum a non-existent topic `test`,
 ```
-/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
+/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/inlong/inlong-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/inlong/inlong-server-3.8.0/lib/\*:/data/inlong/inlong-server-3.8.0/conf/\*: com.tencent.inlong.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
 ```
 
 Demo returns error message.
@@ -144,17 +144,17 @@ Topic is available after overload. We can see some status of topic has changed a
 
 **Message Production and Consumption**：
 
-We pack Demo for test in package or `tubemq-client-3.8.0.jar` can be used for implementing your own production and consumption.
+We pack Demo for test in package or `inlong-client-3.8.0.jar` can be used for implementing your own production and consumption.
 We run Producer Demo in below script and we can see data accepted on Broker.
 ```
-/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
+/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/inlong/inlong-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/inlong/inlong-server-3.8.0/lib/\*:/data/inlong/inlong-server-3.8.0/conf/\*: com.tencent.inlong.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
 ```
 
 ![](img/sysdeployment/sys_node_status.png)
 
 Then we run the Consumption Demo and we can see that consumption is also working properly.
 ```
- /usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageConsumerExample 10.224.148.145 10.224.148.145:8000,100.115.158.208:8000 test testGroup 3 1 1 
+ /usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/inlong/inlong-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/inlong/inlong-server-3.8.0/lib/\*:/data/inlong/inlong-server-3.8.0/conf/\*: com.tencent.inlong.example.MessageConsumerExample 10.224.148.145 10.224.148.145:8000,100.115.158.208:8000 test testGroup 3 1 1 
 
 ```
 
@@ -164,5 +164,5 @@ As we can see, files relative to broker's production and consumption already exi
 
 ![](img/sysdeployment/sys_node_log.png)
 
-Here, the compilation, deployment, system configuration, startup, production and consumption of TubeMQ has been completed!
-If you need to get further, please refer to "TubeMQ HTTP API" and make your appropriate configuration settings.
+Here, the compilation, deployment, system configuration, startup, production and consumption of inlong has been completed!
+If you need to get further, please refer to "inlong HTTP API" and make your appropriate configuration settings.

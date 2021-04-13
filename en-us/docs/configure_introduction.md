@@ -1,12 +1,12 @@
 ---
-title: Configure Introduction - Apache TubeMQ
+title: Configure Introduction - Apache inlong
 ---
 
-# TubeMQ configuration item description
+# inlong configuration item description
 
-The TubeMQ server includes two modules for the Master and the Broker. The Master also includes a Web front-end module for external page access (this part is stored in the resources). Considering the actual deployment, two modules are often deployed in the same machine, TubeMQ. The contents of the three parts of the two modules are packaged and delivered to the operation and maintenance; the client does not include the lib package of the server part and is delivered to the user separately.
+The inlong server includes two modules for the Master and the Broker. The Master also includes a Web front-end module for external page access (this part is stored in the resources). Considering the actual deployment, two modules are often deployed in the same machine, inlong. The contents of the three parts of the two modules are packaged and delivered to the operation and maintenance; the client does not include the lib package of the server part and is delivered to the user separately.
 
-Master and Broker use the ini configuration file format, and the relevant configuration files are placed in the master.ini and broker.ini files in the tubemq-server-3.8.0/conf/ directory.
+Master and Broker use the ini configuration file format, and the relevant configuration files are placed in the master.ini and broker.ini files in the inlong-server-3.8.0/conf/ directory.
 
 Their configuration is defined by a set of configuration units. The Master configuration consists of four mandatory units: [master], [zookeeper], [bdbStore], and optional [tlsSetting]. The Broker configuration is mandatory. Broker], [zookeeper] and optional [tlsSetting] consist of a total of 3 configuration units; in actual use, you can also combine the contents of the two configuration files into one ini file.
 
@@ -46,7 +46,7 @@ In addition to the back-end system configuration file, the Master also stores th
 | startConsumeAuthenticate      | no       | boolean | Whether to enable consumer user authentication, the default is false |
 | startConsumeAuthorize         | no       | boolean | Whether to enable consumer consumption authorization authentication, the default is false |
 | maxGroupBrokerConsumeRate     | no       | int     | The maximum ratio of the number of clustered brokers to the number of members in the consumer group. The default is 50. In a 50-kerrow cluster, one consumer group is allowed to start at least one client. |
-| metaDataPath                  | no       | string  | Metadata storage path. Absolute, or relative to TubeMQ base directory (`$BASE_DIR`). Optional field, default is "var/meta_data". Should be the same as "[bdbStore].bdbEnvHome" if upgrade from version prior `0.5.0`. |
+| metaDataPath                  | no       | string  | Metadata storage path. Absolute, or relative to inlong base directory (`$BASE_DIR`). Optional field, default is "var/meta_data". Should be the same as "[bdbStore].bdbEnvHome" if upgrade from version prior `0.5.0`. |
 
 [zookeeper]
 >The corresponding Tom MQ cluster of the Master stores the information about the ZooKeeper cluster of the Offset. The required unit has a fixed value of "[zookeeper]".
@@ -65,7 +65,7 @@ In addition to the back-end system configuration file, the Master also stores th
 
 | Name                    | Required                          | Type                          | Description                                                  |
 | ----------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
-| repGroupName            | no       | string | Cluster name, the primary and backup master node values must be the same. Optional field, default is "tubemqMasterGroup". |
+| repGroupName            | no       | string | Cluster name, the primary and backup master node values must be the same. Optional field, default is "inlongMasterGroup". |
 | repNodeName             | yes      | string | The name of the master node in the cluster. The value of each node MUST BE DIFFERENT. Required field. |
 | repNodePort             | no       | int    | Node communication port, optional field, default is 9001. |
 | repHelperHost           | no       | string | Primary node when the master cluster starts, optional field, default is "127.0.0.1:9001". |

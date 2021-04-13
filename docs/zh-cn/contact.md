@@ -1,5 +1,5 @@
 ---
-title: 联系我们 - Apache TubeMQ
+title: 联系我们 - Apache inlong
 ---
 
 联系我们
@@ -9,10 +9,10 @@ title: 联系我们 - Apache TubeMQ
 
     | Name                                                                          | Scope                           |                                                                 |                                                                     |                                                                              |
     |:------------------------------------------------------------------------------|:--------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------|:-----------------------------------------------------------------------------|
-    | [dev@tubemq.apache.org](mailto:dev@tubemq.apache.org)     | Development-related discussions | [Subscribe](mailto:dev-subscribe@tubemq.apache.org)   | [Unsubscribe](mailto:dev-unsubscribe@tubemq.apache.org)   | [Archives](http://mail-archives.apache.org/mod_mbox/tubemq-dev/)   |
+    | [dev@inlong.apache.org](mailto:dev@inlong.apache.org)     | Development-related discussions | [Subscribe](mailto:dev-subscribe@inlong.apache.org)   | [Unsubscribe](mailto:dev-unsubscribe@inlong.apache.org)   | [Archives](http://mail-archives.apache.org/mod_mbox/inlong-dev/)   |
 
-- 项目主页: https://tubemq.apache.org
-- 需求与问题: https://issues.apache.org/jira/browse/TubeMQ
+- 项目主页: https://inlong.apache.org
+- 需求与问题: https://issues.apache.org/jira/browse/inlong
 
 
 

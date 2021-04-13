@@ -1,5 +1,5 @@
 ---
-title: 如何发布版本- Apache TubeMQ
+title: 如何发布版本- Apache inlong
 ---
 
 # 如何发布版本
@@ -7,7 +7,7 @@ title: 如何发布版本- Apache TubeMQ
 > 本文主要介绍了Release Manager如何按照Apache的流程发布版本，
 
 Source Release是Apache关注的重点，也是发布的必须内容；
-Binary Release是可选项，TubeMQ可以选择是否发布二进制包到Apache仓库或者发布到Maven中央仓库。
+Binary Release是可选项，inlong可以选择是否发布二进制包到Apache仓库或者发布到Maven中央仓库。
 
 请参考以下链接，找到更多关于ASF的发布指南:
 
@@ -122,29 +122,29 @@ http://keys.gnupg.net
 
 > 这个步骤需要使用SVN
 
-DEV分支的svn库是 https://dist.apache.org/repos/dist/dev/incubator/tubemq
+DEV分支的svn库是 https://dist.apache.org/repos/dist/dev/incubator/inlong
 
-Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/tubemq
+Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/inlong
 
 #### 1.5.1 在dev分支中添加公钥到KEYS，用于发布RC版本
 
 ```shell
-➜  ~ svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq /tmp/tubemq-dist-dev
+➜  ~ svn co https://dist.apache.org/repos/dist/dev/incubator/inlong /tmp/inlong-dist-dev
 # 这个步骤比较慢，会把所有版本都拷贝下来，如果网断了，用svn cleanup删掉锁，重新执行一下，会断点续传
-➜  ~ cd tubemq-dist-dev
-➜  tubemq-dist-dev ~ (gpg --list-sigs YOUR_NAME@apache.org && gpg --export --armor YOUR_NAME@apache.org) >> KEYS # 追加你生成的KEY到文件KEYS中, 追加后最好检查一下是否正确
-➜  tubemq-dist-dev ~ svn add .	# 如果之前存在KEYS文件，则不需要
-➜  tubemq-dist-dev ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
+➜  ~ cd inlong-dist-dev
+➜  inlong-dist-dev ~ (gpg --list-sigs YOUR_NAME@apache.org && gpg --export --armor YOUR_NAME@apache.org) >> KEYS # 追加你生成的KEY到文件KEYS中, 追加后最好检查一下是否正确
+➜  inlong-dist-dev ~ svn add .	# 如果之前存在KEYS文件，则不需要
+➜  inlong-dist-dev ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
 ```
 
 #### 1.5.2 在release分支中添加公钥到KEYS，用于发布正式版本
 
 ```shell
-➜  ~ svn co https://dist.apache.org/repos/dist/release/incubator/tubemq /tmp/tubemq-dist-release
-➜  ~ cd tubemq-dist-release
-➜  tubemq-dist-release ~ (gpg --list-sigs YOUR_NAME@apache.org && gpg --export --armor YOUR_NAME@apache.org) >> KEYS # 追加你生成的KEY到文件KEYS中, 追加后最好检查一下是否正确
-➜  tubemq-dist-release ~ svn add .	# 如果之前存在KEYS文件，则不需要
-➜  tubemq-dist-release ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
+➜  ~ svn co https://dist.apache.org/repos/dist/release/incubator/inlong /tmp/inlong-dist-release
+➜  ~ cd inlong-dist-release
+➜  inlong-dist-release ~ (gpg --list-sigs YOUR_NAME@apache.org && gpg --export --armor YOUR_NAME@apache.org) >> KEYS # 追加你生成的KEY到文件KEYS中, 追加后最好检查一下是否正确
+➜  inlong-dist-release ~ svn add .	# 如果之前存在KEYS文件，则不需要
+➜  inlong-dist-release ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
 ```
 
 ### 1.6 上传GPG公钥到Github账户
@@ -220,20 +220,20 @@ $ git config user.signingkey ${KEY_ID}
 > tag创建成功后，我需要将tag源码打包成一个tar包
 
 ```shell
-mkdir /tmp/apache-tubemq-${release_version}-${rc_version}
-git archive --format=tar.gz --output="/tmp/apache-tubemq-${release_version}-${rc_version}/apache-tubemq-${release_version}-src.tar.gz" --prefix="apache-tubemq-${release_version}/" $git_tag
+mkdir /tmp/apache-inlong-${release_version}-${rc_version}
+git archive --format=tar.gz --output="/tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}-src.tar.gz" --prefix="apache-inlong-${release_version}/" $git_tag
 ```
 
 ### 3.4 打包二进制包
 > 编译上一步打包的源码
 
 ```shell
-cd /tmp/apache-tubemq-${release_version}-${rc_version} # 进入源码包目录
-tar xzvf apache-tubemq-${release_version}-src.tar.gz #解压源码包
-cd apache-tubemq-${release_version} # 进入源码目录
+cd /tmp/apache-inlong-${release_version}-${rc_version} # 进入源码包目录
+tar xzvf apache-inlong-${release_version}-src.tar.gz #解压源码包
+cd apache-inlong-${release_version} # 进入源码目录
 mvn compile clean install package -DskipTests # 编译
-cp ./tubemq-client/target/apache-tubemq-client-${release_version}-bin.tar.gz /tmp/apache-tubemq-${release_version}-${rc_version}/ # 拷贝client包到源码包目录下，方面下一步对包进行签名
-cp ./tubemq-server/target/apache-tubemq-server-${release_version}-bin.tar.gz /tmp/apache-tubemq-${release_version}-${rc_version}/ # 拷贝server包到源码包目录下，方面下一步对包进行签名
+cp ./inlong-client/target/apache-inlong-client-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/ # 拷贝client包到源码包目录下，方面下一步对包进行签名
+cp ./inlong-server/target/apache-inlong-server-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/ # 拷贝server包到源码包目录下，方面下一步对包进行签名
 ```
 
 ### 3.5 对源码包/二进制包进行签名/sha512
@@ -251,9 +251,9 @@ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
 ## 4. 准备Apache发布
 ### 4.1 发布jar包到Apache Nexus仓库
 ```shell
-cd /tmp/apache-tubemq-${release_version}-${rc_version} # 进入源码包目录
-tar xzvf apache-tubemq-${release_version}-src.tar.gz #解压源码包
-cd apache-tubemq-${release_version}
+cd /tmp/apache-inlong-${release_version}-${rc_version} # 进入源码包目录
+tar xzvf apache-inlong-${release_version}-src.tar.gz #解压源码包
+cd apache-inlong-${release_version}
 mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true  # 开始上传
 ```
 
@@ -264,20 +264,20 @@ git push origin ${release_version}-${rc_version}
 ```
 
 ### 4.3 上传编译好的文件到dist
-> 这个步骤需要使用SVN, DEV分支的svn库是 https://dist.apache.org/repos/dist/dev/incubator/tubemq
+> 这个步骤需要使用SVN, DEV分支的svn库是 https://dist.apache.org/repos/dist/dev/incubator/inlong
 
-### 4.3.1 将TubeMQ checkout到本地目录
+### 4.3.1 将inlong checkout到本地目录
 ```shell
 # 这个步骤可能会比较慢，会把所有版本都考下来，如果网断了，用svn cleanup删掉锁，重新执行一下，会断点续传
-svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq /tmp/tubemq-dist-dev
+svn co https://dist.apache.org/repos/dist/dev/incubator/inlong /tmp/inlong-dist-dev
 ```
 
 ### 4.3.2 添加public key到KEYS文件并提交到SVN仓库
 ```shell
-cd /tmp/tubemq-dist-dev
+cd /tmp/inlong-dist-dev
 mkdir ${release_version}-${rc_version} #创建版本目录
 # 将源码包和签名包拷贝到此处
-cp /tmp/apache-tubemq-${release_version}-${rc_version}/*tar.gz* ${release_version}-${rc_version}/
+cp /tmp/apache-inlong-${release_version}-${rc_version}/*tar.gz* ${release_version}-${rc_version}/
 svn status # 检查svn状态
 svn add ${release_version}-${rc_version} # 添加到svn版本
 svn status # 检查svn状态
@@ -287,62 +287,62 @@ svn commit -m 'prepare for ${release_version} ${rc_version}'# 提交至svn远程
 > 请确保所有的artifact都是ok的
 1. **先登录**http://repository.apache.org , 使用Apache账号登录
 2. 点击左侧的Staging repositories，
-3. 搜索TubeMQ关键字，选择你最近上传的仓库
+3. 搜索inlong关键字，选择你最近上传的仓库
 4. 点击上方的Close按钮，这个过程会进行一系列检查
 5. 检查通过以后, 在下方的Summary标签页上出现一个连接，请保存好这个链接，需要放在接下来的投票邮件当中。
-链接应该是类似这样的: `https://repository.apache.org/content/repositories/orgapachetubemq-xxxx`
+链接应该是类似这样的: `https://repository.apache.org/content/repositories/orgapacheinlong-xxxx`
 
 WARN: 请注意点击Close可能会出现失败，请检查失败原因并处理
 
 ## 5. 进入投票
-> TubeMQ仍旧在孵化中，需要进行两次投票，
-- TubeMQ社区投票，发邮件至：`dev@tubemq.apache.org`
+> inlong仍旧在孵化中，需要进行两次投票，
+- inlong社区投票，发邮件至：`dev@inlong.apache.org`
 - incubator社区投票，发邮件至：`general@incubator.apache.org`
-TubeMQ毕业之后，只需要在TubeMQ社区投票
+inlong毕业之后，只需要在inlong社区投票
 
-### 5.1 TubeMQ社区投票
+### 5.1 inlong社区投票
 
 #### 5.1.1 投票模板
 
 ```html
-标题：[VOTE] Release Apache TubeMQ ${release_version} ${rc_version}
+标题：[VOTE] Release Apache inlong ${release_version} ${rc_version}
 
 内容：
 
-Hello Apache TubeMQ PPMC and Community,
+Hello Apache inlong PPMC and Community,
 
-    This is a call for vote to release Apache TubeMQ version ${release_version}-${rc_version}.
+    This is a call for vote to release Apache inlong version ${release_version}-${rc_version}.
 
     The tag to be voted on is ${release_version}-${rc_version}:
 
-    https://github.com/apache/incubator-tubemq/tree/${release_version}-${rc_version}
+    https://github.com/apache/incubator-inlong/tree/${release_version}-${rc_version}
 
     The release tarball, signature, and checksums can be found at:
 
-    https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version}/
+    https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
 
     Maven artifacts are available in a staging repository at:
 
-    https://repository.apache.org/content/repositories/orgapachetubemq-{staging-id}
+    https://repository.apache.org/content/repositories/orgapacheinlong-{staging-id}
 
     Artifacts were signed with the {YOUR_PUB_KEY} key which can be found in:
 
-    https://dist.apache.org/repos/dist/dev/incubator/tubemq/KEYS
+    https://dist.apache.org/repos/dist/dev/incubator/inlong/KEYS
 
     ${release_version} includes ~ ${issue_count} bug and improvement fixes done since last versions which can be found at:
 
-    https://github.com/apache/incubator-tubemq/blob/${release_version}-${rc_version}/CHANGES.md
+    https://github.com/apache/incubator-inlong/blob/${release_version}-${rc_version}/CHANGES.md
 
     Please download, verify, and test.
 
     The VOTE will remain open for at least 72 hours.
 
-    [ ] +1 Release this package as Apache TubeMQ ${release_version}
+    [ ] +1 Release this package as Apache inlong ${release_version}
     [ ] +0
     [ ] -1 Do not release this package because...
 
-    To learn more about apache tubemq, please see
-    http://tubemq.apache.org/
+    To learn more about apache inlong, please see
+    http://inlong.apache.org/
 
     Checklist for reference:
 
@@ -358,16 +358,16 @@ Hello Apache TubeMQ PPMC and Community,
       https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
 
 Thanks,
-Your TubeMQ Release Manager
+Your inlong Release Manager
 ```
 
 #### 5.1.2 宣布投票结果模板
 ```html
-标题：[RESULT][VOTE] Release Apache TubeMQ ${release_version} ${rc_version}
+标题：[RESULT][VOTE] Release Apache inlong ${release_version} ${rc_version}
 
 内容：
 
-Hello Apache TubeMQ PPMC and Community,
+Hello Apache inlong PPMC and Community,
 
     The vote closes now as 72hr have passed. The vote PASSES with
     xx (+1 non-binding) votes from the PPMC,
@@ -381,7 +381,7 @@ Hello Apache TubeMQ PPMC and Community,
     If this vote passes also, the release is accepted and will be published.
 
 Thank you for your support.
-Your TubeMQ Release Manager
+Your inlong Release Manager
 ```
 
 ### 5.2 incubator社区投票
@@ -389,38 +389,38 @@ Your TubeMQ Release Manager
 #### 5.2.1 投票模板
 
 ```html
-标题：[VOTE] Release Apache TubeMQ (Incubating) ${release_version} ${rc_version}
+标题：[VOTE] Release Apache inlong (Incubating) ${release_version} ${rc_version}
 
 内容：
 
 Hello Incubator Community,
 
-    This is a call for a vote to release Apache TubeMQ (Incubating) version
+    This is a call for a vote to release Apache inlong (Incubating) version
     ${release_version} ${rc_version}
 
-    The Apache TubeMQ community has voted on and approved a proposal to release
-    Apache TubeMQ (Incubating) version ${release_version} ${rc_version}
+    The Apache inlong community has voted on and approved a proposal to release
+    Apache inlong (Incubating) version ${release_version} ${rc_version}
 
     We now kindly request the Incubator PMC members review and vote on this
     incubator release.
 
-    TubeMQ community vote thread:
+    inlong community vote thread:
     • [投票链接]
 
     Vote result thread:
     • [投票结果链接]
 
     The release candidate:
-    • https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version}/
+    • https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
 
     Git tag for the release:
-    • https://github.com/apache/incubator-tubemq/tree/${release_version}-${rc_version}
+    • https://github.com/apache/incubator-inlong/tree/${release_version}-${rc_version}
 
     Release notes:
-    • https://github.com/apache/incubator-tubemq/releases/tag/${release_version}-${rc_version}
+    • https://github.com/apache/incubator-inlong/releases/tag/${release_version}-${rc_version}
 
     The artifacts signed with PGP key [填写你个人的KEY], corresponding to [填写你个人的邮箱], that can be found in keys file:
-    • https://dist.apache.org/repos/dist/dev/incubator/tubemq/KEYS
+    • https://dist.apache.org/repos/dist/dev/incubator/inlong/KEYS
 
     The vote will be open for at least 72 hours or until necessary number of votes are reached.
 
@@ -431,18 +431,18 @@ Hello Incubator Community,
     [ ] -1 disapprove with the reason
 
 Thanks,
-On behalf of Apache TubeMQ (Incubating) community
+On behalf of Apache inlong (Incubating) community
 
 ```
 
 #### 5.2.2 宣布投票结果模板
 ```html
-标题：[RESULT][VOTE] Release Apache TubeMQ ${release_version} {rc_version}
+标题：[RESULT][VOTE] Release Apache inlong ${release_version} {rc_version}
 
 内容：
 Hi all
 
-Thanks for reviewing and voting for Apache TubeMQ (Incubating) ${release_version} {rc_version}
+Thanks for reviewing and voting for Apache inlong (Incubating) ${release_version} {rc_version}
 release, I am happy to announce the release voting has passed with [投票结果数]
 binding votes, no +0 or -1 votes. Binding votes are from IPMC
 
@@ -454,11 +454,11 @@ The voting thread is:
 [投票链接]
 
 Many thanks for all our mentors helping us with the release procedure, and
-all IPMC helped us to review and vote for Apache TubeMQ (Incubating) release. I will
+all IPMC helped us to review and vote for Apache inlong (Incubating) release. I will
 be working on publishing the artifacts soon.
 
 Thanks
-On behalf of Apache TubeMQ (Incubating) community
+On behalf of Apache inlong (Incubating) community
 ```
 
 ## 6. 正式发布
@@ -466,51 +466,51 @@ On behalf of Apache TubeMQ (Incubating) community
 ### 6.1 合并release-${release_version}分支的改动到master分支
 ### 6.2 将源码和二进制包从svn的dev目录移动到release目录
 ```shell
-svn mv https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/tubemq/${release_version} -m "Release ${release_version}"
+svn mv https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/inlong/${release_version} -m "Release ${release_version}"
 ```
 ### 6.3 确认dev和release下的包是否正确
-1. 确认[dev](https://dist.apache.org/repos/dist/dev/incubator/tubemq/)下的`${release_version}-${rc_version}`已被删除
-2. 删除[release](https://dist.apache.org/repos/dist/release/incubator/tubemq/)目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/incubator/tubemq/)
+1. 确认[dev](https://dist.apache.org/repos/dist/dev/incubator/inlong/)下的`${release_version}-${rc_version}`已被删除
+2. 删除[release](https://dist.apache.org/repos/dist/release/incubator/inlong/)目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/incubator/inlong/)
 ```shell
-svn delete https://dist.apache.org/repos/dist/release/incubator/tubemq/${last_release_version} -m "Delete ${last_release_version}"
+svn delete https://dist.apache.org/repos/dist/release/incubator/inlong/${last_release_version} -m "Delete ${last_release_version}"
 ```
 
 ### 6.4 在Apache Staging仓库发布版本
 > 请确保所有的artifact都是ok的
 1. 登录http://repository.apache.org , 使用Apache账号登录
 2. 点击左侧的Staging repositories，
-3. 搜索TubeMQ关键字，选择你最近上传的仓库，投票邮件中指定的仓库
+3. 搜索inlong关键字，选择你最近上传的仓库，投票邮件中指定的仓库
 4. 点击上方的`Release`按钮，这个过程会进行一系列检查
 
 **等仓库同步到其他数据源，一般需要24小时**
 
 ### 6.5 更新官网链接
 
-### 6.6. 发邮件到 `dev@tubemq.apache.org` 和 `general@incubator.apache.org`
+### 6.6. 发邮件到 `dev@inlong.apache.org` 和 `general@incubator.apache.org`
 **请确保6.4中的仓库已发布成功，一般是在6.4后的24小时后发布邮件** 
 
 宣布release邮件模板：
 ```html
-标题： [ANNOUNCE] Release Apache TubeMQ(incubating) ${release_version}
+标题： [ANNOUNCE] Release Apache inlong(incubating) ${release_version}
 内容：
 Hi all,
 
-The Apache TubeMQ(incubating) community is pleased to announce 
-that Apache TubeMQ (incubating) ${release_version} has been released!
+The Apache inlong(incubating) community is pleased to announce 
+that Apache inlong (incubating) ${release_version} has been released!
 
-Apache TubeMQ is a trillion-records-scale distributed messaging queue (MQ) system, 
+Apache inlong is a trillion-records-scale distributed messaging queue (MQ) system, 
 focuses on data transmission and storage under massive data. 
 
 Download Links: xxx
 
 Release Notes: xxx
 
-Website: https://tubemq.apache.org/
+Website: https://inlong.apache.org/
 
-TubeMQ Resources:
-- Issue: https://issues.apache.org/jira/projects/TUBEMQ/issues
-- Mailing list: dev@tubemq.apache.org
+inlong Resources:
+- Issue: https://issues.apache.org/jira/projects/inlong/issues
+- Mailing list: dev@inlong.apache.org
 
 Thanks
-On behalf of Apache TubeMQ (Incubating) community
+On behalf of Apache inlong (Incubating) community
 ```

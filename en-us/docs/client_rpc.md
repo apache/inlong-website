@@ -1,17 +1,17 @@
 ---
-title: Client RPC - Apache TubeMQ
+title: Client RPC - Apache inlong
 ---
 
-# Definition of Apache TubeMQ RPC
+# Definition of Apache inlong RPC
 
 ## General Introduction
 
-Implements of this part can be found in `org.apache.tubemq.corerpc`. Each node in Apache TubeMQ Cluster Communicates by TCP Keep-Alive. Mseeages are definded using binary and protobuf combined.
+Implements of this part can be found in `org.apache.inlong.corerpc`. Each node in Apache inlong Cluster Communicates by TCP Keep-Alive. Mseeages are definded using binary and protobuf combined.
 ![](img/client_rpc/rpc_bytes_def.png)
 
-All we can see in TCP are binary streams. We defind a 4-byte msgToken message `RPC\_PROTOCOL\_BEGIN\_TOKEN` in header, which are used to distinguish each message and identify the legitimacy of the counterpart. When message client received is not started with these header field, client needs to close the connection and prompt the error and quit or reconnect because the protocal is not supported by TubeMQ or something wrong may happended. Follows is a 4-byte serialNo, this field is sent by client to server and returned by server exactly the same when after handling the request. It is mainly used to associate the context of the client request and response. And a 4-byte `listSize` field shows the number of data blocks in pb next, precisely the number of following `\&lt;len\&gt;\&lt;data\&gt;` blocks. This field would not be 0 in current definition. `\&lt;len\&gt;\&lt;data\&gt;` field is a combination of 2 filelds. That is, a length number and data, which mainly represents the length of this data block and the specific data.
+All we can see in TCP are binary streams. We defind a 4-byte msgToken message `RPC\_PROTOCOL\_BEGIN\_TOKEN` in header, which are used to distinguish each message and identify the legitimacy of the counterpart. When message client received is not started with these header field, client needs to close the connection and prompt the error and quit or reconnect because the protocal is not supported by inlong or something wrong may happended. Follows is a 4-byte serialNo, this field is sent by client to server and returned by server exactly the same when after handling the request. It is mainly used to associate the context of the client request and response. And a 4-byte `listSize` field shows the number of data blocks in pb next, precisely the number of following `\&lt;len\&gt;\&lt;data\&gt;` blocks. This field would not be 0 in current definition. `\&lt;len\&gt;\&lt;data\&gt;` field is a combination of 2 filelds. That is, a length number and data, which mainly represents the length of this data block and the specific data.
 
-We defined `listSize` as `\&lt;len\&gt;\&lt;data\&gt;` because serialized PB data is saved as a ByteBuffer object in TubeMQ, and in Java, there a maximum(8196) length of ByteBuffer block, an overlength PB message needs to be saved in several ByteBuffer. No total length was counted, and the ByteBuffer is directly written when Serializing in to TCP message.
+We defined `listSize` as `\&lt;len\&gt;\&lt;data\&gt;` because serialized PB data is saved as a ByteBuffer object in inlong, and in Java, there a maximum(8196) length of ByteBuffer block, an overlength PB message needs to be saved in several ByteBuffer. No total length was counted, and the ByteBuffer is directly written when Serializing in to TCP message.
 
 **Pay more attention when implementing multiple languages and SDKs.** Need to serialize PB data content into arrays of blocks(supported in PB codecs).
 
@@ -24,7 +24,7 @@ PB format encoding is divided into RPC framework definition, to the Master messa
 `RPC.proto` defines 6 struct, which divided into 2 class: Request message and Response message. Response message is divided into Successful Response and Exception Response.
 ![](img/client_rpc/rpc_pbmsg_structure.png)
 
-The request message encoding and response message decoding can be implemented in the `NettyClient.java` class. There is some room for improvement in this part of the definition and can be found in [TUBEMQ-109](https://issues.apache.org/jira/browse/TUBEMQ-109). However, due to compatibility concerns, it will be gradually replaced. We have implemented the current protobuf version, which is not a problem until at least 1.0.0. With the new protocol, the protocol implementation module requires each SDK to allow room for improvement. Take request message as an example, `RpcConnHeader` and other related structures are as follows：
+The request message encoding and response message decoding can be implemented in the `NettyClient.java` class. There is some room for improvement in this part of the definition and can be found in [inlong-109](https://issues.apache.org/jira/browse/inlong-109). However, due to compatibility concerns, it will be gradually replaced. We have implemented the current protobuf version, which is not a problem until at least 1.0.0. With the new protocol, the protocol implementation module requires each SDK to allow room for improvement. Take request message as an example, `RpcConnHeader` and other related structures are as follows：
 ![](img/client_rpc/rpc_conn_detail.png)
 
 Flag marks whether the message is requested or not, and the next three marks represent the content of the message trace, which is not currently used; the related is a fixed mapping of the service type, protocol version, service type, etc., the more critical parameter RequestBody.timeout is the maximum allowable time from when a request is received by the server to when it is actually processed. Long wait time, discarded if exceeded, current default is 10 seconds, request filled as follows.
@@ -56,7 +56,7 @@ Consumer has 7 pairs of command in all, Register, Heartbeat, Exit to Master; Reg
 
 ![](img/client_rpc/rpc_consumer_diagram.png)
 
-As we can see from the above picture, the Consumer first has to register to the Master, but registering to the Master can not get Metadata information immediately because TubeMQ is using a server-side load-balancing model, and the client needs to wait for the server to dispatch the consumption partition information; Consumer to Broker needs to register the logout operation. Partition is exclusive at the time of consumption, i.e., the same partition can only be consumed by one consumer in the same group at the same time. To solve this problem, the client needs to register and get consumption access to the partition; message pull and consumption confirmation need to appear in pairs. Although the protocol supports multiple pulls and then the last acknowledgement process, it is possible that the consumer permissions of a partition may be lost timeout from the client, thus This causes the data rollback to be triggered by repetitive consumption, and the more data is saved the more repetitive consumption will occur, so follow the 1:1 submission comparison fit.
+As we can see from the above picture, the Consumer first has to register to the Master, but registering to the Master can not get Metadata information immediately because inlong is using a server-side load-balancing model, and the client needs to wait for the server to dispatch the consumption partition information; Consumer to Broker needs to register the logout operation. Partition is exclusive at the time of consumption, i.e., the same partition can only be consumed by one consumer in the same group at the same time. To solve this problem, the client needs to register and get consumption access to the partition; message pull and consumption confirmation need to appear in pairs. Although the protocol supports multiple pulls and then the last acknowledgement process, it is possible that the consumer permissions of a partition may be lost timeout from the client, thus This causes the data rollback to be triggered by repetitive consumption, and the more data is saved the more repetitive consumption will occur, so follow the 1:1 submission comparison fit.
 
 ##Client feature:
 
@@ -167,7 +167,7 @@ This part is related to the definition of RPC Message.
 
 **Partition Loadbalance**:
 ----------
-Apache TubeMQ currently uses a server-side load balancing mode, where the balancing process is managed and maintained by the server; subsequent versions will add a client-side load balancing mode, so that two modes can co-exist.
+Apache inlong currently uses a server-side load balancing mode, where the balancing process is managed and maintained by the server; subsequent versions will add a client-side load balancing mode, so that two modes can co-exist.
 
 **Server side load balancing**:
 

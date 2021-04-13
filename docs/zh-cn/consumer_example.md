@@ -1,9 +1,9 @@
 ---
-title: 消费者示例 - Apache TubeMQ
+title: 消费者示例 - Apache inlong
 ---
 
 ## Consumer 示例
-  TubeMQ 提供了两种方式来消费消息： PullConsumer and PushConsumer。
+  inlong 提供了两种方式来消费消息： PullConsumer and PushConsumer。
 
 
 ### PullConsumer 
