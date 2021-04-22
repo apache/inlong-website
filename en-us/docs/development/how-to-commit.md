@@ -1,5 +1,5 @@
 ---
-title: How to Commit - Apache inlong
+title: How to Commit - Apache InLong
 ---
 
 # 如何提交代码
@@ -7,11 +7,11 @@ title: How to Commit - Apache inlong
 <font color="#dd0000" size="4">TODO: This page needs to be translated into English. If you are interested, just do it.</font>
 
 ## 0. 前言
-Apache inlong使用Github的Pull Request (PR)来接收贡献的代码，本文将详细介绍提交代码的详细流程。
+Apache InLong使用Github的Pull Request (PR)来接收贡献的代码，本文将详细介绍提交代码的详细流程。
 
-- inlong代码库：https://github.com/apache/incubator-inlong
+- InLong代码库：https://github.com/apache/incubator-inlong
 
-- inlong官网库：https://github.com/apache/incubator-inlong-website
+- InLong官网库：https://github.com/apache/incubator-inlong-website
 
 ## 1. Fork仓库
 
@@ -48,25 +48,25 @@ git fetch upstream
 git pull upstream master
 ```
 ### 2.5 新建分支
-> 一般以issue id作为分支名，如：inlong-123
+> 一般以issue id作为分支名，如：InLong-123
 ```shell
-git checkout -b inlong-123
+git checkout -b InLong-123
 ```
-**确保分支`inlong-123`是基于官方master分支的最新代码**
+**确保分支`InLong-123`是基于官方master分支的最新代码**
 
 分支创建完成后即可进行代码更改。
 
 ### 2.6 提交代码到远程分支
-> commit 信息的格式必须与Issue标题保持一致且以`[issue id]`开头，即：`[inlong-123] xxx`
+> commit 信息的格式必须与Issue标题保持一致且以`[issue id]`开头，即：`[InLong-123] xxx`
 ```shell
-git commit -a -m "[inlong-123] xxx"
-git push origin inlong-123
+git commit -a -m "[InLong-123] xxx"
+git push origin InLong-123
 ```
 ## 3. 创建PR
 ### 3.1 打开自己的github仓库页面
     `https://github.com/<your_github_name>/incubator-inlong`
 ### 3.2. 切换分支
-    切换到提交的分支 `inlong-123`
+    切换到提交的分支 `InLong-123`
 ### 3.3. 创建新PR
     点击 `New pull request`或者`Compare & pull request`
 ![](../img/development/new_pull_request.png)
@@ -74,7 +74,7 @@ git push origin inlong-123
     需要注意以下几点：
       1. PR的标题必须以issue id开头，最好与commit信息保持一致
       2. 可以填写部分描述信息也可以不填
-      3. 如果点击`Create pull request`后提示代码冲突，则请将`inlong-123`分支的代码
+      3. 如果点击`Create pull request`后提示代码冲突，则请将`InLong-123`分支的代码
          与master分支同步一致后在进行提交
 
 ![](../img/development/create_pull_request.png)
@@ -83,4 +83,4 @@ git push origin inlong-123
 创建完PR后，所有的人都可以Review代码，可能会与您讨论一些实现的细节，可能还需要你进一步修改。
 **一般该PR必须有2位以上的社区PPMC/Committer +1后，才可能正式合入官方代码库。**
 
-最后，恭喜您已经成为了inlong的官方贡献者了！
+最后，恭喜您已经成为了InLong的官方贡献者了！
