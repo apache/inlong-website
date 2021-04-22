@@ -1,23 +1,23 @@
 ---
-title: How to Contribute - Apache inlong
+title: How to Contribute - Apache InLong
 ---
 
 # How to Contribute
 
-The Apache inlong(incubating) community welcomes contributions from anyone with a passion for distributed systems! inlong has many different opportunities for contributions -- write new examples/tutorials, add new user-facing libraries or participate on the documentation effort.
+The Apache InLong(incubating) community welcomes contributions from anyone with a passion for distributed systems! inlong has many different opportunities for contributions -- write new examples/tutorials, add new user-facing libraries or participate on the documentation effort.
 
-We use a review-then-commit workflow in inlong for all contributions.
+We use a review-then-commit workflow in InLong for all contributions.
 
 **For larger contributions or those that affect multiple components:**
 
-1. **Engage**: We encourage you to work with the inlong community on the [JIRA](https://jira.apache.org/jira/browse/inlong) and [developer’s mailing list](../contact.html) to identify good areas for contribution.
+1. **Engage**: We encourage you to work with the InLong community on the [JIRA](https://jira.apache.org/jira/browse/inlong) and [developer’s mailing list](../contact.html) to identify good areas for contribution.
 2. **Design:** More complicated contributions will likely benefit from some early discussion in order to scope and design them well.
 
 **For all contributions:**
 
 1. **Code:** The you-know-what part.
 2. **Review:** Submit a pull request with your contribution to our [GitHub Repo](https://github.com/apache/incubator-inlong). Work with a committer to review and iterate on the code, if needed.
-3. **Commit:** Once at least 1 inlong committer has approved the pull request, a inlong committer will merge it into the master branch (and potentially backport to stable branches in case of bug fixes).
+3. **Commit:** Once at least 1 InLong committer has approved the pull request, a InLong committer will merge it into the master branch (and potentially backport to stable branches in case of bug fixes).
 
 We look forward to working with you!
 
@@ -30,7 +30,7 @@ We discuss design and implementation issues on the [dev@inlong.apache.org](mailt
 ### JIRA
 
 We are using [JIRA](https://jira.apache.org/jira/browse/inlong) as the issue tracking
-and project management tool, as well as a way to communicate among a very diverse and distributed set of contributors. To be able to gather feedback, avoid frustration, and avoid duplicated efforts all inlong related work are being tracked there.
+and project management tool, as well as a way to communicate among a very diverse and distributed set of contributors. To be able to gather feedback, avoid frustration, and avoid duplicated efforts all InLong related work are being tracked there.
 
 If you do not already have an JIRA account, sign up [here](https://jira.apache.org/jira/secure/Signup!default.jspa).
 
