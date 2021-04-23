@@ -2,8 +2,8 @@ export default {
   'zh-cn': {
     brand: {
       brandName: 'Apache',
-      projectName: 'TubeMQ',
-      briefIntroduction: 'Apache TubeMQ，万亿级分布式消息中间件，专注于海量数据下的数据传输和存储，与许多开源MQ项目相比，TubeMQ在稳定性、性能和低成本方面具有独特的优势',
+      projectName: 'InLong',
+      briefIntroduction: 'Apache InLong，万亿级分布式消息中间件，专注于海量数据下的数据传输和存储，与许多开源MQ项目相比，InLong在稳定性、性能和低成本方面具有独特的优势',
       buttons: [
         {
           text: '立即开始',
@@ -60,8 +60,8 @@ export default {
   'en-us': {
     brand: {
       brandName: 'Apache',
-      projectName: 'TubeMQ',
-      briefIntroduction: 'Apache TubeMQ, a trillion-records-scale distributed messaging queue (MQ) system, focuses on data transmission and storage under massive data. Compared to many open source MQ projects, TubeMQ has unique advantages in terms of stability, performance, and low cost',
+      projectName: 'InLong',
+      briefIntroduction: 'Apache InLong, a trillion-records-scale distributed messaging queue (MQ) system, focuses on data transmission and storage under massive data. Compared to many open source MQ projects, InLong has unique advantages in terms of stability, performance, and low cost',
       buttons: [
         {
           text: 'Quick Start',
@@ -96,12 +96,12 @@ export default {
         {
           img: '/img/advantage-03.png',
           title: 'High stability',
-          content: 'TubeMQ has been successfully operating for nearly seven years. Currently, there are over 35 trillion messages processed every day. The operation costs 1500 machines and 1 operator. Besides, TubeMQ can run continuously except during releasing',
+          content: 'InLong has been successfully operating for nearly seven years. Currently, there are over 35 trillion messages processed every day. The operation costs 1500 machines and 1 operator. Besides, InLong can run continuously except during releasing',
         },
         {
           img: '/img/advantage-04.png',
           title: 'Low Cost',
-          content: 'Compared with similar systems such as Kafka, for serving the same workload, TubeMQ only requires the utilization of  20% resources according to cross-sectional results',
+          content: 'Compared with similar systems such as Kafka, for serving the same workload, InLong only requires the utilization of  20% resources according to cross-sectional results',
         }
       ]
     },

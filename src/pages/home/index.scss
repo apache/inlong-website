@@ -2,6 +2,15 @@
 @import '../../reset.scss';
 
 .home-page {
+  .show-tips {
+    width: 100%;
+    background: rgba(255,255,0,0.5);
+    height: 30px;
+    text-align: center;
+    font-size: 18px;
+    top: 67px;
+    position: absolute;
+  }
   .top-section {
     position: relative;
     height: 800px;

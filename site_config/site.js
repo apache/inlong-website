@@ -1,8 +1,8 @@
 // 全局的一些配置
 export default {
   rootPath: '', // 发布到服务器的根目录，需以/开头但不能有尾/，如果只有/，请填写空字符串
-  port: 8080, // 本地开发服务器的启动端口
-  domain: 'tubemq.apache.org', // 站点部署域名，无需协议和path等
+  port: 8081, // 本地开发服务器的启动端口
+  domain: 'inlong.apache.org', // 站点部署域名，无需协议和path等
   defaultSearch: 'google', // 默认搜索引擎，baidu或者google
   defaultLanguage: 'en-us',
   'en-us': {
@@ -30,7 +30,7 @@ export default {
       {
         key: 'github',
         text: 'GITHUB',
-        link: 'https://github.com/apache/incubator-tubemq',
+        link: 'https://github.com/apache/incubator-inlong',
       },
       {
         key: 'Apache',
@@ -76,7 +76,7 @@ export default {
     ],
     disclaimer: {
       title: 'Disclaimer',
-      content: 'Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
+      content: 'Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
     },
     documentation: {
       title: 'Documentation',
@@ -95,7 +95,7 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.',
   },
   'zh-cn': {
     pageMenu: [
@@ -122,7 +122,7 @@ export default {
       {
         key: 'github',
         text: 'GITHUB',
-        link: 'https://github.com/apache/incubator-tubemq',
+        link: 'https://github.com/apache/incubator-inlong',
       },
       {
         key: 'Apache',
@@ -168,7 +168,7 @@ export default {
     ],
     disclaimer: {
       title: '免责声明',
-      content: 'Apache TubeMQ (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
+      content: 'Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.',
     },
     documentation: {
       title: '文档',
@@ -187,6 +187,6 @@ export default {
         },
       ],
     },
-    copyright: 'Copyright © 2019-2020 The Apache Software Foundation. Apache TubeMQ, TubeMQ, and its feather logo are trademarks of The Apache Software Foundation.',
+    copyright: 'Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.',
   },
 };

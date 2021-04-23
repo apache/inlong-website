@@ -46,6 +46,7 @@ class Home extends Language {
             language={language}
             onLanguageChange={this.onLanguageChange}
           />
+          <div className="show-tips">Apache TubeMQ has been renamed to Apache InLong, the homepage will updete soon!</div>
           <div className="vertical-middle">
             <div className="product-name">
               <div className="brandname">{dataSource.brand.brandName}</div>
