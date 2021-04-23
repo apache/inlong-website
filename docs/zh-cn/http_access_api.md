@@ -1,5 +1,5 @@
 ---
-title: HTTP API介绍 - Apache inlong
+title: HTTP API介绍 - Apache TubeMQ
 ---
 
 # HTTP API定义
@@ -15,7 +15,7 @@ HTTP API是Master或者Broker对外功能暴露的接口，管控台的各项操
 
 
 由于接口众多且参数繁杂，md格式不能比较好的表达，因而以excel附件形式提供给到大家：
-<a href="appendixfiles/http_access_api_definition_cn.xls" target="_blank">inlong HTTP API</a>
+<a href="appendixfiles/http_access_api_definition_cn.xls" target="_blank">TubeMQ HTTP API</a>
 
 ---
 <a href="#top">Back to top</a>

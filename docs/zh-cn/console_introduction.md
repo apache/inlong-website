@@ -1,23 +1,23 @@
 ---
-title: 管控台操作指引 - Apache inlong
+title: 管控台操作指引 - Apache TubeMQ
 ---
 
-# inlong管控台操作指引
+# TubeMQ管控台操作指引
 
 ## 管控台关系
 
-​        inlong管控台是管理inlong集群的简单运营工具，包括集群里的Master、Broker，以及Broker上部署的Topic元数据等与inlong系统相关的运营数据及操作。需要说明的是，当前提供的inlong前台所提供的功能没有涵盖inlong所提供的功能范围，大家可以参照《inlong HTTP访问接口定义.xls》定义自行实现符合业务需要的管控前台。inlong管控台的访问地址为http://portal:webport/config/topic_list.htm：
+​        TubeMQ管控台是管理TubeMQ集群的简单运营工具，包括集群里的Master、Broker，以及Broker上部署的Topic元数据等与TubeMQ系统相关的运营数据及操作。需要说明的是，当前提供的TubeMQ前台所提供的功能没有涵盖TubeMQ所提供的功能范围，大家可以参照《TubeMQ HTTP访问接口定义.xls》定义自行实现符合业务需要的管控前台。TubeMQ管控台的访问地址为http://portal:webport/config/topic_list.htm：
 ![](img/console/1568169770714.png)
 ​       其中portal为该集群中任意的主、备Master的IP地址，webport为配置的Master的Web端口。
 
 
-## inlong管控台各版面介绍
+## TubeMQ管控台各版面介绍
 
 ​        管控台一共3项内容：分发查询，配置管理，集群管理；配置管理又分为Broker列表，Topic列表2个部分，我们先介绍简单的分发查询和集群管理，然后再介绍复杂的配置管理。
 
 ### 分发查询
 
-​        点分发查询，我们会看到如下的列表信息，这是当前inlong集群里已注册的消费组信息，包括具体的消费组组名，消费的Topic，以及该组总的消费分区数简介信息，如下图示：
+​        点分发查询，我们会看到如下的列表信息，这是当前TubeMQ集群里已注册的消费组信息，包括具体的消费组组名，消费的Topic，以及该组总的消费分区数简介信息，如下图示：
 ![](img/console/1568169796122.png)
 ​       点击记录，可以看到选中的消费组里的消费者成员，及对应消费的Broker及Partition分区信息，如下图示：
 ![](img/console/1568169806810.png)
@@ -36,22 +36,22 @@ title: 管控台操作指引 - Apache inlong
 
 ​        从页面信息我们也可以看到，除了Broker的记录信息外，还有Broker在该集群里的管理信息，包括是否已上线，是否处于命令处理中，是否可读，是否可写，配置是否做了更改，是否已加载变更的配置信息。
 
-​        点单个新增，会弹框如下，这个表示待新增Broker的元数据信息，包括BrokerID，BrokerIP，BrokerPort，以及该Broker里部署的Topic的缺省配置信息，相关的字段详情见《inlong HTTP访问接口定义.xls》
+​        点单个新增，会弹框如下，这个表示待新增Broker的元数据信息，包括BrokerID，BrokerIP，BrokerPort，以及该Broker里部署的Topic的缺省配置信息，相关的字段详情见《TubeMQ HTTP访问接口定义.xls》
 ![](img/console/1568169851085.png)
 
-​        所有inlong管控台的变更操作，或者改变操作，都会要求输入操作授权码，该信息由运维通过Master的配置文件master.ini的confModAuthToken字段进行定义：如果你知道这个集群的密码，你就可以进行该项操作，比如你是管理员，你是授权人员，或者你能登陆这个master的机器拿到这个密码，都认为你是有权操作该项功能。
+​        所有TubeMQ管控台的变更操作，或者改变操作，都会要求输入操作授权码，该信息由运维通过Master的配置文件master.ini的confModAuthToken字段进行定义：如果你知道这个集群的密码，你就可以进行该项操作，比如你是管理员，你是授权人员，或者你能登陆这个master的机器拿到这个密码，都认为你是有权操作该项功能。
 
-## inlong管控台上涉及的操作及注意事项
+## TubeMQ管控台上涉及的操作及注意事项
 
-​       如上所说，inlong管控台是运营Tube MQ集群的，套件负责包括Master、Broker这类inlong集群节点管理，包括自动部署和安装等，因此，如下几点需要注意：
+​       如上所说，TubeMQ管控台是运营Tube MQ集群的，套件负责包括Master、Broker这类TubeMQ集群节点管理，包括自动部署和安装等，因此，如下几点需要注意：
 
-​       1． **inlong集群做扩缩容增、减Broker节点时，要先在inlong管控台上做相应的节点新增、上线，以及下线、删除等操作后才能在物理环境上做对应Broker节点的增删处理**：
+​       1． **TubeMQ集群做扩缩容增、减Broker节点时，要先在TubeMQ管控台上做相应的节点新增、上线，以及下线、删除等操作后才能在物理环境上做对应Broker节点的增删处理**：
 
-​        inlong集群对Broker按照状态机管理，如上图示涉及到[draft，online，read-only，write-only，offline] 等状态，记录增加还没生效时是draft状态，确定上线后是online态；节点删除首先要由online状态转为offline状态，然后再通过删除操作清理系统内保存的该节点记录；draft、online和offline是为了区分各个节点所处的环节，Master只将online状态的Broker分发给对应的producer和consumer进行生产和消费；read-only，write-only是Broker处于online状态的子状态，表示只能读或者只能写Broker上的数据；相关的状态及操作见页面详情，增加一条记录即可明白其中的关系。inlong管控台上增加这些记录后，我们就可以进行Broker节点的部署及启动，这个时候Tube集群环境的页面会显示节点运行状态，如果为unregister状态，如下图示，则表示节点注册失败，需要到对应broker节点上检查日志，确认原因。目前该部分已经很成熟，出错信息会提示完整信息，大家可以直接根据提示作问题处理。
+​        TubeMQ集群对Broker按照状态机管理，如上图示涉及到[draft，online，read-only，write-only，offline] 等状态，记录增加还没生效时是draft状态，确定上线后是online态；节点删除首先要由online状态转为offline状态，然后再通过删除操作清理系统内保存的该节点记录；draft、online和offline是为了区分各个节点所处的环节，Master只将online状态的Broker分发给对应的producer和consumer进行生产和消费；read-only，write-only是Broker处于online状态的子状态，表示只能读或者只能写Broker上的数据；相关的状态及操作见页面详情，增加一条记录即可明白其中的关系。TubeMQ管控台上增加这些记录后，我们就可以进行Broker节点的部署及启动，这个时候Tube集群环境的页面会显示节点运行状态，如果为unregister状态，如下图示，则表示节点注册失败，需要到对应broker节点上检查日志，确认原因。目前该部分已经很成熟，出错信息会提示完整信息，大家可以直接根据提示作问题处理。
 ![](img/console/1568169863402.png)
 ​        2． **Topic元数据信息需要通过套件的业务使用界面进行新增和删除操作：**
 
-​       如下图，业务发现自己消费的Topic在inlong管控台上没有，则需要在inlong的管控台上直接操作：
+​       如下图，业务发现自己消费的Topic在TubeMQ管控台上没有，则需要在TubeMQ的管控台上直接操作：
 ![](img/console/1568169879529.png)
 
 ​       我们通过如上图中的Topic列表项完成Topic的新增，会弹出如下框，

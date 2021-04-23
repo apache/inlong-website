@@ -1,9 +1,9 @@
 ---
-title: Producer Example - Apache inlong
+title: Producer Example - Apache TubeMQ
 ---
 
 ## Producer Example
-  inlong provides two ways to initialize session factory, TubeSingleSessionFactory and TubeMultiSessionFactory:
+  TubeMQ provides two ways to initialize session factory, TubeSingleSessionFactory and TubeMultiSessionFactory:
   - TubeSingleSessionFactory creates only one session in the lifecycle, this is very useful in streaming scenarios.
   - TubeMultiSessionFactory creates new session on every call.
 

@@ -8,10 +8,10 @@ publish:
   whoami: asf-site
 
 notifications:
-  commits: commits@inlong.apache.org
-  issues: commits@inlong.apache.org
-  pullrequests_status: commits@inlong.apache.org
-  pullrequests_comment: commits@inlong.apache.org
-  issues_status: dev@inlong.apache.org
-  issues_comment: commits@inlong.apache.org
+  commits: commits@tubemq.apache.org
+  issues: commits@tubemq.apache.org
+  pullrequests_status: commits@tubemq.apache.org
+  pullrequests_comment: commits@tubemq.apache.org
+  issues_status: dev@tubemq.apache.org
+  issues_comment: commits@tubemq.apache.org
   jira_options: link label worklog

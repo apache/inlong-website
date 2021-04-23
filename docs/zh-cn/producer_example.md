@@ -1,9 +1,9 @@
 ---
-title: 生产者示例 - Apache inlong
+title: 生产者示例 - Apache TubeMQ
 ---
 
 ## Producer 示例
-inlong提供了两种方式来初始化 session factory: TubeSingleSessionFactory 和 TubeMultiSessionFactory。
+TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactory 和 TubeMultiSessionFactory。
   - TubeSingleSessionFactory 在整个生命周期只会创建一个 session
   - TubeMultiSessionFactory 每次调用都会创建一个session
 

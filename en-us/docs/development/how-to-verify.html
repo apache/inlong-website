@@ -7,7 +7,7 @@
 	<meta name="keywords" content="how-to-verify" />
 	<meta name="description" content="how-to-verify" />
 	<!-- 网页标签标题 -->
-	<title>How to Verify - Apache inlong</title>
+	<title>How to Verify - Apache TubeMQ</title>
 	<link rel="shortcut icon" href="/img/apache.ico"/>
 	<link rel="stylesheet" href="/build/documentation.css" />
 </head>
@@ -16,7 +16,7 @@
 <p><font color="#dd0000" size="4">TODO: This page needs to be translated into English. If you are interested, just do it.</font></p>
 <p>详细的检查列表请参考: <a href="https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist">check list</a></p>
 <h2>1. 下载要发布的候选版本到本地环境</h2>
-<pre><code class="language-shell">svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
+<pre><code class="language-shell">svn co https://dist.apache.org/repos/dist/dev/incubator/tubemq/${release_version}-${rc_version}/
 </code></pre>
 <h2>2. 验证上传的版本是否合规</h2>
 <blockquote>
@@ -36,7 +36,7 @@
 <ul>
 <li>导入公钥</li>
 </ul>
-<pre><code class="language-shell">curl https://dist.apache.org/repos/dist/dev/incubator/inlong/KEYS &gt; KEYS # 下载KEYS
+<pre><code class="language-shell">curl https://dist.apache.org/repos/dist/dev/incubator/tubemq/KEYS &gt; KEYS # 下载KEYS
 gpg --import KEYS # 导入KEYS到本地
 </code></pre>
 <ul>
@@ -101,10 +101,10 @@ gpg --import KEYS # 导入KEYS到本地
 </ul>
 <pre><code class="language-shell">for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
 <span class="hljs-meta">#</span><span class="bash">或者</span>
-gpg --verify apache-inlong-${release_version}-src.tar.gz.asc apache-inlong-${release_version}-src.tar.gz
+gpg --verify apache-tubemq-${release_version}-src.tar.gz.asc apache-tubemq-${release_version}-src.tar.gz
 <span class="hljs-meta">#</span><span class="bash"> 如果上传二进制包，则同样需要检查二进制包的签名是否正确</span>
-gpg --verify apache-inlong-server-${release_version}-bin.tar.gz.asc apache-inlong-server-${release_version}-bin.tar.gz
-gpg --verify apache-inlong-client-${release_version}-bin.tar.gz.asc apache-inlong-client-${release_version}-bin.tar.gz
+gpg --verify apache-tubemq-server-${release_version}-bin.tar.gz.asc apache-tubemq-server-${release_version}-bin.tar.gz
+gpg --verify apache-tubemq-client-${release_version}-bin.tar.gz.asc apache-tubemq-client-${release_version}-bin.tar.gz
 </code></pre>
 <ul>
 <li>检查结果</li>
@@ -112,7 +112,7 @@ gpg --verify apache-inlong-client-${release_version}-bin.tar.gz.asc apache-inlon
 <blockquote>
 <p>出现类似以下内容则说明签名正确，关键字：<strong><code>Good signature</code></strong></p>
 </blockquote>
-<pre><code class="language-shell">apache-inlong-0.3.0-incubating-src.tar.gz
+<pre><code class="language-shell">apache-tubemq-0.3.0-incubating-src.tar.gz
 gpg: Signature made Sat May 30 11:45:01 2020 CST
 gpg:                using RSA key 9B12C2228BDFF4F4CFE849445EF3A66D57EC647A
 gpg: Good signature from "Guangxu Cheng &lt;gxcheng@apache.org&gt;" [ultimate]gular2
@@ -123,15 +123,15 @@ gpg: Good signature from "Guangxu Cheng &lt;gxcheng@apache.org&gt;" [ultimate]gu
 </blockquote>
 <pre><code class="language-shell">for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i; done
 <span class="hljs-meta">#</span><span class="bash">或者</span>
-gpg --print-md SHA512 apache-inlong-${release_version}-src.tar.gz
+gpg --print-md SHA512 apache-tubemq-${release_version}-src.tar.gz
 <span class="hljs-meta">#</span><span class="bash"> 如果上传二进制包，则同样需要检查二进制包的sha512哈希</span>
-gpg --print-md SHA512 apache-inlong-server-${release_version}-bin.tar.gz
-gpg --print-md SHA512 apache-inlong-client-${release_version}-bin.tar.gz
+gpg --print-md SHA512 apache-tubemq-server-${release_version}-bin.tar.gz
+gpg --print-md SHA512 apache-tubemq-client-${release_version}-bin.tar.gz
 <span class="hljs-meta">#</span><span class="bash"> 或者</span>
 for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 </code></pre>
 <h3>2.4. 检查源码包的文件内容</h3>
-<p>解压缩<code>apache-inlong-${release_version}-src.tar.gz</code>，进行如下检查:</p>
+<p>解压缩<code>apache-tubemq-${release_version}-src.tar.gz</code>，进行如下检查:</p>
 <ul>
 <li>DISCLAIMER文件是否存在及内容是否正确</li>
 <li>LICENSE and NOTICE文件是否存在及内容是否正确</li>
@@ -141,7 +141,7 @@ for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 <li>....</li>
 </ul>
 <h3>2.5 检查二进制包(如果上传了二进制包)</h3>
-<p>解压缩<code>apache-inlong-client-${release_version}-src.tar.gz</code>和<code>apache-inlong-server-${release_version}-src.tar.gz</code>，进行如下检查:</p>
+<p>解压缩<code>apache-tubemq-client-${release_version}-src.tar.gz</code>和<code>apache-tubemq-server-${release_version}-src.tar.gz</code>，进行如下检查:</p>
 <ul>
 <li>DISCLAIMER文件是否存在及内容是否正确</li>
 <li>LICENSE and NOTICE文件是否存在及内容是否正确</li>

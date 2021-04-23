@@ -1,8 +1,8 @@
 ---
-title: 部署指引 - Apache inlong
+title: 部署指引 - Apache TubeMQ
 ---
 
-# inlong编译、部署及简单使用：
+# TubeMQ编译、部署及简单使用：
 
 ## 工程编译打包：
 
@@ -12,7 +12,7 @@ title: 部署指引 - Apache inlong
 mvn clean package -Dmaven.test.skip
 ```
 
-例如将inlong源码包放在E盘根目录，按照如下方式执行上述命令，当各个子目录都编译成功时工程编译完成：
+例如将TubeMQ源码包放在E盘根目录，按照如下方式执行上述命令，当各个子目录都编译成功时工程编译完成：
 
 ![](img/sysdeployment/sys_compile.png)
 
@@ -20,11 +20,11 @@ mvn clean package -Dmaven.test.skip
 
 **部署服务端：**
 
-如上例子，进入E:\GIT\inlong\inlong-server\target目录，服务侧的相关内容如下，其中inlong-server-3.8.0-bin.tar.gz为完整的服务端安装包，里面包括执行脚本，配置文件，依赖包，以及前端的源码；inlong-server-3.8.0.jar为服务端处理逻辑包，包含于完整工程安装包的lib里，单独提出是考虑到日常变更升级时改动点多在服务器处理逻辑上，升级的时候只需要单独替换该jar包即可：
+如上例子，进入E:\GIT\TubeMQ\tubemq-server\target目录，服务侧的相关内容如下，其中tubemq-server-3.8.0-bin.tar.gz为完整的服务端安装包，里面包括执行脚本，配置文件，依赖包，以及前端的源码；tubemq-server-3.8.0.jar为服务端处理逻辑包，包含于完整工程安装包的lib里，单独提出是考虑到日常变更升级时改动点多在服务器处理逻辑上，升级的时候只需要单独替换该jar包即可：
 
 ![](img/sysdeployment/sys_package.png)
 
-这里我们是全新安装，将上述完整的工程安装包部署到待安装机器上，我们这里是放置在/data/inlong目录下：
+这里我们是全新安装，将上述完整的工程安装包部署到待安装机器上，我们这里是放置在/data/tubemq目录下：
 
 ![](img/sysdeployment/sys_package_list.png)
 
@@ -37,7 +37,7 @@ mvn clean package -Dmaven.test.skip
 | --- | --- | --- | --- | --- | --- |
 | 10.224.148.145 | **Master** | 8099 | 8199 | 8080 | 元数据存储在`/stage/metadata` |
 | | Broker | 8123 | 8124 | 8081 | 消息储存在`/stage/msgdata` |
-| | ZK | 2181 | | | Offset储存在根目录`/inlong` |
+| | ZK | 2181 | | | Offset储存在根目录`/tubemq` |
 | 100.115.158.208 | **Master** | 8099 | 8199 | 8080 | 元数据存储在 `/stage/metadata` |
 | | Broker | 8123 | 8124 | 8081 | 消息储存在`/stage/msgdata` |
 | 10.224.155.80 | Producer ||||
@@ -62,7 +62,7 @@ mvn clean package -Dmaven.test.skip
 
 **启动Master**：
 
-完成如上配置设置后，首先进入主备Master所在的inlong环境的bin目录，进行服务启动操作：
+完成如上配置设置后，首先进入主备Master所在的TubeMQ环境的bin目录，进行服务启动操作：
 
 ![](img/sysdeployment/sys_master_start.png)
 
@@ -76,7 +76,7 @@ mvn clean package -Dmaven.test.skip
 
 **启动Broker**：
 
-启动Broker和启动master有些差别：Master负责管理整个inlong集群，包括Broker节点运行管理以及节点上部署的Topic配置管理，还有生产和消费管理等，因此，实体的Broker启动前，首先要在Master上配置Broker元数据，增加Broker相关的管理信息，如下图示：
+启动Broker和启动master有些差别：Master负责管理整个TubeMQ集群，包括Broker节点运行管理以及节点上部署的Topic配置管理，还有生产和消费管理等，因此，实体的Broker启动前，首先要在Master上配置Broker元数据，增加Broker相关的管理信息，如下图示：
 
 ![](img/sysdeployment/sys_broker_configure.png)
 
@@ -116,7 +116,7 @@ Master上所有的变更操作在点击确认的时候，都会弹出如上输�
 
 配置Topic和配置Broker信息类似，都需要先在Master上新增元数据信息，然后才能开始使用，要不生产和消费时候会报topic不存在错误，如我们用安装包里的example对不存在的Topic名test进行生产：
 ```
-/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/inlong/inlong-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/inlong/inlong-server-3.8.0/lib/\*:/data/inlong/inlong-server-3.8.0/conf/\*: com.tencent.inlong.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
+/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
 ```
 
 Demo实例会报如下错误信息：
@@ -142,16 +142,16 @@ Demo实例会报如下错误信息：
 
 **数据生产和消费**：
 
-在安装包里，我们打包了example的测试Demo，业务也可以直接使用inlong-client-3.8.0.jar封装自己的生产和消费逻辑，总的形式是类似，我们先执行生产者的Demo，我们可以看到Broker上已开始有数据接收：
+在安装包里，我们打包了example的测试Demo，业务也可以直接使用tubemq-client-3.8.0.jar封装自己的生产和消费逻辑，总的形式是类似，我们先执行生产者的Demo，我们可以看到Broker上已开始有数据接收：
 ```
-	/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/inlong/inlong-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/inlong/inlong-server-3.8.0/lib/\*:/data/inlong/inlong-server-3.8.0/conf/\*: com.tencent.inlong.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
+	/usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageProducerExample 100.115.158.208 10.224.148.145:8000,100.115.158.208:8000 test 10000000 
 ```
 
 ![](img/sysdeployment/sys_node_status.png)
 
 我们再执行消费Demo，我们也可以看到消费也正常：
 ```
- /usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/inlong/inlong-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/inlong/inlong-server-3.8.0/lib/\*:/data/inlong/inlong-server-3.8.0/conf/\*: com.tencent.inlong.example.MessageConsumerExample 10.224.148.145 10.224.148.145:8000,100.115.158.208:8000 test testGroup 3 1 1 
+ /usr/local/java/default/bin/java -Xmx512m -Dlog4j.configuration=file:/data/tubemq/tubemq-server-3.8.0/conf/tools.log4j.properties -Djava.net.preferIPv4Stack=true -cp /data/tubemq/tubemq-server-3.8.0/lib/\*:/data/tubemq/tubemq-server-3.8.0/conf/\*: com.tencent.tubemq.example.MessageConsumerExample 10.224.148.145 10.224.148.145:8000,100.115.158.208:8000 test testGroup 3 1 1 
 
 ```
 
@@ -161,4 +161,4 @@ Demo实例会报如下错误信息：
 
 ![](img/sysdeployment/sys_node_log.png)
 
-在这里，已经完成了inlong的编译，部署，系统配置，启动，生产和消费。如果需要了解更深入的内容，就需要查看《inlong HTTP API》里的相关内容，进行相应的配置设置。
+在这里，已经完成了TubeMQ的编译，部署，系统配置，启动，生产和消费。如果需要了解更深入的内容，就需要查看《TubeMQ HTTP API》里的相关内容，进行相应的配置设置。

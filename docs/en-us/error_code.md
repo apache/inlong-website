@@ -1,10 +1,10 @@
 ---
-title: Error Code - Apache inlong
+title: Error Code - Apache TubeMQ
 ---
 
-# Introduction of inlong Error
+# Introduction of TubeMQ Error
 
-​        inlong use `errCode` and `errMsg` combined to return specific operation result. 
+​        TubeMQ use `errCode` and `errMsg` combined to return specific operation result. 
         Firstly, determine the type of result(problem) by errCode, and then determine the specific reson of the errCode based on errMsg.
         The following table summarizes all the errCodes and errMsgs that may return during operation.
 
