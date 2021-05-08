@@ -16,7 +16,6 @@ class Home extends Language {
     super(props);
     this.state = {
       headerType: 'primary',
-      p0Animation: false,
       p1Animation: false,
       p2Animation: false
     };
@@ -25,15 +24,6 @@ class Home extends Language {
   componentDidMount() {
     window.addEventListener('scroll', () => {
       const scrollTop = getScrollTop();
-      if (scrollTop === 0 && !this.state.p0Animation) {
-        this.setState({
-          p0Animation: true
-        });
-      } else {
-        this.setState({
-          p0Animation: false
-        });
-      }
       if (scrollTop > 350) {
         this.setState({
           p1Animation: true
@@ -58,7 +48,7 @@ class Home extends Language {
   render() {
     const language = this.getLanguage();
     const dataSource = homeConfig[language];
-    const { headerType, p1Animation, p2Animation, p0Animation } = this.state;
+    const { headerType, p1Animation, p2Animation } = this.state;
     return (
       <div className="home-page">
         <section className="top-section" style={{backgroundImage: 'url(' + getLink("/img/first-page-bg.png") + ')'}}>
@@ -68,7 +58,7 @@ class Home extends Language {
             language={language}
             onLanguageChange={this.onLanguageChange}
           />
-          <div className={`vertical-middle ${p0Animation ? 'animate__animated animate__fadeInLeft' : ''}`}>
+          <div className="vertical-middle animate__animated animate__fadeInLeft animate__delay-0.5s">
             <div className="product-name">
               <div className="brandname">{dataSource.brand.brandName}</div>
               <div className="projectname" style={{backgroundImage: 'url(' + getLink(`/img/inlong-en.svg`) + ')'}}>
