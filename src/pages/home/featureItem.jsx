@@ -2,12 +2,9 @@ import React from 'react';
 import {getLink} from '../../../utils';
 
 const Item = (props) => {
-    const {feature, index} = props;
+    const {feature} = props;
     return (
         <li>
-            <div className="index">
-                <span>0{index+1}</span>
-            </div>
             <div className="feature-icon" style={{background: 'url(' + getLink(feature.img) + ')'}}/>
             <div>
                 <h4>{feature.title}</h4>

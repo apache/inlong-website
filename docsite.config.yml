@@ -3,22 +3,22 @@ pages:
  home:
   # 首页配置
   zh-cn:
-   title: 'Apache TubeMQ'
+   title: 'Apache InLong'
    keywords: '关键词1，关键词2'
    description: '页面内容简介'
   # home config
   en-us:
-   title: 'Apache TubeMQ'
+   title: 'Apache InLong'
    keywords: 'keyword1,keyword2'
    description: 'page description'
  community:
   # 社区页配置
   zh-cn:
-   title: 'Apache TubeMQ'
+   title: 'Apache InLong'
    keywords: '关键词1，关键词2'
    description: '页面内容简介'
   # community page config
   en-us:
-   title: 'Apache TubeMQ'
+   title: 'Apache InLong'
    keywords: 'keyword1,keyword2'
    description: 'page description'

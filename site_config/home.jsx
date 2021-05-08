@@ -1,9 +1,11 @@
 export default {
   'zh-cn': {
+    language: 'zh',
     brand: {
       brandName: 'Apache',
       projectName: 'InLong',
-      briefIntroduction: 'Apache InLong，万亿级分布式消息中间件，专注于海量数据下的数据传输和存储，与许多开源MQ项目相比，InLong在稳定性、性能和低成本方面具有独特的优势',
+      briefIntroduction: 'Apache InLong（应龙）是一站式的数据流接入服务平台，提供自动、安全、高性能、分布式的数据发布订阅能力，基于该系统用户可以轻松构建基于流式的数据应用。',
+      features: ['自动', '安全', '高性能', '分布式'],
       buttons: [
         {
           text: '立即开始',
@@ -23,29 +25,36 @@ export default {
       img: '/img/architecture.png',
     },
     features: {
-      title: '优势',
+      title: '产品优势',
       list: [
         {
           img: '/img/advantage-01.png',
-          title: '高吞吐',
-          content: '大数据满负载场景下，消息吞吐量可达14W TPS，且系统运行平稳',
+          title: '简单易用',
+          content: '基于SaaS模式对外服务，用户只需要按主题发布和订阅数据即可完成数据的上报，传输和分发工作',
         },
         {
           img: '/img/advantage-02.png',
-          title: '低时延',
-          content: '满负载场景下，从生产到消费，可以做到5ms以内',
+          title: '稳定可靠',
+          content: '系统源于实际的线上系统，服务上十万亿级的高性能及上千亿级的高可靠数据数据流量，系统稳定可靠',
         },
         {
           img: '/img/advantage-03.png',
-          title: '稳定性高',
-          content: '系统线上运营近7年，目前过35万亿的日均消息接入条数近1500台机器，运维人员不到1个人力资源，系统除了版本发布系统可以连续不间断运营',
+          title: '功能完善',
+          content: '支持各种类型的数据接入方式，多种不同类型的MQ集成，以及基于配置规则的实时数据ETL和数据分拣落地，并支持以可插拔方式扩展系统能力',
         },
         {
           img: '/img/advantage-04.png',
-          title: '成本低',
-          content: '相比同类使用原生Kafka机器的业务，按照已知的横向数据比较，仅机器成本就可以节约至少4倍资源',
+          title: '服务集成',
+          content: '支持统一的系统监控、告警，以及细粒度的数据指标呈现，对于管道的运行情况，以数据主题为核心的数据运营情况，汇总在统一的数据指标平台，并支持通过业务设置的告警信息进行异常告警提醒',
+        }, {
+          img: '/img/advantage-04.png',
+          title: '灵活扩展',
+          content: '全链条上的各个模块基于协议以可插拔方式组成服务，业务可根据自身需要进行组件替换和功能扩展',
         }
       ],
+    },
+    architecture: {
+      title: '产品架构'
     },
     start: {
       title: '快速开始',
@@ -58,10 +67,12 @@ export default {
     },
   },
   'en-us': {
+    language: 'en',
     brand: {
       brandName: 'Apache',
       projectName: 'InLong',
-      briefIntroduction: 'Apache InLong, a trillion-records-scale distributed messaging queue (MQ) system, focuses on data transmission and storage under massive data. Compared to many open source MQ projects, InLong has unique advantages in terms of stability, performance, and low cost',
+      features: ['Automatic', 'Safety', 'High performance', 'Distributed'],
+      briefIntroduction: 'Apache InLong is a one-stop data streaming platform that provides automatic, secure, distributed, and efficient data publishing and subscription capabilities. This platform helps you easily build stream-based data applications.',
       buttons: [
         {
           text: 'Quick Start',
@@ -80,28 +91,36 @@ export default {
       desc: 'some introduction of your product',
       img: '/img/architecture.png',
     },
+    architecture: {
+      title: 'Product Architecture'
+    },
     features: {
       title: 'Advantages',
       list: [
         {
           img: '/img/advantage-01.png',
-          title: 'High Throughput',
-          content: 'Throughput arrives 14W TPS under a full load of massive data while the system runs stably',
+          title: 'Ease of Use',
+          content: 'Apache InLong is a SaaS-based service platform. You can easily and quickly report, transfer, and distribute data by publishing and subscribing to data based on topics',
         },
         {
           img: '/img/advantage-02.png',
-          title: 'Low Latency',
-          content: 'Latency is less than 5ms from producer to consumer under a full load of massive data',
+          title: 'Stability & Reliability',
+          content: 'Apache InLong is derived from the actual online production environment, it delivers high-performance processing capabilities for 10 trillion-level data streams and highly reliable services for 100 billion-level data streams',
         },
         {
           img: '/img/advantage-03.png',
-          title: 'High stability',
-          content: 'InLong has been successfully operating for nearly seven years. Currently, there are over 35 trillion messages processed every day. The operation costs 1500 machines and 1 operator. Besides, InLong can run continuously except during releasing',
+          title: 'Comprehensive Features',
+          content: 'Apache InLong supports various types of data access methods and can be integrated with different types of Message Queue (MQ) services. It also provides real-time data extract, transform, and load (ETL) and sorting capabilities based on rules. Apache InLong also allows you to plug features to extend system capabilities',
         },
         {
           img: '/img/advantage-04.png',
-          title: 'Low Cost',
-          content: 'Compared with similar systems such as Kafka, for serving the same workload, InLong only requires the utilization of  20% resources according to cross-sectional results',
+          title: 'Service Integration',
+          content: 'Apache InLong provides unified system monitoring and alert services. It provides fine-grained metrics to facilitate data visualization. You can view the running status of queues and topic-based data statistics in a unified data metric platform. You can also configure the alert service based on your business requirements so that users can be alerted when errors occur',
+        },
+        {
+          img: '/img/advantage-05.png',
+          title: 'Scalability',
+          content: 'Apache InLong adopts a pluggable architecture that allows you to plug modules into the system based on specific protocols. You can replace components and add features based on your business requirements',
         }
       ]
     },

@@ -41,6 +41,7 @@
     "webpack-dev-server": "^2.4.5"
   },
   "dependencies": {
+    "animate.css": "^4.1.1",
     "antd": "^3.26.7",
     "classnames": "^2.2.5",
     "core-decorators": "^0.20.0",

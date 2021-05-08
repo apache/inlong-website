@@ -8,28 +8,28 @@
 .ant-menu-horizontal > .ant-menu-item > a, .ant-menu-horizontal > .ant-menu-submenu {
   font-family: HelveticaNeue-Medium;
   font-size: 16px;
-  color: rgba(0,0,0,0.85);
+  color: #D1D1D1;
   letter-spacing: 0;
   text-align: right;
 }
 .ant-menu-horizontal > .ant-menu-item:hover > a, .ant-menu-horizontal > .ant-menu-submenu-open > .submenu-title-wrapper, .ant-menu-submenu-active > .ant-menu-submenu-title > .submenu-title-wrapper {
-  color: #2AAC4A!important;
+  color: #5494FF!important;
 }
 .ant-menu-horizontal > .ant-menu-item:hover, .ant-menu-horizontal > .ant-menu-submenu:hover {
   font-family: HelveticaNeue-Medium;
   font-size: 16px;
-  color: #2AAC4A;
+  color: #5494FF;
   letter-spacing: 0;
   text-align: justify;
-  border-bottom: 2px solid #2AAC4A!important;
+  border-bottom: 2px solid #5494FF!important;
 }
 
 .ant-menu-horizontal > .ant-menu-submenu-active {
-  border-bottom: 2px solid #2AAC4A!important;
+  border-bottom: 2px solid #5494FF!important;
 }
 
 .ant-menu-item-active > a {
-  color: #2AAC4A!important;
+  color: #5494FF!important;
 }
 .header-container {
   position: fixed;
@@ -66,13 +66,12 @@
     }
     .logo-split {
       display: inline-block;
-      border: 1px solid #000;
+      border: 1px solid #fff;
       height: 29px;
       opacity: 0.2;
-      margin: 0 32px;
+      margin: 5px 32px;
     }
     .logo {
-      width: 96px;
       vertical-align: sub;
     }
     .header-menu {
@@ -154,8 +153,8 @@
       }
     }
     .language-switch-primary {
-      border: 1px solid #000;
-      color: #000;
+      border: 1px solid #D1D1D1;
+      color: #D1D1D1;
     }
     .language-switch-normal {
       border: 1px solid #333;
@@ -189,10 +188,10 @@
       }
       &-primary {
         .icon-search {
-          border-color: #000;
+          border-color: #D1D1D1;
           opacity: 0.6;
           &::before {
-            background-color: #000;
+            background-color: #D1D1D1;
           }
           &:hover {
             opacity: 1;
