@@ -7,8 +7,8 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
   - TubeSingleSessionFactory 在整个生命周期只会创建一个 session
   - TubeMultiSessionFactory 每次调用都会创建一个session
 
-### TubeSingleSessionFactory
-   #### Send Message Synchronously
+1. TubeSingleSessionFactory
+   - Send Message Synchronously
      ```java
      public final class SyncProducerExample {
     
@@ -28,10 +28,10 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
             }
             messageProducer.shutdown();
         }
-    }
-    ```
+     }
+     ```
      
-   #### Send Message Asynchronously
+   - Send Message Asynchronously
      ```java
      public final class AsyncProducerExample {
      
@@ -62,10 +62,10 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
             messageProducer.shutdown();
         }
 
-    }
-    ```
+     }
+     ```
      
-   #### Send Message With Attributes
+   - Send Message With Attributes
      ```java
      public final class ProducerWithAttributeExample {
      
@@ -87,11 +87,9 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
             messageProducer.sendMessage(message);
             messageProducer.shutdown();
         }
-
-    }
-    ```
+     }```
      
-### TubeMultiSessionFactory
+- TubeMultiSessionFactory
 
     ```java
     public class MultiSessionProducerExample {
