@@ -17,7 +17,7 @@ Apache TubeMQ社区欢迎大家为Apache TubeMQ做贡献，您可以通过很多
 - 官网：https://tubemq.apache.org/
 - 代码库：https://github.com/apache/incubator-tubemq
 - 官网代码库：https://github.com/apache/incubator-tubemq-website
-- JRIA任务管理：https://issues.apache.org/jira/projects/TUBEMQ/issues
+- JIRA任务管理：https://issues.apache.org/jira/projects/TUBEMQ/issues
 
 ## 2. 订阅TubeMQ邮件列表
    详见[如何订阅邮件列表](how-to-subscribe.md)
