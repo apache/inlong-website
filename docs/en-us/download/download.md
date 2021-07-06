@@ -1,9 +1,9 @@
 ---
-title: Download - Apache TubeMQ
+title: Download - Apache InLong
 ---
 
 ## Download links
-  Use the links below to download the Apache TubeMQ Releases, the latest release is 0.8.0.
+  Use the links below to download the Apache InLong Releases, the latest release is 0.8.0.
 
 ## 0.8.0 release
 

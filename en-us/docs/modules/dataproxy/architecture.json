@@ -1,0 +1,6 @@
+{
+  "filename": "architecture.md",
+  "__html": "<h1>1、intro</h1>\n<pre><code>Inlong-bus belongs to the inlong proxy layer and is used for data collection, reception and forwarding. Through format conversion, the data is converted into TDMsg1 format that can be cached and processed by the cache layer\nThe overall architecture of inlong-bus is based on Apache Flume. On the basis of this project, inlong-bus expands the source layer and sink layer, and optimizes disaster tolerance forwarding, which improves the stability of the system.\n</code></pre>\n<h1>2、architecture</h1>\n<pre><code>1. The source layer opens port monitoring, which is realized through netty server. The decoded data is sent to the channel layer\n2. The channel layer has a selector, which is used to choose which type of channel to go. If the memory is eventually full, the data will be processed.\n3. The data of the channel layer will be forwarded through the sink layer. The main purpose here is to convert the data to the TDMsg1 format and push it to the cache layer (tube is more commonly used here)\n</code></pre>\n",
+  "link": "/en-us/docs/modules/dataproxy/architecture.html",
+  "meta": {}
+}

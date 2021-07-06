@@ -1,0 +1,8 @@
+{
+  "filename": "protocol_introduction.md",
+  "__html": "<h1>Overview</h1>\n<p>当前inlong-sort的元数据管理依赖inlong-manager。inlong-sort与inlong-manager之间通过zk进行元数据的交互。</p>\n<h1>Zookeeper's path structure</h1>\n<p><img src=\"img.png\" alt=\"img.png\"></p>\n<p>Cluster represents a flink job. Multiple flows can be handled in the same cluster, but these flows must be homogeneous (source is the same as sink).</p>\n<p>The DataFlow represents a specific flow, and each flow is identified by a globally unique ID. The flow consists of source + sink.</p>\n<p>A path at the top of the figure indicates which dataflow are running in a cluster, without metadata under the node.</p>\n<p>The path below is used to store the details of the dataflow.</p>\n<h1>Protocol</h1>\n<p>Please reference\n<code>org.apache.inlong.sort.protocol.DataFlowInfo</code></p>\n",
+  "link": "/en-us/docs/modules/sort/protocol_introduction.html",
+  "meta": {
+    "title": "Protocol Introduction - Apache InLong-sort"
+  }
+}
