@@ -36,7 +36,7 @@ InLong(应龙)最初建于腾讯，服务线上业务8年多，支持大数据�
 [如何编译部署Agent](modules/agent/quick_start.md)
 
 ## 业务配置
-[如何配置新业务](modules/manager/userManual.md)
+[如何配置新业务](modules/manager/user_manual.md)
 
 ## 数据上报验证
 到这里，您就可以通过文件Agent采集数据并在指定的Hive表中验证接收到的数据是否与发送的数据一致。
