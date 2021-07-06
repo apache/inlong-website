@@ -12,10 +12,10 @@ export default {
       },
       {
         title: 'Components',
-		children: [
+        children: [
           {
             title: 'Manager',
-			children: [
+            children: [
                {
                  title: 'Architecture',
                  link: '/en-us/docs/modules/manager/architecture.html',
@@ -32,33 +32,33 @@ export default {
           },
           {
             title: 'Agent',
-			children: [
+            children: [
                {
                  title: 'Architecture',
                  link: '/en-us/docs/modules/agent/architecture.html',
                },
- 			   {
-				 title: 'Build && Deployment',
-				 link: '/en-us/docs/modules/agent/quick_start.html',
-			   },
-			],
+               {
+                 title: 'Build && Deployment',
+                 link: '/en-us/docs/modules/agent/quick_start.html',
+               },
+            ],
           },		
           {
             title: 'DataProxy',
-			children: [
+            children: [
                {
                  title: 'Architecture',
                  link: '/en-us/docs/modules/dataproxy/architecture.html',
                },
  			   {
-				 title: 'Build && Deployment',
-				 link: '/en-us/docs/modules/dataproxy/quick_start.html',
-			   },
-			],
+ 			     title: 'Build && Deployment',
+ 			     link: '/en-us/docs/modules/dataproxy/quick_start.html',
+ 			   },
+            ],
           },
           {
             title: 'TubeMQ',
-			children: [
+            children: [
                {
                  title: 'Architecture',
                  link: '/en-us/docs/modules/tubemq/architecture.html',
@@ -87,24 +87,24 @@ export default {
                  title: 'HTTP API',
                  link: '/en-us/docs/modules/tubemq/http_access_api.html',
                },
- 			   {
-				 title: 'SDK Demo',
-				 link: '/en-us/docs/modules/tubemq/clients_java.html',
-			   },
-			],
+               {
+                 title: 'SDK Demo',
+                 link: '/en-us/docs/modules/tubemq/clients_java.html',
+               },
+            ],
           },
           {
             title: 'TubeMQ-Manager',
-			children: [
+            children: [
                {
                  title: 'Build && Deployment',
                  link: '/en-us/docs/modules/tubemq-manager/quick_start.html',
                },
-			],
+            ],
           },
           {
             title: 'Sort',
-			children: [
+            children: [
                {
                  title: 'Architecture',
                  link: '/en-us/docs/modules/sort/introduction.html',
@@ -117,7 +117,7 @@ export default {
                  title: 'Build && Deployment',
                  link: '/en-us/docs/modules/sort/quick_start.html',
                },
-			],
+            ],
           },		  
         ],
       },
@@ -141,10 +141,10 @@ export default {
       },
       {
         title: '组件介绍',
-		children: [
+        children: [
           {
             title: 'Manager',
-			children: [
+            children: [
                {
                  title: '架构介绍',
                  link: '/zh-cn/docs/modules/manager/architecture.html',
@@ -153,41 +153,41 @@ export default {
                  title: '管控台操作指引',
                  link: '/zh-cn/docs/modules/manager/user_manual.html',
                },
- 			   {
-				 title: '编译部署',
-				 link: '/zh-cn/docs/modules/manager/quick_start.html',
-			   },
-			],
+               {
+                 title: '编译部署',
+                 link: '/zh-cn/docs/modules/manager/quick_start.html',
+               },
+            ],
           },		
           {
             title: 'Agent',
-			children: [
+            children: [
                {
                  title: '架构介绍',
                  link: '/zh-cn/docs/modules/agent/architecture.html',
                },
- 			   {
-				 title: '编译部署',
-				 link: '/zh-cn/docs/modules/agent/quick_start.html',
-			   },
-			],
+               {
+                 title: '编译部署',
+                 link: '/zh-cn/docs/modules/agent/quick_start.html',
+               },
+            ],
           },
           {
             title: 'DataProxy',
-			children: [
+            children: [
                {
                  title: '架构介绍',
                  link: '/zh-cn/docs/modules/dataproxy/architecture.html',
                },
- 			   {
-				 title: '编译部署',
-				 link: '/zh-cn/docs/modules/dataproxy/quick_start.html',
-			   },
-			],
+               {
+                 title: '编译部署',
+                 link: '/zh-cn/docs/modules/dataproxy/quick_start.html',
+               },
+             ],
           },
           {
             title: 'TubeMQ',
-			children: [
+            children: [
                {
                  title: '架构介绍',
                  link: '/zh-cn/docs/modules/tubemq/architecture.html',
@@ -204,7 +204,7 @@ export default {
                  title: '管控台操作指引',
                  link: '/zh-cn/docs/modules/tubemq/console_introduction.html',
                },
-			   {
+               {
                  title: '客户端RPC',
                  link: '/zh-cn/docs/modules/tubemq/client_rpc.html',
                },
@@ -216,24 +216,24 @@ export default {
                  title: 'HTTP API介绍',
                  link: '/zh-cn/docs/modules/tubemq/http_access_api.html',
                },
- 			   {
-				 title: 'JAVA SDK使用示例',
-				 link: '/zh-cn/docs/modules/tubemq/clients_java.html',
-			   },
-			],
+               {
+                 title: 'JAVA SDK使用示例',
+                 link: '/zh-cn/docs/modules/tubemq/clients_java.html',
+               },
+            ],
           },
           {
             title: 'TubeMQ-Manager',
-			children: [
+            children: [
                {
                  title: '编译部署',
                  link: '/zh-cn/docs/modules/tubemq-manager/quick_start.html',
                },
-			],
+            ],
           },
           {
             title: 'Sort',
-			children: [
+            children: [
                {
                  title: '架构介绍',
                  link: '/zh-cn/docs/modules/sort/introduction.html',
@@ -246,7 +246,7 @@ export default {
                  title: '编译部署',
                  link: '/zh-cn/docs/modules/sort/quick_start.html',
                },
-			],
+            ],
           },		  
         ],
       },
