@@ -6,15 +6,7 @@ export default {
         children: [
           {
             title: 'Quick Start',
-            link: '/en-us/docs/quick_start.html',
-          },
-          {
-            title: 'Producer Example',
-            link: '/en-us/docs/producer_example.html',
-          },
-          {
-            title: 'Consumer Example',
-            link: '/en-us/docs/consumer_example.html',
+            link: '/en-us/docs/getting_started.html',
           },
         ],
       },
@@ -79,15 +71,7 @@ export default {
         children: [
           {
             title: '快速开始',
-            link: '/zh-cn/docs/quick_start.html',
-          },
-          {
-            title: '生产者示例',
-            link: '/zh-cn/docs/producer_example.html',
-          },
-          {
-            title: '消费者示例',
-            link: '/zh-cn/docs/consumer_example.html',
+            link: '/zh-cn/docs/getting_started.html',
           },
         ],
       },
@@ -127,12 +111,12 @@ export default {
             title: 'API介绍',
             children: [
                {
-                 title: 'HTTP API介绍',
-                 link: '/zh-cn/docs/http_access_api.html',
+                 title: 'TubeMQ HTTP API介绍',
+                 link: '/zh-cn/docs/modules/tubemq/http_access_api.html',
                },
  			   {
-				 title: 'JAVA SDK API介绍',
-				 link: '/zh-cn/docs/clients_java.html',
+				 title: 'TubeMQ JAVA SDK API介绍',
+				 link: '/zh-cn/docs/modules/tubemq/clients_java.html',
 			   },
 			]   
           },

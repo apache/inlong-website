@@ -1,5 +1,5 @@
 ---
-title: Subscribe Mailing list - Apache TubeMQ
+title: Subscribe Mailing list - Apache InLong
 ---
 
 # 订阅邮件列表
@@ -8,19 +8,19 @@ title: Subscribe Mailing list - Apache TubeMQ
 
 ## 1. 前言
 邮件列表是Apache社区用来沟通交流的一种形式，通常来说，Apache社区的许多事情都是由邮件列表来承载，比如：项目的提问与解答、技术讨论、事务决策、版本发布投票等等，
-订阅邮件后，你可以第一时间获取TubeMQ社区的动态，可以与社区保持同步。
+订阅邮件后，你可以第一时间获取InLong社区的动态，可以与社区保持同步。
 
-#### TubeMQ项目邮件列表
+#### InLong项目邮件列表
 
 |名称|描述|订阅邮件|退订邮件|邮件归档|
 |:-----|:--------|:------|:-------|:-----|
-| [dev@inlong.apache.org](mailto:dev@tubemq.apache.org) | 社区活动信息 | [订阅](mailto:dev-subscribe@inlong.apache.org)   | [退订](mailto:dev-unsubscribe@inlong.apache.org)   | [归档](http://mail-archives.apache.org/mod_mbox/tubemq-dev)   |
-| [commits@tubemq.apache.org](mailto:commits@inlong.apache.org) | 代码库更新信息 | [订阅](mailto:commits-subscribe@inlong.apache.org)   | [退订](mailto:commits-unsubscribe@inlong.apache.org)   | [归档](http://mail-archives.apache.org/mod_mbox/tubemq-commits)   |
+| [dev@inlong.apache.org](mailto:dev@inlong.apache.org) | 社区活动信息 | [订阅](mailto:dev-subscribe@inlong.apache.org)   | [退订](mailto:dev-unsubscribe@inlong.apache.org)   | [归档](http://mail-archives.apache.org/mod_mbox/inlong-dev)   |
+| [commits@inlong.apache.org](mailto:commits@inlong.apache.org) | 代码库更新信息 | [订阅](mailto:commits-subscribe@inlong.apache.org)   | [退订](mailto:commits-unsubscribe@inlong.apache.org)   | [归档](http://mail-archives.apache.org/mod_mbox/inlong-commits)   |
 
 
 
 ## 2. 订阅邮件列表
-**以订阅dev@tubemq.apache.org邮件列表为例**
+**以订阅dev@inlong.apache.org邮件列表为例**
 
 具体步骤如下：
  1. 发送一封不包含任何内容或主题的邮件到: `dev-subscribe@inlong.apache.org`

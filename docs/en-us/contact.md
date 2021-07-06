@@ -1,18 +1,18 @@
 ---
-title: Contact Us - Apache TubeMQ
+title: Contact Us - Apache InLong
 ---
 
 Contact us
 -------
-
-- Mailing lists
+- Ask questions on: [Apache InLong Slack](https://the-asf.slack.com/archives/C01QAG6U00L)
+- Mailing lists:
 
     | Name                                                                          | Scope                           |                                                                 |                                                                     |                                                                              |
     |:------------------------------------------------------------------------------|:--------------------------------|:----------------------------------------------------------------|:--------------------------------------------------------------------|:-----------------------------------------------------------------------------|
-    | [dev@tubemq.apache.org](mailto:dev@inlong.apache.org)     | Development-related discussions | [Subscribe](mailto:dev-subscribe@inlong.apache.org)   | [Unsubscribe](mailto:dev-unsubscribe@inlong.apache.org)   | [Archives](http://mail-archives.apache.org/mod_mbox/tubemq-dev/)   |
-
+    | [dev@inlong.apache.org](mailto:dev@inlong.apache.org)     | Development-related discussions | [Subscribe](mailto:dev-subscribe@inlong.apache.org)   | [Unsubscribe](mailto:dev-unsubscribe@inlong.apache.org)   | [Archives](http://mail-archives.apache.org/mod_mbox/inlong-dev/)   |
+	
 - Home page: https://inlong.apache.org
-- Issues: https://issues.apache.org/jira/browse/INLONG
+- Issues: https://issues.apache.org/jira/browse/InLong
 
 
 
