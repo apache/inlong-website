@@ -18,8 +18,8 @@ InLong(应龙)最初建于腾讯，服务线上业务8年多，支持大数据�
 ## 编译部署Manager
 [如何编译部署Manager](modules/manager/quick_start.md)
 
-## 编译部署Manager的web
-[如何编译部署Manager Web](modules/console/quick_start.md)
+## 编译部署InLong Web
+[如何编译部署InLong Web](modules/console/quick_start.md)
 
 ## 编译部署TubeMQ
 [如何编译部署TubeMQ](modules/tubemq/quick_start.md)
