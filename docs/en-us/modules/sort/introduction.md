@@ -1,5 +1,5 @@
 ---
-title: Introduction - Apache InLong-sort
+Introduction - Apache InLong-sort
 ---
 
 # overview

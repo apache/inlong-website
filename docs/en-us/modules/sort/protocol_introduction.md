@@ -1,9 +1,11 @@
 ---
-title: Protocol Introduction - Apache InLong-sort
+Protocol Introduction - Apache InLong-sort
 ---
 
 # Overview
-当前inlong-sort的元数据管理依赖inlong-manager。inlong-sort与inlong-manager之间通过zk进行元数据的交互。
+Currently the metadata management of inlong-sort relies on inlong-manager.
+
+Metadata interaction between inlong-sort and inlong-manager is performed via ZK.
 
 # Zookeeper's path structure
 
