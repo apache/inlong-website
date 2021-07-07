@@ -3,8 +3,9 @@ title: Quick Start - Apache InLong's TubeMQ module
 ---
 
 ## Build TubeMQ
+
 ### Prerequisites
-- Java JDK 1.7 or 1.8
+- Java JDK 1.8
 - Maven 3.3+
 
 ### Build Distribution Tarball
@@ -12,35 +13,31 @@ title: Quick Start - Apache InLong's TubeMQ module
 ```bash
 mvn clean package -DskipTests
 ```
-- (Optional) Build Using Docker：
-```bash
-docker run -v REPLACE_WITH_SOURCE_PATH:/tubemq  apachetubemq/tubemq-build clean package -DskipTests
-```
+
 - Run Unit Tests：
 ```bash
 mvn test
 ```
+
 - Build Individual Module：
 ```bash
 mvn clean install
 cd module-name (e.g. tubemq-client)
 mvn test
 ```
+
 After the build, please go to `tubemq-server/target`. You can find the
 **apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin.tar.gz** file. It is the TubeMQ deployment package, which includes
 scripts, configuration files, dependency jars and web GUI code.
 
 ### Setting Up Your IDE
 If you want to build and debug source code in IDE, go to the project root, and run
-
 ```bash
 mvn compile
 ```
-
 This command will generate the Java source files from the `protoc` files, the generated files located in `target/generated-sources`.
 
 (Optional) If you want to use local `protoc` executable, you can change the configuration of `protobuf-maven-plugin` in `tubemq-core/pom.xml` as below
-
 ```xml
 <configuration>
     <outputDirectory>${project.build.directory}/generated-sources/java</outputDirectory>
@@ -49,17 +46,18 @@ This command will generate the Java source files from the `protoc` files, the ge
 ```
 
 ## Deploy and Start
-### Deploy TubeMQ Standalone
-Standalone mode starts zookeeper/master/broker services in one docker container：
-```
-docker run -p 8080:8080 -p 8000:8000 -p 8123:8123 --name tubemq -d apachetubemq/tubemq-all:latest
-```
-Afater container is running, you can access ` http://127.0.0.1:8080`, and reference to next `Quick Start` chapter for experience.
 
-**Tips**：Standalone Mode is only available for development and experience, it's not designed for production environment.
+### Configuration Example
+There're two components in the cluster: **Master** and **Broker**. Master and Broker
+can be deployed on the same server or different servers. In this example, we setup our cluster
+like this, and all services run on the same node. Zookeeper should be setup in your environment also.
+| Role | TCP Port | TLS Port | Web Port | Comment |
+| ---- | -------- | -------- | -------- | ------- |
+| Master | 8099 | 8199 | 8080 | Meta data is stored at /stage/meta_data |
+| Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data |
+| Zookeeper | 2181 | | | Offset is stored at /tubemq |
 
-### Deploy TubeMQ Cluster
-#### Prerequisites
+### Prerequisites
 - ZooKeeper Cluster
 - [apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin.tar.gz](download/download.md) package file
 
@@ -72,18 +70,8 @@ After you extract the package file, here's the folder structure.
 ├── logs
 └── resources
 ```
-#### Configuration Example
-There're two components in the cluster: **Master** and **Broker**. Master and Broker
-can be deployed on the same server or different servers. In this example, we setup our cluster
-like this, and all services run on the same node. Zookeeper should be setup in your environment also.
 
-| Role | TCP Port | TLS Port | Web Port | Comment |
-| ---- | -------- | -------- | -------- | ------- |
-| Master | 8099 | 8199 | 8080 | Meta data is stored at /stage/meta_data |
-| Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data |
-| Zookeeper | 2181 | | | Offset is stored at /tubemq |
-
-#### Configure Master
+### Configure Master
 You can change configurations in `conf/master.ini` according to cluster information.
 - Master IP and Port
 ```ini
@@ -91,32 +79,30 @@ You can change configurations in `conf/master.ini` according to cluster informat
 hostName=YOUR_SERVER_IP                  // replaced with your server IP
 port=8099
 webPort=8080
+metaDataPath=/stage/meta_data
 ```
+
 - Access Authorization Token
 ```ini
 confModAuthToken=abc                    // for configuring Web Resources\API etc
 ```
+
 - ZooKeeper Cluster
 ```ini
-[zookeeper]
+[zookeeper]                             // Master and Broker in the same cluster must use the same zookeeper environment and have the same configuration
 zkNodeRoot=/tubemq
 zkServerAddr=localhost:2181             // multi zookeeper addresses can separate with ","
 ```
+
 - Replication Strategy 
 ```ini
 [replication]
-repNodeName=tubemqMasterGroupNode1       // using different name for each master node
+repGroupName=tubemqGroup1                // The Master of the same cluster must use the same group name, and the group names of different clusters must be different
+repNodeName=tubemqGroupNode1             // The master node names of the same cluster must be different names
 repHelperHost=FIRST_MASTER_NODE_IP:9001  // helperHost is used for building HA master.
-```
-- Resource Path of Web
-
-You can change configurations in `resources/velocity.properties`
-```properties
-file.resource.loader.path=/INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin/resources/templates
 ```
 
 - (Optional) Master High Availability
-
 In the example above, we run the services on a single node. However, in real production environment, you
 need to run multiple master services on different servers for high availability purpose. Here's
 the introduction of availability level.
@@ -129,7 +115,8 @@ the introduction of availability level.
 
 **Tips**：Please notice that the master servers should be clock synchronized.
 
-#### Configure Broker
+
+### Configure Broker
 You can change configurations in `conf/broker.ini` according to cluster information.
 - Broker IP and Port
 ```ini
@@ -143,33 +130,33 @@ webPort=8081
 ```ini
 masterAddressList=MASTER_NODE_IP1:8099,MASTER_NODE_IP2:8099   // multi addresses can separate with ","
 ```
+
 - Metadata Path
 ```ini
 primaryPath=/stage/msg_data
 ```
+
 - ZooKeeper Cluster
 ```ini
-[zookeeper]
+[zookeeper]                             // Master and Broker in the same cluster must use the same zookeeper environment and have the same configuration
 zkNodeRoot=/tubemq
 zkServerAddr=localhost:2181             // multi zookeeper addresses can separate with ","
 ```
 
-#### Start Master
+### Start Master
 Please go to the `bin` folder and run this command to start
 the master service.
 ```bash
-./tubemq master start
+./tubemq.sh master start
 ```
+
 You should be able to access `http://your-master-ip:8080` to see the
 web GUI now.
 
 ![TubeMQ Console GUI](img/tubemq-console-gui.png)
 
 #### Configure Broker Metadata
-Before we start a broker service, we need to configure it on master web GUI first.
-
-Go to the `Broker List` page, click `Add Single Broker`, and input the new broker 
-information.
+Before we start a broker service, we need to configure it on master web GUI first. Go to the `Broker List` page, click `Add Single Broker`, and input the new broker information.
 
 ![Add Broker 1](img/tubemq-add-broker-1.png)
 
@@ -182,10 +169,10 @@ Click the online link to activate the new added broker.
 
 ![Add Broker 2](img/tubemq-add-broker-2.png)
 
-#### Start Broker
+### Start Broker
 Please go to the `bin` folder and run this command to start the broker service
 ```bash
-./tubemq broker start
+./tubemq.sh broker start
 ```
 
 Refresh the GUI broker list page, you can see that the broker now is registered.
@@ -246,6 +233,9 @@ cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
 
 From the log, we can see the message received by the consumer.
 ![Demo 2](img/tubemq-consume-message.png)
+
+## The End
+Here, the compilation, deployment, system configuration, startup, production and consumption of TubeMQ have been completed. If you need to understand more in-depth content, please check the relevant content in "TubeMQ HTTP API" and make the corresponding configuration settings.
 
 ---
 
