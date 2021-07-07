@@ -1,6 +1,4 @@
-
-
-##一、安装
+## 一、安装
 
     mvn clean package -DskipTests
 
@@ -16,8 +14,8 @@
 
 ### 配置tube地址
 	vim conf/flume.conf
-	vim命令行模式，执行以下替换命令,其中xxx为tube地址
-	:%s/TUBE_LIST/xx.xx.xx.xx:port,xx.xx.xx.xx:port
+	vim命令行模式，执行以下替换命令,其中ip:port为tube master地址，可配置多个
+	:%s/TUBE_LIST/ip1:port,ip2:port
 
 ### 环境准备
 	cd bin
@@ -35,8 +33,5 @@
 
 ## 四、检查启动情况
 	telnet 127.0.0.1 46801
-
-## 五、测试
-	使用proxySdk发送数据测试
 
 

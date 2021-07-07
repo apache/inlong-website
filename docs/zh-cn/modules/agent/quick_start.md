@@ -1,18 +1,22 @@
-
 ##一、安装
 
+	环境要求：
+	java JDK 1.8
+	Maven 3.6 +
+	
+	inlong目录下执行命令
     mvn clean package -DskipTests
 
-    在项目下的target里面可以找到tgz安装包
+    在项目下的agent-release/target里面可以找到tgz安装包
+
 
 
 
 ## 二、配置
-###2.1 Agent 相关设置
-
-
 
 agent 支持两种运行模式：本地运行以及线上运行
+
+###2.1 Agent 线上运行相关设置
 
 线上运行需要从inlong-manager拉取配置，配置conf/agent.properties如下：
 agent.fetcher.classname=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (设置任务获取的类名，默认为ManagerFetcher）
@@ -27,7 +31,7 @@ agent.manager.vip.http.port=manager port
 
     {"cluster_id":45,"isInterVisit":1,"size":1,"address": [{"port":写入proxy port,"host":"写入proxy ip"}], "switch":0}
 
-###2.3 本地 job配置
+###2.3 agent本地运行job配置
 如果不使用线上模式，可以使用本地文件新建读取任务
 在conf中新建目录jobs，
 vim job1.json：
@@ -89,39 +93,35 @@ vim job1.json：
 	# http default port
 	agent.http.port=可用端口
 
-    curl --location --request POST 'http://localhost:8129/config/job' \
-    --header 'Content-Type: application/json' \
-    --data '{
-    "job": {
-    "dir": {
-    "path": "",
-    "pattern": "/data/inlong-agent/test.log"
-    },
-    "trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
-    "id": 1,
-    "thread": {
-    "running": {
-    "core": "4"
-    },
-    "onejob": true
-    },
-    "name": "fileAgentTest",
-    "source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-    "sink": "org.apache.inlong.agent.plugin.sinks.TdBusSink",
-    "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-    },
-    "bus": {
-    "bid": "thirtybid10",
-    "tdmanager": {
-    "port": "8099",
-    "host": "http://tl-tdbank-tdmanger.tencent-distribute.com"
-    }
-    },
-    "op": "add"
-    }'
+curl --location --request POST 'http://localhost:8129/config/job' \
+--header 'Content-Type: application/json' \
+--data '{
+"job": {
+"dir": {
+"path": "",
+"pattern": "/data/inlong-agent/test.log"
+},
+"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
+"id": 1,
+"thread": {
+"running": {
+"core": "4"
+}
+},
+"name": "fileAgentTest",
+"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
+"sink": "org.apache.inlong.agent.plugin.sinks.TdBusSink",
+"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
+},
+"proxy": {
+"bid": "thirtybid10"
+},
+"op": "add"
+}'
 
 	其中参数分别为：
-	op:
+	pattern: 代表读取/data/inlong-agent/test.log文件
+	proxy.bid: 代表发送到proxy使用的bid
 
 ##三、运行
 解压后如下命令运行
