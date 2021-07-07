@@ -131,13 +131,34 @@ zkServerAddr=localhost:2181              // 指向zookeeper集群，多个地址
 <span class="hljs-attr">repHelperHost</span>=FIRST_MASTER_NODE_IP:<span class="hljs-number">9001</span>  // helperHost用于创建master集群，一般配置第一个master节点ip
 </code></pre>
 <ul>
-<li>（可选）生产环境，多master HA级别
-| HA级别 | Master数量 | 描述 |
-| -------- | ------------- | ----------- |
-| 高 | 3 masters | 任何主节点崩溃后，集群元数据仍处于读/写状态，可以接受新的生产者/消费者。 |
-| 中 | 2 masters | 一个主节点崩溃后，集群元数据处于只读状态。对现有的生产者和消费者没有任何影响。 |
-| 低 | 1 master | 主节点崩溃后，对现有的生产者和消费者没有影响。 |</li>
+<li>（可选）生产环境，多master HA级别</li>
 </ul>
+<table>
+<thead>
+<tr>
+<th>HA级别</th>
+<th>Master数量</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>高</td>
+<td>3 masters</td>
+<td>任何主节点崩溃后，集群元数据仍处于读/写状态，可以接受新的生产者/消费者。</td>
+</tr>
+<tr>
+<td>中</td>
+<td>2 masters</td>
+<td>一个主节点崩溃后，集群元数据处于只读状态。对现有的生产者和消费者没有任何影响。</td>
+</tr>
+<tr>
+<td>低</td>
+<td>1 master</td>
+<td>主节点崩溃后，对现有的生产者和消费者没有影响。</td>
+</tr>
+</tbody>
+</table>
 <p><strong>注意</strong>：需保证Master所有节点之间的时钟同步</p>
 <h3>配置Broker</h3>
 <p>编辑<code>conf/broker.ini</code>，根据集群信息变更以下配置项</p>

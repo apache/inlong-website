@@ -101,6 +101,7 @@ repHelperHost=FIRST_MASTER_NODE_IP:9001  // helperHost用于创建master集群�
 ```
 
 - （可选）生产环境，多master HA级别
+
 | HA级别 | Master数量 | 描述 |
 | -------- | ------------- | ----------- |
 | 高 | 3 masters | 任何主节点崩溃后，集群元数据仍处于读/写状态，可以接受新的生产者/消费者。 |
