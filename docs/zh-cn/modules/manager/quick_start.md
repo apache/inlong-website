@@ -12,13 +12,16 @@
 
 - 安装并启动 Hadoop 2.10.x 和 Hive 2.3.x；
 
-- 安装并启动 MySQL 5.7+，创建数据库，如 `CREATE DATABASE IF NOT EXISTS inlong; USE inlong;`，然后把 inlong-manager
-  模块中的 `doc/sql/apache_inlong_manager.sql` 文件拷贝到 MySQL 数据库所在的服务器（比如拷贝到 `/data/` 目录下，通过下述命令加载此文件，完成表结构及基础数据的初始化：
+- 安装并启动 MySQL 5.7+，把 inlong-manager 模块中的 `doc/sql/apache_inlong_manager.sql` 文件拷贝到 MySQL
+  数据库所在的服务器（比如拷贝到 `/data/` 目录下），通过下述命令加载此文件，完成表结构及基础数据的初始化：
 
   ```shell
   # 通过用户名和密码，登录 MySQL 服务器：
   mysql -u xxx -p xxx
   ...
+  # 创建数据库
+  CREATE DATABASE IF NOT EXISTS apache_inlong_manager;
+  USE apache_inlong_manager;
   # 通过 source 命令加载上述 SQL 文件：
   mysql> source /data/apache_inlong_manager.sql;
   ```
@@ -72,11 +75,11 @@ mvn clean install -DskipTests
 
 ## 4.1 部署 manager-web
 
-1) 将上面打好的 tar 包 `inlong-manager/manager-web/target/apache-inlong-manager-web-*.tar.gz` 拷贝到要部署的服务器；
+1) 将上面的 `inlong-manager/manager-web/target/apache-inlong-manager-web-*.tar.gz` 拷贝到要部署的服务器；
 
 2) 前往部署服务器，解压安装包：`tar -zxvf apache-inlong-manager-web-*.tar.gz`；
 
-3) 进入解压后的目录，执行 `sh bin/start.sh` 启动服务，查看日志 `log/manager-web.log`，若出现类似下面的日志，说明服务启动成功：
+3) 进入解压后的目录，执行 `sh bin/start.sh` 启动服务，查看日志 `tailf log/manager-web.log`，若出现类似下面的日志，说明服务启动成功：
 
    ```shell
    Started InLongWebApplication in 6.795 seconds (JVM running for 7.565)
@@ -84,11 +87,11 @@ mvn clean install -DskipTests
 
 ## 4.2 部署 manager-openapi
 
-1) 将上面打好的 tar 包 `inlong-manager/manager-openapi/target/apache-inlong-manager-openapi-*.tar.gz` 拷贝到要部署的服务器；
+1) 将上面的 `inlong-manager/manager-openapi/target/apache-inlong-manager-openapi-*.tar.gz` 拷贝到要部署的服务器；
 
 2) 前往部署服务器，解压安装包：`tar -zxvf apache-inlong-manager-openapi-*.tar.gz`；
 
-3) 进入解压后的目录，执行 `sh bin/start.sh` 启动服务，查看日志 `log/manager-openapi.log`，若出现类似下面的日志，说明服务启动成功：
+3) 进入解压后的目录，执行 `sh bin/start.sh` 启动服务，查看日志 `tailf log/manager-openapi.log`，若出现类似下面的日志，说明服务启动成功：
 
    ```shell
    Started InLongOpenApiApplication in 5.341 seconds (JVM running for 6.002)
