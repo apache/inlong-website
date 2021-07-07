@@ -1,19 +1,25 @@
 
 ## 1、install
 
+	env requirements：
+	java JDK 1.8
+	Maven 3.6 +
+	
+    
     mvn clean package -DskipTests
 
-    The tgz installation package can be found in the target under the project
+    The tgz installation package can be found in the target under the agent-release
 
 
 
 ## 2、Configuration
-###2.1 Agent configuration
-
 The agent supports two modes of operation: local operation and online operation
 
+
+###2.1 Agent configuration
+
 Online operation needs to pull the configuration from inlong-manager, the configuration conf/agent.properties is as follows:
-agent.fetcher.classname=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (设置任务获取的类名，默认为ManagerFetcher）
+agent.fetcher.classname=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (the class name for fetch tasks, default ManagerFetcher）
 agent.local.ip=Write local ip
 agent.manager.vip.http.host=manager host
 agent.manager.vip.http.port=manager port
@@ -31,8 +37,8 @@ Create a new directory jobs in conf,
 vim job1.json：
 
 put
-    {
-    
+{
+
     "job": {
     
     "dir": {

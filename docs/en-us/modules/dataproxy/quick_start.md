@@ -14,8 +14,8 @@ The tgz installation package apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin.t
 
 ### config tube
 	vim conf/flume.conf
-	In vim command line mode, execute the following replacement commands, where xxx is the tube address
-	:%s/TUBE_LIST/xx.xx.xx.xx:port,xx.xx.xx.xx:port
+	In vim command line mode, execute the following replacement commands, where ip:port is the tube address
+	:%s/TUBE_LIST/ip:port,ip:port
 
 ### Environmental preparation
 	cd bin
@@ -24,7 +24,7 @@ The tgz installation package apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin.t
 
 ### config manager
 	vim conf/commmon.properties
-	写入以下配置：
+	write：
 	cluster_id=1
 	manager_hosts=xx.xx.xx.xx:port
 
@@ -33,8 +33,4 @@ The tgz installation package apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin.t
 
 ## 4、check
 	telnet 127.0.0.1 46801
-
-## 5、test
-	use proxySdk to test 
-
 
