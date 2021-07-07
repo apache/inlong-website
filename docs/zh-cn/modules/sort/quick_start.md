@@ -1,5 +1,5 @@
 ---
-title: 快速开始 - Apache InLong-sort
+快速开始 - Apache InLong-sort
 ---
 
 # 环境要求
@@ -8,7 +8,7 @@ title: 快速开始 - Apache InLong-sort
 - Flink 1.9.3
 - Zookeeper
 
-# 配置flink运行环境
+## 配置flink运行环境
 当前inlong-sort是基于flink的一个应用，因此运行inlong-sort应用前，需要准备好flink环境。
 
 [如何配置flink环境](https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/cluster_setup.html "how to set up flink environment")
@@ -16,9 +16,6 @@ title: 快速开始 - Apache InLong-sort
 由于当前inlong-sort依赖的是flink1.9.3版本，因此在下载部署包时，请选择`flink-1.9.3-bin-scala_2.11.tgz`
 
 flink环境配置完成后，可以通过浏览器访问flink的web ui，对应的地址是`/{flink部署路径}/conf/masters`文件中的地址
-
-# Zookeeper
-当前inlong-sort依赖zk与inlong-manager进行元数据的交互及管理。运行inlong-sort前，请务必确认zk环境准备就绪。
 
 # 编译
 - 步骤一：进入inlong-sort的目录

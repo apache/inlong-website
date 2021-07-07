@@ -1,9 +1,11 @@
 ---
-title: 协议介绍 - Apache InLong-sort
+协议介绍 - Apache InLong-sort
 ---
 
 # 前言
-当前inlong-sort的元数据管理依赖inlong-manager。inlong-sort与inlong-manager之间通过zk进行元数据的交互。
+当前inlong-sort的元数据管理依赖inlong-manager。
+
+inlong-sort与inlong-manager之间通过zk进行元数据的交互。
 
 # Zookeeper结构
 

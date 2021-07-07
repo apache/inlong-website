@@ -1,5 +1,5 @@
 ---
-title: Quick Start - Apache InLong-sort
+Quick Start - Apache InLong-sort
 ---
 
 # Requirements
@@ -8,7 +8,7 @@ title: Quick Start - Apache InLong-sort
 - Flink 1.9.3
 - Zookeeper
 
-#Set up flink environment
+## Set up flink environment
 Currently inlong-sort is based on flink, before you run an inlong-sort application,
 you need to set up flink environment.
 
@@ -17,9 +17,6 @@ you need to set up flink environment.
 Currently, inlong-sort relys on flink-1.9.3. Chose `flink-1.9.3-bin-scala_2.11.tgz` when downloading package.
 
 Once your flink environment is set up, you can visit web ui of flink, whose address is stored in `/${your_flink_path}/conf/masters`.
-
-# Zookeeper
-Inlong-sort uses zookeeper to manage its meta data. Make sure your zk is prepared before starting your inlong-sort application.
 
 #Compile inlong-sort
 - `cd /your_path/Inlong/inlong-sort`

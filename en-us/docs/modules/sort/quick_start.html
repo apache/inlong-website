@@ -7,7 +7,7 @@
 	<meta name="keywords" content="quick_start" />
 	<meta name="description" content="quick_start" />
 	<!-- 网页标签标题 -->
-	<title>Quick Start - Apache InLong-sort</title>
+	<title>quick_start</title>
 	<link rel="shortcut icon" href="/img/apache.ico"/>
 	<link rel="stylesheet" href="/build/documentation.css" />
 </head>
@@ -19,14 +19,12 @@
 <li>Flink 1.9.3</li>
 <li>Zookeeper</li>
 </ul>
-<p>#Set up flink environment
-Currently inlong-sort is based on flink, before you run an inlong-sort application,
+<h2>Set up flink environment</h2>
+<p>Currently inlong-sort is based on flink, before you run an inlong-sort application,
 you need to set up flink environment.</p>
 <p><a href="https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/cluster_setup.html" target="_blank">how to set up flink environment</a></p>
 <p>Currently, inlong-sort relys on flink-1.9.3. Chose <code>flink-1.9.3-bin-scala_2.11.tgz</code> when downloading package.</p>
 <p>Once your flink environment is set up, you can visit web ui of flink, whose address is stored in <code>/${your_flink_path}/conf/masters</code>.</p>
-<h1>Zookeeper</h1>
-<p>Inlong-sort uses zookeeper to manage its meta data. Make sure your zk is prepared before starting your inlong-sort application.</p>
 <p>#Compile inlong-sort</p>
 <ul>
 <li><code>cd /your_path/Inlong/inlong-sort</code></li>
