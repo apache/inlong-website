@@ -1,4 +1,4 @@
-##一、安装
+## ~~~~一、安装
 
 	环境要求：
 	java JDK 1.8
@@ -8,7 +8,6 @@
     mvn clean package -DskipTests
 
     在项目下的agent-release/target里面可以找到tgz安装包
-
 
 
 
@@ -29,7 +28,7 @@ agent.manager.vip.http.port=manager port
 
 内部写入：
 
-    {"cluster_id":45,"isInterVisit":1,"size":1,"address": [{"port":写入proxy port,"host":"写入proxy ip"}], "switch":0}
+    {"cluster_id":1,"isInterVisit":1,"size":1,"address": [{"port":写入proxy port,"host":"写入proxy ip"}], "switch":0}
 
 ###2.3 agent本地运行job配置
 如果不使用线上模式，可以使用本地文件新建读取任务
@@ -44,7 +43,7 @@ vim job1.json：
     
     "dir": {
     
-    "pattern": "需要读取的文件路径，可包含正则表达式"
+    "pattern": "需要读取的文件路径，可包含正则表达式，例如test/inlong_[0-9]{1}，监听test下创建的新文件"
     
     },
     

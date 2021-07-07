@@ -8,21 +8,23 @@
 
 mysql
 java(1.8+)
-在dist目录当中，能够找到文件为tubemq-manager-bin.zip
+在InLong/inlong-tubemq/tubemq-manager/dist/目录当中，能够找到文件为apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 
-    unzip tubemq-manager-bin.zip
+    tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 
 在conf/application.properties中添加mysql信息：
 
     spring.jpa.hibernate.ddl-auto=update
     # configuration for manager
-    spring.datasource.url=jdbc:mysql://x.x.x.x:3306/tubemanager
-    spring.datasource.username=xx
-    spring.datasource.password=xxx
+    spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
+    spring.datasource.username=[replace_by_usename]
+    spring.datasource.password=[replace_by_password]
+    # server port 
+    server.port=8089
 
 添加数据库tubemanager，并启动：
 
-    bin/start-manager.sh
+    bin/start-admin.sh
 
 ## 使用
 
@@ -37,12 +39,12 @@ java(1.8+)
 参数：
 
     {
-    "masterIp": "9.23.28.86",   (tube master ip)
+    "masterIp": "127.0.0.1",   (tubemq master ip)
     "clusterName": "test",    
-    "masterPort": "8000",  (tube master port)
-    "masterWebPort": "8080",  (tube master web port)
+    "masterPort": "8000",  (tubemq master port)
+    "masterWebPort": "8080",  (tubemq master web port)
     "createUser": "test",  
-    "token": "abc"  (tube token)
+    "token": "abc"  (tubemq token)
     }
 
 ### 操作接口
@@ -51,8 +53,8 @@ java(1.8+)
 查询clusterId以及clusterName全量数据 （get)
 
 示例
-    GET
-    /v1/cluster
+GET
+/v1/cluster
 
 返回值
 
@@ -65,7 +67,7 @@ java(1.8+)
 
 #### topic
 
-#####添加topicTask
+#### 添加topicTask
 
     type	(必填) 请求类型，字段填写：op_query
     clusterId	(必填) 请求集群id
@@ -84,7 +86,7 @@ AddTopicTasks 为以下对象的List，可携带多个创建topic请求
 示例
 
 POST
-    /v1/task?method=addTopicTask
+/v1/task?method=addTopicTask
 
     {
     "clusterId": "1",
@@ -104,8 +106,7 @@ POST
 result为false为写入task失败
 
 
-
-#####查询某一个topic是否创建成功（业务可以写入）
+#### 查询某一个topic是否创建成功（业务可以写入）
 
     clusterId	(必填) 请求集群id
     topicName   (必填) 查询topic名称
@@ -119,8 +120,8 @@ POST
     /v1/topic?method=queryCanWrite
 
     {
-    "clusterId": "2",
-    "topicName": "pzrTestss1123123",
+    "clusterId": "1",
+    "topicName": "1",
     "user": "test"
     }
 
