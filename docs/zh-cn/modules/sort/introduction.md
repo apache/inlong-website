@@ -1,5 +1,5 @@
 ---
-title: 介绍 - Apache InLong-sort
+介绍 - Apache InLong-sort
 ---
 
 # 简介
