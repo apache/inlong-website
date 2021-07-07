@@ -27,11 +27,14 @@
 <p>安装并启动 Hadoop 2.10.x 和 Hive 2.3.x；</p>
 </li>
 <li>
-<p>安装并启动 MySQL 5.7+，创建数据库，如 <code>CREATE DATABASE IF NOT EXISTS inlong; USE inlong;</code>，然后把 inlong-manager
-模块中的 <code>doc/sql/apache_inlong_manager.sql</code> 文件拷贝到 MySQL 数据库所在的服务器（比如拷贝到 <code>/data/</code> 目录下，通过下述命令加载此文件，完成表结构及基础数据的初始化：</p>
+<p>安装并启动 MySQL 5.7+，把 inlong-manager 模块中的 <code>doc/sql/apache_inlong_manager.sql</code> 文件拷贝到 MySQL
+数据库所在的服务器（比如拷贝到 <code>/data/</code> 目录下），通过下述命令加载此文件，完成表结构及基础数据的初始化：</p>
 <pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> 通过用户名和密码，登录 MySQL 服务器：</span>
 mysql -u xxx -p xxx
 ...
+<span class="hljs-meta">#</span><span class="bash"> 创建数据库</span>
+CREATE DATABASE IF NOT EXISTS apache_inlong_manager;
+USE apache_inlong_manager;
 <span class="hljs-meta">#</span><span class="bash"> 通过 <span class="hljs-built_in">source</span> 命令加载上述 SQL 文件：</span>
 <span class="hljs-meta">mysql&gt;</span><span class="bash"> <span class="hljs-built_in">source</span> /data/apache_inlong_manager.sql;</span>
 </code></pre>
@@ -76,13 +79,13 @@ mysql -u xxx -p xxx
 <h2>4.1 部署 manager-web</h2>
 <ol>
 <li>
-<p>将上面打好的 tar 包 <code>inlong-manager/manager-web/target/apache-inlong-manager-web-*.tar.gz</code> 拷贝到要部署的服务器；</p>
+<p>将上面的 <code>inlong-manager/manager-web/target/apache-inlong-manager-web-*.tar.gz</code> 拷贝到要部署的服务器；</p>
 </li>
 <li>
 <p>前往部署服务器，解压安装包：<code>tar -zxvf apache-inlong-manager-web-*.tar.gz</code>；</p>
 </li>
 <li>
-<p>进入解压后的目录，执行 <code>sh bin/start.sh</code> 启动服务，查看日志 <code>log/manager-web.log</code>，若出现类似下面的日志，说明服务启动成功：</p>
+<p>进入解压后的目录，执行 <code>sh bin/start.sh</code> 启动服务，查看日志 <code>tailf log/manager-web.log</code>，若出现类似下面的日志，说明服务启动成功：</p>
 <pre><code class="language-shell">Started InLongWebApplication in 6.795 seconds (JVM running for 7.565)
 </code></pre>
 </li>
@@ -90,13 +93,13 @@ mysql -u xxx -p xxx
 <h2>4.2 部署 manager-openapi</h2>
 <ol>
 <li>
-<p>将上面打好的 tar 包 <code>inlong-manager/manager-openapi/target/apache-inlong-manager-openapi-*.tar.gz</code> 拷贝到要部署的服务器；</p>
+<p>将上面的 <code>inlong-manager/manager-openapi/target/apache-inlong-manager-openapi-*.tar.gz</code> 拷贝到要部署的服务器；</p>
 </li>
 <li>
 <p>前往部署服务器，解压安装包：<code>tar -zxvf apache-inlong-manager-openapi-*.tar.gz</code>；</p>
 </li>
 <li>
-<p>进入解压后的目录，执行 <code>sh bin/start.sh</code> 启动服务，查看日志 <code>log/manager-openapi.log</code>，若出现类似下面的日志，说明服务启动成功：</p>
+<p>进入解压后的目录，执行 <code>sh bin/start.sh</code> 启动服务，查看日志 <code>tailf log/manager-openapi.log</code>，若出现类似下面的日志，说明服务启动成功：</p>
 <pre><code class="language-shell">Started InLongOpenApiApplication in 5.341 seconds (JVM running for 6.002)
 </code></pre>
 </li>
