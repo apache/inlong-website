@@ -64,8 +64,8 @@ export default {
                  link: '/en-us/docs/modules/tubemq/architecture.html',
                },
                {
-                 title: 'Deployment',
-                 link: '/en-us/docs/modules/tubemq/deployment.html',
+                 title: 'Quick Start',
+                 link: '/en-us/docs/modules/tubemq/quick_start.html',
                },
                {
                  title: 'Configure Introduction',
@@ -84,6 +84,10 @@ export default {
                  link: '/en-us/docs/modules/tubemq/error_code.html',
                },
                {
+                 title: 'Deployment Demo',
+                 link: '/en-us/docs/modules/tubemq/deployment.html',
+               },
+               {
                  title: 'HTTP API',
                  link: '/en-us/docs/modules/tubemq/http_access_api.html',
                },
@@ -98,7 +102,7 @@ export default {
             children: [
                {
                  title: 'Build && Deployment',
-                 link: '/en-us/docs/modules/tubemq-manager/quick_start.html',
+                 link: '/en-us/docs/modules/tubemq/tubemq-manager/quick_start.html',
                },
             ],
           },
@@ -193,8 +197,8 @@ export default {
                  link: '/zh-cn/docs/modules/tubemq/architecture.html',
                },
                {
-                 title: '部署指引',
-                 link: '/zh-cn/docs/modules/tubemq/deployment.html',
+                 title: '快速开始',
+                 link: '/zh-cn/docs/modules/tubemq/quick_start.html',
                },
                {
                  title: '配置参数介绍',
@@ -213,6 +217,10 @@ export default {
                  link: '/zh-cn/docs/modules/tubemq/error_code.html',
                },
                {
+                 title: '部署示例',
+                 link: '/zh-cn/docs/modules/tubemq/deployment.html',
+               },
+               {
                  title: 'HTTP API介绍',
                  link: '/zh-cn/docs/modules/tubemq/http_access_api.html',
                },
@@ -227,7 +235,7 @@ export default {
             children: [
                {
                  title: '编译部署',
-                 link: '/zh-cn/docs/modules/tubemq-manager/quick_start.html',
+                 link: '/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html',
                },
             ],
           },
