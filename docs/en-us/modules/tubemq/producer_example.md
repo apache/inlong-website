@@ -2,14 +2,16 @@
 title: Producer Example - Apache InLong's TubeMQ module
 ---
 
-## Producer Example
+## 1 Producer Example
   TubeMQ provides two ways to initialize session factory, TubeSingleSessionFactory and TubeMultiSessionFactory:
   - TubeSingleSessionFactory creates only one session in the lifecycle, this is very useful in streaming scenarios.
   - TubeMultiSessionFactory creates new session on every call.
 
-1. TubeSingleSessionFactory
-   - Send Message Synchronously
+### 1.1 TubeSingleSessionFactory
+#### 1.1.1 Send Message Synchronously
+
     ```java
+    
     public final class SyncProducerExample {
     
         public static void main(String[] args) throws Throwable {
@@ -31,7 +33,7 @@ title: Producer Example - Apache InLong's TubeMQ module
     }
     ```
      
-   - Send Message Asynchronously
+####1.1.2 Send Message Asynchronously
     ```java
     public final class AsyncProducerExample {
      
@@ -65,7 +67,7 @@ title: Producer Example - Apache InLong's TubeMQ module
     }
     ```
      
-   - Send Message With Attributes
+#### 1.1.3 Send Message With Attributes
     ```java
     public final class ProducerWithAttributeExample {
      
@@ -91,7 +93,7 @@ title: Producer Example - Apache InLong's TubeMQ module
     }
     ```
      
-- TubeMultiSessionFactory
+### 1.2 TubeMultiSessionFactory
 
     ```java
     public class MultiSessionProducerExample {
@@ -146,3 +148,5 @@ title: Producer Example - Apache InLong's TubeMQ module
         }
     }
     ```
+---
+<a href="#top">Back to top</a>

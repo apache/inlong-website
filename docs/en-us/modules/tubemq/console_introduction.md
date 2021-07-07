@@ -2,20 +2,18 @@
 title: Console Introduction - Apache InLong's TubeMQ module
 ---
 
-# TubeMQ管控台操作指引
-
-## 管控台关系
+## 1 管控台关系
 
 ​        TubeMQ管控台是管理TubeMQ集群的简单运营工具，包括集群里的Master、Broker，以及Broker上部署的Topic元数据等与TubeMQ系统相关的运营数据及操作。需要说明的是，当前提供的TubeMQ前台所提供的功能没有涵盖TubeMQ所提供的功能范围，大家可以参照《TubeMQ HTTP访问接口定义.xls》定义自行实现符合业务需要的管控前台。TubeMQ管控台的访问地址为http://portal:webport/config/topic_list.htm：
 ![](img/console/1568169770714.png)
 ​       其中portal为该集群中任意的主、备Master的IP地址，webport为配置的Master的Web端口。
 
 
-## TubeMQ管控台各版面介绍
+## 2 TubeMQ管控台各版面介绍
 
 ​        管控台一共3项内容：分发查询，配置管理，集群管理；配置管理又分为Broker列表，Topic列表2个部分，我们先介绍简单的分发查询和集群管理，然后再介绍复杂的配置管理。
 
-### 分发查询
+### 2.1 分发查询
 
 ​        点分发查询，我们会看到如下的列表信息，这是当前TubeMQ集群里已注册的消费组信息，包括具体的消费组组名，消费的Topic，以及该组总的消费分区数简介信息，如下图示：
 ![](img/console/1568169796122.png)
@@ -24,12 +22,12 @@ title: Console Introduction - Apache InLong's TubeMQ module
 
 ​       这个页面可以供我们查询，输入Topic或者消费组名，就可以很快确认系统里有哪些消费组在消费Topic，以及每个消费组的消费目标是怎样这些信息。
 
-### 集群管理
+### 2.2 集群管理
 
 ​        集群管理主要管理Master的HA，在这个页面上我们可以看到当前Master的各个节点及节点状态，同时，我们可以通过“切换”操作来改变节点的主备状态。
 ![](img/console/1568169823675.png)
 
-### 配置管理
+### 2.3 配置管理
 
 ​        配置管理版面既包含了Broker、Topic元数据的管理，还包含了Broker和Topic的上线发布以及下线操作，有2层含义，比如Broker列表里，展示的是当前集群里已配置的Broker元数据，包括未上线处于草稿状态、已上线、已下线的Broker记录信息：
 ![](img/console/1568169839931.png)
@@ -41,7 +39,7 @@ title: Console Introduction - Apache InLong's TubeMQ module
 
 ​        所有TubeMQ管控台的变更操作，或者改变操作，都会要求输入操作授权码，该信息由运维通过Master的配置文件master.ini的confModAuthToken字段进行定义：如果你知道这个集群的密码，你就可以进行该项操作，比如你是管理员，你是授权人员，或者你能登陆这个master的机器拿到这个密码，都认为你是有权操作该项功能。
 
-## TubeMQ管控台上涉及的操作及注意事项
+## 3 TubeMQ管控台上涉及的操作及注意事项
 
 ​       如上所说，TubeMQ管控台是运营Tube MQ集群的，套件负责包括Master、Broker这类TubeMQ集群节点管理，包括自动部署和安装等，因此，如下几点需要注意：
 
@@ -68,9 +66,9 @@ title: Console Introduction - Apache InLong's TubeMQ module
 
 ​       这个时候我们就可以针对该Topic进行生产和消费处理。
 
-## 3．对于Topic的元数据进行变更后的操作注意事项：
+## 4 对于Topic的元数据进行变更后的操作注意事项：
 
-**a.如何自行配置Topic参数：**
+### 4.1 如何自行配置Topic参数：
 
 ​       大家点击Topic列表里任意Topic后，会弹出如下框，里面是该Topic的相关元数据信息，其决定了这个Topic在该Broker上，设置了多少个分区，当前读写状态，数据刷盘频率，数据老化周期和时间等信息：
 ![](img/console/1568169925657.png)
@@ -104,13 +102,13 @@ title: Console Introduction - Apache InLong's TubeMQ module
 **特别提醒：大家还需要注意的是，输入授权码修改后，数据变更要刷新后才会生效，同时生效的Broker要按比例进行操作。**
 ![](img/console/1568169954746.png)
 
-**b.Topic变更注意事项：**
+### 4.2 Topic变更注意事项：
 
 ​       如上图示，选择变更Topic元数据后，之前选中的Broker集合会在**配置是否已变更**上出现是的提示。我们还需要对变更进行重载刷新操作，选择Broker集合，然后选择刷新操作，可以批量也可以单条，但是一定要注意的是：操作要分批进行，上一批操作的Broker当前运行状态为running后才能进入下一批的配置刷新操作；如果有节点处于online状态，但长期不进入running状态（缺省最大2分钟），则需要停止刷新，排查问题原因后再继续操作。
 
 ​       进行分批操作原因是，我们系统在变更时，会对指定的Broker做停读停写操作，如果将全量的Broker统一做重载，很明显，集群整体会出现服务不可读或者不可写的情况，从而接入出现不该有的异常。
 
-**c.对于Topic的删除处理：**
+### 4.3 对于Topic的删除处理：
 
 ​       页面上进行的删除是软删除处理，如果要彻底删除该topic需要通过API接口进行硬删除操作处理才能实现（避免业务误操作）。
 

@@ -1,12 +1,12 @@
 ---
-title: 消费者示例 - Apache InLong TubeMQ模块
+消费者示例 - Apache InLong TubeMQ模块
 ---
 
-## Consumer 示例
+## 1 Consumer 示例
   TubeMQ 提供了两种方式来消费消息： PullConsumer and PushConsumer。
 
 
-### PullConsumer 
+### 1.1 PullConsumer 
    ```java
     public class PullConsumerExample {
 
@@ -39,7 +39,7 @@ title: 消费者示例 - Apache InLong TubeMQ模块
     }
    ``` 
    
-### PushConsumer
+### 1.2 PushConsumer
    ```java
    public class PushConsumerExample {
    
@@ -76,3 +76,7 @@ title: 消费者示例 - Apache InLong TubeMQ模块
         }
     }
     ```
+
+---
+
+<a href="#top">Back to top</a>

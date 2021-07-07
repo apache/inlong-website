@@ -2,11 +2,10 @@
 title: HTTP API - Apache InLong's TubeMQ module
 ---
 
-# HTTP access API definition
+## 1 Master metadata configuration API
 
-## Master metadata configuration API
-
-### `admin_online_broker_configure`
+### 1.1 Cluster management API
+#### 1.1.1 `admin_online_broker_configure`
 
 The online configuration of the Brokers are new or offline. The configuration of Topics are distributed to related Brokers as well.
 
@@ -26,7 +25,7 @@ __Response__
 |code| Returns `0` if success, otherwise failed | int|
 |errMsg| "OK" if success, other return error message| string|
 
-### `admin_reload_broker_configure`
+#### 1.1.2 `admin_reload_broker_configure`
 
 Update the configuration of the Brokers which are __online__. The new configuration will be published to Broker server, it
  will return error if the broker is offline.
@@ -47,7 +46,7 @@ __Response__
 |code| return 0 if success, otherwise failed | int|
 |errMsg| "OK" if success, other return error message| string|
 
-### `admin_offline_broker_configure`
+#### 1.1.3 `admin_offline_broker_configure`
 
 Offline the configuration of the Brokers which are __online__. It should be called before Broker offline or retired.
 The Broker processes can be terminated once all offline tasks are done.
@@ -68,7 +67,7 @@ __Response__
 |code| return 0 if success, otherwise failed | int|
 |errMsg| "OK" if success, other return error message| string|
 
-### `admin_set_broker_read_or_write`
+#### 1.1.4 `admin_set_broker_read_or_write`
 
 Set Broker into a read-only or write-only state. Only Brokers are online and idle can be handled.
 
@@ -90,7 +89,7 @@ __Response__
 |code| return 0 if success, otherwise failed | int|
 |errMsg| "OK" if success, other return error message| string|
 
-### `admin_query_broker_run_status`
+#### 1.1.5 `admin_query_broker_run_status`
 
 Query Broker status. Only the Brokers processes are __offline__ and idle can be terminated.
 
@@ -111,7 +110,7 @@ __Response__
 |code| return 0 if success, otherwise failed | int|
 |errMsg| "OK" if success, other return error message| string|
 
-### `admin_release_broker_autoforbidden_status`
+#### 1.1.6 `admin_release_broker_autoforbidden_status`
 
 Release the brokers' auto forbidden status.
 
@@ -132,16 +131,16 @@ Response
 |code| return 0 if success, otherwise failed | int|
 |errMsg| "OK" if success, other return error message| string|
 
-### `admin_query_master_group_info`
+#### 1.1.7 `admin_query_master_group_info`
 
 Query the detail of master cluster nodes.
 
-### `admin_transfer_current_master`
+#### 1.1.8 `admin_transfer_current_master`
 
 Set current master node as backup node, let it select another master.
 
 
-### `groupAdmin.sh`
+#### 1.9 `groupAdmin.sh`
 
 Clean the invalid node inside master group.
 
@@ -160,8 +159,8 @@ Response
 |code| return 0 if success, otherwise failed | int|
 |errMsg| "OK" if success, other return error message| string|
 
-
-### `admin_add_broker_configure`
+### 1.2 Broker node configuration API
+#### 1.2.1 `admin_add_broker_configure`
 
 Add broker default configuration (not include topic info). It will be effective after calling load API.
 
@@ -188,7 +187,7 @@ __Request__
 |createDate|yes|the create date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_batch_add_broker_configure`
+#### 1.2.2 `admin_batch_add_broker_configure`
 
 Add broker default configuration in batch (not include topic info). It will be effective after calling load API.
 
@@ -204,7 +203,7 @@ __Request__
 |createDate|yes|the create date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_update_broker_configure`
+#### 1.2.3 `admin_update_broker_configure`
 
 Update broker default configuration (not include topic info). It will be effective after calling load API.
 
@@ -230,7 +229,7 @@ __Request__
 |modifyDate|yes|the modify date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_query_broker_configure`
+#### 1.2.4 `admin_query_broker_configure`
 
 Query the broker configuration.
 
@@ -257,7 +256,7 @@ __Request__
 |topicStatusId|yes|the status of topic record|int|
 |withTopic|no|whether it needs topic configuration|Boolean|
 
-### `admin_delete_broker_configure`
+#### 1.2.5 `admin_delete_broker_configure`
 
 Delete the broker's default configuration. It requires the related topic configuration to be delete at first, and the broker should be offline. 
 
@@ -271,7 +270,8 @@ __Request__
 |isReserveData|no|whether to reserve production data, default false|Boolean|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_add_new_topic_record`
+### 1.3 Topic configuration API
+#### 1.3.1 `admin_add_new_topic_record`
 
 Add topic related configuration.
 
@@ -297,7 +297,7 @@ __Request__
 |createDate|yes|the create date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_query_topic_info`
+#### 1.3.2 `admin_query_topic_info`
 
 Query specific topic record info.
 
@@ -323,7 +323,7 @@ __Request__
 |createUser|yes|the creator|String|
 |modifyUser|yes|the modifier|String|
 
-### `admin_modify_topic_info`
+#### 1.3.3 `admin_modify_topic_info`
 
 Modify specific topic record info.
 
@@ -351,7 +351,7 @@ __Request__
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
 
-### `admin_delete_topic_info`
+#### 1.3.4 `admin_delete_topic_info`
 
 Delete specific topic record info softly.
 
@@ -365,7 +365,7 @@ __Request__
 |modifyDate|yes|the modification date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_redo_deleted_topic_info`
+#### 1.3.4 `admin_redo_deleted_topic_info`
 
 Redo the Deleted specific topic record info.
 
@@ -379,7 +379,7 @@ __Request__
 |modifyDate|yes|the modification date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_remove_topic_info`
+#### 1.3.5 `admin_remove_topic_info`
 
 Delete specific topic record info hardly.
 
@@ -393,7 +393,7 @@ __Request__
 |modifyDate|yes|the modification date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_query_broker_topic_config_info`
+#### 1.3.6 `admin_query_broker_topic_config_info`
 
 Query the topic configuration info of the broker in current cluster.
 
@@ -403,9 +403,10 @@ __Request__
 |---|---|---|---|
 |topicName|yes| the topic name|String|
 
-## Master consumer permission operation API
 
-### `admin_set_topic_info_authorize_control`
+## 2 Master consumer permission operation API
+
+### 2.1 `admin_set_topic_info_authorize_control`
 
 Enable or disable the authorization control feature of the topic. If the consumer group is not authorized, the register request will be denied.
 If the topic's authorization group is empty, the topic will fail.
@@ -420,7 +421,7 @@ __Request__
 |isEnable|no|whether the authorization control is enable, default false|Boolean|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_delete_topic_info_authorize_control`
+### 2.2 `admin_delete_topic_info_authorize_control`
 
 Delete the authorization control feature of the topic. The content of the authorized consumer group list will be delete as well.
 
@@ -432,7 +433,7 @@ __Request__
 |createUser|yes|the creator|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_query_topic_info_authorize_control`
+### 2.3 `admin_query_topic_info_authorize_control`
 
 Query the authorization control feature of the topic.
 
@@ -443,7 +444,7 @@ __Request__
 |topicName|yes| the topic name|String|
 |createUser|yes|the creator|String|
 
-### `admin_add_authorized_consumergroup_info`
+### 2.4 `admin_add_authorized_consumergroup_info`
 
 Add new authorized consumer group record of the topic. The server will deny the registration from the consumer group which is not exist in
 topic's authorized consumer group.
@@ -459,7 +460,7 @@ __Request__
 |createDate|no|the creating date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_query_allowed_consumer_group_info`
+### 2.5 `admin_query_allowed_consumer_group_info`
 
 Query the authorized consumer group record of the topic. 
 
@@ -471,7 +472,7 @@ __Request__
 |groupName|yes| the group name to be added|String|
 |createUser|yes|the creator|String|
 
-### `admin_delete_allowed_consumer_group_info`
+### 2.6 `admin_delete_allowed_consumer_group_info`
 
 Delete the authorized consumer group record of the topic. 
 
@@ -483,7 +484,7 @@ __Request__
 |groupName|yes| the group name to be added|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_batch_add_topic_authorize_control`
+### 2.7`admin_batch_add_topic_authorize_control`
 
 Add the authorized consumer group of the topic record in batch mode.
 
@@ -496,7 +497,7 @@ __Request__
 |createDate|no|the creating date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_batch_add_authorized_consumergroup_info`
+### 2.8 `admin_batch_add_authorized_consumergroup_info`
 
 Add the authorized consumer group record in batch mode.
 
@@ -509,7 +510,7 @@ __Request__
 |createDate|no|the creating date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_add_black_consumergroup_info`
+### 2.9 `admin_add_black_consumergroup_info`
 
 Add consumer group into the black list of the topic. The registered consumer on the group cannot consume topic later as well as unregistered one.
 
@@ -523,7 +524,7 @@ __Request__
 |createDate|no|the creating date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_query_black_consumergroup_info`
+### 2.10 `admin_query_black_consumergroup_info`
 
 Query the black list of the topic. 
 
@@ -535,7 +536,7 @@ __Request__
 |groupName|yes|the group name |List|
 |createUser|yes|the creator|String|
 
-### `admin_delete_black_consumergroup_info`
+### 2.11 `admin_delete_black_consumergroup_info`
 
 Delete the black list of the topic. 
 
@@ -547,7 +548,7 @@ __Request__
 |groupName|yes|the group name |List|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_add_group_filtercond_info`
+### 2.12 `admin_add_group_filtercond_info`
 
 Add condition of consuming filter for the consumer group 
 
@@ -563,7 +564,7 @@ __Request__
 |createUser|yes|the creator|String|
 |createDate|no|the creating date in format `yyyyMMddHHmmss`|String|
 
-### `admin_mod_group_filtercond_info`
+### 2.13 `admin_mod_group_filtercond_info`
 
 Modify the condition of consuming filter for the consumer group 
 
@@ -579,7 +580,7 @@ __Request__
 |modifyUser|yes|the modifier|String|
 |modifyDate|no|the modification date in format `yyyyMMddHHmmss`|String|
 
-### `admin_del_group_filtercond_info`
+### 2.14 `admin_del_group_filtercond_info`
 
 Delete the condition of consuming filter for the consumer group 
 
@@ -591,7 +592,7 @@ __Request__
 |groupName|yes|the group name |List|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_query_group_filtercond_info`
+### 2.15 `admin_query_group_filtercond_info`
 
 Query the condition of consuming filter for the consumer group 
 
@@ -604,7 +605,7 @@ __Request__
 |condStatus|no| the condition status, 0: disable, 1:enable full authorization, 2:enable and limit consuming|Int|
 |filterConds|no| the filter conditions, the max length is 256|String|
 
-### `admin_rebalance_group_allocate`
+### 2.16 `admin_rebalance_group_allocate`
 
 Adjust consuming partition of the specific consumer in consumer group. This includes:  \
 1. release current consuming partition and retrieve new consuming partition.
@@ -622,7 +623,7 @@ __Request__
 |modifyUser|yes|the modifier|String|
 |modifyDate|yes|the modification date in format `yyyyMMddHHmmss`|String|
 
-### `admin_set_def_flow_control_rule`
+### 2.17 `admin_set_def_flow_control_rule`
 
 Set default flow control rule. It is effective for all consumer group. It worth to note that the priority is lower than the setting in consumer group.
 
@@ -649,7 +650,7 @@ __Request__
 |modifyDate|yes|the modification date in format `yyyyMMddHHmmss`|String|
 
 
-### `admin_upd_def_flow_control_rule`
+### 2.18 `admin_upd_def_flow_control_rule`
 
 Update the default flow control rule.
 
@@ -664,7 +665,7 @@ __Request__
 |flowCtrlInfo|yes|the flow control info in JSON format|String|
 |createDate|yes|the creating date in format `yyyyMMddHHmmss`|String|
 
-### `admin_query_def_flow_control_rule`
+### 2.19 `admin_query_def_flow_control_rule`
 
 Query the default flow control rule.
 
@@ -676,7 +677,7 @@ __Request__
 |qryPriorityId|no| the consuming priority Id. It is a composed field `A0B` with default value 301,<br> the value of A,B is [1, 2, 3] which means file, backup memory, and main memory respectively|int|
 |createUser|yes|the creator|String|
 
-### `admin_set_group_flow_control_rule`
+### 2.20 `admin_set_group_flow_control_rule`
 
 Set the group flow control rule.
 
@@ -692,7 +693,7 @@ __Request__
 |createUser|yes|the creator|String|
 |createDate|yes|the creating date in format `yyyyMMddHHmmss`|String|
 
-### `admin_upd_group_flow_control_rule`
+### 2.21 `admin_upd_group_flow_control_rule`
 
 Update the group flow control rule.
 
@@ -709,7 +710,7 @@ __Request__
 |createDate|yes|the creating date in format `yyyyMMddHHmmss`|String|
 
 
-### `admin_rmv_group_flow_control_rule`
+### 2.22 `admin_rmv_group_flow_control_rule`
 
 Remove the group flow control rule.
 
@@ -721,7 +722,7 @@ __Request__
 |confModAuthToken|yes|the authorized key for configuration update|String|
 |createUser|yes|the creator|String|
 
-### `admin_query_group_flow_control_rule`
+### 2.23 `admin_query_group_flow_control_rule`
 
 Remove the group flow control rule.
 
@@ -734,7 +735,7 @@ __Request__
 |qryPriorityId|no| the consuming priority Id. It is a composed field `A0B` with default value 301, <br>the value of A,B is [1, 2, 3] which means file, backup memory, and main memory respectively|int|
 |createUser|yes|the creator|String|
 
-### `admin_add_consume_group_setting`
+### 2.24 `admin_add_consume_group_setting`
 
 Set whether to allow consume group to consume via specific offset, and the ratio of broker and client when starting the consume group.
 
@@ -749,7 +750,7 @@ __Request__
 |createDate|yes|the creating date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_query_consume_group_setting`
+### 2.25 `admin_query_consume_group_setting`
 
 Query the consume group setting to check whether to allow consume group to consume via specific offset, and the ratio of broker and client when starting the consume group.
 
@@ -762,7 +763,7 @@ __Request__
 |allowedBClientRate|no|the ratio of the number of the consuming target's broker against the number of client in consuming group|int|
 |createUser|yes|the creator|String|
 
-### `admin_upd_consume_group_setting`
+### 2.26 `admin_upd_consume_group_setting`
 
 Update the consume group setting for whether to allow consume group to consume via specific offset, and the ratio of broker and client when starting the consume group.
 
@@ -777,7 +778,7 @@ __Request__
 |modifyDate|yes|the modifying date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-### `admin_del_consume_group_setting`
+### 2.27 `admin_del_consume_group_setting`
 
 Delete the consume group setting for whether to allow consume group to consume via specific offset, and the ratio of broker and client when starting the consume group.
 
@@ -790,9 +791,9 @@ __Request__
 |modifyDate|yes|the modifying date in format `yyyyMMddHHmmss`|String|
 |confModAuthToken|yes|the authorized key for configuration update|String|
 
-## Master subscriber relation API
+## 3 Master subscriber relation API
 
-1. Query consumer group subscription information
+### 3.1 Query consumer group subscription information
 
 Url ` http://127.0.0.1:8080/webapi.htm?type=op_query&method=admin_query_sub_info&topicName=test&consumeGroup=xxx `
 
@@ -811,7 +812,7 @@ response:
 }									
 ```
 
-2. Query consumer group detailed subscription information
+### 3.2 Query consumer group detailed subscription information
 
 Url `http://127.0.0.1:8080/webapi.htm?type=op_query&method=admin_query_consume_group_detail&consumeGroup=test_25`
 
@@ -836,9 +837,9 @@ response:
 }									
 ```
 
-## Broker operation API
+## 4 Broker operation API
 
-### `admin_snapshot_message`
+### 4.1 `admin_snapshot_message`
 
 Check whether it is transferring data under current broker's topic, and what is the content.
 
@@ -852,7 +853,7 @@ __Request__
 |partitionId|yes|the partition ID which must exists|int|
 |filterConds|yes|the tid value for filtering|String|
 
-### `admin_manual_set_current_offset`
+### 4.2 `admin_manual_set_current_offset`
 
 Modify the offset value of consuming group under current broker. The new value will be persisted to ZK.
 
@@ -867,7 +868,7 @@ __Request__
 |partitionId|yes|the partition ID which must exists|int|
 |manualOffset|yes|the offset to be modified, it must be a valid value|long|
 
-### `admin_query_group_offset`
+### 4.3 `admin_query_group_offset`
 
 Query the offset of consuming group under current broker.
 
@@ -880,7 +881,7 @@ __Request__
 |partitionId|yes|the partition ID which must exists|int|
 |requireRealOffset|no|whether to check real offset on ZK, default false|Boolean|
 
-### `admin_query_broker_all_consumer_info`
+### 4.4 `admin_query_broker_all_consumer_info`
 
 Query consumer info of the specific consume group on the broker.
 
@@ -890,7 +891,7 @@ __Request__
 |---|---|---|---|
 |groupName|yes|the group name|String|
 
-### `admin_query_broker_all_store_info`
+### 4.5 `admin_query_broker_all_store_info`
 
 Query store info of the specific topic on the broker.
 
@@ -900,7 +901,7 @@ __Request__
 |---|---|---|---|
 |topicName|yes|the topic name|String|
 
-### `admin_query_broker_memstore_info`
+### 4.6 `admin_query_broker_memstore_info`
 
 Query memory store info of the specific topic on the broker.
 

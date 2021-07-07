@@ -1,8 +1,8 @@
 ---
-title: 配置参数介绍 - Apache InLong TubeMQ模块
+配置参数介绍 - Apache InLong TubeMQ模块
 ---
 
-# TubeMQ服务端配置文件说明：
+## 1 TubeMQ服务端配置文件说明：
 
 TubeMQ服务端包括Master和Broker共2个模块，Master又包含供外部页面访问的Web前端模块（该部分存放在resources中），考虑到实际部署时2个模块常常部署在同1台机器中，TubeMQ将2个模块3个部分的内容打包在一起交付给运维使用；客户端则不包含服务端部分的lib包单独交付给业务使用。
 
@@ -17,9 +17,9 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 ![](img/configure/conf_velocity_pos.png)
 
 
-## 配置项详情：
+## 2 配置项详情：
 
-### master.ini文件中关键配置内容说明：
+### 2.1 master.ini文件中关键配置内容说明：
 
 | 配置单元 | 配置项 | 是否必选 | 值类型 | 配置说明 |
 | --- | --- | --- | --- | --- |
@@ -92,14 +92,14 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | tlsTrustStorePath | 否 | String | TLS的TrustStore文件的绝对存储路径+TrustStore文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空 |
 | tlsTrustStorePassword | 否 | String | TLS的TrustStorePassword文件的绝对存储路径+TrustStorePassword文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空 |
 
-### Master的前台配置文件velocity.properties中关键配置内容说明：
+### 2.2 Master的前台配置文件velocity.properties中关键配置内容说明：
 
 | 配置单元 | 配置项 | 是否必选 | 值类型 | 配置说明 |
 | --- | --- | --- | --- | --- |
 |
  | file.resource.loader.path | 是 | String | Master的Web的模板绝对路径，该部分为实际部署Master时的工程绝对路径+/resources/templates，该配置要与实际部署相吻合，配置失败会导致Master前端页面访问失败。 |
 
-### broker.ini文件中关键配置内容说明：
+### 2.3 broker.ini文件中关键配置内容说明：
 
 | 配置单元 | 配置项 | 是否必选 | 值类型 | 配置说明 |
 | --- | --- | --- | --- | --- |
