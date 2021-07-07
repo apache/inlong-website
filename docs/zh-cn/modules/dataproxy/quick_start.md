@@ -2,7 +2,7 @@
 
     mvn clean package -DskipTests
 
-在inlong-dataproxy/dataproxy-dist/target项目下可以找到tgz安装包apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin.tar.gz
+在inlong-dataproxy/dataproxy-dist/target项目下可以找到tgz安装包apache-inlong-dataproxy-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 
 
 解压

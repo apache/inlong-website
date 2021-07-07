@@ -1,14 +1,14 @@
 ---
-title: 快速开始 - Apache InLong TubeMQ模块
+快速开始 - Apache InLong TubeMQ模块
 ---
 
-## 编译和构建
+## 1 编译和构建
 
-### 准备工作
+### 1.1 准备工作
 - Java JDK 1.8
 - Maven 3.3+
 
-### 从源码包构建
+### 1.2 从源码包构建
 - 编译和打包：
 ```bash
 mvn clean package -DskipTests
@@ -29,7 +29,7 @@ mvn test
 构建完成之后，在 `tubemq-server/target` 目录下会有 **apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin.tar.gz** 文件。
 这是 TubeMQ 的部署包，包含了脚本、配置文件、依赖以及 web GUI相关的内容。
 
-### 配置IDE开发环境
+### 1.3 配置IDE开发环境
 在IDE中构建和调试源码，需要先运行以下命令：
 ```bash
 mvn compile
@@ -44,9 +44,9 @@ mvn compile
 </configuration>
 ```
 
-## 部署运行
+## 2 部署运行
 
-### 配置示例
+### 2.1 配置示例
 TubeMQ 集群包含有两个组件: **Master** 和 **Broker**. Master 和 Broker 可以部署在相同或者不同的节点上，依照业务对机器的规划进行处理。我们通过如下3台机器搭建有2台Master的生产、消费的集群进行配置示例：
 | 所属角色 | TCP端口 | TLS端口 | WEB端口 | 备注 |
 | --- | --- | --- | --- | --- |
@@ -54,7 +54,7 @@ TubeMQ 集群包含有两个组件: **Master** 和 **Broker**. Master 和 Broker
 | Broker | 8123 | 8124 | 8081 | 消息储存在`/stage/msg_data` |
 | ZooKeeper | 2181 | | | Offset储存在根目录`/tubemq` |
 
-### 准备工作
+### 2.2 准备工作
 - ZooKeeper集群
 - [apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin.tar.gz](download/download.md)安装包
 
@@ -68,7 +68,7 @@ TubeMQ 集群包含有两个组件: **Master** 和 **Broker**. Master 和 Broker
 └── resources
 ```
 
-### 配置Master
+### 2.3 配置Master
 编辑`conf/master.ini`，根据集群信息变更以下配置项
 
 - Master IP和端口
@@ -111,7 +111,7 @@ repHelperHost=FIRST_MASTER_NODE_IP:9001  // helperHost用于创建master集群�
 **注意**：需保证Master所有节点之间的时钟同步
 
 
-### 配置Broker
+### 2.4 配置Broker
 编辑`conf/broker.ini`，根据集群信息变更以下配置项
 - Broker IP和端口
 ```ini
@@ -139,7 +139,7 @@ zkNodeRoot=/tubemq
 zkServerAddr=localhost:2181             // 指向zookeeper集群，多个地址逗号分开
 ```
 
-### 启动Master
+### 2.5 启动Master
 进入Master节点的 `bin` 目录下，启动服务:
 ```bash
 ./tubemq.sh master start
@@ -148,7 +148,7 @@ zkServerAddr=localhost:2181             // 指向zookeeper集群，多个地址�
 ![TubeMQ Console GUI](img/tubemq-console-gui.png)
 
 
-#### 配置Broker元数据
+#### 2.5.1 配置Broker元数据
 Broker启动前，首先要在Master上配置Broker元数据，增加Broker相关的管理信息。在`Broker List` 页面,  `Add Single Broker`，然后填写相关信息:
 
 ![Add Broker 1](img/tubemq-add-broker-1.png)
@@ -160,7 +160,7 @@ Broker启动前，首先要在Master上配置Broker元数据，增加Broker相�
 然后上线Broker：
 ![Add Broker 2](img/tubemq-add-broker-2.png)
 
-### 启动Broker
+### 2.6 启动Broker
 进入broker节点的 `bin` 目录下，执行以下命令启动Broker服务：
 
 ```bash
@@ -170,8 +170,8 @@ Broker启动前，首先要在Master上配置Broker元数据，增加Broker相�
 刷新页面可以看到 Broker 已经注册，当 `当前运行子状态` 为 `idle` 时， 可以增加topic:
 ![Add Broker 3](img/tubemq-add-broker-3.png)
 
-## 快速使用
-### 新增 Topic
+## 3 快速使用
+### 3.1 新增 Topic
 
 可以通过 web GUI 添加 Topic， 在 `Topic列表`页面添加，需要填写相关信息，比如增加`demo` topic：
 ![Add Topic 1](img/tubemq-add-topic-1.png)
@@ -192,10 +192,10 @@ Broker启动前，首先要在Master上配置Broker元数据，增加Broker相�
 ![Add Topic 4](img/tubemq-add-topic-4.png)
 
 
-### 运行Example
+### 3.2 运行Example
 可以通过上面创建的`demo` topic来测试集群。
 
-- 生产消息
+#### 3.2.1 生产消息
 将 `YOUR_MASTER_IP:port` 替换为实际的IP和端口，然后运行producer:
 ```bash
 cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
@@ -205,7 +205,7 @@ cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
 如果能观察下如下日志，则表示数据发送成功：
 ![Demo 1](img/tubemq-send-message.png)
 
-- 消费消息
+#### 3.2.2 消费消息
 将 `YOUR_MASTER_IP:port` 替换为实际的IP和端口，然后运行Consumer:
 ```bash
 cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
@@ -217,9 +217,11 @@ cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
 ![Demo 2](img/tubemq-consume-message.png)
 
 
-## 结束
+## 4 结束
 在这里，已经完成了TubeMQ的编译，部署，系统配置，启动，生产和消费。如果需要了解更深入的内容，请查看《TubeMQ HTTP API》里的相关内容，进行相应的配置设置。
 
 ---
+<a href="#top">Back to top</a>
+
 
 

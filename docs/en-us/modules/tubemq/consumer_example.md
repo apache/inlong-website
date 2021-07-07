@@ -2,10 +2,10 @@
 title: Consumer Example - Apache InLong's TubeMQ module
 ---
 
-## Consumer Example
+## 1 Consumer Example
   TubeMQ provides two ways to consumer message, PullConsumer and PushConsumer:
 
-1. PullConsumer 
+### 1.1 PullConsumer 
     ```java
     public class PullConsumerExample {
 
@@ -38,7 +38,7 @@ title: Consumer Example - Apache InLong's TubeMQ module
     }
     ``` 
    
-2. PushConsumer
+### 1.2 PushConsumer
     ```java
     public class PushConsumerExample {
    

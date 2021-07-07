@@ -1,14 +1,14 @@
 ---
-title: 生产者示例 - Apache InLong TubeMQ模块
+生产者示例 - Apache InLong TubeMQ模块
 ---
 
-## Producer 示例
+## 1 Producer 示例
 TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactory 和 TubeMultiSessionFactory。
   - TubeSingleSessionFactory 在整个生命周期只会创建一个 session
   - TubeMultiSessionFactory 每次调用都会创建一个session
 
-### TubeSingleSessionFactory
-   #### Send Message Synchronously
+### 1.1 TubeSingleSessionFactory
+   #### 1.1.1 Send Message Synchronously
      ```java
      public final class SyncProducerExample {
     
@@ -31,7 +31,7 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
     }
     ```
      
-   #### Send Message Asynchronously
+   #### 1.1.2 Send Message Asynchronously
      ```java
      public final class AsyncProducerExample {
      
@@ -65,7 +65,7 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
     }
     ```
      
-   #### Send Message With Attributes
+   #### 1.1.3 Send Message With Attributes
      ```java
      public final class ProducerWithAttributeExample {
      
@@ -91,7 +91,7 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
     }
     ```
      
-### TubeMultiSessionFactory
+### 1.2 TubeMultiSessionFactory
 
     ```java
     public class MultiSessionProducerExample {
@@ -146,3 +146,5 @@ TubeMQ提供了两种方式来初始化 session factory: TubeSingleSessionFactor
         }
     }
     ```
+---
+<a href="#top">Back to top</a>    
