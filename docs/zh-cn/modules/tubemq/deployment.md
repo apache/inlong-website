@@ -1,10 +1,8 @@
 ---
-title: 部署指引 - Apache InLong TubeMQ模块
+TubeMQ编译、部署及简单使用 - Apache InLong TubeMQ模块
 ---
 
-# TubeMQ编译、部署及简单使用：
-
-## 工程编译打包：
+## 1 工程编译打包：
 
 进入工程根目录,执行命令：
 
@@ -18,7 +16,7 @@ mvn clean package -Dmaven.test.skip
 
 大家也可以进入各个子目录进行单独编译，编译过程与普通的工程编译处理过程一致。
 
-**部署服务端：**
+## 2 部署服务端：
 如上例子，进入..\InLong\inlong-tubemq\tubemq-server\target目录，服务侧的相关内容如下，其中apache-inlong-tubemq-server-0.9.0-incubating-SNAPSHOT-bin.tar.gz为完整的服务端安装包，里面包括执行脚本，配置文件，依赖包，以及前端的源码；apache-inlong-tubemq-server-0.9.0-incubating-SNAPSHOT.jar为服务端处理逻辑包，包含于完整工程安装包的lib里，单独提出是考虑到日常变更升级时改动点多在服务器处理逻辑上，升级的时候只需要单独替换该jar包即可：
 
 ![](img/sysdeployment/sys_package.png)
@@ -28,7 +26,7 @@ mvn clean package -Dmaven.test.skip
 ![](img/sysdeployment/sys_package_list.png)
 
 
-**配置系统：**
+## 3 配置系统：
 
 服务包里打包了3种角色：Master、Broker、Tools，业务使用时可以将Master和Broker放置在一起，也可以单独分开不同机器放置，依照业务对机器的规划进行处理。我们通过如下3台机器搭建一个完整的有2台Master的生产、消费环境：
 
@@ -59,7 +57,8 @@ mvn clean package -Dmaven.test.skip
 
 要注意的是右上角的配置为Master的Web前台配置信息，需要根据Master的安装路径修改/resources/velocity.properties里的file.resource.loader.path信息。
 
-**启动Master**：
+## 4 运行节点
+### 4.1 启动Master：
 
 完成如上配置设置后，首先进入主备Master所在的TubeMQ环境的bin目录，进行服务启动操作：
 
@@ -73,7 +72,7 @@ mvn clean package -Dmaven.test.skip
 
 ![](img/sysdeployment/sys_master_console.png)
 
-**启动Broker**：
+### 4.2 启动Broker：
 
 启动Broker和启动master有些差别：Master负责管理整个TubeMQ集群，包括Broker节点运行管理以及节点上部署的Topic配置管理，还有生产和消费管理等，因此，实体的Broker启动前，首先要在Master上配置Broker元数据，增加Broker相关的管理信息，如下图示：
 
@@ -110,8 +109,8 @@ Master上所有的变更操作在点击确认的时候，都会弹出如上输�
 
 ![](img/sysdeployment/sys_broker_finished.png)
 
-
-**配置及生效Topic**：
+## 5 数据生产和消费
+### 5.1 配置及生效Topic：
 
 配置Topic和配置Broker信息类似，都需要先在Master上新增元数据信息，然后才能开始使用，要不生产和消费时候会报topic不存在错误，如我们用安装包里的example对不存在的Topic名test进行生产：
 ![](img/sysdeployment/test_sendmessage.png)
@@ -137,7 +136,7 @@ Demo实例会报如下错误信息：
 
 **大家需要注意的是：** 我们在重载的时候，要对待重载的Broker集合分批次进行。我们的重载通过状态机进行控制，会先进行不可读写—〉只读操作—〉可读写—〉上线运行各个子状态处理，如果所有待重启Broker全量重载，会使得已在线对外服务的Topic对外出现短暂的不可读写状况，使得生产、消费，特别是生产发送失败。
 
-**数据生产和消费**：
+### 5.2 数据生产和消费：
 
 在安装包里，我们打包了example的测试Demo，业务也可以直接使用tubemq-client-0.9.0-incubating-SNAPSHOT.jar封装自己的生产和消费逻辑，总的形式是类似，我们先执行生产者的Demo，我们可以看到Broker上已开始有数据接收：
 ![](img/sysdeployment/test_sendmessage_2.png)
@@ -153,3 +152,6 @@ Demo实例会报如下错误信息：
 ![](img/sysdeployment/sys_node_log.png)
 
 在这里，已经完成了TubeMQ的编译，部署，系统配置，启动，生产和消费。如果需要了解更深入的内容，就需要查看《TubeMQ HTTP API》里的相关内容，进行相应的配置设置。
+
+---
+<a href="#top">Back to top</a>

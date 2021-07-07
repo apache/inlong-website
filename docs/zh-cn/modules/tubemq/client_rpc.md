@@ -1,10 +1,8 @@
 ---
-title: 客户端RPC - Apache InLong TubeMQ模块
+客户端RPC - Apache InLong TubeMQ模块
 ---
 
-# Apache InLong TubeMQ模块的RPC定义：
-
-## 总体介绍：
+## 1 总体介绍：
 
 这部分介绍内容在/org/apache/inlong/tubemq/corerpc模块下可以找到对应实现，Apache InLong TubeMQ模块的各个节点间（Client、Master、Broker）通过TCP协议长连接交互，其消息采用的是 【二进制 + Protobuf编码】组合方式进行定义，如下图示：
 ![](img/client_rpc/rpc_bytes_def.png)
@@ -14,7 +12,7 @@ title: 客户端RPC - Apache InLong TubeMQ模块
 为什么会以listSize [\&lt;len\&gt;\&lt;data\&gt;]形式定义pb数据内容？因为在TubeMQ的这个实现中，序列化后的PB数据是通过ByteBuffer对象保存的，Java里ByteBuffer存在一个最大块长8196，超过单个块长度的PB消息内容就需要用多个ByteBuffer保存，序列化到TCP消息时候，这块没有统计总长，直接按照PB序列化的ByteBuffer列表写入到了消息中。 **在多语言实现时候，这块需要特别注意：** 需要将PB数据内容序列化成块数组（pb编解码里有对应支持）。
 
 
-## PB格式编码：
+## 2 PB格式编码：
 
 PB格式编码分为RPC框架定义，到Master的消息编码和到Broker的消息编码三个部分，大家采用protobuf直接编译就可以获得不同语言的编解码，使用起来非常的方便：
 ![](img/client_rpc/rpc_proto_def.png)
@@ -29,9 +27,9 @@ RPC.proto定义了6个结构，分为2大类：请求消息与响应消息，响
 ![](img/client_rpc/rpc_header_fill.png)
 
 
-## 客户端的PB请求响应交互图：
+## 3 客户端的PB请求响应交互图：
 
-**Producer交互图**：
+### 3.1 Producer交互图：
 
 Producer在系统中一共4对指令，到master是要做注册，心跳，退出操作；到broker只有发送消息：
 ![](img/client_rpc/rpc_producer_diagram.png)
@@ -47,14 +45,14 @@ Producer在系统中一共4对指令，到master是要做注册，心跳，退�
 4. Producer到Broker的连接要注意异常检测，长期运行场景，要能检测出Broker坏点，以及长期不发消息，要将到Broker的连接回收，避免运行不稳定。
 
 
-**Consumer交互图**：
+### 3.2 Consumer交互图：
 
 Consumer一共7对指令，到master是要做注册，心跳，退出操作；到broker包括注册，注销，心跳，拉取消息，确认消息4对，其中到Broker的注册注销是同一个命令，用了不同的状态码表示：
 ![](img/client_rpc/rpc_consumer_diagram.png)
 
 从上图我们可以看到，Consumer首先要注册到Master，但注册到Master时并没有立即获取到元数据信息，原因是TubeMQ是采用的是服务器端负载均衡模式，客户端需要等待服务器派发消费分区信息；Consumer到Broker需要进行注册注销操作，原因在于消费时候分区是独占消费，即同一时刻同一分区者只能被同组的一个消费者进行消费，为了解决这个问题，需要客户端进行注册，获得分区的消费权限；消息拉取与消费确认需要成对出现，虽然协议支持多次拉取然后最后一次确认处理，但从客户端可能超时丢失分区的消费权限，从而导致数据回滚重复消费触发，数据积攒的越多重复消费的量就越多，所以按照1：1的提交比较合适。
 
-## 客户端功能集合：
+## 4 客户端功能集合：
 
 | **特性** | **Java** | **C/C++** | **Go** | **Python** | **Rust** | **备注** |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -84,9 +82,9 @@ Consumer一共7对指令，到master是要做注册，心跳，退出操作；�
 | 控制消费者拉取消息的频度 | ✅ | | | | | |
 
 
-## 客户端功能CaseByCase实现介绍：
+## 5 客户端功能CaseByCase实现介绍：
 
-**客户端与服务器端RPC交互过程**：
+### 5.1 客户端与服务器端RPC交互过程：
 
 ----------
 
@@ -94,7 +92,8 @@ Consumer一共7对指令，到master是要做注册，心跳，退出操作；�
 
 如上图示，客户端要维持已发请求消息的本地保存，直到RPC超时，或者收到响应消息，响应消息通过请求发送时生成的SerialNo关联；从服务器端收到的Broker信息，以及Topic信息，SDK要保存在本地，并根据最新的返回信息进行更新，以及定期的上报给服务器端；SDK要维持到Master或者Broker的心跳，如果发现Master反馈注册超时错误时，要进行重注册操作；SDK要基于Broker进行连接建立，同一个进程不同对象之间，要允许业务进行选择，是支持按对象建立连接，还是按照进程建立连接。
 
-**Producer到Master注册**:
+### 5.2 Producer到Master注册：
+
 ----------
 ![](img/client_rpc/rpc_producer_register2M.png)
 
@@ -129,8 +128,10 @@ Java的SDK版本里ClientId = 节点IP地址（IPV4） + &quot;-&quot; + 进程I
 **authAuthorizedToken**：认证通过的授权Token，如果有该字段数据，要保存，并且在后续访问Master及Broker时携带该字段信息；如果后续心跳时该字段有变更，则需要更新本地缓存的该字段数据；
 
 
-**Producer到Master保持心跳**:
+### 5.3 Producer到Master保持心跳:
+
 ----------
+
 ![](img/client_rpc/rpc_producer_heartbeat2M.png)
 
 **topicInfos**：SDK发布的Topic对应的元数据信息，包括分区信息以及所在的Broker，具体解码方式如下，由于元数据非常的多，如果将对象数据原样透传所产生的出流量会非常的大，所以我们通过编码方式做了改进：
@@ -139,14 +140,18 @@ Java的SDK版本里ClientId = 节点IP地址（IPV4） + &quot;-&quot; + 进程I
 
 **requireAuth**：标识Master之前的授权访问码（authAuthorizedToken）过期，要求SDK下一次请求，进行用户名及密码的签名信息上报；
 
-**Producer到Master关闭退出**:
+### 5.4 Producer到Master关闭退出:
+
 ----------
+
 ![](img/client_rpc/rpc_producer_close2M.png)
 
 需要注意的是，如果认证开启，关闭会做认证，以避免外部干扰操作。
 
-**Producer到Broker发送消息**:
+### 5.5 Producer到Broker发送消息:
+
 ----------
+
 该部分的内容主要和Message的定义由关联，其中
 
 ![](img/client_rpc/rpc_producer_sendmsg2B.png)
@@ -161,8 +166,10 @@ Java的SDK版本里ClientId = 节点IP地址（IPV4） + &quot;-&quot; + 进程I
 
 **requireAuth**：到Broker进行数据生产的要求认证操作，考虑性能问题，目前未生效，发送消息里填写的authAuthorizedToken值以Master侧提供的值为准，并且随Master侧改变而改变。
 
-**分区负载均衡过程**:
+### 5.6 分区负载均衡过程:
+
 ----------
+
 Apache InLong TubeMQ模块目前采用的是服务器端负载均衡模式，均衡过程由服务器管理维护；后续版本会增加客户端负载均衡模式，形成2种模式共存的情况，由业务根据需要选择不同的均衡方式。
 
 **服务器端负载均衡过程如下**：

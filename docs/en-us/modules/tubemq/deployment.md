@@ -2,9 +2,7 @@
 title: Deployment - Apache InLong's TubeMQ Module
 ---
 
-# Compile, Deploy and Examples of TubeMQ ：
-
-## Compile and Package Project：
+## 1 Compile and Package Project：
 
 Enter the root directory of project and run:
 
@@ -18,7 +16,7 @@ e.g. We put the TubeMQ project package at `E:/`, then run the above command. Com
 
 We can also run individual compilation in each subdirectory. Steps are the same as the whole project's compilation.
 
-**Server Deployment**
+## 2 Server Deployment
 
 As example above, entry directory `..\InLong\inlong-tubemq\tubemq-server\target`, we can see several JARs. `apache-inlong-tubemq-server-0.9.0-incubating-SNAPSHOT-bin.tar.gz` is the complete server-side installation package， including execution scripts, configuration files, dependencies, and frontend source code. `apache-inlong-tubemq-server-0.9.0-incubating-SNAPSHOT.jar` is a server-side processing package included in `lib` of the complete project installer. Consider to daily changes and upgrades are most made to server side, we place this jar separately so that we just need to replace this jar during upgrade.
 
@@ -30,7 +28,7 @@ Here we have a complete package deployed onto server and we place it in `/data/i
 ![](img/sysdeployment/sys_package_list.png)
 
 
-**Configuration System**
+## 3 Configuration System
 
 There are 3 roles in server package: Master, Broker and Tools. Master and Broker can be deployed on the same or different machine. It depends on the bussiness layouts. As example below, we have 3 machine to startup a complete production and consumption cluster with 2 Masters.
 
@@ -62,7 +60,7 @@ then it is `9.23.28.24`.
 
 Note that the upper right corner is configured with Master's web frontend configuration and configuration `file.resource.loader.path` in `/resources/velocity.properties` need to be modified according to the Master's installation path.
 
-**Start up Master**：
+## 4 Start up Master：
 
 After configuration, entry directory `bin` of Master environment and start up master.
 
@@ -76,7 +74,7 @@ Visiting Master's Administrator panel([http://9.23.27.24:8080](http://9.23.27.24
 
 ![](img/sysdeployment/sys_master_console.png)
 
-**Start up Broker**：
+## 5 Start up Broker：
 
 Starting up Broker is a little bit different to starting Master: Master is responsible for managing the entire TubeMQ cluster, including Broker node with Topic configuration on them, production and consumption managament. So we need to add metadata on Master before starting up Broker.
 
@@ -114,7 +112,7 @@ Check the Master Control Panel, broker has successfully registered.
 ![](img/sysdeployment/sys_broker_finished.png)
 
 
-**Topic Configuration and Activation**：
+## 6 Topic Configuration and Activation：
 
 Configuration of Topic is similar with Broker's, we should add metadata on Master before using them, otherwise it will report an Not Found Error during production/consumption. For example, if we try to consum a non-existent topic `test`,
 ![](img/sysdeployment/test_sendmessage.png)
@@ -139,7 +137,7 @@ Topic is available after overload. We can see some status of topic has changed a
 
 **Note** When we are executing overload opertaion, we should make it in batches. Overload operations are controlled by state machines. It would become unwritable and un readale, read-only, readable and writable in order before published. Waiting for overloads on all brokers make topic temporary unreadable and unwritable, which result in production and consumption failure, especially production failure.
 
-**Message Production and Consumption**：
+## 7 Message Production and Consumption：
 
 We pack Demo for test in package or `tubemq-client-0.9.0-incubating-SNAPSHOT.jar` can be used for implementing your own production and consumption.
 We run Producer Demo in below script and we can see data accepted on Broker.

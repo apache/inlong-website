@@ -1,14 +1,14 @@
 # TubeMQ VS Kafka性能对比测试总结
 
-## 背景
+## 1 背景
 TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思想源于[Apache Kafka](http://kafka.apache.org/)。在实现上，则完全采取自适应的方式，结合实战做了很多优化及研发工作，如分区管理、分配机制和全新节点通讯流程，自主开发高性能的底层RPC通讯模块等。
 这些实现使得TubeMQ在保证实时性和一致性的前提下，具有很好的健壮性及更高的吞吐能力。结合目前主流消息中间件使用情况，以Kafka为参照做性能对比测试，对比常规应用场景下两套系统性能。
 
-## 测试场景方案
+## 2 测试场景方案
 如下是我们根据实际应用场景设计的测试方案：
 ![](img/perf_scheme.png)
 
-## 测试结论
+## 3 测试结论
 用"复仇者联盟"里的角色来形容：
 
 角色|测试场景|要点
@@ -24,8 +24,8 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 3. 在过滤消费时，TubeMQ可以极大地降低服务端的网络出流量，同时还会因过滤消费消耗的资源少于全量消费，反过来促进TubeMQ吞吐量提升；kafka无服务端过滤，出流量与全量消费一致，流量无明显的节约；
 4. 资源消耗方面各有差异：TubeMQ由于采用顺序写随机读，CPU消耗很大，Kafka采用顺序写块读，CPU消耗很小，但其他资源，如文件句柄、网络连接等消耗非常的大。在实际的SAAS模式下的运营环境里，Kafka会因为zookeeper依赖出现系统瓶颈，会因生产、消费、Broker众多，受限制的地方会更多，比如文件句柄、网络连接数等，资源消耗会更大；
 
-## 测试环境及配置
-###【软件版本及部署环境】
+## 4 测试环境及配置
+### 4.1 【软件版本及部署环境】
 
 **角色**|**TubeMQ**|**Kafka**
 :---:|---|---
@@ -36,7 +36,7 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 **Producer**|1台M10 + 1台CG1|1台M10 + 1台CG1
 **Consumer**|6台TS50万兆机|6台TS50万兆机
 
-###【Broker硬件机型配置】
+### 4.2 【Broker硬件机型配置】
 
 **机型**|配置|**备注**
 :---:|---|---
@@ -44,7 +44,7 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 **BX1-10G**|SA5212M5(6133\*2/16G\*16/4T\*12/10GE\*2) Pcs|                                     
 **CG1-10G**|CG1-10G\_6.0.2.12\_RM760-FX(6133\*2/16G\*16/5200-480G\*6 RAID/10GE\*2)-ODM Pcs |  
 
-###【Broker系统配置】
+### 4.3 【Broker系统配置】
 
 | **配置项**            | **TubeMQ Broker**     | **Kafka Broker**      |
 |:---:|---|---|
@@ -53,25 +53,25 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 | **配置文件**          | 在tubemq-3.8.0版本broker.ini配置文件上改动: consumerRegTimeoutMs=35000<br>tcpWriteServiceThread=50<br>tcpReadServiceThread=50<br>primaryPath为SATA盘日志目录|kafka_2.11-0.10.2.0版本server.properties配置文件上改动：<br>log.flush.interval.messages=5000<br>log.flush.interval.ms=10000<br>log.dirs为SATA盘日志目录<br>socket.send.buffer.bytes=1024000<br>socket.receive.buffer.bytes=1024000<br>socket.request.max.bytes=2147483600<br>log.segment.bytes=1073741824<br>num.network.threads=25<br>num.io.threads=48<br>log.retention.hours=5
 | **其它**             | 除测试用例里特别指定，每个topic创建时设置：<br>memCacheMsgSizeInMB=5<br>memCacheFlushIntvl=20000<br>memCacheMsgCntInK=10 <br>unflushThreshold=5000<br>unflushInterval=10000<br>unFlushDataHold=5000 | 客户端代码里设置：<br>生产端：<br>props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");<br>props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");<br>props.put("linger.ms", "200");<br>props.put("block.on.buffer.full", false);<br>props.put("max.block.ms", "10");<br>props.put("batch.size", 50000);<br>props.put("buffer.memory", 1073741824 );<br>props.put("metadata.fetch.timeout.ms", 30000);<br>props.put("metadata.max.age.ms", 1000000);<br>props.put("request.timeout.ms", 1000000);<br>消费端：<br>props.put(ConsumerConfig.SESSION_TIMEOUT_MS_CONFIG, "30000"); <br>props.put(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");<br>props.put(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringDeserializer");<br>props.put(ConsumerConfig.ENABLE_AUTO_COMMIT_CONFIG, true/false);<br>props.put(ConsumerConfig.AUTO_COMMIT_INTERVAL_MS_CONFIG, "10000");
               
-## 测试场景及结论
+## 5 测试场景及结论
 
-### 场景一：基础场景，单topic情况，一入两出模型，分别使用不同的消费模式、不同大小的消息包，分区逐步做横向扩展，对比TubeMQ和Kafka性能
+### 5.1 场景一：基础场景，单topic情况，一入两出模型，分别使用不同的消费模式、不同大小的消息包，分区逐步做横向扩展，对比TubeMQ和Kafka性能
  ![](img/perf_scenario_1.png)
 
-####【结论】
+#### 5.1.1 【结论】
 
 在单topic不同分区的情况下：
 1. TubeMQ吞吐量不随分区变化而变化，同时TubeMQ属于顺序写随机读模式，单实例情况下吞吐量要低于Kafka，CPU要高于Kafka；
 2. Kafka随着分区增多吞吐量略有下降，CPU使用率很低；
 3. TubeMQ分区由于是逻辑分区，增加分区不影响吞吐量；Kafka分区为物理文件的增加，但增加分区入出流量反而会下降；
 
-####【指标】
+#### 5.1.2 【指标】
  ![](img/perf_scenario_1_index.png)
 
-### 场景二：单topic情况，一入两出模型，固定消费包大小，横向扩展实例数，对比TubeMQ和Kafka性能情况
+### 5.2 场景二：单topic情况，一入两出模型，固定消费包大小，横向扩展实例数，对比TubeMQ和Kafka性能情况
  ![](img/perf_scenario_2.png)
 
-####【结论】
+#### 5.2.1 【结论】
 
 从场景一和场景二的测试数据结合来看：
 
@@ -81,7 +81,7 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 4. TubeMQ按照Kafka等同的增加实例（物理文件）后，吞吐量量随之提升，在4个实例的时候测试效果达到并超过Kafka
     5个分区的状态；TubeMQ可以根据业务或者系统配置需要，调整数据读取方式，可以动态提升系统的吞吐量；Kafka随着分区增加，入流量有下降；
 
-####【指标】
+#### 5.2.2 【指标】
 
 **注1 :** 如下场景中，均为单Topic测试下不同分区或实例、不同读取模式场景下的测试，单条消息包长均为1K;
 
@@ -89,10 +89,10 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 读取模式通过admin\_upd\_def\_flow\_control\_rule设置qryPriorityId为对应值.
  ![](img/perf_scenario_2_index.png)
 
-### 场景三：多topic场景，固定消息包大小、实例及分区数，考察100、200、500、1000个topic场景下TubeMQ和Kafka性能情况
+### 5.3 场景三：多topic场景，固定消息包大小、实例及分区数，考察100、200、500、1000个topic场景下TubeMQ和Kafka性能情况
  ![](img/perf_scenario_3.png)
 
-####【结论】
+#### 5.3.1 【结论】
 
 按照多Topic场景下测试：
 
@@ -103,25 +103,25 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
     Topic配置时，网络连接达到了1.2W，文件句柄达到了4.5W)等问题；
 4.  数据对比来看，TubeMQ相比Kafka运行更稳定，吞吐量以稳定形势呈现，长时间跑吞吐量不下降，资源占用少，但CPU的占用需要后续版本解决；
 
-####【指标】
+#### 5.3.2 【指标】
 
 **注：** 如下场景中，包长均为1K，分区数均为10。
  ![](img/perf_scenario_3_index.png)
 
-### 场景四：100个topic，一入一全量出五份部分过滤出：一份全量Topic的Pull消费；过滤消费采用5个不同的消费组，从同样的20个Topic中过滤出10%消息内容
+### 5.4 场景四：100个topic，一入一全量出五份部分过滤出：一份全量Topic的Pull消费；过滤消费采用5个不同的消费组，从同样的20个Topic中过滤出10%消息内容
 
-####【结论】
+#### 5.4.1 【结论】
 
 1.  TubeMQ采用服务端过滤的模式，出流量指标与入流量存在明显差异；
 2.  TubeMQ服务端过滤提供了更多的资源给到生产，生产性能比非过滤情况有提升；
 3.  Kafka采用客户端过滤模式，入流量没有提升，出流量差不多是入流量的2倍，同时入出流量不稳定；
 
-####【指标】
+#### 5.4.2 【指标】
 
 **注：** 如下场景中，topic为100，包长均为1K，分区数均为10
  ![](img/perf_scenario_4_index.png)
 
-### 场景五：TubeMQ、Kafka数据消费时延比对
+### 5.5 场景五：TubeMQ、Kafka数据消费时延比对
 
 | 类型   | 时延            | Ping时延                |
 |---|---|---|
@@ -130,35 +130,35 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 
 备注：TubeMQ的消费端存在一个等待队列处理消息追平生产时的数据未找到的情况，缺省有200ms的等待时延。测试该项时，TubeMQ消费端要调整拉取时延（ConsumerConfig.setMsgNotFoundWaitPeriodMs()）为10ms，或者设置频控策略为10ms。
 
-### 场景六：调整Topic配置的内存缓存大小（memCacheMsgSizeInMB）对吞吐量的影响
+### 5.6 场景六：调整Topic配置的内存缓存大小（memCacheMsgSizeInMB）对吞吐量的影响
 
-####【结论】
+#### 5.6.1【结论】
 
 1.  TubeMQ调整Topic的内存缓存大小能对吞吐量形成正面影响，实际使用时可以根据机器情况合理调整；
 2.  从实际使用情况看，内存大小设置并不是越大越好，需要合理设置该值；
 
-####【指标】
+#### 5.6.2 【指标】
 
  **注：** 如下场景中，消费方式均为读取内存（301）的PULL消费，单条消息包长均为1K
  ![](img/perf_scenario_6_index.png)
  
 
-### 场景七：消费严重滞后情况下两系统的表现
+### 5.7 场景七：消费严重滞后情况下两系统的表现
 
-####【结论】
+#### 5.7.1 【结论】
 
 1.  消费严重滞后情况下，TubeMQ和Kafka都会因磁盘IO飙升使得生产消费受阻；
 2.  在带SSD系统里，TubeMQ可以通过SSD转存储消费来换取部分生产和消费入流量；
 3.  按照版本计划，目前TubeMQ的SSD消费转存储特性不是最终实现，后续版本中将进一步改进，使其达到最合适的运行方式；
 
-####【指标】
+#### 5.7.2 【指标】
  ![](img/perf_scenario_7.png)
 
 
-### 场景八：评估多机型情况下两系统的表现
+### 5.8 场景八：评估多机型情况下两系统的表现
  ![](img/perf_scenario_8.png)
       
-####【结论】
+#### 5.8.1 【结论】
 
 1.  TubeMQ在BX1机型下较TS60机型有更高的吞吐量，同时因IO util达到瓶颈无法再提升，吞吐量在CG1机型下又较BX1达到更高的指标值；
 2.  Kafka在BX1机型下系统吞吐量不稳定，且较TS60下测试的要低，在CG1机型下系统吞吐量达到最高，万兆网卡跑满；
@@ -166,29 +166,30 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 4.  在SSD盘存储条件下，Kafka性能指标达到最好，TubeMQ指标不及Kafka；
 5.  CG1机型数据存储盘较小(仅2.2T)，RAID 10配置下90分钟以内磁盘即被写满，无法测试两系统长时间运行情况。
 
-####【指标】
+#### 5.8.2 【指标】
 
 **注1:** 如下场景Topic数均配置500个topic，10个分区，消息包大小为1K字节;
 
 **注2:** TubeMQ采用的是301内存读取模式消费；
  ![](img/perf_scenario_8_index.png)
 
-## 附录1 不同机型下资源占用情况图：
-###【BX1机型测试】
+## 6 附录
+### 6.1 附录1 不同机型下资源占用情况图：
+#### 6.1.1 【BX1机型测试】
 ![](img/perf_appendix_1_bx1_1.png)
 ![](img/perf_appendix_1_bx1_2.png)
 ![](img/perf_appendix_1_bx1_3.png)
 ![](img/perf_appendix_1_bx1_4.png)
 
-###【CG1机型测试】
+#### 6.1.2 【CG1机型测试】
 ![](img/perf_appendix_1_cg1_1.png)
 ![](img/perf_appendix_1_cg1_2.png)
 ![](img/perf_appendix_1_cg1_3.png)
 ![](img/perf_appendix_1_cg1_4.png)
 
-## 附录2 多Topic测试时的资源占用情况图：
+### 6.2 附录2 多Topic测试时的资源占用情况图：
 
-###【100个topic】
+#### 6.2.1 【100个topic】
 ![](img/perf_appendix_2_topic_100_1.png)
 ![](img/perf_appendix_2_topic_100_2.png)
 ![](img/perf_appendix_2_topic_100_3.png)
@@ -199,7 +200,7 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 ![](img/perf_appendix_2_topic_100_8.png)
 ![](img/perf_appendix_2_topic_100_9.png)
  
-###【200个topic】
+#### 6.2.2 【200个topic】
 ![](img/perf_appendix_2_topic_200_1.png)
 ![](img/perf_appendix_2_topic_200_2.png)
 ![](img/perf_appendix_2_topic_200_3.png)
@@ -210,7 +211,7 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 ![](img/perf_appendix_2_topic_200_8.png)
 ![](img/perf_appendix_2_topic_200_9.png)
 
-###【500个topic】
+#### 6.2.3 【500个topic】
 ![](img/perf_appendix_2_topic_500_1.png)
 ![](img/perf_appendix_2_topic_500_2.png)
 ![](img/perf_appendix_2_topic_500_3.png)
@@ -221,7 +222,7 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 ![](img/perf_appendix_2_topic_500_8.png)
 ![](img/perf_appendix_2_topic_500_9.png)
 
-###【1000个topic】
+#### 6.2.4【1000个topic】
 ![](img/perf_appendix_2_topic_1000_1.png)
 ![](img/perf_appendix_2_topic_1000_2.png)
 ![](img/perf_appendix_2_topic_1000_3.png)
