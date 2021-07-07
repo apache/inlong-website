@@ -33,14 +33,13 @@ agent.manager.vip.http.port=manager port</p>
 <p>###2.2 Proxy configuration
 Create a new folder named .inlong.managerIps in the agent directory, and create a new bid+.local file inside. For example, if the sending bid is set to a, then create a new file a.local</p>
 <p>write:</p>
-<pre><code>{&quot;cluster_id&quot;:45,&quot;isInterVisit&quot;:1,&quot;size&quot;:1,&quot;address&quot;: [{&quot;port&quot;:write proxy port,&quot;host&quot;:&quot;write proxy ip&quot;}], &quot;switch&quot;:0}
+<pre><code>{&quot;cluster_id&quot;:1,&quot;isInterVisit&quot;:1,&quot;size&quot;:1,&quot;address&quot;: [{&quot;port&quot;:write proxy port,&quot;host&quot;:&quot;write proxy ip&quot;}], &quot;switch&quot;:0}
 </code></pre>
 <p>###2.3 local job configuration
 If you do not use the online mode, you can use the local file to create a new read task
 Create a new directory jobs in conf,
 vim job1.json：</p>
-<p>put
-{</p>
+<p>put</p>
 <pre><code>&quot;job&quot;: {
 
 &quot;dir&quot;: {

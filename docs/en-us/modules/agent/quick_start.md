@@ -29,7 +29,7 @@ Create a new folder named .inlong\.managerIps in the agent directory, and create
 
 write:
 
-    {"cluster_id":45,"isInterVisit":1,"size":1,"address": [{"port":write proxy port,"host":"write proxy ip"}], "switch":0}
+    {"cluster_id":1,"isInterVisit":1,"size":1,"address": [{"port":write proxy port,"host":"write proxy ip"}], "switch":0}
 
 ###2.3 local job configuration
 If you do not use the online mode, you can use the local file to create a new read task
@@ -37,7 +37,6 @@ Create a new directory jobs in conf,
 vim job1.json：
 
 put
-{
 
     "job": {
     

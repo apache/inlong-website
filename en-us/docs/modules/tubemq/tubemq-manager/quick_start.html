@@ -19,18 +19,20 @@
 <p>environment requirements：</p>
 <p>mysql
 java(1.8+)
-In the dist directory, you can find the file tubemq-manager-bin.zip</p>
-<pre><code>unzip tubemq-manager-bin.zip
+In the InLong/inlong-tubemq/tubemq-manager/dist/ directory, you can find the file apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz</p>
+<pre><code>tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 </code></pre>
 <p>Add mysql information in conf/application.properties:</p>
 <pre><code>spring.jpa.hibernate.ddl-auto=update
 # configuration for manager
-spring.datasource.url=jdbc:mysql://x.x.x.x:3306/tubemanager
-spring.datasource.username=xx
-spring.datasource.password=xxx
+spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
+spring.datasource.username=[replace_by_usename]
+spring.datasource.password=[replace_by_password]
+# server port 
+server.port=8089
 </code></pre>
 <p>Add the database tubemanager and start:</p>
-<pre><code>bin/start-manager.sh
+<pre><code>bin/start-admin.sh
 </code></pre>
 <h2>use</h2>
 <h3>create cluster</h3>
@@ -40,12 +42,12 @@ spring.datasource.password=xxx
 </code></pre>
 <p>parameter:</p>
 <pre><code>{
-&quot;masterIp&quot;: &quot;9.23.28.86&quot;,   (tube master ip)
+&quot;masterIp&quot;: &quot;127.0.0.1&quot;,   (tubemq master ip)
 &quot;clusterName&quot;: &quot;test&quot;,    
-&quot;masterPort&quot;: &quot;8000&quot;,  (tube master port)
-&quot;masterWebPort&quot;: &quot;8080&quot;,  (tube master web port)
+&quot;masterPort&quot;: &quot;8000&quot;,  (tubemq master port)
+&quot;masterWebPort&quot;: &quot;8080&quot;,  (tubemq master web port)
 &quot;createUser&quot;: &quot;test&quot;,  
-&quot;token&quot;: &quot;abc&quot;  (tube token)
+&quot;token&quot;: &quot;abc&quot;  (tubemq token)
 }
 </code></pre>
 <h3>Operation interface</h3>
@@ -101,10 +103,9 @@ user	(Required) After the access authorization verification needs to verify the 
 </code></pre>
 <p>example</p>
 <p>POST</p>
-<pre><code>/v1/topic?method=queryCanWrite
-{
-&quot;clusterId&quot;: &quot;2&quot;,
-&quot;topicName&quot;: &quot;pzrTestss1123123&quot;,
+<pre><code>{
+&quot;clusterId&quot;: &quot;1&quot;,
+&quot;topicName&quot;: &quot;1&quot;,
 &quot;user&quot;: &quot;test&quot;
 }
 </code></pre>

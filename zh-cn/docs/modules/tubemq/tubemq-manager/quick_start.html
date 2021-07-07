@@ -19,18 +19,20 @@
 <p>环境要求：</p>
 <p>mysql
 java(1.8+)
-在dist目录当中，能够找到文件为tubemq-manager-bin.zip</p>
-<pre><code>unzip tubemq-manager-bin.zip
+在InLong/inlong-tubemq/tubemq-manager/dist/目录当中，能够找到文件为apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz</p>
+<pre><code>tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 </code></pre>
 <p>在conf/application.properties中添加mysql信息：</p>
 <pre><code>spring.jpa.hibernate.ddl-auto=update
 # configuration for manager
-spring.datasource.url=jdbc:mysql://x.x.x.x:3306/tubemanager
-spring.datasource.username=xx
-spring.datasource.password=xxx
+spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
+spring.datasource.username=[replace_by_usename]
+spring.datasource.password=[replace_by_password]
+# server port 
+server.port=8089
 </code></pre>
 <p>添加数据库tubemanager，并启动：</p>
-<pre><code>bin/start-manager.sh
+<pre><code>bin/start-admin.sh
 </code></pre>
 <h2>使用</h2>
 <h3>新建集群</h3>
@@ -41,12 +43,12 @@ POST
 </code></pre>
 <p>参数：</p>
 <pre><code>{
-&quot;masterIp&quot;: &quot;9.23.28.86&quot;,   (tube master ip)
+&quot;masterIp&quot;: &quot;127.0.0.1&quot;,   (tubemq master ip)
 &quot;clusterName&quot;: &quot;test&quot;,    
-&quot;masterPort&quot;: &quot;8000&quot;,  (tube master port)
-&quot;masterWebPort&quot;: &quot;8080&quot;,  (tube master web port)
+&quot;masterPort&quot;: &quot;8000&quot;,  (tubemq master port)
+&quot;masterWebPort&quot;: &quot;8080&quot;,  (tubemq master web port)
 &quot;createUser&quot;: &quot;test&quot;,  
-&quot;token&quot;: &quot;abc&quot;  (tube token)
+&quot;token&quot;: &quot;abc&quot;  (tubemq token)
 }
 </code></pre>
 <h3>操作接口</h3>
@@ -64,7 +66,7 @@ GET
 }
 </code></pre>
 <h4>topic</h4>
-<p>#####添加topicTask</p>
+<h4>添加topicTask</h4>
 <pre><code>type	(必填) 请求类型，字段填写：op_query
 clusterId	(必填) 请求集群id
 addTopicTasks (必填) topicTasks，创建task任务json，
@@ -94,7 +96,7 @@ user	(必填) 之后接入权限验证需要验证用户，这里预留出来
 }
 </code></pre>
 <p>result为false为写入task失败</p>
-<p>#####查询某一个topic是否创建成功（业务可以写入）</p>
+<h4>查询某一个topic是否创建成功（业务可以写入）</h4>
 <pre><code>clusterId	(必填) 请求集群id
 topicName   (必填) 查询topic名称
 user	(必填) 之后接入权限验证需要验证用户，这里预留出来
@@ -104,8 +106,8 @@ user	(必填) 之后接入权限验证需要验证用户，这里预留出来
 <pre><code>/v1/topic?method=queryCanWrite
 
 {
-&quot;clusterId&quot;: &quot;2&quot;,
-&quot;topicName&quot;: &quot;pzrTestss1123123&quot;,
+&quot;clusterId&quot;: &quot;1&quot;,
+&quot;topicName&quot;: &quot;1&quot;,
 &quot;user&quot;: &quot;test&quot;
 }
 </code></pre>
