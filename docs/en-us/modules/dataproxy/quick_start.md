@@ -2,10 +2,11 @@
 
     mvn clean package -DskipTests
 
-The tgz installation package apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin.tar.gz can be found under the inlong-dataproxy/dataproxy-dist/target project
+The tgz installation package apache-inlong-dataproxy-0.9.0-incubating-SNAPSHOT-bin.tar.gz can be found under the inlong-dataproxy/dataproxy-dist/target
 
-	un tar it
-	tar -zxvf apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin.tar.gz
+un tar it
+
+    tar -zxvf apache-inlong-dataproxy-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 
 
 ## 2、configuration
@@ -13,9 +14,17 @@ The tgz installation package apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin.t
 	cd apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin
 
 ### config tube
-	vim conf/flume.conf
-	In vim command line mode, execute the following replacement commands, where ip:port is the tube address
-	:%s/TUBE_LIST/ip:port,ip:port
+
+	ip:port are tube address
+
+sed -i 's/TUBE_LIST/ip1:port,ip2:port/g' conf/flume.conf
+
+    change proxy port
+    agent1.sources.tcp-source.port = 46801
+
+notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner data
+
+
 
 ### Environmental preparation
 	cd bin
@@ -23,10 +32,10 @@ The tgz installation package apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin.t
 	cd ..
 
 ### config manager
-	vim conf/commmon.properties
+	vim conf/common.properties
 	write：
 	cluster_id=1
-	manager_hosts=xx.xx.xx.xx:port
+	manager_hosts=ip:port
 
 ## 3、run
 	sh bin/start.sh

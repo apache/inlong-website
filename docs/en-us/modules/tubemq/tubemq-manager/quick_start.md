@@ -8,40 +8,42 @@ environment requirements：
 
 mysql
 java(1.8+)
-In the dist directory, you can find the file tubemq-manager-bin.zip
+In the InLong/inlong-tubemq/tubemq-manager/dist/ directory, you can find the file apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 
-    unzip tubemq-manager-bin.zip
+    tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 
 Add mysql information in conf/application.properties:
 
     spring.jpa.hibernate.ddl-auto=update
     # configuration for manager
-    spring.datasource.url=jdbc:mysql://x.x.x.x:3306/tubemanager
-    spring.datasource.username=xx
-    spring.datasource.password=xxx
+    spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
+    spring.datasource.username=[replace_by_usename]
+    spring.datasource.password=[replace_by_password]
+    # server port 
+    server.port=8089
 
 Add the database tubemanager and start:
 
-    bin/start-manager.sh
+    bin/start-admin.sh
 
 ## use
 
 ### create cluster
 
 Before using tubeAdmin to operate the cluster, you first need to register the cluster information, and use the following interface to add a cluster:
-    /v1/cluster?method=add
+/v1/cluster?method=add
 
     POST
 
 parameter:
 
     {
-    "masterIp": "9.23.28.86",   (tube master ip)
+    "masterIp": "127.0.0.1",   (tubemq master ip)
     "clusterName": "test",    
-    "masterPort": "8000",  (tube master port)
-    "masterWebPort": "8080",  (tube master web port)
+    "masterPort": "8000",  (tubemq master port)
+    "masterWebPort": "8080",  (tubemq master web port)
     "createUser": "test",  
-    "token": "abc"  (tube token)
+    "token": "abc"  (tubemq token)
     }
 
 ### Operation interface
@@ -82,10 +84,10 @@ AddTopicTasks is a list of the following objects, which can carry multiple creat
 
     topicName (required) topic name
 
-Example 
+Example
 
 POST
-    /v1/task?method=addTopicTask
+/v1/task?method=addTopicTask
 
     {
     "clusterId": "1",
@@ -115,10 +117,9 @@ example
 
 POST
 
-    /v1/topic?method=queryCanWrite
     {
-    "clusterId": "2",
-    "topicName": "pzrTestss1123123",
+    "clusterId": "1",
+    "topicName": "1",
     "user": "test"
     }
 
