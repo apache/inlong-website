@@ -24,8 +24,8 @@ tar -zxvf apache-inlong-proxy-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 </code></pre>
 <h3>config tube</h3>
 <pre><code>vim conf/flume.conf
-In vim command line mode, execute the following replacement commands, where xxx is the tube address
-:%s/TUBE_LIST/xx.xx.xx.xx:port,xx.xx.xx.xx:port
+In vim command line mode, execute the following replacement commands, where ip:port is the tube address
+:%s/TUBE_LIST/ip:port,ip:port
 </code></pre>
 <h3>Environmental preparation</h3>
 <pre><code>cd bin
@@ -34,7 +34,7 @@ cd ..
 </code></pre>
 <h3>config manager</h3>
 <pre><code>vim conf/commmon.properties
-写入以下配置：
+write：
 cluster_id=1
 manager_hosts=xx.xx.xx.xx:port
 </code></pre>
@@ -43,9 +43,6 @@ manager_hosts=xx.xx.xx.xx:port
 </code></pre>
 <h2>4、check</h2>
 <pre><code>telnet 127.0.0.1 46801
-</code></pre>
-<h2>5、test</h2>
-<pre><code>use proxySdk to test 
 </code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
