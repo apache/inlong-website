@@ -35,6 +35,7 @@ The tgz installation package can be found in the target under the agent-release
 <p>Create a new folder named .inlong in the agent directory, and create a new bid+.local file inside. For example, if the sending bid is set to a, then create a new file a.local</p>
 <p>write:</p>
 <pre><code class="language-ini">{"cluster_id":1,"isInterVisit":1,"size":1,"address": [{"port":write proxy port,"host":"write proxy ip"}], "switch":0}
+Among them, cluster_id, isInterVisit, and switch are reserved fields, please fill in the default values
 </code></pre>
 <h3>2.3 local job configuration</h3>
 <p>If you do not use the online mode, you can use the local file to create a new read task
@@ -106,7 +107,7 @@ vim job1.json：</p>
     },
     "name": "fileAgentTest",
     "source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-    "sink": "org.apache.inlong.agent.plugin.sinks.TdBusSink",
+    "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
     "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
     },
     "bus": {
@@ -122,6 +123,12 @@ vim job1.json：</p>
 <p>After decompression, run the following command</p>
 <pre><code class="language-bash">sh agent.sh start
 </code></pre>
+<h2>4、eg for directory config</h2>
+<pre><code>E.g:
+/data/inlong-agent/test.log //Represents reading the new file test.log in the inlong-agent folder
+/data/inlong-agent/test[0-9]{1} // means to read the new file test in the inlong-agent folder followed by a number at the end
+/data/inlong-agent/test //If test is a directory, it means to read all new files under test
+/data/inlong-agent/^\\d+(\\.\\d+)? // Start with one or more digits, followed by. or end with one. or more digits (? stands for optional, can match Examples: &quot;5&quot;, &quot;1.5&quot; and &quot;2.21&quot;</code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
 	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>

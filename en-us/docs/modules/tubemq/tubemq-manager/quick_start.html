@@ -17,9 +17,10 @@
 </code></pre>
 <h2>deploy</h2>
 <p>environment requirements：</p>
-<p>mysql
+<pre><code>mysql
 java(1.8+)
-In the InLong/inlong-tubemq/tubemq-manager/dist/ directory, you can find the file apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz</p>
+</code></pre>
+<p>In the InLong/inlong-tubemq/tubemq-manager/dist/ directory, you can find the file apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz</p>
 <pre><code>tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 </code></pre>
 <p>Add mysql information in conf/application.properties:</p>
@@ -111,7 +112,7 @@ user	(Required) After the access authorization verification needs to verify the 
 </code></pre>
 <p>return json</p>
 <pre><code>{ &quot;result&quot;:true, &quot;errCode&quot;:0, &quot;errMsg&quot;:&quot;OK&quot;, }
-{ &quot;result&quot;:false, &quot;errCode&quot;: 100, &quot;errMsg&quot;:&quot;topic thirty5is not writable&quot;}
+{ &quot;result&quot;:false, &quot;errCode&quot;: 100, &quot;errMsg&quot;:&quot;topic test is not writable&quot;}
 { &quot;result&quot;:false, &quot;errCode&quot;: 101, &quot;errMsg&quot;:&quot;no such topic in master&quot;}
 </code></pre>
 <p>result is false as not writable</p>

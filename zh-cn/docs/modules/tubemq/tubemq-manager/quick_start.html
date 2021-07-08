@@ -17,9 +17,10 @@
 </code></pre>
 <h2>部署</h2>
 <p>环境要求：</p>
-<p>mysql
+<pre><code>mysql
 java(1.8+)
-在InLong/inlong-tubemq/tubemq-manager/dist/目录当中，能够找到文件为apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz</p>
+</code></pre>
+<p>在InLong/inlong-tubemq/tubemq-manager/dist/目录当中，能够找到文件为apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz</p>
 <pre><code>tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 </code></pre>
 <p>在conf/application.properties中添加mysql信息：</p>
@@ -113,7 +114,7 @@ user	(必填) 之后接入权限验证需要验证用户，这里预留出来
 </code></pre>
 <p>返回json格式样例</p>
 <pre><code>{ &quot;result&quot;:true, &quot;errCode&quot;:0, &quot;errMsg&quot;:&quot;OK&quot;, }
-{ &quot;result&quot;:false, &quot;errCode&quot;: 100, &quot;errMsg&quot;:&quot;topic thirty5is not writable&quot;}
+{ &quot;result&quot;:false, &quot;errCode&quot;: 100, &quot;errMsg&quot;:&quot;topic test is not writable&quot;}
 { &quot;result&quot;:false, &quot;errCode&quot;: 101, &quot;errMsg&quot;:&quot;no such topic in master&quot;}
 </code></pre>
 <p>result为false为不可写</p>

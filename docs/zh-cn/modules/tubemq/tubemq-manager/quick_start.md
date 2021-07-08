@@ -6,8 +6,9 @@
 
 环境要求：
 
-mysql
-java(1.8+)
+    mysql
+    java(1.8+)
+
 在InLong/inlong-tubemq/tubemq-manager/dist/目录当中，能够找到文件为apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 
     tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
@@ -129,7 +130,7 @@ POST
 返回json格式样例
 
     { "result":true, "errCode":0, "errMsg":"OK", }
-    { "result":false, "errCode": 100, "errMsg":"topic thirty5is not writable"}
+    { "result":false, "errCode": 100, "errMsg":"topic test is not writable"}
     { "result":false, "errCode": 101, "errMsg":"no such topic in master"}
 
 result为false为不可写

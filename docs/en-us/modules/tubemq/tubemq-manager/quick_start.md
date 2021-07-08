@@ -6,8 +6,10 @@
 
 environment requirements：
 
-mysql
-java(1.8+)
+    mysql
+    java(1.8+)
+
+
 In the InLong/inlong-tubemq/tubemq-manager/dist/ directory, you can find the file apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
 
     tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
@@ -126,7 +128,7 @@ POST
 return json
 
     { "result":true, "errCode":0, "errMsg":"OK", }
-    { "result":false, "errCode": 100, "errMsg":"topic thirty5is not writable"}
+    { "result":false, "errCode": 100, "errMsg":"topic test is not writable"}
     { "result":false, "errCode": 101, "errMsg":"no such topic in master"}
 
 result is false as not writable

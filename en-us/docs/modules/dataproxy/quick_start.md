@@ -34,8 +34,8 @@ notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner da
 ### config manager
 	vim conf/common.properties
 	write：
-	cluster_id=1
-	manager_hosts=ip:port
+	cluster_id=1   // cluter id is for future use please write 1
+	manager_hosts=ip:port // manager open api 
 
 ## 3、run
 	sh bin/start.sh

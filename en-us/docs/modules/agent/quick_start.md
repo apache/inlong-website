@@ -32,6 +32,7 @@ Create a new folder named .inlong in the agent directory, and create a new bid+.
 write:
 ```ini
 {"cluster_id":1,"isInterVisit":1,"size":1,"address": [{"port":write proxy port,"host":"write proxy ip"}], "switch":0}
+Among them, cluster_id, isInterVisit, and switch are reserved fields, please fill in the default values
 ```
 
 ### 2.3 local job configuration
@@ -110,7 +111,7 @@ agent.http.port=Available ports
     },
     "name": "fileAgentTest",
     "source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-    "sink": "org.apache.inlong.agent.plugin.sinks.TdBusSink",
+    "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
     "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
     },
     "bus": {
@@ -129,3 +130,11 @@ After decompression, run the following command
 ```bash
 sh agent.sh start
 ```
+
+## 4、eg for directory config
+
+    E.g:
+    /data/inlong-agent/test.log //Represents reading the new file test.log in the inlong-agent folder
+    /data/inlong-agent/test[0-9]{1} // means to read the new file test in the inlong-agent folder followed by a number at the end
+    /data/inlong-agent/test //If test is a directory, it means to read all new files under test
+    /data/inlong-agent/^\\d+(\\.\\d+)? // Start with one or more digits, followed by. or end with one. or more digits (? stands for optional, can match Examples: "5", "1.5" and "2.21"
