@@ -26,7 +26,7 @@ agent.manager.vip.http.port=manager port
 ```
 
 ### 2.2 Proxy 相关设置
-在agent目录下新建.inlong\.managerIps文件夹，内部新建bid+.local文件，例如设置的发送bid为a, 则新建a.local文件
+在agent目录下新建.inlong文件夹，内部新建bid+.local文件，例如设置的发送bid为a, 则新建a.local文件
 
 内部将写入：
 ```ini
@@ -76,7 +76,7 @@ vim job1.json：
 
 其中各个参数含义为：
 - job.dir.pattern: 配置读取的文件路径，可包含正则表达式
-- job.trigger: 触发器名称，默认为DirectoryTrigger，功能为监听文件夹下的文件产生事件
+- job.trigger: 触发器名称，默认为DirectoryTrigger，功能为监听文件夹下的文件产生事件，任务运行时已有的文件不会读取
 - job.source: 使用的数据源类型，默认为TextFileSource，读取文本文件
 - job.sink：使用的写入器类型，默认为ProxySink，发送消息到proxy中
 - proxy.bid: 写入proxy时使用的bid类型
@@ -114,15 +114,15 @@ curl --location --request POST 'http://localhost:8129/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "thirtybid10"
+"bid": "bid10"
 },
 "op": "add"
 }'
 ```
 
-其中参数分别为：
-- pattern: 代表读取/data/inlong-agent/test.log文件
-- proxy.bid: 代表发送到proxy使用的bid
+	其中参数分别为：
+	pattern: 代表读取/data/inlong-agent/test.log文件，需要新建任务后再创建文件
+	proxy.bid: 代表发送到proxy使用的bid
 
 ## 三、运行
 解压后如下命令运行

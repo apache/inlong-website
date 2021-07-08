@@ -27,7 +27,7 @@ agent.manager.vip.http.port=manager port
 ```
 
 ### 2.2 Proxy configuration
-Create a new folder named .inlong\.managerIps in the agent directory, and create a new bid+.local file inside. For example, if the sending bid is set to a, then create a new file a.local
+Create a new folder named .inlong in the agent directory, and create a new bid+.local file inside. For example, if the sending bid is set to a, then create a new file a.local
 
 write:
 ```ini
@@ -114,10 +114,9 @@ agent.http.port=Available ports
     "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
     },
     "bus": {
-    "bid": "thirtybid10",
+    "bid": "bid10",
     "tdmanager": {
-    "port": "8099",
-    "host": "http://tl-tdbank-tdmanger.tencent-distribute.com"
+    "port": "8099"
     }
     },
     "op": "add"
