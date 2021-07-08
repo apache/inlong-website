@@ -1,116 +1,183 @@
 ---
- Quick start-Apache inlong-manager
+Quick start-Apache inlong-manager
 ---
 
-# 1. Compile
+# 1. Environmental preparation
 
-+ Environment preparation: Java (1.8+) and Maven (3.3+) tools have been installed correctly.
+Before starting the installation, please download and install the following software yourself:
 
-+ Enter the `inlong-manager` directory of the project through the terminal of macOS (or cmd on Windows), and run the following Maven command to package the project:
+- Install and configure JDK (1.8+), Maven (3.3+);
 
--Compile and Package
+- Install and start ZooKeeper 3.5+;
+
+- Install and start Hadoop 2.10.x and Hive 2.3.x;
+
+- Install and start MySQL 5.7+, copy the `doc/sql/apache_inlong_manager.sql` file in the inlong-manager module to the
+  server where the MySQL database is located (for example, copy to `/data/` directory), load this file through the
+  following command to complete the initialization of the table structure and basic data:
+
+  ```shell
+  # Log in to the MySQL server by username and password:
+  mysql -u xxx -p xxx
+  ...
+  # Create database
+  CREATE DATABASE IF NOT EXISTS apache_inlong_manager;
+  USE apache_inlong_manager;
+  # Load the above SQL file through the source command:
+  mysql> source /data/apache_inlong_manager.sql;
+  ```
+
+- Refer to [Compile and deploy TubeMQ](https://inlong.apache.org/zh-cn/docs/modules/tubemq/quick_start.html) to install
+  and start the Tube cluster;
+
+- Refer
+  to [Compile and deploy TubeMQ Manager](https://inlong.apache.org/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html)
+  , install and start TubeManager.
+
+# 2. Compile and package
+
+Enter the project root directory through the macOS terminal (or Windows command prompt window) and execute the following
+compilation commands:
+
 ```
-mvn clean package -DskipTests
+mvn clean install -DskipTests
 ```
 
-+ After the correct packaging is completed, you can see the tar package in the `target` directory of each submodule, manager-web-xxx-incubating-SNAPSHOT.tar.gz
+After the compilation is successful, go to the `inlong-manager/manager-api` and `inlong-manager/manager-openapi` modules
+of the project, and set them in the respective `target`
+The installation package is generated under the directory, and the names are `apache-inlong-manager-api*.tar.gz`
+and `apache-inlong-manager-openapi*.tar.gz`.
 
+# 3. Deploy and start manager-api
 
-# 2 Dependency Preparation
-## 2.1 Database initialization
-+ mysql 5.7+, create a database in advance, and import inlong-manager/doc/sql/apache_inlong_manager.sql to complete the initialization of the table structure and basic data, and modify the database connection in application-xx.yml
-+ zookeeper 3.5+, configure the information to the corresponding location of the application-xx.yml file
-+ Tube cluster information, and modify tube-related configuration information in application-xx.yml
-+ hadoop 2.10.x cluster, hive 2.3.x needs to be built and started in advance
+**manager-api is a background service that interacts with the front-end page.**
 
-# 3. Background service deployment & startup
+## 3.1 Upload and decompress the installation package
 
-## 3.1 manager-web deployment
-+ 3.1.1 Find the installation package, enter /apache-inlong/inlong-manager/manager-web/target and find manager-web-xxx-incubating-SNAPSHOT.tar.gz
-+ 3.1.2 Deploy the installation package and press it to the corresponding directory of the server where the service will be deployed tar -zxvf manager-web-xxx-incubating-SNAPSHOT.tar.gz
-+ 3.1.3 Modify the configuration file, change the configuration file in manager-web/conf, take profile.active=dev in application.yml as an example, modify the application-dev.yml file according to the actual content
-+ 3.1.4 Start the service, execute the start.sh script in the bin directory, and observe whether the log manager-web/log/manager-web.log and the back-end port are listening normally
+1) Copy `inlong-manager/manager-api/target/apache-inlong-manager-api-*.tar.gz` from step 2 to the server to be deployed;
 
-## 3.2 manager-apenapi deployment
-+ 3.2.1 Find the installation package, enter /apache-inlong/inlong-manager/manager-openapi/target and find manager-openapi-xxx-incubating-SNAPSHOT.tar.gz
-+ 3.2.2 Deploy the installation package and press it to the corresponding directory of the server where the service will be deployed tar -zxvf manager-web-0.9.0-incubating-SNAPSHOT.tar.gz
-+ 3.2.3 Modify the configuration file, change the configuration file in manager-openapi/conf, take profile.active=dev in application.yml as an example, change the content of the configuration application-dev.yml file to the real content
-+ 3.2.4 Start the service, execute the start.sh script in the bin directory, and observe whether the log manager-openapi/log/manager-openapi.log and the backend port are listening normally
+2) Go to the deployment server and unzip the installation package: `tar -zxvf apache-inlong-manager-api-*.tar.gz` to get
+   the `manager-api` folder.
 
-## 3.3 Detailed back-end configuration
-+ `manager-web/conf/application.yml` file
+## 3.2 Modify configuration
 
-```yml
-logging:
-  level:
-    root: INFO
-    org:
-      apache:
-        inlong:
-          manager:
-            dao:
-              mapper: debug
-            third:
-              debug
+Go to the decompressed `manager-api` directory and modify the `conf/application.yml` file:
 
+```yaml
+# manager-api service port number
+server:
+  port: 8083
+
+# The configuration file used is dev
 spring:
-  datasource:
-    jdbc-url: jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?serverTimezone=GMT%2b8&useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true
-    username: xxxxxx
-    password: xxxxxx
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    type: com.alibaba.druid.pool.DruidDataSource
-    druid:
-      # Configure test query
-      validationQuery: SELECT 'x'
-      # Initialization size, minimum, maximum
-      initialSize: 20
-      minIdle: 20
-      maxActive: 300
-      # Configure the timeout period to wait for the connection to be acquired
-      maxWait: 600000
-      # Configure the minimum survival time of a connection in the pool, in milliseconds
-      minEvictableIdleTimeMillis: 3600000
-      # Detect when applying for connection. It is recommended to configure it to true, which does not affect performance and ensures safety
-      testWhileIdle: true
-      # Perform detection when obtaining a connection, it is recommended to close it, which affects performance
-      testOnBorrow: false
-      # Perform detection when returning the connection, it is recommended to close it, which affects performance
-      testOnReturn: false
-      # Configure filters for monitoring statistics interception，stat:Monitoring statistics  log4j:log  wall:Defense against SQL injection
-      filters: stat,wall
-      # Open the mergeSql function through the connectProperties property；Slow SQL records
-      connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-
-# InLong configuration
-inlong:
-  schedule:
-    user:
-      enable: false
-      update-cron: '0 0 2 * * ?'
-  common:
-    machineNum: 1
-    path: ~/
-    modules:
-      - agent
-
-# Cluster info
-cluster:
-  tube:
-    manager: http://127.0.0.1:8081
-    master: 127.0.0.1:8000,127.0.0.1:8010
-  zk:
-    url: 127.0.0.1:2181
-    root: inlong_hive
-  hive:
-    metastoreAddress: jdbc:mysql://127.0.0.1:3306/hive?useSSL=false
-
+  profiles:
+    active: dev
 ```
 
-## 3.4 Background service verification:
+The dev configuration is specified above, then modify the `conf/application-dev.yml` file:
 
-<http://x.x.x.x/api/inlong/manager/doc.html#/home>
+1) Modify the database URL, user name and password:
 
-Here `x.x.x.x` is modified to the IP of the server where the application is deployed
+   ```yaml
+   spring:
+     datasource:
+       jdbc-url: jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true
+       username: xxxxxx
+       password: xxxxxx
+   ```
 
+2) Modify the connection information of the Tube and ZooKeeper clusters, among which `cluster.zk.root` suggests to use
+   the default value:
 
+   ```yaml
+   cluster:
+     tube:
+       manager: http://127.0.0.1:8081 # Manager address of Tube cluster, used to create Topic
+       master: 127.0.0.1:8000,127.0.0.1:8010 # Broker used to manage Tube
+       clusterId: 1 # Tube cluster ID
+     zk:
+       url: 127.0.0.1:2181
+       root: inlong_hive
+   ```
+
+## 3.3 Start the service
+
+Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
+log `tailf log/manager-api.log`. If a log similar to the following appears, the service has started successfully:
+
+```shell
+Started InLongApiApplication in 6.795 seconds (JVM running for 7.565)
+```
+
+# 4. Deploy and start manager-openapi
+
+**manager-openapi is a service that provides interactive interfaces for other components (such as Agent and DataProxy)
+.**
+
+## 4.1 Upload and decompress the installation package
+
+1) Copy `inlong-manager/manager-openapi/target/apache-inlong-manager-openapi-*.tar.gz` from step 2 to the server to be
+   deployed;
+
+2) Go to the deployment server and unzip the installation package: `tar -zxvf apache-inlong-manager-openapi-*.tar.gz` to
+   get the `manager-openapi` folder.
+
+## 4.2 Modify configuration
+
+Go to the decompressed `manager-openapi` directory and modify the `conf/application.yml` file:
+
+```yaml
+# manager-openapi service port number
+server:
+  port: 8082
+
+# The configuration file used is dev
+spring:
+  profiles:
+    active: dev
+```
+
+The dev configuration is specified above, then modify the `conf/application-dev.yml` file:
+
+1) Modify the database URL, user name and password:
+
+   ```yaml
+   spring:
+     datasource:
+       jdbc-url: jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true
+       username: xxxxxx
+       password: xxxxxx
+   ```
+
+2) Modify the connection information of the Tube and ZooKeeper clusters, among which `cluster.zk.root` suggests to use
+   the default value:
+
+   ```yaml
+   cluster:
+     tube:
+       manager: http://127.0.0.1:8081 # Manager address of Tube cluster, used to create Topic
+       master: 127.0.0.1:8000,127.0.0.1:8010 # Broker used to manage Tube
+       clusterId: 1 # Tube cluster ID
+     zk:
+       url: 127.0.0.1:2181
+       root: inlong_hive
+   ```
+
+## 4.3 Start the service
+
+Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
+log `tailf log/manager-openapi.log`. If a log similar to the following appears, the service has started successfully:
+
+```shell
+Started InLongOpenApiApplication in 5.341 seconds (JVM running for 6.002)
+```
+
+# 5. Service access verification
+
+1) Verify the manager-api service:
+
+   Visit address: <http://[manager_api_ip]:[manager_api_port]/api/inlong/manager/doc.html#/home>
+
+2) Verify the manager-openapi service:
+
+   Visit address: <http://[manager_openapi_ip]:[manager_openapi_port]/openapi/inlong/manager/doc.html#/home>
