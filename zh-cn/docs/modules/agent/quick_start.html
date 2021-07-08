@@ -24,104 +24,106 @@ mvn clean package -DskipTests
 </code></pre>
 <h2>二、配置</h2>
 <p>agent 支持两种运行模式：本地运行以及线上运行</p>
-<p>###2.1 Agent 线上运行相关设置</p>
-<p>线上运行需要从inlong-manager拉取配置，配置conf/agent.properties如下：
-agent.fetcher.classname=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (设置任务获取的类名，默认为ManagerFetcher）
-agent.local.ip=写入本机ip
-agent.manager.vip.http.host=manager host
-agent.manager.vip.http.port=manager port</p>
-<p>###2.2 Proxy 相关设置
-在agent目录下新建.inlong.managerIps文件夹，内部新建bid+.local文件，例如设置的发送bid为a, 则新建a.local文件</p>
-<p>内部写入：</p>
-<pre><code>{&quot;cluster_id&quot;:1,&quot;isInterVisit&quot;:1,&quot;size&quot;:1,&quot;address&quot;: [{&quot;port&quot;:写入proxy port,&quot;host&quot;:&quot;写入proxy ip&quot;}], &quot;switch&quot;:0}
+<h3>2.1 Agent 线上运行相关设置</h3>
+<p>线上运行需要从inlong-manager拉取配置，配置conf/agent.properties如下：</p>
+<pre><code class="language-ini"><span class="hljs-attr">agent.fetcher.classname</span>=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (设置任务获取的类名，默认为ManagerFetcher）
+<span class="hljs-attr">agent.local.ip</span>=写入本机ip
+<span class="hljs-attr">agent.manager.vip.http.host</span>=manager host
+<span class="hljs-attr">agent.manager.vip.http.port</span>=manager port
 </code></pre>
-<p>###2.3 agent本地运行job配置
-如果不使用线上模式，可以使用本地文件新建读取任务
+<h3>2.2 Proxy 相关设置</h3>
+<p>在agent目录下新建.inlong.managerIps文件夹，内部新建bid+.local文件，例如设置的发送bid为a, 则新建a.local文件</p>
+<p>内部将写入：</p>
+<pre><code class="language-ini">{"cluster_id":1,"isInterVisit":1,"size":1,"address": [{"port":写入proxy port,"host":"写入proxy ip"}], "switch":0}
+</code></pre>
+<h3>2.3 agent本地运行job配置</h3>
+<p>如果不使用线上模式，可以使用本地文件新建读取任务
 在conf中新建目录jobs，
 vim job1.json：</p>
 <p>写入</p>
-<pre><code>{
+<pre><code class="language-json">    {
 
-&quot;job&quot;: {
-
-&quot;dir&quot;: {
-
-&quot;pattern&quot;: &quot;需要读取的文件路径，可包含正则表达式，例如test/inlong_[0-9]{1}，监听test下创建的新文件&quot;
-
-},
-
-&quot;trigger&quot;: &quot;org.apache.inlong.agent.plugin.trigger.DirectoryTrigger&quot;,
-
-&quot;id&quot;: 1,
-
-&quot;name&quot;: &quot;fileAgentTest&quot;,
-
-&quot;source&quot;: &quot;org.apache.inlong.agent.plugin.sources.TextFileSource&quot;,
-
-&quot;sink&quot;: &quot;org.apache.inlong.agent.plugin.sinks.ProxySink&quot;,
-
-&quot;channel&quot;: &quot;org.apache.inlong.agent.plugin.channel.MemoryChannel&quot;
-
-},
-
-&quot;proxy&quot;: {
-
-&quot;bid&quot;: &quot;testbid1&quot;
-
-}
-
-}
+    <span class="hljs-attr">"job"</span>: {
+    
+    <span class="hljs-attr">"dir"</span>: {
+    
+    <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"需要读取的文件路径，可包含正则表达式，例如test/inlong_[0-9]{1}，监听test下创建的新文件"</span>
+    
+    },
+    
+    <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"org.apache.inlong.agent.plugin.trigger.DirectoryTrigger"</span>,
+    
+    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
+    
+    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"fileAgentTest"</span>,
+    
+    <span class="hljs-attr">"source"</span>: <span class="hljs-string">"org.apache.inlong.agent.plugin.sources.TextFileSource"</span>,
+    
+    <span class="hljs-attr">"sink"</span>: <span class="hljs-string">"org.apache.inlong.agent.plugin.sinks.ProxySink"</span>,
+    
+    <span class="hljs-attr">"channel"</span>: <span class="hljs-string">"org.apache.inlong.agent.plugin.channel.MemoryChannel"</span>
+    
+    },
+    
+    <span class="hljs-attr">"proxy"</span>: {
+    
+    <span class="hljs-attr">"bid"</span>: <span class="hljs-string">"testbid1"</span>
+    
+    }
+    
+    }
 </code></pre>
 <p>其中各个参数含义为：</p>
-<pre><code>job.dir.pattern: 配置读取的文件路径，可包含正则表达式
-
-job.trigger: 触发器名称，默认为DirectoryTrigger，功能为监听文件夹下的文件产生事件
-
-job.source: 使用的数据源类型，默认为TextFileSource，读取文本文件
-
-job.sink：使用的写入器类型，默认为ProxySink，发送消息到proxy中
-
-proxy.bid: 写入proxy时使用的bid类型
+<ul>
+<li>job.dir.pattern: 配置读取的文件路径，可包含正则表达式</li>
+<li>job.trigger: 触发器名称，默认为DirectoryTrigger，功能为监听文件夹下的文件产生事件</li>
+<li>job.source: 使用的数据源类型，默认为TextFileSource，读取文本文件</li>
+<li>job.sink：使用的写入器类型，默认为ProxySink，发送消息到proxy中</li>
+<li>proxy.bid: 写入proxy时使用的bid类型</li>
+</ul>
+<h3>2.4 实时添加job配置</h3>
+<h4>2.4.1 agent.propertities 修改下面两处</h4>
+<pre><code class="language-ini"><span class="hljs-comment"># whether enable http service</span>
+<span class="hljs-attr">agent.http.enable</span>=<span class="hljs-literal">true</span>
+<span class="hljs-comment"># http default port</span>
+<span class="hljs-attr">agent.http.port</span>=可用端口
 </code></pre>
-<p>###2.4 实时添加job配置</p>
-<p>##agent.propertities 修改下面两处</p>
-<pre><code># whether enable http service
-agent.http.enable=true
-# http default port
-agent.http.port=可用端口
-</code></pre>
-<p>curl --location --request POST '<a href="http://localhost:8129/config/job">http://localhost:8129/config/job</a>' <br>
---header 'Content-Type: application/json' <br>
---data '{
-&quot;job&quot;: {
-&quot;dir&quot;: {
-&quot;path&quot;: &quot;&quot;,
-&quot;pattern&quot;: &quot;/data/inlong-agent/test.log&quot;
+<h4>2.4.2 执行如下命令：</h4>
+<pre><code class="language-bash">curl --location --request POST <span class="hljs-string">'http://localhost:8129/config/job'</span> \
+--header <span class="hljs-string">'Content-Type: application/json'</span> \
+--data <span class="hljs-string">'{
+"job": {
+"dir": {
+"path": "",
+"pattern": "/data/inlong-agent/test.log"
 },
-&quot;trigger&quot;: &quot;org.apache.inlong.agent.plugin.trigger.DirectoryTrigger&quot;,
-&quot;id&quot;: 1,
-&quot;thread&quot;: {
-&quot;running&quot;: {
-&quot;core&quot;: &quot;4&quot;
+"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
+"id": 1,
+"thread": {
+"running": {
+"core": "4"
 }
 },
-&quot;name&quot;: &quot;fileAgentTest&quot;,
-&quot;source&quot;: &quot;org.apache.inlong.agent.plugin.sources.TextFileSource&quot;,
-&quot;sink&quot;: &quot;org.apache.inlong.agent.plugin.sinks.TdBusSink&quot;,
-&quot;channel&quot;: &quot;org.apache.inlong.agent.plugin.channel.MemoryChannel&quot;
+"name": "fileAgentTest",
+"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
+"sink": "org.apache.inlong.agent.plugin.sinks.TdBusSink",
+"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
-&quot;proxy&quot;: {
-&quot;bid&quot;: &quot;thirtybid10&quot;
+"proxy": {
+"bid": "thirtybid10"
 },
-&quot;op&quot;: &quot;add&quot;
-}'</p>
-<pre><code>其中参数分别为：
-pattern: 代表读取/data/inlong-agent/test.log文件
-proxy.bid: 代表发送到proxy使用的bid
+"op": "add"
+}'</span>
 </code></pre>
-<p>##三、运行
-解压后如下命令运行</p>
-<pre><code>sh agent.sh start</code></pre>
+<p>其中参数分别为：</p>
+<ul>
+<li>pattern: 代表读取/data/inlong-agent/test.log文件</li>
+<li>proxy.bid: 代表发送到proxy使用的bid</li>
+</ul>
+<h2>三、运行</h2>
+<p>解压后如下命令运行</p>
+<pre><code class="language-bash">sh agent.sh start
+</code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
 	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
