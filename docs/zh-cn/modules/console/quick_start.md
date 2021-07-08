@@ -1,4 +1,4 @@
-## 使用前
+## 环境准备
 
 应该检查 `nodejs >= 12.0` 已经安装。
 
@@ -15,11 +15,9 @@
 如果您进行编辑，页面将重新加载。
 您还将在控制台中看到任何 lint 错误。
 
-### 注意
+web服务器的启动依赖于后端服务 `manger api` 接口。
 
-web服务器的启动依赖于后端服务器api接口。
-
-您应该先启动后端服务器，然后将`/inlong-website/src/setupProxy.js` 中的变量`target` 设置为api服务的地址。
+您应该先启动后端服务器，然后将 `/inlong-website/src/setupProxy.js` 中的变量`target` 设置为api服务的地址。
 
 ## 测试
 
@@ -30,7 +28,9 @@ web服务器的启动依赖于后端服务器api接口。
 
 ## 构建和部署
 
-运行 `npm run build` 或 `yarn build`
+首先保证项目已运行过 `npm install` 或 `yarn install` 安装了 `node_modules`。
+
+运行 `npm run build` 或 `yarn build`。
 
 将用于生产的应用程序构建到构建文件夹。
 在构建后的生产模式下可以获得较好的页面性能。

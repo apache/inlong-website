@@ -1,4 +1,4 @@
-## Before
+## Environment
 
 You should check that `nodejs >= 12.0` is installed.
 
@@ -15,9 +15,7 @@ If the server runs successfully, the browser will open [http://localhost:8080](h
 If you edit, the page will reload.
 You will also see any lint errors in the console.
 
-### Note
-
-The start of the web server depends on the back-end server api interface.
+The start of the web server depends on the back-end server `manger api` interface.
 
 You should start the backend server first, and then set the variable `target` in `/inlong-website/src/setupProxy.js` to the address of the api service.
 
@@ -30,7 +28,9 @@ For more information, see the section on [Running Tests](https://create-react-ap
 
 ## Build and deploy
 
-Run `npm run build` or `yarn build`
+First, make sure that the project has run `npm install` or `yarn install` to install `node_modules`.
+
+Run `npm run build` or `yarn build`.
 
 Build the application for production into the build folder.
 Better page performance can be obtained in the constructed production mode.
