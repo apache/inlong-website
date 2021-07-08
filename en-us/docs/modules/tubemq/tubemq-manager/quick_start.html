@@ -115,6 +115,18 @@ user	(Required) After the access authorization verification needs to verify the 
 { &quot;result&quot;:false, &quot;errCode&quot;: 101, &quot;errMsg&quot;:&quot;no such topic in master&quot;}
 </code></pre>
 <p>result is false as not writable</p>
+<h3>curls for operations</h3>
+<pre><code>curl --header &quot;Content-Type: application/json&quot; --request POST --data \
+'{&quot;masterIp&quot;:&quot;masterip&quot;,&quot;clusterName&quot;:&quot;test&quot;,&quot;masterPort&quot;:&quot;8099&quot;,&quot;masterWebPort&quot;:&quot;8080&quot;,&quot;createUser&quot;:&quot;test&quot;,&quot;token&quot;:&quot;abc&quot;}' \
+http://tubemanagerip:tubemanagerport/v1/cluster?method=add
+
+curl --header &quot;Content-Type: application/json&quot; --request POST --data \
+'{&quot;clusterId&quot;:&quot;1&quot;,&quot;addTopicTasks&quot;:[{&quot;topicName&quot;: &quot;testfordocker&quot;}],&quot;user&quot;:&quot;test&quot;}' \
+http://tubemanagerip:tubemanagerport/v1/task?method=addTopicTask
+
+curl --header &quot;Content-Type: application/json&quot; --request POST --data \
+'{&quot;clusterId&quot;:&quot;1&quot;,&quot;topicName&quot;:&quot;testfordocker&quot;,&quot;user&quot;:&quot;test&quot;}' \
+http://tubemanagerip:tubemanagerport/v1/topic?method=queryCanWrite</code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
 	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>

@@ -32,7 +32,7 @@ The tgz installation package can be found in the target under the agent-release
 <span class="hljs-attr">agent.manager.vip.http.port</span>=manager port
 </code></pre>
 <h3>2.2 Proxy configuration</h3>
-<p>Create a new folder named .inlong.managerIps in the agent directory, and create a new bid+.local file inside. For example, if the sending bid is set to a, then create a new file a.local</p>
+<p>Create a new folder named .inlong in the agent directory, and create a new bid+.local file inside. For example, if the sending bid is set to a, then create a new file a.local</p>
 <p>write:</p>
 <pre><code class="language-ini">{"cluster_id":1,"isInterVisit":1,"size":1,"address": [{"port":write proxy port,"host":"write proxy ip"}], "switch":0}
 </code></pre>
@@ -110,10 +110,9 @@ vim job1.json：</p>
     "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
     },
     "bus": {
-    "bid": "thirtybid10",
+    "bid": "bid10",
     "tdmanager": {
-    "port": "8099",
-    "host": "http://tl-tdbank-tdmanger.tencent-distribute.com"
+    "port": "8099"
     }
     },
     "op": "add"

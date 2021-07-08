@@ -133,3 +133,18 @@ POST
     { "result":false, "errCode": 101, "errMsg":"no such topic in master"}
 
 result为false为不可写
+
+
+### 附录：以上操作的curl
+
+    curl --header "Content-Type: application/json" --request POST --data \
+    '{"masterIp":"masterip","clusterName":"test","masterPort":"8099","masterWebPort":"8080","createUser":"test","token":"abc"}' \
+    http://tubemanagerip:tubemanagerport/v1/cluster?method=add
+
+    curl --header "Content-Type: application/json" --request POST --data \
+    '{"clusterId":"1","addTopicTasks":[{"topicName": "testfordocker"}],"user":"test"}' \
+    http://tubemanagerip:tubemanagerport/v1/task?method=addTopicTask
+
+    curl --header "Content-Type: application/json" --request POST --data \
+    '{"clusterId":"1","topicName":"testfordocker","user":"test"}' \
+    http://tubemanagerip:tubemanagerport/v1/topic?method=queryCanWrite

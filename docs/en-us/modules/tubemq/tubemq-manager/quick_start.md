@@ -130,3 +130,19 @@ return json
     { "result":false, "errCode": 101, "errMsg":"no such topic in master"}
 
 result is false as not writable
+
+
+
+### curls for operations
+
+    curl --header "Content-Type: application/json" --request POST --data \
+    '{"masterIp":"masterip","clusterName":"test","masterPort":"8099","masterWebPort":"8080","createUser":"test","token":"abc"}' \
+    http://tubemanagerip:tubemanagerport/v1/cluster?method=add
+
+    curl --header "Content-Type: application/json" --request POST --data \
+    '{"clusterId":"1","addTopicTasks":[{"topicName": "testfordocker"}],"user":"test"}' \
+    http://tubemanagerip:tubemanagerport/v1/task?method=addTopicTask
+
+    curl --header "Content-Type: application/json" --request POST --data \
+    '{"clusterId":"1","topicName":"testfordocker","user":"test"}' \
+    http://tubemanagerip:tubemanagerport/v1/topic?method=queryCanWrite
