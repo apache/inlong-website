@@ -20,7 +20,6 @@
 
 sed -i 's/TUBE_LIST/ip1:port,ip2:port/g' conf/flume.conf
 
-
     修改以下内容为proxy端口号
     agent1.sources.tcp-source.port = 46801
 
@@ -35,8 +34,8 @@ sed -i 's/TUBE_LIST/ip1:port,ip2:port/g' conf/flume.conf
 	vim conf/common.properties
 
 	写入以下配置：
-	cluster_id=1
-	manager_hosts=ip:port    // 这里写入的是manager_api地址
+	cluster_id=1    // 预留字段，请填写默认值1
+	manager_hosts=ip:port    // 这里写入的是manager open api地址
 
 ## 三、启动
 	sh bin/start.sh
