@@ -67,8 +67,9 @@ mvn clean package -DskipTests
     
     <span class="hljs-attr">"proxy"</span>: {
     
-    <span class="hljs-attr">"bid"</span>: <span class="hljs-string">"testbid1"</span>
-    
+      <span class="hljs-attr">"bid"</span>: <span class="hljs-string">"testbid1"</span>, 
+      <span class="hljs-attr">"tid"</span>: <span class="hljs-string">"testtid1"</span>
+
     }
     
     }
@@ -80,6 +81,7 @@ mvn clean package -DskipTests
 <li>job.source: 使用的数据源类型，默认为TextFileSource，读取文本文件</li>
 <li>job.sink：使用的写入器类型，默认为ProxySink，发送消息到dataproxy中</li>
 <li>proxy.bid: 写入proxy时使用的bid类型</li>
+<li>proxy.tid: 写入proxy时使用的tid类型</li>
 </ul>
 <h3>2.4 实时添加job配置</h3>
 <h4>2.4.1 agent.propertities 修改下面两处</h4>
@@ -110,7 +112,8 @@ mvn clean package -DskipTests
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "bid10"
+"bid": "bid10",
+"tid": "bid10"
 },
 "op": "add"
 }'</span>
@@ -118,6 +121,7 @@ mvn clean package -DskipTests
 <pre><code>其中参数分别为：
 pattern: 代表读取/data/inlong-agent/test.log文件，需要新建任务后再创建文件
 proxy.bid: 代表发送到dataproxy使用的bid
+proxy.tid: 代表发送到dataproxy使用的tid
 </code></pre>
 <h2>三、运行</h2>
 <p>解压后如下命令运行</p>

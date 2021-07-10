@@ -67,8 +67,8 @@ put
     
     "proxy": {
     
-    "bid": "testbid1"
-    
+      "bid": "testbid1",
+      "tid": "testtid1"
     }
     
     }
@@ -80,6 +80,7 @@ The meaning of each parameter is ：
 - job.source: The type of data source used, the default is TextFileSource, which reads text files
 - job.sink：The type of writer used, the default is ProxySink, which sends messages to the proxy
 - proxy.bid: The bid type used when writing proxy
+- proxy.tid: The tid type used when writing proxy
 
 ### 2.4 Add job configuration in real time
 
@@ -115,10 +116,8 @@ agent.http.port=Available ports
     "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
     },
     "bus": {
-    "bid": "bid10",
-    "tdmanager": {
-    "port": "8099"
-    }
+  "bid": "bid10",
+  "tid": "bid10"
     },
     "op": "add"
     }'
