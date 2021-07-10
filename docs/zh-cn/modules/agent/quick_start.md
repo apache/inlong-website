@@ -66,8 +66,9 @@ agent.manager.vip.http.port=manager open api port
     
     "proxy": {
     
-    "bid": "testbid1"
-    
+      "bid": "testbid1", 
+      "tid": "testtid1"
+
     }
     
     }
@@ -80,6 +81,7 @@ agent.manager.vip.http.port=manager open api port
 - job.source: 使用的数据源类型，默认为TextFileSource，读取文本文件
 - job.sink：使用的写入器类型，默认为ProxySink，发送消息到dataproxy中
 - proxy.bid: 写入proxy时使用的bid类型
+- proxy.tid: 写入proxy时使用的tid类型
 
 ### 2.4 实时添加job配置
 
@@ -114,7 +116,8 @@ curl --location --request POST 'http://localhost:8018/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "bid10"
+"bid": "bid10",
+"tid": "bid10"
 },
 "op": "add"
 }'
@@ -123,6 +126,7 @@ curl --location --request POST 'http://localhost:8018/config/job' \
 	其中参数分别为：
 	pattern: 代表读取/data/inlong-agent/test.log文件，需要新建任务后再创建文件
 	proxy.bid: 代表发送到dataproxy使用的bid
+	proxy.tid: 代表发送到dataproxy使用的tid
 
 ## 三、运行
 解压后如下命令运行
