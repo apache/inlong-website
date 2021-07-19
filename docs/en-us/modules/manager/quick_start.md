@@ -98,6 +98,7 @@ The dev configuration is specified above, then modify the `conf/application-dev.
      zk:
        url: 127.0.0.1:2181
        root: inlong_hive
+   sort.appName: inlong_app # The app name for Sort, default is 'inlong_app'
    ```
 
 ## 3.3 Start the service
@@ -161,6 +162,7 @@ The dev configuration is specified above, then modify the `conf/application-dev.
      zk:
        url: 127.0.0.1:2181
        root: inlong_hive
+   sort.appName: inlong_app # The app name for Sort, default is 'inlong_app'
    ```
 
 ## 4.3 Start the service
