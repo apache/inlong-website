@@ -19,7 +19,7 @@ Through the overall architecture diagram of InLong above, we can see that InLong
 [How to compile and deploy Manager](modules/manager/quick_start.md)
 
 ## Compile and deploy InLong Web
-[How to compile and deploy InLong Web](modules/console/quick_start.md)
+[How to compile and deploy InLong Web](modules/website/quick_start.md)
 
 ## Compile and deploy TubeMQ
 [How to compile and deploy TubeMQ](modules/tubemq/quick_start.md)
