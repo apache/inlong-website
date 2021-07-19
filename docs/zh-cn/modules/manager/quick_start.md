@@ -90,6 +90,7 @@ spring:
      zk:
        url: 127.0.0.1:2181
        root: inlong_hive
+   sort.appName: inlong_app # Sort 应用名称，即设置 Sort 的 cluster-id 参数，默认值为"inlong_app"
    ```
 
 ## 3.3 启动服务
@@ -148,6 +149,7 @@ spring:
      zk:
        url: 127.0.0.1:2181
        root: inlong_hive
+   sort.appName: inlong_app # Sort 应用名称，即设置 Sort 的 cluster-id 参数，默认值为"inlong_app"
    ```
 
 ## 4.3 启动服务
