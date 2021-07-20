@@ -1,22 +1,12 @@
+## 1、Configuration
+```
+cd inlong-agent
+```
 
-## 1、install
-
-	env requirements：
-	java JDK 1.8
-	Maven 3.6 +
-	
-    
-    mvn clean package -DskipTests
-
-    The tgz installation package can be found in the target under the agent-release
-
-
-
-## 2、Configuration
 The agent supports two modes of operation: local operation and online operation
 
 
-### 2.1 Agent configuration
+### 1.1 Agent configuration
 
 Online operation needs to pull the configuration from inlong-manager, the configuration conf/agent.properties is as follows:
 ```ini
@@ -26,7 +16,7 @@ agent.manager.vip.http.host=manager open api host
 agent.manager.vip.http.port=manager open api port
 ```
 
-### 2.2 Proxy configuration
+### 1.2 Proxy configuration
 Create a new folder named .inlong in the agent directory, and create a new bid+.local file inside. For example, if the sending bid is set to a, then create a new file a.local
 
 write:
@@ -35,7 +25,7 @@ write:
 Among them, cluster_id, isInterVisit, and switch are reserved fields, please fill in the default values
 ```
 
-### 2.3 local job configuration
+### 1.3 local job configuration
 If you do not use the online mode, you can use the local file to create a new read task
 Create a new directory jobs in conf,
 vim job1.json：
@@ -82,9 +72,9 @@ The meaning of each parameter is ：
 - proxy.bid: The bid type used when writing proxy
 - proxy.tid: The tid type used when writing proxy
 
-### 2.4 Add job configuration in real time
+### 1.4 Add job configuration in real time
 
-#### 2.4.1 agent.propertities Modify the following two places
+#### 1.4.1 agent.propertities Modify the following two places
 ```ini
 # whether enable http service
 agent.http.enable=true
@@ -92,7 +82,7 @@ agent.http.enable=true
 agent.http.port=Available ports
 ```
 
-#### 2.4.2 Execute the following command
+#### 1.4.2 Execute the following command
 ```bash
     curl --location --request POST 'http://localhost:8129/config/job' \
     --header 'Content-Type: application/json' \
@@ -123,14 +113,14 @@ agent.http.port=Available ports
     }'
 ```
 
-## 3、run
+## 2、run
 After decompression, run the following command
 
 ```bash
 sh agent.sh start
 ```
 
-## 4、eg for directory config
+## 3、eg for directory config
 
     E.g:
     /data/inlong-agent/test.log //Represents reading the new file test.log in the inlong-agent folder

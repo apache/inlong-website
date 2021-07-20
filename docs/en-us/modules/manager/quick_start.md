@@ -3,15 +3,6 @@ Quick start-Apache inlong-manager
 ---
 
 # 1. Environmental preparation
-
-Before starting the installation, please download and install the following software yourself:
-
-- Install and configure JDK (1.8+), Maven (3.3+);
-
-- Install and start ZooKeeper 3.5+;
-
-- Install and start Hadoop 2.10.x and Hive 2.3.x;
-
 - Install and start MySQL 5.7+, copy the `doc/sql/apache_inlong_manager.sql` file in the inlong-manager module to the
   server where the MySQL database is located (for example, copy to `/data/` directory), load this file through the
   following command to complete the initialization of the table structure and basic data:
@@ -34,32 +25,14 @@ Before starting the installation, please download and install the following soft
   to [Compile and deploy TubeMQ Manager](https://inlong.apache.org/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html)
   , install and start TubeManager.
 
-# 2. Compile and package
-
-Enter the project root directory through the macOS terminal (or Windows command prompt window) and execute the following
-compilation commands:
-
-```
-mvn clean install -DskipTests
-```
-
-After the compilation is successful, go to the `inlong-manager/manager-api` and `inlong-manager/manager-openapi` modules
-of the project, and set them in the respective `target`
-The installation package is generated under the directory, and the names are `apache-inlong-manager-api*.tar.gz`
-and `apache-inlong-manager-openapi*.tar.gz`.
-
-# 3. Deploy and start manager-api
+# 2. Deploy and start manager-api
 
 **manager-api is a background service that interacts with the front-end page.**
 
-## 3.1 Upload and decompress the installation package
+## 2.1 Prepare installation files
+All installation files at `inlong-manager-api` directory.
 
-1) Copy `inlong-manager/manager-api/target/apache-inlong-manager-api-*.tar.gz` from step 2 to the server to be deployed;
-
-2) Go to the deployment server and unzip the installation package: `tar -zxvf apache-inlong-manager-api-*.tar.gz` to get
-   the `manager-api` folder.
-
-## 3.2 Modify configuration
+## 2.2 Modify configuration
 
 Go to the decompressed `manager-api` directory and modify the `conf/application.yml` file:
 
@@ -101,7 +74,7 @@ The dev configuration is specified above, then modify the `conf/application-dev.
    sort.appName: inlong_app # The app name for Sort, default is 'inlong_app'
    ```
 
-## 3.3 Start the service
+## 2.3 Start the service
 
 Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
 log `tailf log/manager-api.log`. If a log similar to the following appears, the service has started successfully:
@@ -110,20 +83,15 @@ log `tailf log/manager-api.log`. If a log similar to the following appears, the 
 Started InLongApiApplication in 6.795 seconds (JVM running for 7.565)
 ```
 
-# 4. Deploy and start manager-openapi
+# 3. Deploy and start manager-openapi
 
 **manager-openapi is a service that provides interactive interfaces for other components (such as Agent and DataProxy)
 .**
 
-## 4.1 Upload and decompress the installation package
+## 3.1 Prepare installation files
+All installation files at `inlong-manager-openapi` directory.
 
-1) Copy `inlong-manager/manager-openapi/target/apache-inlong-manager-openapi-*.tar.gz` from step 2 to the server to be
-   deployed;
-
-2) Go to the deployment server and unzip the installation package: `tar -zxvf apache-inlong-manager-openapi-*.tar.gz` to
-   get the `manager-openapi` folder.
-
-## 4.2 Modify configuration
+## 3.2 Modify configuration
 
 Go to the decompressed `manager-openapi` directory and modify the `conf/application.yml` file:
 
@@ -165,7 +133,7 @@ The dev configuration is specified above, then modify the `conf/application-dev.
    sort.appName: inlong_app # The app name for Sort, default is 'inlong_app'
    ```
 
-## 4.3 Start the service
+## 3.3 Start the service
 
 Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
 log `tailf log/manager-openapi.log`. If a log similar to the following appears, the service has started successfully:
@@ -174,7 +142,7 @@ log `tailf log/manager-openapi.log`. If a log similar to the following appears, 
 Started InLongOpenApiApplication in 5.341 seconds (JVM running for 6.002)
 ```
 
-# 5. Service access verification
+# 4. Service access verification
 
 1) Verify the manager-api service:
 
