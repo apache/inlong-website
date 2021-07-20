@@ -1,18 +1,6 @@
-## 一、安装
+## 配置
 
-    mvn clean package -DskipTests
-
-在inlong-dataproxy/dataproxy-dist/target项目下可以找到tgz安装包apache-inlong-dataproxy-0.9.0-incubating-SNAPSHOT-bin.tar.gz
-
-
-解压
-
-    tar -zxvf apache-inlong-dataproxy-0.9.0-incubating-SNAPSHOT-bin.tar.gz
-
-
-## 二、配置
-
-	cd apache-inlong-dataproxy-0.9.0-incubating-SNAPSHOT-bin
+	cd inlong-dataproxy
 
 ### 配置tube地址和端口号
 
@@ -37,10 +25,10 @@ sed -i 's/TUBE_LIST/ip1:port,ip2:port/g' conf/flume.conf
 	cluster_id=1    // 预留字段，请填写默认值1
 	manager_hosts=ip:port    // 这里写入的是manager open api地址
 
-## 三、启动
+## 启动
 	sh bin/start.sh
 
-## 四、检查启动情况
+## 检查启动情况
 	telnet 127.0.0.1 46801
 
 

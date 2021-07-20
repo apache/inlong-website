@@ -4,7 +4,7 @@ title: Getting Started - Apache InLong
 
 This section contains a quick start guide to help you get started with Apache InLong.
 
-# Overall architecture
+## Overall architecture
 <img src="../../img/inlong_architecture.png" align="center" alt="Apache InLong"/>
 
 [Apache InLong](https://inlong.apache.org)(incubating) overall architecture is as above. This component is a one-stop data streaming platform that provides automated, secure, distributed, and efficient data publishing and subscription capabilities to help You can easily build stream-based data applications.
@@ -12,29 +12,56 @@ This section contains a quick start guide to help you get started with Apache In
 InLong (Yinglong) was originally built in Tencent and has served online business for more than 8 years. It supports massive data (over 40 trillion pieces of data per day) report services under big data scenarios. The entire platform integrates 5 modules including data collection, aggregation, caching, sorting and management modules. Through this system, the business only needs to provide data sources, data service quality, data landing clusters and data landing formats, that is, data can be continuous Push data from the source cluster to the target cluster, which greatly meets the data reporting service requirements in the business big data scenario.
 
 
-# How to use
-Through the overall architecture diagram of InLong above, we can see that InLong contains complete data reporting components, and we need to compile and deploy modules one by one.
+## Compile
+- Java [JDK 8](https://adoptopenjdk.net/?variant=openjdk8)
+- Maven 3.6.1+
 
-## Compile and deploy Manager
-[How to compile and deploy Manager](modules/manager/quick_start.md)
+```
+$ mvn clean install -DskipTests
+```
+(Optional) Compile using docker image:
+```
+$ docker pull maven:3.6-openjdk-8
+$ docker run -v `pwd`:/inlong  -w /inlong maven:3.6-openjdk-8 mvn clean install -DskipTests
+```
+after compile successfully, you could find distribution file at `inlong-distribution/target` with `tar.gz` format, it includes following files:
+```
+inlong-agent
+inlong-dataproxy
+inlong-manager-api
+inlong-manager-openapi
+inlong-sort
+inlong-tubemq-manager
+inlong-tubemq-server
+inlong-website
+```
 
-## Compile and deploy InLong Web
-[How to compile and deploy InLong Web](modules/website/quick_start.md)
+## Environment Requirements
+- ZooKeeper 3.5+
+- Hadoop 2.10.x 和 Hive 2.3.x
+- MySQL 5.7+
+- Flink 1.9.x
 
-## Compile and deploy TubeMQ
-[How to compile and deploy TubeMQ](modules/tubemq/quick_start.md)
+## deploy InLong TubeMQ Server
+[deploy InLong TubeMQ Server](modules/tubemq/quick_start.md)
 
-## Compile and deploy TubeMQ Manager
-[How to compile and deploy TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
+## deploy InLong TubeMQ Manager
+[deploy InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
 
-## Compile and deploy Sort
-[How to compile and deploy Sort](modules/sort/quick_start.md)
+## deploy InLong Manager
+[deploy InLong Manager](modules/manager/quick_start.md)
 
-## Compile and deploy DataProxy
-[How to compile and deploy DataProxy](modules/dataproxy/quick_start.md)
+## deploy InLong Web
+[deploy InLong Web](modules/website/quick_start.md)
 
-## Compile and deploy the Agent
-[How to compile and deploy Agent](modules/agent/quick_start.md)
+## deploy InLong Sort
+[deploy InLong Sort](modules/sort/quick_start.md)
+
+## deploy InLong DataProxy
+[deploy InLong DataProxy](modules/dataproxy/quick_start.md)
+
+## deploy InLong Agent
+[deploy InLong Agent](modules/agent/quick_start.md)
 
 ## Business configuration
 [How to configure a new business](modules/manager/user_manual.md)

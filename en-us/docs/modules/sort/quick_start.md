@@ -2,13 +2,7 @@
 Quick Start - Apache InLong-sort
 ---
 
-# Requirements
-- Java JDK 1.8
-- Maven 3.6+
-- Flink 1.9.3
-- Zookeeper
-
-## Set up flink environment
+##  Set up flink environment
 Currently inlong-sort is based on flink, before you run an inlong-sort application,
 you need to set up flink environment.
 
@@ -18,13 +12,10 @@ Currently, inlong-sort relys on flink-1.9.3. Chose `flink-1.9.3-bin-scala_2.11.t
 
 Once your flink environment is set up, you can visit web ui of flink, whose address is stored in `/${your_flink_path}/conf/masters`.
 
-#Compile inlong-sort
-- `cd /your_path/Inlong/inlong-sort`
-- `mvn clean package`
+##  Prepare installation files
+All installation files at `inlong-sort` directory.
 
-After running this, you will get `inlong-sort-core-{version}.jar` in `/your_path/Inlong/inlong-sort/core/target`
-
-#Starting an inlong-sort application
+##  Starting an inlong-sort application
 Now you can submit job to flink with the jar compiled.
 
 <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/yarn_setup.html#submit-job-to-flink" target="_blank">how to submit job to flink</a>
@@ -39,7 +30,7 @@ Notice：
 
 - `inlong-sort-core-1.0-SNAPSHOT.jar` 为编译阶段产出的jar包
 
-#Necessary configurations
+##  Necessary configurations
 - `--cluster-id ` which is used to represent a specified inlong-sort application
 - `--zookeeper.quorum` zk quorum
 - `--zookeeper.path.root` zk root path
@@ -54,7 +45,7 @@ Configurations above are necessary, you can see full configurations in
 
 `--cluster-id my_application --zookeeper.quorum 192.127.0.1:2181 --zookeeper.path.root /zk_root --source.type tubemq --sink.type hive`
 
-#All configurations
+##  All configurations
 |  name | necessary  | default value  |description   |
 | ------------ | ------------ | ------------ | ------------ |
 |cluster-id   |  Y | NA  |  used to represent a specified inlong-sort application |
