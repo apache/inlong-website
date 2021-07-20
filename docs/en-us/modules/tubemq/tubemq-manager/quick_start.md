@@ -1,34 +1,27 @@
-## compile
-
-    mvn clean package 
-
 ## deploy
+All deploying files at `inlong-tubemq-manager` directory.
 
-environment requirements：
-
-    mysql
-    java(1.8+)
-
-
-In the InLong/inlong-tubemq/tubemq-manager/dist/ directory, you can find the file apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
-
-    tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
-
+### configuration
 Add mysql information in conf/application.properties:
 
-    spring.jpa.hibernate.ddl-auto=update
-    # configuration for manager
-    spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
-    spring.datasource.username=[replace_by_usename]
-    spring.datasource.password=[replace_by_password]
-    # server port 
-    server.port=8089
+```ini
+spring.jpa.hibernate.ddl-auto=update
+# configuration for manager
+spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
+spring.datasource.username=[replace_by_usename]
+spring.datasource.password=[replace_by_password]
+# server port 
+server.port=8089
+```
 
+### start service
 Add the database tubemanager and start:
 
-    bin/start-admin.sh
+``` bash
+$ bin/start-admin.sh
+```
 
-## use
+## usage
 
 ### create cluster
 

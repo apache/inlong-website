@@ -1,31 +1,25 @@
-## 编译
-
-    mvn clean package 
-
 ## 部署
+安装文件在inlong-tubemq-manager目录.
 
-环境要求：
-
-    mysql
-    java(1.8+)
-
-在InLong/inlong-tubemq/tubemq-manager/dist/目录当中，能够找到文件为apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
-
-    tar -zxvf apache-inlong-tubemanager-0.9.0-incubating-SNAPSHOT-bin.tar.gz
-
+### 配置
 在conf/application.properties中添加mysql信息：
 
-    spring.jpa.hibernate.ddl-auto=update
-    # configuration for manager
-    spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
-    spring.datasource.username=[replace_by_usename]
-    spring.datasource.password=[replace_by_password]
-    # server port 
-    server.port=8089
+```ini
+spring.jpa.hibernate.ddl-auto=update
+# configuration for manager
+spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
+spring.datasource.username=[replace_by_usename]
+spring.datasource.password=[replace_by_password]
+# server port 
+server.port=8089
+```
 
+### 启动服务
 添加数据库tubemanager，并启动：
 
-    bin/start-admin.sh
+``` bash
+$ bin/start-admin.sh
+```
 
 ## 使用
 

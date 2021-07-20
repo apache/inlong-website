@@ -3,15 +3,6 @@
 ---
 
 # 1. 环境准备
-
-开始安装前，请自行下载并安装下述软件：
-
-- 安装并配置 JDK（1.8+）、Maven（3.3+）；
-
-- 安装并启动 ZooKeeper 3.5+；
-
-- 安装并启动 Hadoop 2.10.x 和 Hive 2.3.x；
-
 - 安装并启动 MySQL 5.7+，把 inlong-manager 模块中的 `doc/sql/apache_inlong_manager.sql` 文件拷贝到 MySQL 数据库所在的服务器（比如拷贝到 `/data/`
   目录下），通过下述命令加载此文件，完成表结构及基础数据的初始化：
 
@@ -30,29 +21,15 @@
 
 - 参照 [编译部署TubeMQ Manager](https://inlong.apache.org/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html)，安装并启动
   TubeManager。
-
-# 2. 编译打包
-
-通过 macOS 的终端（或 Windows 的命令提示符窗口）进入项目根目录，执行以下编译命令：
-
-```
-mvn clean install -DskipTests
-```
-
-编译成功后，前往项目的 `inlong-manager/manager-api` 和 `inlong-manager/manager-openapi` 模块，在各自的 `target`
-目录下生成了安装包，名称分别为 `apache-inlong-manager-api*.tar.gz` 和 `apache-inlong-manager-openapi*.tar.gz`。
-
-# 3. 部署、启动 manager-api
+  
+# 2. 部署、启动 manager-api
 
 **manager-api 是与前端页面交互的后台服务。**
 
-## 3.1 上传、解压安装包
+## 2.1 准备安装文件
+安装文件在`inlong-manager-api`目录.
 
-1) 将第2步的 `inlong-manager/manager-api/target/apache-inlong-manager-api-*.tar.gz` 拷贝到要部署的服务器；
-
-2) 前往部署服务器，解压安装包：`tar -zxvf apache-inlong-manager-api-*.tar.gz`，得到 `manager-api` 文件夹。
-
-## 3.2 修改配置
+## 2.2 修改配置
 
 前往解压后的 `manager-api` 目录，修改 `conf/application.yml` 文件：
 
@@ -93,7 +70,7 @@ spring:
    sort.appName: inlong_app # Sort 应用名称，即设置 Sort 的 cluster-id 参数，默认值为"inlong_app"
    ```
 
-## 3.3 启动服务
+## 2.3 启动服务
 
 进入解压后的目录，执行 `sh bin/startup.sh` 启动服务，查看日志 `tailf log/manager-api.log`，若出现类似下面的日志，说明服务启动成功：
 
@@ -101,17 +78,14 @@ spring:
 Started InLongApiApplication in 6.795 seconds (JVM running for 7.565)
 ```
 
-# 4. 部署、启动 manager-openapi
+# 3. 部署、启动 manager-openapi
 
 **manager-openapi 是为其他组件（如 Agent、DataProxy）提供交互接口的服务。**
 
-## 4.1 上传、解压安装包
+## 3.1 准备安装文件
+安装文件在`inlong-manager-openapi`目录.
 
-1) 将第2步的 `inlong-manager/manager-openapi/target/apache-inlong-manager-openapi-*.tar.gz` 拷贝到要部署的服务器；
-
-2) 前往部署服务器，解压安装包：`tar -zxvf apache-inlong-manager-openapi-*.tar.gz`，得到 `manager-openapi` 文件夹。
-
-## 4.2 修改配置
+## 3.2 修改配置
 
 前往解压后的 `manager-openapi` 目录，修改 `conf/application.yml` 文件：
 
@@ -152,7 +126,7 @@ spring:
    sort.appName: inlong_app # Sort 应用名称，即设置 Sort 的 cluster-id 参数，默认值为"inlong_app"
    ```
 
-## 4.3 启动服务
+## 3.3 启动服务
 
 进入解压后的目录，执行 `sh bin/startup.sh` 启动服务，查看日志 `tailf log/manager-openapi.log`，若出现类似下面的日志，说明服务启动成功：
 
@@ -160,7 +134,7 @@ spring:
 Started InLongOpenApiApplication in 5.341 seconds (JVM running for 6.002)
 ```
 
-# 5. 服务访问验证
+# 4. 服务访问验证
 
 1) 验证 manager-api 服务：
 

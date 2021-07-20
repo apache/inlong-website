@@ -1,53 +1,9 @@
 ---
 title: Quick Start - Apache InLong's TubeMQ module
 ---
+## 1 Deploy and Start
 
-## 1 Build TubeMQ
-
-### 1.1 Prerequisites
-- Java JDK 1.8
-- Maven 3.3+
-
-### 1.2 Build Distribution Tarball
-- Compile and Package
-```bash
-mvn clean package -DskipTests
-```
-
-- Run Unit Tests：
-```bash
-mvn test
-```
-
-- Build Individual Module：
-```bash
-mvn clean install
-cd module-name (e.g. tubemq-client)
-mvn test
-```
-
-After the build, please go to `tubemq-server/target`. You can find the
-**apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin.tar.gz** file. It is the TubeMQ deployment package, which includes
-scripts, configuration files, dependency jars and web GUI code.
-
-### 1.3 Setting Up Your IDE
-If you want to build and debug source code in IDE, go to the project root, and run
-```bash
-mvn compile
-```
-This command will generate the Java source files from the `protoc` files, the generated files located in `target/generated-sources`.
-
-(Optional) If you want to use local `protoc` executable, you can change the configuration of `protobuf-maven-plugin` in `tubemq-core/pom.xml` as below
-```xml
-<configuration>
-    <outputDirectory>${project.build.directory}/generated-sources/java</outputDirectory>
-    <protocExecutable>/usr/local/bin/protoc</protocExecutable>
-</configuration>
-```
-
-## 2 Deploy and Start
-
-### 2.1 Configuration Example
+### 1.1 Configuration Example
 There're two components in the cluster: **Master** and **Broker**. Master and Broker
 can be deployed on the same server or different servers. In this example, we setup our cluster
 like this, and all services run on the same node. Zookeeper should be setup in your environment also.
@@ -57,13 +13,12 @@ like this, and all services run on the same node. Zookeeper should be setup in y
 | Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data |
 | Zookeeper | 2181 | | | Offset is stored at /tubemq |
 
-### 2.2 Prerequisites
+### 1.2 Prerequisites
 - ZooKeeper Cluster
-- [apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin.tar.gz](download/download.md) package file
 
 After you extract the package file, here's the folder structure.
 ```
-/INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin/
+/INSTALL_PATH/inlong-tubemq-server/
 ├── bin
 ├── conf
 ├── lib
@@ -71,7 +26,7 @@ After you extract the package file, here's the folder structure.
 └── resources
 ```
 
-### 2.3 Configure Master
+### 1.3 Configure Master
 You can change configurations in `conf/master.ini` according to cluster information.
 - Master IP and Port
 ```ini
@@ -116,7 +71,7 @@ the introduction of availability level.
 **Tips**：Please notice that the master servers should be clock synchronized.
 
 
-### 2.4 Configure Broker
+### 1.4 Configure Broker
 You can change configurations in `conf/broker.ini` according to cluster information.
 - Broker IP and Port
 ```ini
@@ -143,7 +98,7 @@ zkNodeRoot=/tubemq
 zkServerAddr=localhost:2181             // multi zookeeper addresses can separate with ","
 ```
 
-### 2.5 Start Master
+### 1.5 Start Master
 Please go to the `bin` folder and run this command to start
 the master service.
 ```bash
@@ -155,7 +110,7 @@ web GUI now.
 
 ![TubeMQ Console GUI](img/tubemq-console-gui.png)
 
-#### 2.5.1 Configure Broker Metadata
+#### 1.5.1 Configure Broker Metadata
 Before we start a broker service, we need to configure it on master web GUI first. Go to the `Broker List` page, click `Add Single Broker`, and input the new broker information.
 
 ![Add Broker 1](img/tubemq-add-broker-1.png)
@@ -169,7 +124,7 @@ Click the online link to activate the new added broker.
 
 ![Add Broker 2](img/tubemq-add-broker-2.png)
 
-### 2.6 Start Broker
+### 1.6 Start Broker
 Please go to the `bin` folder and run this command to start the broker service
 ```bash
 ./tubemq.sh broker start
@@ -181,7 +136,7 @@ After the sub-state of the broker changed to `idle`, we can add topics to that b
 
 ![Add Broker 3](img/tubemq-add-broker-3.png)
 
-## 3 Quick Start
+## 2 Quick Start
 ### 3.1 Add Topic
 We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
 topic list page and click the add new topic button
@@ -208,10 +163,10 @@ that the topic publish/subscribe state is active now.
 
 Now we can use the topic to send messages.
 
-### 3.2 Run Example
+### 2.2 Run Example
 Now we can use `demo` topic which created before to test our cluster.
 
-#### 3.2.1 Produce Messages
+#### 2.2.1 Produce Messages
 
 Please don't forget replace `YOUR_MASTER_IP:port` with your server ip and port, and start producer.
 
@@ -223,7 +178,7 @@ cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
 From the log, we can see the message is sent out.
 ![Demo 1](img/tubemq-send-message.png)
 
-#### 3.2.2 Consume Messages
+#### 2.2.2 Consume Messages
 
 Please don't forget replace YOUR_MASTER_IP:port with your server ip and port, and start consumer.
 ```bash
@@ -234,7 +189,7 @@ cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
 From the log, we can see the message received by the consumer.
 ![Demo 2](img/tubemq-consume-message.png)
 
-## 4 The End
+## 3 The End
 Here, the compilation, deployment, system configuration, startup, production and consumption of TubeMQ have been completed. If you need to understand more in-depth content, please check the relevant content in "TubeMQ HTTP API" and make the corresponding configuration settings.
 
 ---
