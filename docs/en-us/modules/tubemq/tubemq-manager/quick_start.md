@@ -1,54 +1,39 @@
-## deploy
+## Deploy TubeMQ Manager
 All deploying files at `inlong-tubemq-manager` directory.
 
 ### configuration
-Add mysql information in conf/application.properties:
+- create `tubemanager` and account in MySQL.
+- Add mysql information in conf/application.properties:
 
 ```ini
-spring.jpa.hibernate.ddl-auto=update
-# configuration for manager
-spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
-spring.datasource.username=[replace_by_usename]
-spring.datasource.password=[replace_by_password]
-# server port 
-server.port=8089
+# mysql configuration for manager
+spring.datasource.url=jdbc:mysql://mysql_ip:mysql_port/tubemanager
+spring.datasource.username=mysql_username
+spring.datasource.password=mysql_password
 ```
 
 ### start service
-Add the database tubemanager and start:
 
 ``` bash
-$ bin/start-admin.sh
+$ bin/start-manager.sh 
 ```
 
-## usage
+### register TubeMQ cluster
+replace `master_ip` and other parameters of TubeMQ Clusters, .
+```
+curl --header "Content-Type: application/json" --request POST --data \
+'{"masterIp":"master_ip","clusterName":"inlong","masterPort":"8715","masterWebPort":"8080","createUser":"manager","token":"abc"}' \
+http://127.0.0.1:8089/v1/cluster?method=add
+```
 
-### create cluster
-
-Before using tubeAdmin to operate the cluster, you first need to register the cluster information, and use the following interface to add a cluster:
-/v1/cluster?method=add
-
-    POST
-
-parameter:
-
-    {
-    "masterIp": "127.0.0.1",   (tubemq master ip)
-    "clusterName": "test",    
-    "masterPort": "8000",  (tubemq master port)
-    "masterWebPort": "8080",  (tubemq master web port)
-    "createUser": "test",  
-    "token": "abc"  (tubemq token)
-    }
-
-### Operation interface
+### Appendix: Other Operation interface
 
 #### cluster
 Query full data of clusterId and clusterName (get)
 
 Example
-GET
-/v1/cluster
+
+【GET】 /v1/cluster
 
 return value
 
@@ -81,8 +66,7 @@ AddTopicTasks is a list of the following objects, which can carry multiple creat
 
 Example
 
-POST
-/v1/task?method=addTopicTask
+【POST】 /v1/task?method=addTopicTask
 
     {
     "clusterId": "1",
@@ -110,7 +94,7 @@ If result is false, the writing task failed
 
 example
 
-POST
+【POST】 /v1/topic?method=queryCanWrite
 
     {
     "clusterId": "1",
@@ -125,19 +109,3 @@ return json
     { "result":false, "errCode": 101, "errMsg":"no such topic in master"}
 
 result is false as not writable
-
-
-
-### curls for operations
-
-    curl --header "Content-Type: application/json" --request POST --data \
-    '{"masterIp":"masterip","clusterName":"test","masterPort":"8099","masterWebPort":"8080","createUser":"test","token":"abc"}' \
-    http://tubemanagerip:tubemanagerport/v1/cluster?method=add
-
-    curl --header "Content-Type: application/json" --request POST --data \
-    '{"clusterId":"1","addTopicTasks":[{"topicName": "testfordocker"}],"user":"test"}' \
-    http://tubemanagerip:tubemanagerport/v1/task?method=addTopicTask
-
-    curl --header "Content-Type: application/json" --request POST --data \
-    '{"clusterId":"1","topicName":"testfordocker","user":"test"}' \
-    http://tubemanagerip:tubemanagerport/v1/topic?method=queryCanWrite
