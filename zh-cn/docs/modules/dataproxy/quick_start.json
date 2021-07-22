@@ -1,6 +1,6 @@
 {
   "filename": "quick_start.md",
-  "__html": "<h2>配置</h2>\n<pre><code>cd inlong-dataproxy\n</code></pre>\n<h3>配置tube地址和端口号</h3>\n<pre><code>执行以下替换命令,其中ip:port为tube地址\n</code></pre>\n<p>sed -i 's/TUBE_LIST/ip1:port,ip2:port/g' conf/flume.conf</p>\n<pre><code>修改以下内容为proxy端口号\nagent1.sources.tcp-source.port = 46801\n</code></pre>\n<p>注意conf/flume.conf中FLUME_HOME为proxy的中间数据文件存放地址</p>\n<h3>环境准备</h3>\n<pre><code>cd bin\nsh prepare_env.sh\ncd ..\n</code></pre>\n<h3>配置manager地址</h3>\n<pre><code>vim conf/common.properties\n\n写入以下配置：\ncluster_id=1    // 预留字段，请填写默认值1\nmanager_hosts=ip:port    // 这里写入的是manager open api地址\n</code></pre>\n<h2>启动</h2>\n<pre><code>sh bin/start.sh\n</code></pre>\n<h2>检查启动情况</h2>\n<pre><code>telnet 127.0.0.1 46801\n</code></pre>\n",
+  "__html": "<h2>部署 DataProxy</h2>\n<p>所有安装文件在<code>inlong-dataproxy</code>目录。</p>\n<h3>配置tube地址和端口号</h3>\n<p><code>tubemq_master_list</code>是TubeMQ master rpc地址，多个逗号分隔。</p>\n<pre><code>$ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf\n</code></pre>\n<p>注意conf/flume.conf中FLUME_HOME为proxy的中间数据文件存放地址</p>\n<h3>环境准备</h3>\n<pre><code>sh prepare_env.sh\n</code></pre>\n<h3>配置manager地址</h3>\n<pre><code># manager open api \nmanager_hosts=ip:port \n</code></pre>\n<h2>启动</h2>\n<pre><code>sh bin/start.sh\n</code></pre>\n<h2>检查启动状态</h2>\n<pre><code>telnet 127.0.0.1 46801\n</code></pre>\n",
   "link": "/zh-cn/docs/modules/dataproxy/quick_start.html",
   "meta": {}
 }
