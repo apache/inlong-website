@@ -1,32 +1,34 @@
-## configuration
+## Deploy DataProxy
+All deploying files at `inlong-dataproxy` directory.
 
-	cd inlong-dataproxy
-
-### config tube
-
-	ip:port are tube address
-
-sed -i 's/TUBE_LIST/ip1:port,ip2:port/g' conf/flume.conf
-
-    change proxy port
-    agent1.sources.tcp-source.port = 46801
+### config TubeMQ master
+`tubemq_master_list` is the rpc address of TubeMQ Master.
+```
+$ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf
+```
 
 notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner data
 
 ### Environmental preparation
-	cd bin
-	sh prepare_env.sh
-	cd ..
+```
+sh prepare_env.sh
+```
 
-### config manager
-	vim conf/common.properties
-	write：
-	cluster_id=1   // cluter id is for future use please write 1
-	manager_hosts=ip:port // manager open api 
+### config manager openapi
+```
+# manager open api 
+manager_hosts=ip:port 
+```
 
 ## run
-	sh bin/start.sh
+```
+sh bin/start.sh
+```
+	
 
 ## check
-	telnet 127.0.0.1 46801
+```
+telnet 127.0.0.1 46801
+```
+
 
