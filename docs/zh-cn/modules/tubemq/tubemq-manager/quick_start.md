@@ -1,55 +1,39 @@
-## 部署
+## 部署TubeMQ Manager
 安装文件在inlong-tubemq-manager目录.
 
 ### 配置
-在conf/application.properties中添加mysql信息：
+- 在mysql中创建`tubemanager`数据和相应用户.
+- 在conf/application.properties中添加mysql信息：
 
 ```ini
-spring.jpa.hibernate.ddl-auto=update
-# configuration for manager
-spring.datasource.url=jdbc:mysql://[replace_by_mysql_address]:3306/tubemanager
-spring.datasource.username=[replace_by_usename]
-spring.datasource.password=[replace_by_password]
-# server port 
-server.port=8089
+# mysql configuration for manager
+spring.datasource.url=jdbc:mysql://mysql_ip:mysql_port/tubemanager
+spring.datasource.username=mysql_username
+spring.datasource.password=mysql_password
 ```
 
 ### 启动服务
-添加数据库tubemanager，并启动：
 
 ``` bash
-$ bin/start-admin.sh
+$ bin/start-manager.sh 
 ```
 
-## 使用
+### 注册TubeMQ集群
+替换`master_ip`等TubeMQ集群参数，然后执行以下命令：
+```
+curl --header "Content-Type: application/json" --request POST --data \
+'{"masterIp":"master_ip","clusterName":"inlong","masterPort":"8715","masterWebPort":"8080","createUser":"manager","token":"abc"}' \
+http://127.0.0.1:8089/v1/cluster?method=add
+```
 
-### 新建集群
-
-在使用tubeAdmin操作集群之前，首先需要注册集群信息，使用如下接口添加一个集群：
-
-    /v1/cluster?method=add
-
-    POST
-
-参数：
-
-    {
-    "masterIp": "127.0.0.1",   (tubemq master ip)
-    "clusterName": "test",    
-    "masterPort": "8000",  (tubemq master port)
-    "masterWebPort": "8080",  (tubemq master web port)
-    "createUser": "test",  
-    "token": "abc"  (tubemq token)
-    }
-
-### 操作接口
+### 附录：其它操作接口
 
 #### cluster
 查询clusterId以及clusterName全量数据 （get)
 
 示例
-GET
-/v1/cluster
+
+【GET】 /v1/cluster
 
 返回值
 
@@ -80,8 +64,7 @@ AddTopicTasks 为以下对象的List，可携带多个创建topic请求
 
 示例
 
-POST
-/v1/task?method=addTopicTask
+【POST】 /v1/task?method=addTopicTask
 
     {
     "clusterId": "1",
@@ -110,9 +93,7 @@ result为false为写入task失败
 
 示例
 
-POST
-
-    /v1/topic?method=queryCanWrite
+【POST】 /v1/topic?method=queryCanWrite
 
     {
     "clusterId": "1",
@@ -128,18 +109,3 @@ POST
     { "result":false, "errCode": 101, "errMsg":"no such topic in master"}
 
 result为false为不可写
-
-
-### 附录：以上操作的curl
-
-    curl --header "Content-Type: application/json" --request POST --data \
-    '{"masterIp":"masterip","clusterName":"test","masterPort":"8099","masterWebPort":"8080","createUser":"test","token":"abc"}' \
-    http://tubemanagerip:tubemanagerport/v1/cluster?method=add
-
-    curl --header "Content-Type: application/json" --request POST --data \
-    '{"clusterId":"1","addTopicTasks":[{"topicName": "testfordocker"}],"user":"test"}' \
-    http://tubemanagerip:tubemanagerport/v1/task?method=addTopicTask
-
-    curl --header "Content-Type: application/json" --request POST --data \
-    '{"clusterId":"1","topicName":"testfordocker","user":"test"}' \
-    http://tubemanagerip:tubemanagerport/v1/topic?method=queryCanWrite
