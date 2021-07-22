@@ -8,9 +8,10 @@ title: 下载 - Apache InLong
 ## InLong
 | 日期 | 版本| 备注 | 下载 |
 |:---:|:--:|:--:|:--:|
-| 2021-03-04 | 0.8.0 | Source | [[SRC](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz)]                 [[PGP](https://downloads.apache.org/incubator/inlong/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz.asc)]             [[SHA512](https://downloads.apache.org/incubator/inlong/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz.sha512)] |
-| |                       | Client | [[TAR](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz)]          [[PGP](https://downloads.apache.org/incubator/inlong/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz.asc)]      [[SHA512](https://downloads.apache.org/incubator/inlong/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz.sha512)] |
-| |                       | Server | [[TAR](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz)]          [[PGP](https://downloads.apache.org/incubator/inlong/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz.asc)]      [[SHA512](https://downloads.apache.org/incubator/inlong/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz.sha512)] |
+| 2021-03-04 | 0.8.0 | 源码 | [[SRC](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz)]                 [[PGP](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz.asc)]             [[SHA512](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz.sha512)] |
+| |                       | 客户端 | [[TAR](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz)]          [[PGP](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz.asc)]      [[SHA512](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz.sha512)] |
+| |                       | 服务端 | [[TAR](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz)]          [[PGP](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz.asc)]      [[SHA512](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz.sha512)] |
+
 
 
 ## 发版说明
