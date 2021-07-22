@@ -6,7 +6,7 @@ title: Download - Apache InLong
   Use the links below to download the Apache InLong Releases, the latest release is 0.9.0.
 
 ## 0.9.0 release
- - Released: July 11, 2021
+ - Released: July 23, 2021
  - [Release Notes](release-0.9.0.md)
  - Source: [tubemq-0.9.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.9.0-incubating/apache-tubemq-0.9.0-incubating-src.tar.gz)              [[PGP](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-tubemq-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-tubemq-0.9.0-incubating-src.tar.gz.sha512)]
 
