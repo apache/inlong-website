@@ -1,21 +1,12 @@
-## 环境准备
+## 关于 WebSite
+WebSite[Apache InLong incubator](https://github.com/apache/incubator-inlong)的管控端。
 
-- nginx
-
-## 配置
-增加`inlong-website`
-
+## 编译
 ```
-server {
-    listen       80;
-    listen       [::]:80;
-    server_name  _;
-    # replaced by the directory of inlong-website
-    root         /inlong_root_path/inlong-website;
+mvn package -DskipTests -Pdocker -pl inlong-website
+```
 
-    # replaced manager_api_ip
-    location /api {
-    proxy_pass      http://manager_api_ip:8083;
-    }
-}
+## 运行
+```
+docker run -d --name website -e MANAGER_API_ADDRESS=127.0.0.1:8083 -p 80:80 inlong/website
 ```
