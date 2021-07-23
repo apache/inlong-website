@@ -3,7 +3,7 @@
 cd inlong-agent
 ```
 
-agent 支持两种运行模式：本地运行以及线上运行
+agent 支持本地运行以及线上运行，其中线上运行从inlong manager拉取任务，本地运行可使用http请求提交任务
 
 ### 1.1 Agent 线上运行相关设置
 
@@ -24,58 +24,15 @@ agent.manager.vip.http.port=manager open api port
 其中cluster_id, isInterVisit，switch为预留字段，请填写默认值
 ```
 
-### 1.3 agent本地运行job配置
-如果不使用线上模式，可以使用本地文件新建读取任务
-在conf中新建目录jobs，jobs内部vim job1.json：
-
-写入
-```json
-    {
-
-    "job": {
-    
-    "dir": {
-    
-    "pattern": "需要读取的文件路径，可包含正则表达式，例如test/inlong_[0-9]{1}，监听test下创建的新文件"
-    
-    },
-    
-    "trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
-    
-    "id": 1,
-    
-    "name": "fileAgentTest",
-    
-    "source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-    
-    "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-    
-    "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-    
-    },
-    
-    "proxy": {
-    
-      "bid": "testbid1", 
-      "tid": "testtid1"
-
-    }
-    
-    }
+## 2、运行
+解压后如下命令运行
+```bash
+sh agent.sh start
 ```
 
+### 3 实时添加job配置
 
-其中各个参数含义为：
-- job.dir.pattern: 配置读取的文件路径，可包含正则表达式
-- job.trigger: 触发器名称，默认为DirectoryTrigger，功能为监听文件夹下的文件产生事件，任务运行时已有的文件不会读取
-- job.source: 使用的数据源类型，默认为TextFileSource，读取文本文件
-- job.sink：使用的写入器类型，默认为ProxySink，发送消息到dataproxy中
-- proxy.bid: 写入proxy时使用的bid类型
-- proxy.tid: 写入proxy时使用的tid类型
-
-### 1.4 实时添加job配置
-
-#### 1.4.1 agent.propertities 修改下面两处
+#### 3.1 agent.propertities 修改下面两处
 ```ini
 # whether enable http service
 agent.http.enable=true
@@ -83,7 +40,7 @@ agent.http.enable=true
 agent.http.port=可用端口
 ```
 
-#### 1.4.2 执行如下命令：
+#### 3.2 执行如下命令：
 ```bash
 curl --location --request POST 'http://localhost:8018/config/job' \
 --header 'Content-Type: application/json' \
@@ -112,20 +69,16 @@ curl --location --request POST 'http://localhost:8018/config/job' \
 "op": "add"
 }'
 ```
-        
-	其中参数分别为：
-	pattern: 代表读取/data/inlong-agent/test.log文件，需要新建任务后再创建文件
-	proxy.bid: 代表发送到dataproxy使用的bid
-	proxy.tid: 代表发送到dataproxy使用的tid
 
-## 2、运行
-解压后如下命令运行
-```bash
-sh agent.sh start
-```
+    其中各个参数含义为：
+    - job.dir.pattern: 配置读取的文件路径，可包含正则表达式
+    - job.trigger: 触发器名称，默认为DirectoryTrigger，功能为监听文件夹下的文件产生事件，任务运行时已有的文件不会读取
+    - job.source: 使用的数据源类型，默认为TextFileSource，读取文本文件
+    - job.sink：使用的写入器类型，默认为ProxySink，发送消息到dataproxy中
+    - proxy.bid: 写入proxy时使用的bid类型
+    - proxy.tid: 写入proxy时使用的tid类型
 
-
-## 3、可支持的路径配置方案
+## 4、可支持的路径配置方案
 
     例如：
     /data/inlong-agent/test.log  //代表读取inlong-agent文件夹下的的新增文件test.log

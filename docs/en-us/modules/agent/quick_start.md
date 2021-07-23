@@ -25,56 +25,17 @@ write:
 Among them, cluster_id, isInterVisit, and switch are reserved fields, please fill in the default values
 ```
 
-### 1.3 local job configuration
-If you do not use the online mode, you can use the local file to create a new read task
-Create a new directory jobs in conf,
-vim job1.json：
+## 2、run
+After decompression, run the following command
 
-put
-```json
-   {
-    "job": {
-    
-    "dir": {
-    
-    "pattern": "The path of the file to be read, which can contain regular expressions"
-    
-    },
-    
-    "trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
-    
-    "id": 1,
-    
-    "name": "fileAgentTest",
-    
-    "source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-    
-    "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-    
-    "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-    
-    },
-    
-    "proxy": {
-    
-      "bid": "testbid1",
-      "tid": "testtid1"
-    }
-    
-    }
+```bash
+sh agent.sh start
 ```
 
-The meaning of each parameter is ：
-- job.dir.pattern: Configure the read file path, which can include regular expressions
-- job.trigger: Trigger name, the default is DirectoryTrigger, the function is to monitor the files under the folder to generate events
-- job.source: The type of data source used, the default is TextFileSource, which reads text files
-- job.sink：The type of writer used, the default is ProxySink, which sends messages to the proxy
-- proxy.bid: The bid type used when writing proxy
-- proxy.tid: The tid type used when writing proxy
 
-### 1.4 Add job configuration in real time
+## 3、Add job configuration in real time
 
-#### 1.4.1 agent.propertities Modify the following two places
+#### 3.1 agent.propertities Modify the following two places
 ```ini
 # whether enable http service
 agent.http.enable=true
@@ -82,7 +43,7 @@ agent.http.enable=true
 agent.http.port=Available ports
 ```
 
-#### 1.4.2 Execute the following command
+#### 3.2 Execute the following command
 ```bash
     curl --location --request POST 'http://localhost:8129/config/job' \
     --header 'Content-Type: application/json' \
@@ -113,14 +74,16 @@ agent.http.port=Available ports
     }'
 ```
 
-## 2、run
-After decompression, run the following command
+    The meaning of each parameter is ：
+    - job.dir.pattern: Configure the read file path, which can include regular expressions
+    - job.trigger: Trigger name, the default is DirectoryTrigger, the function is to monitor the files under the folder to generate events
+    - job.source: The type of data source used, the default is TextFileSource, which reads text files
+    - job.sink：The type of writer used, the default is ProxySink, which sends messages to the proxy
+    - proxy.bid: The bid type used when writing proxy
+    - proxy.tid: The tid type used when writing proxy
 
-```bash
-sh agent.sh start
-```
 
-## 3、eg for directory config
+## 4、eg for directory config
 
     E.g:
     /data/inlong-agent/test.log //Represents reading the new file test.log in the inlong-agent folder
