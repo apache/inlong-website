@@ -4,6 +4,7 @@ title: 下载 - Apache InLong
 
 ## 下载链接
   使用以下链接，下载InLong，最新版本为0.9.0. 
+  <br>
   注意：由于项目由Apache TubeMQ 更名为 Apache InLong，自0.9.0版本开始，相关发布包名变更为InLong
   
 ## 0.9.0 release
@@ -11,7 +12,7 @@ title: 下载 - Apache InLong
  - [发版说明](release-0.9.0.md)
  - 源码: [inlong-0.9.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz)              [[ASC](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.sha512)]
 
-### 发布完整性
+## 发布完整性
    You must [verify](https://www.apache.org/info/verification.html) the integrity of the downloaded files. We provide OpenPGP signatures for every release file. This signature should be matched against the [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) file which contains the OpenPGP keys of InLong's Release Managers. We also provide <code>SHA-512</code> checksums for every release file. After you download the file, you should calculate a checksum for your download, and make sure it is the same as ours.
    
 

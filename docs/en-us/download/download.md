@@ -4,6 +4,8 @@ title: Download - Apache InLong
 
 ## Download links
   Use the links below to download the Apache InLong Releases, the latest release is 0.9.0.
+  <br>
+
   Note: Since the project is renamed from Apache TubeMQ to Apache InLong, since version 0.9.0, the name of the related release package has been changed to InLong.
   
 ## 0.9.0 release
@@ -11,8 +13,9 @@ title: Download - Apache InLong
  - [Release Notes](release-0.9.0.md)
  - Source: [inlong-0.9.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz)              [[ASC](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.sha512)]
 
-### Release Integrity
+## Release Integrity
    You must [verify](https://www.apache.org/info/verification.html) the integrity of the downloaded files. We provide OpenPGP signatures for every release file. This signature should be matched against the [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) file which contains the OpenPGP keys of InLong's Release Managers. We also provide <code>SHA-512</code> checksums for every release file. After you download the file, you should calculate a checksum for your download, and make sure it is the same as ours.
+  
   
 
    
