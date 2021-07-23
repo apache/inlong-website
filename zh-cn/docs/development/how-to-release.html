@@ -257,7 +257,7 @@ cp /tmp/apache-inlong-${release_version}-${rc_version}/*tar.gz* ${release_versio
 svn status # 检查svn状态
 svn add ${release_version}-${rc_version} # 添加到svn版本
 svn status # 检查svn状态
-svn commit -m 'prepare for ${release_version} ${rc_version}'# 提交至svn远程服务器
+svn commit -m "prepare for ${release_version} ${rc_version}" # 提交至svn远程服务器
 </code></pre>
 <h3>4.4 关闭Apache Staging仓库</h3>
 <blockquote>
@@ -361,17 +361,17 @@ Your InLong Release Manager
 </code></pre>
 <h3>5.2 incubator社区投票</h3>
 <h4>5.2.1 投票模板</h4>
-<pre><code class="language-html">标题：[VOTE] Release Apache InLong (Incubating) ${release_version} ${rc_version}
+<pre><code class="language-html">标题：[VOTE] Release Apache InLong(Incubating) ${release_version} ${rc_version}
 
 内容：
 
 Hello Incubator Community,
 
-    This is a call for a vote to release Apache InLong (Incubating) version
+    This is a call for a vote to release Apache InLong(Incubating) version
     ${release_version} ${rc_version}
 
     The Apache InLong community has voted on and approved a proposal to release
-    Apache InLong (Incubating) version ${release_version} ${rc_version}
+    Apache InLong(Incubating) version ${release_version} ${rc_version}
 
     We now kindly request the Incubator PMC members review and vote on this
     incubator release.
@@ -403,7 +403,7 @@ Hello Incubator Community,
     [ ] -1 disapprove with the reason
 
 Thanks,
-On behalf of Apache InLong (Incubating) community
+On behalf of Apache InLong(Incubating) community
 
 </code></pre>
 <h4>5.2.2 宣布投票结果模板</h4>
@@ -412,7 +412,7 @@ On behalf of Apache InLong (Incubating) community
 内容：
 Hi all
 
-Thanks for reviewing and voting for Apache InLong (Incubating) ${release_version} {rc_version}
+Thanks for reviewing and voting for Apache InLong(Incubating) ${release_version} {rc_version}
 release, I am happy to announce the release voting has passed with [投票结果数]
 binding votes, no +0 or -1 votes. Binding votes are from IPMC
 
@@ -424,11 +424,11 @@ The voting thread is:
 [投票链接]
 
 Many thanks for all our mentors helping us with the release procedure, and
-all IPMC helped us to review and vote for Apache InLong (Incubating) release. I will
+all IPMC helped us to review and vote for Apache InLong(Incubating) release. I will
 be working on publishing the artifacts soon.
 
 Thanks
-On behalf of Apache InLong (Incubating) community
+On behalf of Apache InLong(Incubating) community
 </code></pre>
 <h2>6. 正式发布</h2>
 <h3>6.1 合并release-${release_version}分支的改动到master分支</h3>
@@ -462,10 +462,11 @@ On behalf of Apache InLong (Incubating) community
 Hi all,
 
 The Apache InLong(incubating) community is pleased to announce 
-that Apache InLong (incubating) ${release_version} has been released!
+that Apache InLong(incubating) ${release_version} has been released!
 
-Apache InLong is a trillion-records-scale distributed messaging queue (MQ) system, 
-focuses on data transmission and storage under massive data. 
+Apache InLong is a one-stop data streaming platform that provides automatic, secure,
+distributed, and efficient data publishing and subscription capabilities.
+This platform helps you easily build stream-based data applications.
 
 Download Links: xxx
 
@@ -478,7 +479,7 @@ InLong Resources:
 - Mailing list: dev@inlong.apache.org
 
 Thanks
-On behalf of Apache InLong (Incubating) community
+On behalf of Apache InLong(Incubating) community
 </code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
