@@ -8,9 +8,11 @@ title: Download - Apache InLong
 ## 0.9.0 release
  - Released: July 11, 2021
  - [Release Notes](release-0.9.0.md)
- - Source: [tubemq-0.9.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.9.0-incubating/apache-tubemq-0.9.0-incubating-src.tar.gz)              [[PGP](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-tubemq-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-tubemq-0.9.0-incubating-src.tar.gz.sha512)]
+ - Source: [inlong-0.9.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz)              [[PGP](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.sha512)]
 
 
+## Attention:
+   Project rename from Apache TubeMQ to Apache InLong, so release package name is changed to InLong
 
 ## 0.8.0 release
 
