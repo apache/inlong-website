@@ -8,8 +8,10 @@ title: 下载 - Apache InLong
 ## 0.9.0 release
  - 发布时间：2021-07-11
  - [发版说明](release-0.9.0.md)
- - 源码: [tubemq-0.9.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.9.0-incubating/apache-tubemq-0.9.0-incubating-src.tar.gz)              [[PGP](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-tubemq-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-tubemq-0.9.0-incubating-src.tar.gz.sha512)]
+ - 源码: [inlong-0.9.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz)              [[PGP](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.sha512)]
 
+## 注意:
+   由于项目由Apache TubeMQ 更名为 Apache InLong，相关发布包名变更为InLong
 
 ## 0.8.0 release
  - 发布时间：2021-03-04
