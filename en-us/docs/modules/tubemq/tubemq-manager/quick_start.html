@@ -28,11 +28,20 @@
 <pre><code class="language-bash">$ bin/start-manager.sh 
 </code></pre>
 <h3>register TubeMQ cluster</h3>
-<p>replace <code>master_ip</code> and other parameters of TubeMQ Clusters, .</p>
-<pre><code>curl --header &quot;Content-Type: application/json&quot; --request POST --data \
-'{&quot;masterIp&quot;:&quot;master_ip&quot;,&quot;clusterName&quot;:&quot;inlong&quot;,&quot;masterPort&quot;:&quot;8715&quot;,&quot;masterWebPort&quot;:&quot;8080&quot;,&quot;createUser&quot;:&quot;manager&quot;,&quot;token&quot;:&quot;abc&quot;}' \
-http://127.0.0.1:8089/v1/cluster?method=add
+<pre><code>vim bin/init-tube-cluster.sh
 </code></pre>
+<p>replace the parameters below</p>
+<pre><code>TUBE_MANAGER_IP=  
+TUBE_MANAGER_PORT=   
+TUBE_MASTER_IP=   
+TUBE_MASTER_PORT=
+TUBE_MASTER_WEB_PORT=
+TUBE_MASTER_TOKEN=
+</code></pre>
+<p>then run：</p>
+<pre><code>sh bin/init-tube-cluster.sh
+</code></pre>
+<p>this will create a cluster with id = 1, note that this operation should not be executed repeatedly.</p>
 <h3>Appendix: Other Operation interface</h3>
 <h4>cluster</h4>
 <p>Query full data of clusterId and clusterName (get)</p>

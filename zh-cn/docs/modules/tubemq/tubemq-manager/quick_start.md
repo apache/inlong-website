@@ -18,13 +18,25 @@ spring.datasource.password=mysql_password
 $ bin/start-manager.sh 
 ```
 
-### 注册TubeMQ集群
-替换`master_ip`等TubeMQ集群参数，然后执行以下命令：
+### 初始化TubeMQ集群
+
+    vim bin/init-tube-cluster.sh
+
+替换如下六个参数
 ```
-curl --header "Content-Type: application/json" --request POST --data \
-'{"masterIp":"master_ip","clusterName":"inlong","masterPort":"8715","masterWebPort":"8080","createUser":"manager","token":"abc"}' \
-http://127.0.0.1:8089/v1/cluster?method=add
+TUBE_MANAGER_IP=   //tube manager服务启动ip
+TUBE_MANAGER_PORT=   //tube manager服务启动port
+TUBE_MASTER_IP=   //tube 集群master ip
+TUBE_MASTER_PORT=
+TUBE_MASTER_WEB_PORT=
+TUBE_MASTER_TOKEN=
 ```
+
+然后执行以下命令：
+```
+sh bin/init-tube-cluster.sh
+```
+如上操作会创建一个clusterId为1的tube集群，注意该操作只进行一次，之后重启服务无需新建集群
 
 ### 附录：其它操作接口
 

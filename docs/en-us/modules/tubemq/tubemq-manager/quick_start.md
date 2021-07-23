@@ -19,12 +19,26 @@ $ bin/start-manager.sh
 ```
 
 ### register TubeMQ cluster
-replace `master_ip` and other parameters of TubeMQ Clusters, .
+
+    vim bin/init-tube-cluster.sh
+
+replace the parameters below
 ```
-curl --header "Content-Type: application/json" --request POST --data \
-'{"masterIp":"master_ip","clusterName":"inlong","masterPort":"8715","masterWebPort":"8080","createUser":"manager","token":"abc"}' \
-http://127.0.0.1:8089/v1/cluster?method=add
+TUBE_MANAGER_IP=  
+TUBE_MANAGER_PORT=   
+TUBE_MASTER_IP=   
+TUBE_MASTER_PORT=
+TUBE_MASTER_WEB_PORT=
+TUBE_MASTER_TOKEN=
 ```
+
+then run：
+```
+sh bin/init-tube-cluster.sh
+```
+
+this will create a cluster with id = 1, note that this operation should not be executed repeatedly.
+
 
 ### Appendix: Other Operation interface
 
