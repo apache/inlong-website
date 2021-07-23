@@ -29,59 +29,18 @@
 <pre><code class="language-ini">{"cluster_id":1,"isInterVisit":1,"size":1,"address": [{"port":write proxy port,"host":"write proxy ip"}], "switch":0}
 Among them, cluster_id, isInterVisit, and switch are reserved fields, please fill in the default values
 </code></pre>
-<h3>1.3 local job configuration</h3>
-<p>If you do not use the online mode, you can use the local file to create a new read task
-Create a new directory jobs in conf,
-vim job1.json：</p>
-<p>put</p>
-<pre><code class="language-json">   {
-    <span class="hljs-attr">"job"</span>: {
-    
-    <span class="hljs-attr">"dir"</span>: {
-    
-    <span class="hljs-attr">"pattern"</span>: <span class="hljs-string">"The path of the file to be read, which can contain regular expressions"</span>
-    
-    },
-    
-    <span class="hljs-attr">"trigger"</span>: <span class="hljs-string">"org.apache.inlong.agent.plugin.trigger.DirectoryTrigger"</span>,
-    
-    <span class="hljs-attr">"id"</span>: <span class="hljs-number">1</span>,
-    
-    <span class="hljs-attr">"name"</span>: <span class="hljs-string">"fileAgentTest"</span>,
-    
-    <span class="hljs-attr">"source"</span>: <span class="hljs-string">"org.apache.inlong.agent.plugin.sources.TextFileSource"</span>,
-    
-    <span class="hljs-attr">"sink"</span>: <span class="hljs-string">"org.apache.inlong.agent.plugin.sinks.ProxySink"</span>,
-    
-    <span class="hljs-attr">"channel"</span>: <span class="hljs-string">"org.apache.inlong.agent.plugin.channel.MemoryChannel"</span>
-    
-    },
-    
-    <span class="hljs-attr">"proxy"</span>: {
-    
-      <span class="hljs-attr">"bid"</span>: <span class="hljs-string">"testbid1"</span>,
-      <span class="hljs-attr">"tid"</span>: <span class="hljs-string">"testtid1"</span>
-    }
-    
-    }
+<h2>2、run</h2>
+<p>After decompression, run the following command</p>
+<pre><code class="language-bash">sh agent.sh start
 </code></pre>
-<p>The meaning of each parameter is ：</p>
-<ul>
-<li>job.dir.pattern: Configure the read file path, which can include regular expressions</li>
-<li>job.trigger: Trigger name, the default is DirectoryTrigger, the function is to monitor the files under the folder to generate events</li>
-<li>job.source: The type of data source used, the default is TextFileSource, which reads text files</li>
-<li>job.sink：The type of writer used, the default is ProxySink, which sends messages to the proxy</li>
-<li>proxy.bid: The bid type used when writing proxy</li>
-<li>proxy.tid: The tid type used when writing proxy</li>
-</ul>
-<h3>1.4 Add job configuration in real time</h3>
-<h4>1.4.1 agent.propertities Modify the following two places</h4>
+<h2>3、Add job configuration in real time</h2>
+<h4>3.1 agent.propertities Modify the following two places</h4>
 <pre><code class="language-ini"><span class="hljs-comment"># whether enable http service</span>
 <span class="hljs-attr">agent.http.enable</span>=<span class="hljs-literal">true</span>
 <span class="hljs-comment"># http default port</span>
 <span class="hljs-attr">agent.http.port</span>=Available ports
 </code></pre>
-<h4>1.4.2 Execute the following command</h4>
+<h4>3.2 Execute the following command</h4>
 <pre><code class="language-bash">    curl --location --request POST <span class="hljs-string">'http://localhost:8129/config/job'</span> \
     --header <span class="hljs-string">'Content-Type: application/json'</span> \
     --data <span class="hljs-string">'{
@@ -110,11 +69,15 @@ vim job1.json：</p>
     "op": "add"
     }'</span>
 </code></pre>
-<h2>2、run</h2>
-<p>After decompression, run the following command</p>
-<pre><code class="language-bash">sh agent.sh start
+<pre><code>The meaning of each parameter is ：
+- job.dir.pattern: Configure the read file path, which can include regular expressions
+- job.trigger: Trigger name, the default is DirectoryTrigger, the function is to monitor the files under the folder to generate events
+- job.source: The type of data source used, the default is TextFileSource, which reads text files
+- job.sink：The type of writer used, the default is ProxySink, which sends messages to the proxy
+- proxy.bid: The bid type used when writing proxy
+- proxy.tid: The tid type used when writing proxy
 </code></pre>
-<h2>3、eg for directory config</h2>
+<h2>4、eg for directory config</h2>
 <pre><code>E.g:
 /data/inlong-agent/test.log //Represents reading the new file test.log in the inlong-agent folder
 /data/inlong-agent/test[0-9]{1} // means to read the new file test in the inlong-agent folder followed by a number at the end
