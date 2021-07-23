@@ -283,7 +283,7 @@ cp /tmp/apache-inlong-${release_version}-${rc_version}/*tar.gz* ${release_versio
 svn status # 检查svn状态
 svn add ${release_version}-${rc_version} # 添加到svn版本
 svn status # 检查svn状态
-svn commit -m 'prepare for ${release_version} ${rc_version}'# 提交至svn远程服务器
+svn commit -m "prepare for ${release_version} ${rc_version}"     # 提交至svn远程服务器
 ```
 ### 4.4 关闭Apache Staging仓库
 > 请确保所有的artifact都是ok的
@@ -391,17 +391,17 @@ Your InLong Release Manager
 #### 5.2.1 投票模板
 
 ```html
-标题：[VOTE] Release Apache InLong (Incubating) ${release_version} ${rc_version}
+标题：[VOTE] Release Apache InLong(Incubating) ${release_version} ${rc_version}
 
 内容：
 
 Hello Incubator Community,
 
-    This is a call for a vote to release Apache InLong (Incubating) version
+    This is a call for a vote to release Apache InLong(Incubating) version
     ${release_version} ${rc_version}
 
     The Apache InLong community has voted on and approved a proposal to release
-    Apache InLong (Incubating) version ${release_version} ${rc_version}
+    Apache InLong(Incubating) version ${release_version} ${rc_version}
 
     We now kindly request the Incubator PMC members review and vote on this
     incubator release.
@@ -433,7 +433,7 @@ Hello Incubator Community,
     [ ] -1 disapprove with the reason
 
 Thanks,
-On behalf of Apache InLong (Incubating) community
+On behalf of Apache InLong(Incubating) community
 
 ```
 
@@ -444,7 +444,7 @@ On behalf of Apache InLong (Incubating) community
 内容：
 Hi all
 
-Thanks for reviewing and voting for Apache InLong (Incubating) ${release_version} {rc_version}
+Thanks for reviewing and voting for Apache InLong(Incubating) ${release_version} {rc_version}
 release, I am happy to announce the release voting has passed with [投票结果数]
 binding votes, no +0 or -1 votes. Binding votes are from IPMC
 
@@ -456,11 +456,11 @@ The voting thread is:
 [投票链接]
 
 Many thanks for all our mentors helping us with the release procedure, and
-all IPMC helped us to review and vote for Apache InLong (Incubating) release. I will
+all IPMC helped us to review and vote for Apache InLong(Incubating) release. I will
 be working on publishing the artifacts soon.
 
 Thanks
-On behalf of Apache InLong (Incubating) community
+On behalf of Apache InLong(Incubating) community
 ```
 
 ## 6. 正式发布
@@ -498,10 +498,11 @@ svn delete https://dist.apache.org/repos/dist/release/incubator/inlong/${last_re
 Hi all,
 
 The Apache InLong(incubating) community is pleased to announce 
-that Apache InLong (incubating) ${release_version} has been released!
+that Apache InLong(incubating) ${release_version} has been released!
 
-Apache InLong is a trillion-records-scale distributed messaging queue (MQ) system, 
-focuses on data transmission and storage under massive data. 
+Apache InLong is a one-stop data streaming platform that provides automatic, secure,
+distributed, and efficient data publishing and subscription capabilities.
+This platform helps you easily build stream-based data applications.
 
 Download Links: xxx
 
@@ -514,5 +515,5 @@ InLong Resources:
 - Mailing list: dev@inlong.apache.org
 
 Thanks
-On behalf of Apache InLong (Incubating) community
+On behalf of Apache InLong(Incubating) community
 ```
