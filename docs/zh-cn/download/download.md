@@ -13,7 +13,7 @@ title: 下载 - Apache InLong
  - 源码: [inlong-0.9.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz)              [[ASC](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.sha512)]
 
 ## 发布完整性
-   You must [verify](https://www.apache.org/info/verification.html) the integrity of the downloaded files. We provide OpenPGP signatures for every release file. This signature should be matched against the [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) file which contains the OpenPGP keys of InLong's Release Managers. We also provide <code>SHA-512</code> checksums for every release file. After you download the file, you should calculate a checksum for your download, and make sure it is the same as ours.
+   您必须[验证](https://www.apache.org/info/verification.html) 下载文件的完整性。 我们为每个发布文件提供 OpenPGP 签名。 此签名应与包含 InLong 发布经理的 OpenPGP 密钥的 [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) 文件匹配。 我们还为每个发布文件提供 <code>SHA-512</code> 校验和。 下载文件后，您应该计算下载的校验和，并确保它与我们的相同。
    
 
 ## 0.8.0 release
