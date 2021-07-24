@@ -1,6 +1,6 @@
 {
   "filename": "quick_start.md",
-  "__html": "<h2>Environment</h2>\n<ul>\n<li>nginx</li>\n</ul>\n<h2>configuration</h2>\n<pre><code>server {\n    listen       80;\n    listen       [::]:80;\n    server_name  _;\n    # replaced by the directory of inlong-website\n    root         /inlong_root_path/inlong-website;\n\n    # replaced manager_api_ip\n    location /api {\n    proxy_pass      http://manager_api_ip:8083;\n    }\n}\n</code></pre>\n",
+  "__html": "<h2>About WebSite</h2>\n<p>This is a website console for us to use the <a href=\"https://github.com/apache/incubator-inlong\">Apache InLong incubator</a>.</p>\n<h2>Build</h2>\n<pre><code>mvn package -DskipTests -Pdocker -pl inlong-website\n</code></pre>\n<h2>Run</h2>\n<pre><code>docker run -d --name website -e MANAGER_API_ADDRESS=127.0.0.1:8083 -p 80:80 inlong/website\n</code></pre>\n",
   "link": "/en-us/docs/modules/website/quick_start.html",
   "meta": {}
 }
