@@ -15,6 +15,7 @@ sh prepare_env.sh
 ```
 
 ### config manager openapi
+配置文件`conf/common.properties`:
 ```
 # manager open api 
 manager_hosts=ip:port 

@@ -15,6 +15,7 @@ sh prepare_env.sh
 ```
 
 ### 配置manager地址
+configuration file `conf/common.properties`:
 ```
 # manager open api 
 manager_hosts=ip:port 

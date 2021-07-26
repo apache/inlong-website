@@ -1,6 +1,6 @@
 {
   "filename": "quick_start.md",
-  "__html": "<h2>Deploy DataProxy</h2>\n<p>All deploying files at <code>inlong-dataproxy</code> directory.</p>\n<h3>config TubeMQ master</h3>\n<p><code>tubemq_master_list</code> is the rpc address of TubeMQ Master.</p>\n<pre><code>$ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf\n</code></pre>\n<p>notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner data</p>\n<h3>Environmental preparation</h3>\n<pre><code>sh prepare_env.sh\n</code></pre>\n<h3>config manager openapi</h3>\n<pre><code># manager open api \nmanager_hosts=ip:port \n</code></pre>\n<h2>run</h2>\n<pre><code>sh bin/start.sh\n</code></pre>\n<h2>check</h2>\n<pre><code>telnet 127.0.0.1 46801\n</code></pre>\n",
+  "__html": "<h2>Deploy DataProxy</h2>\n<p>All deploying files at <code>inlong-dataproxy</code> directory.</p>\n<h3>config TubeMQ master</h3>\n<p><code>tubemq_master_list</code> is the rpc address of TubeMQ Master.</p>\n<pre><code>$ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf\n</code></pre>\n<p>notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner data</p>\n<h3>Environmental preparation</h3>\n<pre><code>sh prepare_env.sh\n</code></pre>\n<h3>config manager openapi</h3>\n<p>配置文件<code>conf/common.properties</code>:</p>\n<pre><code># manager open api \nmanager_hosts=ip:port \n</code></pre>\n<h2>run</h2>\n<pre><code>sh bin/start.sh\n</code></pre>\n<h2>check</h2>\n<pre><code>telnet 127.0.0.1 46801\n</code></pre>\n",
   "link": "/en-us/docs/modules/dataproxy/quick_start.html",
   "meta": {}
 }
