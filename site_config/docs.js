@@ -31,6 +31,15 @@ export default {
 			],
           },
           {
+              title: 'WebSite',
+              children: [
+                  {
+                      title: 'Build && Deployment',
+                      link: '/en-us/docs/modules/website/quick_start.html',
+                  },
+              ],
+          },
+          {
             title: 'Agent',
             children: [
                {
@@ -162,8 +171,17 @@ export default {
                  link: '/zh-cn/docs/modules/manager/quick_start.html',
                },
             ],
-          },		
+          },
           {
+              title: 'WebSite',
+              children: [
+                  {
+                      title: '编译部署',
+                      link: '/zh-cn/docs/modules/website/quick_start.html',
+                  },
+              ],
+          },
+        {
             title: 'Agent',
             children: [
                {
