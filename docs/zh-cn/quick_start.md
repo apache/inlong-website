@@ -51,7 +51,7 @@ inlong-website
 [部署InLong Manager](modules/manager/quick_start.md)
 
 ## 部署InLong WebSite
-[部署InLong Web](modules/website/quick_start.md)
+[部署InLong WebSite](modules/website/quick_start.md)
 
 ## 部署部署InLong Sort
 [部署InLong Sort](modules/sort/quick_start.md)

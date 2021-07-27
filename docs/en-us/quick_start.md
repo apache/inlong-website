@@ -51,8 +51,8 @@ inlong-website
 ## deploy InLong Manager
 [deploy InLong Manager](modules/manager/quick_start.md)
 
-## deploy InLong Web
-[deploy InLong Web](modules/website/quick_start.md)
+## deploy InLong WebSite
+[deploy InLong WebSite](modules/website/quick_start.md)
 
 ## deploy InLong Sort
 [deploy InLong Sort](modules/sort/quick_start.md)
