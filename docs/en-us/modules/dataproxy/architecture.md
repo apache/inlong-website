@@ -26,8 +26,7 @@ Source configuration example and corresponding notes:
     tcp resolution type definition, here provide the class name for instantiation, SimpleTcpSource is mainly to initialize the configuration and start port monitoring
 
     agent1.sources.tcp-source.msg-factory-name = org.apache.flume.source.ServerMessageFactory
-    Handler used for message structure analysis, and set read stream handler and write stream handler, netty concept, please refer to: https://blog.csdn.net/u013252773/article/details/21195593
-
+    Handler used for message structure analysis, and set read stream handler and write stream handler
 
     agent1.sources.tcp-source.host = 0.0.0.0
     tcp ip binding monitoring, binding all network cards by default
@@ -57,10 +56,10 @@ Source configuration example and corresponding notes:
     Netty thread pool work thread upper limit, generally recommended to choose twice the cpu
 
     agent1.sources.tcp-source.receiveBufferSize = 524288
-    Netty server tcp tuning parameters, please refer to: https://stackoverflow.com/questions/4257410/what-are-so-sndbuf-and-so-rcvbuf
-    
+    Netty server tcp tuning parameters
+
     agent1.sources.tcp-source.sendBufferSize = 524288
-    Netty server tcp tuning parameters, please refer to: https://stackoverflow.com/questions/4257410/what-are-so-sndbuf-and-so-rcvbuf
+    Netty server tcp tuning parameters
 
     agent1.sources.tcp-source.custom-cp = true
     Whether to use the self-developed channel process, the self-developed channel process can select the alternate channel to send when the main channel is blocked
@@ -128,7 +127,7 @@ Sink configuration example and corresponding notes
     agent1.sinks.meta-sink-more1.type = org.apache.flume.sink.MetaSink
     The sink class is implemented, where the message is implemented to push data to the tube cluster
 
-    agent1.sinks.meta-sink-more1.master-host-port-list = sk-tegspider-tube-master-1:8609,sk-tegspider-tube-master-2:8609
+    agent1.sinks.meta-sink-more1.master-host-port-list =
     Tube cluster master node list
 
     agent1.sinks.meta-sink-more1.send_timeout = 30000

@@ -34,7 +34,7 @@ agent1.sources.tcp-source.type = org.apache.flume.source.SimpleTcpSource
 tcp解析类型定义，这里提供类名用于实例化，SimpleTcpSource主要是初始化配置并启动端口监听
 
 agent1.sources.tcp-source.msg-factory-name = org.apache.flume.source.ServerMessageFactory
-用于构造消息解析的handler，并设置read stream handler和write stream handler，netty概念，具体可参考：https://blog.csdn.net/u013252773/article/details/21195593
+用于构造消息解析的handler，并设置read stream handler和write stream handler
 
 agent1.sources.tcp-source.host = 0.0.0.0    
 tcp ip绑定监听，默认绑定所有网卡
@@ -43,7 +43,7 @@ agent1.sources.tcp-source.port = 46801
 tcp 端口绑定，默认绑定46801端口
 
 agent1.sources.tcp-source.highWaterMark=2621440 
-netty概念，设置netty高水位值，高水位详细解答可参考：https://www.jianshu.com/p/c9e9a5a11943
+netty概念，设置netty高水位值
 
 agent1.sources.tcp-source.max-msg-length = 524288
 限制单个包大小，这里如果传输的是压缩包，则是压缩包大小，限制512KB
@@ -61,10 +61,10 @@ agent1.sources.tcp-source.max-threads = 64
 netty线程池工作线程上限，一般推荐选择cpu的两倍
 
 agent1.sources.tcp-source.receiveBufferSize = 524288
-netty server tcp调优参数，具体解释可参考：https://stackoverflow.com/questions/4257410/what-are-so-sndbuf-and-so-rcvbuf
+netty server tcp调优参数
 
 agent1.sources.tcp-source.sendBufferSize = 524288
-netty server tcp调优参数，具体解释可参考：https://stackoverflow.com/questions/4257410/what-are-so-sndbuf-and-so-rcvbuf
+netty server tcp调优参数
 
 agent1.sources.tcp-source.custom-cp = true
 是否使用自研的channel process，自研channel process可在主channel阻塞时，选择备用channel发送
@@ -127,7 +127,7 @@ sink的上游channel名称
 agent1.sinks.meta-sink-more1.type = org.apache.flume.sink.MetaSink
 sink类实现，此处实现消息向tube集群推送数据
 
-agent1.sinks.meta-sink-more1.master-host-port-list = sk-tegspider-tube-master-1:8609,sk-tegspider-tube-master-2:8609
+agent1.sinks.meta-sink-more1.master-host-port-list = 
 tube集群master节点列表
 
 agent1.sinks.meta-sink-more1.send_timeout = 30000
