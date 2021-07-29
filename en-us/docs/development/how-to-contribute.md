@@ -10,7 +10,7 @@ We use a review-then-commit workflow in InLong for all contributions.
 
 **For larger contributions or those that affect multiple components:**
 
-1. **Engage**: We encourage you to work with the InLong community on the [JIRA](https://jira.apache.org/jira/browse/INLONG) and [developer’s mailing list](../contact.html) to identify good areas for contribution.
+1. **Engage**: We encourage you to work with the InLong community on the [GitHub](https://github.com/apache/incubator-inlong/issues) and [developer’s mailing list](../contact.html) to identify good areas for contribution.
 2. **Design:** More complicated contributions will likely benefit from some early discussion in order to scope and design them well.
 
 **For all contributions:**
@@ -27,18 +27,16 @@ We look forward to working with you!
 
 We discuss design and implementation issues on the [dev@inlong.apache.org](mailto:dev@inlong.apache.org) mailing list, which is archived [here](https://lists.apache.org/list.html?dev@inlong.apache.org). Join by emailing [`dev-subscribe@inlong.apache.org`](mailto:dev-subscribe@inlong.apache.org).
 
-### JIRA
+### GitHub Issue
 
-We are using [JIRA](https://jira.apache.org/jira/browse/INLONG) as the issue tracking
+We are using [GitHub](https://github.com/apache/incubator-inlong/issues) as the issue tracking
 and project management tool, as well as a way to communicate among a very diverse and distributed set of contributors. To be able to gather feedback, avoid frustration, and avoid duplicated efforts all InLong related work are being tracked there.
 
-If you do not already have an JIRA account, sign up [here](https://jira.apache.org/jira/secure/Signup!default.jspa).
+If a quick [search](https://github.com/apache/incubator-inlong/issues) doesn’t turn up an existing GitHub issue for the work you want to contribute, create it. Please discuss your idea with a committer in GitHub or, alternatively, on the developer mailing list.
 
-If a quick [search](https://jira.apache.org/jira/projects/INLONG/issues) doesn’t turn up an existing JIRA issue for the work you want to contribute, create it. Please discuss your idea with a committer in JIRA or, alternatively, on the developer mailing list.
+If there’s an existing GitHub issue for your intended contribution, please comment about your intended work. Once the work is understood, a committer will assign the issue to you. If an issue is currently assigned, please check with the current assignee before reassigning.
 
-If there’s an existing JIRA issue for your intended contribution, please comment about your intended work. Once the work is understood, a committer will assign the issue to you. If an issue is currently assigned, please check with the current assignee before reassigning.
-
-For moderate or large contributions, you should not start coding or writing a design document unless there is a corresponding JIRA issue assigned to you for that work. Any change requires an associated JIRA issue.
+For moderate or large contributions, you should not start coding or writing a design document unless there is a corresponding GitHub issue assigned to you for that work. Any change requires an associated GitHub issue.
 
 ## Design
 
