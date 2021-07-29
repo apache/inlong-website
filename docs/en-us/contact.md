@@ -12,7 +12,7 @@ Contact us
     | [dev@inlong.apache.org](mailto:dev@inlong.apache.org)     | Development-related discussions | [Subscribe](mailto:dev-subscribe@inlong.apache.org)   | [Unsubscribe](mailto:dev-unsubscribe@inlong.apache.org)   | [Archives](http://mail-archives.apache.org/mod_mbox/inlong-dev/)   |
 	
 - Home page: https://inlong.apache.org
-- Issues: https://issues.apache.org/jira/browse/InLong
+- GitHub Issues: https://github.com/apache/incubator-inlong/issues
 
 
 
