@@ -3,7 +3,7 @@
 add dependency in pom and use the api in architecture.md
 
     <dependency>
-    <groupId>com.tencent.tdbank</groupId>
-    <artifactId>TDBusSDK</artifactId>
-    <version>1.2.21</version>
+            <groupId>org.apache.inlong</groupId>
+            <artifactId>inlong-dataproxy-sdk</artifactId>
+            <version>0.10.0-incubating-SNAPSHOT</version>
     </dependency>
