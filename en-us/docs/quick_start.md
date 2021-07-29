@@ -28,6 +28,7 @@ after compile successfully, you could find distribution file at `inlong-distribu
 ```
 inlong-agent
 inlong-dataproxy
+inlong-dataproxy-sdk
 inlong-manager-api
 inlong-manager-openapi
 inlong-sort
@@ -59,6 +60,9 @@ inlong-website
 
 ## deploy InLong DataProxy
 [deploy InLong DataProxy](modules/dataproxy/quick_start.md)
+
+## deploy InLong DataProxy-SDK
+[deploy InLong DataProxy](modules/dataproxy-sdk/quick_start.md)
 
 ## deploy InLong Agent
 [deploy InLong Agent](modules/agent/quick_start.md)
