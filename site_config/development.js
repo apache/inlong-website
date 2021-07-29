@@ -17,10 +17,6 @@ export default {
             link: '/en-us/docs/development/how-to-subscribe.html',
           },
           {
-            title: 'How to use jira',
-            link: '/en-us/docs/development/how-to-use-jira.html',
-          },
-          {
             title: 'How to become a committer',
             link: '/en-us/docs/development/how-to-become-a-committer.html',
           },
@@ -61,10 +57,6 @@ export default {
           {
             title: '订阅邮件列表',
             link: '/zh-cn/docs/development/how-to-subscribe.html',
-          },
-          {
-            title: '如何使用JIRA',
-            link: '/zh-cn/docs/development/how-to-use-jira.html',
           },
           {
             title: '如何成为Committer',

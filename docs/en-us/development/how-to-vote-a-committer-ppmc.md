@@ -38,7 +38,7 @@ title: How to vote a Committer or PPMC - Apache InLong
 
  
 7. 如果以上内容都以完成，投票发起者还需要做如下2件事情：
-   7.1  向项目负责人申请添加项目组成员，开通jira及apache项目的权限帐号。     
+   7.1  向项目负责人申请添加项目组成员，开通apache项目的权限帐号。     
 
    7.2 	向dev@inlong.apache.org邮件组发通知邮件：
       >        [ANNOUNCE] New XXXXXX: YYYYY
