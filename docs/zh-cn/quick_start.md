@@ -27,6 +27,7 @@ $ docker run -v `pwd`:/inlong  -w /inlong maven:3.6-openjdk-8 mvn clean install 
 ```
 inlong-agent
 inlong-dataproxy
+inlong-dataproxy-sdk
 inlong-manager-api
 inlong-manager-openapi
 inlong-sort
@@ -58,6 +59,9 @@ inlong-website
 
 ## 部署部署InLong DataProxy
 [部署InLong DataProxy](modules/dataproxy/quick_start.md)
+
+## 部署部署InLong DataProxy-SDK
+[部署InLong DataProxy](modules/dataproxy-sdk/quick_start.md)
 
 ## 部署部署InLong Agent
 [部署InLong Agent](modules/agent/quick_start.md)

@@ -66,6 +66,19 @@ export default {
             ],
           },
           {
+            title: 'DataProxy-SDK',
+            children: [
+               {
+                 title: 'Architecture',
+                 link: '/en-us/docs/modules/dataproxy-sdk/architecture.html',
+               },
+ 			   {
+ 			     title: 'Build && Deployment',
+ 			     link: '/en-us/docs/modules/dataproxy-sdk/quick_start.html',
+ 			   },
+            ],
+          },
+          {
             title: 'TubeMQ',
             children: [
                {
@@ -204,6 +217,19 @@ export default {
                {
                  title: '编译部署',
                  link: '/zh-cn/docs/modules/dataproxy/quick_start.html',
+               },
+             ],
+          },
+          {
+            title: 'DataProxy-SDK',
+            children: [
+               {
+                 title: '架构介绍',
+                 link: '/zh-cn/docs/modules/dataproxy-sdk/architecture.html',
+               },
+               {
+                 title: '编译部署',
+                 link: '/zh-cn/docs/modules/dataproxy-sdk/quick_start.html',
                },
              ],
           },
