@@ -12,8 +12,8 @@ Online operation needs to pull the configuration from inlong-manager, the config
 ```ini
 agent.fetcher.classname=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (the class name for fetch tasks, default ManagerFetcher）
 agent.local.ip=Write local ip
-agent.manager.vip.http.host=manager open api host
-agent.manager.vip.http.port=manager open api port
+agent.manager.vip.http.host=manager web host
+agent.manager.vip.http.port=manager web port
 ```
 
 ### 1.2 Proxy configuration
