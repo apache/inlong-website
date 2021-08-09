@@ -16,14 +16,13 @@ title: Architecture Introduction-Apache InLong Manager
 
 ##Module division of labor
 
-|Module |Responsibilities |
+| Module | Responsibilities |
 | :----| :---- |
-|manager-common |Module common code, entry exception definition, tool class, enumeration, etc.|
-|manager-dao|Database Operation|
-|manager-openapi |Background open interface|
-|manager-service |Business Logic Layer |
-|manager-web |Front-end interactive response interface|
-|manager-workflow-engin|Workflow Engine|
+| manager-common | Module common code, entry exception definition, tool class, enumeration, etc.|
+| manager-dao |Database Operation |
+| manager-service |Business Logic Layer |
+| manager-web | Front-end interactive response interface |
+| manager-workflow-engine | Workflow Engine |
 
 ## use process 
 ![](img/interactive.jpg)

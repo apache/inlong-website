@@ -20,8 +20,8 @@
 <p>线上运行需要从inlong-manager拉取配置，配置conf/agent.properties如下：</p>
 <pre><code class="language-ini"><span class="hljs-attr">agent.fetcher.classname</span>=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (设置任务获取的类名，默认为ManagerFetcher）
 <span class="hljs-attr">agent.local.ip</span>=写入本机ip
-<span class="hljs-attr">agent.manager.vip.http.host</span>=manager open api host
-<span class="hljs-attr">agent.manager.vip.http.port</span>=manager open api port
+<span class="hljs-attr">agent.manager.vip.http.host</span>=manager web host
+<span class="hljs-attr">agent.manager.vip.http.port</span>=manager web port
 </code></pre>
 <h3>1.2 DataProxy 相关设置</h3>
 <p>在agent目录下新建.inlong文件夹，内部新建bid+.local文件，例如设置的发送bid为a, 则新建a.local文件</p>

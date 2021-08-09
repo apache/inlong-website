@@ -38,110 +38,54 @@ to <a href="https://inlong.apache.org/zh-cn/docs/modules/tubemq/tubemq-manager/q
 , install and start TubeManager.</p>
 </li>
 </ul>
-<h1>2. Deploy and start manager-api</h1>
-<p><strong>manager-api is a background service that interacts with the front-end page.</strong></p>
+<h1>2. Deploy and start manager-web</h1>
+<p><strong>manager-web is a background service that interacts with the front-end page.</strong></p>
 <h2>2.1 Prepare installation files</h2>
-<p>All installation files at <code>inlong-manager-api</code> directory.</p>
+<p>All installation files at <code>inlong-manager-web</code> directory.</p>
 <h2>2.2 Modify configuration</h2>
-<p>Go to the decompressed <code>manager-api</code> directory and modify the <code>conf/application.yml</code> file:</p>
-<pre><code class="language-yaml"><span class="hljs-comment"># manager-api service port number</span>
-<span class="hljs-attr">server:</span>
-  <span class="hljs-attr">port:</span> <span class="hljs-number">8083</span>
-
-<span class="hljs-comment"># The configuration file used is dev</span>
-<span class="hljs-attr">spring:</span>
-  <span class="hljs-attr">profiles:</span>
-    <span class="hljs-attr">active:</span> <span class="hljs-string">dev</span>
+<p>Go to the decompressed <code>inlong-manager-web</code> directory and modify the <code>conf/application.properties</code> file:</p>
+<pre><code class="language-properties"><span class="hljs-comment"># manager-web service port number</span>
+<span class="hljs-meta">server.port</span>=<span class="hljs-string">8083</span>
+<span class="hljs-comment">
+# The configuration file used is dev</span>
+<span class="hljs-meta">spring.profiles.active</span>=<span class="hljs-string">dev</span>
 </code></pre>
-<p>The dev configuration is specified above, then modify the <code>conf/application-dev.yml</code> file:</p>
+<p>The dev configuration is specified above, then modify the <code>conf/application-dev.properties</code> file:</p>
 <ol>
 <li>
-<p>Modify the database URL, user name and password:</p>
-<pre><code class="language-yaml"><span class="hljs-attr">spring:</span>
-  <span class="hljs-attr">datasource:</span>
-    <span class="hljs-attr">jdbc-url:</span> <span class="hljs-string">jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;characterEncoding=UTF-8&amp;nullCatalogMeansCurrent=true</span>
-    <span class="hljs-attr">username:</span> <span class="hljs-string">xxxxxx</span>
-    <span class="hljs-attr">password:</span> <span class="hljs-string">xxxxxx</span>
+<p>Modify the database URL, username and password:</p>
+<pre><code class="language-properties"><span class="hljs-meta">spring.datasource.jdbc-url</span>=<span class="hljs-string">jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;characterEncoding=UTF-8&amp;nullCatalogMeansCurrent=true&amp;serverTimezone=GMT%2b8</span>
+<span class="hljs-meta">spring.datasource.username</span>=<span class="hljs-string">xxxxxx</span>
+<span class="hljs-meta">spring.datasource.password</span>=<span class="hljs-string">xxxxxx</span>
 </code></pre>
 </li>
 <li>
-<p>Modify the connection information of the Tube and ZooKeeper clusters, among which <code>cluster.zk.root</code> suggests to use
+<p>Modify the connection information of the Tube and ZooKeeper clusters, among which <code>cluster.zk.root</code> suggests using
 the default value:</p>
-<pre><code class="language-yaml"><span class="hljs-attr">cluster:</span>
-  <span class="hljs-attr">tube:</span>
-    <span class="hljs-attr">manager:</span> <span class="hljs-string">http://127.0.0.1:8081</span> <span class="hljs-comment"># Manager address of Tube cluster, used to create Topic</span>
-    <span class="hljs-attr">master:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8000,127.0.0.1:8010</span> <span class="hljs-comment"># Broker used to manage Tube</span>
-    <span class="hljs-attr">clusterId:</span> <span class="hljs-number">1</span> <span class="hljs-comment"># Tube cluster ID</span>
-  <span class="hljs-attr">zk:</span>
-    <span class="hljs-attr">url:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:2181</span>
-    <span class="hljs-attr">root:</span> <span class="hljs-string">inlong_hive</span>
-<span class="hljs-attr">sort.appName:</span> <span class="hljs-string">inlong_app</span> <span class="hljs-comment"># The app name for Sort, default is 'inlong_app'</span>
+<pre><code class="language-properties"><span class="hljs-comment"># Manager address of Tube cluster, used to create Topic</span>
+<span class="hljs-meta">cluster.tube.manager</span>=<span class="hljs-string">http://127.0.0.1:8081</span>
+<span class="hljs-comment"># Broker used to manage Tube</span>
+<span class="hljs-meta">cluster.tube.master</span>=<span class="hljs-string">127.0.0.1:8000,127.0.0.1:8010</span>
+<span class="hljs-comment"># Tube cluster ID</span>
+<span class="hljs-meta">cluster.tube.clusterId</span>=<span class="hljs-string">1</span>
+<span class="hljs-comment">
+# ZK cluster, used to push the configuration of Sort</span>
+<span class="hljs-meta">cluster.zk.url</span>=<span class="hljs-string">127.0.0.1:2181</span>
+<span class="hljs-meta">cluster.zk.root</span>=<span class="hljs-string">inlong_hive</span>
+<span class="hljs-comment">
+# Sort application name, that is, set the cluster-id parameter of Sort, the default value is "inlong_app"</span>
+<span class="hljs-meta">sort.appName</span>=<span class="hljs-string">inlong_app</span>
 </code></pre>
 </li>
 </ol>
 <h2>2.3 Start the service</h2>
 <p>Enter the decompressed directory, execute <code>sh bin/startup.sh</code> to start the service, and check the
-log <code>tailf log/manager-api.log</code>. If a log similar to the following appears, the service has started successfully:</p>
-<pre><code class="language-shell">Started InLongApiApplication in 6.795 seconds (JVM running for 7.565)
+log <code>tailf log/manager-web.log</code>. If a log similar to the following appears, the service has started successfully:</p>
+<pre><code class="language-shell">Started InLongWebApplication in 6.795 seconds (JVM running for 7.565)
 </code></pre>
-<h1>3. Deploy and start manager-openapi</h1>
-<p><strong>manager-openapi is a service that provides interactive interfaces for other components (such as Agent and DataProxy)
-.</strong></p>
-<h2>3.1 Prepare installation files</h2>
-<p>All installation files at <code>inlong-manager-openapi</code> directory.</p>
-<h2>3.2 Modify configuration</h2>
-<p>Go to the decompressed <code>manager-openapi</code> directory and modify the <code>conf/application.yml</code> file:</p>
-<pre><code class="language-yaml"><span class="hljs-comment"># manager-openapi service port number</span>
-<span class="hljs-attr">server:</span>
-  <span class="hljs-attr">port:</span> <span class="hljs-number">8082</span>
-
-<span class="hljs-comment"># The configuration file used is dev</span>
-<span class="hljs-attr">spring:</span>
-  <span class="hljs-attr">profiles:</span>
-    <span class="hljs-attr">active:</span> <span class="hljs-string">dev</span>
-</code></pre>
-<p>The dev configuration is specified above, then modify the <code>conf/application-dev.yml</code> file:</p>
-<ol>
-<li>
-<p>Modify the database URL, user name and password:</p>
-<pre><code class="language-yaml"><span class="hljs-attr">spring:</span>
-  <span class="hljs-attr">datasource:</span>
-    <span class="hljs-attr">jdbc-url:</span> <span class="hljs-string">jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;characterEncoding=UTF-8&amp;nullCatalogMeansCurrent=true</span>
-    <span class="hljs-attr">username:</span> <span class="hljs-string">xxxxxx</span>
-    <span class="hljs-attr">password:</span> <span class="hljs-string">xxxxxx</span>
-</code></pre>
-</li>
-<li>
-<p>Modify the connection information of the Tube and ZooKeeper clusters, among which <code>cluster.zk.root</code> suggests to use
-the default value:</p>
-<pre><code class="language-yaml"><span class="hljs-attr">cluster:</span>
-  <span class="hljs-attr">tube:</span>
-    <span class="hljs-attr">manager:</span> <span class="hljs-string">http://127.0.0.1:8081</span> <span class="hljs-comment"># Manager address of Tube cluster, used to create Topic</span>
-    <span class="hljs-attr">master:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:8000,127.0.0.1:8010</span> <span class="hljs-comment"># Broker used to manage Tube</span>
-    <span class="hljs-attr">clusterId:</span> <span class="hljs-number">1</span> <span class="hljs-comment"># Tube cluster ID</span>
-  <span class="hljs-attr">zk:</span>
-    <span class="hljs-attr">url:</span> <span class="hljs-number">127.0</span><span class="hljs-number">.0</span><span class="hljs-number">.1</span><span class="hljs-string">:2181</span>
-    <span class="hljs-attr">root:</span> <span class="hljs-string">inlong_hive</span>
-<span class="hljs-attr">sort.appName:</span> <span class="hljs-string">inlong_app</span> <span class="hljs-comment"># The app name for Sort, default is 'inlong_app'</span>
-</code></pre>
-</li>
-</ol>
-<h2>3.3 Start the service</h2>
-<p>Enter the decompressed directory, execute <code>sh bin/startup.sh</code> to start the service, and check the
-log <code>tailf log/manager-openapi.log</code>. If a log similar to the following appears, the service has started successfully:</p>
-<pre><code class="language-shell">Started InLongOpenApiApplication in 5.341 seconds (JVM running for 6.002)
-</code></pre>
-<h1>4. Service access verification</h1>
-<ol>
-<li>
-<p>Verify the manager-api service:</p>
-<p>Visit address: <a href="http://%5Bmanager_api_ip%5D:%5Bmanager_api_port%5D/api/inlong/manager/doc.html#/home">http://[manager_api_ip]:[manager_api_port]/api/inlong/manager/doc.html#/home</a></p>
-</li>
-<li>
-<p>Verify the manager-openapi service:</p>
-<p>Visit address: <a href="http://%5Bmanager_openapi_ip%5D:%5Bmanager_openapi_port%5D/openapi/inlong/manager/doc.html#/home">http://[manager_openapi_ip]:[manager_openapi_port]/openapi/inlong/manager/doc.html#/home</a></p>
-</li>
-</ol>
+<h1>3. Service access verification</h1>
+<p>Verify the manager-web service:</p>
+<p>Visit address: <a href="http://%5Bmanager_web_ip%5D:%5Bmanager_web_port%5D/api/inlong/manager/doc.html#/home">http://[manager_web_ip]:[manager_web_port]/api/inlong/manager/doc.html#/home</a></p>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
 	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>

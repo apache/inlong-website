@@ -21,11 +21,9 @@ title: 架构介绍 - Apache InLong Manager
 | :-----| :---- |
 | manager-common | 模块公共代码，入异常定义，工具类，枚举等 |
 | manager-dao | 数据库操作 |
-| manager-opapi | 后台开放接口|
 | manager-service | 业务逻辑层 |
 | manager-web | 前端交互对应接口 |
-| manager-workflow-engin | 工作流引擎|
-
+| manager-workflow-engine | 工作流引擎|
 
 ## 系统使用流程
 ![](img/interactive.jpg)

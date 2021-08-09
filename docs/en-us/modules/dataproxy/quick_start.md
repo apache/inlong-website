@@ -14,10 +14,10 @@ notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner da
 sh prepare_env.sh
 ```
 
-### config manager openapi
+### config manager web url
 配置文件`conf/common.properties`:
 ```
-# manager open api 
+# manager web 
 manager_hosts=ip:port 
 ```
 

@@ -20,8 +20,8 @@
 <p>Online operation needs to pull the configuration from inlong-manager, the configuration conf/agent.properties is as follows:</p>
 <pre><code class="language-ini"><span class="hljs-attr">agent.fetcher.classname</span>=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (the class name for fetch tasks, default ManagerFetcher）
 <span class="hljs-attr">agent.local.ip</span>=Write local ip
-<span class="hljs-attr">agent.manager.vip.http.host</span>=manager open api host
-<span class="hljs-attr">agent.manager.vip.http.port</span>=manager open api port
+<span class="hljs-attr">agent.manager.vip.http.host</span>=manager web host
+<span class="hljs-attr">agent.manager.vip.http.port</span>=manager web port
 </code></pre>
 <h3>1.2 Proxy configuration</h3>
 <p>Create a new folder named .inlong in the agent directory, and create a new bid+.local file inside. For example, if the sending bid is set to a, then create a new file a.local</p>

@@ -29,8 +29,7 @@ after compile successfully, you could find distribution file at `inlong-distribu
 inlong-agent
 inlong-dataproxy
 inlong-dataproxy-sdk
-inlong-manager-api
-inlong-manager-openapi
+inlong-manager-web
 inlong-sort
 inlong-tubemq-manager
 inlong-tubemq-server

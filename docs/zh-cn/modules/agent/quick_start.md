@@ -11,8 +11,8 @@ agent 支持本地运行以及线上运行，其中线上运行从inlong manager
 ```ini
 agent.fetcher.classname=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (设置任务获取的类名，默认为ManagerFetcher）
 agent.local.ip=写入本机ip
-agent.manager.vip.http.host=manager open api host
-agent.manager.vip.http.port=manager open api port
+agent.manager.vip.http.host=manager web host
+agent.manager.vip.http.port=manager web port
 ```
 
 ### 1.2 DataProxy 相关设置
