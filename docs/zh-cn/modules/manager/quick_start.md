@@ -35,7 +35,7 @@
 前往 `inlong-manager-web` 目录，修改 `conf/application.properties` 文件：
 
 ```properties
-# manager-api 服务的端口号
+# manager-web 服务的端口号
 server.port=8083
 
 # 默认使用的配置文件为 dev
