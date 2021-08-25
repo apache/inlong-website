@@ -42,7 +42,7 @@ agent.http.port=可用端口
 
 #### 3.2 执行如下命令：
 ```bash
-curl --location --request POST 'http://localhost:8018/config/job' \
+curl --location --request POST 'http://localhost:8008/config/job' \
 --header 'Content-Type: application/json' \
 --data '{
 "job": {

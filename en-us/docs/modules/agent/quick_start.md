@@ -45,7 +45,7 @@ agent.http.port=Available ports
 
 #### 3.2 Execute the following command
 ```bash
-    curl --location --request POST 'http://localhost:8129/config/job' \
+    curl --location --request POST 'http://localhost:8008/config/job' \
     --header 'Content-Type: application/json' \
     --data '{
     "job": {
