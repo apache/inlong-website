@@ -79,8 +79,8 @@ agent.http.port=Available ports
     - job.trigger: Trigger name, the default is DirectoryTrigger, the function is to monitor the files under the folder to generate events
     - job.source: The type of data source used, the default is TextFileSource, which reads text files
     - job.sink：The type of writer used, the default is ProxySink, which sends messages to the proxy
-    - proxy.bid: The bid type used when writing proxy
-    - proxy.tid: The tid type used when writing proxy
+    - proxy.bid: The bid type used when writing proxy, bid is business id showed on data access in inlong-manager, not the topic name.
+    - proxy.tid: The tid type used when writing proxy, tid is the data flow id showed on data flow window in inlong-manager
 
 
 ## 4、eg for directory config
