@@ -23,7 +23,7 @@
 <pre><code>sh prepare_env.sh
 </code></pre>
 <h3>config manager web url</h3>
-<p>配置文件<code>conf/common.properties</code>:</p>
+<p>configuration file: <code>conf/common.properties</code>:</p>
 <pre><code># manager web 
 manager_hosts=ip:port 
 </code></pre>
@@ -32,6 +32,16 @@ manager_hosts=ip:port
 </code></pre>
 <h2>check</h2>
 <pre><code>telnet 127.0.0.1 46801
+</code></pre>
+<h2>Add DataProxy configuration to InLong-Manager</h2>
+<p>After installing the DataProxy, you need to insert the IP and port of the DataProxy service is located into the backend database of InLong-Manager.</p>
+<p>For the background database address of InLong-Manager, please refer to the deployment document of the InLong-Manager module.</p>
+<p>The insert SQL statement is:</p>
+<pre><code class="language-sql"><span class="hljs-comment">-- name is the name of the DataProxy, which can be customized</span>
+<span class="hljs-comment">-- address is the IP of the DataProxy service is located</span>
+<span class="hljs-comment">-- port is the port of the DataProxy service, default is 46801</span>
+<span class="hljs-keyword">insert</span> <span class="hljs-keyword">into</span> data_proxy_cluster (<span class="hljs-keyword">name</span>, address, port, <span class="hljs-keyword">status</span>, is_deleted, create_time, modify_time)
+<span class="hljs-keyword">values</span> (<span class="hljs-string">"data_proxy_name"</span>, <span class="hljs-string">"data_proxy_ip"</span>, <span class="hljs-number">46801</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-keyword">now</span>(), <span class="hljs-keyword">now</span>());
 </code></pre>
 </div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
 	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
