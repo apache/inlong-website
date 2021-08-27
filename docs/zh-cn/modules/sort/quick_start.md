@@ -33,8 +33,8 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 - `--cluster-id ` 用来唯一标识一个inlong-sort作业
 - `--zookeeper.quorum` zk quorum
 - `--zookeeper.path.root` zk根目录
-- `--source.type` 数据源的种类, 当前仅支持"tubemq"
-- `--sink.type` 存储系统的种类，当前支持"clickhouse" 和 "hive"
+- `--source.type` 数据源的种类, 当前支持："tubemq"、"pulsar"
+- `--sink.type` 存储系统的种类，当前支持："clickhouse"、"hive"
 
 **配置示例**
 
@@ -46,8 +46,8 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 |cluster-id   | Y | NA  |  用来唯一标识一个inlong-sort作业 |
 |zookeeper.quorum   | Y  | NA  | zk quorum  |
 |zookeeper.path.root   | Y  | "/inlong-sort"  |  zk根目录  |
-|source.type   | Y | NA | 数据源的种类, 当前仅支持"tubemq"  |
-|sink.type   | Y  | NA  | 存储系统的种类，当前支持"clickhouse", "iceberg" 和 "hive" |
+|source.type   | Y | NA | 数据源的种类, 当前支持"tubemq"和"pulsar"  |
+|sink.type   | Y  | NA  | 存储系统的种类，当前支持"clickhouse" 和 "hive" |
 |source.parallelism   | N  | 1  | source的并行度  |
 |deserialization.parallelism | N | 1 | deserialization的并行度  |
 |sink.parallelism   | N  | 1  | sink的并行度 |
