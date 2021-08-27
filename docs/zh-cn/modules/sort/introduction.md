@@ -20,6 +20,7 @@ inlong-sort支持热更新元数据，比如更新数据源的信息，数据sch
 
 # 支持的数据源
 - inlong-tubemq
+- pulsar
 
 # 支持的存储系统
 - hive（当前只支持parquet文件格式）
@@ -30,7 +31,7 @@ inlong-sort支持热更新元数据，比如更新数据源的信息，数据sch
 
 # 未来规划
 ## 支持更多种类的数据源
-pulsar，kafka等
+kafka等
 
 
 ## 支持更多种类的存储
