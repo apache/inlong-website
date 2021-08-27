@@ -2,7 +2,7 @@
 Quick Start - Apache InLong-sort
 ---
 
-##  Set up flink environment
+## Set up flink environment
 Currently inlong-sort is based on flink, before you run an inlong-sort application,
 you need to set up flink environment.
 
@@ -12,10 +12,10 @@ Currently, inlong-sort relys on flink-1.9.3. Chose `flink-1.9.3-bin-scala_2.11.t
 
 Once your flink environment is set up, you can visit web ui of flink, whose address is stored in `/${your_flink_path}/conf/masters`.
 
-##  Prepare installation files
+## Prepare installation files
 All installation files at `inlong-sort` directory.
 
-##  Starting an inlong-sort application
+## Starting an inlong-sort application
 Now you can submit job to flink with the jar compiled.
 
 <a href="https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/yarn_setup.html#submit-job-to-flink" target="_blank">how to submit job to flink</a>
@@ -26,15 +26,15 @@ Example：
 
 Notice：
 
-- `-c org.apache.inlong.sort.flink.Entrance` 表示main class name
+- `-c org.apache.inlong.sort.flink.Entrance` is the main class name
 
-- `inlong-sort-core-1.0-SNAPSHOT.jar` 为编译阶段产出的jar包
+- `inlong-sort-core-1.0-SNAPSHOT.jar` is the compiled jar
 
-##  Necessary configurations
+## Necessary configurations
 - `--cluster-id ` which is used to represent a specified inlong-sort application
 - `--zookeeper.quorum` zk quorum
 - `--zookeeper.path.root` zk root path
-- `--source.type` source of the application, currently only "tubemq" is supported
+- `--source.type` source of the application, currently "tubemq" and "pulsar" are supported
 - `--sink.type` sink of the application, currently "clickhouse" and "hive" are supported
 
 Configurations above are necessary, you can see full configurations in
@@ -51,7 +51,7 @@ Configurations above are necessary, you can see full configurations in
 |cluster-id   |  Y | NA  |  used to represent a specified inlong-sort application |
 |zookeeper.quorum   | Y  | NA  | zk quorum  |
 |zookeeper.path.root   | Y  | "/inlong-sort"  |  zk root path  |
-|source.type   | Y | NA   | source of the application, currently only "tubemq" is supported  |
+|source.type   | Y | NA   | source of the application, currently "tubemq" and "pulsar" are supported  |
 |sink.type   | Y  | NA  | sink of the application, currently "clickhouse" and "hive" are supported  |
 |source.parallelism   | N  | 1  | parallelism of source  |
 |deserialization.parallelism   | N  |  1 | parallelism of deserialization  |

@@ -30,10 +30,10 @@ you need to set up flink environment.</p>
 <p>Notice：</p>
 <ul>
 <li>
-<p><code>-c org.apache.inlong.sort.flink.Entrance</code> 表示main class name</p>
+<p><code>-c org.apache.inlong.sort.flink.Entrance</code> is the main class name</p>
 </li>
 <li>
-<p><code>inlong-sort-core-1.0-SNAPSHOT.jar</code> 为编译阶段产出的jar包</p>
+<p><code>inlong-sort-core-1.0-SNAPSHOT.jar</code> is the compiled jar</p>
 </li>
 </ul>
 <h2>Necessary configurations</h2>
@@ -41,7 +41,7 @@ you need to set up flink environment.</p>
 <li><code>--cluster-id</code> which is used to represent a specified inlong-sort application</li>
 <li><code>--zookeeper.quorum</code> zk quorum</li>
 <li><code>--zookeeper.path.root</code> zk root path</li>
-<li><code>--source.type</code> source of the application, currently only &quot;tubemq&quot; is supported</li>
+<li><code>--source.type</code> source of the application, currently &quot;tubemq&quot; and &quot;pulsar&quot; are supported</li>
 <li><code>--sink.type</code> sink of the application, currently &quot;clickhouse&quot; and &quot;hive&quot; are supported</li>
 </ul>
 <p>Configurations above are necessary, you can see full configurations in</p>
@@ -81,7 +81,7 @@ you need to set up flink environment.</p>
 <td>source.type</td>
 <td>Y</td>
 <td>NA</td>
-<td>source of the application, currently only &quot;tubemq&quot; is supported</td>
+<td>source of the application, currently &quot;tubemq&quot; and &quot;pulsar&quot; are supported</td>
 </tr>
 <tr>
 <td>sink.type</td>

@@ -40,8 +40,8 @@
 <li><code>--cluster-id</code> 用来唯一标识一个inlong-sort作业</li>
 <li><code>--zookeeper.quorum</code> zk quorum</li>
 <li><code>--zookeeper.path.root</code> zk根目录</li>
-<li><code>--source.type</code> 数据源的种类, 当前仅支持&quot;tubemq&quot;</li>
-<li><code>--sink.type</code> 存储系统的种类，当前支持&quot;clickhouse&quot; 和 &quot;hive&quot;</li>
+<li><code>--source.type</code> 数据源的种类, 当前支持：&quot;tubemq&quot;、&quot;pulsar&quot;</li>
+<li><code>--sink.type</code> 存储系统的种类，当前支持：&quot;clickhouse&quot;、&quot;hive&quot;</li>
 </ul>
 <p><strong>配置示例</strong></p>
 <p><code>--cluster-id my_application --zookeeper.quorum 192.127.0.1:2181 --zookeeper.path.root /zk_root --source.type tubemq --sink.type hive</code></p>
@@ -78,13 +78,13 @@
 <td>source.type</td>
 <td>Y</td>
 <td>NA</td>
-<td>数据源的种类, 当前仅支持&quot;tubemq&quot;</td>
+<td>数据源的种类, 当前支持&quot;tubemq&quot;和&quot;pulsar&quot;</td>
 </tr>
 <tr>
 <td>sink.type</td>
 <td>Y</td>
 <td>NA</td>
-<td>存储系统的种类，当前支持&quot;clickhouse&quot;, &quot;iceberg&quot; 和 &quot;hive&quot;</td>
+<td>存储系统的种类，当前支持&quot;clickhouse&quot; 和 &quot;hive&quot;</td>
 </tr>
 <tr>
 <td>source.parallelism</td>
