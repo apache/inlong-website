@@ -26,7 +26,7 @@ sh agent.sh start
 
 ## 3、Add job configuration in real time
 
-#### 3.1 agent.propertities Modify the following two places
+#### 3.1 agent.properties Modify the following two places
 ```ini
 # whether enable http service
 agent.http.enable=true

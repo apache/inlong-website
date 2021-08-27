@@ -16,6 +16,7 @@ agent.manager.vip.http.port=manager web port
 ```
 
 ## 2、运行
+
 解压后如下命令运行
 ```bash
 sh agent.sh start
@@ -23,7 +24,8 @@ sh agent.sh start
 
 ### 3 实时添加job配置
 
-#### 3.1 agent.propertities 修改下面两处
+#### 3.1 agent.properties 修改下面两处
+
 ```ini
 # whether enable http service
 agent.http.enable=true
@@ -32,6 +34,7 @@ agent.http.port=可用端口
 ```
 
 #### 3.2 执行如下命令：
+
 ```bash
 curl --location --request POST 'http://localhost:8008/config/job' \
 --header 'Content-Type: application/json' \
