@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="example" />
+	<meta name="description" content="example" />
+	<!-- 网页标签标题 -->
+	<title>入库 Hive 示例 - Apache InLong</title>
+	<link rel="shortcut icon" href="/img/apache.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><a href="//www.apache.org"><img class="logo apache" style="width:120px" src="/img/asf_logo.svg"/></a><div class="logo-split"></div><img class="logo tube" style="width:120px;top:12px;position:absolute" src="/img/Tube logo.svg"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><div><ul class="ant-menu blackClass ant-menu-light ant-menu-root ant-menu-horizontal" role="menu"><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/docs/quick_start.html" target="_self">文档</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/docs/download/download.html" target="_self">下载</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="/zh-cn/docs/development/how-to-contribute.html" target="_self">开发</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-item" role="menuitem"><a href="https://github.com/apache/incubator-inlong" target="_self">GITHUB</a></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="display:none" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span class="submenu-title-wrapper">Apache</span><i class="ant-menu-submenu-arrow"></i></div></li><li class="ant-menu-submenu ant-menu-submenu-horizontal ant-menu-overflowed-submenu" style="visibility:hidden;position:absolute" role="menuitem"><div class="ant-menu-submenu-title" aria-expanded="false" aria-haspopup="true"><span>···</span><i class="ant-menu-submenu-arrow"></i></div></li></ul></div></div></div><div class="header-background"></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>文档</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>引导</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/quick_start.html" target="_self">快速开始</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/example.html" target="_self">入库Hive示例</a></li></ul></li><li class="menu-item menu-item-level-1"><span>组件介绍</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>Manager<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/manager/architecture.html" target="_self">架构介绍</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/manager/user_manual.html" target="_self">管控台操作指引</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/manager/quick_start.html" target="_self">编译部署</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>WebSite<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/website/quick_start.html" target="_self">编译部署</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>Agent<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/agent/architecture.html" target="_self">架构介绍</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/agent/quick_start.html" target="_self">编译部署</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>DataProxy<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/dataproxy/architecture.html" target="_self">架构介绍</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/dataproxy/quick_start.html" target="_self">编译部署</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>DataProxy-SDK<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/dataproxy-sdk/architecture.html" target="_self">架构介绍</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/dataproxy-sdk/quick_start.html" target="_self">编译部署</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>TubeMQ<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/architecture.html" target="_self">架构介绍</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/quick_start.html" target="_self">快速开始</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/configure_introduction.html" target="_self">配置参数介绍</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/console_introduction.html" target="_self">管控台操作指引</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/client_rpc.html" target="_self">客户端RPC</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/error_code.html" target="_self">错误码</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/deployment.html" target="_self">部署示例</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/http_access_api.html" target="_self">HTTP API介绍</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/clients_java.html" target="_self">JAVA SDK使用示例</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>TubeMQ-Manager<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html" target="_self">编译部署</a></li></ul></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><span>Sort<img style="transform:rotate(-90deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/sort/introduction.html" target="_self">架构介绍</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/sort/protocol_introduction.html" target="_self">Zookeeper配置介绍</a></li><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/modules/sort/quick_start.html" target="_self">编译部署</a></li></ul></li></ul></li><li class="menu-item menu-item-level-1"><span><div class="menu-item menu-item-level-1" style="margin-left:-20px"><a href="/zh-cn/docs/contact.html" target="_self" style="padding-left:20px">联系我们</a></div></span><ul></ul></li></ul></div><div class="doc-content markdown-body"><p>本节用一个简单的示例，帮助您使用 Docker 快速体验 InLong 的完整流程。</p>
+<h2>前置要求</h2>
+<ul>
+<li>Git</li>
+<li>Docker</li>
+<li>Docker-Compose</li>
+</ul>
+<h2>安装 Hive</h2>
+<p>Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐使用 Docker 进行快速安装，详情可见 <a href="https://github.com/big-data-europe/docker-hive">这里</a>。</p>
+<blockquote>
+<p>注意，我们需要在 namenode 中添加一个端口映射 <code>8020:8020</code>，因为它是 HDFS DefaultFS 的端口。</p>
+</blockquote>
+<h2>安装 InLong</h2>
+<p>我们提供了 InLong 的 Docker 镜像，帮助你快速部署所有组件。</p>
+<p>首先需要拉取 InLong 仓库</p>
+<pre><code>$ git clone https://github.com/apache/incubator-inlong.git
+</code></pre>
+<p>然后进入 <code>docker-compose</code> 目录下</p>
+<pre><code>$ cd ./docker/docker-compose
+</code></pre>
+<p>然后使用 <code>docker-compsoe</code> 命令安装 InLong 的相关组件</p>
+<pre><code>docker-compose up -d
+</code></pre>
+<p>我们可以使用 <code>docker-compose ps</code> 来观察所有容器的启动状况。待所有容器启动完毕后，InLong 即安装成功。</p>
+<h2>新建账号</h2>
+<p>首先我们访问 <code>http://localhost:80</code> 进入 InLong Manager 的主页，并输入账户名 <code>admin</code> 和 密码 <code>inlong</code> 进入管理员账户。</p>
+<p>然后进入 “系统管理” 界面，点击 “新建账号”，添加一个新的普通用户，这里我们以添加账户名 <code>test</code> 和 密码 <code>test</code> 为例。</p>
+<img src="../../img/create-account.png" align="center" alt="Create Account"/>
+<h2>新建接入</h2>
+<p>然后我们进入 “数据接入” 界面，点击右上角的 “新建接入”，新建一条接入，按下图所示填入业务信息</p>
+<img src="../../img/create-business.png" align="center" alt="Create Business"/>
+<p>然后点击下一步，按下图所示填入数据流信息</p>
+<img src="../../img/create-stream.png" align="center" alt="Create Stream"/>
+<p>注意其中消息来源选择“文件”，暂时不用新建数据源。</p>
+<p>然后我们在下面的“数据信息”一栏中填入以下信息</p>
+<img src="../../img/date-information.png" align="center" alt="Data Information"/>
+<p>然后在数据流向中选择 Hive，并点击 “添加”，添加 Hive 配置</p>
+<img src="../../img/hive-config.png" align="center" alt="Hive Config"/>
+<p>注意这里目标表无需提前创建，InLong Manager 会在接入通过之后自动为我们创建表。另外，请使用 “连接测试” 保证 InLong Manager 可以连接到你的 Hive。</p>
+<p>然后点击“提交审批”按钮，该接入就会创建成功，进入审批状态。</p>
+<h2>审批接入</h2>
+<p>进入“审批管理”界面，点击“我的审批”，将刚刚申请的接入通过。</p>
+<p>到此接入就已经创建完毕了，我们可以在 Hive 中看到相应的表已经被创建，并且在 TubeMQ 的管理界面中可以看到相应的 topic 已经创建成功。</p>
+<h2>配置 agent</h2>
+<p>然后我们使用 docker 进入 agent 容器内，创建相应的 agent 配置。</p>
+<pre><code>$ docker exec -it agent sh
+</code></pre>
+<p>然后我们新建 <code>.inlong</code> 文件夹，并创建以 <code>bid.local</code> 命名的文件，在其中填入 Dataproxy 有关配置。</p>
+<pre><code>$ mkdir .inlong
+$ cd .inlong
+$ touch b_test.local
+$ echo '{&quot;cluster_id&quot;:1,&quot;isInterVisit&quot;:1,&quot;size&quot;:1,&quot;address&quot;: [{&quot;port&quot;:46801,&quot;host&quot;:&quot;dataproxy&quot;}], &quot;switch&quot;:0}' &gt;&gt; b_test.local
+</code></pre>
+<p>然后退出容器，使用 curl 向 agent 容器发送请求。</p>
+<pre><code>curl --location --request POST 'http://localhost:8008/config/job' \
+--header 'Content-Type: application/json' \
+--data '{
+&quot;job&quot;: {
+&quot;dir&quot;: {
+&quot;path&quot;: &quot;&quot;,
+&quot;pattern&quot;: &quot;/data/collect-data/test.log&quot;
+},
+&quot;trigger&quot;: &quot;org.apache.inlong.agent.plugin.trigger.DirectoryTrigger&quot;,
+&quot;id&quot;: 1,
+&quot;thread&quot;: {
+&quot;running&quot;: {
+&quot;core&quot;: &quot;4&quot;
+}
+},
+&quot;name&quot;: &quot;fileAgentTest&quot;,
+&quot;source&quot;: &quot;org.apache.inlong.agent.plugin.sources.TextFileSource&quot;,
+&quot;sink&quot;: &quot;org.apache.inlong.agent.plugin.sinks.ProxySink&quot;,
+&quot;channel&quot;: &quot;org.apache.inlong.agent.plugin.channel.MemoryChannel&quot;
+},
+&quot;proxy&quot;: {
+&quot;bid&quot;: &quot;b_test&quot;,
+&quot;tid&quot;: &quot;test_stream&quot;
+},
+&quot;op&quot;: &quot;add&quot;
+}'
+</code></pre>
+<p>至此，agent 就配置完毕了。接下来我们可以新建 <code>./collect-data/test.log</code> ，并往里面添加内容，来触发 agent 向 dataproxy 发送数据了。</p>
+<pre><code>$ touch collect-data/test.log
+$ echo 'test,24' &gt;&gt; collect-data/test.log
+</code></pre>
+<p>然后观察 agent 和 dataproxy 的日志，可以看到相关数据已经成功发送。</p>
+<pre><code>$ docker logs agent
+$ docker logs dataproxy
+</code></pre>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/incubator-logo.svg"/><div class="cols-container"><div class="col col-24"><p>Apache InLong (incubating) is an effort undergoing incubation at The Apache Software Foundation (ASF), sponsored by Incubator. Incubation is required of all newly accepted projects until a further review indicates that the infrastructure, communications, and decision making process have stabilized in a manner consistent with other successful ASF projects. While incubation status is not necessarily a reflection of the completeness or stability of the code, it does indicate that the project has yet to be fully endorsed by the ASF.</p></div></div><div class="copyright"><span>Copyright © 2019-2020 The Apache Software Foundation. Apache InLong, InLong, and its feather logo are trademarks of The Apache Software Foundation.</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script src="https://buttons.github.io/buttons.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>
