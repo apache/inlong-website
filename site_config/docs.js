@@ -163,6 +163,10 @@ export default {
             title: '快速开始',
             link: '/zh-cn/docs/quick_start.html',
           },
+          {
+            title: '入库Hive示例',
+            link: '/zh-cn/docs/example.html'
+          }
         ],
       },
       {
