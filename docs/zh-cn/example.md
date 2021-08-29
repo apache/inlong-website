@@ -8,7 +8,7 @@ title: 入库 Hive 示例 - Apache InLong
 ## 安装 Hive
 Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐使用 Docker 进行快速安装，详情可见 [这里](https://github.com/big-data-europe/docker-hive)。
 
-> 注意，如果使用以上 Docker 镜像的话，我们需要在 namenode 中添加一个端口映s射 `8020:8020`，因为它是 HDFS DefaultFS 的端口，后面在配置 Hive 时需要用到。
+> 注意，如果使用以上 Docker 镜像的话，我们需要在 namenode 中添加一个端口映射 `8020:8020`，因为它是 HDFS DefaultFS 的端口，后面在配置 Hive 时需要用到。
 
 ## 安装 InLong
 在开始之前，我们需要安装 InLong 的全部组件，这里提供两种方式：
