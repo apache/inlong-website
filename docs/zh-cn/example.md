@@ -4,45 +4,20 @@ title: 入库 Hive 示例 - Apache InLong
 
 本节用一个简单的示例，帮助您使用 Docker 快速体验 InLong 的完整流程。
 
-## 前置要求
-* Git
-* Docker
-* Docker-Compose
 
 ## 安装 Hive
 Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐使用 Docker 进行快速安装，详情可见 [这里](https://github.com/big-data-europe/docker-hive)。
 
-> 注意，我们需要在 namenode 中添加一个端口映射 `8020:8020`，因为它是 HDFS DefaultFS 的端口。
+> 注意，如果使用以上 Docker 镜像的话，我们需要在 namenode 中添加一个端口映s射 `8020:8020`，因为它是 HDFS DefaultFS 的端口，后面在配置 Hive 时需要用到。
 
 ## 安装 InLong
-我们提供了 InLong 的 Docker 镜像，帮助你快速部署所有组件。
+在开始之前，我们需要安装 InLong 的全部组件，这里提供两种方式：
+1. 按照 [这里的说明](https://github.com/apache/incubator-inlong/tree/master/docker/docker-compose)，使用 Docker 进行快速部署。（推荐）
+2. 按照 [这里的说明](./quick_start.md)，使用二进制包依次安装各组件。
 
-首先需要拉取 InLong 仓库
-```
-$ git clone https://github.com/apache/incubator-inlong.git
-```
-
-然后进入 `docker-compose` 目录下
-```
-$ cd ./docker/docker-compose
-```
-
-然后使用 `docker-compsoe` 命令安装 InLong 的相关组件
-```
-docker-compose up -d
-```
-
-我们可以使用 `docker-compose ps` 来观察所有容器的启动状况。待所有容器启动完毕后，InLong 即安装成功。
-
-## 新建账号
-首先我们访问 `http://localhost:80` 进入 InLong Manager 的主页，并输入账户名 `admin` 和 密码 `inlong` 进入管理员账户。
-
-然后进入 “系统管理” 界面，点击 “新建账号”，添加一个新的普通用户，这里我们以添加账户名 `test` 和 密码 `test` 为例。
-
-<img src="../../img/create-account.png" align="center" alt="Create Account"/>
 
 ## 新建接入
-然后我们进入 “数据接入” 界面，点击右上角的 “新建接入”，新建一条接入，按下图所示填入业务信息
+部署完毕后，首先我们进入 “数据接入” 界面，点击右上角的 “新建接入”，新建一条接入，按下图所示填入业务信息
 
 <img src="../../img/create-business.png" align="center" alt="Create Business"/>
 
@@ -54,7 +29,7 @@ docker-compose up -d
 
 然后我们在下面的“数据信息”一栏中填入以下信息
 
-<img src="../../img/date-information.png" align="center" alt="Data Information"/>
+<img src="../../img/data-information.png" align="center" alt="Data Information"/>
 
 然后在数据流向中选择 Hive，并点击 “添加”，添加 Hive 配置
 
