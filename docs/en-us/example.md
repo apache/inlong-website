@@ -1,5 +1,5 @@
 ---
-title: Example - Apache InLong
+title: Hive Example - Apache InLong
 ---
 
 Here we use a simple example to help you experience InLong by Docker.

@@ -9,7 +9,7 @@ export default {
             link: '/en-us/docs/quick_start.html',
           },
           {
-            title: 'Example',
+            title: 'Hive Example',
             link: '/en-us/docs/example.html'
           }
         ],
