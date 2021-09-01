@@ -174,7 +174,6 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/i
         <password>{user-pass}</password>
     </server>
   </servers>
-</settings>
 <profiles>
     <profile>
       <id>apache-release</id>
@@ -186,6 +185,7 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/i
       </properties>
     </profile>
 </profiles>
+</settings>
 ```
 
 ## 3. 编译打包
@@ -211,7 +211,8 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/i
 
 **创建一个带签名的tag**
 ```shell
-$ git tag -s ${release_version}-${rc_version} -m "Tagging the ${release_version} first Releae Candidate (Candidates start at zero)"
+$ git_tag=${release_version}-${rc_version}
+$ git tag -s $git_tag -m "Tagging the ${release_version} first Releae Candidate (Candidates start at zero)"
 # 如果遇到错误 gpg: signing failed: secret key not available，先配置下私钥
 $ git config user.signingkey ${KEY_ID}
 ```
@@ -232,8 +233,7 @@ cd /tmp/apache-inlong-${release_version}-${rc_version} # 进入源码包目录
 tar xzvf apache-inlong-${release_version}-src.tar.gz #解压源码包
 cd apache-inlong-${release_version} # 进入源码目录
 mvn compile clean install package -DskipTests # 编译
-cp ./inlong-client/target/apache-inlong-client-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/ # 拷贝client包到源码包目录下，方面下一步对包进行签名
-cp ./inlong-server/target/apache-inlong-server-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/ # 拷贝server包到源码包目录下，方面下一步对包进行签名
+cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/  # 拷贝二进制包拷到源码包目录下，方面下一步对包进行签名
 ```
 
 ### 3.5 对源码包/二进制包进行签名/sha512
@@ -311,7 +311,7 @@ InLong毕业之后，只需要在InLong社区投票
 
 Hello Apache InLong PPMC and Community,
 
-    This is a call for vote to release Apache InLong version ${release_version}-${rc_version}.
+    This is a call for a vote to release Apache InLong version ${release_version}-${rc_version}.
 
     The tag to be voted on is ${release_version}-${rc_version}:
 
@@ -354,7 +354,7 @@ Hello Apache InLong PPMC and Community,
       [ ] Can compile from source
       [ ] All Tests Passed
 
-      More detail checklist  please refer:
+      More detailed checklist  please refer to:
       https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
 
 Thanks,

@@ -161,7 +161,6 @@ sub   rsa4096 2020-05-18 [E]
         <span class="hljs-tag">&lt;<span class="hljs-name">password</span>&gt;</span>{user-pass}<span class="hljs-tag">&lt;/<span class="hljs-name">password</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">server</span>&gt;</span>
   <span class="hljs-tag">&lt;/<span class="hljs-name">servers</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span>
 <span class="hljs-tag">&lt;<span class="hljs-name">profiles</span>&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-name">profile</span>&gt;</span>
       <span class="hljs-tag">&lt;<span class="hljs-name">id</span>&gt;</span>apache-release<span class="hljs-tag">&lt;/<span class="hljs-name">id</span>&gt;</span>
@@ -173,6 +172,7 @@ sub   rsa4096 2020-05-18 [E]
       <span class="hljs-tag">&lt;/<span class="hljs-name">properties</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-name">profile</span>&gt;</span>
 <span class="hljs-tag">&lt;/<span class="hljs-name">profiles</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-name">settings</span>&gt;</span>
 </code></pre>
 <h2>3. 编译打包</h2>
 <h3>3.1 准备分支</h3>
@@ -200,7 +200,8 @@ sub   rsa4096 2020-05-18 [E]
 <p>创建tag前，要确保代码已经检查无误，包括：编译成功、单元测试全部成功，RAT检查成功等</p>
 </blockquote>
 <p><strong>创建一个带签名的tag</strong></p>
-<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> git tag -s <span class="hljs-variable">${release_version}</span>-<span class="hljs-variable">${rc_version}</span> -m <span class="hljs-string">"Tagging the <span class="hljs-variable">${release_version}</span> first Releae Candidate (Candidates start at zero)"</span></span>
+<pre><code class="language-shell"><span class="hljs-meta">$</span><span class="bash"> git_tag=<span class="hljs-variable">${release_version}</span>-<span class="hljs-variable">${rc_version}</span></span>
+<span class="hljs-meta">$</span><span class="bash"> git tag -s <span class="hljs-variable">$git_tag</span> -m <span class="hljs-string">"Tagging the <span class="hljs-variable">${release_version}</span> first Releae Candidate (Candidates start at zero)"</span></span>
 <span class="hljs-meta">#</span><span class="bash"> 如果遇到错误 gpg: signing failed: secret key not available，先配置下私钥</span>
 <span class="hljs-meta">$</span><span class="bash"> git config user.signingkey <span class="hljs-variable">${KEY_ID}</span></span>
 </code></pre>
@@ -219,8 +220,7 @@ git archive --format=tar.gz --output="/tmp/apache-inlong-${release_version}-${rc
 tar xzvf apache-inlong-${release_version}-src.tar.gz #解压源码包
 cd apache-inlong-${release_version} # 进入源码目录
 mvn compile clean install package -DskipTests # 编译
-cp ./inlong-client/target/apache-inlong-client-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/ # 拷贝client包到源码包目录下，方面下一步对包进行签名
-cp ./inlong-server/target/apache-inlong-server-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/ # 拷贝server包到源码包目录下，方面下一步对包进行签名
+cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/  # 拷贝二进制包拷到源码包目录下，方面下一步对包进行签名
 </code></pre>
 <h3>3.5 对源码包/二进制包进行签名/sha512</h3>
 <pre><code class="language-shell">for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i &gt; $i.sha512 ; done # 计算SHA512
@@ -289,7 +289,7 @@ InLong毕业之后，只需要在InLong社区投票</li>
 
 Hello Apache InLong PPMC and Community,
 
-    This is a call for vote to release Apache InLong version ${release_version}-${rc_version}.
+    This is a call for a vote to release Apache InLong version ${release_version}-${rc_version}.
 
     The tag to be voted on is ${release_version}-${rc_version}:
 
@@ -332,7 +332,7 @@ Hello Apache InLong PPMC and Community,
       [ ] Can compile from source
       [ ] All Tests Passed
 
-      More detail checklist  please refer:
+      More detailed checklist  please refer to:
       https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
 
 Thanks,
