@@ -8,6 +8,10 @@ export default {
             title: 'Quick Start',
             link: '/en-us/docs/quick_start.html',
           },
+          {
+            title: 'Hive Example',
+            link: '/en-us/docs/example.html'
+          }
         ],
       },
       {
