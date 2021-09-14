@@ -28,10 +28,6 @@ export default {
                  title: 'Architecture',
                  link: '/en-us/docs/modules/manager/architecture.html',
                },
-		       {
-                 title: 'Console Introduction',
-                 link: '/en-us/docs/modules/manager/user_manual.html',
-               },
  			   {
 				 title: 'Build && Deployment',
 				 link: '/en-us/docs/modules/manager/quick_start.html',
@@ -190,10 +186,6 @@ export default {
                {
                  title: '架构介绍',
                  link: '/zh-cn/docs/modules/manager/architecture.html',
-               },
-		       {
-                 title: '管控台操作指引',
-                 link: '/zh-cn/docs/modules/manager/user_manual.html',
                },
                {
                  title: '编译部署',
