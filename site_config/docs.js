@@ -9,6 +9,10 @@ export default {
             link: '/en-us/docs/quick_start.html',
           },
           {
+              title: 'User Manual',
+              link: '/en-us/docs/cookbooks/user_manual.html',
+          },
+          {
             title: 'Hive Example',
             link: '/en-us/docs/example.html'
           }
@@ -166,6 +170,10 @@ export default {
           {
             title: '快速开始',
             link: '/zh-cn/docs/quick_start.html',
+          },
+          {
+              title: '用户手册',
+              link: '/zh-cn/docs/cookbooks/user_manual.html',
           },
           {
             title: '入库Hive示例',

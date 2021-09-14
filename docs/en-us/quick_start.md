@@ -67,7 +67,7 @@ inlong-website
 [deploy InLong Agent](modules/agent/quick_start.md)
 
 ## Business configuration
-[How to configure a new business](modules/manager/user_manual.md)
+[How to configure a new business](cookbooks/user_manual.md)
 
 ## Data report verification
 At this stage, you can collect data through the file agent and verify whether the received data is consistent with the sent data in the specified Hive table.

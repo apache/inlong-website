@@ -66,7 +66,7 @@ inlong-website
 [部署InLong Agent](modules/agent/quick_start.md)
 
 ## 业务配置
-[配置新业务](modules/manager/user_manual.md)
+[配置新业务](cookbooks/user_manual.md)
 
 ## 数据上报验证
 到这里，您就可以通过文件Agent采集数据并在指定的Hive表中验证接收到的数据是否与发送的数据一致。
