@@ -11,17 +11,14 @@ title: Download - Apache InLong
 - Source: [inlong-0.10.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz)              [[ASC](https://downloads.apache.org/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.sha512)]
 
 ## Release Integrity
-You must [verify](https://www.apache.org/info/verification.html) the integrity of the downloaded files. We provide OpenPGP signatures for every release file. This signature should be matched against the [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) file which contains the OpenPGP keys of InLong's Release Managers. We also provide <code>SHA-512</code> checksums for every release file. After you download the file, you should calculate a checksum for your download, and make sure it is the same as ours.
+   You must [verify](https://www.apache.org/info/verification.html) the integrity of the downloaded files. We provide OpenPGP signatures for every release file. This signature should be matched against the [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) file which contains the OpenPGP keys of InLong's Release Managers. We also provide <code>SHA-512</code> checksums for every release file. After you download the file, you should calculate a checksum for your download, and make sure it is the same as ours.
 
 
 ## 0.9.0 release
  - Released: July 11, 2021
  - [Release Notes](release-0.9.0.md)
- - Source: [inlong-0.9.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz)              [[ASC](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.sha512)]
+ - Source: [inlong-0.9.0-incubating-src.tar.gz](https://archive.apache.org/dist/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz)              [[ASC](https://archive.apache.org/dist/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.asc)]        [[SHA512](https://archive.apache.org/dist/incubator/inlong/0.9.0-incubating/apache-inlong-0.9.0-incubating-src.tar.gz.sha512)]
 
-## Release Integrity
-   You must [verify](https://www.apache.org/info/verification.html) the integrity of the downloaded files. We provide OpenPGP signatures for every release file. This signature should be matched against the [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) file which contains the OpenPGP keys of InLong's Release Managers. We also provide <code>SHA-512</code> checksums for every release file. After you download the file, you should calculate a checksum for your download, and make sure it is the same as ours.
-  
 
 ## 0.8.0 release
 
@@ -30,7 +27,6 @@ You must [verify](https://www.apache.org/info/verification.html) the integrity o
  - Source: [tubemq-0.8.0-incubating-src.tar.gz](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz)              [[ASC](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz.asc)]        [[SHA512](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-0.8.0-incubating-src.tar.gz.sha512)]
  - Client: [tubemq-client-0.8.0-incubating-bin.tar.gz](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz)       [[ASC](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz.asc)] [[SHA512](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-client-0.8.0-incubating-bin.tar.gz.sha512)]
  - Server: [tubemq-server-0.8.0-incubating-bin.tar.gz](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz)       [[ASC](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz.asc)] [[SHA512](https://archive.apache.org/dist/incubator/tubemq/0.8.0-incubating/apache-tubemq-server-0.8.0-incubating-bin.tar.gz.sha512)]
-
 
 ## 0.7.0 release
 
