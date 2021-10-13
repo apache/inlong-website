@@ -17,7 +17,7 @@ We use a review-then-commit workflow in InLong for all contributions.
 
 1. **Code:** The you-know-what part.
 2. **Review:** Submit a pull request with your contribution to our [GitHub Repo](https://github.com/apache/incubator-inlong). Work with a committer to review and iterate on the code, if needed.
-3. **Commit:** Once at least 1 InLong committer has approved the pull request, a InLong committer will merge it into the master branch (and potentially backport to stable branches in case of bug fixes).
+3. **Commit:** Once at least 2 InLong committer has approved the pull request, a InLong committer will merge it into the master branch (and potentially backport to stable branches in case of bug fixes).
 
 We look forward to working with you!
 
@@ -42,15 +42,15 @@ For moderate or large contributions, you should not start coding or writing a de
 
 To avoid potential frustration during the code review cycle, we encourage you to clearly scope and design non-trivial contributions with the InLong community before you start coding.
 
-We are using "InLong Improvement Proposals" for managing major changes to InLong. The list of all proposals is maintained in the InLong wiki at [this page](https://cwiki.apache.org/confluence/display/INLONG/INLONG+Improvement+Proposals).
+We are using "InLong Improvement Proposals" for managing major changes to InLong. The list of all proposals is maintained in the InLong wiki at [this page](https://github.com/apache/incubator-inlong/wiki).
 
 ## Commit (committers only)
 
 Once the code has been peer reviewed by a committer, the next step is for the committer to merge it into the Github repo.
 
-Pull requests should not be merged before the review has approved from at least 1 committer.
+Pull requests should not be merged before the review has approved from at least 2 committer.
 
-For more about merging pull request, please refer to [this page](https://cwiki.apache.org/confluence/display/INLONG/Merging+Pull+Requests)
+For more about merging pull request, please refer to [this page](https://github.com/apache/incubator-inlong/pulls)
 
 ## Website Contributor List
 We are very pleased to announce some contributors here. They have made a lot of contributions in the translation of InLong. Thanks again to the following participants.
