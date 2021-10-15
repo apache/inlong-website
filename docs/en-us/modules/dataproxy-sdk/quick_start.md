@@ -1,6 +1,6 @@
 # how to use
 
-add dependency in pom and use the api in architecture.md
+add dependency in pom and use the api in [architecture](modules/dataproxy-sdk/architecture.md)
 
     <dependency>
             <groupId>org.apache.inlong</groupId>
