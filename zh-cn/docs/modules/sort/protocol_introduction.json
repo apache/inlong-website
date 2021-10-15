@@ -1,8 +1,0 @@
-{
-  "filename": "protocol_introduction.md",
-  "__html": "<h1>前言</h1>\n<p>当前inlong-sort的元数据管理依赖inlong-manager。</p>\n<p>inlong-sort与inlong-manager之间通过zk进行元数据的交互。</p>\n<h1>Zookeeper结构</h1>\n<p><img src=\"img.png\" alt=\"img.png\"></p>\n<p>cluster代表一个flink作业，同一个cluster中可以处理多个流向，但是这些流向必须是同构的（source与sink相同）。</p>\n<p>dataflow代表一个具体的流向，每个流向有一个全局唯一的id来标识。流向由source + sink组成。</p>\n<p>上图中上方的一条路径用来表示某个cluster中运行了哪些dataflow的作业，节点下均不含元数据。</p>\n<p>下方的路径用来存储dataflow的具体信息，即真正的元数据存放。</p>\n<p>元数据管理逻辑可以查看类<code>org.apache.inlong.sort.meta.MetaManager</code></p>\n<h1>协议设计</h1>\n<p>具体的协议可以查看类<code>org.apache.inlong.sort.protocol.DataFlowInfo</code></p>\n",
-  "link": "/zh-cn/docs/modules/sort/protocol_introduction.html",
-  "meta": {
-    "协议介绍 - Apache InLong-sort": ""
-  }
-}

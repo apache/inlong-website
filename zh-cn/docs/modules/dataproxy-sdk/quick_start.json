@@ -1,6 +1,0 @@
-{
-  "filename": "quick_start.md",
-  "__html": "<h1>使用</h1>\n<p>编写java程序时，增加pom配置如下并使用<a href=\"architecture.md\">architecture</a>中定义的api进行发送：</p>\n<pre><code>&lt;dependency&gt;\n        &lt;groupId&gt;org.apache.inlong&lt;/groupId&gt;\n        &lt;artifactId&gt;inlong-dataproxy-sdk&lt;/artifactId&gt;\n        &lt;version&gt;0.10.0-incubating-SNAPSHOT&lt;/version&gt;\n&lt;/dependency&gt;</code></pre>\n",
-  "link": "/zh-cn/docs/modules/dataproxy-sdk/quick_start.html",
-  "meta": {}
-}

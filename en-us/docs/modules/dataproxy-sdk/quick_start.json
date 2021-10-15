@@ -1,6 +1,0 @@
-{
-  "filename": "quick_start.md",
-  "__html": "<h1>how to use</h1>\n<p>add dependency in pom and use the api in <a href=\"architecture.md\">architecture</a></p>\n<pre><code>&lt;dependency&gt;\n        &lt;groupId&gt;org.apache.inlong&lt;/groupId&gt;\n        &lt;artifactId&gt;inlong-dataproxy-sdk&lt;/artifactId&gt;\n        &lt;version&gt;0.10.0-incubating-SNAPSHOT&lt;/version&gt;\n&lt;/dependency&gt;</code></pre>\n",
-  "link": "/en-us/docs/modules/dataproxy-sdk/quick_start.html",
-  "meta": {}
-}
