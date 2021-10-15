@@ -1,0 +1,118 @@
+{
+  "zh-CN": {
+      "brand": {
+          "brandName": "Apache",
+          "projectName": "InLong",
+          "briefIntroduction": "Apache InLong（应龙）是一站式的数据流接入服务平台，提供自动、安全、高性能、分布式的数据发布订阅能力，基于该系统用户可以轻松构建基于流式的数据应用。",
+          "features": [
+              "自动",
+              "安全",
+              "高性能",
+              "分布式"
+          ],
+          "buttons": [
+              {
+                  "text": "立即开始",
+                  "link": "/zh-CN/docs/user_guide/quick_start",
+                  "type": "primary"
+              },
+              {
+                  "text": "联系我们",
+                  "link": "/zh-CN/docs/contact",
+                  "type": "normal"
+              }
+          ]
+      },
+      "features": {
+          "title": "产品优势",
+          "list": [
+              {
+                  "img": "/img/advantage-01.png",
+                  "title": "简单易用",
+                  "content": "基于SaaS模式对外服务，用户只需要按主题发布和订阅数据即可完成数据的上报，传输和分发工作"
+              },
+              {
+                  "img": "/img/advantage-02.png",
+                  "title": "稳定可靠",
+                  "content": "系统源于实际的线上系统，服务上十万亿级的高性能及上千亿级的高可靠数据数据流量，系统稳定可靠"
+              },
+              {
+                  "img": "/img/advantage-03.png",
+                  "title": "功能完善",
+                  "content": "支持各种类型的数据接入方式，多种不同类型的MQ集成，以及基于配置规则的实时数据ETL和数据分拣落地，并支持以可插拔方式扩展系统能力"
+              },
+              {
+                  "img": "/img/advantage-04.png",
+                  "title": "服务集成",
+                  "content": "支持统一的系统监控、告警，以及细粒度的数据指标呈现，对于管道的运行情况，以数据主题为核心的数据运营情况，汇总在统一的数据指标平台，并支持通过业务设置的告警信息进行异常告警提醒"
+              },
+              {
+                  "img": "/img/advantage-04.png",
+                  "title": "灵活扩展",
+                  "content": "全链条上的各个模块基于协议以可插拔方式组成服务，业务可根据自身需要进行组件替换和功能扩展"
+              }
+          ]
+      },
+      "architecture": {
+          "title": "产品架构"
+      }
+  },
+  "en": {
+      "brand": {
+          "brandName": "Apache",
+          "projectName": "InLong",
+          "features": [
+              "Automatic",
+              "Safety",
+              "High performance",
+              "Distributed"
+          ],
+          "briefIntroduction": "Apache InLong is a one-stop data streaming platform that provides automatic, secure, distributed, and efficient data publishing and subscription capabilities. This platform helps you easily build stream-based data applications.",
+          "buttons": [
+              {
+                  "text": "Quick Start",
+                  "link": "/docs/user_guide/quick_start",
+                  "type": "primary"
+              },
+              {
+                  "text": "Contact",
+                  "link": "/docs/contact",
+                  "type": "normal"
+              }
+          ]
+      },
+      "architecture": {
+          "title": "Product Architecture"
+      },
+      "features": {
+          "title": "Advantages",
+          "list": [
+              {
+                  "img": "/img/advantage-01.png",
+                  "title": "Ease of Use",
+                  "content": "Apache InLong is a SaaS-based service platform. You can easily and quickly report, transfer, and distribute data by publishing and subscribing to data based on topics"
+              },
+              {
+                  "img": "/img/advantage-02.png",
+                  "title": "Stability & Reliability",
+                  "content": "Apache InLong is derived from the actual online production environment, it delivers high-performance processing capabilities for 10 trillion-level data streams and highly reliable services for 100 billion-level data streams"
+              },
+              {
+                  "img": "/img/advantage-03.png",
+                  "title": "Comprehensive Features",
+                  "content": "Apache InLong supports various types of data access methods and can be integrated with different types of Message Queue (MQ) services. It also provides real-time data extract, transform, and load (ETL) and sorting capabilities based on rules. Apache InLong also allows you to plug features to extend system capabilities"
+              },
+              {
+                  "img": "/img/advantage-04.png",
+                  "title": "Service Integration",
+                  "content": "Apache InLong provides unified system monitoring and alert services. It provides fine-grained metrics to facilitate data visualization. You can view the running status of queues and topic-based data statistics in a unified data metric platform. You can also configure the alert service based on your business requirements so that users can be alerted when errors occur"
+              },
+              {
+                  "img": "/img/advantage-05.png",
+                  "title": "Scalability",
+                  "content": "Apache InLong adopts a pluggable architecture that allows you to plug modules into the system based on specific protocols. You can replace components and add features based on your business requirements"
+              }
+          ]
+      }
+  }
+}
