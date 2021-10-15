@@ -11,7 +11,7 @@ We use a review-then-commit workflow in InLong for all contributions.
 
 **For larger contributions or those that affect multiple components:**
 
-1. **Engage**: We encourage you to work with the InLong community on the [JIRA](https://jira.apache.org/jira/browse/INLONG) and [developer’s mailing list](../contact.html) to identify good areas for contribution.
+1. **Engage**: We encourage you to work with the InLong community on the [JIRA](https://jira.apache.org/jira/browse/INLONG) and [developer’s mailing list](/docs/contact) to identify good areas for contribution.
 2. **Design:** More complicated contributions will likely benefit from some early discussion in order to scope and design them well.
 
 **For all contributions:**
