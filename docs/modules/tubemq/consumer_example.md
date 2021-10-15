@@ -1,5 +1,5 @@
 ---
-title: Consumer Example - Apache InLong's TubeMQ module
+title: Consumer Example
 ---
 
 ## 1 Consumer Example

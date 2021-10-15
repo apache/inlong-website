@@ -1,5 +1,5 @@
 ---
-title: 架构介绍 - Apache InLong TubeMQ模块
+title: 架构介绍
 ---
 
 ## 1 Apache InLong TubeMQ模块的架构 

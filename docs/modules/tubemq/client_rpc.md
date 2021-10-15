@@ -1,5 +1,5 @@
 ---
-title: Client RPC - Apache InLong's TubeMQ module
+title: Client RPC
 ---
 
 

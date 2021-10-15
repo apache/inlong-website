@@ -1,5 +1,5 @@
 ---
-title: Console Introduction - Apache InLong's TubeMQ module
+title: Console Introduction
 ---
 
 ## 1 管控台关系

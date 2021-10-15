@@ -1,5 +1,5 @@
 ---
-title: JAVA SDK API介绍 - Apache InLong TubeMQ模块
+title: JAVA SDK API介绍
 ---
 
 

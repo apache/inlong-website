@@ -1,5 +1,5 @@
 ---
-title: Producer Example - Apache InLong's TubeMQ module
+title: Producer Example
 ---
 
 ## 1 Producer Example

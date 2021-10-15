@@ -1,5 +1,5 @@
 ---
-title: TubeMQ管控台操作指引 - Apache InLong TubeMQ模块
+title: TubeMQ管控台操作指引
 ---
 
 ## 1 管控台关系

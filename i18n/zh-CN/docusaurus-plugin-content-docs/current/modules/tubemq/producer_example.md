@@ -1,5 +1,5 @@
 ---
-title: 生产者示例 - Apache InLong TubeMQ模块
+title: 生产者示例
 ---
 
 ## 1 Producer 示例

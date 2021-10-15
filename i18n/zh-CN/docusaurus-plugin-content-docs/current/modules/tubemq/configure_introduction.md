@@ -1,5 +1,5 @@
 ---
-title: 配置参数介绍 - Apache InLong TubeMQ模块
+title: 配置参数介绍
 ---
 
 ## 1 TubeMQ服务端配置文件说明：

@@ -1,5 +1,5 @@
 ---
-title: Architecture - Apache InLong's TubeMQ module
+title: Architecture
 ---
 
 ## 1. TubeMQ Architecture:
