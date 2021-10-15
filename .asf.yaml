@@ -1,0 +1,31 @@
+github:
+  description: "Apache InLong - a one-stop data streaming platform"
+  homepage: https://inlong.apache.org/
+  features:
+    # Enable issues management
+    issues: true
+  enabled_merge_buttons:
+    # enable squash button:
+    squash:  true
+    # disable merge button:
+    merge:   false
+    # disable rebase button:
+    rebase:  false
+
+# Web site staging services:
+staging:
+  profile: ~
+  whoami: master
+  foo: trigger
+
+publish:
+  whoami: asf-site
+
+notifications:
+  commits: commits@inlong.apache.org
+  issues: commits@inlong.apache.org
+  pullrequests_status: commits@inlong.apache.org
+  pullrequests_comment: commits@inlong.apache.org
+  issues_status: commits@inlong.apache.org
+  issues_comment: commits@inlong.apache.org
+  jira_options: link label worklog
