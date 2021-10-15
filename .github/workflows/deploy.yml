@@ -19,6 +19,8 @@ jobs:
     - name: Build
       run: |
         npm install && npm run build
+    - name: Cp File
+      run: cp -r .asf.yaml build/
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2.4.0
       env:
