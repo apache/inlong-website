@@ -1,5 +1,5 @@
 ---
-title: 客户端RPC - Apache InLong TubeMQ模块
+title: 客户端RPC
 ---
 
 ## 1 总体介绍：

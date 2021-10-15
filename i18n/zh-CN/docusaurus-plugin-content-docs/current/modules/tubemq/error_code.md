@@ -1,5 +1,5 @@
 ---
-title: 错误码 - Apache InLong TubeMQ模块
+title: 错误码定义
 ---
 
 ## 1 TubeMQ错误信息介绍

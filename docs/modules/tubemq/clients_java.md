@@ -1,5 +1,5 @@
 ---
-title: TubeMQ JAVA SDK API - Apache InLong's TubeMQ module
+title: TubeMQ JAVA SDK API
 ---
 
 

@@ -1,5 +1,5 @@
 ---
-title: Quick Start - Apache InLong's TubeMQ module
+title: Quick Start
 ---
 ## 1 Deploy and Start
 

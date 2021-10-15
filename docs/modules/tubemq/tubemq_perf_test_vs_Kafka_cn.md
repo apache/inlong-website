@@ -1,4 +1,6 @@
-# TubeMQ VS Kafka性能对比测试总结
+---
+title: Performance testing of TubeMQ vs Kafka
+---
 
 ## 1 背景
 TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思想源于[Apache Kafka](http://kafka.apache.org/)。在实现上，则完全采取自适应的方式，结合实战做了很多优化及研发工作，如分区管理、分配机制和全新节点通讯流程，自主开发高性能的底层RPC通讯模块等。

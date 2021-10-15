@@ -1,5 +1,5 @@
 ---
-title: Configure Introduction - Apache InLong's TubeMQ module
+title: Configure Introduction
 ---
 
 ## 1 TubeMQ configuration item description

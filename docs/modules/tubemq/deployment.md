@@ -1,5 +1,5 @@
 ---
-title: Deployment - Apache InLong's TubeMQ Module
+title: Deployment
 ---
 
 ## 1 Compile and Package Project：

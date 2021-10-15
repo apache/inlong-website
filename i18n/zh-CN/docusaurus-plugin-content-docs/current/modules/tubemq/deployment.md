@@ -1,5 +1,5 @@
 ---
-title: TubeMQ编译、部署及简单使用 - Apache InLong TubeMQ模块
+title: TubeMQ编译、部署及简单使用
 ---
 
 ## 1 工程编译打包：

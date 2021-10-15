@@ -1,5 +1,5 @@
 ---
-title: HTTP API - Apache InLong's TubeMQ module
+title: HTTP API
 ---
 
 ## 1 Master metadata configuration API

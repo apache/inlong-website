@@ -1,5 +1,5 @@
 ---
-title: 消费者示例 - Apache InLong TubeMQ模块
+title: 消费者示例
 ---
 
 ## 1 Consumer 示例

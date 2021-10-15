@@ -1,5 +1,5 @@
 ---
-title: Error Code - Apache InLong's TubeMQ module
+title: Error Code
 ---
 
 ## 1 Introduction of TubeMQ Error

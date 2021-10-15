@@ -1,5 +1,5 @@
 ---
-title: 快速开始 - Apache InLong TubeMQ模块
+title: 快速开始
 ---
 ## 部署运行
 
