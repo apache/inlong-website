@@ -11,7 +11,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
-  favicon: 'img/apache.ico',
+  favicon: 'img/logo.svg',
   organizationName: 'Apache Inlong', // Usually your GitHub org/user name.
   projectName: 'Apache Inlong', // Usually your repo name.
   i18n: {
@@ -55,7 +55,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       navbar: {
-        title: '',
+        title: 'Apache InLong',
         logo: {
           alt: 'Apache',
           src: 'img/logo.svg',

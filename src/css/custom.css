@@ -34,17 +34,17 @@ html {
   font-feature-settings: 'tnum';
 }
 
-.navbar.index-nav {
-  background: rgb(255 255 255 / 40%);
-  position: fixed;
-  width: 100%;
+.navbar__title {
+  color: #f5573d;
 }
 
-@media only screen and (min-width: 1024px) {
-  .docs-wrapper {
-    max-width: 1400px;
-    margin: auto;
-  }
+.navbar.index-nav {
+  background: rgb(255 255 255 / 40%);
+}
+
+.navbar.index-nav + .main-wrapper {
+  position: relative;
+  top: -60px;
 }
 
 aside {
