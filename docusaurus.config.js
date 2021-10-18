@@ -37,13 +37,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: false,
           // Please change this to your repo.
-          editUrl: 'https://github.com/apache/incubator-inlong-website/edit/main/',
+          editUrl: 'https://github.com/apache/incubator-inlong-website/edit/master/',
         },
         blog: {
           // showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/apache/incubator-inlong-website/edit/main/blog/',
+            'https://github.com/apache/incubator-inlong-website/edit/master/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -74,7 +74,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             label: 'DOC',
           },
           {
-            to: '/download/main',
+            to: '/download/master',
             position: 'right',
             label: 'DOWNLOAD',
             activeBaseRegex: `/download/`,
@@ -197,9 +197,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         routeBasePath: 'development',
         editUrl: ({locale, versionDocsDirPath, docPath}) => {
           if (locale !== 'en') {
-            return `https://github.com/apache/incubator-inlong-website/edit/main/i18n/${locale}/${docPath}`;
+            return `https://github.com/apache/incubator-inlong-website/edit/master/i18n/${locale}/${docPath}`;
           }
-          return `https://github.com/apache/incubator-inlong-website/edit/main/${versionDocsDirPath}/${docPath}`;
+          return `https://github.com/apache/incubator-inlong-website/edit/master/${versionDocsDirPath}/${docPath}`;
         },
         sidebarPath: require.resolve('./sidebarsDevelopment.js'),
       },
@@ -212,9 +212,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         routeBasePath: 'download',
         editUrl: ({locale, versionDocsDirPath, docPath}) => {
           if (locale !== 'en') {
-            return `https://github.com/apache/incubator-inlong-website/edit/main/i18n/${locale}/${docPath}`;
+            return `https://github.com/apache/incubator-inlong-website/edit/master/i18n/${locale}/${docPath}`;
           }
-          return `https://github.com/apache/incubator-inlong-website/edit/main/${versionDocsDirPath}/${docPath}`;
+          return `https://github.com/apache/incubator-inlong-website/edit/master/${versionDocsDirPath}/${docPath}`;
         },
         sidebarPath: require.resolve('./sidebarsDevelopment.js'),
       },
