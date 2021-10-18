@@ -74,7 +74,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             label: 'DOC',
           },
           {
-            to: '/download/master',
+            to: '/download/main',
             position: 'right',
             label: 'DOWNLOAD',
             activeBaseRegex: `/download/`,
