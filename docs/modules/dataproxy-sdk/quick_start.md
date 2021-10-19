@@ -3,7 +3,7 @@ title: Build && Deployment
 ---
 # how to use
 
-add dependency in pom and use the api in architecture.md
+add dependency in pom and use the api in [architecture](architecture.md)
 
     <dependency>
             <groupId>org.apache.inlong</groupId>
