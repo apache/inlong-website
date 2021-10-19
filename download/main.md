@@ -1,7 +1,3 @@
----
-title: Download
----
-
 ## Download links
   Use the links below to download the Apache InLong Releases, the latest release is 0.10.0.
 

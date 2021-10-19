@@ -1,7 +1,3 @@
----
-title: 0.6.0
----
-
 # Download the InLong releases
 
 Use the links below to download the Apache InLong from one of our mirrors.
