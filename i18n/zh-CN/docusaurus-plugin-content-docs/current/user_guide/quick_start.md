@@ -6,7 +6,7 @@ sidebar_position: 1
 本节包含快速入门指南，可帮助您开始使用 Apache InLong。
 
 ## 整体架构
-<img src="../../img/inlong_architecture.png" align="center" alt="Apache InLong"/>
+<img src="/img/inlong_architecture.png" align="center" alt="Apache InLong"/>
 
 [Apache InLong](https://inlong.apache.org)(incubating) 整体架构如上，该组件是一站式数据流媒体平台，提供自动化、安全、分布式、高效的数据发布和订阅能力，帮助您轻松构建基于流的数据应用程序。
 
@@ -48,22 +48,22 @@ inlong-website
 ## 部署InLong TubeMQ Manager
 [部署InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
 
-## 部署部署InLong Manager
+## 部署InLong Manager
 [部署InLong Manager](modules/manager/quick_start.md)
 
 ## 部署InLong WebSite
 [部署InLong WebSite](modules/website/quick_start.md)
 
-## 部署部署InLong Sort
+## 部署InLong Sort
 [部署InLong Sort](modules/sort/quick_start.md)
 
-## 部署部署InLong DataProxy
+## 部署InLong DataProxy
 [部署InLong DataProxy](modules/dataproxy/quick_start.md)
 
-## 部署部署InLong DataProxy-SDK
+## 部署InLong DataProxy-SDK
 [部署InLong DataProxy](modules/dataproxy-sdk/quick_start.md)
 
-## 部署部署InLong Agent
+## 部署InLong Agent
 [部署InLong Agent](modules/agent/quick_start.md)
 
 ## 业务配置
