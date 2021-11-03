@@ -61,9 +61,9 @@ agent.http.port=Available ports
     "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
     "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
     },
-    "bus": {
-  "bid": "bid10",
-  "tid": "bid10"
+    "proxy": {
+  "groupId": "groupId10",
+  "streamId": "groupId10"
     },
     "op": "add"
     }'
@@ -74,8 +74,8 @@ agent.http.port=Available ports
     - job.trigger: Trigger name, the default is DirectoryTrigger, the function is to monitor the files under the folder to generate events
     - job.source: The type of data source used, the default is TextFileSource, which reads text files
     - job.sink：The type of writer used, the default is ProxySink, which sends messages to the proxy
-    - proxy.bid: The bid type used when writing proxy, bid is business id showed on data access in inlong-manager, not the topic name.
-    - proxy.tid: The tid type used when writing proxy, tid is the data flow id showed on data flow window in inlong-manager
+    - proxy.groupId: The groupId type used when writing proxy, groupId is group id showed on data access in inlong-manager, not the topic name.
+    - proxy.streamId: The streamId type used when writing proxy, streamId is the data flow id showed on data flow window in inlong-manager
 
 
 ## 4、eg for directory config
@@ -136,8 +136,8 @@ curl --location --request POST'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "bid10",
-"tid": "bid10"
+"group": "group10",
+"group": "group10"
 },
 "op": "add"
 }'
@@ -177,8 +177,8 @@ curl --location --request POST'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "bid10",
-"tid": "bid10"
+"groupId": "groupId10",
+"streamId": "streamId10"
 },
 "op": "add"
 }'
