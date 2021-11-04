@@ -49,7 +49,7 @@ Here we use `docker exec` to enter the container of the agent and configure it.
 $ docker exec -it agent sh
 ```
 
-Then we create a directory of `.inlong`, and new a file named `bid.local` (Here bid is the business id) and fill in the configuration of Dataproxy as follows.
+Then we create a directory of `.inlong`, and new a file named `groupid.local` (Here groupId is group id showed on data access in inlong-manager) and fill in the configuration of Dataproxy as follows.
 ```
 $ mkdir .inlong
 $ cd .inlong
@@ -80,8 +80,8 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "b_test",
-"tid": "test_stream"
+"groupId": "b_test",
+"streamId": "test_stream"
 },
 "op": "add"
 }'

@@ -47,7 +47,7 @@ Source configuration example and corresponding notes:
     Limit the size of a single package, here if the compressed package is transmitted, it is the compressed package size, the limit is 512KB
 
     agent1.sources.tcp-source.topic = test_token
-    The default topic value, if the mapping relationship between bid and topic cannot be found, it will be sent to this topic
+    The default topic value, if the mapping relationship between groupId and topic cannot be found, it will be sent to this topic
 
     agent1.sources.tcp-source.attr = m=9
     The default value of m is set, where the value of m is the version of inlong's internal TdMsg protocol

@@ -30,7 +30,7 @@ title: Error Code
 | Client Error | 419| SERVER_RECEIVE_OVERFLOW | Server receives overflow and need to retry. | For long-term overflow, try to expand the storage instance or expand the memory cache size. ||
 | Client Error | 450| CONSUME_GROUP_FORBIDDEN | Consumer group is forbidden. |||
 | Client Error | 452| SERVER_CONSUME_SPEED_LIMIT| Consumption speed is limited. |||
-| Client Error | 455| CONSUME_CONTENT_FORBIDDEN | Consumption is rejected, including that the consumer group is forbidden to filter consume and The filter `tid` set does not match the allowed `tid` set, etc. | Confirm the setting of filter of message.  ||
+| Client Error | 455| CONSUME_CONTENT_FORBIDDEN | Consumption is rejected, including that the consumer group is forbidden to filter consume and The filter `streamId` set does not match the allowed `streamId` set, etc. | Confirm the setting of filter of message.  ||
 | Server Error | 500 | INTERNAL_SERVER_ERROR| Internal server error | Refer to ErrMsg for detail to location the error. |
 | Server Error| 503| SERVICE_UNAVILABLE| Temporary ban on reading or writing for business. | Retry it. ||
 | Server Error| 510| INTERNAL_SERVER_ERROR_MSGSET_NULL | Can not read Message Set. | Retry it. ||
@@ -97,7 +97,7 @@ title: Error Code
 | 56     | Parameter error: Offset must over or equal zero of partOffsetMap key XXX, value is YYY | Parameter error: Offset must over or equal zero. ||
 | 57     | Duplicated completeSubscribe call! | Call `completeSubscribe()` duplicately. ||
 | 58     | Register to master failed! ConsumeGroup forbidden, XXX | Fail to register to master. Consumer group is forbidden | Server prohibits this operation, contact administrator to deal with it. |
-| 59     | Register to master failed! Restricted consume content, XXX | Fail to register to master, and comsumption is limited. | Filter consumption of `tid` sets that are not within the scope of the requested set. |
+| 59     | Register to master failed! Restricted consume content, XXX | Fail to register to master, and comsumption is limited. | Filter consumption of `streamId` sets that are not within the scope of the requested set. |
 | 60     | Register to master failed! please check and retry later. | Fail to register to master, retry it. | In this case, check the client log to confirm the cause of the problem, and then contact the administrator to verify that there is no abnormal log and the master address is correct. |
 | 61     | Get message error, reason is XXX | Pull message fail by some reason. | Submit the relevant error message to the relevant business owner for action, aligning the cause with the specific error message. |
 | 62     | Get message null | Message pulled from topic is null. | Retry it. |

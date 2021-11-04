@@ -51,7 +51,7 @@ Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐�
 $ docker exec -it agent sh
 ```
 
-然后我们新建 `.inlong` 文件夹，并创建以 `bid.local` 命名的文件，在其中填入 Dataproxy 有关配置。
+然后我们新建 `.inlong` 文件夹，并创建以 `groupId.local` 命名的文件，在其中填入 Dataproxy 有关配置。
 ```
 $ mkdir .inlong
 $ cd .inlong
@@ -82,8 +82,8 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "b_test",
-"tid": "test_stream"
+"groupId": "b_test",
+"streamId": "test_stream"
 },
 "op": "add"
 }'

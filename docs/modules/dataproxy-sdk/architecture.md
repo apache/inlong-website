@@ -26,15 +26,15 @@ The original intention of API design is to simplify user access and assume some 
 
 ### Synchronous batch function
 
-    public SendResult sendMessage(List<byte[]> bodyList, String bid, String tid, long dt, long timeout, TimeUnit timeUnit)
+    public SendResult sendMessage(List<byte[]> bodyList, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
     Parameter Description
 
-    bodyListIt is a collection of multiple pieces of data that users need to send. The total length is recommended to be less than 512k. bid represents the service id, and tid represents the interface id. dt represents the time stamp of the data, accurate to the millisecond level. It can also be set to 0 directly, and the api will get the current time as its timestamp in the background. timeout & timeUnit: These two parameters are used to set the timeout time for sending data, and it is generally recommended to set it to 20s.
+    bodyListIt is a collection of multiple pieces of data that users need to send. The total length is recommended to be less than 512k. groupId represents the service id, and streamId represents the interface id. dt represents the time stamp of the data, accurate to the millisecond level. It can also be set to 0 directly, and the api will get the current time as its timestamp in the background. timeout & timeUnit: These two parameters are used to set the timeout time for sending data, and it is generally recommended to set it to 20s.
 
 ### Synchronize a single function
 
-    public SendResult sendMessage(byte[] body, String bid, String tid, long dt, long timeout, TimeUnit timeUnit)
+    public SendResult sendMessage(byte[] body, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
     Parameter Description
 
@@ -43,17 +43,17 @@ The original intention of API design is to simplify user access and assume some 
 
 ### Asynchronous batch function
 
-    public void asyncSendMessage(SendMessageCallback callback, List<byte[]> bodyList, String bid, String tid, long dt, long timeout,TimeUnit timeUnit)
+    public void asyncSendMessage(SendMessageCallback callback, List<byte[]> bodyList, String groupId, String streamId, long dt, long timeout,TimeUnit timeUnit)
 
     Parameter Description
 
-    SendMessageCallback is a callback for processing messages. The bodyList is a collection of multiple pieces of data that users need to send. The total length of multiple pieces of data is recommended to be less than 512k. bid is the service id, and tid is the interface id. dt represents the time stamp of the data, accurate to the millisecond level. It can also be set to 0 directly, and the api will get the current time as its timestamp in the background. timeout and timeUnit are the timeout time for sending data, generally recommended to be set to 20s.
+    SendMessageCallback is a callback for processing messages. The bodyList is a collection of multiple pieces of data that users need to send. The total length of multiple pieces of data is recommended to be less than 512k. groupId is the service id, and streamId is the interface id. dt represents the time stamp of the data, accurate to the millisecond level. It can also be set to 0 directly, and the api will get the current time as its timestamp in the background. timeout and timeUnit are the timeout time for sending data, generally recommended to be set to 20s.
 
 
 ### Asynchronous single function
 
 
-    public void asyncSendMessage(SendMessageCallback callback, byte[] body, String bid, String tid, long dt, long timeout, TimeUnit timeUnit)
+    public void asyncSendMessage(SendMessageCallback callback, byte[] body, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
     Parameter Description
 

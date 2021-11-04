@@ -27,17 +27,17 @@ API的设计初衷就是为了简化用户接入，承担部分可靠性相关�
 
 ### 同步批量函数
 
-    public SendResult sendMessage(List<byte[]> bodyList, String bid, String tid, long dt, long timeout, TimeUnit timeUnit)
+    public SendResult sendMessage(List<byte[]> bodyList, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
     参数说明
 
-    bodyList是用户需要发送的多条数据的集合，总长度建议小于512k。bid代表业务id，tid代表接口id。dt表示该数据的时间戳，精确到毫秒级别。也可直接设置为0，此时api会后台获取当前时间作为其时间戳。timeout & timeUnit:这两个参数是设置发送数据的超时时间，一般建议设置成20s。
+    bodyList是用户需要发送的多条数据的集合，总长度建议小于512k。groupId代表业务id，streamId代表接口id。dt表示该数据的时间戳，精确到毫秒级别。也可直接设置为0，此时api会后台获取当前时间作为其时间戳。timeout & timeUnit:这两个参数是设置发送数据的超时时间，一般建议设置成20s。
 
 
 
 ###同步单条函数
 
-    public SendResult sendMessage(byte[] body, String bid, String tid, long dt, long timeout, TimeUnit timeUnit)
+    public SendResult sendMessage(byte[] body, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
     参数说明
 
@@ -47,16 +47,16 @@ API的设计初衷就是为了简化用户接入，承担部分可靠性相关�
 
 ###异步批量函数
 
-    public void asyncSendMessage(SendMessageCallback callback, List<byte[]> bodyList, String bid, String tid, long dt, long timeout,TimeUnit timeUnit)
+    public void asyncSendMessage(SendMessageCallback callback, List<byte[]> bodyList, String groupId, String streamId, long dt, long timeout,TimeUnit timeUnit)
 
     参数说明
 
-    SendMessageCallback 是处理消息的callback。bodyList为用户需要发送的多条数据的集合，多条数据的总长度建议小于512k。bid是业务id，tid是接口id。dt表示该数据的时间戳，精确到毫秒级别。也可直接设置为0，此时api会后台获取当前时间作为其时间戳。timeout和timeUnit是发送数据的超时时间，一般建议设置成20s。
+    SendMessageCallback 是处理消息的callback。bodyList为用户需要发送的多条数据的集合，多条数据的总长度建议小于512k。groupId是业务id，streamId是接口id。dt表示该数据的时间戳，精确到毫秒级别。也可直接设置为0，此时api会后台获取当前时间作为其时间戳。timeout和timeUnit是发送数据的超时时间，一般建议设置成20s。
 
 
 ###异步单条函数
 
-    public void asyncSendMessage(SendMessageCallback callback, byte[] body, String bid, String tid, long dt, long timeout, TimeUnit timeUnit)
+    public void asyncSendMessage(SendMessageCallback callback, byte[] body, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
     参数说明
 

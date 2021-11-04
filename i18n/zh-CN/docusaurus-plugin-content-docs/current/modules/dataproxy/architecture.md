@@ -46,7 +46,7 @@ Source配置示例以及对应的注解：
     限制单个包大小，这里如果传输的是压缩包，则是压缩包大小，限制512KB
 
     agent1.sources.tcp-source.topic = test_token
-    默认topic值，如果bid和topic的映射关系找不到，则发送到此topic中
+    默认topic值，如果groupId和topic的映射关系找不到，则发送到此topic中
 
     agent1.sources.tcp-source.attr = m=9
     默认m值设置，这里的m值是inlong内部TdMsg协议的版本
