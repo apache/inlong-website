@@ -851,7 +851,7 @@ __Request__
 |topicName|yes|the topic name|String|
 |msgCount|no|the max number of message to extract|int|
 |partitionId|yes|the partition ID which must exists|int|
-|filterConds|yes|the tid value for filtering|String|
+|filterConds|yes|the streamId value for filtering|String|
 
 ### 4.2 `admin_manual_set_current_offset`
 

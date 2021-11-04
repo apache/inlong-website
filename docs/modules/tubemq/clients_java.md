@@ -112,9 +112,9 @@ public final class MessageConsumerExample {
 我们没有采用指定Offset消费的模式进行订阅，也没有过滤需求，因而我们在如下代码里只做了Topic的指定，对应的过滤项集合我们传的是null值，同时，对于不同的Topic，我们可以传递不同的消息回调处理函数；我们这里订阅了3个topic，topic_1，topic_2，topic_3，每个topic分别调用subscribe函数进行对应参数设置：
 
 ```java
-public void subscribe(final Map<String, TreeSet<String>> topicTidsMap)
+public void subscribe(final Map<String, TreeSet<String>> topicStreamIdsMap)
     throws TubeClientException {
-    for (Map.Entry<String, TreeSet<String>> entry : topicTidsMap.entrySet()) {
+    for (Map.Entry<String, TreeSet<String>> entry : topicStreamIdsMap.entrySet()) {
         this.messageConsumer.subscribe(entry.getKey(),
                                        entry.getValue(), 
                                        new DefaultMessageListener(entry.getKey()));
