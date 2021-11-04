@@ -61,8 +61,8 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "bid10",
-"tid": "bid10"
+"groupId": "groupId10",
+"streamId": "streamId10"
 },
 "op": "add"
 }'
@@ -73,8 +73,8 @@ curl --location --request POST 'http://localhost:8008/config/job' \
     - job.trigger: 触发器名称，默认为DirectoryTrigger，功能为监听文件夹下的文件产生事件，任务运行时已有的文件不会读取
     - job.source: 使用的数据源类型，默认为TextFileSource，读取文本文件
     - job.sink：使用的写入器类型，默认为ProxySink，发送消息到dataproxy中
-    - proxy.bid: 写入proxy时使用的bid，bid是指manager界面中，数据接入中业务信息的业务ID，此处不是创建的tube topic名称
-    - proxy.tid: 写入proxy时使用的tid，tid是指manager界面中，数据接入中数据流的数据流ID
+    - proxy.groupId: 写入proxy时使用的groupId，groupId是指manager界面中，数据接入中业务信息的业务ID，此处不是创建的tube topic名称
+    - proxy.streamId: 写入proxy时使用的streamId，streamId是指manager界面中，数据接入中数据流的数据流ID
 
 ## 4、可支持的路径配置方案
 
@@ -133,8 +133,8 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "bid10",
-"tid": "bid10"
+"groupId": "groupId",
+"streamId": "streamId"
 },
 "op": "add"
 }'
@@ -175,8 +175,8 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"bid": "bid10",
-"tid": "bid10"
+"groupId": "groupId",
+"streamId": "streamId"
 },
 "op": "add"
 }'
