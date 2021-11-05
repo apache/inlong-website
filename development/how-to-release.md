@@ -505,9 +505,9 @@ Apache InLong is a one-stop data streaming platform that provides automatic, sec
 distributed, and efficient data publishing and subscription capabilities.
 This platform helps you easily build stream-based data applications.
 
-Download Links: https://inlong.apache.org/en-us/docs/download/download.html
+Download Links: https://inlong.apache.org/download/main
 
-Release Notes: https://inlong.apache.org/en-us/docs/download/${release_version}.html
+Release Notes: https://inlong.apache.org/download/release-${release_version}
 
 Website: https://inlong.apache.org/
 
