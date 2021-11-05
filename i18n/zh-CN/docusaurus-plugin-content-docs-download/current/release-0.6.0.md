@@ -1,4 +1,4 @@
-# 下载TubeMQ
+# InLong Release-0.6.0
   使用以下镜像下载InLong
 
 ## InLong
