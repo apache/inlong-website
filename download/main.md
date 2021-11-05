@@ -13,7 +13,7 @@ You must [verify](https://www.apache.org/info/verification.html) the integrity o
 ## 0.10.0 release
 - Released: Sept 11, 2021
 - [Release Notes](release-0.10.0.md)
-- Source: [inlong-0.10.0-incubating-src.tar.gz](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz)              [[ASC](https://downloads.apache.org/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.sha512)]
+- Source: [inlong-0.10.0-incubating-src.tar.gz](https://archive.apache.org/dist/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz)              [[ASC](https://archive.apache.org/dist/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.asc)]        [[SHA512](https://archive.apache.org/dist/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.sha512)]
 
 ## 0.9.0 release
  - Released: July 11, 2021
