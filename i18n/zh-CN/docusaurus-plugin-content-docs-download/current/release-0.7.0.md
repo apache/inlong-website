@@ -1,4 +1,4 @@
-# 下载InLong
+# InLong Release-0.7.0
   使用以下镜像下载InLong
 
 ## InLong
