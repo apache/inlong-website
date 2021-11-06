@@ -19,7 +19,7 @@ The original intention of API design is to simplify user access and assume some 
 | Maintain proxy list| Get the proxy list every five minutes to detect whether there is a proxy machine on the operation and maintenance side; automatically remove unavailable connections every 20s to ensure that the connected proxy can operate normally |
 | Indicator statistics (new)| Increase the indicator of business minute-level sending volume (interface level)|
 | Load balancing (new)| Use the new strategy to load balance the sent data among multiple proxies, instead of relying on simple random + polling mechanism to ensure|
-| proxy list persistence (new)| Persist the proxy list according to the business id to prevent the configuration center from failing to send data when the program starts
+| proxy list persistence (new)| Persist the proxy list according to the business group id to prevent the configuration center from failing to send data when the program starts
 
 
 ## 2.2 Data transmission function description

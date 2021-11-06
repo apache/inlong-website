@@ -3,18 +3,32 @@ title: Architecture
 ---
 
 ## 1. TubeMQ Architecture:
-After years of evolution, the TubeMQ cluster is divided into the following 5 parts: 
+After years of evolution, the TubeMQ cluster is divided into the following 5 parts:
 ![](img/sys_structure.png)
 
-- **Portal：** The Portal part responsible for external interaction and maintenance operations, including API and Web. The API connects to the management system outside the cluster. The Web is a page encapsulation of daily operation and maintenance functions based on the API;
+- **Portal：** The Portal part responsible for external interaction and maintenance operations, including API and Web. 
+  The API connects to the management system outside the cluster. The Web is a page encapsulation of daily operation 
+  and maintenance functions based on the API;
 
-- **Master：** It is responsible for the Control part of the cluster. This part is composed of one or more Master nodes. Master HA performs heartbeat keep-alive and real-time hot standby switching between master nodes (This is the reason why everyone needs to fill in the addresses of all Master nodes corresponding to the cluster when using TubeMQ Lib). The main master is responsible for managing the status of the entire cluster, resource scheduling, permission checking, metadata query, etc;
+- **Master：** It is responsible for the Control part of the cluster. This part is composed of one or more Master nodes.
+  Master HA performs heartbeat keep-alive and real-time hot standby switching between master nodes (This is the reason 
+  why everyone needs to fill in the addresses of all Master nodes corresponding to the cluster when using TubeMQ Lib).
+  The main master is responsible for managing the status of the entire cluster, resource scheduling, permission 
+  checking, metadata query, etc.;
 
-- **Broker：** The Store part responsible for data storage. This part is composed of independent Broker nodes. Each Broker node manages the Topic set in this node, including the addition, deletion, modification, and inquiring about Topics. It is also responsible for message storage, consumption, aging, partition expansion, data consumption offset records, etc. on the topic, and the external capabilities of the cluster, including the number of topics, throughput, and capacity, are completed by horizontally expanding the broker node;
+- **Broker：** The Store part responsible for data storage. This part is composed of independent Broker nodes.
+  Each Broker node manages the Topic set in this node, including the addition, deletion, modification, and inquiring
+  about Topics. It is also responsible for message storage, consumption, aging, partition expansion, data consumption 
+  offset records, etc. On the topic, and the external capabilities of the cluster, including the number of topics,
+  throughput, and capacity, are completed by horizontally expanding the broker node;
 
-- **Client：** The Client part responsible for data production and consumption. We provide this part in the form of Lib. The most commonly used is the consumer. Compared with the previous, the consumer now supports Push and Pull data pull modes, data consumption behavior support both order and filtered consumption. For the Pull consumption mode, the service supports resetting the precise offset through the client to support the business extract-once consumption. At the same time, the consumer  has launched a new cross-cluster switch-free BidConsumer client;
+- **Client：** The Client part responsible for data production and consumption. We provide this part in the form of Lib.
+  The most commonly used is the consumer. Compared with the previous, the consumer now supports Push and Pull data pull
+  modes, data consumption behavior support both order and filtered consumption. For the Pull consumption mode, the 
+  service supports resetting the precise offset through the client to support the business extract-once consumption.
+  At the same time, the consumer has launched a new cross-cluster switch-free Consumer client;
 
-- **Zookeeper：** Responsible for the Zookeeper part of the offset storage. This part of the function has been weakened to only the persistent storage of the offset. Considering the next multi-node copy function, this module is temporarily reserved;
+- **ZooKeeper：** Responsible for the ZooKeeper part of the offset storage. This part of the function has been weakened to only the persistent storage of the offset. Considering the next multi-node copy function, this module is temporarily reserved;
 
 ## 2. Broker File Storage Scheme Improvement:
 Systems that use disks as data persistence media are faced with various system performance problems caused by disk problems. The TubeMQ system is no exception, the performance improvement is largely to solve the problem of how to read, write and store message data. In this regard TubeMQ has made many improvements: storage instances is as the smallest Topic data management unit; each storage instance includes a file storage block and a memory cache block; each Topic can be assigned multiple storage instances. 
