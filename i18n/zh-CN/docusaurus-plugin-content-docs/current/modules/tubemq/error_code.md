@@ -28,7 +28,7 @@ title: 错误码定义
 | 客户端错误| 419          | SERVER_RECEIVE_OVERFLOW           | 服务器接收overflow，需要重试处理                             | 如果长期的overflow，需要联系管理员扩容存储实例，或者扩大内存缓存大小 |                                                |
 | 客户端错误| 450          | CONSUME_GROUP_FORBIDDEN           | 消费组被纳入黑名单                                           | 联系管理员处理                                               |                                                |
 | 客户端错误| 452          | SERVER_CONSUME_SPEED_LIMIT        | 消费被限速                                                   | 联系管理员处理，解除限速                                     |                                                |
-| 客户端错误| 455          | CONSUME_CONTENT_FORBIDDEN         | 消费内容拒绝，包括消费组禁止过滤消费，过滤的tid集合与允许的tid集合不一致等 | 对齐过滤消费的设置确认没有问题后，再联系管理员处理           |                                                |
+| 客户端错误| 455          | CONSUME_CONTENT_FORBIDDEN         | 消费内容拒绝，包括消费组禁止过滤消费，过滤的数据流ID集合与允许的ID集合不一致等 | 对齐过滤消费的设置确认没有问题后，再联系管理员处理           |                                                |
 | 服务器侧异常 | 500                               | INTERNAL_SERVER_ERROR                                        | 内部服务器错误                                               | 需要结合错误信息，联系管理员确定问题原因后重试 |
 | 服务器侧异常| 503          | SERVICE_UNAVILABLE                | 业务临时禁读或者禁写                                         | 继续重试处理，如果持续的出现该类错误，需要联系管理员处理     |                                                |
 | 服务器侧异常| 510          | INTERNAL_SERVER_ERROR_MSGSET_NULL | 读取不到消息集合                                             | 继续重试处理，如果持续的出现该类错误，需要联系管理员处理     |                                                |
@@ -95,7 +95,7 @@ title: 错误码定义
 | 56     | Parameter error: Offset must over   or equal zero of partOffsetMap  key   XXX, value is YYY | 参数不合规，offset值必须是大于等于0                          |                                                              |
 | 57     | Duplicated completeSubscribe call!                           | 重复调用completeSubscribe()函数                              |                                                              |
 | 58     | Register to master failed!   ConsumeGroup forbidden, XXX     | 注册Master失败，消费组被禁止                                 | 服务端主动禁止行为，联系系统管理员处理                       |
-| 59     | Register to master failed!   Restricted consume content, XXX | 注册Master失败，消费内容受限                                 | 过滤消费的tid集合不在申请的集合范围内                        |
+| 59     | Register to master failed!   Restricted consume content, XXX | 注册Master失败，消费内容受限                                 | 过滤消费的数据流ID集合不在申请的集合范围内                        |
 | 60     | Register to master failed! please   check and retry later.   | 注册Master失败，请重试                                       | 这种情况需要查看客户端日志，确认问题原因，在核实没有异常日志，同时master地址填写正确，联系系统管理员处理。 |
 | 61     | Get message error, reason is XXX                             | 因为XXX原因拉取消息失败                                      | 确定下问题原因，将相关错误信息提交给相关的业务负责人处理，需要根据具体错误信息对齐原因 |
 | 62     | Get message null                                             | 获取到的消息为null                                           | 重试                                                         |

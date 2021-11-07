@@ -63,10 +63,9 @@ You are required to fill in the basic information of the data stream in the acce
 
 ![](/cookbooks_img//image-1624431435574.png)
 
-- Data stream ID: The prefix is automatically generated according to the product/project, the unique identifier of the
-  data in the business, the unique identifier defined by a certain business, the data stream ID in the data source, and
-  the entry in the Hive information table The data stream ID is the same
-- Data stream name: interface information description, the length is limited to varchar (64), 32 Chinese
+- InLong stream id: The prefix is automatically generated according to the product/project, which is unique in a 
+  specific business group and is consistent with the stream id in the data source and the storage table
+- Data stream name: interface information description, the length is limited to 64 characters (32 Chinese characters)
 - Data stream owner: The data stream owner can view and modify data stream information, add and modify all access
   configuration items
 - Introduction to data flow: simple text introduction to data flow
@@ -183,8 +182,8 @@ the information filling module
   name based on the abbreviation splicing
 - Consumer Responsible Person: At least 2 persons are required to choose the responsible person; the responsible person
   can view and modify the consumption information
-- Consumer target business ID: you need to select the business ID of the consumer data, you can click [Query] and select
-  the appropriate business ID in the pop-up window
+- Consumer target business group id: you need to select the business group id of the consumer data, you can click [Query] and 
+  select the appropriate business group id in the pop-up window
   ![](/cookbooks_img//image-1624432286674.png)
 - Data usage: select data usage usage
 - Data usage description: The applicant needs to briefly explain the items used and the purpose of the data according to

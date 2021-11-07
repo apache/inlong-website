@@ -81,8 +81,7 @@ TubeMQ开源包org.apache.inlong.tubemq.example里提供了生产和消费的具
 
 ```java
 public final class MessageConsumerExample {
-	private static final Logger logger = 
-        LoggerFactory.getLogger(MessageConsumerExample.class);
+    private static final Logger logger = LoggerFactory.getLogger(MessageConsumerExample.class);
     private static final MsgRecvStats msgRecvStats = new MsgRecvStats();
     private final String masterHostAndPort;
     private final String localHost;
@@ -90,15 +89,12 @@ public final class MessageConsumerExample {
     private PushMessageConsumer messageConsumer;
     private MessageSessionFactory messageSessionFactory;
     
-    public MessageConsumerExample(String localHost,
-                                  String masterHostAndPort,
-                                  String group,
-                                  int fetchCount) throws Exception {
+    public MessageConsumerExample(String localHost, String masterHostAndPort, String group, int fetchCount)
+            throws Exception {
         this.localHost = localHost;
         this.masterHostAndPort = masterHostAndPort;
         this.group = group;
-        ConsumerConfig consumerConfig = 
-            new ConsumerConfig(this.localHost,this.masterHostAndPort, this.group);
+        ConsumerConfig consumerConfig = new ConsumerConfig(this.localHost,this.masterHostAndPort, this.group);
         consumerConfig.setConsumeModel(0);
         if (fetchCount > 0) {
             consumerConfig.setPushFetchThreadCnt(fetchCount);
@@ -110,18 +106,15 @@ public final class MessageConsumerExample {
 ```
 
 
-
 #### 2.2.2 订阅Topic：
 
 我们没有采用指定Offset消费的模式进行订阅，也没有过滤需求，因而我们在如下代码里只做了Topic的指定，对应的过滤项集合我们传的是null值，同时，对于不同的Topic，我们可以传递不同的消息回调处理函数；我们这里订阅了3个topic，topic_1，topic_2，topic_3，每个topic分别调用subscribe函数进行对应参数设置：
 
 ```java
-public void subscribe(final Map<String, TreeSet<String>> topicTidsMap)
-    throws TubeClientException {
-    for (Map.Entry<String, TreeSet<String>> entry : topicTidsMap.entrySet()) {
-        this.messageConsumer.subscribe(entry.getKey(),
-                                       entry.getValue(), 
-                                       new DefaultMessageListener(entry.getKey()));
+public void subscribe(final Map<String, TreeSet<String>> topicStreamIdMap) throws TubeClientException {
+    for (Map.Entry<String, TreeSet<String>> entry : topicStreamIdMap.entrySet()) {
+        this.messageConsumer.subscribe(entry.getKey(), entry.getValue(),
+                new DefaultMessageListener(entry.getKey()));
     }
     messageConsumer.completeSubscribe();
 }
@@ -141,8 +134,7 @@ public class DefaultMessageListener implements MessageListener {
         this.topic = topic;
     }
 
-    public void receiveMessages(PeerInfo peerInfo, final List<Message> messages) throws InterruptedException 
-    {
+    public void receiveMessages(PeerInfo peerInfo, final List<Message> messages) throws InterruptedException {
         if (messages != null && !messages.isEmpty()) {
             msgRecvStats.addMsgCount(this.topic, messages.size());
         }
@@ -158,7 +150,6 @@ public class DefaultMessageListener implements MessageListener {
 ```
 
 
-
 ### 3 创建Producer：
 
 现网环境中业务的数据都是通过代理层来做接收汇聚，包装了比较多的异常处理，大部分的业务都没有也不会接触到TubeSDK的Producer类，考虑到业务自己搭建集群使用TubeMQ进行使用的场景，这里提供对应的使用demo，见包org.apache.inlong.tubemq.example.MessageProducerExample类文件供参考，**需要注意**的是，业务除非使用数据平台的TubeMQ集群做MQ服务，否则仍要按照现网的接入流程使用代理层来进行数据生产：
@@ -170,29 +161,25 @@ public class DefaultMessageListener implements MessageListener {
 ```java
 public final class MessageProducerExample {
 
-    private static final Logger logger = 
-        LoggerFactory.getLogger(MessageProducerExample.class);
-    private static final ConcurrentHashMap<String, AtomicLong> counterMap = 
-        new ConcurrentHashMap<String, AtomicLong>();
+    private static final Logger logger =  LoggerFactory.getLogger(MessageProducerExample.class);
+    private static final ConcurrentHashMap<String, AtomicLong> counterMap =
+            new ConcurrentHashMap<String, AtomicLong>();
     String[] arrayKey = {"aaa", "bbb", "ac", "dd", "eee", "fff", "gggg", "hhhh"};
     private MessageProducer messageProducer;
-    private TreeSet<String> filters = new TreeSet<String>();
+    private TreeSet<String> filters = new TreeSet<>();
     private int keyCount = 0;
     private int sentCount = 0;
     private MessageSessionFactory messageSessionFactory;
 
-    public MessageProducerExample(final String localHost, final String masterHostAndPort) 
-        throws Exception {
+    public MessageProducerExample(final String localHost, final String masterHostAndPort) throws Exception {
         filters.add("aaa");
         filters.add("bbb");
-        TubeClientConfig clientConfig = 
-            new TubeClientConfig(localHost, masterHostAndPort);
+        TubeClientConfig clientConfig = new TubeClientConfig(localHost, masterHostAndPort);
         this.messageSessionFactory = new TubeSingleSessionFactory(clientConfig);
         this.messageProducer = this.messageSessionFactory.createProducer();
     }
 }
 ```
-
 
 
 #### 3.2 发布Topic：
@@ -204,15 +191,12 @@ public void publishTopics(List<String> topicList) throws TubeClientException {
 ```
 
 
-
 #### 3.3 进行数据生产：
 
 如下所示，则为具体的数据构造和发送逻辑，构造一个Message对象后调用sendMessage()函数发送即可，有同步接口和异步接口选择，依照业务要求选择不同接口；需要注意的是该业务根据不同消息调用message.putSystemHeader()函数设置消息的过滤属性和发送时间，便于系统进行消息过滤消费，以及指标统计用。完成这些，一条消息即被发送出去，如果返回结果为成功，则消息被成功的接纳并且进行消息处理，如果返回失败，则业务根据具体错误码及错误提示进行判断处理，相关错误详情见《TubeMQ错误信息介绍.xlsx》：
 
 ```java
-public void sendMessageAsync(int id, long currtime,
-                             String topic, byte[] body,
-                             MessageSentCallback callback) {
+public void sendMessageAsync(int id, long currtime, String topic, byte[] body, MessageSentCallback callback) {
     Message message = new Message(topic, body);
     SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
     long currTimeMillis = System.currentTimeMillis();
@@ -234,21 +218,14 @@ public void sendMessageAsync(int id, long currtime,
 ```
 
 
-
 #### 3.5 Producer不同类MAMessageProducerExample关注点：
 
 该类初始化与MessageProducerExample类不同，采用的是TubeMultiSessionFactory多会话工厂类进行的连接初始化，该demo提供了如何使用多会话工厂类的特性，可以用于通过多个物理连接提升系统吞吐量的场景（TubeMQ通过连接复用模式来减少物理连接资源的使用），恰当使用可以提升系统的生产性能。在Consumer侧也可以通过多会话工厂进行初始化，但考虑到消费是长时间过程处理，对连接资源的占用比较小，消费场景不推荐使用。
 
- 
 
-自此，整个生产和消费的示例已经介绍完，大家可以直接下载对应的代码编译跑一边，看看是不是就是这么简单😊
+至此，整个生产和消费的示例已经介绍完，你可以下载代码并编译运行，看看是不是这么简单😊
 
 ---
 <a href="#top">Back to top</a>
- 
-
- 
-
- 
 
  
