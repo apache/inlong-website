@@ -5,9 +5,9 @@ https://inlong.apache.org/
 
 ## Prerequisite
 
-InLong website is powered by [docsite](https://docusaurus.io/).
-If your version of docsite is less than `2.0.0`,please upgrade to `2.0.0`.
-Please also make sure your node version is 14.x, versions higher than 14.x is not supported by docsite yet.
+InLong website is powered by [docusaurus](https://docusaurus.io/).
+If your version of docusaurus is less than `2.0.0`,please upgrade to `2.0.0`.
+Please also make sure your node version is 14.x, versions higher than 14.x is not supported by docusaurus yet.
 
 ## Build instruction 
 
@@ -39,12 +39,12 @@ Make sure you have submit issue for tracking PR: [https://github.com/apache/incu
 ### Add a new article for development
 
 1. Add new .md file under `development` or `i18n`.
-2. Run docsite start locally to verify the article can be displayed correctly.
+2. Run dev server locally to verify the article can be displayed correctly.
 3. Send the pull request contains the *.md and development.js only.
 
 
 ### Add a new article for docs
 
 1. Add new .md file under `docs` or `i18n`.
-2. Run docsite start locally to verify the article can be displayed correctly.
+2. Run dev server locally to verify the article can be displayed correctly.
 3. Send the pull request contains the *.md and development.js only.
