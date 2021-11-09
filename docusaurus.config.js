@@ -183,7 +183,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         </div>`,
       },
       prism: {
-        theme: lightCodeTheme,
+        // theme: lightCodeTheme,
+        theme: require('prism-react-renderer/themes/dracula'),
         darkTheme: darkCodeTheme,
       },
     }),
