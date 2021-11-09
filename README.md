@@ -5,9 +5,9 @@ https://inlong.apache.org/
 
 ## Prerequisite
 
-InLong website is powered by [docusaurus](https://docusaurus.io/).
-If your version of docusaurus is less than `2.0.0`,please upgrade to `2.0.0`.
-Please also make sure your node version is 14.x, versions higher than 14.x is not supported by docusaurus yet.
+InLong website is powered by [Docusaurus](https://docusaurus.io/).
+If your version of Docusaurus is less than `2.0.0`,please upgrade to `2.0.0`.
+Please also make sure your node version is 14.x, versions higher than 14.x is not supported by Docusaurus yet.
 
 ## Build instruction 
 
