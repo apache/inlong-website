@@ -86,7 +86,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             activeBaseRegex: `/development/`,
           },
           {
-            to: '/blog/apache-inlong-0.11.0',
+            to: '/blog',
             label: 'BLOG',
             position: 'right'
           },
