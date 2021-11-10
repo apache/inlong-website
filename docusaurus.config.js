@@ -85,7 +85,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             position: 'right',
             activeBaseRegex: `/development/`,
           },
-          // {to: '/blog', label: 'Blog', position: 'right'},
+          {
+            to: '/blog/apache-inlong-0.11.0',
+            label: 'BLOG',
+            position: 'right'
+          },
           {
             label: 'ASF',
             position: 'right',
