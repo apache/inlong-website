@@ -61,3 +61,9 @@ Make sure you have submit issue for tracking PR: [https://issues.apache.org/jira
 2. Update site_config/docs.js, add a new entry in either en-us or zh-cn.
 3. Run docsite start locally to verify the article can be displayed correctly.
 4. Send the pull request contains the *.md and development.js only.
+
+
+### Add a new version
+1. Modify the document in `docs`,Run `npm run docusaurus docs:version 1.1.0` locally to copy a document
+2. Add a label to DOC's item in `docusaurus.config.js` file
+3. Modify the last table in `/src/pages/version/index.js`

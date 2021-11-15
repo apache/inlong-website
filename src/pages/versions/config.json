@@ -9,9 +9,8 @@
     "passVersionExplain": "在这里您可以找到以前发布的文档版本",
     "table": {
       "doc": "文档",
-      "link": "/zh-CN/docs/0.10.0/user_guide/quick_start",
+      "link": "/zh-CN/docs/user_guide/quick_start",
       "release": "Release Note",
-      "releaseUrlZero": "/zh-CN/download/release-0.10.0",
       "releaseUrlOne": "/zh-CN/download/release-0.11.0",
       "nextLink": "/zh-CN/docs/next/user_guide/quick_start",
       "latestUrl": "/zh-CN/docs/user_guide/quick_start",
@@ -29,9 +28,8 @@
     "passVersionExplain": "Here you can find the previously published version of the document",
     "table": {
       "doc": "Document",
-      "link": "/docs/0.10.0/user_guide/quick_start",
+      "link": "/docs/user_guide/quick_start",
       "release": "Release Note",
-      "releaseUrlZero": "/download/release-0.10.0",
       "releaseUrlOne": "/download/release-0.11.0",
       "nextLink": "/docs/next/user_guide/quick_start",
       "latestUrl": "/docs/user_guide/quick_start",

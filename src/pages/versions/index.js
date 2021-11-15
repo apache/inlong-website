@@ -50,12 +50,12 @@ export default function() {
                 <p>{dataSource.passVersionExplain}</p>
                 <table>
                     <tr>
-                        <td>0.10.0</td>
+                        <td>0.11.0</td>
                         <td>
                             <a href={dataSource.table.link}>{dataSource.table.doc}</a>
                         </td>
                         <td>
-                            <a href={dataSource.table.releaseUrlZero}>{dataSource.table.release}</a>
+                            <a href={dataSource.table.releaseUrlOne}>{dataSource.table.release}</a>
                         </td>
                     </tr>
                 </table>
