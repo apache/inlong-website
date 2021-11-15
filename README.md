@@ -63,7 +63,7 @@ Make sure you have submit issue for tracking PR: [https://issues.apache.org/jira
 4. Send the pull request contains the *.md and development.js only.
 
 
-### Add a new version
-1. Modify the document in `docs`,Run `npm run docusaurus docs:version 1.1.0` locally to copy a document
+### Add a new version for documents
+1. Modify the document in `docs`, then run `npm run docusaurus docs:version replace_by_target_version` locally to copy a document
 2. Add a label to DOC's item in `docusaurus.config.js` file
-3. Modify the last table in `/src/pages/version/index.js`
+3. Modify the last table version in `/src/pages/version/index.js`
