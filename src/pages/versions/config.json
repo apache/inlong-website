@@ -1,0 +1,39 @@
+{
+  "zh-CN": {
+    "title": "Apache InLong 所有文档版本",
+    "newVersion": "这是当前的文档版本",
+    "newVersionExplain": "在这里您可以找到当前发布的文档版本",
+    "nextVersion": "这是未发布文档版本",
+    "nextVersionExplain": "在这里您可以找到未发布的文档版本",
+    "passVersion": "这是以前发布的文档版本",
+    "passVersionExplain": "在这里您可以找到以前发布的文档版本",
+    "table": {
+      "doc": "文档",
+      "link": "/zh-CN/docs/user_guide/quick_start",
+      "release": "Release Note",
+      "releaseUrlOne": "/zh-CN/download/release-0.11.0",
+      "nextLink": "/zh-CN/docs/next/user_guide/quick_start",
+      "latestUrl": "/zh-CN/docs/user_guide/quick_start",
+      "source": "源代码"
+    }
+
+  },
+  "en": {
+    "title": "Apache InLong all document versions",
+    "newVersion": "This is the current document version",
+    "newVersionExplain": "Here you can find the currently published version of the document",
+    "nextVersion": "This is an unpublished document version",
+    "nextVersionExplain": "Here you can find the unpublished version of the document",
+    "passVersion": "This is the previously published version of the document",
+    "passVersionExplain": "Here you can find the previously published version of the document",
+    "table": {
+      "doc": "Document",
+      "link": "/docs/user_guide/quick_start",
+      "release": "Release Note",
+      "releaseUrlOne": "/download/release-0.11.0",
+      "nextLink": "/docs/next/user_guide/quick_start",
+      "latestUrl": "/docs/user_guide/quick_start",
+      "source": "Source Code"
+    }
+  }
+}

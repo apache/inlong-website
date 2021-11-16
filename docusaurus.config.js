@@ -68,10 +68,23 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             activeBaseRegex: `^/$`,
           },
           {
-            type: 'doc',
-            docId: 'user_guide/quick_start',
             position: 'right',
             label: 'DOC',
+            to: "/docs/user_guide/quick_start",
+            items: [
+              {
+                label: "latest",
+                to: "/docs/user_guide/quick_start",
+              },
+              {
+                label: "0.11.0",
+                to: "/docs/user_guide/quick_start",
+              },
+              {
+                label: "All versions",
+                to: "/versions/",
+              },
+            ],
           },
           {
             to: '/download/main',

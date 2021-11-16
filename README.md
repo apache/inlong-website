@@ -48,3 +48,10 @@ Make sure you have submit issue for tracking PR: [https://github.com/apache/incu
 1. Add new .md file under `docs` or `i18n`.
 2. Run dev server locally to verify the article can be displayed correctly.
 3. Send the pull request contains the *.md and development.js only.
+
+
+### Add a new version for documents
+
+1. Modify the document in `docs`, then run `npm run docusaurus docs:version replace_by_target_version` locally to copy a document.
+2. Add a label to DOC's item in `docusaurus.config.js` file.
+3. Modify the last table version in `/src/pages/version/index.js`.

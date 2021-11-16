@@ -7,6 +7,10 @@
     "message": "文档",
     "description": "Navbar item with label DOC"
   },
+  "item.label.latest": {
+    "message": "当前版本",
+    "description": "Navbar item with label latest"
+  },
   "item.label.DOWNLOAD": {
     "message": "下载",
     "description": "Navbar item with label DOWNLOAD"

@@ -1,0 +1,46 @@
+{
+  "version.label": {
+    "message": "0.11.0",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.User Guide": {
+    "message": "引导",
+    "description": "The label for category User Guide in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Components": {
+    "message": "组件介绍",
+    "description": "The label for category Components in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Manager": {
+    "message": "Manager",
+    "description": "The label for category Manager in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Website": {
+    "message": "Website",
+    "description": "The label for category Website in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Agent": {
+    "message": "Agent",
+    "description": "The label for category Agent in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.DataProxy": {
+    "message": "DataProxy",
+    "description": "The label for category DataProxy in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.DataProxy-SDK": {
+    "message": "DataProxy-SDK",
+    "description": "The label for category DataProxy-SDK in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TubeMQ": {
+    "message": "TubeMQ",
+    "description": "The label for category TubeMQ in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.tubemq-manager": {
+    "message": "tubemq-manager",
+    "description": "The label for category tubemq-manager in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Sort": {
+    "message": "Sort",
+    "description": "The label for category Sort in sidebar tutorialSidebar"
+  }
+}
