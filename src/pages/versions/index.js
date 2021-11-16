@@ -57,9 +57,11 @@ export default function() {
                         <td>
                             <a href={dataSource.table.releaseUrlOne}>{dataSource.table.release}</a>
                         </td>
+                        <td>
+                            <a href="https://github.com/apache/incubator-inlong">{dataSource.table.source}</a>
+                        </td>
                     </tr>
                 </table>
-
             </div>
         </Layout>
     );
