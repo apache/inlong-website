@@ -19,6 +19,10 @@
     "message": "开发",
     "description": "Navbar item with label DEVELOPMENT"
   },
+  "item.label.BLOG": {
+    "message": "博客",
+    "description": "Navbar item with label BLOG"
+  },
   "item.label.ASF": {
     "message": "Apache",
     "description": "Navbar item with label ASF"
