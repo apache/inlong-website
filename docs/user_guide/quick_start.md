@@ -6,7 +6,7 @@ sidebar_position: 1
 This section contains a quick start guide to help you get started with Apache InLong.
 
 ## Overall architecture
-<img src="/img/inlong_architecture.png" align="center" alt="Apache InLong"/>
+<img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>
 
 [Apache InLong](https://inlong.apache.org)(incubating) overall architecture is as above. This component is a one-stop data streaming platform that provides automated, secure, distributed, and efficient data publishing and subscription capabilities to help You can easily build stream-based data applications.
 
