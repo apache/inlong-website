@@ -198,3 +198,12 @@ Source-module and Sink-module can add monitor metric class that is the subclass 
 	AtomicLong sinkDuration:		The unit is millisecond, the duration is between current timepoint and the timepoint in sending to sink destination.
 	AtomicLong nodeDuration:		The unit is millisecond, the duration is between current timepoint and the timepoint in getting event from source.
 	AtomicLong wholeDuration:		The unit is millisecond, the duration is between current timepoint and the timepoint in generating event.
+	
+  Monitor indicators have registered to MBeanServer, user can append JMX parameters when running DataProxy, remote server can get monitor metrics with RMI.
+  
+	-Dcom.sun.management.jmxremote
+	-Djava.rmi.server.hostname=127.0.0.1
+	-Dcom.sun.management.jmxremote.port=9999
+	-Dcom.sun.management.jmxremote.authenticate=false
+	-Dcom.sun.management.jmxremote.ssl=false
+	

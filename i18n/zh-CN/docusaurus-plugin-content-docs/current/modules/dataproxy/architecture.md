@@ -194,4 +194,11 @@ Sink配置示例以及对应的注解
 	AtomicLong nodeDuration:		发送成功回调时间和接收成功时间的时间差，用于评估DataProxy内部处理耗时和健康状况，单位：毫秒
 	AtomicLong wholeDuration:		发送成功回调时间和事件生成时间的时间差，单位：毫秒
 	
+  监控指标已经注册到MBeanServer，用户可以在DataProxy的启动参数中增加如下类似JMX定义（端口和鉴权根据情况进行调整），实现监控指标从远端采集。
+  
+	-Dcom.sun.management.jmxremote
+	-Djava.rmi.server.hostname=127.0.0.1
+	-Dcom.sun.management.jmxremote.port=9999
+	-Dcom.sun.management.jmxremote.authenticate=false
+	-Dcom.sun.management.jmxremote.ssl=false
 	
