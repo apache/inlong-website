@@ -175,26 +175,26 @@ Source-module and Sink-module can add monitor metric class that is the subclass 
 
   The field of MetricItemValue.dimensions has these dimensions(The fields of DataProxyMetricItem defined by the Annotation "@Dimension"):
 
-	public String clusterId:			DataProxy cluster ID.
+	public String clusterId:		DataProxy cluster ID.
 	public String sourceId:			DataProxy source component name.
 	public String sourceDataId:		DataProxy source component data id, when source is a TCP source, it will be port number.
 	public String inlongGroupId:		Inlong data group ID.
 	public String inlongStreamId:		Inlong data stream ID.
-	public String sinkId:				DataProxy sink component name.
-	public String sinkDataId:			DataProxy sink component data id, when sink is a pulsar sink, it will be topic name.
+	public String sinkId:			DataProxy sink component name.
+	public String sinkDataId:		DataProxy sink component data id, when sink is a pulsar sink, it will be topic name.
 
   The field of MetricItemValue.metrics has these metrics(The fields of DataProxyMetricItem defined by the Annotation "@CountMetric"):
 
 	AtomicLong readSuccessCount:		Successful event count reading from source component.
 	AtomicLong readSuccessSize:		Successful event body size reading from source component.
-	AtomicLong readFailCount:			Failure event count reading from source component.
-	AtomicLong readFailSize:			Failure event body size reading from source component.
-	AtomicLong sendCount:				Event count sending to sink destination.
-	AtomicLong sendSize:				Event body size sending to sink destination.
+	AtomicLong readFailCount:		Failure event count reading from source component.
+	AtomicLong readFailSize:		Failure event body size reading from source component.
+	AtomicLong sendCount:			Event count sending to sink destination.
+	AtomicLong sendSize:			Event body size sending to sink destination.
 	AtomicLong sendSuccessCount:		Successful event count sending to sink destination.
 	AtomicLong sendSuccessSize:		Successful event body size sending to sink destination.	
-	AtomicLong sendFailCount:			Failure event count sending to sink destination.
-	AtomicLong sendFailSize:			Failure event body size sending to sink destination.
-	AtomicLong sinkDuration:			the unit is millisecond, the duration is between current timepoint and the timepoint in sending to sink destination.
-	AtomicLong nodeDuration:			the unit is millisecond, the duration is between current timepoint and the timepoint in getting event from source.
-	AtomicLong wholeDuration:			the unit is millisecond, the duration is between current timepoint and the timepoint in generating event.
+	AtomicLong sendFailCount:		Failure event count sending to sink destination.
+	AtomicLong sendFailSize:		Failure event body size sending to sink destination.
+	AtomicLong sinkDuration:		The unit is millisecond, the duration is between current timepoint and the timepoint in sending to sink destination.
+	AtomicLong nodeDuration:		The unit is millisecond, the duration is between current timepoint and the timepoint in getting event from source.
+	AtomicLong wholeDuration:		The unit is millisecond, the duration is between current timepoint and the timepoint in generating event.

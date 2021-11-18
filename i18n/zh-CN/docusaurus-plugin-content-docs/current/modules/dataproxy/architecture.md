@@ -170,28 +170,28 @@ Sink配置示例以及对应的注解
 
   监控指标项的MetricItemValue.dimensions有这些维度(DataProxyMetricItem的这些字段通过注解Annotation "@Dimension"定义):
 
-	public String clusterId:			DataProxy集群ID
+	public String clusterId:		DataProxy集群ID
 	public String sourceId:			DataProxy的Source组件名
 	public String sourceDataId:		DataProxy的Source组件数据流ID，如果Source是一个TCPSource，那么这个ID会是一个端口号
 	public String inlongGroupId:		Inlong数据ID
 	public String inlongStreamId:		Inlong数据流ID
-	public String sinkId:				DataProxy的Sink组件名
-	public String sinkDataId:			DataProxy的Sink组件数据流ID，如果Sink是一个Pulsar发送组件，这个ID会是一个Topic名。
+	public String sinkId:			DataProxy的Sink组件名
+	public String sinkDataId:		DataProxy的Sink组件数据流ID，如果Sink是一个Pulsar发送组件，这个ID会是一个Topic名。
 
   监控指标项的MetricItemValue.metrics有这些指标(DataProxyMetricItem的这些字段通过注解Annotation "@CountMetric"定义):
 
 	AtomicLong readSuccessCount:		接收成功条数
 	AtomicLong readSuccessSize:		接收成功大小，单位：byte
-	AtomicLong readFailCount:			接收失败条数
-	AtomicLong readFailSize:			接收失败大小，单位：byte
-	AtomicLong sendCount:				发送条数
-	AtomicLong sendSize:				发送大小，单位：byte
+	AtomicLong readFailCount:		接收失败条数
+	AtomicLong readFailSize:		接收失败大小，单位：byte
+	AtomicLong sendCount:			发送条数
+	AtomicLong sendSize:			发送大小，单位：byte
 	AtomicLong sendSuccessCount:		发送成功条数
 	AtomicLong sendSuccessSize:		发送成功大小，单位：byte
-	AtomicLong sendFailCount:			发送失败条数
-	AtomicLong sendFailSize:			发送失败大小，单位：byte
-	AtomicLong sinkDuration:			发送成功回调时间和发送开始时间的时间差，用于评估目标集群的处理时延和健康状况，单位：毫秒
-	AtomicLong nodeDuration:			发送成功回调时间和接收成功时间的时间差，用于评估DataProxy内部处理耗时和健康状况，单位：毫秒
-	AtomicLong wholeDuration:			发送成功回调时间和事件生成时间的时间差，单位：毫秒
+	AtomicLong sendFailCount:		发送失败条数
+	AtomicLong sendFailSize:		发送失败大小，单位：byte
+	AtomicLong sinkDuration:		发送成功回调时间和发送开始时间的时间差，用于评估目标集群的处理时延和健康状况，单位：毫秒
+	AtomicLong nodeDuration:		发送成功回调时间和接收成功时间的时间差，用于评估DataProxy内部处理耗时和健康状况，单位：毫秒
+	AtomicLong wholeDuration:		发送成功回调时间和事件生成时间的时间差，单位：毫秒
 	
 	
