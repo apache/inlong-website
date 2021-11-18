@@ -150,3 +150,51 @@ Sink configuration example and corresponding notes
     
     agent1.sinks.meta-sink-more1.max-survived-size = 3000000
     Maximum number of caches
+    
+# 4、Monitor metrics configuration instructions
+
+  DataProxy provide monitor indicator based on JMX, user can implement the code that read the metrics and report to user-defined monitor system.
+Source-module and Sink-module can add monitor metric class that is the subclass of org.apache.inlong.commons.config.metrics.MetricItemSet, and register it to MBeanServer. User-defined plugin can get module metric with JMX, and report metric data to different monitor system.
+
+  User can describe the configuration in the file "common.properties ". For example:
+  
+	metricDomains=DataProxy
+	metricDomains.DataProxy.domainListeners=org.apache.inlong.dataproxy.metrics.prometheus.PrometheusMetricListener
+	metricDomains.DataProxy.snapshotInterval=60000
+
+  * The JMX domain name of DataProxy is "DataProxy". 
+  * It is defined by the parameter "metricDomains".
+  * The listeners of JMX domain is defined by the parameter "metricDomains.$domainName.domainListeners".
+  * The class names of the listeners is separated by the space char.
+  * The listener class need to implement the interface "org.apache.inlong.dataproxy.metrics.MetricListener".
+  * The snapshot interval of the listeners is defined by the parameter "metricDomains.$domainName.snapshotInterval", the parameter unit is "millisecond".
+
+  The method proto of org.apache.inlong.dataproxy.metrics.MetricListener is:
+  
+	public void snapshot(String domain, List itemValues);
+
+  The field of MetricItemValue.dimensions has these key(The fields of DataProxyMetricItem defined by the Annotation "@Dimension"):
+
+	public String clusterId:			DataProxy cluster ID.
+	public String sourceId:			DataProxy source component name.
+	public String sourceDataId:		DataProxy source component data id, when source is a TCP source, it will be port number.
+	public String inlongGroupId:		Inlong data group ID.
+	public String inlongStreamId:		Inlong data stream ID.
+	public String sinkId:				DataProxy sink component name.
+	public String sinkDataId:			DataProxy sink component data id, when sink is a pulsar sink, it will be topic name.
+
+  The field of MetricItemValue.metrics has these key(The fields of DataProxyMetricItem defined by the Annotation "@CountMetric"):
+
+	AtomicLong readSuccessCount:		Successful event count reading from source component.
+	AtomicLong readSuccessSize:		Successful event body size reading from source component.
+	AtomicLong readFailCount:			Failure event count reading from source component.
+	AtomicLong readFailSize:			Failure event body size reading from source component.
+	AtomicLong sendCount:				Event count sending to sink destination.
+	AtomicLong sendSize:				Event body size sending to sink destination.
+	AtomicLong sendSuccessCount:		Successful event count sending to sink destination.
+	AtomicLong sendSuccessSize:		Successful event body size sending to sink destination.	
+	AtomicLong sendFailCount:			Failure event count sending to sink destination.
+	AtomicLong sendFailSize:			Failure event body size sending to sink destination.
+	AtomicLong sinkDuration:			the unit is millisecond, the duration is between current timepoint and the timepoint in sending to sink destination.
+	AtomicLong nodeDuration:			the unit is millisecond, the duration is between current timepoint and the timepoint in getting event from source.
+	AtomicLong wholeDuration:			the unit is millisecond, the duration is between current timepoint and the timepoint in generating event.
