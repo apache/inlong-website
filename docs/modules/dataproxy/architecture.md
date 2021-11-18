@@ -173,7 +173,7 @@ Source-module and Sink-module can add monitor metric class that is the subclass 
   
 	public void snapshot(String domain, List itemValues);
 
-  The field of MetricItemValue.dimensions has these key(The fields of DataProxyMetricItem defined by the Annotation "@Dimension"):
+  The field of MetricItemValue.dimensions has these dimensions(The fields of DataProxyMetricItem defined by the Annotation "@Dimension"):
 
 	public String clusterId:			DataProxy cluster ID.
 	public String sourceId:			DataProxy source component name.
@@ -183,7 +183,7 @@ Source-module and Sink-module can add monitor metric class that is the subclass 
 	public String sinkId:				DataProxy sink component name.
 	public String sinkDataId:			DataProxy sink component data id, when sink is a pulsar sink, it will be topic name.
 
-  The field of MetricItemValue.metrics has these key(The fields of DataProxyMetricItem defined by the Annotation "@CountMetric"):
+  The field of MetricItemValue.metrics has these metrics(The fields of DataProxyMetricItem defined by the Annotation "@CountMetric"):
 
 	AtomicLong readSuccessCount:		Successful event count reading from source component.
 	AtomicLong readSuccessSize:		Successful event body size reading from source component.
