@@ -6,7 +6,7 @@ sidebar_position: 1
 本节包含快速入门指南，可帮助您开始使用 Apache InLong。
 
 ## 整体架构
-<img src="/img/inlong_architecture.png" align="center" alt="Apache InLong"/>
+<img src="/img/inlong-structure-zh.png" align="center" alt="Apache InLong"/>
 
 [Apache InLong](https://inlong.apache.org)(incubating) 整体架构如上，该组件是一站式数据流媒体平台，提供自动化、安全、分布式、高效的数据发布和订阅能力，帮助您轻松构建基于流的数据应用程序。
 
