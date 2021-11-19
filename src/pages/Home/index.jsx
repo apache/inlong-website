@@ -52,11 +52,11 @@ export default function() {
           <div className="product-desc2">
             <div>{dataSource.brand.features[0]}</div>
             <div className="split"></div>
-            <div>{dataSource.brand.features[1]}</div>
+            <div className="test">{dataSource.brand.features[1]}</div>
             <div className="split"></div>
-            <div>{dataSource.brand.features[2]}</div>
+            <div className="test">{dataSource.brand.features[2]}</div>
             <div className="split"></div>
-            <div>{dataSource.brand.features[3]}</div>
+            <div className="test">{dataSource.brand.features[3]}</div>
           </div>
           <p className="product-desc">{dataSource.brand.briefIntroduction}</p>
           <div className="button-area">
