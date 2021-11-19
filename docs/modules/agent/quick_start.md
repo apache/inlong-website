@@ -2,7 +2,7 @@
 title: Build && Deployment
 ---
 
-## 1、Configuration
+## 1 Configuration
 ```
 cd inlong-agent
 ```
@@ -10,7 +10,7 @@ cd inlong-agent
 The agent supports two modes of operation: local operation and online operation
 
 
-### Agent configuration
+### 1.1 Agent configuration
 
 Online operation needs to pull the configuration from inlong-manager, the configuration conf/agent.properties is as follows:
 ```ini
@@ -20,7 +20,7 @@ agent.manager.vip.http.host=manager web host
 agent.manager.vip.http.port=manager web port
 ```
 
-## 2、run
+## 2 run
 After decompression, run the following command
 
 ```bash
@@ -28,9 +28,9 @@ sh agent.sh start
 ```
 
 
-## 3、Add job configuration in real time
+## 3 Add job configuration in real time
 
-#### 3.1 agent.properties Modify the following two places
+### 3.1 agent.properties Modify the following two places
 ```ini
 # whether enable http service
 agent.http.enable=true
@@ -38,7 +38,7 @@ agent.http.enable=true
 agent.http.port=Available ports
 ```
 
-#### 3.2 Execute the following command
+### 3.2 Execute the following command
 ```bash
     curl --location --request POST 'http://localhost:8008/config/job' \
     --header 'Content-Type: application/json' \
@@ -78,7 +78,7 @@ agent.http.port=Available ports
     - proxy.streamId: The streamId type used when writing proxy, streamId is the data flow id showed on data flow window in inlong-manager
 
 
-## 4、eg for directory config
+## 4 eg for directory config
 
     E.g:
     /data/inlong-agent/test.log //Represents reading the new file test.log in the inlong-agent folder
@@ -87,7 +87,7 @@ agent.http.port=Available ports
     /data/inlong-agent/^\\d+(\\.\\d+)? // Start with one or more digits, followed by. or end with one. or more digits (? stands for optional, can match Examples: "5", "1.5" and "2.21"
 
 
-## 5. Support to get data time from file name
+## 5 Support to get data time from file name
 
     Agent supports obtaining the time from the file name as the production time of the data. The configuration instructions are as follows:
     /data/inlong-agent/***YYYYMMDDHH***
@@ -143,7 +143,7 @@ curl --location --request POST'http://localhost:8008/config/job' \
 }'
 ```
 
-## 6. Support time offset reading
+## 6 Support time offset reading
 
     After the configuration is read by time, if you want to read data at other times than the current time, you can configure the time offset to complete
     Configure the job attribute name as job.timeOffset, the value is number + time dimension, time dimension includes day and hour

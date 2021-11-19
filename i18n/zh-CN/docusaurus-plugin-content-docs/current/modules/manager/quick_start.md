@@ -2,7 +2,7 @@
 title: 编译部署
 ---
 
-# 1. 环境准备
+## 1 环境准备
 - 安装并启动 MySQL 5.7+，把 inlong-manager 模块中的 `doc/sql/apache_inlong_manager.sql` 文件拷贝到 MySQL 数据库所在的服务器
 （比如拷贝到 `/data/` 目录下），通过下述命令加载此文件，完成表结构及基础数据的初始化：
 
@@ -22,15 +22,15 @@ title: 编译部署
 - 参照 [编译部署TubeMQ Manager](https://inlong.apache.org/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html)，安装并启动
   TubeManager。
   
-# 2. 部署、启动 manager-web
+## 2 部署、启动 manager-web
 
 **manager-web 是与前端页面交互的后台服务。**
 
-## 2.1 准备安装文件
+### 2.1 准备安装文件
 
 安装文件在 `inlong-manager-web` 目录下。
 
-## 2.2 修改配置
+### 2.2 修改配置
 
 前往 `inlong-manager-web` 目录，修改 `conf/application.properties` 文件：
 
@@ -70,7 +70,7 @@ spring.profiles.active=dev
    sort.appName=inlong_app
    ```
 
-## 2.3 启动服务
+### 2.3 启动服务
 
 进入解压后的目录，执行 `sh bin/startup.sh` 启动服务，查看日志 `tailf log/manager-web.log`，若出现类似下面的日志，说明服务启动成功：
 
@@ -78,7 +78,7 @@ spring.profiles.active=dev
 Started InLongWebApplication in 6.795 seconds (JVM running for 7.565)
 ```
 
-# 3. 服务访问验证
+## 3 服务访问验证
 
 在浏览器中访问如下地址，验证 manager-web 服务：
 

@@ -7,7 +7,7 @@ title: Zookeeper配置介绍
 
 inlong-sort与inlong-manager之间通过zk进行元数据的交互。
 
-# Zookeeper结构
+## 1 Zookeeper结构
 
 ![img.png](img.png)
 
@@ -21,5 +21,5 @@ dataflow代表一个具体的流向，每个流向有一个全局唯一的id来�
 
 元数据管理逻辑可以查看类`org.apache.inlong.sort.meta.MetaManager`
 
-# 协议设计
+## 2 协议设计
 具体的协议可以查看类`org.apache.inlong.sort.protocol.DataFlowInfo`

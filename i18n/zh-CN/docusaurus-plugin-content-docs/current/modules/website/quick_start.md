@@ -2,20 +2,20 @@
 title: 编译部署
 ---
 
-## 关于 WebSite
+## 1 关于 WebSite
 WebSite[Apache InLong incubator](https://github.com/apache/incubator-inlong)的管控端。
 
-## 编译
+## 2 编译
 ```
 mvn package -DskipTests -Pdocker -pl inlong-website
 ```
 
-## 运行
+## 3 运行
 ```
 docker run -d --name website -e MANAGER_API_ADDRESS=127.0.0.1:8083 -p 80:80 inlong/website
 ```
 
-## 开发指引
+## 4 开发指引
 
 确认 `nodejs >= 12.0` 已经安装。
 
@@ -34,14 +34,14 @@ web服务器的启动依赖于后端服务 `manger api` 接口。
 
 您应该先启动后端服务器，然后将 `/inlong-website/src/setupProxy.js` 中的变量`target` 设置为api服务的地址。
 
-### 测试
+### 4.1 测试
 
 运行 `npm test` 或 `yarn test`
 
 在交互式观察模式下启动测试运行器。
 有关更多信息，请参阅有关 [运行测试](https://create-react-app.dev/docs/running-tests/) 的部分。
 
-### 构建
+### 4.2 构建
 
 首先保证项目已运行过 `npm install` 或 `yarn install` 安装了 `node_modules`。
 

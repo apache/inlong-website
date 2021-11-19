@@ -1,7 +1,7 @@
-## 部署TubeMQ Manager
+## 1 部署TubeMQ Manager
 安装文件在inlong-tubemq-manager目录.
 
-### 配置
+### 1.1 配置
 - 在mysql中创建`tubemanager`数据和相应用户.
 - 在conf/application.properties中添加mysql信息：
 
@@ -12,13 +12,13 @@ spring.datasource.username=mysql_username
 spring.datasource.password=mysql_password
 ```
 
-### 启动服务
+### 1.2 启动服务
 
 ``` bash
 $ bin/start-manager.sh 
 ```
 
-### 初始化TubeMQ集群
+### 1.3 初始化TubeMQ集群
 
     vim bin/init-tube-cluster.sh
 
@@ -38,7 +38,7 @@ sh bin/init-tube-cluster.sh
 ```
 如上操作会创建一个clusterId为1的tube集群，注意该操作只进行一次，之后重启服务无需新建集群
 
-### 附录：其它操作接口
+### 1.4 附录：其它操作接口
 
 #### cluster
 查询clusterId以及clusterName全量数据 （get)

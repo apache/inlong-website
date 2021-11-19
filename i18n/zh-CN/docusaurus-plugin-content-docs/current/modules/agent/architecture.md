@@ -1,7 +1,7 @@
 ---
 title: 架构介绍
 ---
-## 一. InLong-Agent 概览
+## 1 InLong-Agent 概览
 InLong-Agent是一个支持多种数据源类型的收集工具，致力于实现包括file、sql、Binlog、metrics等多种异构数据源之间稳定高效的数据采集功能。
 
 ### 简要的架构图如下：
@@ -15,7 +15,7 @@ InLong-Agent是一个支持多种数据源类型的收集工具，致力于实�
 ### 当前使用现状
 InLong-Agent在腾讯集团内被广泛使用，承担了大部分的数据采集业务，线上数据量达百亿级别。
 
-## 二. InLong-Agent 架构介绍
+## 2 InLong-Agent 架构介绍
 InLong Agent本身作为数据采集框架，采用channel + plugin架构构建。将数据源读取和写入抽象成为Reader/Writer插件，纳入到整个框架中。
 
 + Reader：Reader为数据采集模块，负责采集数据源的数据，将数据发送给channel。
@@ -23,7 +23,7 @@ InLong Agent本身作为数据采集框架，采用channel + plugin架构构建�
 + Channel：Channel用于连接reader和writer，作为两者的数据传输通道，并起到了数据的写入读取监控作用
 
 
-## 三. InLong-Agent 采集分类说明
+## 3 InLong-Agent 采集分类说明
 ### 3.1 文件采集
 文件采集包含如下功能：
 

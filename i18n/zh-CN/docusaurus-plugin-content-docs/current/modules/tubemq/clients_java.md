@@ -150,11 +150,11 @@ public class DefaultMessageListener implements MessageListener {
 ```
 
 
-### 3 创建Producer：
+## 3 创建Producer：
 
 现网环境中业务的数据都是通过代理层来做接收汇聚，包装了比较多的异常处理，大部分的业务都没有也不会接触到TubeSDK的Producer类，考虑到业务自己搭建集群使用TubeMQ进行使用的场景，这里提供对应的使用demo，见包org.apache.inlong.tubemq.example.MessageProducerExample类文件供参考，**需要注意**的是，业务除非使用数据平台的TubeMQ集群做MQ服务，否则仍要按照现网的接入流程使用代理层来进行数据生产：
 
-#### 3.1 初始化MessageProducerExample类：
+### 3.1 初始化MessageProducerExample类：
 
 和Consumer的初始化类似，也是构造了一个封装类，定义了一个会话工厂，以及一个Producer类，生产端的会话工厂初始化通过TubeClientConfig类进行，如之前所介绍的，ConsumerConfig类是TubeClientConfig类的子类，虽然传入参数不同，但会话工厂是通过TubeClientConfig类完成的初始化处理：
 
@@ -182,7 +182,7 @@ public final class MessageProducerExample {
 ```
 
 
-#### 3.2 发布Topic：
+### 3.2 发布Topic：
 
 ```java
 public void publishTopics(List<String> topicList) throws TubeClientException {
@@ -191,7 +191,7 @@ public void publishTopics(List<String> topicList) throws TubeClientException {
 ```
 
 
-#### 3.3 进行数据生产：
+### 3.3 进行数据生产：
 
 如下所示，则为具体的数据构造和发送逻辑，构造一个Message对象后调用sendMessage()函数发送即可，有同步接口和异步接口选择，依照业务要求选择不同接口；需要注意的是该业务根据不同消息调用message.putSystemHeader()函数设置消息的过滤属性和发送时间，便于系统进行消息过滤消费，以及指标统计用。完成这些，一条消息即被发送出去，如果返回结果为成功，则消息被成功的接纳并且进行消息处理，如果返回失败，则业务根据具体错误码及错误提示进行判断处理，相关错误详情见《TubeMQ错误信息介绍.xlsx》：
 
@@ -218,7 +218,7 @@ public void sendMessageAsync(int id, long currtime, String topic, byte[] body, M
 ```
 
 
-#### 3.5 Producer不同类MAMessageProducerExample关注点：
+### 3.4 Producer不同类MAMessageProducerExample关注点：
 
 该类初始化与MessageProducerExample类不同，采用的是TubeMultiSessionFactory多会话工厂类进行的连接初始化，该demo提供了如何使用多会话工厂类的特性，可以用于通过多个物理连接提升系统吞吐量的场景（TubeMQ通过连接复用模式来减少物理连接资源的使用），恰当使用可以提升系统的生产性能。在Consumer侧也可以通过多会话工厂进行初始化，但考虑到消费是长时间过程处理，对连接资源的占用比较小，消费场景不推荐使用。
 

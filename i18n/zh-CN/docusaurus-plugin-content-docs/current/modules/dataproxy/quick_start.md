@@ -1,11 +1,11 @@
 ---
 title: 编译部署
 ---
-## 部署 DataProxy
+## 1 部署 DataProxy
 
 所有的安装文件都在 `inlong-dataproxy` 目录下。
 
-### 配置tube地址和端口号
+### 1.1 配置tube地址和端口号
 
 `tubemq_master_list`是TubeMQ master rpc地址，多个逗号分隔。
 ```
@@ -14,13 +14,13 @@ $ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf
 
 注意conf/flume.conf中FLUME_HOME为proxy的中间数据文件存放地址
 
-### 环境准备
+### 1.2 环境准备
 
 ```
 sh prepare_env.sh
 ```
 
-### 配置manager地址
+### 1.3 配置manager地址
 
 配置文件：`conf/common.properties`:
 ```
@@ -28,19 +28,19 @@ sh prepare_env.sh
 manager_hosts=ip:port 
 ```
 
-## 启动
+## 2 启动
 
 ```
 sh bin/start.sh
 ```
 
-## 检查启动状态
+## 3 检查启动状态
 
 ```
 telnet 127.0.0.1 46801
 ```
 
-## 将 DataProxy 配置添加到 InLong-Manager
+## 4 将 DataProxy 配置添加到 InLong-Manager
 
 安装完 DataProxy 后，需要将 DataProxy 所在主机的 IP 插入到 InLong-Manager 的后台数据库中。
 

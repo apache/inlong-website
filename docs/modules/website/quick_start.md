@@ -2,20 +2,20 @@
 title: Build && Deployment
 ---
 
-## About WebSite
+## 1 About WebSite
 This is a website console for us to use the [Apache InLong incubator](https://github.com/apache/incubator-inlong).
 
-## Build
+## 2 Build
 ```
 mvn package -DskipTests -Pdocker -pl inlong-website
 ```
 
-## Run
+## 3 Run
 ```
 docker run -d --name website -e MANAGER_API_ADDRESS=127.0.0.1:8083 -p 80:80 inlong/website
 ```
 
-## Guide For Developer
+## 4 Guide For Developer
 You should check that `nodejs >= 12.0` is installed.
 
 In the project, you can run some built-in commands:
@@ -33,14 +33,14 @@ The start of the web server depends on the back-end server `manger api` interfac
 
 You should start the backend server first, and then set the variable `target` in `/inlong-website/src/setupProxy.js` to the address of the api service.
 
-### Test
+### 4.1 Test
 
 Run `npm test` or `yarn test`
 
 Start the test runner in interactive observation mode.
 For more information, see the section on [Running Tests](https://create-react-app.dev/docs/running-tests/).
 
-### Build
+### 4.2 Build
 
 First, make sure that the project has run `npm install` or `yarn install` to install `node_modules`.
 

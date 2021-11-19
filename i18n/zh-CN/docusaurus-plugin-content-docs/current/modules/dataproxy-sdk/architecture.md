@@ -1,7 +1,7 @@
 ---
 title: 架构介绍
 ---
-# 一、说明
+## 1 说明
 
 在业务使用消息接入方式时，业务一般仅需将数据按照DataProxy可识别的格式（如六段协议、数字化协议等）
 进行组包发送，就可以将数据接入到inlong。但为了保证数据可靠性、负载均衡、动态更新proxy列表等安全特性
@@ -9,9 +9,9 @@ title: 架构介绍
 
 API的设计初衷就是为了简化用户接入，承担部分可靠性相关的逻辑。用户通过在服务送程序中集成API后，即可将数据发送到DataProxy，而不用关心组包格式、负载均衡等逻辑。
 
-# 二、功能说明
+## 2 功能说明
 
-## 2.1 整体功能说明
+### 2.1 整体功能说明
 
 |  功能   | 详细描述  |
 |  ----  | ----  |
@@ -23,9 +23,9 @@ API的设计初衷就是为了简化用户接入，承担部分可靠性相关�
 | DataProxy列表持久化（新）  | 根据业务id对DataProxy列表持久化，防止程序启动时配置中心发生故障无法发送数据
 
 
-## 2.2 数据发送功能说明
+### 2.2 数据发送功能说明
 
-### 同步批量函数
+#### 同步批量函数
 
     public SendResult sendMessage(List<byte[]> bodyList, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
@@ -35,7 +35,7 @@ API的设计初衷就是为了简化用户接入，承担部分可靠性相关�
 
 
 
-###同步单条函数
+#### 同步单条函数
 
     public SendResult sendMessage(byte[] body, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
@@ -45,7 +45,7 @@ API的设计初衷就是为了简化用户接入，承担部分可靠性相关�
 
 
 
-###异步批量函数
+#### 异步批量函数
 
     public void asyncSendMessage(SendMessageCallback callback, List<byte[]> bodyList, String groupId, String streamId, long dt, long timeout,TimeUnit timeUnit)
 
@@ -54,7 +54,7 @@ API的设计初衷就是为了简化用户接入，承担部分可靠性相关�
     SendMessageCallback 是处理消息的callback。bodyList为用户需要发送的多条数据的集合，多条数据的总长度建议小于512k。groupId是业务id，streamId是接口id。dt表示该数据的时间戳，精确到毫秒级别。也可直接设置为0，此时api会后台获取当前时间作为其时间戳。timeout和timeUnit是发送数据的超时时间，一般建议设置成20s。
 
 
-###异步单条函数
+#### 异步单条函数
 
     public void asyncSendMessage(SendMessageCallback callback, byte[] body, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
