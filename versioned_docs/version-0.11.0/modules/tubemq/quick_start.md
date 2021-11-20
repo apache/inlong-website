@@ -8,9 +8,8 @@ There're two components in the cluster: **Master** and **Broker**. Master and Br
 can be deployed on the same server or different servers. In this example, we setup our cluster
 like this, and all services run on the same node. Zookeeper should be setup in your environment also.
 | Role | TCP Port | TLS Port | Web Port | Comment |
-| ---- | -------- | -------- | -------- | ------- |
-| Master | 8099 | 8199 | 8080 | Meta data is stored at /stage/meta_data |
-| Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data |
+|  ---- | -------- | -------- | -------- | ------- |
+| Master | 8099 | 8199 | 8080 | Meta data is stored at /stage/meta_data | | Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data |
 | Zookeeper | 2181 | | | Offset is stored at /tubemq |
 
 ### 1.2 Prerequisites
