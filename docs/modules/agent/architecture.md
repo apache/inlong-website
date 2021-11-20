@@ -2,19 +2,19 @@
 title: Architecture
 ---
 
-## 1. Overview of InLong-Agent
+## 1 Overview of InLong-Agent
 InLong-Agent is a collection tool that supports multiple types of data sources, and is committed to achieving stable and efficient data collection functions between multiple heterogeneous data sources including file, sql, Binlog, metrics, etc.
 
-### The brief architecture diagram is as follows:
+### 1.1 The brief architecture diagram is as follows:
 ![](img/architecture.png)
 
-### design concept
+### 1.2 design concept
 In order to solve the problem of data source diversity, InLong-agent abstracts multiple data sources into a unified source concept, and abstracts sinks to write data. When you need to access a new data source, you only need to configure the format and reading parameters of the data source to achieve efficient reading.
 
-### Current status of use
+### 1.3 Current status of use
 InLong-Agent is widely used within the Tencent Group, undertaking most of the data collection business, and the amount of online data reaches tens of billions.
 
-## 2. InLong-Agent architecture
+## 2 InLong-Agent architecture
 The InLong Agent task is used as a data acquisition framework, constructed with a channel + plug-in architecture. Read and write the data source into a reader/writer plug-in, and then into the entire framework.
 
 + Reader: Reader is the data collection module, responsible for collecting data from the data source and sending the data to the channel.
@@ -22,7 +22,7 @@ The InLong Agent task is used as a data acquisition framework, constructed with 
 + Channel: The channel used to connect the reader and writer, and as the data transmission channel of the connection, which realizes the function of data reading and monitoring
 
 
-## 3. Different kinds of agent
+## 3 Different kinds of agent
 ### 3.1 file agent
 File collection includes the following functions:
 

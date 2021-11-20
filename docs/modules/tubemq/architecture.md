@@ -2,7 +2,7 @@
 title: Architecture
 ---
 
-## 1. TubeMQ Architecture:
+## 1 TubeMQ Architecture:
 After years of evolution, the TubeMQ cluster is divided into the following 5 parts:
 ![](img/sys_structure.png)
 
@@ -30,7 +30,7 @@ After years of evolution, the TubeMQ cluster is divided into the following 5 par
 
 - **ZooKeeper：** Responsible for the ZooKeeper part of the offset storage. This part of the function has been weakened to only the persistent storage of the offset. Considering the next multi-node copy function, this module is temporarily reserved;
 
-## 2. Broker File Storage Scheme Improvement:
+## 2 Broker File Storage Scheme Improvement:
 Systems that use disks as data persistence media are faced with various system performance problems caused by disk problems. The TubeMQ system is no exception, the performance improvement is largely to solve the problem of how to read, write and store message data. In this regard TubeMQ has made many improvements: storage instances is as the smallest Topic data management unit; each storage instance includes a file storage block and a memory cache block; each Topic can be assigned multiple storage instances. 
 
 1. **File storage block:** The disk storage solution of TubeMQ is similar to Kafka, but it is not the same, as shown in the following figure: each file storage block is composed of an index file and a data file; the partiton is a logical partition in the data file; each Topic maintains and manages the file storage block separately, the related mechanisms include the aging cycle, the number of partitions, whether it is readable and writable, etc.

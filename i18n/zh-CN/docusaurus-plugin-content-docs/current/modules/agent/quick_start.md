@@ -2,14 +2,14 @@
 title: 编译部署
 ---
 
-## 1、配置
+## 1 配置
 ```
 cd inlong-agent
 ```
 
 agent 支持本地运行以及线上运行，其中线上运行从inlong manager拉取任务，本地运行可使用http请求提交任务
 
-### Agent 线上运行相关设置
+### 1.1 Agent 线上运行相关设置
 
 线上运行需要从inlong-manager拉取配置，配置conf/agent.properties如下：
 ```ini
@@ -19,16 +19,16 @@ agent.manager.vip.http.host=manager web host
 agent.manager.vip.http.port=manager web port
 ```
 
-## 2、运行
+## 2 运行
 
 解压后如下命令运行
 ```bash
 sh agent.sh start
 ```
 
-### 3 实时添加job配置
+## 3 实时添加job配置
 
-#### 3.1 agent.properties 修改下面两处
+### 3.1 agent.properties 修改下面两处
 
 ```ini
 # whether enable http service
@@ -37,7 +37,7 @@ agent.http.enable=true
 agent.http.port=可用端口
 ```
 
-#### 3.2 执行如下命令：
+### 3.2 执行如下命令：
 
 ```bash
 curl --location --request POST 'http://localhost:8008/config/job' \
@@ -76,7 +76,7 @@ curl --location --request POST 'http://localhost:8008/config/job' \
     - proxy.groupId: 写入proxy时使用的groupId，groupId是指manager界面中，数据接入中业务信息的业务ID，此处不是创建的tube topic名称
     - proxy.streamId: 写入proxy时使用的streamId，streamId是指manager界面中，数据接入中数据流的数据流ID
 
-## 4、可支持的路径配置方案
+## 4 可支持的路径配置方案
 
     例如：
     /data/inlong-agent/test.log  //代表读取inlong-agent文件夹下的的新增文件test.log
@@ -85,7 +85,7 @@ curl --location --request POST 'http://localhost:8008/config/job' \
     /data/inlong-agent/^\\d+(\\.\\d+)? // 以一个或多个数字开头,之后可以是.或者一个.或多个数字结尾，?代表可选,可以匹配的实例："5", "1.5" 和 "2.21"
 
 
-## 5、支持从文件名称中获取数据时间
+## 5 支持从文件名称中获取数据时间
 
     Agent支持从文件名称中获取时间当作数据的生产时间，配置说明如下：
     /data/inlong-agent/***YYYYMMDDHH***
@@ -141,7 +141,7 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 ```
 
 
-## 6、支持时间偏移量offset读取
+## 6 支持时间偏移量offset读取
 
     在配置按照时间读取之后，如果想要读取当前时间之外的其他时间的数据，可以通过配置时间偏移量完成
     配置job属性名称为job.timeOffset，值为数字 + 时间维度，时间维度包括天和小时

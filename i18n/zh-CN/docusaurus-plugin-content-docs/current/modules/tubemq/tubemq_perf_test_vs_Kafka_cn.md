@@ -176,22 +176,22 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
  ![](img/perf_scenario_8_index.png)
 
 ## 6 附录 
-## 6.1 附录1 不同机型下资源占用情况图：
-### 6.1.1 【BX1机型测试】
+### 6.1 附录1 不同机型下资源占用情况图：
+#### 6.1.1 【BX1机型测试】
 ![](img/perf_appendix_1_bx1_1.png)
 ![](img/perf_appendix_1_bx1_2.png)
 ![](img/perf_appendix_1_bx1_3.png)
 ![](img/perf_appendix_1_bx1_4.png)
 
-### 6.1.2 【CG1机型测试】
+#### 6.1.2 【CG1机型测试】
 ![](img/perf_appendix_1_cg1_1.png)
 ![](img/perf_appendix_1_cg1_2.png)
 ![](img/perf_appendix_1_cg1_3.png)
 ![](img/perf_appendix_1_cg1_4.png)
 
-## 6.2 附录2 多Topic测试时的资源占用情况图：
+### 6.2 附录2 多Topic测试时的资源占用情况图：
 
-### 6.2.1 【100个topic】
+#### 6.2.1 【100个topic】
 ![](img/perf_appendix_2_topic_100_1.png)
 ![](img/perf_appendix_2_topic_100_2.png)
 ![](img/perf_appendix_2_topic_100_3.png)
@@ -202,7 +202,7 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 ![](img/perf_appendix_2_topic_100_8.png)
 ![](img/perf_appendix_2_topic_100_9.png)
  
-### 6.2.2 【200个topic】
+#### 6.2.2 【200个topic】
 ![](img/perf_appendix_2_topic_200_1.png)
 ![](img/perf_appendix_2_topic_200_2.png)
 ![](img/perf_appendix_2_topic_200_3.png)
@@ -213,7 +213,7 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 ![](img/perf_appendix_2_topic_200_8.png)
 ![](img/perf_appendix_2_topic_200_9.png)
 
-### 6.2.3 【500个topic】
+#### 6.2.3 【500个topic】
 ![](img/perf_appendix_2_topic_500_1.png)
 ![](img/perf_appendix_2_topic_500_2.png)
 ![](img/perf_appendix_2_topic_500_3.png)
@@ -224,7 +224,7 @@ TubeMQ是腾讯大数据自研的分布式消息中间件。其系统架构思�
 ![](img/perf_appendix_2_topic_500_8.png)
 ![](img/perf_appendix_2_topic_500_9.png)
 
-### 6.2.4 【1000个topic】
+#### 6.2.4 【1000个topic】
 ![](img/perf_appendix_2_topic_1000_1.png)
 ![](img/perf_appendix_2_topic_1000_2.png)
 ![](img/perf_appendix_2_topic_1000_3.png)

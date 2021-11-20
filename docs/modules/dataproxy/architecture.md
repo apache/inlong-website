@@ -1,14 +1,14 @@
 ---
 title: Architecture
 ---
-# 1、intro
+## 1 intro
 
     Inlong-dataProxy belongs to the inlong proxy layer and is used for data collection, reception and forwarding. Through format conversion, the data is converted into TDMsg1 format that can be cached and processed by the cache layer
     InLong-dataProxy acts as a bridge from the InLong collection end to the InLong buffer end. Dataproxy pulls the relationship between the business group id and the corresponding topic name from the manager module, and internally manages the producers of multiple topics
     The overall architecture of inlong-dataproxy is based on Apache Flume. On the basis of this project, inlong-bus expands the source layer and sink layer, and optimizes disaster tolerance forwarding, which improves the stability of the system.
 
 
-# 2、architecture
+## 2 architecture
 
 ![](img/architecture.png)
 
@@ -16,7 +16,7 @@ title: Architecture
  	2. The channel layer has a selector, which is used to choose which type of channel to go. If the memory is eventually full, the data will be processed.
  	3. The data of the channel layer will be forwarded through the sink layer. The main purpose here is to convert the data to the TDMsg1 format and push it to the cache layer (tube is more commonly used here)
 
-# 3、DataProxy support configuration instructions
+## 3 DataProxy support configuration instructions
 
 DataProxy supports configurable source-channel-sink, and the configuration method is the same as the configuration file structure of flume:
 
@@ -158,7 +158,7 @@ agent1.sinks.meta-sink-more1.max-survived-size = 3000000
 Maximum number of caches
 ```
 
-# 4、Monitor metrics configuration instructions
+## 4 Monitor metrics configuration instructions
 
   DataProxy provide monitor indicator based on JMX, user can implement the code that read the metrics and report to user-defined monitor system.
 Source-module and Sink-module can add monitor metric class that is the subclass of org.apache.inlong.commons.config.metrics.MetricItemSet, and register it to MBeanServer. User-defined plugin can get module metric with JMX, and report metric data to different monitor system.

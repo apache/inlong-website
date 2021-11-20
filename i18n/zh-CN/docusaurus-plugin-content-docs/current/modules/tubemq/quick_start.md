@@ -1,7 +1,7 @@
 ---
 title: 快速开始
 ---
-## 部署运行
+## 1 部署运行
 
 ### 1.1 配置示例
 TubeMQ 集群包含有两个组件: **Master** 和 **Broker**. Master 和 Broker 可以部署在相同或者不同的节点上，依照业务对机器的规划进行处理。我们通过如下3台机器搭建有2台Master的生产、消费的集群进行配置示例：
@@ -126,8 +126,8 @@ Broker启动前，首先要在Master上配置Broker元数据，增加Broker相�
 刷新页面可以看到 Broker 已经注册，当 `当前运行子状态` 为 `idle` 时， 可以增加topic:
 ![Add Broker 3](img/tubemq-add-broker-3.png)
 
-## 3 快速使用
-### 3.1 新增 Topic
+## 2 快速使用
+### 2.1 新增 Topic
 
 可以通过 web GUI 添加 Topic， 在 `Topic列表`页面添加，需要填写相关信息，比如增加`demo` topic：
 ![Add Topic 1](img/tubemq-add-topic-1.png)

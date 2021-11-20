@@ -5,7 +5,7 @@ sidebar_position: 1
 
 This section contains a quick start guide to help you get started with Apache InLong.
 
-## Overall architecture
+## 1 Overall architecture
 <img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>
 
 [Apache InLong](https://inlong.apache.org)(incubating) overall architecture is as above. This component is a one-stop data streaming platform that provides automated, secure, distributed, and efficient data publishing and subscription capabilities to help You can easily build stream-based data applications.
@@ -15,7 +15,7 @@ InLong (应龙) is a divine beast in Chinese mythology who guides river into the
 InLong was originally built in Tencent and has served online business for more than 8 years. It supports massive data (over 40 trillion pieces of data per day) report services under big data scenarios. The entire platform integrates 5 modules including data collection, aggregation, caching, sorting and management modules. Through this system, the business only needs to provide data sources, data service quality, data landing clusters and data landing formats, that is, data can be continuous Push data from the source cluster to the target cluster, which greatly meets the data reporting service requirements in the business big data scenario.
 
 
-## Compile
+## 2 Compile
 - Java [JDK 8](https://adoptopenjdk.net/?variant=openjdk8)
 - Maven 3.6.1+
 
@@ -39,38 +39,38 @@ inlong-tubemq-server
 inlong-website
 ```
 
-## Environment Requirements
+## 3 Environment Requirements
 - ZooKeeper 3.5+
 - Hadoop 2.10.x 和 Hive 2.3.x
 - MySQL 5.7+
 - Flink 1.9.x
 
-## deploy InLong TubeMQ Server
+## 4 deploy InLong TubeMQ Server
 [deploy InLong TubeMQ Server](modules/tubemq/quick_start.md)
 
-## deploy InLong TubeMQ Manager
+## 5 deploy InLong TubeMQ Manager
 [deploy InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
 
-## deploy InLong Manager
+## 6 deploy InLong Manager
 [deploy InLong Manager](modules/manager/quick_start.md)
 
-## deploy InLong WebSite
+## 7 deploy InLong WebSite
 [deploy InLong WebSite](modules/website/quick_start.md)
 
-## deploy InLong Sort
+## 8 deploy InLong Sort
 [deploy InLong Sort](modules/sort/quick_start.md)
 
-## deploy InLong DataProxy
+## 9 deploy InLong DataProxy
 [deploy InLong DataProxy](modules/dataproxy/quick_start.md)
 
-## deploy InLong DataProxy-SDK
+## 10 deploy InLong DataProxy-SDK
 [deploy InLong DataProxy](modules/dataproxy-sdk/quick_start.md)
 
-## deploy InLong Agent
+## 11 deploy InLong Agent
 [deploy InLong Agent](modules/agent/quick_start.md)
 
-## Business configuration
+## 12 Business configuration
 [How to configure a new business](docs/user_guide/user_manual)
 
-## Data report verification
+## 13 Data report verification
 At this stage, you can collect data through the file agent and verify whether the received data is consistent with the sent data in the specified Hive table.

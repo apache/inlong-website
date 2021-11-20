@@ -1,7 +1,7 @@
 ---
 title: 架构介绍
 ---
-# 一、说明
+## 1 说明
 
     InLong-dataProxy属于inlong proxy层，用于数据的汇集接收以及转发。通过格式转换，将数据转为cache层可以缓存处理的TDMsg1格式
     InLong-dataProxy充当了InLong采集端到InLong缓冲端的桥梁，dataproxy从manager模块拉取业务id与对应topic名称的关系，内部管理多个topic的生产者
@@ -9,7 +9,7 @@ title: 架构介绍
     InLong-dataProxy整体架构基于Apache Flume。inlong-dataproxy在该项目的基础上，扩展了source层和sink层，并对容灾转发做了优化处理，提升了系统的稳定性。
     
     
-# 二、架构
+## 2 架构
 
 ![](img/architecture.png)
 
@@ -18,7 +18,7 @@ title: 架构介绍
     3.channel层的数据会通过sink层做转发，这里主要是将数据转为TDMsg1的格式，并推送到cache层（这里用的比较多的是tube）
 
 
-# 三、DataProxy功能配置说明
+## 3 DataProxy功能配置说明
 
 DataProxy支持配置化的source-channel-sink，配置方式与flume的配置文件结构相同:
 
@@ -157,7 +157,7 @@ agent1.sinks.meta-sink-more1.max-survived-size = 3000000
 缓存最大个数
 ```
     
-# 4、监控指标配置说明
+## 4 监控指标配置说明
 
   DataProxy提供了JMX方式的监控指标Listener能力，用户可以实现MetricListener接口，注册后可以定期接收监控指标，用户选择将指标上报自定义的监控系统。Source和Sink模块可以通过将指标数据统计到org.apache.inlong.commons.config.metrics.MetricItemSet的子类中，并注册到MBeanServer。用户自定义的MetricListener通过JMX方式收集指标数据并上报到外部监控系统
 

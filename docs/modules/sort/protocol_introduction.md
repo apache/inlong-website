@@ -7,7 +7,7 @@ Currently the metadata management of inlong-sort relies on inlong-manager.
 
 Metadata interaction between inlong-sort and inlong-manager is performed via ZK.
 
-# Zookeeper's path structure
+## 1 Zookeeper's path structure
 
 ![img.png](img.png)
 
@@ -20,6 +20,6 @@ A path at the top of the figure indicates which dataflow are running in a cluste
 
 The path below is used to store the details of the dataflow.
 
-# Protocol
+## 2 Protocol
 Please reference
 `org.apache.inlong.sort.protocol.DataFlowInfo`

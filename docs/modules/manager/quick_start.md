@@ -2,7 +2,7 @@
 title: Build && Deployment
 ---
 
-# 1. Environmental preparation
+## 1 Environmental preparation
 - Install and start MySQL 5.7+, copy the `doc/sql/apache_inlong_manager.sql` file in the inlong-manager module to the
   server where the MySQL database is located (for example, copy to `/data/` directory), load this file through the
   following command to complete the initialization of the table structure and basic data:
@@ -25,15 +25,15 @@ title: Build && Deployment
   to [Compile and deploy TubeMQ Manager](https://inlong.apache.org/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html)
   , install and start TubeManager.
 
-# 2. Deploy and start manager-web
+## 2 Deploy and start manager-web
 
 **manager-web is a background service that interacts with the front-end page.**
 
-## 2.1 Prepare installation files
+### 2.1 Prepare installation files
 
 All installation files at `inlong-manager-web` directory.
 
-## 2.2 Modify configuration
+### 2.2 Modify configuration
 
 Go to the decompressed `inlong-manager-web` directory and modify the `conf/application.properties` file:
 
@@ -74,7 +74,7 @@ The dev configuration is specified above, then modify the `conf/application-dev.
    sort.appName=inlong_app
    ```
 
-## 2.3 Start the service
+### 2.3 Start the service
 
 Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
 log `tailf log/manager-web.log`. If a log similar to the following appears, the service has started successfully:
@@ -83,7 +83,7 @@ log `tailf log/manager-web.log`. If a log similar to the following appears, the 
 Started InLongWebApplication in 6.795 seconds (JVM running for 7.565)
 ```
 
-# 3. Service access verification
+## 3 Service access verification
 
 Verify the manager-web service:
 
