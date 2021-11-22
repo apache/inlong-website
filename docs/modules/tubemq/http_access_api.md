@@ -913,7 +913,7 @@ __Request__
 |needRefresh|no|whether it needs to refresh, default false|Boolean|
 
 More API see:
-<a href="appendixfiles/http_access_api_definition_cn.xls" target="_blank" download="w3logo">TubeMQ HTTP API</a>
+<a href="/appendixfiles/http_access_api_definition_cn.xls"  download="http_access_api_definition_cn.xls">TubeMQ HTTP API</a>
 
 ---
 <a href="#top">Back to top</a>
