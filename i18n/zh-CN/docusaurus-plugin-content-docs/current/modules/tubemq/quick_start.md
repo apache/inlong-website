@@ -5,11 +5,12 @@ title: 快速开始
 
 ### 1.1 配置示例
 TubeMQ 集群包含有两个组件: **Master** 和 **Broker**. Master 和 Broker 可以部署在相同或者不同的节点上，依照业务对机器的规划进行处理。我们通过如下3台机器搭建有2台Master的生产、消费的集群进行配置示例：
+
 | 所属角色 | TCP端口 | TLS端口 | WEB端口 | 备注 |
 | --- | --- | --- | --- | --- |
 | Master | 8099 | 8199 | 8080 | 元数据存储在`/stage/meta_data` |
 | Broker | 8123 | 8124 | 8081 | 消息储存在`/stage/msg_data` |
-| ZooKeeper | 2181 | | | Offset储存在根目录`/tubemq` |
+| ZooKeeper | 2181 |  |  | Offset储存在根目录`/tubemq` |
 
 ### 1.2 准备工作
 - ZooKeeper集群

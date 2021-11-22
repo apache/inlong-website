@@ -37,9 +37,8 @@ mvn clean package -Dmaven.test.skip
 | | ZooKeeper | 2181 | | | Offset储存在根目录`/tubemq` |
 | 9.23.28.24 | **Master** | 8099 | 8199 | 8080 | 元数据存储在 `/stage/meta_data` |
 | | Broker | 8123 | 8124 | 8081 | 消息储存在`/stage/msg_data` |
-| 9.23.27.160 | Producer ||||
-| | Consumer ||||
-|
+| 9.23.27.160 | Producer | | | |  |
+| | Consumer | | | | |
 部署Master时需要注意：
 
 1. 部署Master的机器，Master集群可以部署1台、2台或者3台：如果要保证高可靠建议3台（任意坏1台Master对外仍然可读写配置及接入新的生产或者消费），如果只需要保证一般情况2台（任意坏1台Master对外仍然可读配置及已接入的生产和消费不受影响），最低1台（坏1台Master对外配置不可读写及已接入的生产和消费不受影响）；

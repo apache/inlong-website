@@ -227,7 +227,7 @@ __Request__
 |acceptSubscribe|no|whether the broker accept subscribe, default true| Boolean|
 |modifyUser|yes|the modifier|String|
 |modifyDate|yes|the modify date in format `yyyyMMddHHmmss`|String|
-|confModAuthToken|yes|the authorized key for configuration update|String|
+| confModAuthToken | yes | the authorized key for configuration update | String |
 
 #### 1.2.4 `admin_query_broker_configure`
 
@@ -913,7 +913,7 @@ __Request__
 |needRefresh|no|whether it needs to refresh, default false|Boolean|
 
 More API see:
-<a href="appendixfiles/http_access_api_definition_cn.xls" target="_blank">TubeMQ HTTP API</a>
+<a href="appendixfiles/http_access_api_definition_cn.xls" target="_blank" download="w3logo>TubeMQ HTTP API</a>
 
 ---
 <a href="#top">Back to top</a>
