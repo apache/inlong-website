@@ -23,7 +23,7 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 
 | 配置单元 | 配置项 | 是否必选 | 值类型 | 配置说明 |
 | --- | --- | --- | --- | --- |
-| [master] | Master系统运行主配置单元，必填单元，值固定为&quot;[master]&quot; |
+| | [master]是Master系统运行主配置单元，必填单元，值固定为&quot;[master]&quot; | | | |
 | [master] | hostName | 是 | String | Master对外服务的主机地址，必填项，必须在网卡中已配置，处于启用状态，非回环且不能为127.0.0.1的IP |
 | port | 否 | int | Master监听的端口，可选项，缺省值为8715 |
 | webPort | 否 | int | Master Web控制台的访问端口，缺省值为8080 |
@@ -49,18 +49,14 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | startConsumeAuthorize | 否 | boolean | 是否启用消费端消费授权认证，缺省为false |
 | maxGroupBrokerConsumeRate | 否 | int | 集群Broker数与消费组里成员数的最大比值，可选项，缺省为50，50台Broker集群里允许1个消费组最少启动1个客户端消费 |
 | metaDataPath | 否 | String | Metadata存储路径，可以是绝对路径、或者相对TubeMQ安装目录（&quot;$BASE_DIR&quot;）的相对路径。缺省为&quot;var/meta_data&quot; |
-|
- |
-| [zookeeper] | Master对应的TubeMQ集群存储Offset的ZooKeeper集群相关信息，必填单元，值固定为&quot;[zookeeper]&quot; |
+|  | [zookeeper]是Master对应的TubeMQ集群存储Offset的ZooKeeper集群相关信息，必填单元，值固定为&quot;[zookeeper]&quot; |  |  |  |
 | [zookeeper] | zkServerAddr | 否 | String | zk服务器地址，可选配置，缺省为&quot;localhost:2181&quot; |
 | zkNodeRoot | 否 | String | zk上的节点根目录路径，可选配置，缺省为&quot;/tubemq&quot; |
 | zkSessionTimeoutMs | 否 | long | zk心跳超时，单位毫秒，默认30秒 |
 | zkConnectionTimeoutMs | 否 | long | zk连接超时时间，单位毫秒，默认30秒 |
 | zkSyncTimeMs | 否 | long | zk数据同步时间，单位毫秒，默认5秒 |
 | zkCommitPeriodMs | 否 | long | Master缓存数据刷新到zk上的时间间隔，单位毫秒，默认5秒 |
-|
- |
-| [replication] | 集群数据复制的相关配置，用于实现元数据多节点热备，必填单元，值固定为&quot;[replication]&quot; |
+|  | [replication]是集群数据复制的相关配置，用于实现元数据多节点热备，必填单元，值固定为&quot;[replication]&quot; |  |  |  |
 | [replication] | repGroupName | 否 | String | 集群名，所属主备Master节点值必须相同，可选字段，缺省为&quot;tubemqMasterGroup&quot; |
 | repNodeName | 是 | String | 所属Master在集群中的节点名，该值各个节点必须不重复，必填字段 |
 | repNodePort | 否 | int | 节点复制通讯端口，可选字段，缺省为9001 |
@@ -69,9 +65,7 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | metaReplicaSyncPolicy | 否 | int | 数据节点同步保存方式，该字段取值范围[1，2，3]，缺省为1：其中1为数据保存到磁盘，2为数据只保存到内存，3为只将数据写文件系统buffer，但不刷盘 |
 | repReplicaAckPolicy | 否 | int | 节点数据同步时的应答策略，该字段取值范围为[1，2，3]，缺省为1：其中1为超过1/2多数为有效，2为所有节点应答才有效；3为不需要节点应答 |
 | repStatusCheckTimeoutMs | 否 | long | 节点状态检查间隔，可选字段，单位毫秒，缺省为10秒 |
-|
- |
-| [bdbStore] | 已弃用，请在&quot;[replication]&quot;单元进行相关配置。Master所属BDB集群的相关配置，Master采用BDB进行元数据存储以及多节点热备，必填单元，值固定为&quot;[bdbStore]&quot; |
+|  | [bdbStore]已弃用，请在&quot;[replication]&quot;单元进行相关配置。Master所属BDB集群的相关配置，Master采用BDB进行元数据存储以及多节点热备，必填单元，值固定为&quot;[bdbStore]&quot; |  |  |  |
 | [bdbStore] | bdbRepGroupName | 是 | String | BDB集群名，所属主备Master节点值必须相同，必填字段 |
 | bdbNodeName | 是 | String | 所属Master在BDB集群中的节点名，该值各个BDB节点必须不重复，必填字段 |
 | bdbNodePort | 否 | int | BDB节点通讯端口，可选字段，缺省为9001 |
@@ -81,9 +75,7 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | bdbReplicaSync | 否 | int | BDB数据节点同步保存方式，该字段取值范围[1，2，3]，缺省为1：其中1为数据保存到磁盘，2为数据只保存到内存，3为只将数据写文件系统buffer，但不刷盘 |
 | bdbReplicaAck | 否 | int | BDB节点数据同步时的应答策略，该字段取值范围为[1，2，3]，缺省为1：其中1为超过1/2多数为有效，2为所有节点应答才有效；3为不需要节点应答 |
 | bdbStatusCheckTimeoutMs | 否 | long | BDB状态检查间隔，可选字段，单位毫秒，缺省为10秒 |
-|
- |
-| [tlsSetting] | Master采用TLS进行传输层数据加密，启用TLS时通过该配置单元提供相关的设置，可选单元，值固定为&quot;[tlsSetting]&quot; |
+|  | [tlsSetting]是Master采用TLS进行传输层数据加密，启用TLS时通过该配置单元提供相关的设置，可选单元，值固定为&quot;[tlsSetting]&quot; |  |  |  |
 | [tlsSetting] | tlsEnable | 否 | boolean | 是否启用TLS功能，可选配置，缺省为false |
 | tlsPort | 否 | int | Master的TLS端口号，可选配置，缺省为8716 |
 | tlsKeyStorePath | 否 | String | TLS的keyStore文件的绝对存储路径+keyStore文件名，在启动TLS功能时，该字段必填且不能为空 |
@@ -96,14 +88,13 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 
 | 配置单元 | 配置项 | 是否必选 | 值类型 | 配置说明 |
 | --- | --- | --- | --- | --- |
-|
- | file.resource.loader.path | 是 | String | Master的Web的模板绝对路径，该部分为实际部署Master时的工程绝对路径+/resources/templates，该配置要与实际部署相吻合，配置失败会导致Master前端页面访问失败。 |
+| | file.resource.loader.path | 是 | String | Master的Web的模板绝对路径，该部分为实际部署Master时的工程绝对路径+/resources/templates，该配置要与实际部署相吻合，配置失败会导致Master前端页面访问失败。 |
 
 ### 2.3 broker.ini文件中关键配置内容说明：
 
 | 配置单元 | 配置项 | 是否必选 | 值类型 | 配置说明 |
 | --- | --- | --- | --- | --- |
-| [broker] | Broker系统运行主配置单元，必填单元，值固定为&quot;[broker]&quot; |
+|  | [broker]是Broker系统运行主配置单元，必填单元，值固定为&quot;[broker]&quot; | | | |
 | [broker] | brokerId | 是 | int | 服务器唯一标志，必填字段，可设为0；设为0时系统将默认取本机IP转化为int值再取abs绝对值，避免brokerId为负数，如果使用环境的IP比较复杂存在生成的brokerId值冲突时，则需要指定brokerId值进行设置。 |
 | hostName | 是 | String | Broker对外服务的主机地址，必填项，必须在网卡中已配置，处于启用状态，非回环且不能为127.0.0.1的IP |
 | port | 否 | int | Broker监听的端口，可选项，缺省值为8123 |
@@ -125,10 +116,7 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | visitName | 否 | String | 访问Master的用户名，缺省为空字符串，在visitMasterAuth为true时该值必须存在，该值必须与master.ini里的visitName字段值同 |
 | visitPassword | 否 | String | 访问Master的密码，缺省为空字符串，在visitMasterAuth为true时该值必须存在，该值必须与master.ini里的visitPassword字段值同 |
 | logFlushMemDurMs | 否 | long | 批量检查消息内存持久化到文件的检查周期,单位为毫秒, 缺省为10秒进行一次全量的检查及刷盘 |
-|
- |
- |
-| [zookeeper] | Broker对应的Tube MQ集群存储Offset的ZooKeeper集群相关信息，必填单元，值固定为&quot;[zookeeper]&quot; |
+| | [zookeeper]是Broker对应的Tube MQ集群存储Offset的ZooKeeper集群相关信息，必填单元，值固定为&quot;[zookeeper]&quot; | | | |
 | [zookeeper] | zkServerAddr | 否 | String | zk服务器地址，可选配置，缺省为&quot;localhost:2181&quot; |
 | zkNodeRoot | 否 | String | zk上的节点根目录路径，可选配置，缺省为&quot;/tubemq&quot; |
 | zkSessionTimeoutMs | 否 | long | zk心跳超时，单位毫秒，默认30秒 |
@@ -136,9 +124,7 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | zkSyncTimeMs | 否 | long | zk数据同步时间，单位毫秒，默认5秒 |
 | zkCommitPeriodMs | 否 | long | Broker缓存数据刷新到zk上的时间间隔，单位毫秒，默认5秒 |
 | zkCommitFailRetries | 否 | int | Broker刷新缓存数据到Zk失败后的最大重刷次数 |
-|
- |
-| [tlsSetting] | Master采用TLS进行传输层数据加密，启用TLS时通过该配置单元提供相关的设置，可选单元，值固定为&quot;[tlsSetting]&quot; |
+| | [tlsSetting]是Master采用TLS进行传输层数据加密，启用TLS时通过该配置单元提供相关的设置，可选单元，值固定为&quot;[tlsSetting]&quot; | | | |
 | [tlsSetting] | tlsEnable | 否 | boolean | 是否启用TLS功能，可选配置，缺省为false |
 | tlsPort | 否 | int | Broker的TLS端口号，可选配置，缺省为8124 |
 | tlsKeyStorePath | 否 | String | TLS的keyStore文件的绝对存储路径+keyStore文件名，在启动TLS功能时，该字段必填且不能为空 |
