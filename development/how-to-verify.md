@@ -1,39 +1,49 @@
 ---
-title: How to Verify
+title: How to Verify release
 sidebar_position: 7
 ---
 
-# 验证候选版本
+# Verify Apache Release
+To verify the release, the following checklist can be used to reference:
+- [ ] Download links are valid.
+- [ ] Checksums and PGP signatures are valid.
+- [ ] DISCLAIMER-WIP is included.
+- [ ] Source code artifacts have correct names matching the current release.
+- [ ] LICENSE and NOTICE files are correct for the repository.
+- [ ] All files have license headers if necessary.
+- [ ] No compiled archives bundled in source archive.
+- [ ] Building is OK.
 
-<font color="#dd0000" size="4">TODO: This page needs to be translated into English. If you are interested, just do it.</font>
+For a detailed checklist, please refer to [check list](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist), here we introduce how to do the verification.
 
-详细的检查列表请参考: [check list](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist)
-
-## 1. 下载要发布的候选版本到本地环境
+## 1. Download the release package to be verified to the local environment
+> Use the following command to download all artifacts, replace "${release_version}-${rc_version}" with the version ID of the version to be released:
 ```shell
 svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
 ```
-## 2. 验证上传的版本是否合规
-> 开始验证环节，验证包含但不局限于以下内容和形式
 
-### 2.1 查看发布包是否完整
-> 上传到dist的包必须包含源码包，二进制包可选
+## 2. Verify signature and hash
+> Start the verification process, which includes but is not limited to the following content and verification methods.
+> GnuPG is recommended, which can install by yum install gnupg or apt-get install gnupg.
 
-1. 是否包含源码包
-2. 是否包含源码包的签名
-3. 是否包含源码包的sha512
-4. 如果上传了二进制包，则同样检查(2)-(4)所列的内容
+### 2.1 Check if the release package is complete
+The package to release must check:
+- Whether to include the source code package
+- Whether to include the signature of the source code package
+- Whether to include the sha512 of the source code package
+- (if include) Check the binary package, also check the contents listed in (2)-(4)
 
-### 2.2 检查gpg签名
-  - 导入公钥
+### 2.2 Verify signature and hash
+GnuPG is recommended, which can install by yum install GnuPG or apt-get install GnuPG.
+  - Import public key
   ```shell
-  curl https://dist.apache.org/repos/dist/dev/incubator/inlong/KEYS > KEYS # 下载KEYS
-  gpg --import KEYS # 导入KEYS到本地
+  curl https://dist.apache.org/repos/dist/dev/incubator/inlong/KEYS > KEYS # Download KEYS
+  gpg --import KEYS # Import KEYS to local
   ```
-  - 信任公钥
-  > 信任此次版本所使用的KEY
+  - Trust the public key
+  > Trust the KEY used in this version
   ```shell
-    gpg --edit-key xxxxxxxxxx #此次版本所使用的KEY
+    gpg --edit-key xxxxxxxxxx                           # KEY used in this version
     gpg (GnuPG) 2.2.21; Copyright (C) 2020 Free Software Foundation, Inc.
     This is free software: you are free to change and redistribute it.
     There is NO WARRANTY, to the extent permitted by law.
@@ -47,7 +57,7 @@ svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version
          created: 2020-05-19  expires: never       usage: E   
     [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
     
-    gpg> trust #信任
+    gpg> trust                                          # Trust the KEY
     sec  rsa4096/5EF3A66D57EC647A
          created: 2020-05-19  expires: never       usage: SC  
          trust: ultimate      validity: ultimate
@@ -65,8 +75,8 @@ svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version
       5 = I trust ultimately
       m = back to the main menu
     
-    Your decision? 5 #选择5
-    Do you really want to set this key to ultimate trust? (y/N) y #选择y
+    Your decision? 5                                                    # select 5
+    Do you really want to set this key to ultimate trust? (y/N) y       # select y
                                                                  
     sec  rsa4096/5EF3A66D57EC647A
          created: 2020-05-19  expires: never       usage: SC  
@@ -84,17 +94,17 @@ svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version
          created: 2020-05-19  expires: never       usage: E   
     [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
   ```
-  - 使用如下命令检查签名
+  - Check signature and hash
   ```shell
   for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
-  #或者
+  # or
   gpg --verify apache-inlong-${release_version}-src.tar.gz.asc apache-inlong-${release_version}-src.tar.gz
-  # 如果上传二进制包，则同样需要检查二进制包的签名是否正确
+  # Attention: if you upload a binary package, you also need to check whether the signature of the binary package is correct
   gpg --verify apache-inlong-server-${release_version}-bin.tar.gz.asc apache-inlong-server-${release_version}-bin.tar.gz
   gpg --verify apache-inlong-client-${release_version}-bin.tar.gz.asc apache-inlong-client-${release_version}-bin.tar.gz
 ```
-  - 检查结果
-  > 出现类似以下内容则说明签名正确，关键字：**`Good signature`**
+  - Confirm result
+  > If something similar to the following appears, it means that the signature is correct, and the keywords: **`Good signature`**
 ```shell
 apache-inlong-0.3.0-incubating-src.tar.gz
 gpg: Signature made Sat May 30 11:45:01 2020 CST
@@ -102,36 +112,34 @@ gpg:                using RSA key 9B12C2228BDFF4F4CFE849445EF3A66D57EC647A
 gpg: Good signature from "Guangxu Cheng <gxcheng@apache.org>" [ultimate]gular2
 ```
 
-### 2.3 检查sha512哈希
-> 本地计算sha512哈希后，验证是否与dist上的一致
+### 2.3 Verify sha512 hash
+> Calculate the sha512 hash locally, and verify that it is consistent with the one on dist
 ```shell
 for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i; done
-#或者
+# or
 gpg --print-md SHA512 apache-inlong-${release_version}-src.tar.gz
-# 如果上传二进制包，则同样需要检查二进制包的sha512哈希
+# If include a binary package, you also need to check the sha512 hash of the binary package
 gpg --print-md SHA512 apache-inlong-server-${release_version}-bin.tar.gz
 gpg --print-md SHA512 apache-inlong-client-${release_version}-bin.tar.gz
-# 或者
+# or
 for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 ```
 
-### 2.4. 检查源码包的文件内容
+### 2.4. Check the file content of the source package
+Unzip `apache-inlong-${release_version}-src.tar.gz` and check as follows:
+- [ ] DISCLAIMER-WIP file exists and the content is correct.
+- [ ] LICENSE and NOTICE files are correct for the repository.
+- [ ] All files have ASF license headers if necessary.
+- [ ] The source code can be compiled normally.
+- [ ] The single test can run through.
+- [ ] Building is OK.
 
-  解压缩`apache-inlong-${release_version}-src.tar.gz`，进行如下检查:
+### 2.5 Check the binary package (if the binary package is included)
+  Unzip `apache-inlong-client-${release_version}-src.tar.gz` and `
+  apache-inlong-server-${release_version}-src.tar.gz`, check as follows:
+- [ ] DISCLAIMER-WIP file exists and the content is correct.
+- [ ] LICENSE and NOTICE files are correct for the repository.
+- [ ] The deployment can be successful
+- [ ] Deploy a test environment to verify whether production and consumption can run normally.
+- [ ] Verify what you think might go wrong.
 
-  - DISCLAIMER文件是否存在及内容是否正确
-  - LICENSE and NOTICE文件是否存在及内容是否正确
-  - 所有文件是否带有ASF License头
-  - 源码是否能够正常编译
-  - 单测是否能够跑通
-  - ....
-
-### 2.5 检查二进制包(如果上传了二进制包)
-  解压缩`apache-inlong-client-${release_version}-src.tar.gz`和`
-  apache-inlong-server-${release_version}-src.tar.gz`，进行如下检查:
-  - DISCLAIMER文件是否存在及内容是否正确
-  - LICENSE and NOTICE文件是否存在及内容是否正确
-  - 能否正常部署成功
-  - 部署测试环境、验证生产消费能否正常运行
-  - 验证你认为可能会出问题的地方
-  - ....

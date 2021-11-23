@@ -42,5 +42,10 @@ The interaction between each node is as follows:
 - Consumers regularly report status and partition registration information, so that the Master side can perceive the current partition assign and registration status of each SDK so that the server can obtain the partition allocation information of the entire group;
 - Master provides a query API and supports operation and maintenance to query the partition allocation status of each node in the specified partition allocation consumer group through the API query interface.
 
+## 5 Summary
+At this point, we have completed the introduction of client partition assign and made a detailed example of partition allocation through the client's hash modulus based on the total number of partitions and the total number of clients in the consumer group. There is no restriction on the partition allocation scheme, and you can also use other schemes when you use them,  only need to set the sourceCount value to -1 to turn off the system's default allocation strategy.
+
+In the implementation, the initial plan was to externalize the allocation plan in a callback mode and include the partition allocation thread into the SDK. However, later considering that the client may do a lot of fine processing, encapsulation may limit the use of the business. In contrast, the business only creates one more thread, so the current version does not carry out this encapsulation. The follow-up to see the effect of the implementation, if this is necessary, we will improve it.
+
 ---
 <a href="#top">Back to top</a>
