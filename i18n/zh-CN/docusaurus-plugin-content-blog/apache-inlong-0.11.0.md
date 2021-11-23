@@ -11,9 +11,9 @@ Apache InLong(incubating) 从 0.9.0 版本开始由原 Apache TubeMQ（incubatin
 该版本关闭超过 80 个 issue, 包含了四个重大 feature 和 35 个 improvements 。
 
 ### Apache InLong(incubating) 简介
-[Apache InLong（应龙）](https://inlong.apache.org/zh-cn/)是腾讯捐献给 Apache 社区的一站式数据流接入服务平台，提供自动、安全、高性能、分布式的数据发布订阅能力，基于该系统用户可以轻松构建基于流式的数据应用。InLong 项目原本叫TubeMQ ，专注高性能、低成本的消息队列服务。为了进一步释放 TubeMQ 周边生态能力，我们将项目升级为 InLong ，专注打造一站式数据流接入服务平台。
+[Apache InLong（应龙）](https://inlong.apache.org/zh-cn/)是腾讯捐献给 Apache 社区的一站式数据接入平台，提供自动、安全、可靠和高性能的数据传输能力，方便业务构建基于流式的数据分析、建模和应用。InLong 项目原本叫TubeMQ ，专注高性能、低成本的消息队列服务。为了进一步释放 TubeMQ 周边生态能力，我们将项目升级为 InLong ，专注打造一站式的数据集成解决方案。
 
-Apache InLong 以腾讯内部使用的 [TDBank](http://tdbank.oa.com/#/index) 为原型，依托万亿级别的数据接入和处理能力，整合了数据采集、汇聚、存储、分拣数据处理全流程，拥有简单易用、灵活扩展、稳定可靠等特性。
+Apache InLong 以腾讯内部使用的 TDBank 为原型，依托万亿级别的数据接入和处理能力，整合了数据采集、汇聚、存储、分拣数据处理全流程，拥有简单易用、灵活扩展、稳定可靠等特性。
 <img src="/img/inlong_architecture.png" align="center" alt="Apache InLong"/>
 
  Apache InLong 服务于数据采集到落地的整个生命周期，按数据的不同阶段提供不同的处理模块，主要包括：
@@ -31,7 +31,6 @@ InLong 包括了数据采集，数据汇聚，数据缓存、数据分拣以及�
 [INLONG-1308](https://github.com/apache/incubator-inlong/issues/1308)
 
 #### dataproxy->pulsar 数据流打通
-
 在 0.11.0 版本之前的版本，InLong 的数据缓存层只能支持 TubeMQ，TubeMQ 很适合于超大规模数据量的场景，但在极端场景下可能会有少量数据丢失的风向；为了提供数据可靠性，Inlong 在 0.11.0 版本中增加了对于 Apache Pulsar 的支持，现在InLong 后台可以支持数据流可以从 agent -> dataProxy -> tubeMQ/pulsar -> sort.  Pulsar 的引入，使得 InLong 覆盖的应用场景更加丰富，可以满足更多用户的需求。
 感谢 @baomingyu 对于这个特性的贡献，更多详情可以参考:
 [INLONG-1330](https://github.com/apache/incubator-inlong/issues/1330)
