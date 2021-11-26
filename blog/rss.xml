@@ -4,15 +4,22 @@
         <title>Apache Inlong Blog</title>
         <link>https://inlong.apache.org/blog</link>
         <description>Apache Inlong Blog</description>
-        <lastBuildDate>Wed, 24 Nov 2021 11:45:15 GMT</lastBuildDate>
+        <lastBuildDate>Fri, 26 Nov 2021 08:37:46 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[Apache InLong 0.11.0]]></title>
             <link>https://inlong.apache.org/blog/apache-inlong-0.11.0</link>
             <guid>Apache InLong 0.11.0</guid>
-            <pubDate>Wed, 24 Nov 2021 11:45:15 GMT</pubDate>
+            <pubDate>Fri, 26 Nov 2021 08:37:46 GMT</pubDate>
             <description><![CDATA[Apache InLong (incubating)  has been renamed from the original Apache TubeMQ (incubating) from 0.9.0.  With the name change,  InLong has also been upgraded from a single message queue to a one-stop data integration solution.  InLong supports data collection,  aggregation,  caching,  and sorting,  users can import data from the data source to the real-time computing engine or land to offline storage with a simple configuration.]]></description>
+        </item>
+        <item>
+            <title><![CDATA[Apache InLong welcomes new Committers]]></title>
+            <link>https://inlong.apache.org/blog/new-committer-join</link>
+            <guid>Apache InLong welcomes new Committers</guid>
+            <pubDate>Fri, 26 Nov 2021 08:37:46 GMT</pubDate>
+            <description><![CDATA[InLong (应龙) is a divine beast in Chinese mythology who guides river into the sea, it is regarded as a metaphor of the InLong system for reporting streams of data.]]></description>
         </item>
     </channel>
 </rss>
