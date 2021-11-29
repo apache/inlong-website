@@ -109,6 +109,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             position: 'right'
           },
           {
+            to: '/news',
+            label: 'NEWS',
+            position: 'right'
+          },
+          {
             label: 'ASF',
             position: 'right',
             items: [
@@ -239,6 +244,24 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           return `https://github.com/apache/incubator-inlong-website/edit/master/${versionDocsDirPath}/${docPath}`;
         },
         sidebarPath: require.resolve('./sidebarsDevelopment.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        /**
+         * 多实例插件必填。
+         */
+        id: 'news',
+        /**
+         * 您网站上博客的 URL 路由。
+         * *请务必不要*添加斜杠。
+         */
+        routeBasePath: 'news',
+        /**
+         * 相对于站点目录的文件系统数据路径。
+         */
+        path: 'news',
       },
     ],
   ]
