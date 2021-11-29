@@ -104,8 +104,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             activeBaseRegex: `/development/`,
           },
           {
-            to: '/blog/new-committer-join',
+            to: '/blog',
             label: 'BLOG',
+            position: 'right'
+          },
+          {
+            to: '/news',
+            label: 'NEWS',
             position: 'right'
           },
           {
@@ -239,6 +244,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           return `https://github.com/apache/incubator-inlong-website/edit/master/${versionDocsDirPath}/${docPath}`;
         },
         sidebarPath: require.resolve('./sidebarsDevelopment.js'),
+      },
+    ],
+    [
+      '@docusaurus/plugin-content-blog',
+      {
+        id: 'news',
+        routeBasePath: 'news',
+        path: 'news',
       },
     ],
   ]

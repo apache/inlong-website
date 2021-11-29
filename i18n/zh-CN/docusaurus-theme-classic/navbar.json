@@ -23,6 +23,10 @@
     "message": "博客",
     "description": "Navbar item with label BLOG"
   },
+  "item.label.NEWS": {
+    "message": "新闻",
+    "description": "Navbar item with label NEWS"
+  },
   "item.label.ASF": {
     "message": "Apache",
     "description": "Navbar item with label ASF"
