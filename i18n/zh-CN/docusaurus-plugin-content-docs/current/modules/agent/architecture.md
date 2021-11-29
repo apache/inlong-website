@@ -43,6 +43,48 @@ SQL正则分解，转化成多条SQL语句
 这种方式采集属于文件采集，只不过metric采集的时候，单行的数据有格式规范
 
 
+## 4 监控指标配置说明
+
+Agent提供了JMX方式的监控指标能力，监控指标已经注册到MBeanServer
+用户可以在Agent的启动参数中增加如下类似JMX定义（端口和鉴权根据情况进行调整），实现监控指标从远端采集。
+
+```shell
+	-Dcom.sun.management.jmxremote
+	-Djava.rmi.server.hostname=127.0.0.1
+	-Dcom.sun.management.jmxremote.port=9999
+	-Dcom.sun.management.jmxremote.authenticate=false
+	-Dcom.sun.management.jmxremote.ssl=false
+```
+
+Agent指标分为以下几项, 各项的属性分别为：
+
+
+AgentTaskMetric
+
+|  属性名称   | 说明  |
+|  ----  | ----  |
+| runningTasks  | 当前正在执行的任务 |
+| retryingTasks  | 当前正在重试的任务 |
+| fatalTasks  | 当前失败的任务总数 |
+
+
+JobMetrics
+
+|  属性名称   | 说明  |
+|  ----  | ----  |
+| runningJobs  | 当前正在运行的job总数 |
+| fatalJobs  | 当前失败的job总数 |
+
+PluginMetric
+
+|  属性名称   | 说明  |
+|  ----  | ----  |
+| readNum  | 当前正在运行的job总数 |
+| sendNum  | 当前失败的job总数 |
+| sendFailedNum  | 发送失败条数 |
+| readFailedNum  | 读取失败条数 |
+| readSuccessNum  | 读取成功条数 |
+| sendSuccessNum  | 发送成功条数 |
 
 
 

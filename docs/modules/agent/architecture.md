@@ -41,6 +41,45 @@ This type of collection reads binlog and restores data by configuring mysql slav
 Need to pay attention to multi-threaded parsing when binlog is read, and multi-threaded parsing data needs to be labeled in order
 The code is based on the old version of dbsync, the main modification is to change the sending of tdbus-sender to push to agent-channel for integration
 
+##4 Monitoring indicator configuration instructions
+
+Agent provides the ability of monitoring indicators in JMX mode, and the monitoring indicators have been registered to MBeanServer
+Users can add similar JMX (port and authentication are adjusted according to the situation) to the startup parameters of the Agent to realize the collection of monitoring indicators from the remote end.
+
+```Shell
+-Dcom.sun.management.jmxremote
+-Djava.rmi.server.hostname=127.0.0.1
+-Dcom.sun.management.jmxremote.port=9999
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.ssl=false
+```
+
+The agent indicators are divided into the following items, and the indicators are as follows:
+
+AgentTaskMetric
+
+|  property   | info  |
+|  ----  | ----  |
+| runningTasks  | tasks currently being executed |
+| retryingTasks  | Tasks that are currently being retried |
+| fatalTasks  | The total number of currently failed tasks |
 
 
+JobMetrics
+
+|  property   | info  |
+|  ----  | ----  |
+| runningJobs  | the total number of currently running jobs |
+| fatalJobs  | the total number of currently failed jobs |
+
+PluginMetric
+
+|  property   | info  |
+|  ----  | ----  |
+| readNum  | the number of reads |
+| sendNum  | the number of sent items |
+| sendFailedNum  | the number of failed sending |
+| readFailedNum  | the number of failed reads |
+| readSuccessNum  | the number of successful reads |
+| sendSuccessNum  | the number of successfully sent |
 
