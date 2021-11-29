@@ -104,7 +104,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             activeBaseRegex: `/development/`,
           },
           {
-            to: '/blog/new-committer-join',
+            to: '/blog',
             label: 'BLOG',
             position: 'right'
           },
