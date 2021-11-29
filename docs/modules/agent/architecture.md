@@ -56,27 +56,30 @@ Users can add similar JMX (port and authentication are adjusted according to the
 
 The agent indicators are divided into the following items, and the indicators are as follows:
 
-```Shell
-AgentTaskMetric:
-runningTasks: tasks currently being executed;
-retryingTasks: Tasks that are currently being retried;
-fatalTasks: The total number of currently failed tasks;
-``
+AgentTaskMetric
 
-```Shell
-JobMetrics:
-runningJobs: the total number of currently running jobs;
-fatalJobs: the total number of currently failed jobs;
-``
+|  property   | info  |
+|  ----  | ----  |
+| runningTasks  | tasks currently being executed |
+| retryingTasks  | Tasks that are currently being retried |
+| fatalTasks  | The total number of currently failed tasks |
 
-```Shell
-PluginMetric:
-readNum: the number of reads;
-sendNum: the number of sent items;
-sendFailedNum: the number of failed sending;
-readFailedNum: the number of failed reads;
-readSuccessNum: the number of successful reads;
-sendSuccessNum: the number of successfully sent;
-``
 
+JobMetrics
+
+|  property   | info  |
+|  ----  | ----  |
+| runningJobs  | the total number of currently running jobs |
+| fatalJobs  | the total number of currently failed jobs |
+
+PluginMetric
+
+|  property   | info  |
+|  ----  | ----  |
+| readNum  | the number of reads |
+| sendNum  | the number of sent items |
+| sendFailedNum  | the number of failed sending |
+| readFailedNum  | the number of failed reads |
+| readSuccessNum  | the number of successful reads |
+| sendSuccessNum  | the number of successfully sent |
 

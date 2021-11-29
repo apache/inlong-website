@@ -58,28 +58,33 @@ Agent提供了JMX方式的监控指标能力，监控指标已经注册到MBeanS
 
 Agent指标分为以下几项, 各项的属性分别为：
 
-```shell
-AgentTaskMetric:
-runningTasks:当前正在执行的任务;
-retryingTasks:当前正在重试的任务;
-fatalTasks:当前失败的任务总数;
-```
 
-```shell
-JobMetrics:
-runningJobs:当前正在运行的job总数;
-fatalJobs:当前失败的job总数;
-```
+AgentTaskMetric
 
-```shell
-PluginMetric:
-readNum:读取条数;
-sendNum:发送条数;
-sendFailedNum:发送失败条数;
-readFailedNum:读取失败条数;
-readSuccessNum:读取成功条数;
-sendSuccessNum:发送成功条数;
-```
+|  属性名称   | 说明  |
+|  ----  | ----  |
+| runningTasks  | 当前正在执行的任务 |
+| retryingTasks  | 当前正在重试的任务 |
+| fatalTasks  | 当前失败的任务总数 |
+
+
+JobMetrics
+
+|  属性名称   | 说明  |
+|  ----  | ----  |
+| runningJobs  | 当前正在运行的job总数 |
+| fatalJobs  | 当前失败的job总数 |
+
+PluginMetric
+
+|  属性名称   | 说明  |
+|  ----  | ----  |
+| readNum  | 当前正在运行的job总数 |
+| sendNum  | 当前失败的job总数 |
+| sendFailedNum  | 发送失败条数 |
+| readFailedNum  | 读取失败条数 |
+| readSuccessNum  | 读取成功条数 |
+| sendSuccessNum  | 发送成功条数 |
 
 
 
