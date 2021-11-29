@@ -249,18 +249,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     [
       '@docusaurus/plugin-content-blog',
       {
-        /**
-         * 多实例插件必填。
-         */
         id: 'news',
-        /**
-         * 您网站上博客的 URL 路由。
-         * *请务必不要*添加斜杠。
-         */
         routeBasePath: 'news',
-        /**
-         * 相对于站点目录的文件系统数据路径。
-         */
         path: 'news',
       },
     ],
