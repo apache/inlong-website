@@ -4,14 +4,14 @@
         <title>Apache Inlong Blog</title>
         <link>https://inlong.apache.org/zh-CN/blog</link>
         <description>Apache Inlong Blog</description>
-        <lastBuildDate>Mon, 29 Nov 2021 08:38:48 GMT</lastBuildDate>
+        <lastBuildDate>Tue, 30 Nov 2021 02:09:31 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[0.11.0 版本发布]]></title>
             <link>https://inlong.apache.org/zh-CN/blog/apache-inlong-0.11.0</link>
             <guid>0.11.0 版本发布</guid>
-            <pubDate>Mon, 29 Nov 2021 08:38:48 GMT</pubDate>
+            <pubDate>Tue, 30 Nov 2021 02:09:31 GMT</pubDate>
             <description><![CDATA[Apache InLong(incubating) 从 0.9.0 版本开始由原 Apache TubeMQ（incubating）改名而来，伴随着名称的改变，InLong 也由单一的消息队列升级为一站式的数据集成解决方案，支持了大数据领域的采集、汇聚、缓存和分拣功能，用户只需要简单的配置就可以把数据从数据源导入到实时计算引擎或者落地到离线存储。]]></description>
         </item>
     </channel>
