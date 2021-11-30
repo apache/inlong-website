@@ -105,7 +105,7 @@ sidebar_position: 5
    The Apache InLong PPMC
    ```
 
-6. 接受邀请后处理：创建Apache帐号并将候选人帐号加入项目。候选人接受邀请后，如果候选人没有apache邮箱帐号，投票发起人需要协助候选人按照指引创建好apache帐号。在签署ICLA时，候选人需要在“notify project:”栏目写上Apache InLong项目名，这样候选人帐号才会被Apache加入对应项目人员名单，如果候选人没有加入项目，投票发起人需要向Mentors申请添加项目组成员，开通apache项目的权限帐号，确认候选人的Apache帐号已加入项目的地址：http://people.apache.org/phonebook.html?podling=inlong。
+6. 接受邀请后处理：创建Apache帐号并将候选人帐号加入项目。候选人接受邀请后，如果候选人没有apache邮箱帐号，投票发起人需要协助候选人按照指引创建好apache帐号。在签署ICLA时，候选人需要在“notify project:”栏目写上Apache InLong项目名，这样候选人帐号才会被Apache加入对应项目人员名单，如果候选人没有加入项目，投票发起人需要向Mentors申请添加项目组成员，开通apache项目的权限帐号，确认候选人的Apache帐号已加入项目的地址：http://people.apache.org/phonebook.html?podling=inlong 。
 
 7. 向社区发布申明邮件：如上步骤都完成后，投票发起人向dev@inlong.apache.org邮件组发通知邮件。如下是通知邮件样例：
    ```shell
