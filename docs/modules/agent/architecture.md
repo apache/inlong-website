@@ -41,7 +41,7 @@ This type of collection reads binlog and restores data by configuring mysql slav
 Need to pay attention to multi-threaded parsing when binlog is read, and multi-threaded parsing data needs to be labeled in order
 The code is based on the old version of dbsync, the main modification is to change the sending of tdbus-sender to push to agent-channel for integration
 
-##4 Monitoring indicator configuration instructions
+## 4 Monitoring indicator configuration instructions
 
 Agent provides the ability of monitoring indicators in JMX mode, and the monitoring indicators have been registered to MBeanServer
 Users can add similar JMX (port and authentication are adjusted according to the situation) to the startup parameters of the Agent to realize the collection of monitoring indicators from the remote end.
