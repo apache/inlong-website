@@ -75,7 +75,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           {
             position: 'right',
             label: 'DOC',
-            to: "/docs/introduction",
+            to: "/docs/user_guide/quick_start",
             items: [
               {
                 label: "Next",
