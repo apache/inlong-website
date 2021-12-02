@@ -3,9 +3,17 @@
     "message": "Next",
     "description": "The label for version current"
   },
-  "sidebar.tutorialSidebar.category.User Guide": {
-    "message": "引导",
-    "description": "The label for category User Guide in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Design and Concept": {
+    "message": "设计和概念",
+    "description": "The label for category Design and Concept in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Quick Start": {
+    "message": "快速开始",
+    "description": "The label for category Quick Start in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Deployment": {
+    "message": "安装部署",
+    "description": "The label for category Deployment in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Components": {
     "message": "组件介绍",
@@ -42,5 +50,13 @@
   "sidebar.tutorialSidebar.category.Sort": {
     "message": "Sort",
     "description": "The label for category Sort in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Development": {
+    "message": "开发指引",
+    "description": "The label for category Development in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.User Guide": {
+    "message": "用户指引",
+    "description": "The label for category User Guide in sidebar tutorialSidebar"
   }
 }

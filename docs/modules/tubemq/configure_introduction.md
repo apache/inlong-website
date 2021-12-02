@@ -1,5 +1,5 @@
 ---
-title: Configure Introduction
+title: Configuration
 ---
 
 ## 1 TubeMQ configuration item description

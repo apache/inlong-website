@@ -1,5 +1,5 @@
 ---
-title: TubeMQ VS Kafka性能对比测试总结
+title: TubeMQ VS Kafka
 ---
 
 ## 1 背景

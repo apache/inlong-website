@@ -1,5 +1,6 @@
 ---
-title: 编译部署
+title: 安装部署
+sidebar_position: 2
 ---
 
 ##  1 配置flink运行环境

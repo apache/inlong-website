@@ -1,5 +1,6 @@
 ---
 title: 快速开始
+sidebar_position: 1
 ---
 ## 1 部署运行
 

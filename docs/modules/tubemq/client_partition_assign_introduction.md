@@ -1,5 +1,5 @@
 ---
-title: Introduction to client partition assign
+title: client partition assign
 ---
 
 ## 1 Preface

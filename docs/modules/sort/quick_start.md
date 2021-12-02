@@ -1,5 +1,6 @@
 ---
-title: Build && Deployment
+title: Deployment
+sidebar_position: 2
 ---
 
 ## 1 Set up flink environment

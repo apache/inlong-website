@@ -1,5 +1,6 @@
 ---
 title: Zookeeper配置介绍
+sidebar_position: 3
 ---
 
 # 前言

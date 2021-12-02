@@ -1,6 +1,6 @@
 ---
-title: User Manual
-sidebar_position: 2
+title: Usage Manual
+sidebar_position: 1
 ---
 
 ## 1 User login
@@ -215,72 +215,3 @@ Data consumption task details display basic information of current application t
 basic consumption information, and current approval process nodes.
 
 ![](/cookbooks_img//image-1624432474526.png)
-
-### 5.2 My approval
-
-As a data access officer and system member with approval authority, have the responsibility for data access or
-consumption approval.
-
-![](/cookbooks_img//image-1624432496461.png)
-
-#### 5.2.1 Data Access Approval
-
-New data access approval: currently it is a first-level approval, which is approved by the system administrator.
-
-The system administrator will review whether the access process meets the access requirements based on the data access
-business information.
-
-![](/cookbooks_img//image-1624432515850.png)
-
-#### 5.2.2 New data consumption approval
-
-New data consume approval: currently it is a first-level approval, which is approved by the person in charge of the
-business.
-
-Business approval: The person in charge of the data access business judges whether the consumption meets the business
-requirements according to the access information:
-
-![](/cookbooks_img//image-1624432535541.png)
-
-## 6 System Management
-
-Only users with the role of system administrator can use this function. They can create, modify, and delete users:
-
-![](/cookbooks_img//image-1624432652141.png)
-
-### 6.1 New user
-
-Users with system administrator rights can create new user accounts
-
-![](/cookbooks_img//image-1624432668340.png)
-
-- Account types: Ordinary users (with data access and data consumption permissions, but without data access approval and
-  account management permissions); system administrators (with data access and data consumption permissions, data access
-  approval and account management permissions)
-- username: username for login
-- user password:
-  -Effective duration: the account can be used in the system
-  ![](/cookbooks_img//image-1624432740241.png)
-
-### 6.2 Delete user
-
-The system administrator can delete the account of the created user. After the deletion, the account will stop using:
-
-![](/cookbooks_img//image-1624432759224.png)
-
-### 6.3 User Edit
-
-The system administrator can modify the created account:
-
-![](/cookbooks_img//image-1624432778845.png)
-
-The system administrator can modify the account type and effective duration to proceed:
-
-![](/cookbooks_img//image-1624432797226.png)
-
-### 6.4 Change password
-
-The user can modify the account password, click [Modify Password], enter the old password and the new password, after
-confirmation, the new password of this account will take effect:
-
-![](/cookbooks_img//image-1624432829313.png)
