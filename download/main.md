@@ -1,5 +1,9 @@
-## Download links
-  Use the links below to download the Apache InLong Releases, the latest release is 0.11.0.
+---
+title: Download InLong
+sidebar_position: 1
+---
+
+Use the links below to download the Apache InLong Releases, the latest release is 0.11.0.
 
 ## 0.11.0 release
 - Released: Nov 5th, 2021

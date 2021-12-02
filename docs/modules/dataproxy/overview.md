@@ -1,27 +1,24 @@
 ---
 title: Overview
 ---
-## 1 intro
 
-    Inlong-dataProxy belongs to the inlong proxy layer and is used for data collection, reception and forwarding. Through format conversion, the data is converted into TDMsg1 format that can be cached and processed by the cache layer
-    InLong-dataProxy acts as a bridge from the InLong collection end to the InLong buffer end. Dataproxy pulls the relationship between the business group id and the corresponding topic name from the manager module, and internally manages the producers of multiple topics
-    The overall architecture of inlong-dataproxy is based on Apache Flume. On the basis of this project, inlong-bus expands the source layer and sink layer, and optimizes disaster tolerance forwarding, which improves the stability of the system.
+Inlong-dataProxy belongs to the inlong proxy layer and is used for data collection, reception and forwarding. Through format conversion, the data is converted into TDMsg1 format that can be cached and processed by the cache layer
+InLong-dataProxy acts as a bridge from the InLong collection end to the InLong buffer end. Dataproxy pulls the relationship between the business group id and the corresponding topic name from the manager module, and internally manages the producers of multiple topics
+The overall architecture of inlong-dataproxy is based on Apache Flume. On the basis of this project, inlong-bus expands the source layer and sink layer, and optimizes disaster tolerance forwarding, which improves the stability of the system.
 
-
-## 2 architecture
+## Architecture
 
 ![](img/architecture.png)
 
- 	1. The source layer opens port monitoring, which is realized through netty server. The decoded data is sent to the channel layer
- 	2. The channel layer has a selector, which is used to choose which type of channel to go. If the memory is eventually full, the data will be processed.
- 	3. The data of the channel layer will be forwarded through the sink layer. The main purpose here is to convert the data to the TDMsg1 format and push it to the cache layer (tube is more commonly used here)
+- The source layer opens port monitoring, which is realized through netty server. The decoded data is sent to the channel layer
+- The channel layer has a selector, which is used to choose which type of channel to go. If the memory is eventually full, the data will be processed.
+- The data of the channel layer will be forwarded through the sink layer. The main purpose here is to convert the data to the TDMsg1 format and push it to the cache layer (tube is more commonly used here)
 
-## 3 DataProxy support configuration instructions
+## DataProxy Configuration
 
-DataProxy supports configurable source-channel-sink, and the configuration method is the same as the configuration file structure of flume:
+DataProxy supports configurable source-channel-sink, and the configuration method is the same as the configuration file structure of flume.
 
-Source configuration example and corresponding notes:
-
+- Source configuration example:
 ```shell
 agent1.sources.tcp-source.channels = ch-msg1 ch-msg2 ch-msg3 ch-more1 ch-more2 ch-more3 ch-msg5 ch-msg6 ch-msg7 ch-msg8 ch-msg9 ch-msg10 ch-transfer ch -Back
 Define the channel used in the source. Note that if the configuration below this source uses the channel, it needs to be annotated here
@@ -42,7 +39,7 @@ agent1.sources.tcp-source.highWaterMark=2621440
 The concept of netty, set the netty high water level value
 
 agent1.sources.tcp-source.enableExceptionReturn=true
-The new function of v1.7 version, optional, the default is false, used to open the exception channel, when an exception occurs, the data is written to the exception channel to prevent other normal data transmission (the open source version does not add this function), Details: Increase the local disk of abnormal data landing
+The new function of v1.7 version, optional, the default is false, used to open the exception channel, when an exception occurs, the data is written to the exception channel to prevent other normal data transmission (the open source version does not add this function), Details  |  Increase the local disk of abnormal data landing
 
 agent1.sources.tcp-source.max-msg-length = 524288
 Limit the size of a single package, here if the compressed package is transmitted, it is the compressed package size, the limit is 512KB
@@ -82,9 +79,7 @@ agent1.sources.tcp-source.selector.fileMetric = ch-back
 Specify the fileMetric channel to receive the metric data reported by the agent
 ```
 
-Channel configuration examples and corresponding annotations
-
-memory channel
+- Channel configuration examples, memory channel:
 
 ```shell
 agent1.channels.ch-more1.type = memory
@@ -99,7 +94,7 @@ agent1.channels.ch-more1.transactionCapacity = 20
 The maximum number of batches are processed in atomic operations, and the memory channel needs to be locked when used, so there will be a batch process to increase efficiency
 ```
 
-file channel
+- Channel configuration examples, file channel:
 
 ```shell
 agent1.channels.ch-msg5.type = file
@@ -127,7 +122,7 @@ agent1.channels.ch-msg5.fsyncInterval = 5
 The time interval between data flush from memory to disk, in seconds
 ```
 
-Sink configuration example and corresponding notes
+- Sink configuration example:
 
 ```shell
 agent1.sinks.meta-sink-more1.channel = ch-msg1
@@ -158,7 +153,7 @@ agent1.sinks.meta-sink-more1.max-survived-size = 3000000
 Maximum number of caches
 ```
 
-## 4 Monitor metrics configuration instructions
+## Monitor Metrics configuration
 
   DataProxy provide monitor indicator based on JMX, user can implement the code that read the metrics and report to user-defined monitor system.
 Source-module and Sink-module can add monitor metric class that is the subclass of org.apache.inlong.commons.config.metrics.MetricItemSet, and register it to MBeanServer. User-defined plugin can get module metric with JMX, and report metric data to different monitor system.
@@ -171,51 +166,49 @@ metricDomains.DataProxy.domainListeners=org.apache.inlong.dataproxy.metrics.prom
 metricDomains.DataProxy.snapshotInterval=60000
 ```
 
-  * The JMX domain name of DataProxy is "DataProxy". 
-  * It is defined by the parameter "metricDomains".
-  * The listeners of JMX domain is defined by the parameter "metricDomains.$domainName.domainListeners".
-  * The class names of the listeners is separated by the space char.
-  * The listener class need to implement the interface "org.apache.inlong.dataproxy.metrics.MetricListener".
-  * The snapshot interval of the listeners is defined by the parameter "metricDomains.$domainName.snapshotInterval", the parameter unit is "millisecond".
+- The JMX domain name of DataProxy is "DataProxy". 
+- It is defined by the parameter "metricDomains".
+- The listeners of JMX domain is defined by the parameter "metricDomains.$domainName.domainListeners".
+- The class names of the listeners is separated by the space char.
+- The listener class need to implement the interface "org.apache.inlong.dataproxy.metrics.MetricListener".
+- The snapshot interval of the listeners is defined by the parameter "metricDomains.$domainName.snapshotInterval", the parameter unit is "millisecond".
 
-  The method proto of org.apache.inlong.dataproxy.metrics.MetricListener is:
-
+The method proto of org.apache.inlong.dataproxy.metrics.MetricListener is:
 ```java
 public void snapshot(String domain, List itemValues);
 ```
 
-  The field of MetricItemValue.dimensions has these dimensions(The fields of DataProxyMetricItem defined by the Annotation "@Dimension"):
+The field of MetricItemValue.dimensions has these dimensions(The fields of DataProxyMetricItem defined by the Annotation "@Dimension"):
 
-```shell
-clusterId: DataProxy cluster ID.
-sourceId: DataProxy source component name.
-sourceDataId: DataProxy source component data id, when source is a TCP source, it will be port number.
-inlongGroupId: Inlong data group ID.
-inlongStreamId: Inlong data stream ID.
-sinkId: DataProxy sink component name.
-sinkDataId: DataProxy sink component data id, when sink is a pulsar sink, it will be topic name.
-```
+|  property   | description  |
+|  ----  | ----  |
+|  clusterId  |  DataProxy cluster ID. |
+|  sourceId  |  DataProxy source component name. |
+|  sourceDataId  |  DataProxy source component data id, when source is a TCP source, it will be port number. |
+|  inlongGroupId  |  Inlong data group ID. |
+|  inlongStreamId  |  Inlong data stream ID. |
+|  sinkId  |  DataProxy sink component name. |
+|  sinkDataId  |  DataProxy sink component data id, when sink is a pulsar sink, it will be topic name. |
 
-  The field of MetricItemValue.metrics has these metrics(The fields of DataProxyMetricItem defined by the Annotation "@CountMetric"):
+The field of MetricItemValue.metrics has these metrics(The fields of DataProxyMetricItem defined by the Annotation "@CountMetric"):
 
-```shell
-readSuccessCount: Successful event count reading from source component.
-readSuccessSize: Successful event body size reading from source component.
-readFailCount: Failure event count reading from source component.
-readFailSize: Failure event body size reading from source component.
-sendCount: Event count sending to sink destination.
-sendSize: Event body size sending to sink destination.
-sendSuccessCount: Successful event count sending to sink destination.
-sendSuccessSize: Successful event body size sending to sink destination.	
-sendFailCount: Failure event count sending to sink destination.
-sendFailSize: Failure event body size sending to sink destination.
-sinkDuration: The unit is millisecond, the duration is between current timepoint and the timepoint in sending to sink destination.
-nodeDuration: The unit is millisecond, the duration is between current timepoint and the timepoint in getting event from source.
-wholeDuration: The unit is millisecond, the duration is between current timepoint and the timepoint in generating event.
-```
+|  property   | description  |
+|  ----  | ----  |
+|  readSuccessCount  |  Successful event count reading from source component. |
+|  readSuccessSize  |  Successful event body size reading from source component. |
+|  readFailCount  |  Failure event count reading from source component. |
+|  readFailSize  |  Failure event body size reading from source component. |
+|  sendCount  |  Event count sending to sink destination. |
+|  sendSize  |  Event body size sending to sink destination. |
+|  sendSuccessCount  |  Successful event count sending to sink destination. |
+|  sendSuccessSize  |  Successful event body size sending to sink destination.	 |
+|  sendFailCount  |  Failure event count sending to sink destination. |
+|  sendFailSize  |  Failure event body size sending to sink destination. |
+|  sinkDuration  |  The unit is millisecond, the duration is between current timepoint and the timepoint in sending to sink destination. |
+|  nodeDuration  |  The unit is millisecond, the duration is between current timepoint and the timepoint in getting event from source. |
+|  wholeDuration  |  The unit is millisecond, the duration is between current timepoint and the timepoint in generating event. |
 
-  Monitor indicators have registered to MBeanServer, user can append JMX parameters when running DataProxy, remote server can get monitor metrics with RMI.
-
+Monitor indicators have registered to MBeanServer, user can append JMX parameters when running DataProxy, remote server can get monitor metrics with RMI.
 ```shell
 -Dcom.sun.management.jmxremote
 -Djava.rmi.server.hostname=127.0.0.1
