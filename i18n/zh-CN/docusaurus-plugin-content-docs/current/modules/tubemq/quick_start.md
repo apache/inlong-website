@@ -116,7 +116,7 @@ Broker启动前，首先要在Master上配置Broker元数据，增加Broker相�
 1. authToken:  `conf/master.ini` 文件中 `confModAuthToken` 字段配置的 token
 
 然后上线Broker：
-![Add Broker 2](img/tubemq-add-broker-1.png)
+![Add Broker 2](img/tubemq-add-broker-2.png)
 
 ### 1.6 启动Broker
 进入broker节点的 `bin` 目录下，执行以下命令启动Broker服务：
