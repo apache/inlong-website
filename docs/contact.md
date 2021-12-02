@@ -3,7 +3,7 @@ title: Contact Us
 sidebar_position: 10
 ---
 
-Contact us
+Contact information
 -------
 - Ask questions on: [Apache InLong Slack](https://the-asf.slack.com/archives/C01QAG6U00L)
 - Mailing lists:

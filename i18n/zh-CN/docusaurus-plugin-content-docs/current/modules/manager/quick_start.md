@@ -1,5 +1,5 @@
 ---
-title: 编译部署
+title: 安装部署
 ---
 
 ## 1 环境准备
@@ -17,9 +17,9 @@ title: 编译部署
   mysql> source /data/apache_inlong_manager.sql;
   ```
 
-- 参照 [编译部署TubeMQ](https://inlong.apache.org/zh-cn/docs/modules/tubemq/quick_start.html)，安装并启动 Tube 集群；
+- 参照 [安装部署TubeMQ](https://inlong.apache.org/zh-cn/docs/modules/tubemq/quick_start.html)，安装并启动 Tube 集群；
 
-- 参照 [编译部署TubeMQ Manager](https://inlong.apache.org/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html)，安装并启动
+- 参照 [安装部署TubeMQ Manager](https://inlong.apache.org/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html)，安装并启动
   TubeManager。
   
 ## 2 部署、启动 manager-web

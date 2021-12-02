@@ -1,5 +1,6 @@
 ---
 title: Quick Start
+sidebar_position: 2
 ---
 ## 1 Deploy and Start
 

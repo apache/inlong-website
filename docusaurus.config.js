@@ -35,7 +35,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          sidebarCollapsible: false,
+          sidebarCollapsible: true,
           // Please change this to your repo.
           editUrl: 'https://github.com/apache/incubator-inlong-website/edit/master/',
         },
@@ -75,11 +75,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           {
             position: 'right',
             label: 'DOC',
-            to: "/docs/user_guide/quick_start",
+            to: "/docs/introduction",
             items: [
               {
                 label: "Next",
-                to: "/docs/next/user_guide/quick_start",
+                to: "/docs/next/introduction",
               },
               {
                 label: "0.11.0",

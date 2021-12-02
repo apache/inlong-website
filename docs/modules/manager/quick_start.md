@@ -1,5 +1,5 @@
 ---
-title: Build && Deployment
+title: Deployment
 ---
 
 ## 1 Environmental preparation
