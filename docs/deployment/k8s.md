@@ -7,6 +7,7 @@ sidebar_position: 3
 
 - Kubernetes 1.10+
 - Helm 3.0+
+- [InLong Helm Chart](https://github.com/apache/incubator-inlong/tree/master/docker/kubernetes)
 - A dynamic provisioner for the PersistentVolumes(`production environment`)
 
 ## Install

@@ -1,5 +1,5 @@
 ---
-title: bare metal 部署
+title: Bare Metal 部署
 sidebar_position: 4
 ---
 
@@ -30,7 +30,7 @@ sidebar_position: 4
 [部署InLong Agent](modules/agent/quick_start.md)
 
 ## 业务配置
-[配置新业务](docs/user_guide/user_manual)
+[配置新业务](user_guide/user_manual.md)
 
 ## 数据上报验证
 到这里，您就可以通过文件Agent采集数据并在指定的Hive表中验证接收到的数据是否与发送的数据一致。

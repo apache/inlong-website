@@ -1,16 +1,13 @@
 ---
 title: Overview
 ---
-## 1 intro
 When the business uses the message access method, the business generally only needs to format the data in a proxy-recognizable format (such as six-segment protocol, digital protocol, etc.)
 After group packet transmission, data can be connected to inlong. But in order to ensure data reliability, load balancing, and dynamic update of the proxy list and other security features
 The user program needs to consider more and ultimately leads to the program being too cumbersome and bloated.
 
 The original intention of API design is to simplify user access and assume some reliability-related logic. After the user integrates the API in the service delivery program, the data can be sent to the proxy without worrying about the grouping format, load balancing and other logic.
 
-## 2 functions
-
-### 2.1 overall functions
+## Functions
 
 |  function   | description  |
 |  ----  | ----  |
@@ -22,39 +19,40 @@ The original intention of API design is to simplify user access and assume some 
 | proxy list persistence (new)| Persist the proxy list according to the business group id to prevent the configuration center from failing to send data when the program starts
 
 
-### 2.2 Data transmission function description
+## Data transmission
 
-#### Synchronous batch function
-
+### Synchronous batch function
+```
     public SendResult sendMessage(List<byte[]> bodyList, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
     Parameter Description
 
     bodyListIt is a collection of multiple pieces of data that users need to send. The total length is recommended to be less than 512k. groupId represents the service id, and streamId represents the interface id. dt represents the time stamp of the data, accurate to the millisecond level. It can also be set to 0 directly, and the api will get the current time as its timestamp in the background. timeout & timeUnit: These two parameters are used to set the timeout time for sending data, and it is generally recommended to set it to 20s.
+```
 
-#### Synchronize a single function
-
+### Synchronize a single function
+```
     public SendResult sendMessage(byte[] body, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
     Parameter Description
 
     body is the content of a single piece of data that the user wants to send, and the meaning of the remaining parameters is basically the same as the batch sending interface.
+```
 
-
-#### Asynchronous batch function
-
+### Asynchronous batch function
+```
     public void asyncSendMessage(SendMessageCallback callback, List<byte[]> bodyList, String groupId, String streamId, long dt, long timeout,TimeUnit timeUnit)
 
     Parameter Description
 
     SendMessageCallback is a callback for processing messages. The bodyList is a collection of multiple pieces of data that users need to send. The total length of multiple pieces of data is recommended to be less than 512k. groupId is the service id, and streamId is the interface id. dt represents the time stamp of the data, accurate to the millisecond level. It can also be set to 0 directly, and the api will get the current time as its timestamp in the background. timeout and timeUnit are the timeout time for sending data, generally recommended to be set to 20s.
+```
 
-
-#### Asynchronous single function
-
-
+### Asynchronous single function
+```
     public void asyncSendMessage(SendMessageCallback callback, byte[] body, String groupId, String streamId, long dt, long timeout, TimeUnit timeUnit)
 
     Parameter Description
 
     The body is the content of a single message, and the meaning of the remaining parameters is basically the same as the batch sending interface
+```
