@@ -11,7 +11,7 @@ sidebar_position: 1
 The Apache InLong project was originally called TubeMQ,  focusing on high-performance,  low-cost message queuing services.  In order to further release the surrounding ecological capabilities of TubeMQ,  we upgraded the project to InLong,  focusing on creating a one-stop data integration solution.
 Apache InLong uses TDBank internally used by Tencent as the prototype,  and relies on trillion-level data access and processing capabilities to integrate the entire process of data collection,  aggregation,  storage,  and sorting data processing.  It is simple to use,  flexible to expand,  stable and reliable characteristic.
 
-## 特性
+## Features
 - Ease of Use
 
   Apache InLong is a SaaS-based service platform. You can easily and quickly report, transfer, and distribute data by publishing and subscribing to data based on topics
