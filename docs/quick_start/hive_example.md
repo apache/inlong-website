@@ -12,8 +12,8 @@ Hive is the necessary component. If you don't have Hive in your machine, we reco
 
 ## 2 Install InLong
 Before we begin, we need to install InLong. Here we provide two ways:
-1. Install InLong with Docker by according to the [instructions here](https://github.com/apache/incubator-inlong/tree/master/docker/docker-compose).(Recommanded)
-2. Install InLong binary according to the [instructions here](./quick_start.md).
+1. Install InLong with Docker by according to the [instructions here](deployment/docker.md).(Recommanded)
+2. Install InLong binary according to the [instructions here](deployment/bare_metal.md).
 
 ## 3 Create a data access
 After deployment, we first enter the "Data Access" interface, click "Create an Access" in the upper right corner to create a new date access, and fill in the business information as shown in the figure below.

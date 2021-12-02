@@ -14,7 +14,7 @@ Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐�
 ## 安装 InLong
 在开始之前，我们需要安装 InLong 的全部组件，这里提供两种方式：
 1. 按照 [这里的说明](https://github.com/apache/incubator-inlong/tree/master/docker/docker-compose)，使用 Docker 进行快速部署。（推荐）
-2. 按照 [这里的说明](./quick_start.md)，使用二进制包依次安装各组件。
+2. 按照 [这里的说明](./quick_start)，使用二进制包依次安装各组件。
 
 
 ## 新建接入

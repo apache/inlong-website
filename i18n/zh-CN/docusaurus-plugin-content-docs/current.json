@@ -35,9 +35,17 @@
     "message": "DataProxy",
     "description": "The label for category DataProxy in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.DataProxy-SDK": {
+    "message": "DataProxy-SDK",
+    "description": "The label for category DataProxy-SDK in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.TubeMQ": {
     "message": "TubeMQ",
     "description": "The label for category TubeMQ in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.tubemq-manager": {
+    "message": "tubemq-manager",
+    "description": "The label for category tubemq-manager in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Sort": {
     "message": "Sort",
