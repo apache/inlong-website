@@ -34,12 +34,12 @@ export default function() {
                     </div>
                     <div className="middle-div2">
                         <div className="img-div1">
-                            <img src="/img/users/topay-logo.png" className="img-style img-color" alt="微信支付"/>
+                            <img src="/img/users/pay-logo.png" className="img-style img-color" alt="微信支付"/>
                         </div>
                     </div>
                     <div className="middle-div2">
                         <div className="img-div1">
-                            <img src="/img/users/metting-logo.png" className="img-style img-color"  alt="腾讯会议"/>
+                            <img src="/img/users/meetting-logo.png" className="img-style img-color"  alt="腾讯会议"/>
                         </div>
                     </div>
                     <div className="middle-div2">
