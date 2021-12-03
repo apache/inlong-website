@@ -18,18 +18,24 @@ export default function() {
         <Layout>
             <div className="users-div"><br/>
                 <div className="users-top-div">
-                    <h1>{dataSource.title}</h1>
-                    <p>{dataSource.content}</p>
+                    <h3>{dataSource.content}</h3>
                 </div>
                 <div className="users-middle-div">
                     <div className="middle-div1">
                         <div className="img-div1">
                             <img src="/img/users/data-logo.png" className="img-style" alt="腾讯大数据"/>
                         </div>
+                        <div className="img-div1">
+                            <img src="/img/users/enterprise-wechat-logo.png" className="img-style"  alt="企业微信"/>
+                        </div>
+
                     </div>
                     <div className="middle-div1">
                         <div className="img-div1">
                             <img src="/img/users/game-logo.png" className="img-style" alt="腾讯游戏"/>
+                        </div>
+                        <div className="img-div1 middle-div-margin4">
+                            <img src="/img/users/money-logo.png" className="img-style" alt="财付通"/>
                         </div>
                     </div>
                     <div className="middle-div1">
@@ -38,20 +44,18 @@ export default function() {
                         </div>
                     </div>
                     <div className="middle-div1">
-                        <div className="img-div1 middle-div-margin3">
-                            <img src="/img/users/meetting-logo.png" className="img-style"  alt="腾讯会议"/>
+                        <div className="img-div1 middle-div-margin1">
+                            <img src="/img/users/meeting-logo.png" className="img-style" alt="腾讯会议"/>
                         </div>
                     </div>
                     <div className="middle-div1">
                         <div className="img-div1 middle-div-margin2">
-                            <img src="/img/users/money-logo.png" className="img-style"  alt="财付通"/>
+                            <img src="/img/users/qq-music-logo.png" className="img-style"  alt="QQ音乐"/>
                         </div>
                     </div>
-                    <div className="middle-div1">
-                        <div className="img-div1 middle-div-margin1">
-                            <img src="/img/users/brain-logo.png" className="img-style" alt="平台大脑"/>
-                        </div>
-                    </div>
+                    {/*<div className="middle-div1">*/}
+
+                    {/*</div>*/}
                 </div>
             </div>
         </Layout>
