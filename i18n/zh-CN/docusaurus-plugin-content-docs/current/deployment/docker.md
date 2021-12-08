@@ -10,6 +10,13 @@ sidebar_position: 2
 - Docker Compose 1.29.2+
 
 ## 部署
+
+手动拷贝`inlong-manager/manager-web/sql`目录到`docker/compose/sql`目录.
+```shell
+cp inlong-manager/manager-web/sql/apache_inlong_manager.sql  docker/docker-compose/sql
+```
+
+然后启动所有组件：
 ```
 docker-compose up -d
 ```

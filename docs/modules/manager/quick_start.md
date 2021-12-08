@@ -2,38 +2,22 @@
 title: Deployment
 ---
 
-## 1 Environmental preparation
-- Install and start MySQL 5.7+, copy the `doc/sql/apache_inlong_manager.sql` file in the inlong-manager module to the
-  server where the MySQL database is located (for example, copy to `/data/` directory), load this file through the
-  following command to complete the initialization of the table structure and basic data:
+## Environmental preparation
+- Install and start MySQL 5.7+
+- initialize database
+  there is `sql/apache_inlong_manager.sql` in `inlong-manager-web` directory, load this file through the
+  following command to complete the initialization of the table structure and basic data
 
   ```shell
-  # Log in to the MySQL server by username and password:
-  mysql -u xxx -p xxx
-  ...
-  # Create database
-  CREATE DATABASE IF NOT EXISTS apache_inlong_manager;
-  USE apache_inlong_manager;
-  # Load the above SQL file through the source command:
-  mysql> source /data/apache_inlong_manager.sql;
+  # initialize database：
+  mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_manager.sql
   ```
 
-- Refer to [Compile and deploy TubeMQ](https://inlong.apache.org/zh-cn/docs/modules/tubemq/quick_start.html) to install
-  and start the Tube cluster;
-
-- Refer
-  to [Compile and deploy TubeMQ Manager](https://inlong.apache.org/zh-cn/docs/modules/tubemq/tubemq-manager/quick_start.html)
-  , install and start TubeManager.
-
-## 2 Deploy and start manager-web
+## Deploy and start manager-web
 
 **manager-web is a background service that interacts with the front-end page.**
 
-### 2.1 Prepare installation files
-
-All installation files at `inlong-manager-web` directory.
-
-### 2.2 Modify configuration
+### Modify configuration
 
 Go to the decompressed `inlong-manager-web` directory and modify the `conf/application.properties` file:
 
@@ -51,8 +35,8 @@ The dev configuration is specified above, then modify the `conf/application-dev.
 
    ```properties
    spring.datasource.jdbc-url=jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT%2b8
-   spring.datasource.username=xxxxxx
-   spring.datasource.password=xxxxxx
+   spring.datasource.username=DB_USER
+   spring.datasource.password=DB_PASSWD
    ```
 
 2) Modify the connection information of the Tube and ZooKeeper clusters, among which `cluster.zk.root` suggests using
@@ -74,7 +58,7 @@ The dev configuration is specified above, then modify the `conf/application-dev.
    sort.appName=inlong_app
    ```
 
-### 2.3 Start the service
+### Start the service
 
 Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
 log `tailf log/manager-web.log`. If a log similar to the following appears, the service has started successfully:
@@ -82,9 +66,3 @@ log `tailf log/manager-web.log`. If a log similar to the following appears, the 
 ```shell
 Started InLongWebApplication in 6.795 seconds (JVM running for 7.565)
 ```
-
-## 3 Service access verification
-
-Verify the manager-web service:
-
-Visit address: <http://[manager_web_ip]:[manager_web_port]/api/inlong/manager/doc.html#/home>
