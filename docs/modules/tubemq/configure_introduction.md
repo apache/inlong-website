@@ -75,6 +75,12 @@ In addition to the back-end system configuration file, the Master also stores th
 | repReplicaAckPolicy     | no       | int    | The response policy of the replication node data synchronization, the value range of this field is [1, 2, 3], the default is 1: 1 is more than 1/2 majority is valid, 2 is valid for all nodes, 3 is not Need node response. |
 | repStatusCheckTimeoutMs | no       | long   | Replication status check interval, optional field, in milliseconds, defaults to 10 seconds. |
 
+**Notice**:
+- Based on the need of Docker containerization, the [replication] above 3 parameters in the master.ini file are all the default settings used, and the actual information of the Master node needs to be configured when used in actual networking.
+- The IP information of all master nodes should be mapped to the hostName in the hosts configuration file, such as "10.10.11.205 10-10-11-205"
+- It is necessary to ensure the clock synchronization between all master nodes
+
+
 [bdbStore]
 >Deprecated, config in "[replication]" instead.
 

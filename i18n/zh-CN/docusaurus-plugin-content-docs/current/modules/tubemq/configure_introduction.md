@@ -84,6 +84,12 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | tlsTrustStorePath | 否 | String | TLS的TrustStore文件的绝对存储路径+TrustStore文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空 |
 | tlsTrustStorePassword | 否 | String | TLS的TrustStorePassword文件的绝对存储路径+TrustStorePassword文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空 |
 
+**注意**：
+- 基于Docker容器化的需要，master.ini文件里对[replication]如上3个参数部分都是使用的缺省设置，在实际组网使用时需要以Master节点真实信息配置
+- Master所有节点的IP信息要在hosts配置文件里构造IP与hostName映射关系，如类似“10.10.11.205 10-10-11-205”
+- 需保证Master所有节点之间的时钟同步
+
+
 ### 2.2 Master的前台配置文件velocity.properties中关键配置内容说明：
 
 | 配置单元 | 配置项 | 是否必选 | 值类型 | 配置说明 |
