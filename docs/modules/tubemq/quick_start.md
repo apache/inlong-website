@@ -70,7 +70,10 @@ the introduction of availability level.
 | Medium | 2 masters | After one master crashed, the cluster meta data is in read only state. There's no affect on existing producers and consumers. |
 | Minimum | 1 master | After the master crashed, there's no affect on existing producer and consumer. |
 
-**Tips**：Please notice that the master servers should be clock synchronized.
+**Notice**:
+- Based on the need of Docker containerization, the [replication] above 3 parameters in the master.ini file are all the default settings used, and the actual information of the Master node needs to be configured when used in actual networking.
+- The IP information of all master nodes should be mapped to the hostName in the hosts configuration file, such as "10.10.11.205 10-10-11-205"
+- It is necessary to ensure the clock synchronization between all master nodes
 
 
 ### 1.4 Configure Broker

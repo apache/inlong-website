@@ -2,117 +2,138 @@
 title: Console Introduction
 ---
 
-## 1 管控台关系
+## 1 Control console relationship
 
-​        TubeMQ管控台是管理TubeMQ集群的简单运营工具，包括集群里的Master、Broker，以及Broker上部署的Topic元数据等与TubeMQ系统相关的运营数据及操作。需要说明的是，当前提供的TubeMQ前台所提供的功能没有涵盖TubeMQ所提供的功能范围，大家可以参照《TubeMQ HTTP访问接口定义.xls》定义自行实现符合业务需要的管控前台。TubeMQ管控台的访问地址为http://portal:webport/config/topic_list.htm：
+The TubeMQ console is a simple operation tool for managing the TubeMQ cluster, including the Master, Broker in the cluster, and Topic metadata deployed on the Broker and other operational data and operations related to the TubeMQ system. It should be noted that the functions provided by the TubeMQ front desk currently provided do not cover the scope of functions provided by TubeMQ. You can refer to "TubeMQ HTTP Access Interface Definition.xls" to define your own management and control front desk that meets your business needs. The access address of the TubeMQ control console is http://portal:webport
+
 ![](img/console/1568169770714.png)
-​       其中portal为该集群中任意的主、备Master的IP地址，webport为配置的Master的Web端口。
+
+Among them, the portal parameter is the IP address of any Master or backup Master in the cluster, and the webport parameter is the web port of the configured Master.
 
 
-## 2 TubeMQ管控台各版面介绍
+## 2 Introduction to each part of the TubeMQ console
 
-​        管控台一共3项内容：分发查询，配置管理，集群管理；配置管理又分为Broker列表，Topic列表2个部分，我们先介绍简单的分发查询和集群管理，然后再介绍复杂的配置管理。
+The console has 3 parts: consumption query, configuration management, and cluster management; configuration management is divided into two parts: Broker configuration and Topic configuration. We first introduce simple consumption query and cluster management and then introduce complex configuration management.
 
-### 2.1 分发查询
+### 2.1 Consumption Query
 
-​        点分发查询，我们会看到如下的列表信息，这是当前TubeMQ集群里已注册的消费组信息，包括具体的消费组组名，消费的Topic，以及该组总的消费分区数简介信息，如下图示：
+Click the consumption query, we will see the following list information, which is the registered consumer group information in the current TubeMQ cluster, including the specific consumer group name, the topic of consumption, and the summary information about the total number of consumer partitions in the group, as follows :
+
 ![](img/console/1568169796122.png)
-​       点击记录，可以看到选中的消费组里的消费者成员，及对应消费的Broker及Partition分区信息，如下图示：
+
+Click on the page and you can see the consumer members in the selected consumer group, and the Broker and Partition information of the corresponding consumer, as shown in the following figure:
+
 ![](img/console/1568169806810.png)
 
-​       这个页面可以供我们查询，输入Topic或者消费组名，就可以很快确认系统里有哪些消费组在消费Topic，以及每个消费组的消费目标是怎样这些信息。
+This page can be used for us to query, enter the topic or consumer group name, you can quickly confirm which consumer groups in the system are consuming topics, and what the consumption goals of each consumer group are.
 
-### 2.2 集群管理
+### 2.2 Cluster Management
 
-​        集群管理主要管理Master的HA，在这个页面上我们可以看到当前Master的各个节点及节点状态，同时，我们可以通过“切换”操作来改变节点的主备状态。
+Cluster management mainly manages the HA of the Master. On this page, we can see the current master's various nodes and node status. At the same time, we can change the active and standby status of the nodes through the "switch" operation:
+
 ![](img/console/1568169823675.png)
 
-### 2.3 配置管理
+### 2.3 Configuration Management
 
-​        配置管理版面既包含了Broker、Topic元数据的管理，还包含了Broker和Topic的上线发布以及下线操作，有2层含义，比如Broker列表里，展示的是当前集群里已配置的Broker元数据，包括未上线处于草稿状态、已上线、已下线的Broker记录信息：
+The configuration management page includes not only the management of Broker and Topic metadata but also the online release and offline operations of Broker and Topic. It has two meanings. For example, the Broker list displays the configured Broker metadata in the current cluster. , Including Broker record information that is in draft, online, and offline state:
+
 ![](img/console/1568169839931.png)
 
-​        从页面信息我们也可以看到，除了Broker的记录信息外，还有Broker在该集群里的管理信息，包括是否已上线，是否处于命令处理中，是否可读，是否可写，配置是否做了更改，是否已加载变更的配置信息。
+From the page information, we can also see that in addition to Broker’s record information, there is also Broker’s management information in the cluster, including whether it is online, whether it is in command processing, whether it is readable, whether it is writable, and whether the configuration is done Change, whether the changed configuration information has been loaded.
 
-​        点单个新增，会弹框如下，这个表示待新增Broker的元数据信息，包括BrokerID，BrokerIP，BrokerPort，以及该Broker里部署的Topic的缺省配置信息，相关的字段详情见《TubeMQ HTTP访问接口定义.xls》
+Click the Add button, and the pop-up box will be as follows. This indicates the metadata information of the broker to be added, including BrokerID, BrokerIP, BrokerPort, and the default configuration information of the Topic deployed in the Broker. For details of the related fields, see "TubeMQ HTTP API definition.xls ":
 ![](img/console/1568169851085.png)
 
-​        所有TubeMQ管控台的变更操作，或者改变操作，都会要求输入操作授权码，该信息由运维通过Master的配置文件master.ini的confModAuthToken字段进行定义：如果你知道这个集群的密码，你就可以进行该项操作，比如你是管理员，你是授权人员，或者你能登陆这个master的机器拿到这个密码，都认为你是有权操作该项功能。
+All TubeMQ console change operations will require the input of the operation authorization code, which is defined by the operation and maintenance through the confModAuthToken field of the master configuration file master.ini: if you know the password of this cluster, you can proceed For this operation, for example, if you are an administrator, you are an authorized person, or you can log in to the master machine to get the password, you are considered to be authorized to operate this function.
 
-## 3 TubeMQ管控台上涉及的操作及注意事项
+## 3 Operations and precautions involved in the TubeMQ control console
 
-​       如上所说，TubeMQ管控台是运营Tube MQ集群的，套件负责包括Master、Broker这类TubeMQ集群节点管理，包括自动部署和安装等，因此，如下几点需要注意：
+As mentioned above, the TubeMQ control console operates the Tube MQ cluster. The suite is responsible for the management of TubeMQ cluster nodes such as Master and Broker, including automatic deployment and installation. Therefore, the following points need to be paid attention to:
 
-​       1． **TubeMQ集群做扩缩容增、减Broker节点时，要先在TubeMQ管控台上做相应的节点新增、上线，以及下线、删除等操作后才能在物理环境上做对应Broker节点的增删处理**：
+1. **When the TubeMQ cluster is expanded or reduced, the Broker nodes must be added, online, offline, and deleted on the TubeMQ console before the corresponding Broker nodes can be added or deleted in the physical environment**:
 
-​        TubeMQ集群对Broker按照状态机管理，如上图示涉及到[draft，online，read-only，write-only，offline] 等状态，记录增加还没生效时是draft状态，确定上线后是online态；节点删除首先要由online状态转为offline状态，然后再通过删除操作清理系统内保存的该节点记录；draft、online和offline是为了区分各个节点所处的环节，Master只将online状态的Broker分发给对应的producer和consumer进行生产和消费；read-only，write-only是Broker处于online状态的子状态，表示只能读或者只能写Broker上的数据；相关的状态及操作见页面详情，增加一条记录即可明白其中的关系。TubeMQ管控台上增加这些记录后，我们就可以进行Broker节点的部署及启动，这个时候Tube集群环境的页面会显示节点运行状态，如果为unregister状态，如下图示，则表示节点注册失败，需要到对应broker节点上检查日志，确认原因。目前该部分已经很成熟，出错信息会提示完整信息，大家可以直接根据提示作问题处理。
+The TubeMQ cluster manages the Broker in accordance with the state machine. As shown in the figure above, it involves [draft, online, read-only, write-only, offline] and other states. When the record increase has not yet taken effect, it is in the draft state; after confirming to go online, it is in the online state; the node to delete, first change from the online state to the offline state, and then clear the node records saved in the system through the delete operation. The states of the draft, online, and offline are to distinguish the status where each Broker node is, and the Master only distributes the brokers in the online state to the corresponding producers and consumers; read-only and write-only are the sub-states of Broker in the online state, which means that only the data on the Broker can be read or written; the relevant state and operation are shown on the page details. Add a record then you can understand the relationship.
+
+After adding these records to the TubeMQ console, we can deploy and start the Broker node. At this time, the page of the Tube cluster environment will display the running status of the node. If it is in the unregistered state, as shown in the figure below, it means that the node registration has failed. Check the log on the corresponding broker node to confirm the reason. At present, this part is very mature, the error message will prompt the complete information, and you can directly deal with the problem according to the prompt.
+
 ![](img/console/1568169863402.png)
-​        2． **Topic元数据信息需要通过套件的业务使用界面进行新增和删除操作：**
 
-​       如下图，业务发现自己消费的Topic在TubeMQ管控台上没有，则需要在TubeMQ的管控台上直接操作：
+2. **Topic metadata information needs to be added and deleted through the topic_list page:**
+
+As shown in the figure below, if the business finds that the topic that it consumes is not on the TubeMQ console, it needs to operate directly on the TubeMQ console:
+
 ![](img/console/1568169879529.png)
 
-​       我们通过如上图中的Topic列表项完成Topic的新增，会弹出如下框，
+When we add a topic through the topic_list page in the above figure, the following box will pop up:
+
 ![](img/console/1568169889594.png)
 
-​       点击确认后会有一个选择部署该新增Topic的Broker列表，选择部署范围后进行确认操作：
+After clicking Confirm, there will be a list of Brokers that choose to deploy the added Topic, and confirm the operation after selecting the deployment scope:
+
 ![](img/console/1568169900634.png)
 
-​       在完成新增Topic的操作后，我们还需要对刚进行变更的配置对Broker进行重载操作，如下图示：
+After completing the operation of adding a topic, we also need to reload the Broker that has made configuration changes, as shown in the following figure:
+
 ![](img/console/1568169908522.png)
 
-​       重载完成后Topic才能对外使用，我们会发现如下配置变更部分在重启完成后已改变状态：
+The topic can only be used externally after the reload is completed. We will find that the following configuration changes have changed status after the restart is completed:
+
 ![](img/console/1568169916091.png)
 
-​       这个时候我们就可以针对该Topic进行生产和消费处理。
+Now, we can produce and consume the topic.
 
-## 4 对于Topic的元数据进行变更后的操作注意事项：
+## 4 Operation precautions after changing Topic metadata:
 
-### 4.1 如何自行配置Topic参数：
+### 4.1 How to configure Topic:
 
-​       大家点击Topic列表里任意Topic后，会弹出如下框，里面是该Topic的相关元数据信息，其决定了这个Topic在该Broker上，设置了多少个分区，当前读写状态，数据刷盘频率，数据老化周期和时间等信息：
+After you click on any topic in the Topic list, the following box will pop up, which contains the related metadata information of the topic, which determines how many partitions the topic has set on the Broker, the current read and write states, and the frequency of data flashing. Information such as data aging cycle and time:
+
 ![](img/console/1568169925657.png)
 
-​       这些信息由系统管理员设置好默认值后直接定义的，一般不会改变，若业务有特殊需求，比如想增加消费的并行度增多分区，或者想减少刷盘频率，怎么操作？如下图示，各个页面的字段含义及作用如下表：
+This information is directly defined by the system administrator after setting the default values. Generally, it will not change. If the business has special needs, such as increasing the parallelism of consumption and increasing the partition or want to reduce the frequency of flashing, how to operate? As shown in the figure below, the meaning and function of the fields on each page are as follows:
 
-| 配置项              | 配置名                                | 字段类型 | 说明                                                         |
-| ------------------- | ------------------------------------- | -------- | ------------------------------------------------------------ |
-| topicName           | topic名称                             | String   | 字串长度(0,64],以字母开头的字母，数字，下划线的字符串，如果批量新增topic，topic值以","隔开，最大批量值为50条 |
-| brokerId            | broker的ID                            | int      | 待新增的BrokerId，批量操作的brokerId数字以","隔开，最大批量操作量不超过50 |
-| deleteWhen          | topic数据删除时间                     | String   | 按照crontab的配置格式定义，如“0 0 6,18 * *   ?”，缺省为broker的对应字段缺省配置 |
-| deletePolicy        | 删除策略                              | String   | topic数据删除策略，类似"delete,168"定义，缺省为broker的对应字段缺省配置 |
-| numPartitions       | topic在该broker上的分区量             | int      | 缺省为broker的对应字段缺省配置                               |
-| unflushThreshold    | 最大允许的待刷新的记录条数            | int      | 最大允许的未flush消息数，超过此值将强制force到磁盘，默认1000，缺省为broker的对应字段缺省配置 |
-| unflushInterval     | 最大允许的待刷新的间隔                | int      | 最大允许的未flush间隔时间，毫秒，默认10000，缺省为broker的对应字段缺省配置 |
-| numTopicStores      | 允许建立Topic数据块和分区管理组的个数 | int      | 缺省为1个,如果大于1则分区和topic对列按照该值倍乘关系         |
-| memCacheMsgCntInK   | 缺省最大内存缓存包量                  | int      | 内存最大允许缓存的消息包总条数，单位为千条，缺省为10K，最少允许1K |
-| memCacheMsgSizeInMB | 缺省内存缓存包总的Size大小            | int      | 内存最大允许缓存的消息包size总大小，单位为MB，缺省为3M，最小需要为2M |
-| memCacheFlushIntvl  | 内存缓存最大允许的待刷新间隔          | int      | 内存最大允许未flush时间间隔，毫秒，默认20000ms,最小4000ms    |
-| acceptPublish       | topic是否接收发布请求                 | boolean  | 缺省为true，取值范围[true，false]                            |
-| acceptSubscribe     | topic是否接收订阅请求                 | boolean  | 缺省为true，取值范围[true，false]                            |
-| createUser          | topic创建人                           | String   | 字串长度(0,32],以字母开头的字母，数字，下划线的字符串        |
-| createDate          | 创建时间                              | String   | 字串格式:"yyyyMMddHHmmss",必须为14位按如上格式的数字字符串   |
-| confModAuthToken    | 配置修改授权key                       | String   | 以字母开头的字母，数字，下划线的字符串,长度为（0，128]位     |
+|name|must|description|type|
+|---|---|---|---|
+|topicName|yes| the topic name|String|
+|brokerId|yes|the id of the broker, its default value is 0. If brokerId is not zero, it ignores brokerIp field|String|
+|deleteWhen|no|the default deleting time of the topic data. The format should like cronjob form `0 0 6, 18 * * ?`|String|
+|deletePolicy|no|the default policy for deleting, the default policy is "delete, 168"|String|
+|numPartitions|no|the default partition number of a default topic on the broker. Default 1|Int|
+|unflushThreshold|no|the maximum message number which allows in memory. It has to be flushed to disk if the number exceed this value. Default 1000|Int|
+|numTopicStores|no|the number of data block and partition group allowed to create, default 1. If it is larger than 1, the partition number and topic number should be mapping with this value|Int|
+|unflushInterval|no|the maximum interval for unflush, default 1000ms|Int|
+|memCacheMsgCntInK|no|the max cached message package, default is 10, the unit is K|Int|
+|memCacheMsgSizeInMB|no|the max cache message size in MB, default 3|Int|
+|memCacheFlushIntvl|no|the max unflush interval in ms, default 20000|Int|
+|brokerTLSPort|no|the port of TLS of the broker, it has no default value|Int|
+|acceptPublish|no|whether the broker accept publish, default true|Boolean|
+|acceptSubscribe|no|whether the broker accept subscribe, default true| Boolean|
+|createUser|yes|the create user|String|
+|createDate|yes|the create date in format `yyyyMMddHHmmss`|String|
+|confModAuthToken|yes|the authorized key for configuration update|String|
 
-​       该部分字段相关字段详情见《Tube MQ HTTP访问接口定义.xls》，有很明确的定义。大家通过页面右上角的**修改**按钮进行修改，并确认后，会弹出如下框：
+For the detail please see "Tube MQ HTTP API Definition.xls", which has a very clear definition. You can make changes through the **Modify** button in the upper right corner of the page, and after confirming, the following box will pop up:
+
 ![](img/console/1568169946683.png)
 
-其作用是：a. 选择涉及该Topic元数据修改的Broker节点集合；b. 提供变更操作的授权信息码。
+Its steps are:
+- a. Select the set of Broker nodes that participate in the modification of Topic metadata;
+- b. Provide the authorization information code for the modification operation.
 
-**特别提醒：大家还需要注意的是，输入授权码修改后，数据变更要刷新后才会生效，同时生效的Broker要按比例进行操作。**
+** Special Notice: You need to note that after entering the authorization code to modify, the data change will not take effect until it is refreshed. At the same time, the effective Broker must be operated on a proportional basis. **
+
 ![](img/console/1568169954746.png)
 
-### 4.2 Topic变更注意事项：
+### 4.2 Precautions for Topic Change:
 
-​       如上图示，选择变更Topic元数据后，之前选中的Broker集合会在**配置是否已变更**上出现是的提示。我们还需要对变更进行重载刷新操作，选择Broker集合，然后选择刷新操作，可以批量也可以单条，但是一定要注意的是：操作要分批进行，上一批操作的Broker当前运行状态为running后才能进入下一批的配置刷新操作；如果有节点处于online状态，但长期不进入running状态（缺省最大2分钟），则需要停止刷新，排查问题原因后再继续操作。
+As shown above, after choosing to change Topic metadata, the previously selected Broker collection will display a yes prompt on **Configuration Has Been Changed**. We also need to reload and refresh the changes, select the Broker set, and then select the refresh operation, which can be batch or single, but it must be noted that the operation should be carried out in batches, and the current Broker running status of the previous batch of operations is running After that, the next batch of configuration refresh operations can be entered; if a node is in the online state but does not enter the running state for a long time (the default maximum is 2 minutes), you need to stop the refresh and check the cause of the problem before continuing the operation.
 
-​       进行分批操作原因是，我们系统在变更时，会对指定的Broker做停读停写操作，如果将全量的Broker统一做重载，很明显，集群整体会出现服务不可读或者不可写的情况，从而接入出现不该有的异常。
+The reason for the batch operation is that when our system changes, the designated Broker will stop reading and writing. If all Brokers are reloaded in a unified manner, it is obvious that the entire cluster will have unreadable or unwritable services, and the access must be abnormal.
+### 4.3 Dealing with the deletion of Topic:
 
-### 4.3 对于Topic的删除处理：
+The deletion on the page is a soft delete process. If you want to completely delete the topic, you need to perform a hard delete operation through the API interface (to avoid business misoperation).
 
-​       页面上进行的删除是软删除处理，如果要彻底删除该topic需要通过API接口进行硬删除操作处理才能实现（避免业务误操作）。
-
-​       完成如上内容后，Topic元数据就变更完成。
+To this end, After completing the above content, the Topic metadata is changed.
 
 ---
 <a href="#top">Back to top</a>
