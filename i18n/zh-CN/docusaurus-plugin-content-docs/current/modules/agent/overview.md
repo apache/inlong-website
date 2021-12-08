@@ -66,8 +66,8 @@ Agent指标分为以下几项, 各项的属性分别为：
 ### PluginMetric
 |  属性名称   | 说明  |
 |  ----  | ----  |
-| readNum  | 当前正在运行的job总数 |
-| sendNum  | 当前失败的job总数 |
+| readNum  | 读取的条数 |
+| sendNum  | 发送的条数 |
 | sendFailedNum  | 发送失败条数 |
 | readFailedNum  | 读取失败条数 |
 | readSuccessNum  | 读取成功条数 |

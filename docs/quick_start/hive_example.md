@@ -16,23 +16,23 @@ Before we begin, we need to install InLong. Here we provide two ways:
 2. Install InLong binary according to the [instructions here](deployment/bare_metal.md).
 
 ## 3 Create a data access
-After deployment, we first enter the "Data Access" interface, click "Create an Access" in the upper right corner to create a new date access, and fill in the business information as shown in the figure below.
+After deployment, we first enter the "Data Access" interface, click "Create an Access" in the upper right corner to create a new date access, and fill in the data streams group information as shown in the figure below.
 
-<img src="/img/create-business.png" align="center" alt="Create Business"/>
+<img src="img/create-group.png" align="center" alt="Create Group"/>
 
 Then we click the next button, and fill in the stream information as shown in the figure below.
 
-<img src="/img/create-stream.png" align="center" alt="Create Stream"/>
+<img src="img/create-stream.png" align="center" alt="Create Stream"/>
 
 Note that the message source is "File", and we don't need to create a message source manually.
 
 Then we fill in the following information in the "data information" column below.
 
-<img src="/img/data-information.png" align="center" alt="Data Information"/>
+<img src="img/data-information.png" align="center" alt="Data Information"/>
 
 Then we select Hive in the data flow and click "Add" to add Hive configuration
 
-<img src="/img/hive-config.png" align="center" alt="Hive Config"/>
+<img src="img/hive-config.png" align="center" alt="Hive Config"/>
 
 Note that the target table does not need to be created in advance, as InLong Manager will automatically create the table for us after the access is approved. Also, please use connection test to ensure that InLong Manager can connect to your Hive.
 

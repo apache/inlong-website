@@ -18,23 +18,23 @@ Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐�
 
 
 ## 3 新建接入
-部署完毕后，首先我们进入 “数据接入” 界面，点击右上角的 “新建接入”，新建一条接入，按下图所示填入业务信息
+部署完毕后，首先我们进入 “数据接入” 界面，点击右上角的 “新建接入”，新建一条接入，按下图所示填入数据流 Group 信息
 
-<img src="../../img/create-business.png" align="center" alt="Create Business"/>
+<img src="img/create-group.png" align="center" alt="Create Group"/>
 
 然后点击下一步，按下图所示填入数据流信息
 
-<img src="../../img/create-stream.png" align="center" alt="Create Stream"/>
+<img src="img/create-stream.png" align="center" alt="Create Stream"/>
 
 注意其中消息来源选择“文件”，暂时不用新建数据源。
 
 然后我们在下面的“数据信息”一栏中填入以下信息
 
-<img src="../../img/data-information.png" align="center" alt="Data Information"/>
+<img src="img/data-information.png" align="center" alt="Data Information"/>
 
 然后在数据流向中选择 Hive，并点击 “添加”，添加 Hive 配置
 
-<img src="../../img/hive-config.png" align="center" alt="Hive Config"/>
+<img src="img/hive-config.png" align="center" alt="Hive Config"/>
 
 注意这里目标表无需提前创建，InLong Manager 会在接入通过之后自动为我们创建表。另外，请使用 “连接测试” 保证 InLong Manager 可以连接到你的 Hive。
 
