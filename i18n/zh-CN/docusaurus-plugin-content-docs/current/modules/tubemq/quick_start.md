@@ -68,7 +68,7 @@ repHelperHost=FIRST_MASTER_NODE_IP:9001  // helperHost用于创建master集群�
 
 **注意**：
 - 基于Docker容器化的需要，master.ini文件里对[replication]如上3个参数部分都是使用的缺省设置，在实际组网使用时需要以Master节点真实信息配置
-- Master所有节点的IP信息要在hosts配置文件里构造IP与hostName映射关系，如类似“10.10.11.205 10-10-11-205”
+- Master所有节点的IP信息要在hosts配置文件里构造IP与hostName映射关系，如类似“192.168.0.1 192-168-0-1”
 - 需保证Master所有节点之间的时钟同步
 
 
