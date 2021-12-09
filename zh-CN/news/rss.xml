@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[Apache InLong 迎接新 Committer 成员]]></title>
             <link>https://inlong.apache.org/zh-CN/news/2021/11/26/new-committer-join</link>
-            <guid>Apache InLong 迎接新 Committer 成员</guid>
+            <guid>/2021/11/26/new-committer-join</guid>
             <pubDate>Fri, 26 Nov 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[InLong(应龙) : 中国神话故事里的神兽，引流入海，借喻 InLong 系统提供数据接入能力。]]></description>
             <content:encoded><![CDATA[<p>InLong(应龙) : 中国神话故事里的神兽，引流入海，借喻 InLong 系统提供数据接入能力。</p><h3>Apache InLong(incubating) 简介</h3><p><a href="https://inlong.apache.org">Apache InLong（应龙）</a>是腾讯捐献给 Apache 社区的一站式的数据接入平台，提供自动、安全、可靠和高性能的数据传输能力，方便业务构建基于流式的数据分析、建模和应用。</p><p>InLong 项目原名 TubeMQ ，专注于高性能、低成本的消息队列服务。为了进一步释放 TubeMQ 周边的生态能力，我们将项目升级为 InLong，专注打造一站式数据流接入服务平台。</p><p>Apache InLong 以腾讯内部使用的 TDBank 为原型，依托万亿级别的数据接入和处理能力，整合了数据采集、汇聚、存储、分拣数据处理全流程，拥有简单易用、灵活扩展、稳定可靠等特性。</p><img src="/img/inlong-structure-zh.png" align="center" alt="Apache InLong"/><p>Apache InLong 服务于数据采集到落地的整个生命周期，按数据的不同阶段提供不同的处理模块，主要包括：</p><ul><li><strong>inlong-agent</strong>，数据采集 Agent，支持从指定目录或文件读取常规日志、逐条上报。后续也将扩展 DB 采集、HTTP 上报等能力。</li><li><strong>inlong-dataproxy</strong>，一个基于 Flume-ng 的 Proxy 组件，支持数据发送阻塞和落盘重发，拥有将接收到的数据转发到不同 MQ（消息队列）的能力。</li><li><strong>inlong-tubemq</strong>，腾讯自研的消息队列服务，专注于大数据场景下海量数据的高性能存储和传输，在海量实践和低成本方面有着良好的核心优势。</li><li><strong>inlong-sort</strong>，对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、Hbase、Iceberg 等存储系统。</li><li><strong>inlong-manager</strong>，提供完整的数据服务管控能力，包括元数据、任务流、权限，OpenAPI 等。</li><li><strong>inlong-website</strong>，用于管理数据接入的前端页面，简化整个 InLong 管控平台的使用。</li></ul><h3>Apache InLong 社区迎来两位新 Committer</h3><p>在美好的11月份，周康(@healchow)、卢子杰(@TszKitLo40) 两位贡献者成功入选 Apache InLong Committer，祝贺他们！

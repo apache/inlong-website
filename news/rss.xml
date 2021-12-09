@@ -10,7 +10,7 @@
         <item>
             <title><![CDATA[Apache InLong welcomes new Committers]]></title>
             <link>https://inlong.apache.org/news/2021/11/26/new-committer-join</link>
-            <guid>Apache InLong welcomes new Committers</guid>
+            <guid>/2021/11/26/new-committer-join</guid>
             <pubDate>Fri, 26 Nov 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[InLong (应龙) is a divine beast in Chinese mythology who guides river into the sea, it is regarded as a metaphor of the InLong system for reporting streams of data.]]></description>
             <content:encoded><![CDATA[<p>InLong (应龙) is a divine beast in Chinese mythology who guides river into the sea, it is regarded as a metaphor of the InLong system for reporting streams of data.</p><h3>Apache InLong(incubating) Introduction</h3><p><a href="https://inlong.apache.org">Apache InLong</a> is a one-stop data access platform donated by Tencent to the Apache community.  It provides automatic,  safe,  reliable,  and high-performance data transmission capabilities to facilitate the construction of streaming-based data analysis,  modeling,  and applications.<br/>
