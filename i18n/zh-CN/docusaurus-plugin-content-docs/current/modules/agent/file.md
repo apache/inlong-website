@@ -1,9 +1,9 @@
 ---
-title: 文件采集
+title: 文件
 sidebar_position: 3
 ---
 
-## 文件采集配置
+## 文件Agent配置
 ```
 /data/inlong-agent/test.log  //代表读取inlong-agent文件夹下的的新增文件test.log
 /data/inlong-agent/test[0-9]{1} //代表读取inlong-agent文件夹下的新增文件test后接一个数字结尾
