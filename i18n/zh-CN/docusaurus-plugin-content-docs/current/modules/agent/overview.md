@@ -3,7 +3,7 @@ title: 总览
 sidebar_position: 1
 ---
 
-InLong-Agent是一个支持多种数据源类型的收集工具，致力于实现包括file、sql、Binlog、metrics等多种异构数据源之间稳定高效的数据采集功能。
+InLong-Agent是一个支持多种数据源类型的收集工具，致力于实现包括File、Sql、Binlog、Metrics等多种异构数据源之间稳定高效的数据采集功能。
 
 ## 设计理念
 为了解决数据源多样性问题，InLong-agent 将多种数据源抽象成统一的source概念，并抽象出sink来对数据进行写入。当需要接入一个新的数据源的时候，只需要配置好数据源的格式与读取参数便能跟做到高效读取。

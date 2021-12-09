@@ -1,9 +1,9 @@
 ---
-title: File Collect
+title: File
 sidebar_position: 3
 ---
 
-## File Collect Configuration
+## File Agent Configuration
 ```
 /data/inlong-agent/test.log //Represents reading the new file test.log in the inlong-agent folder
 /data/inlong-agent/test[0-9]{1} // means to read the new file test in the inlong-agent folder followed by a number at the end
