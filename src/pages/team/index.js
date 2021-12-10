@@ -51,7 +51,6 @@ export default function() {
                 "</a>";
             eles.appendChild(lid);
         }
-        return list.push(...data);
     })
 
 
