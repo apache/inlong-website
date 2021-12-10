@@ -7,12 +7,8 @@ import './index.less';
 import axios from 'axios';
 
 export default function() {
-    const isBrowser = useIsBrowser();
 
-    const [p1Animation, setP1Animation] = useState(false);
-    const [p2Animation, setP2Animation] = useState(false);
-
-    const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
+    const language = location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
     const dataSource = config?.[language];
 
     let contributors = axios({
@@ -52,7 +48,6 @@ export default function() {
             eles.appendChild(lid);
         }
     })
-
 
     return (
         <Layout>
