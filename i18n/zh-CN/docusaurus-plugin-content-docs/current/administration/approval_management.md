@@ -5,7 +5,7 @@ sidebar_position: 2
 
 作为具有审批权限的数据接入员和系统成员，具备对数据接入或者消费审批职责：
 
-![](/cookbooks_img/image-1624432496461.png)
+![](img/approval-list.png)
 
 #### 数据接入审批
 
@@ -13,7 +13,7 @@ sidebar_position: 2
 
 系统管理员将根据数据接入业务信息，审核此次接入流程是否符合接入要求：
 
-![](/cookbooks_img/image-1624432515850.png)
+![](img/approval-access.png)
 
 #### 新建数据消费审批
 
@@ -21,4 +21,4 @@ sidebar_position: 2
 
 业务审批：由数据接入业务负责人根据接入信息判断此消费是否符合业务要求：
 
-![](/cookbooks_img/image-1624432535541.png)
+![](img/approval-consumption.png)
