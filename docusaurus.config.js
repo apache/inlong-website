@@ -119,11 +119,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             position: 'right'
           },
           {
-            to: '/team',
-            label: 'TEAM',
-            position: 'right'
-          },
-          {
             label: 'ASF',
             position: 'right',
             items: [
