@@ -38,7 +38,7 @@ The code is based on the old version of dbsync, the main modification is to chan
 
 ## Monitor Metrics configuration
 
-Agent provides the ability of monitoring indicators in JMX mode, and the monitoring indicators have been registered to MBeanServer
+Agent provides the ability of monitoring indicators in JMX and Prometheus mode, and JMX mode is used by default. The monitoring indicators have been registered to MBeanServer
 Users can add similar JMX (port and authentication are adjusted according to the situation) to the startup parameters of the Agent to realize the collection of monitoring indicators from the remote end.
 
 ```Shell
@@ -75,3 +75,29 @@ The agent indicators are divided into the following items, and the indicators ar
 | readSuccessNum  | the number of successful reads |
 | sendSuccessNum  | the number of successfully sent |
 
+### SourceMetric
+
+| property                   | type    | description                                                        |
+|----------------------------|---------|--------------------------------------------------------------------|
+| agent_source_count_success | Counter | the success message count in agent source since agent started      |
+| agent_source_count_fail    | Counter | the sink success message count in agent source since agent started |
+
+### SinkMetric
+
+| property                 | type    | description                                                        |
+|--------------------------|---------|--------------------------------------------------------------------|
+| agent_sink_count_success | Counter | the sink success message count in agent source since agent started |
+| agent_sink_count_fail    | Counter | the sink failed message count in agent source since agent started  |
+
+> In addition, Agent also has built-in Prometheus `simpleclient-hotspot`, which is used to collect JVM-related metrics.
+
+### Configure Prometheus
+
+You can declare whether to enable Prometheus and HTTPServer port in `agent.properties`.
+
+```properties
+# the default is false
+agent.prometheus.enable=true
+# the default is 8080
+agent.prometheus.exporter.port=8080
+```
