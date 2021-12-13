@@ -1,0 +1,22 @@
+{
+  "zh-CN": {
+    "synopsis": [
+      "InLong 团队由成员和贡献者组成。 成员可以直接访问 InLong 项目的源代码并积极改进代码库。",
+      "贡献者通过向成员提交补丁和建议来改进项目。 该项目的贡献者数量不限。 非常感谢对 InLong 的所有贡献，",
+      "无论是微不足道的清理、重大的新功能还是其他物质奖励。 更多详情请看这里。"
+    ],
+    "members": "成员包括项目管理会成员和委员。这个名单是按字母顺序排列的。",
+    "code_contributors": "代码贡献者：",
+    "doc_contributors": "文档贡献者："
+  },
+  "en": {
+    "synopsis": [
+      "The InLong team is composed of members and contributors. Members can directly access the source code of the InLong project and actively improve the code base.",
+      "Contributors improve the project by submitting patches and suggestions to members. The number of contributors to the project is unlimited. Thank you very much for all",
+      "contributions to InLong, Whether it's trivial cleanup, major new features or other material rewards. For more details, please see here."
+    ],
+    "members": "Members include members and committee members of the project management committee. This list is arranged in alphabetical order.",
+    "code_contributors": "Code contributors",
+    "doc_contributors": "Document contributors"
+  }
+}
