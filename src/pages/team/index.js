@@ -7,11 +7,15 @@ import './index.less';
 import axios from 'axios';
 
 export default function() {
+    const isBrowser = useIsBrowser();
 
-    const language = location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
+    const [p1Animation, setP1Animation] = useState(false);
+    const [p2Animation, setP2Animation] = useState(false);
+
+    const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
     const dataSource = config?.[language];
 
-    let contributors = axios({
+    let contributors = isBrowser && axios({
         url: 'https://api.github.com/repos/apache/incubator-inlong/contributors',
         method: 'get',
         params: {
@@ -30,7 +34,7 @@ export default function() {
         }
     })
 
-    let doc_contributors = axios({
+    let doc_contributors = isBrowser &&  axios({
         url: 'https://api.github.com/repos/apache/incubator-inlong-website/contributors',
         method: 'get',
         params: {
@@ -48,6 +52,7 @@ export default function() {
             eles.appendChild(lid);
         }
     })
+
 
     return (
         <Layout>
