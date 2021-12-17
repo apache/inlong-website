@@ -42,11 +42,11 @@ spring.profiles.active=dev
 
 - 若使用TubeMQ，配置TubeMQ 集群信息
    ```properties
-   # Tube 集群的 Manager 地址，用来创建 Topic
+   # TubeMQ 集群的 Manager 地址，用来创建 Topic
    cluster.tube.manager=http://127.0.0.1:8081
-   # 用来管理 Tube 的 Broker
+   # 用来管理 TubeMQ 的 Broker
    cluster.tube.master=127.0.0.1:8000,127.0.0.1:8010
-   # Tube 集群的 ID
+   # TubeMQ 集群的 ID
    cluster.tube.clusterId=1
    ```
    

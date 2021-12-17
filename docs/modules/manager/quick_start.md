@@ -43,11 +43,11 @@ The dev configuration is specified above, then modify the `conf/application-dev.
 
 - Configuration TubeMQ cluster information if using TubeMQ
    ```properties
-   # Manager address of Tube cluster, used to create Topic
+   # Manager address of TubeMQ cluster, used to create Topic
    cluster.tube.manager=http://127.0.0.1:8081
-   # Broker used to manage Tube
+   # Broker used to manage TubeMQ
    cluster.tube.master=127.0.0.1:8000,127.0.0.1:8010
-   # Tube cluster ID
+   # TubeMQ cluster ID
    cluster.tube.clusterId=1
    ```
 
