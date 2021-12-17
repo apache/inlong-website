@@ -7,11 +7,16 @@ sidebar_position: 4
 - ZooKeeper 3.5+
 - MySQL 5.7+
 - Flink 1.9.x
+- Apache Pulsar 2.6+ (可选)
 
-## 部署InLong TubeMQ Server
+## 部署InLong TubeMQ Server (可选)
+如果使用Apache Pulsar，可不安装该组件。
+
 [部署InLong TubeMQ Server](modules/tubemq/quick_start.md)
 
-## 部署InLong TubeMQ Manager
+## 部署InLong TubeMQ Manager (可选)
+如果使用Apache Pulsar，可不安装该组件。
+
 [部署InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
 
 ## 部署InLong Manager

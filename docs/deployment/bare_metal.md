@@ -7,11 +7,16 @@ sidebar_position: 4
 - ZooKeeper 3.5+
 - MySQL 5.7+
 - Flink 1.9.x
+- Apache Pulsar 2.6+ (Optional)
 
-## Deploy InLong TubeMQ Server
+## Deploy InLong TubeMQ Server (Optional)
+If you use Apache Pulsar, you don’t need to install this component.
+
 [deploy InLong TubeMQ Server](modules/tubemq/quick_start.md)
 
-## Deploy InLong TubeMQ Manager
+## Deploy InLong TubeMQ Manager (Optional)
+If you use Apache Pulsar, you don’t need to install this component.
+
 [deploy InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
 
 ## Deploy InLong Manager
