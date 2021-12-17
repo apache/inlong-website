@@ -26,8 +26,8 @@ Click [Create], there are two steps to fill in data access information: Group in
 
 Access requirements require users to choose message middleware: high throughput (TUBE) or High reliability (PULSAR):
 
-high throughput (TUBE): high-throughput message transmission component, suitable for log message transmission.
-high reliability (PULSAR): high-reliability message transmission component, suitable for billing transmission.
+- high throughput (Inlong TubeMQ): high-throughput message transmission component, suitable for log message transmission.
+- high reliability (Apache PULSAR): high-reliability message transmission component, suitable for billing transmission.
 
 #### Group Information
 

@@ -13,9 +13,9 @@ title: Deployment
   mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_manager.sql
   ```
 
-## Deploy and start manager-web
+## Deploy manager
 
-**manager-web is a background service that interacts with the front-end page.**
+manager-web is a background service that interacts with the front-end page.
 
 ### Modify configuration
 
@@ -39,25 +39,37 @@ The dev configuration is specified above, then modify the `conf/application-dev.
    spring.datasource.password=DB_PASSWD
    ```
 
-2) Modify the connection information of the Tube and ZooKeeper clusters, among which `cluster.zk.root` suggests using
-   the default value:
+2) Configure the Message Queue Service, you could choose InLong TubeMQ or Apache Pulsar:
+
+- Configuration TubeMQ cluster information if using TubeMQ
+   ```properties
+   # Manager address of TubeMQ cluster, used to create Topic
+   cluster.tube.manager=http://127.0.0.1:8081
+   # Broker used to manage TubeMQ
+   cluster.tube.master=127.0.0.1:8000,127.0.0.1:8010
+   # TubeMQ cluster ID
+   cluster.tube.clusterId=1
+   ```
+
+- Configuration Pulsar cluster information if using Pulsar
+   ```properties
+   # Pulsar admin URL
+   pulsar.adminUrl=http://127.0.0.1:8080,127.0.0.2:8080,127.0.0.3:8080
+   # Pulsar broker address
+   pulsar.serviceUrl=pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650
+   # Default tenant of Pulsar
+   pulsar.defaultTenant=public
+   ```
+  
+3) Configure ZooKeeper clusters information:
 
    ```properties
-   # Manager address of Tube cluster, used to create Topic
-   cluster.tube.manager=http://127.0.0.1:8081
-   # Broker used to manage Tube
-   cluster.tube.master=127.0.0.1:8000,127.0.0.1:8010
-   # Tube cluster ID
-   cluster.tube.clusterId=1
-
    # ZK cluster, used to push the configuration of Sort
    cluster.zk.url=127.0.0.1:2181
    cluster.zk.root=inlong_hive
-   
-   # Sort application name, that is, set the cluster-id parameter of Sort, the default value is "inlong_app"
+   # application name, that is the cluster-id parameter of InLong Sort
    sort.appName=inlong_app
    ```
-
 ### Start the service
 
 Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
