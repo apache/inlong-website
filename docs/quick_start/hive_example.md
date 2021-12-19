@@ -5,17 +5,17 @@ sidebar_position: 2
 
 Here we use a simple example to help you experience InLong by Docker.
 
-## 1 Install Hive
+## Install Hive
 Hive is the necessary component. If you don't have Hive in your machine, we recommand using Docker to install it. Details can be found [here](https://github.com/big-data-europe/docker-hive).
 
 > Note that if you use Docker, you need to add a port mapping `8020:8020`, because it's the port of HDFS DefaultFS, and we need to use it later.
 
-## 2 Install InLong
+## Install InLong
 Before we begin, we need to install InLong. Here we provide two ways:
 1. Install InLong with Docker by according to the [instructions here](deployment/docker.md).(Recommanded)
 2. Install InLong binary according to the [instructions here](deployment/bare_metal.md).
 
-## 3 Create a data access
+## Create a data access
 After deployment, we first enter the "Data Access" interface, click "Create an Access" in the upper right corner to create a new date access, and fill in the data streams group information as shown in the figure below.
 
 ![Create Group](img/create-group.png)
@@ -38,12 +38,12 @@ Note that the target table does not need to be created in advance, as InLong Man
 
 Then we click the "Submit for Approval" button, the connection will be created successfully and enter the approval state.
 
-## 4 Approve the data access
+## Approve the data access
 Then we enter the "Approval Management" interface and click "My Approval" to approve the data access that we just applied for.
 
 At this point, the data access has been created successfully. We can see that the corresponding table has been created in Hive, and we can see that the corresponding topic has been created successfully in the management GUI of TubeMQ.
 
-## 5 Configure the agent
+## Configure the agent
 Here we use `docker exec` to enter the container of the agent and configure it.
 ```
 $ docker exec -it agent sh
