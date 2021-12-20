@@ -6,18 +6,18 @@ sidebar_position: 2
 本节用一个简单的示例，帮助您使用 Docker 快速体验 InLong 的完整流程。
 
 
-## 1 安装 Hive
+## 安装 Hive
 Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐使用 Docker 进行快速安装，详情可见 [这里](https://github.com/big-data-europe/docker-hive)。
 
 > 注意，如果使用以上 Docker 镜像的话，我们需要在 namenode 中添加一个端口映射 `8020:8020`，因为它是 HDFS DefaultFS 的端口，后面在配置 Hive 时需要用到。
 
-## 2 安装 InLong
+## 安装 InLong
 在开始之前，我们需要安装 InLong 的全部组件，这里提供两种方式：
 1. 按照 [这里的说明](deployment/docker.md)，使用 Docker 进行快速部署。（推荐）
 2. 按照 [这里的说明](deployment/bare_metal.md)，使用二进制包依次安装各组件。
 
 
-## 3 新建接入
+## 新建接入
 部署完毕后，首先我们进入 “数据接入” 界面，点击右上角的 “新建接入”，新建一条接入，按下图所示填入数据流 Group 信息
 
 ![Create Group](img/create-group.png)
@@ -40,12 +40,12 @@ Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐�
 
 然后点击“提交审批”按钮，该接入就会创建成功，进入审批状态。
 
-## 4 审批接入
+## 审批接入
 进入“审批管理”界面，点击“我的审批”，将刚刚申请的接入通过。
 
 到此接入就已经创建完毕了，我们可以在 Hive 中看到相应的表已经被创建，并且在 TubeMQ 的管理界面中可以看到相应的 topic 已经创建成功。
 
-## 5 配置 agent
+## 配置 agent
 然后我们使用 docker 进入 agent 容器内，创建相应的 agent 配置。
 ```
 $ docker exec -it agent sh
