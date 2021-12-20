@@ -1,11 +1,11 @@
 ---
 title: Deployment
 ---
-## 1 Deploy DataProxy
 
 All deploying files at `inlong-dataproxy` directory.
+## Configuration
 
-### 1.1 config TubeMQ master
+### Configure TubeMQ
 
 `tubemq_master_list` is the rpc address of TubeMQ Master.
 ```
@@ -14,13 +14,13 @@ $ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf
 
 notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner data
 
-### 1.2 Environmental preparation
+### Environment Preparation
 
 ```
 sh prepare_env.sh
 ```
 
-### 1.3 config manager web url
+### Configure InLong-Manager URL
 
 configuration file: `conf/common.properties`:
 ```
@@ -28,19 +28,19 @@ configuration file: `conf/common.properties`:
 manager_hosts=ip:port 
 ```
 
-## 2 run
+## run
 
 ```
 sh bin/start.sh
 ```
 	
 
-## 3 check
+## check
 ```
 telnet 127.0.0.1 46801
 ```
 
-## 4 Add DataProxy configuration to InLong-Manager
+## Add DataProxy configuration to InLong-Manager
 
 After installing the DataProxy, you need to insert the IP and port of the DataProxy service is located into the backend database of InLong-Manager.
 

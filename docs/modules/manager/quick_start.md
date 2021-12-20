@@ -2,7 +2,7 @@
 title: Deployment
 ---
 
-## Environmental preparation
+## Environment Requirements
 - Install and start MySQL 5.7+
 - initialize database
   there is `sql/apache_inlong_manager.sql` in `inlong-manager-web` directory, load this file through the

@@ -2,10 +2,9 @@
 title: Deployment
 ---
 
-## 1 Deploy TubeMQ Manager
 All deploying files at `inlong-tubemq-manager` directory.
 
-### 1.1 configuration
+## Configuration
 - create `tubemanager` and account in MySQL.
 - Add mysql information in conf/application.properties:
 
@@ -16,13 +15,13 @@ spring.datasource.username=mysql_username
 spring.datasource.password=mysql_password
 ```
 
-### 1.2 start service
+## Start
 
 ``` bash
 $ bin/start-manager.sh 
 ```
 
-### 1.3 register TubeMQ cluster
+## Register TubeMQ cluster
 
     vim bin/init-tube-cluster.sh
 
