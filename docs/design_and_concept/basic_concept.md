@@ -5,7 +5,7 @@ sidebar_position: 1
 
 | Name |  Description | Other |
 |  ----  | ----  | ----  |
-| Group | Data Streams Group, it contains multiple data streams, and one Group represents one data access. |  Group has attributes such as ID and Name.  |
+| Group | Data Streams Group, it contains multiple data streams, and one Group represents one data ingestion. |  Group has attributes such as ID and Name.  |
 | Stream | Data Stream, a stream has a specific flow direction. | Stream has attributes such as ID, Name, and data fields.  |
 | Agent | Represents various collection capabilities. | It contains File Agent, SQL Agent, Binlog Agent, etc. |
 | DataProxy | Forward received data to different message queues. |  Supports data transmission blocking, placing retransmission. |

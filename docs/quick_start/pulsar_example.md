@@ -3,7 +3,7 @@ title: Pulsar Example
 sidebar_position: 2
 ---
 
-Apache InLong has increased the ability to access data through Apache Pulsar, taking full advantage of Pulsar's technical advantages that are different from other MQ, and providing complete solutions for data access scenarios with higher data quality requirements such as finance and billing.
+Apache InLong has increased the ability to access data through Apache Pulsar, taking full advantage of Pulsar's technical advantages that are different from other MQ, and providing complete solutions for data ingestion scenarios with higher data quality requirements such as finance and billing.
 In the following content, we will use a complete example to introduce Apache Pulsar to access data through Apache InLong.
 
 ![Create Group](img/pulsar-arch.png)
@@ -32,10 +32,10 @@ pulsar.serviceUrl=pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650
 pulsar.defaultTenant=public
 ```
 
-## Create a data access
+## Create a data ingestion
 ### Configure data streams group information
 ![](img/pulsar-group.png)
-When creating data access, the message middleware that the data stream group can use is Pulsar, 
+When creating data ingestion, the message middleware that the data stream group can use is Pulsar, 
 and other configuration items related to Pulsar include:
 - Queue module: Parallel or Serial, when selecting parallel, you can set the number of topic partitions
 - Write quorum: Number of copies to store for each message
@@ -55,14 +55,14 @@ When configuring the message source, the file path in the file data source can b
 Save Hive cluster information, click "Ok" to submit.
 ![](img/pulsar-hive.png)
 
-## Data access Approval
-Enter **Approval** page, click **My Approval**, abd approve the data access application. After the approval is over, 
+## Data ingestion Approval
+Enter **Approval** page, click **My Approval**, abd approve the data ingestion application. After the approval is over, 
 the topics and subscriptions required for the data stream will be created in the Pulsar cluster synchronously.
 We can use the command-line tool in the Pulsar cluster to check whether the topic is created successfully:
 ![](img/pulsar-topic.png)
 
 ## Configure File Agent
-When configuring the file agent, you must create the file in the directory specified when creating the data access:
+When configuring the file agent, you must create the file in the directory specified when creating the data ingestion:
 ```
 touch /data/test_file.txt;
 ```

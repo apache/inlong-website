@@ -9,33 +9,16 @@ sidebar_position: 4
 - Flink 1.9.x
 - Apache Pulsar 2.6+ (Optional)
 
-## Deploy InLong TubeMQ Server (Optional)
-If you use Apache Pulsar, you don’t need to install this component.
+## Deploy InLong
+| order |  component | dependencies | deploy guide | description |
+|  ----  | ----  | ----  | ----  | ---- |
+| 1 | inlong-tubemq-server | ZooKeeper | [InLong TubeMQ Server](modules/tubemq/quick_start.md) | If you use Apache Pulsar, you don’t need to install this component. |
+| 2 | inlong-tubemq-manager | MySQL | [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md) | If you use Apache Pulsar, you don’t need to install this component. |
+| 3 | inlong-manager | MySQL, ZooKeeper  | [InLong Manager](modules/manager/quick_start.md) |  |
+| 4 | inlong-website | Nginx or Docker | [InLong WebSite](modules/website/quick_start.md) | |
+| 5 | inlong-dataproxy |  | [InLong DataProxy](modules/dataproxy/quick_start.md) |  |
+| 6 | inlong-sort | ZooKeeper, Flink | [InLong Sort](modules/sort/quick_start.md) |  |
+| 7 | inlong-agent |  | [InLong Agent](modules/agent/quick_start.md) |  |
 
-[deploy InLong TubeMQ Server](modules/tubemq/quick_start.md)
-
-## Deploy InLong TubeMQ Manager (Optional)
-If you use Apache Pulsar, you don’t need to install this component.
-
-[deploy InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
-
-## Deploy InLong Manager
-[deploy InLong Manager](modules/manager/quick_start.md)
-
-## Deploy InLong WebSite
-[deploy InLong WebSite](modules/website/quick_start.md)
-
-## Deploy InLong Sort
-[deploy InLong Sort](modules/sort/quick_start.md)
-
-## Deploy InLong DataProxy
-[deploy InLong DataProxy](modules/dataproxy/quick_start.md)
-
-## Deploy InLong Agent
-[deploy InLong Agent](modules/agent/quick_start.md)
-
-## Business configuration
-[How to configure a new business](user_guide/user_manual.md)
-
-## Data report verification
-At this stage, you can collect data through the file agent and verify whether the received data is consistent with the sent data in the specified Hive table.
+## Create Data Stream
+After the InLong cluster deployed successfully, you can create a data stream refer to the [user manual](user_guide/user_manual.md) to start using.
