@@ -3,40 +3,23 @@ title: Bare Metal 部署
 sidebar_position: 4
 ---
 
-## 3 环境要求
+## 环境要求
 - ZooKeeper 3.5+
 - MySQL 5.7+
 - Flink 1.9.x
 - Apache Pulsar 2.6+ (可选)
 
-## 部署InLong TubeMQ Server (可选)
-如果使用Apache Pulsar，可不安装该组件。
+## 安装InLong
+| 顺序 |  组件 | 第三方依赖 | 部署指引 | 说明 |
+|  ----  | ----  | ----  | ----  | ---- |
+| 1 | inlong-tubemq-server | ZooKeeper | [InLong TubeMQ Server](modules/tubemq/quick_start.md) | 若使用Apache Pulsar，可不安装该组件 |
+| 2 | inlong-tubemq-manager | MySQL | [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md) | 若使用Apache Pulsar，可不安装该组件 |
+| 3 | inlong-manager | MySQL, ZooKeeper  | [InLong Manager](modules/manager/quick_start.md) |  |
+| 4 | inlong-website | Nginx 或者 Docker | [InLong WebSite](modules/website/quick_start.md) | |
+| 5 | inlong-dataproxy | 无 | [InLong DataProxy](modules/dataproxy/quick_start.md) |  |
+| 6 | inlong-sort | ZooKeeper, Flink | [InLong Sort](modules/sort/quick_start.md) |  |
+| 7 | inlong-agent | 无 | [InLong Agent](modules/agent/quick_start.md) |  |
 
-[部署InLong TubeMQ Server](modules/tubemq/quick_start.md)
-
-## 部署InLong TubeMQ Manager (可选)
-如果使用Apache Pulsar，可不安装该组件。
-
-[部署InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
-
-## 部署InLong Manager
-[部署InLong Manager](modules/manager/quick_start.md)
-
-## 部署InLong WebSite
-[部署InLong WebSite](modules/website/quick_start.md)
-
-## 部署InLong Sort
-[部署InLong Sort](modules/sort/quick_start.md)
-
-## 部署InLong DataProxy
-[部署InLong DataProxy](modules/dataproxy/quick_start.md)
-
-## 部署InLong Agent
-[部署InLong Agent](modules/agent/quick_start.md)
-
-## 业务配置
-[配置新业务](user_guide/user_manual.md)
-
-## 数据上报验证
-到这里，您就可以通过文件Agent采集数据并在指定的Hive表中验证接收到的数据是否与发送的数据一致。
+## 创建数据流
+InLong 集群部署成功后，你可以参考[用户手册](user_guide/user_manual.md)创建一个数据流开始使用。
 
