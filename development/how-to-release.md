@@ -405,7 +405,7 @@ Hello Incubator Community,
     • https://github.com/apache/incubator-inlong/releases/tag/${release_version}-${rc_version}
 
     Release notes:
-    • https://github.com/apache/incubator-inlong/releases/tag/${release_version}-${rc_version}
+    • https://github.com/apache/incubator-inlong/blob/${release_version}-${rc_version}/CHANGES.md
 
     The artifacts signed with PGP key [your personal KEY], corresponding to [your email], that can be found in keys file:
     • https://downloads.apache.org/incubator/inlong/KEYS
