@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://inlong.apache.org/zh-CN/blog</id>
     <title>Apache Inlong Blog</title>
-    <updated>2021-12-27T03:01:30.890Z</updated>
+    <updated>2021-12-27T03:10:16.472Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://inlong.apache.org/zh-CN/blog"/>
     <subtitle>Apache Inlong Blog</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[0.11.0 版本发布]]></title>
         <id>0.11.0 版本发布</id>
         <link href="https://inlong.apache.org/zh-CN/blog/apache-inlong-0.11.0"/>
-        <updated>2021-12-27T03:01:30.890Z</updated>
+        <updated>2021-12-27T03:10:16.472Z</updated>
         <summary type="html"><![CDATA[Apache InLong(incubating) 从 0.9.0 版本开始由原 Apache TubeMQ（incubating）改名而来，伴随着名称的改变，InLong 也由单一的消息队列升级为一站式的数据集成解决方案，支持了大数据领域的采集、汇聚、缓存和分拣功能，用户只需要简单的配置就可以把数据从数据源导入到实时计算引擎或者落地到离线存储。]]></summary>
     </entry>
 </feed>
