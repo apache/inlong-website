@@ -18,25 +18,28 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 
 示例：
 ```
-$ ./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort-core-[version].jar --cluster-id my_application --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong-sort --source.type tubemq --sink.type hive
+./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-core-[version].jar \
+--cluster-id inlong_app --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong_sort \
+--source.type tubemq --sink.type hive
 ```
 
 注意：
 
 - `-c org.apache.inlong.sort.flink.Entrance` 表示main class name
 
-- `inlong-sort-core-[version].jar` 为编译阶段产出的jar包
+- `inlong-sort/sort-core-[version].jar` 为编译阶段产出的jar包
 
 ## 必要的配置
-- `--cluster-id ` 用来唯一标识一个inlong-sort作业
-- `--zookeeper.quorum` zk quorum
-- `--zookeeper.path.root` zk根目录
+- `--cluster-id ` 用来唯一标识一个inlong-sort作业，同inlong-manager中`sort.appName`配置一致
+- `--zookeeper.quorum` zk quorum，同inlong-manager中`cluster.zk.url`配置一致
+- `--zookeeper.path.root` zk根目录，同inlong-manager中`cluster.zk.root`配置一致
 - `--source.type` 数据源的种类, 当前支持："tubemq"、"pulsar"
 - `--sink.type` 存储系统的种类，当前支持："clickhouse"、"hive"
 
 **配置示例**
 ```
---cluster-id my_application --zookeeper.quorum 192.127.0.1:2181 --zookeeper.path.root /zk_root --source.type tubemq --sink.type hive
+--cluster-id inlong_app --zookeeper.quorum 192.127.0.1:2181 \
+--zookeeper.path.root /inlong_sort --source.type tubemq --sink.type hive
 ```
 
 ## 所有支持的配置
