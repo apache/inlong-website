@@ -5,7 +5,7 @@
 ## InLong
 | 日期 | 版本| 备注 | 下载 |
 |:---:|:--:|:--:|:--:|
-| Nov 5, 2021 | 0.11.0 | Source | [[SRC](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.11.0-incubating/apache-inlong-0.11.0-incubating-src.tar.gz)]                 [[ASC](https://downloads.apache.org/incubator/inlong/0.11.0-incubating/apache-inlong-0.11.0-incubating-src.tar.gz.asc)]             [[SHA512](https://downloads.apache.org/incubator/inlong/0.11.0-incubating/apache-inlong-0.11.0-incubating-src.tar.gz.sha512)] |
+| Nov 5, 2021 | 0.11.0 | Source | [[SRC](https://archive.apache.org/dist/incubator/inlong/0.11.0-incubating/apache-inlong-0.11.0-incubating-src.tar.gz)]                 [[ASC](https://archive.apache.org/dist/incubator/inlong/0.11.0-incubating/apache-inlong-0.11.0-incubating-src.tar.gz.asc)]             [[SHA512](https://archive.apache.org/dist/incubator/inlong/0.11.0-incubating/apache-inlong-0.11.0-incubating-src.tar.gz.sha512)] |
 
 
 ### 发布完整性
