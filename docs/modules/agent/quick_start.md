@@ -54,8 +54,8 @@ sh agent.sh start
     "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
     },
     "proxy": {
-  "groupId": "groupId10",
-  "streamId": "groupId10"
+  "inlongGroupId": "groupId10",
+  "inlongStreamId": "groupId10"
     },
     "op": "add"
     }'
