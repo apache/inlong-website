@@ -61,8 +61,8 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"groupId": "groupId",
-"streamId": "streamId"
+"inlongGroupId": "groupId",
+"inlongStreamId": "streamId"
 },
 "op": "add"
 }'
@@ -101,8 +101,8 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"groupId": "groupId",
-"streamId": "streamId"
+"inlongGroupId": "groupId",
+"inlongStreamId": "streamId"
 },
 "op": "add"
 }'
