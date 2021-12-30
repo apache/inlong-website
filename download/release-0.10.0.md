@@ -5,7 +5,7 @@ Use the links below to download the Apache InLong from one of our mirrors.
 ## InLong
 | Date | Version| Comment | Downloads |
 |:---:|:--:|:--:|:--:|
-| Sept 11, 2021 | 0.10.0 | Source | [[SRC](http://www.apache.org/dyn/closer.lua/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz)]                 [[ASC](https://downloads.apache.org/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.asc)]             [[SHA512](https://downloads.apache.org/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.sha512)] |
+| Sept 11, 2021 | 0.10.0 | Source | [[SRC](https://archive.apache.org/dist/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz)]                 [[ASC](https://archive.apache.org/dist/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.asc)]             [[SHA512](https://archive.apache.org/dist/incubator/inlong/0.10.0-incubating/apache-inlong-0.10.0-incubating-src.tar.gz.sha512)] |
 
 
 ### Release Integrity
