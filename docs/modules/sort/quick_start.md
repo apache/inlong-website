@@ -19,25 +19,28 @@ Now you can submit job to flink with the jar compiled, refer to [how to submit j
 
 Example：
 ```
-$ ./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort-core-[version].jar --cluster-id my_application --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong-sort --source.type tubemq --sink.type hive
+./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-core-[version].jar \
+--cluster-id inlong_app --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong_sort \
+--source.type tubemq --sink.type hive
 ```
 
 Notice：
 
 - `-c org.apache.inlong.sort.flink.Entrance` is the main class name
 
-- `inlong-sort-core-[version].jar` is the compiled jar
+- `inlong-sort/sort-core-[version].jar` is the compiled jar
 
 ## Necessary configurations
-- `--cluster-id ` which is used to represent a specified inlong-sort application
-- `--zookeeper.quorum` zk quorum
-- `--zookeeper.path.root` zk root path
+- `--cluster-id ` represent a specified inlong-sort application, same as the configuration of `sort.appName` in inlong-manager
+- `--zookeeper.quorum` zk quorum, same as the configuration of `cluster.zk.url` in inlong-manager
+- `--zookeeper.path.root` zk root path, same as the configuration of `cluster.zk.root` in inlong-manager
 - `--source.type` source of the application, currently "tubemq" and "pulsar" are supported
 - `--sink.type` sink of the application, currently "clickhouse" and "hive" are supported
 
 **Example**
 ```
---cluster-id my_application --zookeeper.quorum 192.127.0.1:2181 --zookeeper.path.root /zk_root --source.type tubemq --sink.type hive
+--cluster-id inlong_app --zookeeper.quorum 192.127.0.1:2181 \
+--zookeeper.path.root /inlong_sort --source.type tubemq --sink.type hive
 ```
 
 ## All configurations
