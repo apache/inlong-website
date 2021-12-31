@@ -22,12 +22,12 @@ export default function() {
                 <p>{dataSource.newVersionExplain}</p>
                 <table>
                     <tr>
-                        <td>0.11.0</td>
+                        <td>{dataSource.table.version[1].title}</td>
                         <td>
-                            <a href={dataSource.table.latestUrl}>{dataSource.table.doc}</a>
+                            <a href={dataSource.table.version[1].link}>{dataSource.table.doc}</a>
                         </td>
                         <td>
-                            <a href={dataSource.table.releaseUrlOne}>{dataSource.table.release}</a>
+                            <a href={dataSource.table.version[1].releaseUrl}>{dataSource.table.release}</a>
                         </td>
                         <td>
                             <a href="https://github.com/apache/incubator-inlong">{dataSource.table.source}</a>
@@ -50,12 +50,24 @@ export default function() {
                 <p>{dataSource.passVersionExplain}</p>
                 <table>
                     <tr>
-                        <td>0.11.0</td>
+                        <td>{dataSource.table.version[1].title}</td>
                         <td>
-                            <a href={dataSource.table.link}>{dataSource.table.doc}</a>
+                            <a href={dataSource.table.version[1].link}>{dataSource.table.doc}</a>
                         </td>
                         <td>
-                            <a href={dataSource.table.releaseUrlOne}>{dataSource.table.release}</a>
+                            <a href={dataSource.table.version[1].releaseUrl}>{dataSource.table.release}</a>
+                        </td>
+                        <td>
+                            <a href="https://github.com/apache/incubator-inlong">{dataSource.table.source}</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>{dataSource.table.version[0].title}</td>
+                        <td>
+                            <a href={dataSource.table.version[0].link}>{dataSource.table.doc}</a>
+                        </td>
+                        <td>
+                            <a href={dataSource.table.version[0].releaseUrl}>{dataSource.table.release}</a>
                         </td>
                         <td>
                             <a href="https://github.com/apache/incubator-inlong">{dataSource.table.source}</a>

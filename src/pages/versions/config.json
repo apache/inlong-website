@@ -9,12 +9,21 @@
     "passVersionExplain": "在这里您可以找到以前发布的文档版本",
     "table": {
       "doc": "文档",
-      "link": "/zh-CN/docs/user_guide/quick_start",
       "release": "Release Note",
-      "releaseUrlOne": "/zh-CN/download/release-0.11.0",
-      "nextLink": "/zh-CN/docs/next/user_guide/quick_start",
-      "latestUrl": "/zh-CN/docs/user_guide/quick_start",
-      "source": "源代码"
+      "source": "源代码",
+      "nextLink": "/zh-CN/docs/next/introduction",
+      "version": [
+        {
+          "title": "0.11.0",
+          "link": "/zh-CN/docs/0.11.0/user_guide/quick_start",
+          "releaseUrl": "/zh-CN/download/release-0.11.0"
+        },
+        {
+          "title": "0.12.0",
+          "link": "/zh-CN/docs/introduction",
+          "releaseUrl": ""
+        }
+      ]
     }
 
   },
@@ -28,12 +37,21 @@
     "passVersionExplain": "Here you can find the previously published version of the document",
     "table": {
       "doc": "Document",
-      "link": "/docs/user_guide/quick_start",
       "release": "Release Note",
-      "releaseUrlOne": "/download/release-0.11.0",
-      "nextLink": "/docs/next/user_guide/quick_start",
-      "latestUrl": "/docs/user_guide/quick_start",
-      "source": "Source Code"
+      "source": "Source Code",
+      "nextLink": "/docs/next/introduction",
+      "version": [
+        {
+          "title": "0.11.0",
+          "link": "/docs/0.11.0/user_guide/quick_start",
+          "releaseUrl": "/download/release-0.11.0"
+        },
+        {
+          "title": "0.12.0",
+          "link": "/docs/introduction",
+          "releaseUrl": "/download/release-0.12.0"
+        }
+      ]
     }
   }
 }
