@@ -3,7 +3,7 @@
       "brand": {
           "brandName": "Apache",
           "projectName": "InLong",
-          "briefIntroduction": "Apache InLong（应龙）是一个一站式的数据接入平台，提供自动、安全、可靠和高性能的数据传输能力，同时支持批和流，方便业务构建基于流式的数据分析、建模和应用。",
+          "briefIntroduction": "Apache InLong（应龙）是一个一站式的数据集成框架，提供自动、安全、可靠和高性能的数据传输能力，同时支持批和流，方便业务构建基于流式的数据分析、建模和应用。",
           "features": [
               "自动",
               "安全",
@@ -67,7 +67,7 @@
               "High performance",
               "Distributed"
           ],
-          "briefIntroduction": "Apache InLong is a one-stop data ingestion platform that provides automatic, secure and reliable data transmission capabilities. InLong supports both batch and stream data processing at the same time, which offers great power to build data analysis, modeling and other real-time  applications based on streaming data.",
+          "briefIntroduction": "Apache InLong is a one-stop data integration framework that provides automatic, secure and reliable data transmission capabilities. InLong supports both batch and stream data processing at the same time, which offers great power to build data analysis, modeling and other real-time  applications based on streaming data.",
           "buttons": [
               {
                   "text": "Quick Start",
