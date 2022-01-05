@@ -3,7 +3,7 @@ title: Pulsar Example
 sidebar_position: 2
 ---
 
-Apache InLong has increased the ability to access data through Apache Pulsar, taking full advantage of Pulsar's technical advantages that are different from other MQ, and providing complete solutions for data ingestion scenarios with higher data quality requirements such as finance and billing.
+Apache InLong has increased the ability to access data through Apache Pulsar, taking full advantage of Pulsar's technical advantages that are different from other MQ, and providing complete solutions for data integration scenarios with higher data quality requirements such as finance and billing.
 In the following content, we will use a complete example to introduce Apache Pulsar to access data through Apache InLong.
 
 ![Create Group](img/pulsar-arch.png)
