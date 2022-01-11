@@ -16,12 +16,6 @@ $ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf
 
 注意conf/flume.conf中FLUME_HOME为proxy的中间数据文件存放地址
 
-### 环境准备
-
-```
-sh prepare_env.sh
-```
-
 ### 配置InLong-Manager 地址
 
 配置文件：`conf/common.properties`:
