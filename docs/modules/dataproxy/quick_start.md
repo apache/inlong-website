@@ -16,12 +16,6 @@ $ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf
 
 notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner data
 
-### Environment Preparation
-
-```
-sh prepare_env.sh
-```
-
 ### Configure InLong-Manager URL
 
 configuration file: `conf/common.properties`:
