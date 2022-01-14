@@ -1,15 +1,15 @@
 ---
-title: Agent插件
+title: Agent 插件
 sidebar_position: 1
 ---
 
 # 总览
 
-本文面向InLong-Agent插件开发人员，尝试尽可能全面地阐述开发一个Agent插件所经过的历程，力求消除开发者的困惑，让插件开发变得简单。
+本文面向 InLong-Agent 插件开发人员，尝试尽可能全面地阐述开发一个 Agent 插件所经过的历程，力求消除开发者的困惑，让插件开发变得简单。
 
 ## 开发之前
 
-InLong Agent本身作为数据采集框架，采用 Job + Task 架构构建。并将数据源读取和写入抽象成为 Reader/Sink 插件，纳入到整个框架中。
+InLong Agent 本身作为数据采集框架，采用 Job + Task 架构构建。并将数据源读取和写入抽象成为 Reader/Sink 插件，纳入到整个框架中。
 
 开发人员需要明确 Job 以及 Task 的概念：
 
@@ -26,14 +26,14 @@ InLong Agent本身作为数据采集框架，采用 Job + Task 架构构建。�
 
 ## 流程图示
 
-上述介绍的Job\Task\Reader\Sink\Channel概念可以用下图表示：
+上述介绍的 Job \ Task \ Reader \ Sink \ Channel 概念可以用下图表示：
 ![](img/Agent_Flow.png)
 
 1. 用户提交 Job（通过 manager 或者通过 curl 方式提交），Job 中定义了需要使用的 Source, Channel, Sink（通过类的全限定名定义）
 2. 框架启动 Job，通过反射机制创建出 Source
 3. 框架启动 Source，并调用 Source 的 Split 接口，生成一个或者多个 Task
-4. 生成一个 Task 时，同时生成 Reader（一种类型的 Source 会生成对应的 reader)，用户配置的Channel以及用户配置的 Sink
-5. Task开始执行，Reader 开始读取数据到 Channel，Sink 从 Channel 中取数进行发送
+4. 生成一个 Task 时，同时生成 Reader（一种类型的 Source 会生成对应的 reader)，用户配置的 Channel 以及用户配置的 Sink
+5. Task 开始执行，Reader 开始读取数据到 Channel，Sink 从 Channel 中取数进行发送
 6. Job 和 Task 执行时所需要的所有信息都封装在 JobProfile 中
 
 
@@ -43,9 +43,9 @@ InLong Agent本身作为数据采集框架，采用 Job + Task 架构构建。�
 
 ## 开发流程
 
-1、首先开发Source, 实现Split逻辑，返回Reader列表
-2、开发对应的Reader，实现读取数据并写入到Channel的逻辑
-3、开发对应的Sink, 实现从Channel中取数并写入到指定Sink中的逻辑
+1、首先开发 Source , 实现 Split 逻辑，返回 Reader 列表
+2、开发对应的 Reader ，实现读取数据并写入到 Channel 的逻辑
+3、开发对应的 Sink , 实现从 Channel 中取数并写入到指定 Sink 中的逻辑
 
 ## 编程必知接口
 
@@ -113,7 +113,7 @@ public interface Sink extends Stage {
 ```
 
 `Sink`接口功能如下：
-- `write`: 被单个Task调用，从 Task 中的 Channel 读取一条消息，并写入到特定的存储介质中，以 PulsarSink 为例，则需要通过 PulsarSender 发送到 Pulsar
+- `write`: 被单个 Task 调用，从 Task 中的 Channel 读取一条消息，并写入到特定的存储介质中，以 PulsarSink 为例，则需要通过 PulsarSender 发送到 Pulsar
 - `setSourceName`: 设置数据源名称，如果是文件，则是文件名
 - `initMessageFilter`: 初始化 MessageFilter , 用户可以在Job配置文件中通过设置 agent.message.filter.classname 来创建一个消息过滤器来过滤每一条消息，详情可以参考 MessageFilter 接口
 
