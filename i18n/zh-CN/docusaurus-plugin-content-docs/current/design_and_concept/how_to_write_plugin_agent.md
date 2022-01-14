@@ -37,7 +37,7 @@ InLong Agent 本身作为数据采集框架，采用 Job + Task 架构构建。�
 6. Job 和 Task 执行时所需要的所有信息都封装在 JobProfile 中
 
 
-## 参考Demo
+## 参考 Demo
 
 请开发人员通过阅读 Agent 源码中的 Job 类、Task 类、TextFileSource 类、TextFileReader 类、以及 ProxySink 类来弄懂上述流程
 
