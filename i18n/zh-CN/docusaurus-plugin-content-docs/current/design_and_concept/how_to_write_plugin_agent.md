@@ -1,37 +1,57 @@
 ---
-title: InLong-Agent插件开发指南
+title: InLong-Agent插件
 sidebar_position: 1
 ---
 
-# InLong-Agent插件开发指南
+# InLong-Agent插件
 
 本文面向InLong-Agent插件开发人员，尝试尽可能全面地阐述开发一个Agent插件所经过的历程，力求消除开发者的困惑，让插件开发变得简单。
 
 ## 开发之前
 
-InLong Agent本身作为数据采集框架，采用 channel + plugin 架构构建。将数据源读取和写入抽象成为 Reader/Writer 插件，纳入到整个框架中。
-
-- Reader：Reader 为数据采集模块，负责采集数据源的数据，将数据发送给 channel 。
-- Writer： Writer 为数据写入模块，负责不断向 channel 取数据，并将数据写入到目的端。
-- Channel：Channel 用于连接 reader 和 writer ，作为两者的数据传输通道，并起到了数据的写入读取监控作用
-
-所以作为开发人员，实际上只需要开发特定的 Reader 以及 Sink 即可，数据如果需要持久化到本地磁盘，使用持久化 Sink ，如果否则使用内存 Sink
-
-## 插件视角看框架
-
-### 逻辑执行模型
+InLong Agent本身作为数据采集框架，采用 Job + Task 架构构建。并将数据源读取和写入抽象成为 Reader/Sink 插件，纳入到整个框架中。
 
 开发人员需要明确 Job 以及 Task 的概念：
 
 - `Job`: `Job`是 Agent 用以描述从一个源头到一个目的端的同步作业，是 Agent 数据同步的最小业务单元。比如：读取一个文件目录下的所有文件
-- `Task`: `Task`是把`Job`拆分得到的最小执行单元。比如：文件夹下有多个文件需要被读取，那么一个job会被拆分成为多个 task ，每个 task 读取对应的文件
+- `Task`: `Task`是把`Job`拆分得到的最小执行单元。比如：文件夹下有多个文件需要被读取，那么一个 job 会被拆分成为多个 task ，每个 task 读取对应的文件
+
+一个Task包含以下各个组件：
+
+- Reader：Reader 为数据采集模块，负责采集数据源的数据，将数据发送给 channel。
+- Sink： Sink 为数据写入模块，负责不断向 channel 取数据，并将数据写入到目的端。
+- Channel：Channel 用于连接 reader 和 sink，作为两者的数据传输通道，并起到了数据的写入读取监控作用
+
+作为开发人员，实际上只需要开发特定的 Source、Reader 以及 Sink 即可，数据如果需要持久化到本地磁盘，使用持久化 Channel ，如果否则使用内存 Channel
+
+## 流程图示
+
+上述介绍的Job\Task\Reader\Sink\Channel概念可以用下图表示：
+![](img/Agent_Flow.png)
+
+1. 用户提交 Job（通过 manager 或者通过 curl 方式提交），Job 中定义了需要使用的 Source, Channel, Sink（通过类的全限定名定义）
+2. 框架启动 Job，通过反射机制创建出 Source
+3. 框架启动 Source，并调用 Source 的 Split 接口，生成一个或者多个 Task
+4. 生成一个 Task 时，同时生成 Reader（一种类型的 Source 会生成对应的 reader)，用户配置的Channel以及用户配置的 Sink
+5. Task开始执行，Reader 开始读取数据到 Channel，Sink 从 Channel 中取数进行发送
+6. Job 和 Task 执行时所需要的所有信息都封装在 JobProfile 中
 
 
-### 编程接口
+## 参考Demo
 
-首先，插件的入口类必须实现`Reader`或`Writer`接口，如果是实现 Reader ，则需要实现对应的 Source
+请开发人员通过阅读 Agent 源码中的 Job 类、Task 类、TextFileSource 类、TextFileReader 类、以及 ProxySink 类来弄懂上述流程
 
-`Reader`
+## 开发流程
+
+1、首先开发Source, 实现Split逻辑，返回Reader列表
+2、开发对应的Reader，实现读取数据并写入到Channel的逻辑
+3、开发对应的Sink, 实现从Channel中取数并写入到指定Sink中的逻辑
+
+## 编程必知接口
+
+下面将介绍开发一款插件需要知道的类与接口，如下：
+
+### Reader
 ```java
 private class ReaderImpl implements Reader {
 
@@ -66,7 +86,7 @@ private class ReaderImpl implements Reader {
 - `getReadSource`: 获取采集源，举例：如果是文件任务，则返回当前读取的文件名
 - `setReadTimeout`: 设置读取超时时间
 
-`Sink:`
+### Sink
 
 ```java
 public interface Sink extends Stage {
@@ -98,7 +118,7 @@ public interface Sink extends Stage {
 - `initMessageFilter`: 初始化 MessageFilter , 用户可以在Job配置文件中通过设置 agent.message.filter.classname 来创建一个消息过滤器来过滤每一条消息，详情可以参考 MessageFilter 接口
 
 
-`Source:`
+### Source
 
 ```java
 /**
@@ -120,17 +140,9 @@ public interface Source {
 `Source`接口功能如下：
 - `split`: 被单个 Job 调用，产生多个 Reader，举例：一个读取文件任务，匹配文件夹内的多个文件，在 job 启动时，会指定 TextFileSource 作为 Source 入口，
   调用 split 函数后，TextFileSource 会检测用户设置的文件夹内有多少符合路径匹配表达式的路径，并生成 TextFileReader 读取
+  
 
-
-### Job与Task启动流程
-
-- 1、JOB 启动，读取用户配置的 Source , Sink , Channel
-- 2、根据用户配置的 Source, 反射生成 Source 实体，并调用其中的 Split 函数，生成对应的若干 Reader
-- 3、对于每一个 Reader ，框架都生成一个 Task 执行，同时生成对应当前 Reader 的 Channel 以及 Sink
-- 3、Reader 启动，读取数据到 Channel 中, Sink 从 Channel 中读取数据并发送
-
-
-### 插件定义
+## 任务配置
 
 代码写好了，有没有想过框架是怎么找到插件的入口类的？框架是如何加载插件的呢？
 
@@ -151,7 +163,7 @@ public interface Source {
 - `sink`: Sink 类的全限定名称，框架通过反射插件入口类的实例。
 - `channel`: 使用的 Channel 类名，框架通过反射插件入口类的实例。
 
-### 插件数据传输
+## Message
 
 跟一般的`生产者-消费者`模式一样，`Reader`插件和`Sink`插件之间也是通过`channel`来实现数据的传输的。
 `channel`可以是内存的，也可能是持久化的，插件不必关心。插件通过`RecordSender`往`channel`写入数据，通过`RecordReceiver`从`channel`读取数据。
@@ -180,7 +192,6 @@ public interface Message {
 ```
 
 开发人员可以根据该接口拓展定制化的 Message ，比如 ProxyMessage 中，就包含了 InLongGroupId, InLongStreamId 等属性
-
 
 ## Last but not Least
 
