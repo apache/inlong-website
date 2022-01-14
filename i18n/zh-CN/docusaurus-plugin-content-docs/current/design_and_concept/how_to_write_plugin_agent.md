@@ -1,9 +1,9 @@
 ---
-title: InLong-Agent插件
+title: Agent插件
 sidebar_position: 1
 ---
 
-# InLong-Agent插件
+# 总览
 
 本文面向InLong-Agent插件开发人员，尝试尽可能全面地阐述开发一个Agent插件所经过的历程，力求消除开发者的困惑，让插件开发变得简单。
 

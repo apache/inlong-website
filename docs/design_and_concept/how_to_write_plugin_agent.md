@@ -1,9 +1,9 @@
 ---
-title: InLong-Agent Plugin
+title: Agent Plugin
 sidebar_position: 1
 ---
 
-# InLong-Agent Plugin
+# Overview
 
 This article is aimed at InLong-Agent plug-in developers, trying to explain the process of developing an Agent plug-in as comprehensively as possible, and strive to eliminate the confusion of developers and make plug-in development easier.
 
