@@ -3,7 +3,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-This is a website console for us to use the [Apache InLong](https://github.com/apache/incubator-inlong).
+This is a dashboard console for us to use the [Apache InLong](https://github.com/apache/incubator-inlong).
 
 ## Guide For Developer
 You should check that `nodejs >= 12.0` is installed.
@@ -21,7 +21,7 @@ You will also see any lint errors in the console.
 
 The start of the web server depends on the back-end server `manger api` interface.
 
-You should start the backend server first, and then set the variable `target` in `/inlong-website/src/setupProxy.js` to the address of the api service.
+You should start the backend server first, and then set the variable `target` in `/inlong-dashboard/src/setupProxy.js` to the address of the api service.
 
 ### Test
 

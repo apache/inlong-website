@@ -3,7 +3,7 @@ title: 概览
 sidebar_position: 1
 ---
 
-WebSite 是 [Apache InLong](https://github.com/apache/incubator-inlong)的管控端。
+Dashboard 是 [Apache InLong](https://github.com/apache/incubator-inlong)的管控端。
 
 ## 开发指引
 
@@ -22,7 +22,7 @@ WebSite 是 [Apache InLong](https://github.com/apache/incubator-inlong)的管控
 
 web服务器的启动依赖于后端服务 `manger api` 接口。
 
-您应该先启动后端服务器，然后将 `/inlong-website/src/setupProxy.js` 中的变量`target` 设置为api服务的地址。
+您应该先启动后端服务器，然后将 `/inlong-dashboard/src/setupProxy.js` 中的变量`target` 设置为api服务的地址。
 
 ### 测试
 

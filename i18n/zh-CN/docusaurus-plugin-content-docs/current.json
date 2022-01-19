@@ -23,9 +23,9 @@
     "message": "Manager",
     "description": "The label for category Manager in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Website": {
-    "message": "Website",
-    "description": "The label for category Website in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Dashboard": {
+    "message": "Dashboard",
+    "description": "The label for category Dashboard in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Agent": {
     "message": "Agent",
