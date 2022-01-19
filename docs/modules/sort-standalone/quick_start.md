@@ -3,65 +3,196 @@ title: Deployment
 sidebar_position: 2
 ---
 
-## Set up flink environment
-Currently inlong-sort is based on flink, before you run an inlong-sort application,
-you need to set up [flink environment](https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/cluster_setup.html).
+## Preparing installation files
+The installation file is located in the 'inlong sort standard / sort standard dist / target /' directory. The file name is Apache inlong sort standard - ${project. Version} - bin tar. gz。
 
-Currently, inlong-sort relys on flink-1.9.3. Chose `flink-1.9.3-bin-scala_2.11.tgz` when downloading package.
+## Start the inlong sort standalone application
+With the tar produced in the above compilation stage After you unpack the GZ package, you can start the inlong sort standalone application.
+Example:
 
-Once your flink environment is set up, you can visit web ui of flink, whose address is stored in `/${your_flink_path}/conf/masters`.
-
-## Prepare installation files
-All installation files at `inlong-sort` directory.
-
-## Starting an inlong-sort application
-Now you can submit job to flink with the jar compiled, refer to [how to submit job to flink](https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/yarn_setup.html#submit-job-to-flink).
-
-Example：
 ```
-./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-core-[version].jar \
---cluster-id inlong_app --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong_sort \
---source.type tubemq --sink.type hive
+./bin/sort-start. sh
 ```
 
-Notice：
 
-- `-c org.apache.inlong.sort.flink.Entrance` is the main class name
 
-- `inlong-sort/sort-core-[version].jar` is the compiled jar
-
-## Necessary configurations
-- `--cluster-id ` represent a specified inlong-sort application, same as the configuration of `sort.appName` in inlong-manager
-- `--zookeeper.quorum` zk quorum, same as the configuration of `cluster.zk.url` in inlong-manager
-- `--zookeeper.path.root` zk root path, same as the configuration of `cluster.zk.root` in inlong-manager
-- `--source.type` source of the application, currently "tubemq" and "pulsar" are supported
-- `--sink.type` sink of the application, currently "clickhouse" and "hive" are supported
-
-**Example**
-```
---cluster-id inlong_app --zookeeper.quorum 192.127.0.1:2181 \
---zookeeper.path.root /inlong_sort --source.type tubemq --sink.type hive
-```
-
-## All configurations
-|  name | necessary  | default value  |description   |
+## conf/common. Properties configuration
+|Configuration name | whether it must be | default value | description|
 | ------------ | ------------ | ------------ | ------------ |
-|cluster-id   |  Y | NA  |  used to represent a specified inlong-sort application |
-|zookeeper.quorum   | Y  | NA  | zk quorum  |
-|zookeeper.path.root   | Y  | /inlong-sort  |  zk root path  |
-|source.type   | Y | NA   | source of the application, currently "tubemq" and "pulsar" are supported  |
-|sink.type   | Y  | NA  | sink of the application, currently "clickhouse" and "hive" are supported  |
-|source.parallelism   | N  | 1  | parallelism of source  |
-|deserialization.parallelism   | N  |  1 | parallelism of deserialization  |
-|sink.parallelism   | N  | 1  | parallelism of sink  |
-|tubemq.master.address | N  | NA  | tube master address used if absent in DataFlowInfo on zk  |
-|tubemq.session.key |N | inlong-sort | session key used when subscribing to tubemq |
-|tubemq.bootstrap.from.max | N | false | whether consume from max or not when subscribing to tubemq |
-|tubemq.message.not.found.wait.period | N | 350ms | The time of waiting period if tube broker return message not found |
-|tubemq.subscribe.retry.timeout | N | 300000 | The time of subscribing tube timeout, in millisecond |
-|zookeeper.client.session-timeout | N | 60000 | The session timeout for the ZooKeeper session in ms |
-|zookeeper.client.connection-timeout | N | 15000 | The connection timeout for ZooKeeper in ms |
-|zookeeper.client.retry-wait | N | 5000 | The pause between consecutive retries in ms |
-|zookeeper.client.max-retry-attempts | N | 3 | The number of connection retries before the client gives up |
-|zookeeper.client.acl | N | "open" | Defines the ACL (open/creator) to be configured on ZK node. The configuration value can be set to “creator” if the ZooKeeper server configuration has the “authProvider” property mapped to use SASLAuthenticationProvider and the cluster is configured to run in secure mode (Kerberos) |
-|zookeeper.sasl.disable | N | false | Whether disable zk sasl or not |
+|Clusterid | y | Na | is used to uniquely identify an inlong sort standalone cluster|
+|sortSource. type | N | org. apache. inlong. sort. standalone. source. readapi. Readapisource | source class name|
+|sortChannel. type | N | org. apache. inlong. sort. standalone. channel. Bufferqueuechannel | channel type|
+|sortSink. type | N | org. apache. inlong. sort. standalone. sink. hive. Hivesink | sink class name. Different sink classes are used for different distribution types|
+|sortClusterConfig. type | N | org. apache. inlong. sort. standalone. config. loader. Classresourcesortclusterconfigloader | distribute the cluster configuration and load the class name. Classresourcesortclusterconfigloader is from sortclusterconfig. Of classpath Conf source file to read distribution cluster configuration|
+|sortClusterConfig. Managerpath | n | Na | distribution cluster configuration loading class org apache. inlong. sort. standalone. config. loader. The parameter of managersortclusterconfigloader specifies the URL path of inlong manager, For example, http: / / ${manager IP: Port} / API / inlong / Manager / OpenAPI / sort / standalone / getclusterconfig|
+|eventFormatHandler | N | org. apache. inlong. sort. standalone. sink. hive. Defaulteventformathandler | format conversion class name before distributing hive|
+|Parallelism of maxthreads | n | 10 | sink|
+|Reloadinterval | n | 60000 | update loading cycle of distribution cluster configuration, unit: milliseconds|
+|Processinterval | n | 100 | distribution packet processing interval, unit: ms|
+|Metricdomains | n | sort | indicator summary domain name|
+|metricDomains. Sort. domainListeners | N | org. apache. inlong. sort. standalone. metrics. prometheus. Prometheusmetriclistener | indicator summary listener class name list, separated by spaces|
+|prometheusHttpPort | N | 8080 | org. apache. inlong. sort. standalone. metrics. prometheus. Parameter of Prometheus metricplistener, httpserver port of Prometheus|
+|metricDomains. Sort. Snapshotinterval | n | 60000 | retry timeout of subscription tube, unit: ms|
+
+## SortClusterConfig configuration
+- Read SortClusterConfig from classpath, but real-time update is not supported
+- The configuration can be obtained from the HTTP interface of the inlong manager
+
+|Configuration name | whether it must be | default value | description|
+| ------------ | ------------ | ------------ | ------------ |
+|Clustername | y | Na | is used to uniquely identify an inlong sort standalone cluster|
+|Sorttasks | y | Na | list < sorttaskconfig > stores multiple distribution tasks|
+
+### SortTaskConfig configuration
+|Configuration name | whether it must be | default value | description|
+| ------------ | ------------ | ------------ | ------------ |
+|Name | y | Na | distribution task name|
+|Type | y | Na | distribution task type, such as hive ("hive"), tube ("tube"), Kafka ("Kafka"), pulsar ("pulsar"), elasticsearch ("elasticsearch"), unknown ("n")|
+|Idparams | y | Na | list < map < string, string > > stores multiple inlong data flow parameters|
+|Sinkparams | y | Na | map < string, string > stores the parameters of the distribution task|
+
+### IdParams of hive distribution task
+|Configuration name | whether it must be | default value | description|
+| ------------ | ------------ | ------------ | ------------ |
+|inlongGroupId | Y | NA | inlongGroupId |
+|inlongStreamId | Y | NA | inlongStreamId |
+|separator | y | Na | separator|
+|partitionintervalms | n | 3600000 | partition interval, in milliseconds|
+|Idrootpath | y | Na | HDFS root directory of inlong data stream|
+|Partitionsubpath | y | Na | partition subdirectory of inlong data stream|
+|Hivetablename | y | Na | hive table name of inlong data stream|
+|Partitionfieldname | n | DT | partition field name of inlong data stream|
+|Partitionfieldpattern | y | Na | inlong data stream partition field value format, such as {yyyymmdd}, {yyyymmddhh}, {yyyymmddhhmm}|
+|Msgtimefieldpattern | y | Na | field value format of message generation time, java time format|
+|Maxpartitionopendelayhour | n | 8 | maximum opening delay time of partition, unit: hour|
+
+### SinkParams for hive distribution tasks
+|Configuration name | whether it must be | default value | description|
+| ------------ | ------------ | ------------ | ------------ |
+|Hdfspath | y | Na | namenode of HDFS|
+|Maxfileopendelayminute | n | 5 | maximum write time of a single HDFS file, unit: minutes|
+|Tokenovertimeminute | n | 60 | the maximum time taken to create a token for a partition of a single inlong data stream, in minutes|
+|Maxoutputfilesizegb | n | 2 | maximum size of a single HDFS file, in GB|
+|Hivejdbcurl | y | Na | JDBC path of hive|
+|Hivedatabase | y | Na | hive's database|
+|Hiveusername | y | Na | hive's user name|
+|Hivepassword | y | Na | hive's password|
+
+### IdParams of pulsar distribution task
+|Configuration name | whether it must be | default value | description|
+| ------------ | ------------ | ------------ | ------------ |
+|inlongGroupId | Y | NA | inlongGroupId |
+|inlongStreamId | Y | NA | inlongStreamId |
+|Topic | y | Na | topic of pulsar|
+
+### SinkParams of pulsar distribution task
+|Configuration name | whether it must be | default value | description|
+| ------------ | ------------ | ------------ | ------------ |
+|serviceUrl | Y | NA | pulsar service path|
+|authentication | Y | NA | pulsar cluster authentication|
+|enableBatching   | N  | true  | enableBatching  |
+|batchingMaxBytes   | N  | 5242880  | batchingMaxBytes  |
+|batchingMaxMessages   | N  | 3000  | batchingMaxMessages  |
+|batchingMaxPublishDelay   | N  | 1  | batchingMaxPublishDelay  |
+|maxPendingMessages   | N  | 1000  | maxPendingMessages  |
+|maxPendingMessagesAcrossPartitions   | N  | 50000  | maxPendingMessagesAcrossPartitions  |
+|sendTimeout   | N  | 0  | sendTimeout  |
+|compressionType   | N  | NONE  | compressionType  |
+|blockIfQueueFull   | N  | true  | blockIfQueueFull  |
+|roundRobinRouterBatchingPartitionSwitchFrequency   | N  | 10  | roundRobinRouterBatchingPartitionSwitchFrequency  |
+
+### Hive configuration example
+```
+{
+	"data":{
+		"clusterName":"hivev3-sz-sz1",
+		"sortTasks":[
+			{
+				"idParams":[
+					{
+						"inlongGroupId":"0fc00000046",
+						"inlongStreamId":"",
+						"separator":"|",
+						"partitionIntervalMs":3600000,
+						"idRootPath":"/user/hive/warehouse/t_inlong_v1_0fc00000046",
+						"partitionSubPath":"/{yyyyMMdd}/{yyyyMMddHH}",
+						"hiveTableName":"t_inlong_v1_0fc00000046",
+						"partitionFieldName":"dt",
+						"partitionFieldPattern":"yyyyMMddHH",
+						"msgTimeFieldPattern":"yyyy-MM-dd HH:mm:ss",
+						"maxPartitionOpenDelayHour":8
+					},
+					{
+						"inlongGroupId":"03600000045",
+						"inlongStreamId":"",
+						"separator":"|",
+						"partitionIntervalMs":3600000,
+						"idRootPath":"/user/hive/warehouse/t_inlong_v1_03600000045",
+						"partitionSubPath":"/{yyyyMMdd}/{yyyyMMddHH}",
+						"hiveTableName":"t_inlong_v1_03600000045",
+						"partitionFieldName":"dt",
+						"partitionFieldPattern":"yyyyMMddHH",
+						"msgTimeFieldPattern":"yyyy-MM-dd HH:mm:ss",
+						"maxPartitionOpenDelayHour":8
+					},
+					{
+						"inlongGroupId":"05100054990",
+						"inlongStreamId":"",
+						"separator":"|",
+						"partitionIntervalMs":3600000,
+						"idRootPath":"/user/hive/warehouse/t_inlong_v1_05100054990",
+						"partitionSubPath":"/{yyyyMMdd}/{yyyyMMddHH}",
+						"hiveTableName":"t_inlong_v1_05100054990",
+						"partitionFieldName":"dt",
+						"partitionFieldPattern":"yyyyMMddHH",
+						"msgTimeFieldPattern":"yyyy-MM-dd HH:mm:ss",
+						"maxPartitionOpenDelayHour":8
+					},
+					{
+						"inlongGroupId":"09c00014434",
+						"inlongStreamId":"",
+						"separator":"|",
+						"partitionIntervalMs":3600000,
+						"idRootPath":"/user/hive/warehouse/t_inlong_v1_09c00014434",
+						"partitionSubPath":"/{yyyyMMdd}/{yyyyMMddHH}",
+						"hiveTableName":"t_inlong_v1_09c00014434",
+						"partitionFieldName":"dt",
+						"partitionFieldPattern":"yyyyMMddHH",
+						"msgTimeFieldPattern":"yyyy-MM-dd HH:mm:ss",
+						"maxPartitionOpenDelayHour":8
+					},
+					{
+						"inlongGroupId":"0c900035509",
+						"inlongStreamId":"",
+						"separator":"|",
+						"partitionIntervalMs":3600000,
+						"idRootPath":"/user/hive/warehouse/t_inlong_v1_0c900035509",
+						"partitionSubPath":"/{yyyyMMdd}/{yyyyMMddHH}",
+						"hiveTableName":"t_inlong_v1_0c900035509",
+						"partitionFieldName":"dt",
+						"partitionFieldPattern":"yyyyMMddHH",
+						"msgTimeFieldPattern":"yyyy-MM-dd HH:mm:ss",
+						"maxPartitionOpenDelayHour":8
+					}
+				],
+				"name":"sid_hive_inlong6th_v3",
+				"sinkParams":{
+					"hdfsPath":"hdfs://127.0.0.1:9000",
+					"maxFileOpenDelayMinute":"5",
+					"tokenOvertimeMinute":"60",
+					"maxOutputFileSizeGb":"2",
+					"hiveJdbcUrl":"jdbc:hive2://127.0.0.2:10000",
+					"hiveDatabase":"default",
+					"hiveUsername":"hive",
+					"hivePassword":"hive"
+				},
+				"type":"HIVE"
+			}
+		]
+	},
+	"errCode":0,
+	"md5":"md5",
+	"result":true
+}
+```
+
