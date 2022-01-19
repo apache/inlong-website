@@ -6,7 +6,7 @@ sidebar_position: 4
 ## Environment Requirements
 - ZooKeeper 3.5+
 - MySQL 5.7+
-- Flink 1.9.x
+- Flink 1.13.5
 - Apache Pulsar 2.6+ (Optional)
 
 ## Deploy InLong

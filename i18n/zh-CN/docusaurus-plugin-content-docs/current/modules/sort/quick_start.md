@@ -4,9 +4,9 @@ sidebar_position: 2
 ---
 
 ## 配置flink运行环境
-当前inlong-sort是基于flink的一个应用，因此运行inlong-sort应用前，需要准备好[flink 环境](https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/cluster_setup.html)。
+当前inlong-sort是基于flink的一个应用，因此运行inlong-sort应用前，需要准备好[flink 环境](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/overview/)。
 
-由于当前inlong-sort依赖的是flink1.9.3版本，因此在下载部署包时，请选择`flink-1.9.3-bin-scala_2.11.tgz`
+由于当前inlong-sort依赖的是flink1.13.5版本，因此在下载部署包时，请选择`flink-1.13.5-bin-scala_2.11.tgz`
 
 flink环境配置完成后，可以通过浏览器访问flink的web ui，对应的地址是`/{flink部署路径}/conf/masters`文件中的地址
 
@@ -14,7 +14,7 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 安装文件在`inlong-sort`目录。
 
 ## 启动inlong-sort应用
-有了上述编译阶段产出的jar包后，就可以启动inlong-sort的应用了。提交方式可以参考[如何提交flink作业](https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/yarn_setup.html#submit-job-to-flink)。
+有了上述编译阶段产出的jar包后，就可以启动inlong-sort的应用了。提交方式可以参考[如何提交flink作业](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/cli/#submitting-a-job)。
 
 示例：
 ```
