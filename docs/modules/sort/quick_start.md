@@ -5,9 +5,9 @@ sidebar_position: 2
 
 ## Set up flink environment
 Currently inlong-sort is based on flink, before you run an inlong-sort application,
-you need to set up [flink environment](https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/cluster_setup.html).
+you need to set up [flink environment](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/overview/).
 
-Currently, inlong-sort relys on flink-1.9.3. Chose `flink-1.9.3-bin-scala_2.11.tgz` when downloading package.
+Currently, inlong-sort relys on flink-1.13.5. Chose `flink-1.13.5-bin-scala_2.11.tgz` when downloading package.
 
 Once your flink environment is set up, you can visit web ui of flink, whose address is stored in `/${your_flink_path}/conf/masters`.
 
@@ -15,7 +15,7 @@ Once your flink environment is set up, you can visit web ui of flink, whose addr
 All installation files at `inlong-sort` directory.
 
 ## Starting an inlong-sort application
-Now you can submit job to flink with the jar compiled, refer to [how to submit job to flink](https://ci.apache.org/projects/flink/flink-docs-release-1.9/ops/deployment/yarn_setup.html#submit-job-to-flink).
+Now you can submit job to flink with the jar compiled, refer to [how to submit job to flink](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/cli/#submitting-a-job).
 
 Example：
 ```
