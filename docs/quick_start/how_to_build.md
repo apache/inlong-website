@@ -26,7 +26,7 @@ inlong-manager-web
 inlong-sort
 inlong-tubemq-manager
 inlong-tubemq-server
-inlong-website
+inlong-dashboard
 ```
 
 ## Build Docker Images

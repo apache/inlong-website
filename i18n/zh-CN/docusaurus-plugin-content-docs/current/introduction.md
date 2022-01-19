@@ -42,4 +42,4 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 - **inlong-tubemq**，腾讯自研的消息队列服务，专注于大数据场景下海量数据的高性能存储和传输，在海量实践和低成本方面有着良好的核心优势。
 - **inlong-sort**，对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、Hbase、Iceberg 等存储系统。
 - **inlong-manager**，提供完整的数据服务管控能力，包括元数据、任务流、权限，OpenAPI 等。
-- **inlong-website**，用于管理数据接入的前端页面，简化整个 InLong 管控平台的使用。
+- **inlong-dashboard**，用于管理数据接入的前端页面，简化整个 InLong 管控平台的使用。
