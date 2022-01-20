@@ -1,14 +1,14 @@
 ---
-title: SQL
+title: MySQL SQL
 sidebar_position: 3
 ---
 
-## Preface
+## Overview
 Currently, Agent supports MYSQL version 5.1.x , 5.5.x , 5.6.x , 5.7.x , 8.0.x
 Currently, the Agent only supports the curl request to create a Job to submit collection tasks, and temporarily does not support the manager front-end to create SQL collection
 
 
-## Sql Job creation Steps
+## Create A Mysql Job
 
 1. Apply for access on the manager, when filling in the data information, select the message source as "Independent Push"
 2. Select the source data field separator
@@ -40,7 +40,7 @@ curl --location --request POST 'http://localhost:8008/config/job' \--header 'Con
       "port": "3306",
       "separator": "|"
     },
-    "id": 14,
+    "id": 1,
     "thread": {
       "running": {
         "core": "4"

@@ -1,14 +1,14 @@
 ---
-title: SQL
+title: MySQL SQL
 sidebar_position: 3
 ---
 
-## 前言
+## 总览
 目前Agent支持MYSQL版本为5.1.x , 5.5.x , 5.6.x , 5.7.x , 8.0.x
 目前Agent只支持curl请求创建Job方式提交采集任务，暂时不支持manager前端创建SQL采集
 
 
-## Sql Job创建步骤
+## Mysql Job创建步骤
 
 1、在manager上申请接入，填写数据信息时，选择消息来源为"自主推送"
 2、选择源数据字段分隔符
@@ -35,7 +35,7 @@ curl --location --request POST 'http://localhost:8008/config/job' \--header 'Con
     "sql": {
       "command": "select * from apache_inlong_manager.user",
       "user":  "root",
-      "password": "DI@Bigdata#2021",
+      "password": "inlong",
       "hostname": "10.0.0.6",
       "port": "3306",
       "separator": "|"
