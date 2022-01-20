@@ -15,6 +15,6 @@ mvn package -DskipTests -Pdocker -pl inlong-dashboard
 
 ## 运行
 ```
-# MANAGER_API_ADDRESS 环境变量 使用inlong-manager-web 部署地址替换
+# MANAGER_API_ADDRESS 环境变量 使用inlong-manager 部署地址替换
 docker run -d --name dashboard -e MANAGER_API_ADDRESS=127.0.0.1:8083 -p 80:80 inlong/dashboard
 ```

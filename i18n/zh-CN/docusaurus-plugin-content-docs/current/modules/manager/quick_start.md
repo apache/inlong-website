@@ -5,7 +5,7 @@ title: 安装部署
 ## 环境准备
 - 安装并启动 MySQL 5.7+
 - 初始化数据库
-  `inlong-manager-web` 目录下有 `sql/apache_inlong_manager.sql`文件，通过下述命令加载此文件，完成表结构及基础数据的初始化：
+  `inlong-manager` 目录下有 `sql/apache_inlong_manager.sql`文件，通过下述命令加载此文件，完成表结构及基础数据的初始化：
 
   ```shell
   # 通过用户名和密码，创建DB和表：
@@ -14,14 +14,14 @@ title: 安装部署
   
 ## 部署manager
 
-manager-web 是与前端页面交互的后台服务。
+manager 是与前端页面交互的后台服务。
 
 ### 修改配置
 
-前往 `inlong-manager-web` 目录，修改 `conf/application.properties` 文件：
+前往 `inlong-manager` 目录，修改 `conf/application.properties` 文件：
 
 ```properties
-# manager-web 服务的端口号
+# manager 服务的端口号
 server.port=8083
 
 # 默认使用的配置文件为 dev

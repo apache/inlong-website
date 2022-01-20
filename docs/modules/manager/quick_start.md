@@ -5,7 +5,7 @@ title: Deployment
 ## Environment Requirements
 - Install and start MySQL 5.7+
 - initialize database
-  there is `sql/apache_inlong_manager.sql` in `inlong-manager-web` directory, load this file through the
+  there is `sql/apache_inlong_manager.sql` in `inlong-manager` directory, load this file through the
   following command to complete the initialization of the table structure and basic data
 
   ```shell
@@ -15,14 +15,14 @@ title: Deployment
 
 ## Deploy manager
 
-manager-web is a background service that interacts with the front-end page.
+manager is a background service that interacts with the front-end page.
 
 ### Modify configuration
 
-Go to the decompressed `inlong-manager-web` directory and modify the `conf/application.properties` file:
+Go to the decompressed `inlong-manager` directory and modify the `conf/application.properties` file:
 
 ```properties
-# manager-web service port number
+# manager service port number
 server.port=8083
 
 # The configuration file used is dev
