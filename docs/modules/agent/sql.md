@@ -34,12 +34,12 @@ curl --location --request POST 'http://localhost:8008/config/job' \--header 'Con
     "sql": {
       "command": "select * from apache_inlong_manager.user",
       "user":  "root",
-      "password": "DI@Bigdata#2021",
+      "password": "inlong",
       "hostname": "10.0.0.6",
       "port": "3306",
       "separator": "|"
     },
-    "id": 1,
+    "id": 14,
     "thread": {
       "running": {
         "core": "4"
