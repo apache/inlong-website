@@ -7,15 +7,13 @@ sidebar_position: 2
 安装文件在`inlong-sort-standalone/sort-standalone-dist/target/`目录下，文件名是apache-inlong-sort-standalone-${project.version}-bin.tar.gz。
 
 ## 启动inlong-sort-standalone应用
-有了上述编译阶段产出的tar.gz包后，解压后就可以启动inlong-sort-standalone的应用了。
-
+有了上述编译阶段产出的tar.gz包后，解压后就可以启动inlong-sort-standalone的应用了。  
 示例：
 ```
 ./bin/sort-start.sh
 ```
 
 ## conf/common.properties配置
-
 |  配置名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |clusterId   | Y | NA  |  用来唯一标识一个inlong-sort-standalone集群 |
@@ -35,15 +33,13 @@ sidebar_position: 2
 
 ## SortClusterConfig配置
 - 可以从ClassPath的SortClusterConfig.conf源文件读取，但不支持实时更新
-- 可以从Inlong Manager的HTTP接口获取配置
-
+- 可以从Inlong Manager的HTTP接口获取配置  
 |  配置名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |clusterName   | Y | NA  |  用来唯一标识一个inlong-sort-standalone集群 |
 |sortTasks   | Y  | NA  | List<SortTaskConfig>存储多个分发任务  |
 
 ### SortTaskConfig配置
-
 |  配置名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |name   | Y | NA  |  分发任务名 |
@@ -52,7 +48,6 @@ sidebar_position: 2
 |sinkParams   | Y  | NA  | Map<String, String>存储分发任务的参数  |
 
 ### Hive分发任务的idParams
-
 |  配置名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |inlongGroupId   | Y | NA  |  inlongGroupId |
@@ -68,7 +63,6 @@ sidebar_position: 2
 |maxPartitionOpenDelayHour   | N  | 8  | 分区最大打开延迟时间，单位小时  |
 
 ### Hive分发任务的sinkParams
-
 |  配置名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |hdfsPath   | Y | NA  |  HDFS的NameNode |
@@ -81,7 +75,6 @@ sidebar_position: 2
 |hivePassword   | Y  | NA  | Hive的密码  |
 
 ### Pulsar分发任务的idParams
-
 |  配置名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |inlongGroupId   | Y | NA  |  inlongGroupId |
@@ -89,7 +82,6 @@ sidebar_position: 2
 |topic   | Y  | NA  | Pulsar的Topic  |
 
 ### Pulsar分发任务的sinkParams
-
 |  配置名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |serviceUrl   | Y | NA  |  Pulsar服务路径 |
