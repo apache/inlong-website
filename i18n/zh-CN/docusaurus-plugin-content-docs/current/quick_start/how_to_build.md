@@ -21,7 +21,6 @@ $ docker run -v `pwd`:/inlong  -w /inlong maven:3.6-openjdk-8 mvn clean install 
 ```
 inlong-agent
 inlong-dataproxy
-inlong-dataproxy-sdk
 inlong-manager-web
 inlong-sort
 inlong-tubemq-manager
