@@ -7,8 +7,7 @@ sidebar_position: 3
 Currently, Agent supports MYSQL version 5.1.x , 5.5.x , 5.6.x , 5.7.x , 8.0.x
 Currently, the Agent only supports the curl request to create a Job to submit collection tasks, and temporarily does not support the manager front-end to create SQL collection
 
-
-## Create A Mysql Job
+## Create A MySQL Job
 
 1. Apply for access on the manager, when filling in the data information, select the message source as "Independent Push"
 2. Select the source data field separator
