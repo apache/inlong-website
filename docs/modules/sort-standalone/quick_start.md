@@ -2,89 +2,85 @@
 title: Deployment
 sidebar_position: 2
 ---
-## 准备安装文件
-安装文件在`inlong-sort-standalone/sort-standalone-dist/target/`目录下，文件名是apache-inlong-sort-standalone-${project.version}-bin.tar.gz。
+## Prepare to get module archive
+Module archive is in the directory:inlong-sort-standalone/sort-standalone-dist/target/, the archive file is apache-inlong-sort-standalone-${project.version}-bin.tar.gz.
 
-## 启动inlong-sort-standalone应用
-有了上述编译阶段产出的tar.gz包后，解压后就可以启动inlong-sort-standalone的应用了。  
-示例：
-```
-./bin/sort-start.sh
-```
+## Start inlong-sort-standalone application
+At first, decompress the archive file, execute the shell file "./bin/sort-start.sh".
 
-## conf/common.properties配置
-|  配置名 | 是否必须  | 默认值  |描述   |
+## Configuration file:conf/common.properties
+|  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
-|clusterId   | Y | NA  |  用来唯一标识一个inlong-sort-standalone集群 |
-|sortSource.type   | N | org.apache.inlong.sort.standalone.source.readapi.ReadApiSource  | Source类名  |
-|sortChannel.type   | N | org.apache.inlong.sort.standalone.channel.BufferQueueChannel  |  Channel类型  |
-|sortSink.type   | N | org.apache.inlong.sort.standalone.sink.hive.HiveSink | Sink类名，不同的分发类型使用不同的Sink类  |
-|sortClusterConfig.type   | N | org.apache.inlong.sort.standalone.config.loader.ClassResourceSortClusterConfigLoader  | 分发集群配置加载类名，ClassResourceSortClusterConfigLoader从ClassPath的SortClusterConfig.conf源文件读取分发集群配置 |
-|sortClusterConfig.managerPath   | N  | NA  | 分发集群配置加载类org.apache.inlong.sort.standalone.config.loader.ManagerSortClusterConfigLoader的参数，指定Inlong Manager的URL路径，	如http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getClusterConfig  |
-|eventFormatHandler | N | org.apache.inlong.sort.standalone.sink.hive.DefaultEventFormatHandler | 分发Hive前的格式转换类名  |
-|maxThreads   | N  | 10  | sink的并行度 |
-|reloadInterval | N  | 60000  | 分发集群配置的更新加载周期，单位毫秒  |
-|processInterval | N | 100 | 分发分组处理间隔，单位毫秒 |
-|metricDomains | N | Sort | 指标汇总域名 |
-|metricDomains.Sort.domainListeners | N | org.apache.inlong.sort.standalone.metrics.prometheus.PrometheusMetricListener | 指标汇总监听器类名列表，空格分隔 |
-|prometheusHttpPort | N | 8080 | org.apache.inlong.sort.standalone.metrics.prometheus.PrometheusMetricListener的参数，Prometheus的HttpServer端口 |
-|metricDomains.Sort.snapshotInterval | N | 60000 | 订阅tube的重试超时时间，单位为ms |
+|clusterId   | Y | NA  |  inlong-sort-standalone cluster id |
+|sortSource.type   | N | org.apache.inlong.sort.standalone.source.readapi.ReadApiSource  | Source class name  |
+|sortChannel.type   | N | org.apache.inlong.sort.standalone.channel.BufferQueueChannel  |  Channel class name  |
+|sortSink.type   | N | org.apache.inlong.sort.standalone.sink.hive.HiveSink | Sink class name  |
+|sortClusterConfig.type   | N | org.apache.inlong.sort.standalone.config.loader.ClassResourceSortClusterConfigLoader  | Configuration data loader class name |
+|sortClusterConfig.managerPath   | N  | NA  | For loader:org.apache.inlong.sort.standalone.config.loader.ManagerSortClusterConfigLoader, the parameter is the URL of InlongManager. For example:http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getClusterConfig  |
+|eventFormatHandler | N | org.apache.inlong.sort.standalone.sink.hive.DefaultEventFormatHandler | Formater class name  |
+|maxThreads   | N  | 10  | sink thread number |
+|reloadInterval | N  | 60000  | interval updating Configuration data(millisecond)  |
+|processInterval | N | 100 | interval processing data(millisecond) |
+|metricDomains | N | Sort | domain name of metric |
+|metricDomains.Sort.domainListeners | N | org.apache.inlong.sort.standalone.metrics.prometheus.PrometheusMetricListener | class name list of metric listener, separated by space |
+|prometheusHttpPort | N | 8080 | HTTP server port of prometheus simple client |
+|metricDomains.Sort.snapshotInterval | N | 60000 | interval snapshoting metric data(millisecond) |
 
-## SortClusterConfig配置
-- 可以从ClassPath的SortClusterConfig.conf源文件读取，但不支持实时更新
-- 可以从Inlong Manager的HTTP接口获取配置  
-|  配置名 | 是否必须  | 默认值  |描述   |
+## SortClusterConfig
+- Get SortClusterConfig from the file:SortClusterConfig.conf in classpath, but it can not support online updating.
+- Get SortClusterConfig from InlongManager URL, but it can support online updating.
+|  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
-|clusterName   | Y | NA  |  用来唯一标识一个inlong-sort-standalone集群 |
-|sortTasks   | Y  | NA  | List<SortTaskConfig>存储多个分发任务  |
+|clusterName   | Y | NA  |  inlong-sort-standalone cluster id |
+|sortTasks   | Y  | NA  | sort task list, the type is List<SortTaskConfig>  |
 
-### SortTaskConfig配置
-|  配置名 | 是否必须  | 默认值  |描述   |
+### SortTaskConfig
+|  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
-|name   | Y | NA  |  分发任务名 |
-|type   | Y  | NA  | 分发任务类型，如HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), ElasticSearch("ElasticSearch"), UNKNOWN("n")  |
-|idParams   | Y  | NA  | List<Map<String, String>>存储多个Inlong数据流参数  |
-|sinkParams   | Y  | NA  | Map<String, String>存储分发任务的参数  |
+|name   | Y | NA  |  sort task name |
+|type   | Y  | NA  | sort task type, for example:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), ElasticSearch("ElasticSearch"), UNKNOWN("n")  |
+|idParams   | Y  | NA  | Inlong DataStream configuration, the type is List<Map<String, String>>  |
+|sinkParams   | Y  | NA  | Sort task parameters, the type is Map<String, String>  |
 
-### Hive分发任务的idParams
-|  配置名 | 是否必须  | 默认值  |描述   |
+### idParams content of Hive sort task
+|  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
 |inlongGroupId   | Y | NA  |  inlongGroupId |
 |inlongStreamId   | Y  | NA  | inlongStreamId  |
-|separator   | Y  | NA  | 分隔符  |
-|partitionIntervalMs   | N  | 3600000  | 分区间隔时间，单位毫秒  |
-|idRootPath   | Y  | NA  | Inlong数据流的Hdfs根目录  |
-|partitionSubPath   | Y  | NA  | Inlong数据流的分区子目录  |
-|hiveTableName   | Y  | NA  | Inlong数据流的Hive表名  |
-|partitionFieldName   | N  | dt  | Inlong数据流的分区字段名  |
-|partitionFieldPattern   | Y  | NA  | Inlong数据流的分区字段值格式，如{yyyyMMdd}、{yyyyMMddHH}、{yyyyMMddHHmm}  |
-|msgTimeFieldPattern   | Y  | NA  | 消息生成时间的字段值格式，Java时间格式  |
-|maxPartitionOpenDelayHour   | N  | 8  | 分区最大打开延迟时间，单位小时  |
+|separator   | Y  | NA  | separtor  |
+|partitionIntervalMs   | N  | 3600000  | partition interval(millisecond)  |
+|idRootPath   | Y  | NA  | HDFS root path of Inlong DataStream  |
+|partitionSubPath   | Y  | NA  | partition sub path of Inlong DataStream  |
+|hiveTableName   | Y  | NA  | Hive table name of Inlong DataStream  |
+|partitionFieldName   | N  | dt  | partition field name of Inlong DataStream  |
+|partitionFieldPattern   | Y  | NA  | Date format of partition field value, the type have {yyyyMMdd},{yyyyMMddHH},{yyyyMMddHHmm}  |
+|msgTimeFieldPattern   | Y  | NA  | Date format of message generation time, it support Java date format  |
+|maxPartitionOpenDelayHour   | N  | 8  | Max delay hour of partition(hour)  |
 
-### Hive分发任务的sinkParams
-|  配置名 | 是否必须  | 默认值  |描述   |
+### sinkParams content of Hive sort task
+|  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
-|hdfsPath   | Y | NA  |  HDFS的NameNode |
-|maxFileOpenDelayMinute   | N  | 5  | 单个HDFS文件最大写入时间，单位分钟  |
-|tokenOvertimeMinute   | N  | 60  | 单个Inlong数据流的分区创建token最大占用时间，单位分钟  |
-|maxOutputFileSizeGb   | N  | 2  | 单个HDFS文件最大大小，单位GB  |
-|hiveJdbcUrl   | Y  | NA  | Hive的JDBC路径  |
-|hiveDatabase   | Y  | NA  | Hive的数据库  |
-|hiveUsername   | Y  | NA  | Hive的用户名  |
-|hivePassword   | Y  | NA  | Hive的密码  |
+|hdfsPath   | Y | NA  |  NameNode URL of HDFS |
+|maxFileOpenDelayMinute   | N  | 5  | Max writing delay minute of simple HDFS file(minute)  |
+|tokenOvertimeMinute   | N  | 60  | token overtime of Inlong Data Stream(minute) |
+|maxOutputFileSizeGb   | N  | 2  | Max file size of simple HDFS file(GB) |
+|hiveJdbcUrl   | Y  | NA  | JDBC URL of Hive  |
+|hiveDatabase   | Y  | NA  | Hive database |
+|hiveUsername   | Y  | NA  | Hive username |
+|hivePassword   | Y  | NA  | Hive password |
 
-### Pulsar分发任务的idParams
-|  配置名 | 是否必须  | 默认值  |描述   |
+### idParams content of Pulsar sort task
+|  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
 |inlongGroupId   | Y | NA  |  inlongGroupId |
 |inlongStreamId   | Y  | NA  | inlongStreamId  |
 |topic   | Y  | NA  | Pulsar的Topic  |
 
-### Pulsar分发任务的sinkParams
-|  配置名 | 是否必须  | 默认值  |描述   |
+### sinkParams content of Pulsar sort task
+|  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
-|serviceUrl   | Y | NA  |  Pulsar服务路径 |
-|authentication   | Y  | NA  | Pulsar集群鉴权  |
+|serviceUrl   | Y | NA  |  Pulsar service URL |
+|authentication   | Y  | NA  | Pulsar authentication |
 |enableBatching   | N  | true  | enableBatching  |
 |batchingMaxBytes   | N  | 5242880  | batchingMaxBytes  |
 |batchingMaxMessages   | N  | 3000  | batchingMaxMessages  |
@@ -96,7 +92,7 @@ sidebar_position: 2
 |blockIfQueueFull   | N  | true  | blockIfQueueFull  |
 |roundRobinRouterBatchingPartitionSwitchFrequency   | N  | 10  | roundRobinRouterBatchingPartitionSwitchFrequency  |
 
-### Hive配置样例
+### Sample of Hive sort task
 ```
 {
 	"data":{
