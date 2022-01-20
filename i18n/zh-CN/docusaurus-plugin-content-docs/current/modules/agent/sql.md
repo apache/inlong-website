@@ -39,13 +39,13 @@ curl --location --request POST 'http://localhost:8008/config/job' \--header 'Con
       "port": "3306",
       "separator": "|"
     },
-    "id": 14,
+    "id": 1,
     "thread": {
       "running": {
         "core": "4"
       }
     },
-    "name": "123",
+    "name": "test",
     "source": "org.apache.inlong.agent.plugin.sources.DataBaseSource",
     "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
     "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
