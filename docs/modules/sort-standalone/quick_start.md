@@ -32,15 +32,15 @@ At first, decompress the archive file, execute the shell file "./bin/sort-start.
 |  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
 |clusterName   | Y | NA  |  inlong-sort-standalone cluster id |
-|sortTasks   | Y  | NA  | sort task list, the type is List<SortTaskConfig>  |
+|sortTasks   | Y  | NA  | Sort task list  |
 
 ### SortTaskConfig
 |  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
 |name   | Y | NA  |  sort task name |
 |type   | Y  | NA  | sort task type, for example:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), ElasticSearch("ElasticSearch"), UNKNOWN("n")  |
-|idParams   | Y  | NA  | Inlong DataStream configuration, the type is List<Map<String, String>>  |
-|sinkParams   | Y  | NA  | Sort task parameters, the type is Map<String, String>  |
+|idParams   | Y  | NA  | Inlong DataStream configuration  |
+|sinkParams   | Y  | NA  | Sort task parameters  |
 
 ### idParams content of Hive sort task
 |  Parameter | Required  | DefaultValue  |Remark   |
