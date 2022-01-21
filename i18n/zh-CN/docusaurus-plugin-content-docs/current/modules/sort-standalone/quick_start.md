@@ -37,15 +37,15 @@ sidebar_position: 2
 |  配置名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |clusterName   | Y | NA  |  用来唯一标识一个inlong-sort-standalone集群 |
-|sortTasks   | Y  | NA  | List<SortTaskConfig>存储多个分发任务  |
+|sortTasks   | Y  | NA  | 分发任务列表  |
 
 ### SortTaskConfig配置
 |  配置名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |name   | Y | NA  |  分发任务名 |
 |type   | Y  | NA  | 分发任务类型，如HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), ElasticSearch("ElasticSearch"), UNKNOWN("n")  |
-|idParams   | Y  | NA  | List<Map<String, String>>存储多个Inlong数据流参数  |
-|sinkParams   | Y  | NA  | Map<String, String>存储分发任务的参数  |
+|idParams   | Y  | NA  | Inlong数据流参数列表  |
+|sinkParams   | Y  | NA  | 分发任务的参数  |
 
 ### Hive分发任务的idParams
 |  配置名 | 是否必须  | 默认值  |描述   |
