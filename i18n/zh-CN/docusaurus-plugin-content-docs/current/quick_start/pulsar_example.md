@@ -32,7 +32,7 @@ pulsar.defaultTenant=public
 ```
 
 ## 创建数据接入
-### 配置数据流Group 信息
+### 配置数据流 Group 信息
 ![](img/pulsar-group.png)
 在创建数据接入时，数据流 Group 可选用的消息中间件选择 Pulsar，其它跟 Pulsar 相关的配置项还包括：
 - Queue module：队列模型，并行或者顺序，选择并行时可设置 Topic 的分区数，顺序则为一个分区；
@@ -59,15 +59,48 @@ pulsar.defaultTenant=public
 ![](img/pulsar-topic.png)
 
 ## 配置文件 Agent
-在配置文件 Agent 时，需要根据数据接入创建时指定的目录下创建文件：
+使用 curl agent 发送请求创建采集任务。
 ```
-touch /data/test_file.txt;
+curl --location --request POST 'http://localhost:8008/config/job' \
+--header 'Content-Type: application/json' \
+--data '{
+"job": {
+"dir": {
+"path": "",
+"pattern": "/data/collect-data/test.log"
+},
+"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
+"id": 1,
+"thread": {
+"running": {
+"core": "4"
+}
+},
+"name": "fileAgentTest",
+"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
+"sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
+"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
+},
+"proxy": {
+"inlongGroupId": "b_test_group",
+"inlongStreamId": "test_stream"
+},
+"op": "add"
+}'
 ```
 
-按照创建数据流时的数据源格式，向文件中写入数据（可以按格式写入更多数据）：
+至此，agent 就配置完毕了。接下来我们可以新建 `./collect-data/test.log` ，并往里面添加内容，来触发 agent 向 dataproxy 发送数据了。
+
+``` shell
+mkdir collect-data
+END=100000
+for ((i=1;i<=END;i++)); do
+    sleep 3
+    echo "name_$i | $i" >> ./collect-data/test.log
+done
 ```
-echo -e "1|test\n2|test\n" >> /data/test_file.txt
-```
+
+然后观察 agent 和 dataproxy 的日志，可以看到相关数据已经成功发送。
 
 ## 数据落地检查
 

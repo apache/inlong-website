@@ -61,15 +61,47 @@ the topics and subscriptions required for the data stream will be created in the
 We can use the command-line tool in the Pulsar cluster to check whether the topic is created successfully:
 ![](img/pulsar-topic.png)
 
-## Configure File Agent
-When configuring the file agent, you must create the file in the directory specified when creating the data ingestion:
+## Configure the agent
+Create a collect job by using `curl` to make a request.
 ```
-touch /data/test_file.txt;
+curl --location --request POST 'http://localhost:8008/config/job' \
+--header 'Content-Type: application/json' \
+--data '{
+"job": {
+"dir": {
+"path": "",
+"pattern": "/data/collect-data/test.log"
+},
+"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
+"id": 1,
+"thread": {
+"running": {
+"core": "4"
+}
+},
+"name": "fileAgentTest",
+"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
+"sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
+"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
+},
+"proxy": {
+"inlongGroupId": "b_test_group",
+"inlongStreamId": "test_stream"
+},
+"op": "add"
+}'
 ```
 
-Write data to the file according to the data source format when creating the data stream:
-```
-echo -e "1|test\n2|test\n" >> /data/test_file.txt
+At this point, the agent is configured successfully.
+Then we need to create a new file `./collect-data/test.log` and add content to it to trigger the agent to send data to the dataproxy.
+
+``` shell
+mkdir collect-data
+END=100000
+for ((i=1;i<=END;i++)); do
+    sleep 3
+    echo "name_$i | $i" >> ./collect-data/test.log
+done
 ```
 
 ## Data Check

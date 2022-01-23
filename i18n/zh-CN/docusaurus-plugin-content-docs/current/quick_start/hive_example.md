@@ -46,20 +46,7 @@ Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐�
 到此接入就已经创建完毕了，我们可以在 Hive 中看到相应的表已经被创建，并且在 TubeMQ 的管理界面中可以看到相应的 topic 已经创建成功。
 
 ## 配置 agent
-然后我们使用 docker 进入 agent 容器内，创建相应的 agent 配置。
-```
-$ docker exec -it agent sh
-```
-
-然后我们新建 `.inlong` 文件夹，并创建以 `groupId.local` 命名的文件，在其中填入 Dataproxy 有关配置。
-```
-$ mkdir .inlong
-$ cd .inlong
-$ touch b_test.local
-$ echo '{"cluster_id":1,"isInterVisit":1,"size":1,"address": [{"port":46801,"host":"dataproxy"}], "switch":0}' >> b_test.local
-```
-
-然后退出容器，使用 curl 向 agent 容器发送请求。
+使用 curl 向 agent 容器发送请求创建采集任务。
 ```
 curl --location --request POST 'http://localhost:8008/config/job' \
 --header 'Content-Type: application/json' \
@@ -82,7 +69,7 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"inlongGroupId": "b_test",
+"inlongGroupId": "b_test_group",
 "inlongStreamId": "test_stream"
 },
 "op": "add"
@@ -91,9 +78,13 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 
 至此，agent 就配置完毕了。接下来我们可以新建 `./collect-data/test.log` ，并往里面添加内容，来触发 agent 向 dataproxy 发送数据了。
 
-```
-$ touch collect-data/test.log
-$ echo 'test,24' >> collect-data/test.log
+``` shell
+mkdir collect-data
+END=100000
+for ((i=1;i<=END;i++)); do
+    sleep 3
+    echo "name_$i | $i" >> ./collect-data/test.log
+done
 ```
 
 然后观察 agent 和 dataproxy 的日志，可以看到相关数据已经成功发送。
