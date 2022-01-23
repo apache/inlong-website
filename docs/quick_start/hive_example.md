@@ -44,20 +44,7 @@ Then we enter the "Approval Management" interface and click "My Approval" to app
 At this point, the data access has been created successfully. We can see that the corresponding table has been created in Hive, and we can see that the corresponding topic has been created successfully in the management GUI of TubeMQ.
 
 ## Configure the agent
-Here we use `docker exec` to enter the container of the agent and configure it.
-```
-$ docker exec -it agent sh
-```
-
-Then we create a directory of `.inlong`, and new a file named `groupid.local` (Here groupId is group id showed on data access in inlong-manager) and fill in the configuration of Dataproxy as follows.
-```
-$ mkdir .inlong
-$ cd .inlong
-$ touch b_test.local
-$ echo '{"cluster_id":1,"isInterVisit":1,"size":1,"address": [{"port":46801,"host":"dataproxy"}], "switch":0}' >> b_test.local
-```
-
-Then we exit the container, and use `curl` to make a request.
+Create a collect job by using `curl` to make a request.
 ```
 curl --location --request POST 'http://localhost:8008/config/job' \
 --header 'Content-Type: application/json' \
@@ -80,7 +67,7 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
 },
 "proxy": {
-"inlongGroupId": "b_test",
+"inlongGroupId": "b_test_group",
 "inlongStreamId": "test_stream"
 },
 "op": "add"
@@ -90,9 +77,13 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 At this point, the agent is configured successfully.
 Then we need to create a new file `./collect-data/test.log` and add content to it to trigger the agent to send data to the dataproxy.
 
-```
-$ touch collect-data/test.log
-$ echo 'test,24' >> collect-data/test.log
+``` shell
+mkdir collect-data
+END=100000
+for ((i=1;i<=END;i++)); do
+    sleep 3
+    echo "name_$i | $i" >> ./collect-data/test.log
+done
 ```
 
 Then we can observe the logs of agent and dataproxy, and we can see that the relevant data has been sent successfully.
