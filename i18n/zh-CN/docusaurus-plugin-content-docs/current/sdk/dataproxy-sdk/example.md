@@ -4,12 +4,12 @@ sidebar_position: 2
 ---
 
 ## 总览
-Inlong dataproxy sdk 提供 tcp、http 两种协议的接入 api ，使用 tcp 或者 http 接入时需要保证 dataproxy 服务器端，有对应的协议的接入配置（即对应的 source 服务配置）。如果，需要使用 udp 方式接入，
-需要自己按照 tcp 传输的 bytes 数组格式进行组包，采用 UDP 协议发送到 dataproxy 服务器
-，服务器端采用与tcp一样的方式对接。
-此外，在 inlong dataproxy sdk 中的 example 目录下提供了 tcp、http、udp 三种协议的接入演示代码，大家在接入时可以参考。
+Inlong dataproxy sdk 提供 TCP、HTTP两种协议的接入 api ，使用 TCP 或者 HTTP 接入时需要保证 Dataproxy 服务器端，有对应的协议的接入配置（即对应的 Source 服务配置）。如果，需要使用 UDP 方式接入，
+需要自己按照 TCP 传输的 bytes 数组格式进行组包，采用 UDP 协议发送到 dataproxy 服务器，服务器端采用与TCP一样的方式对接。
+此外，在 Inlong dataproxy sdk 中的 example 目录下提供了 TCP、HTTP、UDP 三种协议的接入演示代码，大家在接入时可以参考。
 
 Api 详情，请查看[总览](./overview)
+
 ## 增加依赖
 ```
    <dependency>
@@ -81,6 +81,7 @@ Api 详情，请查看[总览](./overview)
 ```json
     {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
 ```
+
 ### 发送消息
 ```java
     public void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId,
@@ -104,7 +105,6 @@ Api 详情，请查看[总览](./overview)
 ### HTTP 示例
 
 ### 创建 messageSender
-
 ```java
     public HttpProxySender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort,
             String netTag, String dataProxyGroup, boolean isLocalVisit, boolean isReadProxyIPFromLocal,
@@ -166,7 +166,6 @@ Api 详情，请查看[总览](./overview)
 ```
 
 ### 发送消息
-
 ```java
     public void sendHttpMessage(HttpProxySender sender, String inlongGroupId,
             String inlongStreamId, String messageBody) throws Exception {
@@ -186,5 +185,5 @@ Api 详情，请查看[总览](./overview)
 | messageBody            | String   | 发送的消息内容                                |
 
 ## UDP 示例
-inlong-dataproxy-sdk 不支持发送 udp 协议的消息，如果用户需要，需要自己按照 sdk 中的消息拼装方式，
-组织二进制数组，按照 udp方式发送，具体示例参照 inlong-sdk/dataporxy-sdk 中的相关的 example 代码。
+Inlong-dataproxy-sdk 不支持发送 UDP 协议的消息，如果用户需要，需要自己按照 Sdk 中的消息拼装方式，
+组织二进制数组，按照 UDP方式发送，具体示例参照 inlong-sdk/dataporxy-sdk 中的相关的 example 代码。

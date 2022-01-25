@@ -4,9 +4,9 @@ sidebar_position: 2
 ---
 
 ## Overview
-Inlong dataproxy sdk provides access api for tcp and http protocols. When using tcp or http access, you need to ensure that the dataproxy server has the access configuration of the corresponding protocol (ie the tcp or http source service). If the user needs to use the udp protocol to access, the user needs to packets data according to the bytes arrays transmitted by tcp, and send them to the dataproxy server using the UDP protocol.
-and dataproxy server will handle messages in the same way as tcp.
-In addition, access demo codes for tcp, http, and udp protocols are provided in the example directory of inlong dataproxy sdk, which you can refer to when accessing.
+Inlong dataproxy sdk provides access api for TCP and HTTP protocols. When using TCP or HTTP access, you need to ensure that the dataproxy server has the access configuration of the corresponding protocol (ie the TCP or HTTP source service). If the user needs to use the UDP protocol to access, the user needs to packets data according to the bytes arrays transmitted by TCP, and send them to the dataproxy server using the UDP protocol.
+and dataproxy server will handle messages in the same way as TCP.
+In addition, access demo codes for TCP, HTTP, and UDP protocols are provided in the example directory of inlong dataproxy sdk, which you can refer to when accessing.
 
 To view detailed API information [overview](./overview).
 
@@ -83,7 +83,6 @@ The file configuration content is (json format), where host is the address of th
 ```
 
 ### Send Message
-
 ```java
     public void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId,
             String inlongStreamId, String messageBody, long dt) throws Exception {
@@ -106,7 +105,6 @@ The parameter description is as follows:
 ## HTTP Example
 
 ### Create MessageSender
-
 ```java
     public HttpProxySender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort,
             String netTag, String dataProxyGroup, boolean isLocalVisit, boolean isReadProxyIPFromLocal,
@@ -171,7 +169,6 @@ The file configuration content is (json format), where host is the address of th
 ```
 
 ### Send Message
-
 ```java
     public void sendHttpMessage(HttpProxySender sender, String inlongGroupId,
             String inlongStreamId, String messageBody) throws Exception {
@@ -191,5 +188,5 @@ The parameter description is as follows:
 | messageBody            | String   | Sent message content                                |
 
 ## UDP Example
-inlong-dataproxy-sdk does not support sending messages of udp protocol. If users need it, they need to assemble them according to the message assembly method in sdk.
+inlong-dataproxy-sdk does not support sending messages of UDP protocol. If users need it, they need to assemble them according to the message assembly method in sdk.
 Organize binary arrays and send them in upd mode. For specific examples, refer to the relevant example codes in inlong-sdk/dataporxy-sdk.
