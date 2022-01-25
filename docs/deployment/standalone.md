@@ -1,6 +1,8 @@
-# Standalone
-
-# 1.Environment Requirements
+---
+title: Standalone
+sidebar_position: 1
+---
+## Environment Requirements
 
 - ZooKeeper 3.5+
 - MySQL 5.7+
@@ -8,43 +10,41 @@
 - Apache Pulsar 2.6+ (Optional)
 - Docker or Nginx 
 
-# 2.Deploy InLong
-
-## 2.1 Configure 
+##  Configure 
 
 Add relevant global configuration parameters to the conf file in conf / standalone:
 
 ```ini
-#Selection of message queue source: tubemq or pulsar
+# Selection of message queue source: tubemq or pulsar
 source_type=tubemq
-#Selection of sort sink: hive or clickhouse
+# Selection of sort sink: hive or clickhouse
 sink_type=hive
-#MySQL service, IP, port, user and password
+# MySQL service, IP, port, user and password
 spring_datasource_hostname=MYSQL_HOSTNAME
 spring_datasource_port=MYSQL_PORT
 spring_datasource_username=MYSQL_USERNAME
 spring_datasource_password=MYSQL_PASSWORD
 ###############################################################################
-#zookeeper address
+# zookeeper address
 zkServerAddr=127.0.0.1:2181
 ###############################################################################
-#tubemq (Optional)
+# tubemq (Optional)
 tubemqMaster_hostName=YOU_LOCAL_IP
 tubemqBroker_hostName=YOU_LOCAL_IP
 TUBE_MANAGER_IP=YOU_LOCAL_IP
 metaDataPath=/stage/meta_data
 primaryPath=/stage/msg_data
 ###############################################################################
-#pulsar (Optional)
+# pulsar (Optional)
 ###############################################################################
-#Service address of pulsar (Required)
+# Service address of pulsar (Required)
 pulsar_adminUrl=http://pulsar_ip:web_port
 # Pulsar broker address（Required）
 pulsar_serviceUrl=pulsar://pulsar_ip:api_port
 # Default tenant of Pulsar
 pulsar_defaultTenant=public
 ###############################################################################
-#local_ip(Required)
+# local_ip(Required)
 ###############################################################################
 local_ip=YOU_LOCAL_IP
 ###############################################################################
@@ -56,19 +56,19 @@ local_ip=YOU_LOCAL_IP
 bin/init-config.sh 
 ```
 
-## 2.2 Start
+## Start
 
 ```shell
 bin/inlong-daemon.sh start standalone
 ```
 
-## 2.3 Stop
+## Stop
 
 ```shell
 bin/inlong-daemon.sh stop standalone
 ```
 
-## 2.4 Check
+## Check
 
 1.After the startup script is completed, JPS checks whether there are the following processes:
 
@@ -84,7 +84,7 @@ bin/inlong-daemon.sh stop standalone
 23149 BrokerStartup
 ```
 
-2. If you use tubemq as the message middleware and visit the web page provided by it, you can get the information shown in the figure:
+2.If you use tubemq as the message middleware and visit the web page provided by it, you can get the information shown in the figure:
 ![1643034789289](https://user-images.githubusercontent.com/97139576/150918086-d7c35eab-bc9f-4e39-aa8a-7e018b88bf56.png)
 
 
