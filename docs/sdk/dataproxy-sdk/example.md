@@ -4,9 +4,9 @@ sidebar_position: 2
 ---
 
 ## Overview
-Inlong dataproxy sdk provides access api for TCP and HTTP protocols. When using TCP or HTTP access, you need to ensure that the dataproxy server has the access configuration of the corresponding protocol (ie the TCP or HTTP source service). If the user needs to use the UDP protocol to access, the user needs to packets data according to the bytes arrays transmitted by TCP, and send them to the dataproxy server using the UDP protocol.
+Inlong-dataproxy-sdk provides access api for TCP and HTTP protocols. When using TCP or HTTP access, you need to ensure that the dataproxy server has the access configuration of the corresponding protocol (ie the TCP or HTTP source service). If the user needs to use the UDP protocol to access, the user needs to packets data according to the bytes arrays transmitted by TCP, and send them to the dataproxy server using the UDP protocol.
 and dataproxy server will handle messages in the same way as TCP.
-In addition, access demo codes for TCP, HTTP, and UDP protocols are provided in the example directory of inlong dataproxy sdk, which you can refer to when accessing.
+In addition, access demo codes for TCP, HTTP, and UDP protocols are provided in the example directory of inlong dataproxy SDK, which you can refer to when accessing.
 
 To view detailed API information [overview](./overview).
 
@@ -55,7 +55,7 @@ The parameter description is as follows:
 | isLocalVisit           | boolean  | Whether to use local configuration, true use https to access the console, false use http to request the console|
 | isReadProxyIPFromLocal | boolean  | Whether to obtain the address information of the Dataproxy server from the local configuration file, local self-test, can be set to true if the management console cannot be accessede|
 | configBasePath         | String   | The path of the local configuration file. The default is ./inlong. When isReadProxyIPFromLocal is true, the configuration file is searched from this directory|                                 |
-| msgtype                | int      | Message assembly type, value (3, 5, 7, 8), it is recommended to use 7, each message type represents a message assembly protocol during the transmission process, please refer to the code implementation of sdk for details|
+| msgtype                | int      | Message assembly type, value (3, 5, 7, 8), it is recommended to use 7, each message type represents a message assembly protocol during the transmission process, please refer to the code implementation of SDK for details|
 
 When isReadProxyIPFromLocal is true, the configuration information of Dataproxy will be obtained from the local configuration file.
 
@@ -188,5 +188,5 @@ The parameter description is as follows:
 | messageBody            | String   | Sent message content                                |
 
 ## UDP Example
-inlong-dataproxy-sdk does not support sending messages of UDP protocol. If users need it, they need to assemble them according to the message assembly method in sdk.
+inlong-dataproxy-sdk does not support sending messages of UDP protocol. If users need it, they need to assemble them according to the message assembly method in SDK.
 Organize binary arrays and send them in upd mode. For specific examples, refer to the relevant example codes in inlong-sdk/dataporxy-sdk.

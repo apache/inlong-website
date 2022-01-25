@@ -4,9 +4,9 @@ sidebar_position: 2
 ---
 
 ## 总览
-Inlong dataproxy sdk 提供 TCP、HTTP两种协议的接入 api ，使用 TCP 或者 HTTP 接入时需要保证 Dataproxy 服务器端，有对应的协议的接入配置（即对应的 Source 服务配置）。如果，需要使用 UDP 方式接入，
+Inlong-dataproxy-sdk 提供 TCP、HTTP两种协议的接入 api ，使用 TCP 或者 HTTP 接入时需要保证 Dataproxy 服务器端，有对应的协议的接入配置（即对应的 Source 服务配置）。如果，需要使用 UDP 方式接入，
 需要自己按照 TCP 传输的 bytes 数组格式进行组包，采用 UDP 协议发送到 dataproxy 服务器，服务器端采用与TCP一样的方式对接。
-此外，在 Inlong dataproxy sdk 中的 example 目录下提供了 TCP、HTTP、UDP 三种协议的接入演示代码，大家在接入时可以参考。
+此外，在 Inlong-dataproxy-sdk 中的 example 目录下提供了 TCP、HTTP、UDP 三种协议的接入演示代码，大家在接入时可以参考。
 
 Api 详情，请查看[总览](./overview)
 
@@ -54,7 +54,7 @@ Api 详情，请查看[总览](./overview)
 | isLocalVisit           | boolean  | 是否使用本地配置， true 使用 https 访问管理台，false 使用 http 请求管理台|
 | isReadProxyIPFromLocal | boolean  | 是否从本地配置文件中获取 Dataproxy 服务器地址信息，本地自测，不能访问管理台的情况下可以配置为 true|
 | configBasePath         | String   | 本地配置文件的路径 默认 ./inlong，isReadProxyIPFromLocal 为 true 时从这个目录查找配置文件/                                 |
-| msgtype                | int      | 消息类型，取值（3，5，7，8），建议使用7，每种消息类型代表一种传递过程中消息的拼装协议,具体请参照sdk的代码实现|
+| msgtype                | int      | 消息类型，取值（3，5，7，8），建议使用7，每种消息类型代表一种传递过程中消息的拼装协议,具体请参照SDK的代码实现|
 
 当 isReadProxyIPFromLocal 为 true 的时候, 会从本地配置文件中获取 Dataproxy 的配置信息。
 
@@ -185,5 +185,5 @@ Api 详情，请查看[总览](./overview)
 | messageBody            | String   | 发送的消息内容                                |
 
 ## UDP 示例
-Inlong-dataproxy-sdk 不支持发送 UDP 协议的消息，如果用户需要，需要自己按照 Sdk 中的消息拼装方式，
+Inlong-dataproxy-sdk 不支持发送 UDP 协议的消息，如果用户需要，需要自己按照 SDK 中的消息拼装方式，
 组织二进制数组，按照 UDP方式发送，具体示例参照 inlong-sdk/dataporxy-sdk 中的相关的 example 代码。
