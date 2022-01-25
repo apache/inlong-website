@@ -19,6 +19,6 @@ sidebar_position: 4
 | 5 | inlong-dataproxy |  | [InLong DataProxy](modules/dataproxy/quick_start.md)                  |  |
 | 6 | inlong-sort | ZooKeeper, Flink | [InLong Sort](modules/sort/quick_start.md)                            |  |
 | 7 | inlong-agent |  | [InLong Agent](modules/agent/quick_start.md)                          |  |
-
+| 8 | inlong-audit | MySQL or Elasticsearch | [InLong Audit](modules/audit/quick_start.md)                          |  |
 ## Create Data Stream
 After the InLong cluster deployed successfully, you can create a data stream refer to the [user manual](user_guide/user_manual.md) to start using.

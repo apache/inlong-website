@@ -3,7 +3,7 @@ title: Audit Design
 sidebar_position: 1
 ---
 
-## Description
+## Overview
 
 InLong audit is a subsystem independent of InLong, which performs real-time audit and reconciliation on the incoming and outgoing traffic of the Agent, DataProxy, and Sort modules of the InLong system.
 There are three granularities for reconciliation: minutes, hours, and days.
@@ -11,9 +11,7 @@ There are three granularities for reconciliation: minutes, hours, and days.
 The audit reconciliation is based on the log reporting time, and each service participating in the audit will conduct real-time reconciliation according to the same log time. Through audit reconciliation, we can clearly understand InLong
 The transmission status of each module, and whether the data stream is lost or repeated
 
-## Overall Structure
-![](img/Audit_Architecture.png)
-
+![](img/audit_architecture.png)
 1. The audit SDK is nested in the service that needs to be audited, audits the service, and sends the audit result to the audit access layer
 2. The audit access layer writes audit data to MQ (kafak or pulsar)
 3. The distribution service consumes the audit data of MQ, and writes the audit data to MySQL and Elasticsearch
@@ -105,7 +103,7 @@ message AuditReply {
 ***3. Reduce data loss caused by abnormal restart***
 
 ### Main Logic Diagram
-![](img/Audit_Sdk.png)
+![](img/audit_sdk.png)
 
 1. The sdk provides the add interface externally. The parameters are: audit_id, inlong_group_id, inlong_stream_id, number, size.
 2. The sdk uses log time+audit_id+inlong_group_id+inlong_stream_id as the key to perform real-time statistics.
@@ -117,7 +115,7 @@ message AuditReply {
 Audit name discovery between sdk and access layer, support plug-in, including domain name, vip, etc.
 
 ### Disaster Recovery
-![](img/Audit_Sdk_Disaster_Recovery.png)
+![](img/audit_sdk_disaster_recovery.png)
 1. When the SDK fails to send the access layer, it will be placed in the failure queue.
 2. When the failure queue reaches the threshold, it will be written to the local disaster recovery file.
 3. When the local disaster recovery file reaches the threshold, the old data will be eliminated (eliminated by time).
@@ -128,7 +126,7 @@ Audit name discovery between sdk and access layer, support plug-in, including do
 ***2.at least once***  
 
 ### Main Logic Diagram
-![](img/Audit_Proxy.png)
+![](img/audit_proxy.png)
 1. After the access layer receives the packet sent by the sdk, it writes the message queue.
 2. After writing the message queue successfully, return success to the sdk.
 3. The data protocol of the message queue is the PB protocol.
@@ -141,15 +139,15 @@ Audit name discovery between sdk and access layer, support plug-in, including do
 ***3. Can be deduplicated***
 
 ### Main Logic Diagram
-![](img/Elasticsearch_Overview.png)
+![](img/elasticsearch_overview.png)
 1. Distribution service AuditDds consumes messages in real time.
 2. According to the audit ID in the audit data, route the data to the corresponding Elasticsearch cluster.
 3. Each audit ID corresponds to an Elasticsearch index.
 
 ### Elasticsearch Index Design
-#### 1. Index Name
+#### Index Name
 The index name consists of date + audit item ID, such as 20211019_1, 20211019_2.
-#### 2. Index Field Schema
+#### Index Field Schema
 
 |field               |type        |instruction |
 |----               |----       |----|
@@ -166,23 +164,23 @@ The index name consists of date + audit item ID, such as 20211019_1, 20211019_2.
 |size	            |long       |size of log  |
 |delay	            |long       |The log transfer time, equal to the current machine time minus the log time |
 
-#### 3.Elasticsearch Index Storage Period
+#### Elasticsearch Index Storage Period
 Storage by day, storage period is dynamically configurable
 
 ## Elasticsearch Write Design
-### 1. The relationship between inlong_group_id, inlong_stream_id, audit ID and Elasticsearch index
-![](img/Elasticsearch_Index.png)
+### The relationship between inlong_group_id, inlong_stream_id, audit ID and Elasticsearch index
+![](img/elasticsearch_index.png)
 The relationship between inlong_group_id, inlong_stream_id, audit ID and Elasticsearch index is 1:N in system design and service implementation
 
-### 2.Write Routing Policy
-![](img/Elasticsearch_Write.png)
+### Write Routing Policy
+![](img/elasticsearch_write.png)
 Use inlong_group_id and inlong_stream_id to route to Elasticsearch shards to ensure that the same inlong_group_id and inlong_stream_id are stored in the same shard
 When writing the same inlong_group_id and inlong_stream_id to the same shard, when querying and aggregating, only one shard needs to be processed, which can greatly improve performance
 
-### 3.Optional DeduplicationBy doc_id
+### Optional DeduplicationBy doc_id
 Elasticsearch is resource-intensive for real-time deduplication. This function is optional through configuration.
 
-### 4.Use bulk batch method
+### Use bulk batch method
 Use bulk to write, each batch of 5000, improve the write performance of the Elasticsearch cluster
 
 ## MySQL Distribution Implementation
@@ -192,7 +190,7 @@ Use bulk to write, each batch of 5000, improve the write performance of the Elas
 ***3. Can be deduplicated***  
 
 ### Main Logic Diagram
-![](img/Audit_MySQL.png)
+![](img/audit_mysql.png)
 MySQL distribution supports distribution to different MySQL instances according to the audit ID, and supports horizontal expansion.
 
 ### Usage introduction
@@ -201,10 +199,10 @@ MySQL distribution supports distribution to different MySQL instances according 
   
 ## Audit Usage Interface Design
 ### Main Logic Diagram
-![](img/Audit_Api.png)
+![](img/audit_api.png)
 The audit interface layer uses SQL to check MySQL or restful to check Elasticsearch. How to check which type of storage the interface uses depends on which type of storage is used.
 
 ### UI Interface Display
 ### Main Logic Diagram
-![](img/Audit_UI.png)
+![](img/audit_ui.png)
 The front-end page pulls the audit data of each module through the interface layer and displays it.
