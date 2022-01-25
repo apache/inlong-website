@@ -12,7 +12,7 @@ sidebar_position: 1
 
 ##  Configure 
 
-Add relevant global configuration parameters to the conf file in conf / standalone:
+Add relevant global configuration parameters to the conf file in conf/standalone.conf:
 
 ```ini
 # Selection of message queue source: tubemq or pulsar
