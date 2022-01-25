@@ -3,7 +3,7 @@ title: Usage
 ---
 # How To Use
 
-## 一、Add dependency in maven pom.xml
+## 1. Add dependency in maven pom.xml
 
 ```
    <dependency>
@@ -13,7 +13,7 @@ title: Usage
    </dependency>
 ```
 
-## 二、Example Show
+## 2. Example Show
   To view detailed API information [overview](./overview).<br/>
   Inlong-dataproxy-sdk provides APIs for tcp and http protocols, but the UDP API is not provided yet.
   If you need to use UDP to send data, you need to package the data according to the method in the sdk.
