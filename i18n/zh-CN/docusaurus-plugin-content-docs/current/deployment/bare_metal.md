@@ -19,7 +19,7 @@ sidebar_position: 4
 | 5 | inlong-dataproxy | 无 | [InLong DataProxy](modules/dataproxy/quick_start.md)                  |  |
 | 6 | inlong-sort | ZooKeeper, Flink | [InLong Sort](modules/sort/quick_start.md)                            |  |
 | 7 | inlong-agent | 无 | [InLong Agent](modules/agent/quick_start.md)                          |  |
-
+| 8 | inlong-audit | MySQL 或者 Elasticsearch | [InLong Audit](modules/audit/quick_start.md)                          |  |
 ## 创建数据流
 InLong 集群部署成功后，你可以参考[用户手册](user_guide/user_manual.md)创建一个数据流开始使用。
 
