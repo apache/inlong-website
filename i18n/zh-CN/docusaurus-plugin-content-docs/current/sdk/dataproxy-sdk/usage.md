@@ -1,8 +1,10 @@
 ---
-title: 使用
+DataProxy-SDK 示例
+sidebar_position: 2
 ---
-# 如何使用
-
+Inlong dataproxy sdk 提供tcp、http两种协议的接入api，使用tcp或者http接入时需要保证dataproxy服务器端，有对应的协议的接入配置（即对应的source服务配置）。如果，需要使用upd方式接入，需要自己按照tcp传输的bytes数组格式进行组包，采用UDP协议发送到dataproxy服务器
+，服务器端采用与tcp一样的方式对接。
+此外，在inlong dataproxy sdk中的example目录下提供了tcp、http、udp三种协议的接入演示代码，大家在接入时可以参考。
 ## 一、导入Maven依赖
 ```
    <dependency>
@@ -12,10 +14,7 @@ title: 使用
    </dependency>
 ```
 ## 二、Example 演示
-  Api详情，请查看[总览](./overview)。<br/>
-  inlong-dataproxy-sdk 中提供了tcp，http两种协议的API，
-  暂未提供UDP方式的API，如果需要采用UDP方式发送数据，需要用户自己按照sdk中的方式进行组包。
-  inlong-dataproxy-sdk 的example 目录提供了tcp、http、udp三种方式的example示例代码，有需要的用户可以参考相应的实现。
+  Api详情，请查看[总览](./overview)
 ### 2.1 TCP client
 
 第一步：创建messageSender，代码示例如下：
@@ -53,17 +52,18 @@ title: 使用
 | configBasePath         | String   | 本地配置文件的路径 默认./inlong，isReadProxyIPFromLocal为true时从这个目录查找配置文件/                                 |
 | msgtype                | int      | 消息类型，取值（3，5，7，8），建议使用7，每种消息类型代表一种传递过程中消息的拼装协议,具体请参照sdk的代码实现|
 
-当isReadProxyIPFromLocal为true的时候, 会从本地配置文件中获取Dataproxy的配置信息。<br/>
-本地文件的路径为：<br>
+当isReadProxyIPFromLocal为true的时候, 会从本地配置文件中获取Dataproxy的配置信息。
+
+本地文件的路径为：
 ```
     ${configBasePath}
 ```
 
-文件名称为：<br>
+文件名称为：
 ```
     ${dataProxyGroup}.local
 ```
-例如：<br/>
+例如：
 ```
     configBasePath = /data/inlong
     dataProxyGroup = inlong_test
@@ -75,12 +75,9 @@ title: 使用
 
 文件配置内容为(json 格式),其中host为DataProxy 服务器地址，port为对应的端口，这需要至少配置两个（可以配置为相同的两项）：
 ```json
-    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1",* "port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
+    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
 ```
-
-<br/>
 第二步：使用messageSender发送消息
-
 ```java
     public void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId,
             String inlongStreamId, String messageBody, long dt) throws Exception {
@@ -139,16 +136,17 @@ title: 使用
 | isReadProxyIPFromLocal | boolean  | 是否从本地配置文件中获取Dataproxy服务器地址信息，本地自测，不能访问管理台的情况下可以配置为true|
 | configBasePath         | String   | 本地配置文件的路径 默认./inlong，isReadProxyIPFromLocal为true时从这个目录查找配置文件/                                 |
 
-当isReadProxyIPFromLocal为true的时候, 会从本地配置文件中获取Dataproxy的配置信息。<br/>
-本地文件的路径为：<br/>
+当isReadProxyIPFromLocal为true的时候, 会从本地配置文件中获取Dataproxy的配置信息。
+
+本地文件的路径为
 ```
     ${configBasePath}
 ```
-文件名称为：<br/>
+文件名称为：
 ```
     ${dataProxyGroup}.local
 ```
-例如：<br/>
+例如：
 ```
     configBasePath = /data/inlong
     dataProxyGroup = inlong_test
@@ -160,7 +158,7 @@ title: 使用
 ```
 文件配置内容为(json 格式),其中host为DataProxy 服务器地址，port为对应的端口，这需要至少配置两个（可以配置为相同的两项）：
 ```json
-    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1",* "port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
+    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
 ```
 
 第二步: 发送消息

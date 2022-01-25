@@ -1,10 +1,12 @@
 ---
-title: Usage
+DataProxy-SDK Example
+sidebar_position: 2
 ---
-# How To Use
+Inlong dataproxy sdk provides access api for tcp and http protocols. When using tcp or http access, you need to ensure that the dataproxy server has the access configuration of the corresponding protocol (ie the tcp or http source service). If the user needs to use the udp protocol to access, the user needs to packets data according to the bytes arrays transmitted by tcp, and send them to the dataproxy server using the UDP protocol.
+and dataproxy server will handle messages in the same way as tcp.
+In addition, access demo codes for tcp, http, and udp protocols are provided in the example directory of inlong dataproxy sdk, which you can refer to when accessing.
 
-## 1. Add dependency in maven pom.xml
-
+## Add dependency in maven pom.xml
 ```
    <dependency>
            <groupId>org.apache.inlong</groupId>
@@ -13,14 +15,10 @@ title: Usage
    </dependency>
 ```
 
-## 2. Example Show
-  To view detailed API information [overview](./overview).<br/>
-  Inlong-dataproxy-sdk provides APIs for tcp and http protocols, but the UDP API is not provided yet.
-  If you need to use UDP to send data, you need to package the data according to the method in the sdk.
-  The example of inlong-dataproxy-sdk provides example code for tcp, http and udp.
-  Users who need it can refer to the corresponding implementation.
+## Example Show
+  To view detailed API information [overview](./overview).
 
-### 2.1 TCP client
+### TCP client
 
 Step 1: Create a messageSender, the code example is as follows:
 ```java
@@ -58,21 +56,21 @@ The parameter description is as follows:
 | configBasePath         | String   | The path of the local configuration file. The default is ./inlong. When isReadProxyIPFromLocal is true, the configuration file is searched from this directory|                                 |
 | msgtype                | int      | Message assembly type, value (3, 5, 7, 8), it is recommended to use 7, each message type represents a message assembly protocol during the transmission process, please refer to the code implementation of sdk for details|
 
-When isReadProxyIPFromLocal is true, the configuration information of Dataproxy will be obtained from the local configuration file.<br/>
-The path to the local file is :<br>
+When isReadProxyIPFromLocal is true, the configuration information of Dataproxy will be obtained from the local configuration file.
+
+The path to the local file is :
 ```
     ${configBasePath}
 ```
-The file name is :<br>
+The file name is :
 ```
-    ${dataProxyGroup}.local<br/>
+    ${dataProxyGroup}.local
 ```
 For example:
 ```
     configBasePath = /data/inlong
     dataProxyGroup = inlong_test
 ```
-
 Then the full path of the local file is:
 ```
     /data/inlong/inlong_test.local
@@ -80,10 +78,8 @@ Then the full path of the local file is:
 
 The file configuration content is (json format), where host is the address of the DataProxy server, and port is the corresponding port, which requires at least two configurations (the same two items can be configured):
 ```json
-    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1",* "port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
+    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
 ```
-
-<br/>
 
 Step 2: Send a message using messageSender
 
@@ -106,7 +102,7 @@ The parameter description is as follows:
 | messageBody            | String   | Sent message content                                |
 | dt                     | long     | timestamp                               |
 
-### 2.2 HTTP client
+### HTTP client
 
 Step 1: Create messageSender
 
@@ -147,16 +143,17 @@ The parameter description is as follows:
 | configBasePath         | String   | The path of the local configuration file. The default is ./inlong. When isReadProxyIPFromLocal is true, the configuration file is searched from this directory.|                                 |
 
 
-When isReadProxyIPFromLocal is set true, the configuration information of Dataproxy will be obtained from the local configuration file.<br/>
-The path to the local file is:<br>
+When isReadProxyIPFromLocal is set true, the configuration information of Dataproxy will be obtained from the local configuration file.
+
+The path to the local file is:
 ```
     ${configBasePath}
 ```
-The file name is: <br>
+The file name is:
 ```
     ${dataProxyGroup}.local<br/>
 ```
-For example:<br/>
+For example:
 ```
     configBasePath = /data/inlong
     dataProxyGroup = inlong_test
@@ -169,7 +166,7 @@ Then the full path name of the local file is:
 
 The file configuration content is (json format), where host is the address of the DataProxy server, and port is the corresponding port, which requires at least two configurations (the same two items can be configured):
 ```json
-    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1",* "port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
+    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
 ```
 
 Step 2: Send a message
@@ -192,6 +189,6 @@ The parameter description is as follows:
 | inlongStreamId         | String   | inlongStreamId                             |
 | messageBody            | String   | Sent message content                                |
 
-### 2.3 UDP client
+### UDP client
 inlong-dataproxy-sdk does not support sending messages of udp protocol. If users need it, they need to assemble them according to the message assembly method in sdk.
 Organize binary arrays and send them in upd mode. For specific examples, refer to the relevant example codes in inlong-sdk/dataporxy-sdk.
