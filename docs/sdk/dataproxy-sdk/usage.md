@@ -1,12 +1,16 @@
 ---
-DataProxy-SDK Example
+title: Example
 sidebar_position: 2
 ---
+
+## Overview
 Inlong dataproxy sdk provides access api for tcp and http protocols. When using tcp or http access, you need to ensure that the dataproxy server has the access configuration of the corresponding protocol (ie the tcp or http source service). If the user needs to use the udp protocol to access, the user needs to packets data according to the bytes arrays transmitted by tcp, and send them to the dataproxy server using the UDP protocol.
 and dataproxy server will handle messages in the same way as tcp.
 In addition, access demo codes for tcp, http, and udp protocols are provided in the example directory of inlong dataproxy sdk, which you can refer to when accessing.
 
-## Add dependency in maven pom.xml
+To view detailed API information [overview](./overview).
+
+## Add Dependency
 ```
    <dependency>
            <groupId>org.apache.inlong</groupId>
@@ -15,12 +19,9 @@ In addition, access demo codes for tcp, http, and udp protocols are provided in 
    </dependency>
 ```
 
-## Example Show
-  To view detailed API information [overview](./overview).
+## TCP Example
 
-### TCP client
-
-Step 1: Create a messageSender, the code example is as follows:
+### Create a messageSender
 ```java
     public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort,
             String netTag, String dataProxyGroup, boolean isLocalVisit, boolean isReadProxyIPFromLocal,
@@ -81,7 +82,7 @@ The file configuration content is (json format), where host is the address of th
     {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
 ```
 
-Step 2: Send a message using messageSender
+### Send Message
 
 ```java
     public void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId,
@@ -102,9 +103,9 @@ The parameter description is as follows:
 | messageBody            | String   | Sent message content                                |
 | dt                     | long     | timestamp                               |
 
-### HTTP client
+## HTTP Example
 
-Step 1: Create messageSender
+### Create MessageSender
 
 ```java
     public HttpProxySender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort,
@@ -169,7 +170,7 @@ The file configuration content is (json format), where host is the address of th
     {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
 ```
 
-Step 2: Send a message
+### Send Message
 
 ```java
     public void sendHttpMessage(HttpProxySender sender, String inlongGroupId,
@@ -189,6 +190,6 @@ The parameter description is as follows:
 | inlongStreamId         | String   | inlongStreamId                             |
 | messageBody            | String   | Sent message content                                |
 
-### UDP client
+## UDP Example
 inlong-dataproxy-sdk does not support sending messages of udp protocol. If users need it, they need to assemble them according to the message assembly method in sdk.
 Organize binary arrays and send them in upd mode. For specific examples, refer to the relevant example codes in inlong-sdk/dataporxy-sdk.
