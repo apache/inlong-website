@@ -14,12 +14,12 @@ sidebar_position: 4
 |  ----  | ----  | ----  |-----------------------------------------------------------------------| ---- |
 | 1 | inlong-tubemq-server | ZooKeeper | [InLong TubeMQ Server](modules/tubemq/quick_start.md)                 | 若使用Apache Pulsar，可不安装该组件 |
 | 2 | inlong-tubemq-manager | MySQL | [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md) | 若使用Apache Pulsar，可不安装该组件 |
-| 3 | inlong-manager | MySQL, ZooKeeper  | [InLong Manager](modules/manager/quick_start.md)                      |  |
-| 4 | inlong-dashboard | Nginx 或者 Docker | [InLong Dashboard](modules/dashboard/quick_start.md)                    | |
-| 5 | inlong-dataproxy | 无 | [InLong DataProxy](modules/dataproxy/quick_start.md)                  |  |
-| 6 | inlong-sort | ZooKeeper, Flink | [InLong Sort](modules/sort/quick_start.md)                            |  |
-| 7 | inlong-agent | 无 | [InLong Agent](modules/agent/quick_start.md)                          |  |
-| 8 | inlong-audit | MySQL 或者 Elasticsearch | [InLong Audit](modules/audit/quick_start.md)                          |  |
+| 3 | inlong-audit | MySQL 或者 Elasticsearch | [InLong Audit](modules/audit/quick_start.md)                          |  |
+| 4 | inlong-manager | MySQL, ZooKeeper  | [InLong Manager](modules/manager/quick_start.md)                      |  |
+| 5 | inlong-dashboard | Nginx 或者 Docker | [InLong Dashboard](modules/dashboard/quick_start.md)                    | |
+| 6 | inlong-dataproxy | 无 | [InLong DataProxy](modules/dataproxy/quick_start.md)                  |  |
+| 7 | inlong-sort | ZooKeeper, Flink | [InLong Sort](modules/sort/quick_start.md)                            |  |
+| 8 | inlong-agent | 无 | [InLong Agent](modules/agent/quick_start.md)                          |  |
 ## 创建数据流
 InLong 集群部署成功后，你可以参考[用户手册](user_guide/user_manual.md)创建一个数据流开始使用。
 
