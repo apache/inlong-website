@@ -7,14 +7,14 @@ title: 安装部署
 配置文件`inlong-audit/audit-source/conf/audit.conf`. 
 
 #### 总配置
-```html
+```Shell
 agent1.sources = tcp-source
 agent1.channels = ch-msg1 ch-msg2
 agent1.sinks = pulsar-sink-msg1 pulsar-sink-msg2
 ```
 
 #### sources参数配置
-```html
+```Shell
 agent1.sources.tcp-source.channels = ch-msg1 ch-msg2
 agent1.sources.tcp-source.type = org.apache.inlong.audit.source.SimpleTcpSource
 agent1.sources.tcp-source.msg-factory-name = org.apache.inlong.audit.source.ServerMessageFactory
@@ -35,7 +35,7 @@ agent1.sources.tcp-source.set=10
 ```
 
 #### channels参数配置
-```html
+```Shell
 agent1.channels.ch-msg1.type = memory
 agent1.channels.ch-msg1.capacity = 10000
 agent1.channels.ch-msg1.keep-alive = 0
@@ -52,7 +52,7 @@ agent1.channels.ch-msg2.fsyncInterval = 10
 ```
 
 #### sinks参数配置
-```html
+```Shell
 agent1.sinks.pulsar-sink-msg1.channel = ch-msg1
 agent1.sinks.pulsar-sink-msg1.type = org.apache.inlong.audit.sink.PulsarSink
 agent1.sinks.pulsar-sink-msg1.pulsar_server_url = pulsar://PULSAR_BROKER_LIST
@@ -72,13 +72,13 @@ agent1.sinks.pulsar-sink-msg1.disk_io_rate_per_sec= 20000000
 
 ### 启动
 启动脚本 `inlong-audit/audit-source/bin/start.sh`
-```shell script
+```Shell
 sh bin/start.sh
 ```
 
 ### 停止
 停止脚本 `inlong-audit/audit-source/bin/stop.sh`
-```shell script
+```Shell
 sh bin/stop.sh
 ```
 
@@ -88,26 +88,26 @@ sh bin/stop.sh
 配置文件 `inlong-audit/audit-store/conf/aapplication.properties`. 
 
 #### 配置存储类型
-```html
+```Shell
 # store.server: mysql / elasticsearch 
 audit.config.store.mode=mysql
 ```
 
 #### 配置消息队列
-```html
+```Shell
 audit.pulsar.server.url=pulsar://127.0.0.1:6650
 audit.pulsar.topic=persistent://public/default/audit
 ```
 
 #### 配置MySQL(可选)
-```html
+```Shell
 spring.datasource.druid.url= jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
 spring.datasource.druid.username=root
 spring.datasource.druid.password=inlong
 ```
 
 #### 配置ES(可选)
-```html
+```Shell
 elasticsearch.host=127.0.0.1
 elasticsearch.port=9200
 elasticsearch.username=elastic
@@ -116,12 +116,12 @@ elasticsearch.password=inlong
 
 ### 启动
 启动脚本 `inlong-audit/audit-store/bin/start.sh`
-```shell script
+```Shell
 sh bin/start.sh
 ```
 
 ### 停止
 停止脚本 `inlong-audit/audit-store/bin/stop.sh`
-```shell script
+```Shell
 sh bin/stop.sh
 ```
