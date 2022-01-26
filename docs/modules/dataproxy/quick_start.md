@@ -40,15 +40,10 @@ telnet 127.0.0.1 46801
 
 After installing the DataProxy, you need to insert the IP and port of the DataProxy service is located into the backend database of InLong-Manager.
 
-For the background database address of InLong-Manager, please refer to the deployment document of the InLong-Manager module.
-
-The insert SQL statement is:
+The SQL statement is:
 
 ```sql
--- name is the name of the DataProxy, which can be customized
 -- address is the IP of the DataProxy service is located
--- port is the port of the DataProxy service, default is 46801
-insert into data_proxy_cluster (name, address, port, status, is_deleted, creator, create_time, modify_time)
-values ("data_proxy_name", "data_proxy_ip", 46801, 0, 0, "admin", now(), now());
+UPDATE apache_inlong_manager.data_proxy_cluster SET address="replace_by_dataproxy_ip" WHERE name="default_dataproxy";
 ```
 

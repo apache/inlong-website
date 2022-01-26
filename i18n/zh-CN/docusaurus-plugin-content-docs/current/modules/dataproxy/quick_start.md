@@ -40,15 +40,10 @@ telnet 127.0.0.1 46801
 
 安装完 DataProxy 后，需要将 DataProxy 所在主机的 IP 插入到 InLong-Manager 的后台数据库中。
 
-InLong-Manager 的后台数据库地址，请参考 InLong-Manager 模块的部署文档。
-
-插入 SQL 语句为：
+SQL 语句为：
 
 ```sql
--- name 为 DataProxy 的名称，可自定义
 -- address 为 DataProxy 服务所在主机的 IP
--- port 为 DataProxy 服务所在的端口号，默认是 46801
-insert into data_proxy_cluster (name, address, port, status, is_deleted, creator, create_time, modify_time)
-values ("data_proxy_name", "data_proxy_ip", 46801, 0, 0, "admin", now(), now());
+UPDATE apache_inlong_manager.data_proxy_cluster SET address="replace_by_dataproxy_ip" WHERE name="default_dataproxy";
 ```
 
