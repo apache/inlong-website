@@ -40,7 +40,6 @@ agent1.channels.ch-msg1.type = memory
 agent1.channels.ch-msg1.capacity = 10000
 agent1.channels.ch-msg1.keep-alive = 0
 agent1.channels.ch-msg1.transactionCapacity = 200
-
 agent1.channels.ch-msg2.type = file
 agent1.channels.ch-msg2.capacity = 100000000
 agent1.channels.ch-msg2.maxFileSize = 1073741824
@@ -97,13 +96,41 @@ audit.config.store.mode=mysql
 ```Shell
 audit.pulsar.server.url=pulsar://127.0.0.1:6650
 audit.pulsar.topic=persistent://public/default/audit
+audit.pulsar.consumer.sub.name=sub-audit
+```
+
+####  配置服务
+```Shell
+audit.config.file.check.enable=false
+audit.config.manager.server.url=http://127.0.0.1:8000
 ```
 
 #### 配置MySQL(可选)
 ```Shell
-spring.datasource.druid.url= jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
+spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+spring.datasource.name=druidDataSource
+spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+spring.datasource.druid.driver-class-name= com.mysql.cj.jdbc.Driver
+spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
 spring.datasource.druid.username=root
 spring.datasource.druid.password=inlong
+spring.datasource.druid.filters=stat,log4j,config
+spring.datasource.druid.max-active=100
+spring.datasource.druid.initial-size=1
+spring.datasource.druid.max-wait=60000
+spring.datasource.druid.min-idle=1
+spring.datasource.druid.time-between-eviction-runs-millis=60000
+spring.datasource.druid.min-evictable-idle-time-millis=300000
+spring.datasource.druid.validation-query=select 'x'
+spring.datasource.druid.test-while-idle=true
+spring.datasource.druid.test-on-borrow=false
+spring.datasource.druid.test-on-return=false
+spring.datasource.druid.pool-prepared-statements=true
+spring.datasource.druid.filter.wall.config.multi-statement-allow=true
+spring.datasource.druid.max-open-prepared-statements=50
+spring.datasource.druid.max-pool-prepared-statement-per-connection-size=20
+mybatis.mapper-locations=classpath*:mapper/*.xml
+mybatis.type-aliases-package=org.apache.inlong.store.db.entities
 ```
 
 #### 配置ES(可选)
@@ -111,7 +138,14 @@ spring.datasource.druid.password=inlong
 elasticsearch.host=127.0.0.1
 elasticsearch.port=9200
 elasticsearch.username=elastic
-elasticsearch.password=inlong
+elasticsearch.password=inlong123INLONG
+elasticsearch.shardsNum=5
+elasticsearch.replicaNum=1
+elasticsearch.indexDeleteDay=5
+elasticsearch.enableCustomDocId=true
+elasticsearch.bulkInterval=10
+elasticsearch.bulkThreshold=10
+elasticsearch.auditIdSet=1,2,3,4,5,6,7,8
 ```
 
 ### 启动
