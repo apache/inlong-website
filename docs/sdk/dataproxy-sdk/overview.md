@@ -1,11 +1,10 @@
 ---
 title: Overview
 ---
-When the business uses the message access method, the business generally only needs to format the data in a proxy-recognizable format (such as six-segment protocol, digital protocol, etc.)
-After group packet transmission, data can be connected to inlong. But in order to ensure data reliability, load balancing, and dynamic update of the proxy list and other security features
-The user program needs to consider more and ultimately leads to the program being too cumbersome and bloated.
 
-The original intention of API design is to simplify user access and assume some reliability-related logic. After the user integrates the API in the service delivery program, the data can be sent to the proxy without worrying about the grouping format, load balancing and other logic.
+DataProxy supports multi-data format for access, and users can assemble and send data according to the format recognized by DataProxy (such as six-segment protocol, digital protocol, etc.).
+Alternatively, use the SDK provided by DataProxy for data access.
+The DataProxy SDK provides multi-features such as load balance and dynamically updating the proxy list, which can ensure the reliability of access data, simplify the user's access logic, and reduce the user's access difficulty. It is recommended to use the SDK method to access.
 
 ## Functions
 
