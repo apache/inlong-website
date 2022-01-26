@@ -1,9 +1,7 @@
 ---
-title: Audit Design
+title: Overview
 sidebar_position: 1
 ---
-
-## Overview
 
 InLong audit is a subsystem independent of InLong, which performs real-time audit and reconciliation on the incoming and outgoing traffic of the Agent, DataProxy, and Sort modules of the InLong system.
 There are three granularities for reconciliation: minutes, hours, and days.
@@ -11,6 +9,7 @@ There are three granularities for reconciliation: minutes, hours, and days.
 The audit reconciliation is based on the log reporting time, and each service participating in the audit will conduct real-time reconciliation according to the same log time. Through audit reconciliation, we can clearly understand InLong
 The transmission status of each module, and whether the data stream is lost or repeated
 
+## Architecture
 ![](img/audit_architecture.png)
 1. The audit SDK is nested in the service that needs to be audited, audits the service, and sends the audit result to the audit access layer
 2. The audit access layer writes audit data to MQ (kafak or pulsar)

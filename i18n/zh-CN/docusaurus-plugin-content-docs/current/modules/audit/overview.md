@@ -1,9 +1,7 @@
 ---
-title: 审计设计
+title: 总览
 sidebar_position: 1
 ---
-
-## 总览
 
 InLong审计是独立于InLong的一个子系统，对InLong系统的Agent、DataProxy、Sort模块的入流量、出流量进行实时审计对账。
 对账的粒度有分钟、小时、天三种粒度。
@@ -11,6 +9,7 @@ InLong审计是独立于InLong的一个子系统，对InLong系统的Agent、Dat
 审计对账以日志上报时间为统一的口径，参与审计的各个服务将按照相同的日志时间进行实时对账。通过审计对账，我们可以清晰的了解InLong
 各个模块的传输情况，以及数据流是否有丢失或者重复
 
+## 架构
 ![](img/audit_architecture.png)
 1. 审计SDK嵌套在需要审计的服务，对服务进行审计，将审计结果发送到审计接入层。
 2. 审计接入层将审计数据写到MQ(kafak或者pulsar)。
@@ -125,7 +124,6 @@ message AuditReply {
 ## 接入层实现细节
 ### 目标
 ***1.高可靠***
-
 ***2.at least once***
 
 ### 主要逻辑
