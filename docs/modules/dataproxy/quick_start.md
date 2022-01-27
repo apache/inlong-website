@@ -12,7 +12,7 @@ All deploying files at `inlong-dataproxy` directory.
 $ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf
 ```
 
-- If you use Apache Pulsar, replace `pulsar_server_url_list` in `conf/flume-mulit-pulsar-demo.conf` and overwrite `conf/flume.conf`.
+- If you use Apache Pulsar, replace `pulsar_server_url_list` in `conf/flume-mulit-pulsar-tcp-example.conf` and overwrite `conf/flume.conf`.
 
 notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner data
 
@@ -20,8 +20,10 @@ notice that conf/flume.conf FLUME_HOME is proxy the directory for proxy inner da
 
 configuration file: `conf/common.properties`:
 ```
-# manager web 
-manager_hosts=ip:port 
+# manager address
+manager_hosts=127.0.0.1:8083
+# audit proxy address
+audit.proxys=127.0.0.1:10081
 ```
 
 ## run

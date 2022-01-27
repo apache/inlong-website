@@ -11,14 +11,11 @@ cd inlong-agent
 
 线上运行需要从inlong-manager拉取配置，配置conf/agent.properties如下：
 ```ini
-# whether enable http service
-agent.http.enable=true
-# http default port
-agent.http.port=可用端口
-agent.fetcher.classname=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (设置任务获取的类名，默认为ManagerFetcher）
 agent.local.ip=写入本机ip
-agent.manager.vip.http.host=manager web host
-agent.manager.vip.http.port=manager web port
+agent.manager.vip.http.host=manager host
+agent.manager.vip.http.port=manager port
+# audit proxy 地址
+audit.proxys=127.0.0.1:10081
 ```
 
 ## 启动
