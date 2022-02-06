@@ -134,6 +134,12 @@ Unzip `apache-inlong-${release_version}-src.tar.gz` and check as follows:
 - [ ] The single test can run through.
 - [ ] Building is OK.
 
+Attentions:
+   In the process of practice, it is found that many troublesome problems affect our version verification. The following processing is for reference:
+   - Clean up the local repository before verifying the version;
+   - The compilation commands are not limited, but since the modules in the project are dockerized, "mvn clean package install" is recommended for the first compilation, other recommended operations include "mvn clean compile", "mvn clean package";
+   - When executing unit tests, you should run them separately with "mvn clean test" to ensure that there are no hidden problems.
+
 ### 2.5 Check the binary package (if the binary package is included)
   Unzip `apache-inlong-client-${release_version}-src.tar.gz` and `
   apache-inlong-server-${release_version}-src.tar.gz`, check as follows:
