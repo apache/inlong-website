@@ -123,6 +123,12 @@ for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
   - 源码是否能够正常编译
   - 单测是否能够跑通
   - ....
+  
+  注意事项：
+  在实践过程中，发现比较多的困扰问题影响到我们的版本验证，如下处理供参考：
+  - 校验版本前先清理掉本地仓库；
+  - 编译方法不限制，但由于项目里的模块做了docker化处理，首次编译建议先”mvn clean package install“，其他推荐的操作还有”mvn compile“，”mvn clean package“；
+  - 执行单元测试时，大家要用”mvn clean test“单独运行，确保没有隐藏问题。
 
 ### 2.5 检查二进制包(如果上传了二进制包)
   解压缩`apache-inlong-client-${release_version}-src.tar.gz`和`
