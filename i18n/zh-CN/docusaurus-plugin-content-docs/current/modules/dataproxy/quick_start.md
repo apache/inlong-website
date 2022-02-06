@@ -12,7 +12,7 @@ title: 安装部署
 ```
 $ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf
 ```
-- 如果使用Apache Pulsar, 替换`conf/flume-mulit-pulsar-demo.conf`中`pulsar_server_url_list`并覆盖`conf/flume.conf`。
+- 如果使用Apache Pulsar, 替换`conf/flume-mulit-pulsar-tcp-example.conf`中`pulsar_server_url_list`并覆盖`conf/flume.conf`。
 
 注意conf/flume.conf中FLUME_HOME为proxy的中间数据文件存放地址
 
@@ -20,8 +20,10 @@ $ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf
 
 配置文件：`conf/common.properties`:
 ```
-# manager web url 
-manager_hosts=ip:port 
+# manager 地址
+manager_hosts=127.0.0.1:8083
+# audit proxy 地址
+audit.proxys=127.0.0.1:10081
 ```
 
 ## 启动

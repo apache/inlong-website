@@ -20,6 +20,7 @@ $ docker run -v `pwd`:/inlong  -w /inlong maven:3.6-openjdk-8 mvn clean install 
 若编译成功，在`inlong-distribution/target`下会找到`tar.gz`格式的安装包，解压安装目录，包括各个模块安装文件：
 ```
 inlong-agent
+inlong-audit
 inlong-dataproxy
 inlong-manager
 inlong-sort

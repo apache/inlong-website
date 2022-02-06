@@ -11,14 +11,11 @@ cd inlong-agent
 
 Online operation needs to pull the configuration from inlong-manager, the configuration conf/agent.properties is as follows:
 ```ini
-# whether enable http service
-agent.http.enable=true
-# http default port
-agent.http.port=Available ports
-agent.fetcher.classname=org.apache.inlong.agent.plugin.fetcher.ManagerFetcher (the class name for fetch tasks, default ManagerFetcher）
 agent.local.ip=Write local ip
-agent.manager.vip.http.host=manager web host
-agent.manager.vip.http.port=manager web port
+agent.manager.vip.http.host=manager host
+agent.manager.vip.http.port=manager port
+# audit proxy address
+audit.proxys=127.0.0.1:10081
 ```
 
 ## Start

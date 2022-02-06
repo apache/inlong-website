@@ -21,7 +21,7 @@ Example：
 ```
 ./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-core-[version].jar \
 --cluster-id inlong_app --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong_sort \
---source.type tubemq --sink.type hive
+--source.type tubemq --metrics.audit.proxy.hosts 127.0.0.1:10081 --sink.type hive
 ```
 
 Notice：
@@ -35,6 +35,7 @@ Notice：
 - `--zookeeper.quorum` zk quorum, same as the configuration of `cluster.zk.url` in inlong-manager
 - `--zookeeper.path.root` zk root path, same as the configuration of `cluster.zk.root` in inlong-manager
 - `--source.type` source of the application, currently "tubemq" and "pulsar" are supported
+- `--metrics.audit.proxy.hosts` audit proxy host address for reporting audit metrics
 - `--sink.type` sink of the application, currently "clickhouse" and "hive" are supported
 
 **Example**

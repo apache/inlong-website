@@ -34,9 +34,9 @@ The dev configuration is specified above, then modify the `conf/application-dev.
 1) Modify the database URL, username and password:
 
    ```properties
-   spring.datasource.jdbc-url=jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT%2b8
-   spring.datasource.username=DB_USER
-   spring.datasource.password=DB_PASSWD
+   spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT%2b8
+   spring.datasource.druid.username=root
+   spring.datasource.druid.password=inlong
    ```
 
 2) Configure the Message Queue Service, you could choose InLong TubeMQ or Apache Pulsar:

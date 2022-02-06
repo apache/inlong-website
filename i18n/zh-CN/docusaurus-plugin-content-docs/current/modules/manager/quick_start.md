@@ -33,9 +33,9 @@ spring.profiles.active=dev
 1) 修改数据库 URL、用户名和密码：
 
    ```properties
-   spring.datasource.jdbc-url=jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT%2b8
-   spring.datasource.username=DB_USER
-   spring.datasource.password=DB_PASSWD
+   spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT%2b8
+   spring.datasource.druid.username=root
+   spring.datasource.druid.password=inlong
    ```
 
 2) 配置消息队列服务，可以使用InLong TubeMQ 或者 Apache Pulsar：
