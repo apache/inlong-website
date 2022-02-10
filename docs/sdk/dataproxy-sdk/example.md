@@ -14,7 +14,7 @@ To view detailed API information [overview](./overview).
 ```
    <dependency>
            <groupId>org.apache.inlong</groupId>
-           <artifactId>inlong-dataproxy-sdk</artifactId>
+           <artifactId>dataproxy-sdk</artifactId>
            <version>${inlong_version}</version>
    </dependency>
 ```
