@@ -14,7 +14,7 @@ Api 详情，请查看[总览](./overview)
 ```
    <dependency>
            <groupId>org.apache.inlong</groupId>
-           <artifactId>inlong-dataproxy-sdk</artifactId>
+           <artifactId>dataproxy-sdk</artifactId>
            <version>${inlong_version}</version>
    </dependency>
 ```
