@@ -8,7 +8,7 @@ This section contains a quick start guide to help you get started with Apache In
 ## Overall architecture
 <img src="/img/inlong_architecture.png" align="center" alt="Apache InLong"/>
 
-[Apache InLong](https://inlong.apache.org)(incubating) overall architecture is as above. This component is a one-stop data streaming platform that provides automated, secure, distributed, and efficient data publishing and subscription capabilities to help You can easily build stream-based data applications.
+[Apache InLong](https://inlong.apache.org)(incubating) overall architecture is as above. This component is a one-stop integration framework for massive data that provides automated, secure, distributed, and efficient data publishing and subscription capabilities to help You can easily build stream-based data applications.
 
 InLong (应龙) is a divine beast in Chinese mythology who guides river into the sea, it is regarded as a metaphor of the InLong system for reporting streams of data.
 

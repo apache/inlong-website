@@ -486,7 +486,7 @@ Hi all,
 The Apache InLong(incubating) community is pleased to announce 
 that Apache InLong(incubating) ${release_version} has been released!
 
-Apache InLong is a one-stop data streaming platform that provides automatic, secure,
+Apache InLong is a one-stop integration framework for massive data that provides automatic, secure,
 distributed, and efficient data publishing and subscription capabilities.
 This platform helps you easily build stream-based data applications.
 

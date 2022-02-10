@@ -8,7 +8,7 @@ sidebar_position: 1
 ## 整体架构
 <img src="/img/inlong_architecture.png" align="center" alt="Apache InLong"/>
 
-[Apache InLong](https://inlong.apache.org)(incubating) 整体架构如上，该组件是一站式数据流媒体平台，提供自动化、安全、分布式、高效的数据发布和订阅能力，帮助您轻松构建基于流的数据应用程序。
+[Apache InLong](https://inlong.apache.org)(incubating) 整体架构如上，为一站式海量数据集成框架，提供自动化、安全、分布式、高效的数据发布和订阅能力，帮助您轻松构建基于流的数据应用程序。
 
 InLong(应龙)是中国神话故事里的神兽，可以引流入海，借喻InLong可用于流式数据上报功能。
 

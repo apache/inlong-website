@@ -1,5 +1,5 @@
 github:
-  description: "Apache InLong - a one-stop data streaming platform"
+  description: "Apache InLong - a one-stop integration framework for massive data"
   homepage: https://inlong.apache.org/
   features:
     # Enable issues management
