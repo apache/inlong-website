@@ -5,7 +5,7 @@ sidebar_position: 1
 
 InLong: the sacred animal in Chinese myths stories, draws rivers into the sea, as a metaphor for the InLong system to provide data access capabilities.
 
-Apache InLong is a one-stop data integration framework that provides automatic, secure and reliable data transmission capabilities. InLong supports both batch and stream data processing at the same time, which offers great power to build data analysis, modeling and other real-time applications based on streaming data.
+Apache InLong is a one-stop integration framework for massive data that provides automatic, secure and reliable data transmission capabilities. InLong supports both batch and stream data processing at the same time, which offers great power to build data analysis, modeling and other real-time applications based on streaming data.
 The 0.12.0-incubating just released mainly includes the following:
 - Provide automatic, safe, reliable and high-performance data transmission capabilities, while supporting batch and streaming
 - Refactor the document structure of the official website to facilitate users to consult related documents based on the main line
@@ -17,8 +17,8 @@ This version closed about 120+ issues, including four major features and 35 impr
 
 
 ### Apache InLong(incubating) Introduction
-[Apache InLong](https://inlong.apache.org) is a one-stop data integration framework donated by Tencent to the Apache community.  It provides automatic,  safe,  reliable,  and high-performance data transmission capabilities to facilitate the construction of streaming-based data analysis,  modeling,  and applications.  
-The Apache InLong project was originally called TubeMQ,  focusing on high-performance,  low-cost message queuing services.  In order to further release the surrounding ecological capabilities of TubeMQ,  we upgraded the project to InLong,  focusing on creating a one-stop data integration solution.
+[Apache InLong](https://inlong.apache.org) is a one-stop integration framework for massive data donated by Tencent to the Apache community.  It provides automatic,  safe,  reliable,  and high-performance data transmission capabilities to facilitate the construction of streaming-based data analysis,  modeling,  and applications.  
+The Apache InLong project was originally called TubeMQ,  focusing on high-performance,  low-cost message queuing services.  In order to further release the surrounding ecological capabilities of TubeMQ,  we upgraded the project to InLong,  focusing on creating a one-stop integration framework for massive data.
 
 Apache InLong uses TDBank internally used by Tencent as the prototype,  and relies on trillion-level data access and processing capabilities to integrate the entire process of data collection,  aggregation,  storage,  and sorting data processing.  It is simple to use,  flexible to expand,  stable and reliable characteristic.
 <img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>

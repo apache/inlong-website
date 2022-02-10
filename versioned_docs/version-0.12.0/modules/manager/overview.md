@@ -4,7 +4,7 @@ title: Overview
 
 ## 1 Introduction to Apache InLong Manager
 
-+ Target positioning: Apache inlong is positioned as a one-stop data integration framework, providing complete coverage of big data access scenarios from data collection, transmission, sorting, and technical capabilities.
++ Target positioning: Apache inlong is positioned as a one-stop integration framework for massive data, providing complete coverage of big data access scenarios from data collection, transmission, sorting, and technical capabilities.
 
 + Platform value: Users can complete task configuration, management, and indicator monitoring through the platform's built-in management and configuration platform. At the same time, the platform provides SPI extension points in the main links of the process to implement custom logic as needed. Ensure stable and efficient functions while lowering the threshold for platform use.
 

@@ -3,7 +3,7 @@ title: Apache InLong 0.11.0
 sidebar_position: 2
 ---
 
-Apache InLong (incubating)  has been renamed from the original Apache TubeMQ (incubating) from 0.9.0.  With the name change,  InLong has also been upgraded from a single message queue to a one-stop data integration solution.  InLong supports data collection,  aggregation,  caching,  and sorting,  users can import data from the data source to the real-time computing engine or land to offline storage with a simple configuration.
+Apache InLong (incubating)  has been renamed from the original Apache TubeMQ (incubating) from 0.9.0.  With the name change,  InLong has also been upgraded from a single message queue to a one-stop integration framework for massive data.  InLong supports data collection,  aggregation,  caching,  and sorting,  users can import data from the data source to the real-time computing engine or land to offline storage with a simple configuration.
 The just-released version `0.11.0-incubating` is the third version after the name changed.  This version includes next features:
 - Lower the user's threshold for use further.  Support all modules of InLong to be deployed on Kubernetes,  and refactor the official website,  so that users can more easily access related documents.
 - Support more usage scenarios,  increase the data flow direction of `Dataproxy -> Pulsar`,  and cover scenarios with higher requirements for data integrity and consistency.
@@ -12,8 +12,8 @@ The just-released version `0.11.0-incubating` is the third version after the nam
 This version closed more than 80 issues, including four significant features and 35 improvements.
 
 ### Apache InLong(incubating) Introduction
-[Apache InLong](https://inlong.apache.org) is a one-stop data access platform donated by Tencent to the Apache community.  It provides automatic,  safe,  reliable,  and high-performance data transmission capabilities to facilitate the construction of streaming-based data analysis,  modeling,  and applications.  
-The Apache InLong project was originally called TubeMQ,  focusing on high-performance,  low-cost message queuing services.  In order to further release the surrounding ecological capabilities of TubeMQ,  we upgraded the project to InLong,  focusing on creating a one-stop data integration solution.
+[Apache InLong](https://inlong.apache.org) is a one-stop integration framework for massive data donated by Tencent to the Apache community.  It provides automatic,  safe,  reliable,  and high-performance data transmission capabilities to facilitate the construction of streaming-based data analysis,  modeling,  and applications.  
+The Apache InLong project was originally called TubeMQ,  focusing on high-performance,  low-cost message queuing services.  In order to further release the surrounding ecological capabilities of TubeMQ,  we upgraded the project to InLong,  focusing on creating a one-stop integration framework for massive data.
 
 Apache InLong uses TDBank internally used by Tencent as the prototype,  and relies on trillion-level data access and processing capabilities to integrate the entire process of data collection,  aggregation,  storage,  and sorting data processing.  It is simple to use,  flexible to expand,  stable and reliable characteristic.
 <img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>
