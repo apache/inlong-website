@@ -13,7 +13,7 @@ sidebar_position: 1
 
 ##  配置
 
-在conf/inlong.conf文件中根据实际情况替换相关全局配置参数：
+在`conf/inlong.conf`文件中根据实际情况替换相关全局配置参数：
 ```
 ###############################################################################
 # Selection of message queue source: tubemq or pulsar
