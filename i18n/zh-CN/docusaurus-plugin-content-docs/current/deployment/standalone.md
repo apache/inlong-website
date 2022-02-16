@@ -140,7 +140,7 @@ bin/inlong-daemon stop standalone
 
 ## 检查
 
-启动脚本完成后，jps -l 查看是否都有如下进程：
+启动脚本完成后，`jps -l` 查看是否都有如下进程：
 
 ```
 2417 org.apache.flink.runtime.taskexecutor.TaskManagerRunner
