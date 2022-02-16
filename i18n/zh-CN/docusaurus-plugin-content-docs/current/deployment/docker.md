@@ -11,9 +11,10 @@ sidebar_position: 2
 
 ## 部署
 
-手动拷贝`inlong-manager/sql`目录到`docker/compose/sql`目录.
+手动拷贝`inlong-manager/sql`和`inlong-audit/sql`目录下的SQL文件到`docker/docker-compose/sql`目录.
 ```shell
-cp inlong-manager/sql/apache_inlong_manager.sql  docker/docker-compose/sql
+cp inlong-manager/sql/apache_inlong_manager.sql docker/docker-compose/sql
+cp inlong-audit/sql/apache_inlong_audit.sql docker/docker-compose/sql
 ```
 
 然后启动所有组件：
