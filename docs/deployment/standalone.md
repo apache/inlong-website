@@ -12,7 +12,7 @@ sidebar_position: 1
 
 ##  Configure 
 
-In conf/inlong.conf, replace the relevant global configuration parameters according to the actual situation:
+In `conf/inlong.conf`, replace the relevant global configuration parameters according to the actual situation:
 
 ```
 ###############################################################################
