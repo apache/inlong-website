@@ -20,6 +20,11 @@
         },
         {
           "title": "0.12.0",
+          "link": "/zh-CN/0.12.0/docs/introduction",
+          "releaseUrl": "/zh-CN/download/release-0.12.0"
+        },
+        {
+          "title": "1.0.0",
           "link": "/zh-CN/docs/introduction",
           "releaseUrl": ""
         }
@@ -48,8 +53,13 @@
         },
         {
           "title": "0.12.0",
-          "link": "/docs/introduction",
+          "link": "/docs/0.12.0/introduction",
           "releaseUrl": "/download/release-0.12.0"
+        },
+        {
+          "title": "1.0.0",
+          "link": "/docs/introduction",
+          "releaseUrl": ""
         }
       ]
     }
