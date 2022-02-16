@@ -140,7 +140,7 @@ bin/inlong-daemon stop standalone
 
 ## Check
 
-After the startup script is completed, jps -l checks whether there are the following processes:
+After the startup script is completed, `jps -l` checks whether there are the following processes:
 
 ```
 2417 org.apache.flink.runtime.taskexecutor.TaskManagerRunner
