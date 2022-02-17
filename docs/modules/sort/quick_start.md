@@ -19,7 +19,7 @@ Now you can submit job to flink with the jar compiled, refer to [how to submit j
 
 Example：
 ```
-./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-core-[version].jar \
+./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-dist-[version].jar \
 --cluster-id inlong_app --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong_sort \
 --source.type tubemq --metrics.audit.proxy.hosts 127.0.0.1:10081 --sink.type hive
 ```
@@ -28,7 +28,7 @@ Notice：
 
 - `-c org.apache.inlong.sort.flink.Entrance` is the main class name
 
-- `inlong-sort/sort-core-[version].jar` is the compiled jar
+- `inlong-sort/sort-dist-[version].jar` is the compiled jar
 
 ## Necessary configurations
 - `--cluster-id ` represent a specified inlong-sort application, same as the configuration of `sort.appName` in inlong-manager

@@ -18,7 +18,7 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 
 示例：
 ```
-./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-core-[version].jar \
+./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-dist-[version].jar \
 --cluster-id inlong_app --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong_sort \
 --source.type tubemq --metrics.audit.proxy.hosts 127.0.0.1:10081 --sink.type hive
 ```
@@ -27,7 +27,7 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 
 - `-c org.apache.inlong.sort.flink.Entrance` 表示main class name
 
-- `inlong-sort/sort-core-[version].jar` 为编译阶段产出的jar包
+- `inlong-sort/sort-dist-[version].jar` 为编译阶段产出的jar包
 
 ## 必要的配置
 - `--cluster-id ` 用来唯一标识一个inlong-sort作业，同inlong-manager中`sort.appName`配置一致
