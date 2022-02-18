@@ -108,47 +108,47 @@ Use the links below to download the Apache InLong from one of our mirrors.
 | [INLONG-1944](https://github.com/apache/incubator-inlong/issues/1944) | Bumped version to 0.13.0-incubating-SNAPSHOT for the master branch |
 
 ### BUG FIXES:
-| ISSUE  | Summary  |
-| :---- | :------- |
-| [INLONG-2371](https://github.com/apache/incubator-inlong/issues/2371) | [Bug][inlong-dataproxy] monitorIndex should not use msgid for key,it affects performance |
-| [INLONG-2361](https://github.com/apache/incubator-inlong/issues/2361) | [Bug] audit have no data |
-| [INLONG-2344](https://github.com/apache/incubator-inlong/issues/2344) | [Bug][InLong-Sort] Kafka sink ut failed under multithread compiling | 
-| [INLONG-2338](https://github.com/apache/incubator-inlong/issues/2338) | [Bug] agent can not get dataproxy for docker-compose environment |
-| [INLONG-2336](https://github.com/apache/incubator-inlong/issues/2336) | [Bug][agent] the manager fetcher thread was shielded |
-| [INLONG-2288](https://github.com/apache/incubator-inlong/issues/2288) | [Bug] sort-flink task catches an NPE |
-| [INLONG-2264](https://github.com/apache/incubator-inlong/issues/2264) | [Bug] DataProxy get metric value with error JMX ObjectName |
-| [INLONG-2263](https://github.com/apache/incubator-inlong/issues/2263) | [Bug] SortStandalone get metric value with error JMX ObjectName |
-| [INLONG-2252](https://github.com/apache/incubator-inlong/issues/2252) | [Bug] Remove <> character in sort-standalone quick_start.md. |     
-| [INLONG-2242](https://github.com/apache/incubator-inlong/issues/2242) | [BUG][manager] table field incorrect: db_collector_detail_task, 'sql' should be 'sql_statement' |
-| [INLONG-2237](https://github.com/apache/incubator-inlong/issues/2237) | [Bug] call audit query interface error |
-| [INLONG-2230](https://github.com/apache/incubator-inlong/issues/2230) | [Bug]  manager started get jackson error |    
-| [INLONG-2227](https://github.com/apache/incubator-inlong/issues/2227) | [Bug] build failed for dataproxy-sdk |
+| ISSUE  | Summary                                                                                                                          |
+| :---- |:---------------------------------------------------------------------------------------------------------------------------------|
+| [INLONG-2371](https://github.com/apache/incubator-inlong/issues/2371) | [Bug][inlong-dataproxy] monitorIndex should not use msgid for key,it affects performance                                         |
+| [INLONG-2361](https://github.com/apache/incubator-inlong/issues/2361) | [Bug] audit have no data                                                                                                         |
+| [INLONG-2344](https://github.com/apache/incubator-inlong/issues/2344) | [Bug][InLong-Sort] Kafka sink ut failed under multithread compiling                                                              | 
+| [INLONG-2338](https://github.com/apache/incubator-inlong/issues/2338) | [Bug] agent can not get dataproxy for docker-compose environment                                                                 |
+| [INLONG-2336](https://github.com/apache/incubator-inlong/issues/2336) | [Bug][agent] the manager fetcher thread was shielded                                                                             |
+| [INLONG-2288](https://github.com/apache/incubator-inlong/issues/2288) | [Bug] sort-flink task catches an NPE                                                                                             |
+| [INLONG-2264](https://github.com/apache/incubator-inlong/issues/2264) | [Bug] DataProxy get metric value with error JMX ObjectName                                                                       |
+| [INLONG-2263](https://github.com/apache/incubator-inlong/issues/2263) | [Bug] SortStandalone get metric value with error JMX ObjectName                                                                  |
+| [INLONG-2252](https://github.com/apache/incubator-inlong/issues/2252) | [Bug] Remove character in sort-standalone quick_start.md.                                                                        |     
+| [INLONG-2242](https://github.com/apache/incubator-inlong/issues/2242) | [BUG][manager] table field incorrect: db_collector_detail_task, 'sql' should be 'sql_statement'                                  |
+| [INLONG-2237](https://github.com/apache/incubator-inlong/issues/2237) | [Bug] call audit query interface error                                                                                           |
+| [INLONG-2230](https://github.com/apache/incubator-inlong/issues/2230) | [Bug]  manager started get jackson error                                                                                         |    
+| [INLONG-2227](https://github.com/apache/incubator-inlong/issues/2227) | [Bug] build failed for dataproxy-sdk                                                                                             |
 | [INLONG-2224](https://github.com/apache/incubator-inlong/issues/2224) | [Bug][inlong-DataProxy] Source receive one message will be send to pulsar twice when config both memery channel and file channel | 
-| [INLONG-2202](https://github.com/apache/incubator-inlong/issues/2202) | [Bug] add lower version log4j exclusion in sort-standalone pom.xml |   
-| [INLONG-2199](https://github.com/apache/incubator-inlong/issues/2199) | [Bug][inlong-audit][audit-source] one message will put tow channel, and store two message | 
-| [INLONG-2191](https://github.com/apache/incubator-inlong/issues/2191) | [Bug][inlong-audit][audit-source] requestId is not set in response message |
-| [INLONG-2190](https://github.com/apache/incubator-inlong/issues/2190) | [Bug][inlong-audit][audit-store] can not started by start shell |
-| [INLONG-2174](https://github.com/apache/incubator-inlong/issues/2174) | [Bug]Clickhouse sink can cause data loss when checkpointing | 
-| [INLONG-2155](https://github.com/apache/incubator-inlong/issues/2155) | [Bug][Manager] Some unit tests running failed | 
-| [INLONG-2148](https://github.com/apache/incubator-inlong/issues/2148) | [Bug][sort]Pattern used for extracting clickhouse metadata is not compatible with some versions of clickhouse |
-| [INLONG-2143](https://github.com/apache/incubator-inlong/issues/2143) | [Bug][sort] caught a NoClassDefFoundError exception |
-| [INLONG-2137](https://github.com/apache/incubator-inlong/issues/2137) | [Bug] version 0.12.0 cannot pass UT |
-| [INLONG-2130](https://github.com/apache/incubator-inlong/issues/2130) | [Bug] inlong-sort occurs `ClassNotFoundException: og.objenesis..ClassUtils` | 
-| [INLONG-2113](https://github.com/apache/incubator-inlong/issues/2113) | [Bug][Docker] Audit docker image build failed |
-| [INLONG-2098](https://github.com/apache/incubator-inlong/issues/2098) | [Bug] agent can not restart successfully |
-| [INLONG-2097](https://github.com/apache/incubator-inlong/issues/2097) | [Bug][Docker] error while building tubemq image |
-| [INLONG-2094](https://github.com/apache/incubator-inlong/issues/2094) | [Bug] summit job failed after enabling Prometheus |
-| [INLONG-2089](https://github.com/apache/incubator-inlong/issues/2089) | [Bug]tubemq-manager throws error when starting:   java.lang.ClassNotFoundException: javax.validation.ClockProvider |
-| [INLONG-2087](https://github.com/apache/incubator-inlong/issues/2087) | [Bug] Miss a "-p" flag before 2181:2181 in the command "Start Standalone Container" |
-| [INLONG-2085](https://github.com/apache/incubator-inlong/issues/2085) | [Bug] Solve the incubator-inlong-website Compilation failure problem |
-| [INLONG-2084](https://github.com/apache/incubator-inlong/issues/2084) | [Bug]A bug in the Go SDK demo, and the API result class is not clear enough |
-| [INLONG-2082](https://github.com/apache/incubator-inlong/issues/2082) | [Bug] file agent collector file failed |
-| [INLONG-2080](https://github.com/apache/incubator-inlong/issues/2080) | [Bug] file agent send file failed |
-| [INLONG-2078](https://github.com/apache/incubator-inlong/issues/2078) | [Bug] create pulsar subscription failed |
-| [INLONG-2068](https://github.com/apache/incubator-inlong/issues/2068) | [Bug] the class name in dataproxy stop.sh  is wrong |
-| [INLONG-2066](https://github.com/apache/incubator-inlong/issues/2066) | Each message will be consumed twice.[Bug] |
-| [INLONG-2064](https://github.com/apache/incubator-inlong/issues/2064) | [Bug]master branch, tubemq-manager  module occurs: package Java.validation.constraints not exists |
-| [INLONG-2061](https://github.com/apache/incubator-inlong/issues/2061) | [Bug][Office-Website] The homepage structure image error |
-| [INLONG-1989](https://github.com/apache/incubator-inlong/issues/1989) | [Bug]some font of " DataProxy-SDK architecture " page  incorrectly |
-| [INLONG-1342](https://github.com/apache/incubator-inlong/issues/1342) | [Bug] Create tube consumer group failed where the group exists |  
+| [INLONG-2202](https://github.com/apache/incubator-inlong/issues/2202) | [Bug] add lower version log4j exclusion in sort-standalone pom.xml                                                               |   
+| [INLONG-2199](https://github.com/apache/incubator-inlong/issues/2199) | [Bug][inlong-audit][audit-source] one message will put tow channel, and store two message                                        | 
+| [INLONG-2191](https://github.com/apache/incubator-inlong/issues/2191) | [Bug][inlong-audit][audit-source] requestId is not set in response message                                                       |
+| [INLONG-2190](https://github.com/apache/incubator-inlong/issues/2190) | [Bug][inlong-audit][audit-store] can not started by start shell                                                                  |
+| [INLONG-2174](https://github.com/apache/incubator-inlong/issues/2174) | [Bug]Clickhouse sink can cause data loss when checkpointing                                                                      | 
+| [INLONG-2155](https://github.com/apache/incubator-inlong/issues/2155) | [Bug][Manager] Some unit tests running failed                                                                                    | 
+| [INLONG-2148](https://github.com/apache/incubator-inlong/issues/2148) | [Bug][sort]Pattern used for extracting clickhouse metadata is not compatible with some versions of clickhouse                    |
+| [INLONG-2143](https://github.com/apache/incubator-inlong/issues/2143) | [Bug][sort] caught a NoClassDefFoundError exception                                                                              |
+| [INLONG-2137](https://github.com/apache/incubator-inlong/issues/2137) | [Bug] version 0.12.0 cannot pass UT                                                                                              |
+| [INLONG-2130](https://github.com/apache/incubator-inlong/issues/2130) | [Bug] inlong-sort occurs `ClassNotFoundException: og.objenesis..ClassUtils`                                                      | 
+| [INLONG-2113](https://github.com/apache/incubator-inlong/issues/2113) | [Bug][Docker] Audit docker image build failed                                                                                    |
+| [INLONG-2098](https://github.com/apache/incubator-inlong/issues/2098) | [Bug] agent can not restart successfully                                                                                         |
+| [INLONG-2097](https://github.com/apache/incubator-inlong/issues/2097) | [Bug][Docker] error while building tubemq image                                                                                  |
+| [INLONG-2094](https://github.com/apache/incubator-inlong/issues/2094) | [Bug] summit job failed after enabling Prometheus                                                                                |
+| [INLONG-2089](https://github.com/apache/incubator-inlong/issues/2089) | [Bug]tubemq-manager throws error when starting:   java.lang.ClassNotFoundException: javax.validation.ClockProvider               |
+| [INLONG-2087](https://github.com/apache/incubator-inlong/issues/2087) | [Bug] Miss a "-p" flag before 2181:2181 in the command "Start Standalone Container"                                              |
+| [INLONG-2085](https://github.com/apache/incubator-inlong/issues/2085) | [Bug] Solve the incubator-inlong-website Compilation failure problem                                                             |
+| [INLONG-2084](https://github.com/apache/incubator-inlong/issues/2084) | [Bug]A bug in the Go SDK demo, and the API result class is not clear enough                                                      |
+| [INLONG-2082](https://github.com/apache/incubator-inlong/issues/2082) | [Bug] file agent collector file failed                                                                                           |
+| [INLONG-2080](https://github.com/apache/incubator-inlong/issues/2080) | [Bug] file agent send file failed                                                                                                |
+| [INLONG-2078](https://github.com/apache/incubator-inlong/issues/2078) | [Bug] create pulsar subscription failed                                                                                          |
+| [INLONG-2068](https://github.com/apache/incubator-inlong/issues/2068) | [Bug] the class name in dataproxy stop.sh  is wrong                                                                              |
+| [INLONG-2066](https://github.com/apache/incubator-inlong/issues/2066) | Each message will be consumed twice.[Bug]                                                                                        |
+| [INLONG-2064](https://github.com/apache/incubator-inlong/issues/2064) | [Bug]master branch, tubemq-manager  module occurs: package Java.validation.constraints not exists                                |
+| [INLONG-2061](https://github.com/apache/incubator-inlong/issues/2061) | [Bug][Office-Website] The homepage structure image error                                                                         |
+| [INLONG-1989](https://github.com/apache/incubator-inlong/issues/1989) | [Bug]some font of " DataProxy-SDK architecture " page  incorrectly                                                               |
+| [INLONG-1342](https://github.com/apache/incubator-inlong/issues/1342) | [Bug] Create tube consumer group failed where the group exists                                                                   |  
 
