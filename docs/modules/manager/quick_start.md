@@ -38,30 +38,8 @@ The dev configuration is specified above, then modify the `conf/application-dev.
    spring.datasource.druid.username=root
    spring.datasource.druid.password=inlong
    ```
-
-2) Configure the Message Queue Service, you could choose InLong TubeMQ or Apache Pulsar:
-
-- Configuration TubeMQ cluster information if using TubeMQ
-   ```properties
-   # Manager address of TubeMQ cluster, used to create Topic
-   cluster.tube.manager=http://127.0.0.1:8081
-   # Broker used to manage TubeMQ
-   cluster.tube.master=127.0.0.1:8000,127.0.0.1:8010
-   # TubeMQ cluster ID
-   cluster.tube.clusterId=1
-   ```
-
-- Configuration Pulsar cluster information if using Pulsar
-   ```properties
-   # Pulsar admin URL
-   pulsar.adminUrl=http://127.0.0.1:8080,127.0.0.2:8080,127.0.0.3:8080
-   # Pulsar broker address
-   pulsar.serviceUrl=pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650
-   # Default tenant of Pulsar
-   pulsar.defaultTenant=public
-   ```
-  
-3) Configure ZooKeeper clusters information:
+ 
+2) Configure ZooKeeper clusters information:
 
    ```properties
    # ZK cluster, used to push the configuration of Sort
@@ -69,7 +47,49 @@ The dev configuration is specified above, then modify the `conf/application-dev.
    cluster.zk.root=inlong_hive
    # application name, that is the cluster-id parameter of InLong Sort
    sort.appName=inlong_app
+   # Pulsar tenant, optional
+   pulsar.defaultTenant=public
    ```
+   
+### Add Message Queue configuration to InLong-Manager
+You can choose InLong TubeMQ or Apache Pulsar as Message Queue Service:
+- If using TubeMQ, the SQL statement is:
+
+```sql
+INSERT INTO apache_inlong_manager.third_party_cluster 
+(name, type, url, ext_params, mq_set_name, in_charges, creator)
+VALUES 
+('tube_cluster', 'TUBE', 'tubemq_master_list', 'tube_config', 'default_set_name', 'admin', 'admin');
+```
+
+- `tubemq_master_list`: the master address of your TubeMQ cluster. If there are multiple master nodes, addresses is separated by comma, such as `127.0.0.1:8000,127.0.0.1:8010`.
+- `tube_config`: the other info of your cluster. It is described in JSON format, for example:
+
+```json
+{
+  "cluster_tube_manager": "http://127.0.0.1:8081",
+  "cluster_tube_clusterId": "1"
+}
+```
+
+- If using Pulsar, the SQL statement is:
+
+```sql
+INSERT INTO apache_inlong_manager.third_party_cluster 
+(name, type, url, token, ext_params, mq_set_name, in_charges, creator)
+VALUES 
+('pulsar_cluster', 'PULSAR', 'puslar_service_url', 'pulsar_token', 'pulsar_config', 'default_set_name', 'admin', 'admin');
+```
+
+- `puslar_service_url`: the address of your Pulsar cluster, such as `pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650`.
+- `pulsar_config`: the other info of your cluster. It is described in JSON format, for example:
+
+```json
+{
+  "pulsar_adminUrl": "http://127.0.0.1:8080,127.0.0.2:8080,127.0.0.3:8080"
+}
+```
+
 ### Start the service
 
 Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
