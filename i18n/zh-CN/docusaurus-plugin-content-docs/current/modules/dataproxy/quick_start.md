@@ -12,8 +12,6 @@ title: 安装部署
 ```
 # manager 地址
 manager_hosts=127.0.0.1:8083
-# dataproxy 集群名
-proxy_cluster_name=default_dataproxy
 # audit proxy 地址
 audit.proxys=127.0.0.1:10081
 ```

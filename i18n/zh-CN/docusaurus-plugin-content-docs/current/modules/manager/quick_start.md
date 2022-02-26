@@ -46,8 +46,6 @@ spring.profiles.active=dev
    cluster.zk.root=inlong_hive
    # 应用名称，即InLong Sort 的 cluster-id 参数
    sort.appName=inlong_app
-   # Pulsar tenant，可选
-   pulsar.defaultTenant=public
    ```
 ### 将消息队列配置添加到InLong-Manager
 消息队列服务可以使用InLong TubeMQ 或者 Apache Pulsar：

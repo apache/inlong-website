@@ -47,8 +47,6 @@ The dev configuration is specified above, then modify the `conf/application-dev.
    cluster.zk.root=inlong_hive
    # application name, that is the cluster-id parameter of InLong Sort
    sort.appName=inlong_app
-   # Pulsar tenant, optional
-   pulsar.defaultTenant=public
    ```
    
 ### Add Message Queue configuration to InLong-Manager

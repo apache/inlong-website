@@ -11,8 +11,6 @@ configuration file: `conf/common.properties`:
 ```
 # manager address
 manager_hosts=127.0.0.1:8083
-# proxy cluster name
-proxy_cluster_name=default_dataproxy
 # audit proxy address
 audit.proxys=127.0.0.1:10081
 ```
@@ -31,7 +29,7 @@ telnet 127.0.0.1 46801
 
 ## Add DataProxy configuration to InLong-Manager
 
-After installing the DataProxy, you need to insert the IP and port of the DataProxy service is located into the backend database of InLong-Manager.
+After installing the DataProxy, you need to insert the IP address of the DataProxy service is located into the backend database of InLong-Manager.
 
 The SQL statement is:
 
