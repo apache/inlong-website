@@ -6,16 +6,6 @@ title: 安装部署
 
 ## 配置
 
-### 配置消息队列
-
-- 如果使用InLong TubeMQ, 按以下配置即可。`tubemq_master_list`是TubeMQ master rpc地址，多个逗号分隔。
-```
-$ sed -i 's/TUBE_LIST/tubemq_master_list/g' conf/flume.conf
-```
-- 如果使用Apache Pulsar, 替换`conf/flume-mulit-pulsar-tcp-example.conf`中`pulsar_server_url_list`并覆盖`conf/flume.conf`。
-
-注意conf/flume.conf中FLUME_HOME为proxy的中间数据文件存放地址
-
 ### 配置InLong-Manager 地址
 
 配置文件：`conf/common.properties`:
@@ -46,6 +36,6 @@ SQL 语句为：
 
 ```sql
 -- address 为 DataProxy 服务所在主机的 IP
-UPDATE apache_inlong_manager.data_proxy_cluster SET address="replace_by_dataproxy_ip" WHERE name="default_dataproxy";
+UPDATE apache_inlong_manager.data_proxy_cluster SET address="replace_by_dataproxy_ip", mq_set_name="default_set_name" WHERE name="default_dataproxy";
 ```
 

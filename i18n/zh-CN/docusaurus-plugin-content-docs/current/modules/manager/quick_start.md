@@ -37,30 +37,8 @@ spring.profiles.active=dev
    spring.datasource.druid.username=root
    spring.datasource.druid.password=inlong
    ```
-
-2) 配置消息队列服务，可以使用InLong TubeMQ 或者 Apache Pulsar：
-
-- 若使用TubeMQ，配置TubeMQ 集群信息
-   ```properties
-   # TubeMQ 集群的 Manager 地址，用来创建 Topic
-   cluster.tube.manager=http://127.0.0.1:8081
-   # 用来管理 TubeMQ 的 Broker
-   cluster.tube.master=127.0.0.1:8000,127.0.0.1:8010
-   # TubeMQ 集群的 ID
-   cluster.tube.clusterId=1
-   ```
    
-- 若使用Pulsar，配置Pulsar 集群信息
-   ```properties
-   # Pulsar admin URL
-   pulsar.adminUrl=http://127.0.0.1:8080,127.0.0.2:8080,127.0.0.3:8080
-   # Pulsar broker address
-   pulsar.serviceUrl=pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650
-   # Default tenant of Pulsar
-   pulsar.defaultTenant=public
-   ```
-   
-3) 配置ZooKeeper 集群信息：
+2) 配置ZooKeeper 集群信息：
 
    ```properties
    # ZK 集群，用来推送 Sort 的配置
@@ -69,6 +47,40 @@ spring.profiles.active=dev
    # 应用名称，即InLong Sort 的 cluster-id 参数
    sort.appName=inlong_app
    ```
+### 将消息队列配置添加到InLong-Manager
+消息队列服务可以使用InLong TubeMQ 或者 Apache Pulsar：
+- 若使用TubeMQ，SQL语句为：
+
+```sql
+INSERT INTO apache_inlong_manager.third_party_cluster 
+(name, type, url, ext_params, mq_set_name, in_charges, creator)
+VALUES 
+('tube_cluster', 'TUBE', 'tubemq_master_list', 'tube_config', 'default_set_name', 'admin', 'admin');
+```
+其中，`tubemq_master_list`为TubeMQ集群的master地址，多个则逗号分隔，形如`127.0.0.1:8000,127.0.0.1:8010`；`tube_config`为集群配置信息，按照JSON格式设置：
+
+```json
+{
+  "cluster_tube_manager": "http://127.0.0.1:8081",
+  "cluster_tube_clusterId": "1"
+}
+```
+
+- 若使用Pulsar，SQL语句为：
+
+```sql
+INSERT INTO apache_inlong_manager.third_party_cluster 
+(name, type, url, token, ext_params, mq_set_name, in_charges, creator)
+VALUES 
+('pulsar_cluster', 'PULSAR', 'puslar_service_url', 'pulsar_token', 'pulsar_config', 'default_set_name', 'admin', 'admin');
+```
+其中，`puslar_service_url`为Pulsar集群的地址，形如`pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650`；`pulsar_config`为集群配置信息，按照JSON格式设置：
+
+```json
+{
+  "pulsar_adminUrl": "http://127.0.0.1:8080,127.0.0.2:8080,127.0.0.3:8080"
+}
+```
 
 ### 启动服务
 
