@@ -41,14 +41,19 @@ upstream  https://github.com/apache/incubator-inlong.git (push)
 ### 2.4 获取upstream仓库代码，并更新本地master分支代码为最新
 ```shell
 git fetch upstream
-git pull upstream master
+git merge upstream/master origin/master
 ```
 ### 2.5 新建分支
 > 一般以issue id作为分支名，如：INLONG-123
 ```shell
-git checkout -b INLONG-123
+git checkout -b INLONG-123 origin/master
 ```
-**确保分支`INLONG-123`是基于官方master分支的最新代码**
+> 也可以从官方仓库新建分支
+```shell
+git checkout -b INLONG-123 upstream/master
+```
+
+**上述两个命令只需要执行一个就可以确保分支`INLONG-123`是基于官方master分支的最新代码**
 
 分支创建完成后即可进行代码更改。
 

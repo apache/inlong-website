@@ -49,17 +49,21 @@ There will be two repositories: `origin` (own repository) and `upstream` (offici
 
 ```shell
 git fetch upstream
-git pull upstream master
+git merge upstream/master origin/master
 ```
 
 ### 2.5 Create a new branch
 > Generally, issue id is used as the branch name, such as: INLONG-123
 
 ```shell
-git checkout -b INLONG-123
+git checkout -b INLONG-123 origin/master
+```
+> Creating new branch from official Repository
+```shell
+git checkout -b INLONG-123 upstream/master
 ```
 
-**Make sure that the branch `INLONG-123` is building successfully on the latest code of the official master branch**
+**You can execute either of above two commands to make sure that the branch `INLONG-123` is building successfully on the latest code of the official master branch**
 
 After the branch is created, you can start coding.
 
