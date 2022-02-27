@@ -58,12 +58,8 @@ git merge upstream/master origin/master
 ```shell
 git checkout -b INLONG-123 origin/master
 ```
-> Creating new branch from official Repository
-```shell
-git checkout -b INLONG-123 upstream/master
-```
 
-**You can execute either of above two commands to make sure that the branch `INLONG-123` is building successfully on the latest code of the official master branch**
+**Make sure that the branch `INLONG-123` is building successfully on the latest code of the official master branch**
 
 After the branch is created, you can start coding.
 

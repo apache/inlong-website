@@ -48,12 +48,8 @@ git merge upstream/master origin/master
 ```shell
 git checkout -b INLONG-123 origin/master
 ```
-> 也可以从官方仓库新建分支
-```shell
-git checkout -b INLONG-123 upstream/master
-```
 
-**上述两个命令只需要执行一个就可以确保分支`INLONG-123`是基于官方master分支的最新代码**
+**确保分支`INLONG-123`是基于官方master分支的最新代码**
 
 分支创建完成后即可进行代码更改。
 
