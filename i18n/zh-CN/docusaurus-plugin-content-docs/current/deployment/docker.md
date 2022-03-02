@@ -9,20 +9,17 @@ sidebar_position: 2
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 - Docker Compose 1.29.2+
 
+## 编译
+可以参考[如何编译](quick_start/how_to_build.md).
+
 ## 部署
-
-手动拷贝`inlong-manager/sql`和`inlong-audit/sql`目录下的SQL文件到`docker/docker-compose/sql`目录.
-```shell
-cp inlong-manager/sql/apache_inlong_manager.sql docker/docker-compose/sql
-cp inlong-audit/sql/apache_inlong_audit.sql docker/docker-compose/sql
+启动所有组件：
 ```
-
-然后启动所有组件：
-```
+cd docker/docker-compose
 docker-compose up -d
 ```
 
-## 使用InLong
+## 使用
 当所有容器都成功启动后，可以访问`http://localhost`，并使用以下默认账号登录:
 ```
 User: admin

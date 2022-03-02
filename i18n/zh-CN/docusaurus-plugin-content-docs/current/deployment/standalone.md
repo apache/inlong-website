@@ -11,7 +11,10 @@ sidebar_position: 1
 - Apache Pulsar 2.6+ (可选)
 - Docker or Nginx
 
-##  配置
+## 编译
+可以参考[如何编译](quick_start/how_to_build.md).
+
+## 配置
 
 在`conf/inlong.conf`文件中根据实际情况替换相关全局配置参数：
 ```
