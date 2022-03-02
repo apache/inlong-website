@@ -19,6 +19,7 @@ $ docker run -v `pwd`:/inlong  -w /inlong maven:3.6-openjdk-8 mvn clean install 
 ```
 after compile successfully, you could find distribution file at `inlong-distribution/target` with `tar.gz` format, it includes following files:
 ```
+docker
 inlong-agent
 inlong-audit
 inlong-dataproxy

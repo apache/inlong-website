@@ -9,7 +9,10 @@ sidebar_position: 4
 - Flink 1.13.5
 - Apache Pulsar 2.6+ (可选)
 
-## 安装InLong
+## 编译
+可以参考[如何编译](quick_start/how_to_build.md).
+
+## 安装
 | 顺序 |  组件 | 第三方依赖 | 部署指引                                                                  | 说明 |
 |  ----  | ----  | ----  |-----------------------------------------------------------------------| ---- |
 | 1 | inlong-tubemq-server | ZooKeeper | [InLong TubeMQ Server](modules/tubemq/quick_start.md)                 | 若使用Apache Pulsar，可不安装该组件 |

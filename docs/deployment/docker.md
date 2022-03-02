@@ -10,22 +10,18 @@ Requirements:
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 - Docker Compose 1.29.2+
 
+## Build
+you can refer to [How to Build](quick_start/how_to_build.md).
+
 ## Deploy
-
-Manually copy SQL files from `inlong-manager/sql` and `inlong-audit/sql` to the `docker/docker-compose/sql` directory.
-
-```shell
-cp inlong-manager/sql/apache_inlong_manager.sql docker/docker-compose/sql
-cp inlong-audit/sql/apache_inlong_audit.sql docker/docker-compose/sql
-```
-
-Then, start all components.
+Start all components.
 
 ```shell
+cd docker/docker-compose
 docker-compose up -d
 ```
 
-## Use InLong
+## Use
 
 After all containers run successfully, you can access `http://localhost` with default account:
 

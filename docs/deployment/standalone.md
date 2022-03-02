@@ -10,7 +10,10 @@ sidebar_position: 1
 - Apache Pulsar 2.6+ (Optional)
 - Docker or Nginx 
 
-##  Configure 
+## Build
+you can refer to [How to Build](quick_start/how_to_build.md).
+
+## Configure 
 
 In `conf/inlong.conf`, replace the relevant global configuration parameters according to the actual situation:
 
