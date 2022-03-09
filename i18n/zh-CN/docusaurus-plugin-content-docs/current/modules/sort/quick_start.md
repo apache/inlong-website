@@ -18,50 +18,116 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 
 示例：
 ```
-./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-dist-[version].jar \
---cluster-id inlong_app --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong_sort \
---source.type tubemq --metrics.audit.proxy.hosts 127.0.0.1:10081 --sink.type hive
+./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-[version].jar \
+--cluster-id debezium2hive --dataflow.info.file /YOUR_DATAFLOW_INFO_DIR/debezium-to-hive.json \
+--source.type pulsar --sink.type hive --sink.hive.rolling-policy.rollover-interval 60000 \
+--sink.hive.rolling-policy.check-interval 30000
 ```
 
 注意：
 
 - `-c org.apache.inlong.sort.flink.Entrance` 表示main class name
 
-- `inlong-sort/sort-dist-[version].jar` 为编译阶段产出的jar包
+- `inlong-sort/sort-[version].jar` 为编译阶段产出的jar包
 
 ## 必要的配置
-- `--cluster-id ` 用来唯一标识一个inlong-sort作业，同inlong-manager中`sort.appName`配置一致
-- `--zookeeper.quorum` zk quorum，同inlong-manager中`cluster.zk.url`配置一致
-- `--zookeeper.path.root` zk根目录，同inlong-manager中`cluster.zk.root`配置一致
-- `--metrics.audit.proxy.hosts` audit proxy 地址用于上报审计指标数据
-- `--source.type` 数据源的种类, 当前支持："tubemq"、"pulsar"
-- `--sink.type` 存储系统的种类，当前支持："clickhouse"、"hive"
+- `--cluster-id` 用来唯一标识一个inlong-sort作业，同inlong-manager中`sort.appName`配置一致
+- `--dataflow.info.file` 流配置文件路径
+- `--source.type` 数据源的种类, 当前支持："pulsar"
+- `--sink.type` 存储系统的种类，当前支持："clickhouse"、"hive"、"iceberg"、"kafka"
 
-**配置示例**
+**启动参数配置示例**
 ```
---cluster-id inlong_app --zookeeper.quorum 192.127.0.1:2181 \
---zookeeper.path.root /inlong_sort --source.type tubemq --sink.type hive
+--cluster-id debezium2kafka-canal --dataflow.info.file /YOUR_DATAFLOW_INFO_DIR/debezium-to-kafka-canal.json \
+--source.type pulsar --sink.type kafka
+```
+
+**流配置文件示例**
+```json
+{
+    "id":1,
+    "source_info":{
+        "type":"pulsar",
+        "admin_url":"YOUR_PULSAR_ADMIN_URL",
+        "service_url":"YOUR_PULSAR_SERVICE_URL",
+        "topic":"YOUR_PULSAR_TOPIC",
+        "subscription_name":"debezium2hive",
+        "deserialization_info":{
+            "type":"debezium_json",
+            "ignore_parse_errors":true,
+            "timestamp_format_standard":"ISO_8601"
+        },
+        "fields":[
+            {
+                "type":"base",
+                "name":"name",
+                "format_info":{
+                    "type":"string"
+                }
+            },
+            {
+                "type":"base",
+                "name":"age",
+                "format_info":{
+                    "type":"int"
+                }
+            }
+        ],
+        "authentication":null
+    },
+    "sink_info":{
+        "type":"hive",
+        "fields":[
+            {
+                "type":"base",
+                "name":"name",
+                "format_info":{
+                    "type":"string"
+                }
+            },
+            {
+                "type":"base",
+                "name":"age",
+                "format_info":{
+                    "type":"int"
+                }
+            }
+        ],
+        "hive_server_jdbc_url":"YOUR_HIVE_SERVER_JDBC_URL",
+        "database":"inlong_test",
+        "table":"sort_test",
+        "username":"username",
+        "password":"password",
+        "data_path":"YOUR_HIVE_TABLE_PATH_ON_HDFS",
+        "partitions":[],
+        "file_format":{
+            "type":"text",
+            "splitter":"|"
+        }
+    },
+    "properties":{
+        "consumer.bootstrap-mode":"earliest"
+    }
+}
 ```
 
 ## 所有支持的配置
-|  配置名 | 是否必须  | 默认值  |描述   |
-| ------------ | ------------ | ------------ | ------------ |
-|cluster-id   | Y | NA  |  用来唯一标识一个inlong-sort作业 |
-|zookeeper.quorum   | Y  | NA  | zk quorum  |
-|zookeeper.path.root   | Y  | /inlong-sort  |  zk根目录  |
-|source.type   | Y | NA | 数据源的种类, 当前支持"tubemq"和"pulsar"  |
-|sink.type   | Y  | NA  | 存储系统的种类，当前支持"clickhouse" 和 "hive" |
-|source.parallelism   | N  | 1  | source的并行度  |
-|deserialization.parallelism | N | 1 | deserialization的并行度  |
-|sink.parallelism   | N  | 1  | sink的并行度 |
-|tubemq.master.address | N  | NA  | 订阅tube的master address，优先级低于zk上的元数据  |
-|tubemq.session.key | N | inlong-sort | 订阅tube使用的session key前缀 |
-|tubemq.bootstrap.from.max | N | false | 是否从最大位置开始消费tube |
-|tubemq.message.not.found.wait.period | N | 350ms | tube返回message not found后的等待时间 |
-|tubemq.subscribe.retry.timeout | N | 300000 | 订阅tube的重试超时时间，单位为ms |
-|zookeeper.client.session-timeout | N | 60000 | zk session的超时时间，单位为ms |
-|zookeeper.client.connection-timeout | N | 15000 | zk连接的超时时间，单位为ms |
-|zookeeper.client.retry-wait | N | 5000 | zk重连间的等待时间，单位为ms |
-|zookeeper.client.max-retry-attempts | N | 3 | zk重连的最大重试次数 |
-|zookeeper.client.acl | N | "open" | Defines the ACL (open/creator) to be configured on ZK node. The configuration value can be set to “creator” if the ZooKeeper server configuration has the “authProvider” property mapped to use SASLAuthenticationProvider and the cluster is configured to run in secure mode (Kerberos) |
-|zookeeper.sasl.disable | N | false | 是否禁用sasl |
+| 配置名                                        |  是否必须  |     默认值     | 描述                                                |
+|--------------------------------------------|:------:|:-----------:|---------------------------------------------------|
+| cluster-id                                 |   Y    |     NA      | 用来唯一标识一个inlong-sort作业                             |
+| source.type                                |   Y    |     NA      | 数据源的种类, 当前支持"pulsar"                              |
+| sink.type                                  |   Y    |     NA      | 存储系统的种类，当前支持"clickhouse"、"hive"、"iceberg"和"kafka" |
+| source.parallelism                         |   N    |      1      | source的并行度                                        |
+| deserialization.parallelism                |   N    |      1      | deserialization的并行度                               |
+| transformation.parallelism                 |   N    |      1      | transformation的并行度                                |
+| sink.parallelism                           |   N    |      1      | sink的并行度                                          |
+| checkpoint.interval                        |   N    |   600000    | checkpoint间隔，单位：毫秒                                |
+| min.pause.between.checkpoints.ms           |   N    |     500     | checkpoint之间的最小间隔，单位：毫秒                           |
+| checkpoint.timeout.ms                      |   N    |   600000    | checkpoint超时时间，单位：毫秒                              |
+| sink.field.type.string.nullable            |   N    |    false    | string类型的sink field是否可以为空                         |
+| sink.field.type.int.nullable               |   N    |    true     | int类型的sink field是否可以为空                            |
+| sink.field.type.short.nullable             |   N    |    true     | short类型的sink field是否可以为空                          |
+| sink.field.type.long.nullable              |   N    |    true     | long类型的sink field是否可以为空                           |
+| sink.hive.rolling-policy.file-size         |   N    |  134217728  | 写hive时的文件滚动大小，单位：字节                               |
+| sink.hive.rolling-policy.rollover-interval |   N    |   1800000   | 写hive时的文件滚动时间间隔，单位：毫秒                             |
+| sink.hive.rolling-policy.check-interval    |   N    |    60000    | 写hive时的文件滚动检查间隔，单位：毫秒                             |

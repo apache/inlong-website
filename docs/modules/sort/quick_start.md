@@ -19,50 +19,116 @@ Now you can submit job to flink with the jar compiled, refer to [how to submit j
 
 Example：
 ```
-./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-dist-[version].jar \
---cluster-id inlong_app --zookeeper.quorum 127.0.0.1:2181 --zookeeper.path.root /inlong_sort \
---source.type tubemq --metrics.audit.proxy.hosts 127.0.0.1:10081 --sink.type hive
+./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-[version].jar \
+--cluster-id debezium2hive --dataflow.info.file /YOUR_DATAFLOW_INFO_DIR/debezium-to-hive.json \
+--source.type pulsar --sink.type hive --sink.hive.rolling-policy.rollover-interval 60000 \
+--sink.hive.rolling-policy.check-interval 30000
 ```
 
 Notice：
 
 - `-c org.apache.inlong.sort.flink.Entrance` is the main class name
 
-- `inlong-sort/sort-dist-[version].jar` is the compiled jar
+- `inlong-sort/sort-[version].jar` is the compiled jar
 
 ## Necessary configurations
 - `--cluster-id ` represent a specified inlong-sort application, same as the configuration of `sort.appName` in inlong-manager
-- `--zookeeper.quorum` zk quorum, same as the configuration of `cluster.zk.url` in inlong-manager
-- `--zookeeper.path.root` zk root path, same as the configuration of `cluster.zk.root` in inlong-manager
-- `--source.type` source of the application, currently "tubemq" and "pulsar" are supported
-- `--metrics.audit.proxy.hosts` audit proxy host address for reporting audit metrics
-- `--sink.type` sink of the application, currently "clickhouse" and "hive" are supported
+- `--dataflow.info.file` dataflow configuration file path
+- `--source.type` source of the application, currently "pulsar" is supported
+- `--sink.type` sink of the application, currently "clickhouse", "hive", "iceberg", "kafka" are supported
 
 **Example**
 ```
---cluster-id inlong_app --zookeeper.quorum 192.127.0.1:2181 \
---zookeeper.path.root /inlong_sort --source.type tubemq --sink.type hive
+--cluster-id debezium2kafka-canal --dataflow.info.file /YOUR_DATAFLOW_INFO_DIR/debezium-to-kafka-canal.json \
+--source.type pulsar --sink.type kafka
+```
+
+**Dataflow configuration Example**
+```json
+{
+    "id":1,
+    "source_info":{
+        "type":"pulsar",
+        "admin_url":"YOUR_PULSAR_ADMIN_URL",
+        "service_url":"YOUR_PULSAR_SERVICE_URL",
+        "topic":"YOUR_PULSAR_TOPIC",
+        "subscription_name":"debezium2hive",
+        "deserialization_info":{
+            "type":"debezium_json",
+            "ignore_parse_errors":true,
+            "timestamp_format_standard":"ISO_8601"
+        },
+        "fields":[
+            {
+                "type":"base",
+                "name":"name",
+                "format_info":{
+                    "type":"string"
+                }
+            },
+            {
+                "type":"base",
+                "name":"age",
+                "format_info":{
+                    "type":"int"
+                }
+            }
+        ],
+        "authentication":null
+    },
+    "sink_info":{
+        "type":"hive",
+        "fields":[
+            {
+                "type":"base",
+                "name":"name",
+                "format_info":{
+                    "type":"string"
+                }
+            },
+            {
+                "type":"base",
+                "name":"age",
+                "format_info":{
+                    "type":"int"
+                }
+            }
+        ],
+        "hive_server_jdbc_url":"YOUR_HIVE_SERVER_JDBC_URL",
+        "database":"inlong_test",
+        "table":"sort_test",
+        "username":"username",
+        "password":"password",
+        "data_path":"YOUR_HIVE_TABLE_PATH_ON_HDFS",
+        "partitions":[],
+        "file_format":{
+            "type":"text",
+            "splitter":"|"
+        }
+    },
+    "properties":{
+        "consumer.bootstrap-mode":"earliest"
+    }
+}
 ```
 
 ## All configurations
-|  name | necessary  | default value  |description   |
-| ------------ | ------------ | ------------ | ------------ |
-|cluster-id   |  Y | NA  |  used to represent a specified inlong-sort application |
-|zookeeper.quorum   | Y  | NA  | zk quorum  |
-|zookeeper.path.root   | Y  | /inlong-sort  |  zk root path  |
-|source.type   | Y | NA   | source of the application, currently "tubemq" and "pulsar" are supported  |
-|sink.type   | Y  | NA  | sink of the application, currently "clickhouse" and "hive" are supported  |
-|source.parallelism   | N  | 1  | parallelism of source  |
-|deserialization.parallelism   | N  |  1 | parallelism of deserialization  |
-|sink.parallelism   | N  | 1  | parallelism of sink  |
-|tubemq.master.address | N  | NA  | tube master address used if absent in DataFlowInfo on zk  |
-|tubemq.session.key |N | inlong-sort | session key used when subscribing to tubemq |
-|tubemq.bootstrap.from.max | N | false | whether consume from max or not when subscribing to tubemq |
-|tubemq.message.not.found.wait.period | N | 350ms | The time of waiting period if tube broker return message not found |
-|tubemq.subscribe.retry.timeout | N | 300000 | The time of subscribing tube timeout, in millisecond |
-|zookeeper.client.session-timeout | N | 60000 | The session timeout for the ZooKeeper session in ms |
-|zookeeper.client.connection-timeout | N | 15000 | The connection timeout for ZooKeeper in ms |
-|zookeeper.client.retry-wait | N | 5000 | The pause between consecutive retries in ms |
-|zookeeper.client.max-retry-attempts | N | 3 | The number of connection retries before the client gives up |
-|zookeeper.client.acl | N | "open" | Defines the ACL (open/creator) to be configured on ZK node. The configuration value can be set to “creator” if the ZooKeeper server configuration has the “authProvider” property mapped to use SASLAuthenticationProvider and the cluster is configured to run in secure mode (Kerberos) |
-|zookeeper.sasl.disable | N | false | Whether disable zk sasl or not |
+| name                                       | necessary | default value | description                                                                                                                                                                                                                                 |
+|--------------------------------------------|:---------:|:-------------:|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| cluster-id                                 |     Y     |      NA       | used to represent a specified inlong-sort application                                                                                                                                                                                       |
+| source.type                                |     Y     |      NA       | source of the application, currently "pulsar" is supported                                                                                                                                                                                  |
+| sink.type                                  |     Y     |      NA       | sink of the application, currently "clickhouse", "hive", "iceberg" and "kafka" are supported                                                                                                                                                |
+| source.parallelism                         |     N     |       1       | parallelism of source                                                                                                                                                                                                                       |
+| deserialization.parallelism                |     N     |       1       | parallelism of deserialization                                                                                                                                                                                                              |
+| transformation.parallelism                 |     N     |       1       | parallelism of transformation                                                                                                                                                                                                               |
+| sink.parallelism                           |     N     |       1       | parallelism of sink                                                                                                                                                                                                                         |
+| checkpoint.interval                        |     N     |    600000     | checkpoint interval，unit: ms                                                                                                                                                                                                                |
+| min.pause.between.checkpoints.ms           |     N     |      500      | the minimal checkpoint interval, unit：ms                                                                                                                                                                                                    |
+| checkpoint.timeout.ms                      |     N     |    600000     | checkpoint timeout，unit: ms                                                                                                                                                                                                                 |
+| sink.field.type.string.nullable            |     N     |     false     | whether the sink field of string type can be null or empty                                                                                                                                                                                  |
+| sink.field.type.int.nullable               |     N     |     true      | whether the sink field of string type can be null or empty                                                                                                                                                                                  |
+| sink.field.type.short.nullable             |     N     |     true      | whether the sink field of string type can be null or empty                                                                                                                                                                                  |
+| sink.field.type.long.nullable              |     N     |     true      | whether the sink field of string type can be null or empty                                                                                                                                                                                  |
+| sink.hive.rolling-policy.file-size         |     N     |   134217728   | The maximum part file size before rolling，unit: byte                                                                                                                                                                                        |
+| sink.hive.rolling-policy.rollover-interval |     N     |    1800000    | The maximum time duration a part file can stay open before rolling(by default long enough to avoid too many small files). The frequency at which this is checked is controlled by the 'sink.rolling-policy.check-interval' option. Unit: ms |
+| sink.hive.rolling-policy.check-interval    |     N     |     60000     | The interval for checking time based rolling policies. This controls the frequency to check whether a part file should rollover based on 'sink.rolling-policy.rollover-interval'. Unit: ms                                                  |
