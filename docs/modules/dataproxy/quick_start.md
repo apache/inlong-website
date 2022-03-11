@@ -18,7 +18,12 @@ audit.proxys=127.0.0.1:10081
 ## run
 
 ```
-sh bin/dataproxy-start.sh
+#By default, pulsar is used as the message middleware, and the dataproxy-pulsar.conf configuration file is loaded.
+bash +x bin/dataproxy-start.sh
+or
+bash +x bin/dataproxy-start.sh pulsar
+# If using Inlong TubeMQ
+# bash +x bin/dataproxy-start.sh tube
 ```
 	
 

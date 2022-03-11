@@ -18,7 +18,7 @@ InLong-dataProxy整体架构基于Apache Flume。inlong-dataproxy在该项目的
 
 ## DataProxy功能配置说明
 
-DataProxy支持配置化的source-channel-sink，配置方式与flume的配置文件结构相同。
+DataProxy 支持配置化的 source-channel-sink，配置方式与 flume 的配置文件结构类似。配置文件放在 dataproxy-*.conf 文件中，目前支持 dataproxy-pulsar.conf 和 dataproxy-tube.conf 两种，用于区分不同的中间件类型，具体类型可以在启动时指定，默认（未指定时）使用 dataproxy-pulsar.conf 作为配置文件
 
 - Source配置示例：
 

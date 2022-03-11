@@ -16,7 +16,7 @@ The overall architecture of inlong-dataproxy is based on Apache Flume. On the ba
 
 ## DataProxy Configuration
 
-DataProxy supports configurable source-channel-sink, and the configuration method is the same as the configuration file structure of flume.
+DataProxy supports configurable source-channel-sink, which is similar to flume's configuration file structure. The configuration file name is such as dataproxy-*.conf. Currently, dataproxy-pulsar.conf and dataproxy-tube.conf are supported to distinguish different message middleware types. The specific type can be specified when startup. The default (when not specified) ) using dataproxy-pulsar.conf as configuration file.
 
 - Source configuration example:
 ```shell
