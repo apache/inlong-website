@@ -31,27 +31,6 @@ telnet 127.0.0.1 46801
 
 After installing the DataProxy, you need to add the IP of the DataProxy service into the InLong-Manager.
 
-- Open the Swagger API page of InLong-Manager.
-
-  the address is: <http://your_manager_host:8083/api/inlong/manager/doc.html#/default/Open-Cluster-API/saveUsingPOST_4>
-
-- Click the [Debug] tab, modify the following info and copy it into the parameter box.
-  ```json
-  {
-      "name": "default_dataproxy",
-      "type": "DATA_PROXY",
-      "ip": "your_data_proxy_host",
-      "port": 46801,
-      "mqSetName": "default_set_name",
-      "inCharges": "admin",
-      "creator": "admin"
-  }
-  ```
-
-- Click the [Send] button, the above info will be saved to InLong-Manager.
-
-**Of course you can also make requests through `curl`.**
-
 - Modify the following information:
   ```html
   curl --header "Content-Type: application/json" --request POST http://your_manager_host:8083/api/inlong/manager/openapi/cluster/save --data '
