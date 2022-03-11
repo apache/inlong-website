@@ -1,5 +1,5 @@
 ---
-title: InlongManager Shiro插件开发
+title: 自定义认证
 sidebar_position: 2
 ---
 

@@ -1,5 +1,5 @@
 ---
-title: InlongManager Shiro plugin development
+title: Custom Authentication
 sidebar_position: 2
 ---
 
