@@ -7,7 +7,7 @@ sidebar_position: 2
 cd inlong-agent
 ```
 
-### 配置
+## 配置
 
 线上运行需要从inlong-manager拉取配置，配置conf/agent.properties如下：
 ```ini
@@ -17,6 +17,9 @@ agent.manager.vip.http.port=manager port
 # audit proxy 地址
 audit.proxys=127.0.0.1:10081
 ```
+## 依赖
+- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar), 并将其放入 `lib/` 目录。
+- 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
 
 ## 启动
 

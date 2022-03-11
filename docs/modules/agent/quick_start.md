@@ -7,7 +7,7 @@ sidebar_position: 2
 cd inlong-agent
 ```
 
-### Configuration
+## Configuration
 
 Online operation needs to pull the configuration from inlong-manager, the configuration conf/agent.properties is as follows:
 ```ini
@@ -17,6 +17,12 @@ agent.manager.vip.http.port=manager port
 # audit proxy address
 audit.proxys=127.0.0.1:10081
 ```
+
+## Dependencies
+- If the backend database is MySQL, please download [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar) and put it into `lib/` directory.
+
+- If the backend database is PostgreSQL, there's no need for additional dependencies.
+
 
 ## Start
 After decompression, run the following command

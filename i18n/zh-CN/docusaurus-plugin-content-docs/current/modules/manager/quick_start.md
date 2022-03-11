@@ -12,11 +12,7 @@ title: 安装部署
   mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_manager.sql
   ```
   
-## 部署manager
-
-manager 是与前端页面交互的后台服务。
-
-### 修改配置
+## 配置
 
 前往 `inlong-manager` 目录，修改 `conf/application.properties` 文件：
 
@@ -47,7 +43,12 @@ spring.profiles.active=dev
    # 应用名称，即InLong Sort 的 cluster-id 参数
    sort.appName=inlong_app
    ```
-### 将消息队列配置添加到InLong-Manager
+
+## 依赖
+- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar), 并将其放入 `lib/` 目录。
+- 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
+
+## 配置消息队列
 消息队列服务可以使用InLong TubeMQ 或者 Apache Pulsar：
 - 若使用TubeMQ，SQL语句为：
 
@@ -82,7 +83,7 @@ VALUES
 }
 ```
 
-### 启动服务
+## 启动
 
 进入解压后的目录，执行 `sh bin/startup.sh` 启动服务，查看日志 `tailf log/manager-web.log`，若出现类似下面的日志，说明服务启动成功：
 

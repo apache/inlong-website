@@ -13,11 +13,7 @@ title: Deployment
   mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_manager.sql
   ```
 
-## Deploy manager
-
-manager is a background service that interacts with the front-end page.
-
-### Modify configuration
+## Configuration
 
 Go to the decompressed `inlong-manager` directory and modify the `conf/application.properties` file:
 
@@ -48,8 +44,13 @@ The dev configuration is specified above, then modify the `conf/application-dev.
    # application name, that is the cluster-id parameter of InLong Sort
    sort.appName=inlong_app
    ```
-   
-### Add Message Queue configuration to InLong-Manager
+
+## Dependencies
+- If the backend database is MySQL, please download [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar) and put it into `lib/` directory.
+
+- If the backend database is PostgreSQL, there's no need for additional dependencies.
+
+## Add Message Queue
 You can choose InLong TubeMQ or Apache Pulsar as Message Queue Service:
 - If using TubeMQ, the SQL statement is:
 
@@ -88,7 +89,7 @@ VALUES
 }
 ```
 
-### Start the service
+## Start
 
 Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
 log `tailf log/manager-web.log`. If a log similar to the following appears, the service has started successfully:
