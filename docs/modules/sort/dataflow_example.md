@@ -1,5 +1,5 @@
 ---
-title: Dataflow Configuration Example
+title: Dataflow Example
 sidebar_position: 3
 ---
 

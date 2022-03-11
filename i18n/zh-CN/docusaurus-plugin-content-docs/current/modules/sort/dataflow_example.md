@@ -1,5 +1,5 @@
 ---
-title: 流配置示例
+title: 数据流示例
 sidebar_position: 3
 ---
 
