@@ -37,7 +37,7 @@ public interface InlongShiro {
 
 - Implement * InlongShiro * interface and specify the configuration in "@ conditionalonproperty"
 ```java
-@ConditionalOnProperty(name = "type", prefix = "inlong.auth", havingValue = "xx")
+@ConditionalOnProperty(name = "type", prefix = "inlong.auth", havingValue = "Custom")
 @Component
 public class InlongShiroImpl implements InlongShiro {
    //xxx
@@ -46,5 +46,5 @@ public class InlongShiroImpl implements InlongShiro {
 
 - Modify the application.properties under the manager web module
 ```java
-inlong.auth.type=xx
+inlong.auth.type=Custom
 ```
