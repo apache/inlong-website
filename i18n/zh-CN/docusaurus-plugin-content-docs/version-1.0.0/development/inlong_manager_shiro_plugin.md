@@ -11,7 +11,7 @@ Inlong Manager中使用了Apache Shiro框架实现了认证和授权等功能，
 ```java
 <dependency>
         <groupId>org.apache.inlong</groupId>
-        <artifactId>inlong-common</artifactId>
+        <artifactId>manager-common</artifactId>
         <version>inlong_version</version>
 </dependency>
 ```
