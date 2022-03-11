@@ -40,7 +40,7 @@ public interface InlongShiro {
 @ConditionalOnProperty(name = "type", prefix = "inlong.auth", havingValue = "Custom")
 @Component
 public class InlongShiroImpl implements InlongShiro {
-   //xxx
+   //todo
 }
 ```
 
