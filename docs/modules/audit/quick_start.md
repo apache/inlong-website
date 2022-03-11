@@ -38,6 +38,11 @@ spring.datasource.druid.username=root
 spring.datasource.druid.password=inlong
 ```
 
+### Dependencies
+- If the backend database is MySQL, please download [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar) and put it into `lib/` directory.
+
+- If the backend database is PostgreSQL, there's no need for additional dependencies.
+
 ### Start
 The startup script file `./bin/store-start.sh`
 ```Shell

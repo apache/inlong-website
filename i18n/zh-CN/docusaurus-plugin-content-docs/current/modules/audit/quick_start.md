@@ -38,6 +38,10 @@ spring.datasource.druid.username=root
 spring.datasource.druid.password=inlong
 ```
 
+### 依赖
+- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar), 并将其放入 `lib/` 目录。
+- 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
+
 ### 启动
 启动脚本 `./bin/store-start.sh`
 ```Shell
