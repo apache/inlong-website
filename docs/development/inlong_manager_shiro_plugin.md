@@ -1,5 +1,5 @@
 ---
-title: 解析 InLongMsg
+title: InlongManager Shiro plugin development
 sidebar_position: 2
 ---
 

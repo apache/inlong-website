@@ -1,5 +1,5 @@
 ---
-title: 解析 InLongMsg
+title: InlongManager Shiro插件开发
 sidebar_position: 2
 ---
 
