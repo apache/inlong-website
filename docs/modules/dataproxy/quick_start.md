@@ -29,12 +29,20 @@ telnet 127.0.0.1 46801
 
 ## Add DataProxy configuration to InLong-Manager
 
-After installing the DataProxy, you need to insert the IP address of the DataProxy service is located into the backend database of InLong-Manager.
+After installing the DataProxy, you need to add the IP of the DataProxy service into the InLong-Manager.
 
-The SQL statement is:
-
-```sql
--- address is the IP of the DataProxy service is located
-UPDATE apache_inlong_manager.data_proxy_cluster SET address="replace_by_dataproxy_ip", mq_set_name="default_set_name" WHERE name="default_dataproxy";
-```
-
+- Modify the following information:
+  ```html
+  curl --header "Content-Type: application/json" --request POST http://your_manager_host:8083/api/inlong/manager/openapi/cluster/save --data '
+  {
+     "name": "default_dataproxy",
+     "type": "DATA_PROXY",
+     "ip": "your_data_proxy_host",
+     "port": 46801,
+     "mqSetName": "default_set_name",
+     "inCharges": "admin",
+     "creator": "admin"
+  }
+  '
+  ```
+- Open your command line tool, copy the above info, and click the Enter key, the above info will be saved to InLong-Manager.
