@@ -19,7 +19,12 @@ audit.proxys=127.0.0.1:10081
 ## 启动
 
 ```
-sh bin/dataproxy-start.sh
+#默认使用 pulsar 作为消息中间件，加载 dataproxy-pulsar.conf 配置文件
+bash +x bin/dataproxy-start.sh
+或者
+bash +x bin/dataproxy-start.sh pulsar
+# 如果使用 Inlong TubeMQ
+# bash +x bin/dataproxy-start.sh tube
 ```
 
 ## 检查
