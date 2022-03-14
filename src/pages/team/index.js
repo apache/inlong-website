@@ -18,6 +18,7 @@ export default function() {
     let contributors = isBrowser && axios({
         url: 'https://api.github.com/repos/apache/incubator-inlong/contributors',
         method: 'get',
+        headers: { "Authorization": `token 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` },
         params: {
             per_page: 100
         }
@@ -37,6 +38,7 @@ export default function() {
     let doc_contributors = isBrowser &&  axios({
         url: 'https://api.github.com/repos/apache/incubator-inlong-website/contributors',
         method: 'get',
+        headers: { "Authorization": `token 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` },
         params: {
             per_page: 100
         }
