@@ -3,13 +3,9 @@ title: How to Release
 sidebar_position: 6
 ---
 
-# How to release 
-
-<font color="#dd0000" size="4">TODO: This page needs to be translated into English. If you are interested, just do it.</font>
-
 > This article mainly introduces how the Release Manager releases a new version in accordance with the Apache requirements.
 
-## 0. Prolegomenon
+## Prolegomenon
 Source Release is the key point which Apache values, also, is necessary for a release;
 Binary Release is optional. InLong can choose whether to release the binary package to the Apache repository or to the Maven central repository.
 
@@ -19,17 +15,17 @@ For more guideline, you can refer the following links:
 
 [Apache incubator official website](https://incubator.apache.org/)
 
-## 1. Adding PG KEY
+## Adding PG KEY
 > Ref：https://infra.apache.org/openpgp.html
 **This section is the requirements for release manager who is the first time to be a release manager**
 
-### 1.1 Install gpg
+### Install gpg
 For more details, please ref to [Official website](https://www.gnupg.org/download/index.html), configurations under Mac OS:
 ```shell
 $ brew install gpg
 $ gpg --version #check the version, should be 2.x
 ```
-### 1.2 Generate gpg Key
+### Generate gpg Key
 #### Attentions：
 - Name is best to keep consistent with your full name of Apache ID
 - Email should be the Apache email
@@ -99,7 +95,7 @@ uid                      Guangxu Cheng <gxcheng@apache.org>
 sub   rsa4096 2020-05-19 [E]
 ```
 
-### 1.3 upload your key to public gpg keyserver
+### upload your key to public gpg keyserver
 
 ```shell
 ➜  ~ gpg --list-keys                                                        
@@ -114,15 +110,15 @@ $ gpg --keyserver pgpkeys.mit.edu --send-key <key id>
 # Among them, pgpkeys.mit.edu is a randomly selected keyserver, and the keyserver list is: https://sks-keyservers.net/status/, which is automatically synchronized with each other, you can choose any one of them.
 ```
 
-### 1.4 Check whether the key is created successfully
+### Check whether the key is created successfully
 Uploading takes about one minute, after that, you can check by your email at `http://keys.gnupg.net`. Be reminded to tick "the show full-key hashes" under advance.
 
 
-### 1.5 Add your gpg public key to the KEYS document
+### Add your gpg public key to the KEYS document
 > SVN is required for this step
 The svn repository of the DEV branch is: https://dist.apache.org/repos/dist/dev/incubator/inlong
 The svn repository of the Release branch is: https://dist.apache.org/repos/dist/release/incubator/inlong
-#### 1.5.1 Add the public key to KEYS in the dev branch to release the RC version
+#### Add the public key to KEYS in the dev branch to release the RC version
 ```shell
 ➜  ~ svn co https://dist.apache.org/repos/dist/dev/incubator/inlong /tmp/inlong-dist-dev
 # As this step will copy all the versions, it will take some time. If the network is broken, please use svn cleanup to delete the lock before re-execute it.
@@ -132,7 +128,7 @@ The svn repository of the Release branch is: https://dist.apache.org/repos/dist/
 ➜  inlong-dist-dev ~ svn ci -m "add gpg key for YOUR_NAME" # Later on, if you are asked to enter a username and password, just use your apache username and password.
 ```
 
-#### 1.5.2 Add the public key to the KEYS in the release branch for releasing official version
+#### Add the public key to the KEYS in the release branch for releasing official version
 ```shell
 ➜  ~ svn co https://dist.apache.org/repos/dist/release/incubator/inlong /tmp/inlong-dist-release
 ➜  ~ cd inlong-dist-release
@@ -140,10 +136,10 @@ The svn repository of the Release branch is: https://dist.apache.org/repos/dist/
 ➜  inlong-dist-release ~ svn add .	# It is not needed if the KEYS document exists before.
 ➜  inlong-dist-release ~ svn ci -m "add gpg key for YOUR_NAME" # Later on, if you are asked to enter a username and password, just use your apache username and password.
 ```
-### 1.6 Upload the GPG public key to your Github account
+### Upload the GPG public key to your Github account
 1. Enter https://github.com/settings/keys to add GPG KEYS.
 2. Please remember to bind the email address used in the GPG key to your github account (https://github.com/settings/emails)., if you find "unverified" after adding it.
-## 2. Mavne settings
+## Mavne settings
 
 **Skip if your have done this before**
 
@@ -179,8 +175,8 @@ Adding `<server>` configurations in ~/.m2/settings.xml
 </settings>
 ```
 
-## 3. Build
-### 3.1 Prepare branch
+## Build
+### Prepare branch
   - Checkout out a new branch from the master branch as the release branch，release-${release_version}
 
   - update `CHANGES.md`
@@ -196,7 +192,7 @@ Adding `<server>` configurations in ~/.m2/settings.xml
 
   - update version
 
-### 3.2 create tag
+### create tag
 >Make sure code check is pass before creating tag, including compile success, unit test pass, RAT check pass etc.
 
 **Create a tag with annotation**
@@ -206,7 +202,7 @@ $ git tag -s $git_tag -m "Tagging the ${release_version} first Releae Candidate 
 # if met error  gpg: signing failed: secret key not available, you should set private key first.
 $ git config user.signingkey ${KEY_ID}
 ```
-### 3.3 Building source code package 
+### Building source code package 
 
 > You should package the source code as a tar file after creating tag
 
@@ -215,7 +211,7 @@ mkdir /tmp/apache-inlong-${release_version}-${rc_version}
 git archive --format=tar.gz --output="/tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}-src.tar.gz" --prefix="apache-inlong-${release_version}/" $git_tag
 ```
 
-### 3.4 Building binary package
+### Building binary package
 > compile the code in the step above.
 
 ```shell
@@ -225,20 +221,20 @@ cd apache-inlong-${release_version} # go to the source code directory
 cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/  # for signature convenient, copy the binary package to the source code directory
 ```
 
-### 3.5 sign the source package/binary package/sha512
+### sign the source package/binary package/sha512
 ```shell
 for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i > $i.sha512 ; done # calculate SHA512
 for i in *.tar.gz; do echo $i; gpg --armor --output $i.asc --detach-sig $i ; done # calculate signature
 ```
 
-### 3.6 check the signature/sha512
+### check the signature/sha512
 Ref：[check the candidate version](how-to-verify.md)
 e.g. check the signature:
 ```shell
 for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
 ```
-## 4. Prepare for Apache release
-### 4.1  Deploy jar to Apache Nexus repository
+## Prepare for Apache release
+### Deploy jar to Apache Nexus repository
 ```shell
 cd /tmp/apache-inlong-${release_version}-${rc_version} # go to the source code directory
 tar xzvf apache-inlong-${release_version}-src.tar.gz # uncompress source code package
@@ -246,22 +242,22 @@ cd apache-inlong-${release_version}
 mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true  # uploading
 ```
 
-### 4.2  Upload tag to git repository
+### Upload tag to git repository
 
 ```shell
 git push origin ${release_version}-${rc_version}
 ```
 
-### 4.3 Upload tar file to dist repo
+### Upload tar file to dist repo
 > SVN is need in this step, SVN repo for DEV branch is https://dist.apache.org/repos/dist/dev/incubator/inlong
 
-### 4.3.1 Checkout InLong to local directory
+### Checkout InLong to local directory
 ```shell
 # As this step will copy all the versions, it will take some time. If the network is broken, please use svn cleanup to delete the lock before re-execute it.
 svn co https://dist.apache.org/repos/dist/dev/incubator/inlong /tmp/inlong-dist-dev
 ```
 
-### 4.3.2 Add public key to KEYS file adn commit to SVN repository
+### Add public key to KEYS file adn commit to SVN repository
 ```shell
 cd /tmp/inlong-dist-dev
 mkdir ${release_version}-${rc_version} # create a directory named by version
@@ -271,7 +267,7 @@ svn add ${release_version}-${rc_version} # addi to svn
 svn status # check svn status
 svn commit -m "prepare for ${release_version} ${rc_version}"     # commit to SVN remote server
 ```
-### 4.4 Close Apache Staging repository
+### Close Apache Staging repository
 > make sure all artifacts is ok
 1. **Log in **http://repository.apache.org wit your Apache account
 2. Click the Staging repositories on the left 
@@ -282,15 +278,15 @@ svn commit -m "prepare for ${release_version} ${rc_version}"     # commit to SVN
 
 WARN: Close operation may fail, you should check the causes and fix them.
 
-## 5. Voting
+## Voting
 > A release need two votes due to InLong is still an incubating project now.
 - InLong community vote，send email to ：`dev@inlong.apache.org`
 - incubator community vote，send email to：`general@incubator.apache.org`
 Once InLong is graduated, InLong community vote is only needed.
 
-### 5.1 InLong community vote
+### InLong community vote
 
-#### 5.1.1 Vote template
+#### Vote template
 
 ```html
 Title：[VOTE] Release Apache InLong ${release_version} ${rc_version}
@@ -349,7 +345,7 @@ Thanks,
 Your InLong Release Manager
 ```
 
-#### 5.1.2 Vote Result template
+#### Vote Result template
 ```html
 Title：[RESULT][VOTE] Release Apache InLong ${release_version} ${rc_version}
 
@@ -372,9 +368,9 @@ Thank you for your support.
 Your InLong Release Manager
 ```
 
-### 5.2 incubator community vote
+### incubator community vote
 
-#### 5.2.1 Vote template
+#### Vote template
 
 ```html
 Title：[VOTE] Release Apache InLong(Incubating) ${release_version} ${rc_version}
@@ -423,7 +419,7 @@ On behalf of Apache InLong(Incubating) community
 
 ```
 
-#### 5.2.2 Vote Result template
+#### Vote Result template
 ```html
 Title：[RESULT][VOTE] Release Apache InLong ${release_version} {rc_version}
 
@@ -449,21 +445,21 @@ Thanks
 On behalf of Apache InLong(Incubating) community
 ```
 
-## 6. Officially released
+## Officially released
 
-### 6.1 Merge branch release-${release_version} to master branch
-### 6.2 Move source code and binary package from DEV to release repository on SVN.
+### Merge branch release-${release_version} to master branch
+### Move source code and binary package from DEV to release repository on SVN.
 ```shell
 svn mv https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/inlong/${release_version} -m "Release ${release_version}"
 ```
-### 6.3 Check whether the dev and release is correct
+### Check whether the dev and release is correct
 1. Make sure [dev](https://dist.apache.org/repos/dist/dev/incubator/inlong/)下的`${release_version}-${rc_version}` is deleted
 2. Delete release package of pre versions[release](https://dist.apache.org/repos/dist/release/incubator/inlong/)，these packages will be saved [here](https://archive.apache.org/dist/incubator/inlong/)
 ```shell
 svn delete https://dist.apache.org/repos/dist/release/incubator/inlong/${last_release_version} -m "Delete ${last_release_version}"
 ```
 
-### 6.4 Release version in Apache Staging
+### Release version in Apache Staging
 > Make sure all artifacts are ok
 1. Log in http://repository.apache.org with your Apache account
 2. Click the Staging repositories on the left
@@ -472,9 +468,9 @@ svn delete https://dist.apache.org/repos/dist/release/incubator/inlong/${last_re
 
 ** Wait the repository sync to other repositories which generally takes 24 hours**
 
-### 6.5 Update links on official website
+### Update links on official website
 
-### 6.6. Send email to `dev@inlong.apache.org` and `general@incubator.apache.org`
+### Send email to `dev@inlong.apache.org` and `general@incubator.apache.org`
 **Please make sure deployment in step 6.4 is successfully, and generally wait 24 hours between 6.4 and send emails** 
 
 Release announce email template：

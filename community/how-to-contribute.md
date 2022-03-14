@@ -3,8 +3,6 @@ title: How to Contribute
 sidebar_position: 1
 ---
 
-# How to Contribute
-
 The Apache InLong(incubating) community welcomes contributions from anyone with a passion for distributed systems! InLong has many different opportunities for contributions -- write new examples/tutorials, add new user-facing libraries or participate on the documentation effort.
 
 We use a review-then-commit workflow in InLong for all contributions.
@@ -55,13 +53,8 @@ Pull requests should not be merged before the review has approved from at least 
 
 For more about merging pull request, please refer to [this page](https://github.com/apache/incubator-inlong/pulls)
 
-## Website Contributor List
-We are very pleased to announce some contributors here. They have made a lot of contributions in the translation of InLong. Thanks again to the following participants.
- - deepEvolution
- - missy
- - min.yang
- - goson
- - stillcoolme
- - tboy
- - viviel
- - yuecai.liu
+## Report a security issue
+InLong community cares deeply about the security and actively addresses any security issues as the top priority. 
+We follow the Apache security guidelines for [handling security issues](https://www.apache.org/security/), please see the Apache doc about handling security issues. 
+If you find any security issue, please send a vulnerability report to [security@apache.org](mailto:security@apache.org), the InLong security team will assess the issue immediately and work with the reporter on a plan to fix it. 
+Please do not disclose the issue to any public forum before working with the security team.

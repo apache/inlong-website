@@ -3,8 +3,6 @@ title: How to Become a Committer or PPMC
 sidebar_position: 4
 ---
 
-# How to Become a Committer or PPMC
-
 > [Apache InLong](https://inlong.apache.org)(incubating)is to build a community in full accordance with Apache’s rules. 
 > Apache Committer is a term used in ASF (Apache Software Foundation) to refer to people who submit specific projects.
 > Apache InLong Committer has the permission to write the InLong code base and can merge PR. 

@@ -3,8 +3,6 @@ title: 如何发布版本
 sidebar_position: 6
 ---
 
-# 如何发布版本
-
 > 本文主要介绍了Release Manager如何按照Apache的流程发布版本，
 
 Source Release是Apache关注的重点，也是发布的必须内容；
@@ -16,17 +14,17 @@ Binary Release是可选项，InLong可以选择是否发布二进制包到Apache
 
 [Apache incubator 官网](https://incubator.apache.org/)
 
-## 1. 添加GPG KEY
+## 添加GPG KEY
 > 本章节主要参考：https://infra.apache.org/openpgp.html
 **该章节仅仅对第一次当该项目的Release Manager需要。**
 
-### 1.1 安装gpg
+### 安装gpg
 详细的安装文档可以参考[官网](https://www.gnupg.org/download/index.html), Mac OS环境配置如下
 ```shell
 $ brew install gpg
 $ gpg --version #检查版本，应该为2.x
 ```
-### 1.2 生成gpg Key
+### 生成gpg Key
 #### 需要注意以下几点：
 - 输入名字时最好与Apache中登记的Full name保持一致
 - 使用的邮箱应该是apache邮箱
@@ -96,7 +94,7 @@ uid                      Guangxu Cheng <gxcheng@apache.org>
 sub   rsa4096 2020-05-19 [E]
 ```
 
-### 1.3 上传生成的key到公共服务器
+### 上传生成的key到公共服务器
 
 ```shell
 ➜  ~ gpg --list-keys                                                        
@@ -111,7 +109,7 @@ $ gpg --keyserver pgpkeys.mit.edu --send-key <key id>
 # 其中，pgpkeys.mit.edu为随意挑选的keyserver，keyserver列表为：https://sks-keyservers.net/status/，为相互之间是自动同步的，选任意一个都可以。
 ```
 
-### 1.4 查看key是否创建成功
+### 查看key是否创建成功
 通过下面的网址，使用邮箱查询上传成功没，大概需要一分钟才能查到，查询时候把 advance 下边的 show full-key hashes 勾上
 http://keys.gnupg.net
 
@@ -119,7 +117,7 @@ http://keys.gnupg.net
 
 
 
-### 1.5 将你的gpg公钥加入KEYS文件
+### 将你的gpg公钥加入KEYS文件
 
 > 这个步骤需要使用SVN
 
@@ -127,7 +125,7 @@ DEV分支的svn库是 https://dist.apache.org/repos/dist/dev/incubator/inlong
 
 Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/inlong
 
-#### 1.5.1 在dev分支中添加公钥到KEYS，用于发布RC版本
+#### 在dev分支中添加公钥到KEYS，用于发布RC版本
 
 ```shell
 ➜  ~ svn co https://dist.apache.org/repos/dist/dev/incubator/inlong /tmp/inlong-dist-dev
@@ -138,7 +136,7 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/i
 ➜  inlong-dist-dev ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
 ```
 
-#### 1.5.2 在release分支中添加公钥到KEYS，用于发布正式版本
+#### 在release分支中添加公钥到KEYS，用于发布正式版本
 
 ```shell
 ➜  ~ svn co https://dist.apache.org/repos/dist/release/incubator/inlong /tmp/inlong-dist-release
@@ -148,12 +146,12 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/i
 ➜  inlong-dist-release ~ svn ci -m "add gpg key for YOUR_NAME" # 接下来会要求输入用户名和密码，就用你的apache的用户名和密码。
 ```
 
-### 1.6 上传GPG公钥到Github账户
+### 上传GPG公钥到Github账户
 
 1. 进入 https://github.com/settings/keys ，添加GPG KEYS。
 2. 如果添加后你发现这个密钥后面写了“未经过验证” (unverified)，记得去将GPG key中用到的邮箱绑定到你的github账户上 (https://github.com/settings/emails)。
 
-## 2. 设置maven设置
+## 设置maven设置
 
 **如果已经设置过则跳过**
 
@@ -189,8 +187,8 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/i
 </settings>
 ```
 
-## 3. 编译打包
-### 3.1 准备分支
+## 编译打包
+### 准备分支
   - 从主干分支拉取新分支作为发布分支，release-${release_version}
 
   - 更新`CHANGES.md`
@@ -207,7 +205,7 @@ Release分支的SVN库是 https://dist.apache.org/repos/dist/release/incubator/i
   - 更改版本号
 
 
-### 3.2 创建tag
+### 创建tag
 > 创建tag前，要确保代码已经检查无误，包括：编译成功、单元测试全部成功，RAT检查成功等
 
 **创建一个带签名的tag**
@@ -217,7 +215,7 @@ $ git tag -s $git_tag -m "Tagging the ${release_version} first Releae Candidate 
 # 如果遇到错误 gpg: signing failed: secret key not available，先配置下私钥
 $ git config user.signingkey ${KEY_ID}
 ```
-### 3.3 打包源码
+### 打包源码
 
 > tag创建成功后，我需要将tag源码打包成一个tar包
 
@@ -226,7 +224,7 @@ mkdir /tmp/apache-inlong-${release_version}-${rc_version}
 git archive --format=tar.gz --output="/tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}-src.tar.gz" --prefix="apache-inlong-${release_version}/" $git_tag
 ```
 
-### 3.4 打包二进制包
+### 打包二进制包
 > 编译上一步打包的源码
 
 ```shell
@@ -237,20 +235,20 @@ mvn compile clean install package -DskipTests # 编译
 cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/  # 拷贝二进制包拷到源码包目录下，方面下一步对包进行签名
 ```
 
-### 3.5 对源码包/二进制包进行签名/sha512
+### 对源码包/二进制包进行签名/sha512
 ```shell
 for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i > $i.sha512 ; done # 计算SHA512
 for i in *.tar.gz; do echo $i; gpg --armor --output $i.asc --detach-sig $i ; done # 计算签名
 ```
 
-### 3.6 检查生成的签名/sha512是否正确
+### 检查生成的签名/sha512是否正确
 具体可以参考：[验证候选版本](how-to-verify.md)
 比如验证签名是否正确如下：
 ```shell
 for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
 ```
-## 4. 准备Apache发布
-### 4.1 发布jar包到Apache Nexus仓库
+## 准备Apache发布
+### 发布jar包到Apache Nexus仓库
 ```shell
 cd /tmp/apache-inlong-${release_version}-${rc_version} # 进入源码包目录
 tar xzvf apache-inlong-${release_version}-src.tar.gz #解压源码包
@@ -258,22 +256,22 @@ cd apache-inlong-${release_version}
 mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true  # 开始上传
 ```
 
-### 4.2 上传tag到git仓库
+### 上传tag到git仓库
 
 ```shell
 git push origin ${release_version}-${rc_version}
 ```
 
-### 4.3 上传编译好的文件到dist
+### 上传编译好的文件到dist
 > 这个步骤需要使用SVN, DEV分支的svn库是 https://dist.apache.org/repos/dist/dev/incubator/inlong
 
-### 4.3.1 将InLong checkout到本地目录
+### 将InLong checkout到本地目录
 ```shell
 # 这个步骤可能会比较慢，会把所有版本都考下来，如果网断了，用svn cleanup删掉锁，重新执行一下，会断点续传
 svn co https://dist.apache.org/repos/dist/dev/incubator/inlong /tmp/inlong-dist-dev
 ```
 
-### 4.3.2 添加public key到KEYS文件并提交到SVN仓库
+### 添加public key到KEYS文件并提交到SVN仓库
 ```shell
 cd /tmp/inlong-dist-dev
 mkdir ${release_version}-${rc_version} #创建版本目录
@@ -284,7 +282,7 @@ svn add ${release_version}-${rc_version} # 添加到svn版本
 svn status # 检查svn状态
 svn commit -m "prepare for ${release_version} ${rc_version}" # 提交至svn远程服务器
 ```
-### 4.4 关闭Apache Staging仓库
+### 关闭Apache Staging仓库
 > 请确保所有的artifact都是ok的
 1. **先登录**http://repository.apache.org , 使用Apache账号登录
 2. 点击左侧的Staging repositories，
@@ -295,15 +293,15 @@ svn commit -m "prepare for ${release_version} ${rc_version}" # 提交至svn远�
 
 WARN: 请注意点击Close可能会出现失败，请检查失败原因并处理
 
-## 5. 进入投票
+## 进入投票
 > InLong仍旧在孵化中，需要进行两次投票，
 - InLong社区投票，发邮件至：`dev@inlong.apache.org`
 - incubator社区投票，发邮件至：`general@incubator.apache.org`
 InLong毕业之后，只需要在InLong社区投票
 
-### 5.1 InLong社区投票
+### InLong社区投票
 
-#### 5.1.1 投票模板
+#### 投票模板
 
 ```html
 标题：[VOTE] Release Apache InLong ${release_version} ${rc_version}
@@ -362,7 +360,7 @@ Thanks,
 Your InLong Release Manager
 ```
 
-#### 5.1.2 宣布投票结果模板
+#### 宣布投票结果模板
 ```html
 标题：[RESULT][VOTE] Release Apache InLong ${release_version} ${rc_version}
 
@@ -385,9 +383,9 @@ Thank you for your support.
 Your InLong Release Manager
 ```
 
-### 5.2 incubator社区投票
+### incubator社区投票
 
-#### 5.2.1 投票模板
+#### 投票模板
 
 ```html
 标题：[VOTE] Release Apache InLong(Incubating) ${release_version} ${rc_version}
@@ -436,7 +434,7 @@ On behalf of Apache InLong(Incubating) community
 
 ```
 
-#### 5.2.2 宣布投票结果模板
+#### 宣布投票结果模板
 ```html
 标题：[RESULT][VOTE] Release Apache InLong ${release_version} {rc_version}
 
@@ -462,21 +460,21 @@ Thanks
 On behalf of Apache InLong(Incubating) community
 ```
 
-## 6. 正式发布
+## 正式发布
 
-### 6.1 合并release-${release_version}分支的改动到master分支
-### 6.2 将源码和二进制包从svn的dev目录移动到release目录
+### 合并release-${release_version}分支的改动到master分支
+### 将源码和二进制包从svn的dev目录移动到release目录
 ```shell
 svn mv https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/inlong/${release_version} -m "Release ${release_version}"
 ```
-### 6.3 确认dev和release下的包是否正确
+### 确认dev和release下的包是否正确
 1. 确认[dev](https://dist.apache.org/repos/dist/dev/incubator/inlong/)下的`${release_version}-${rc_version}`已被删除
 2. 删除[release](https://dist.apache.org/repos/dist/release/incubator/inlong/)目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/incubator/inlong/)
 ```shell
 svn delete https://dist.apache.org/repos/dist/release/incubator/inlong/${last_release_version} -m "Delete ${last_release_version}"
 ```
 
-### 6.4 在Apache Staging仓库发布版本
+### 在Apache Staging仓库发布版本
 > 请确保所有的artifact都是ok的
 1. 登录http://repository.apache.org , 使用Apache账号登录
 2. 点击左侧的Staging repositories，
@@ -485,9 +483,9 @@ svn delete https://dist.apache.org/repos/dist/release/incubator/inlong/${last_re
 
 **等仓库同步到其他数据源，一般需要24小时**
 
-### 6.5 更新官网链接
+### 更新官网链接
 
-### 6.6. 发邮件到 `dev@inlong.apache.org` 和 `general@incubator.apache.org`
+### 发邮件到 `dev@inlong.apache.org` 和 `general@incubator.apache.org`
 **请确保6.4中的仓库已发布成功，一般是在6.4后的24小时后发布邮件** 
 
 宣布release邮件模板：
