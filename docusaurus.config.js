@@ -106,10 +106,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             activeBaseRegex: `/download/`,
           },
           {
-            to: '/development/how-to-contribute',
-            label: 'DEVELOPMENT',
+            to: '/community/how-to-contribute',
+            label: 'COMMUNITY',
             position: 'right',
-            activeBaseRegex: `/development/`,
+            activeBaseRegex: `/community/`,
           },
           {
             to: '/blog',
@@ -241,9 +241,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     [
       '@docusaurus/plugin-content-docs',
       {
-        id: 'development',
-        path: 'development',
-        routeBasePath: 'development',
+        id: 'community',
+        path: 'community',
+        routeBasePath: 'community',
         editUrl: ({locale, versionDocsDirPath, docPath}) => {
           if (locale !== 'en') {
             return `https://github.com/apache/incubator-inlong-website/edit/master/i18n/${locale}/${docPath}`;
