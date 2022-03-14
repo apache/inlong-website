@@ -15,9 +15,9 @@
     "message": "下载",
     "description": "Navbar item with label DOWNLOAD"
   },
-  "item.label.DEVELOPMENT": {
-    "message": "开发",
-    "description": "Navbar item with label DEVELOPMENT"
+  "item.label.COMMUNITY": {
+    "message": "社区",
+    "description": "Navbar item with label COMMUNITY"
   },
   "item.label.BLOG": {
     "message": "博客",
