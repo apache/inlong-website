@@ -3,7 +3,6 @@ title: How to Verify release
 sidebar_position: 7
 ---
 
-# Verify Apache Release
 To verify the release, the following checklist can be used to reference:
 - [ ] Download links are valid.
 - [ ] Checksums and PGP signatures are valid.
@@ -16,24 +15,24 @@ To verify the release, the following checklist can be used to reference:
 
 For a detailed checklist, please refer to [check list](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist), here we introduce how to do the verification.
 
-## 1. Download the release package to be verified to the local environment
+## Download the release package to be verified to the local environment
 > Use the following command to download all artifacts, replace "${release_version}-${rc_version}" with the version ID of the version to be released:
 ```shell
 svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
 ```
 
-## 2. Verify signature and hash
+## Verify signature and hash
 > Start the verification process, which includes but is not limited to the following content and verification methods.
 > GnuPG is recommended, which can install by yum install gnupg or apt-get install gnupg.
 
-### 2.1 Check if the release package is complete
+### Check if the release package is complete
 The package to release must check:
 - Whether to include the source code package
 - Whether to include the signature of the source code package
 - Whether to include the sha512 of the source code package
 - (if include) Check the binary package, also check the contents listed in (2)-(4)
 
-### 2.2 Verify signature and hash
+### Verify signature and hash
 GnuPG is recommended, which can install by yum install GnuPG or apt-get install GnuPG.
   - Import public key
   ```shell
@@ -112,7 +111,7 @@ gpg:                using RSA key 9B12C2228BDFF4F4CFE849445EF3A66D57EC647A
 gpg: Good signature from "Guangxu Cheng <gxcheng@apache.org>" [ultimate]gular2
 ```
 
-### 2.3 Verify sha512 hash
+### Verify sha512 hash
 > Calculate the sha512 hash locally, and verify that it is consistent with the one on dist
 ```shell
 for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i; done
@@ -125,7 +124,7 @@ gpg --print-md SHA512 apache-inlong-client-${release_version}-bin.tar.gz
 for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 ```
 
-### 2.4. Check the file content of the source package
+### Check the file content of the source package
 Unzip `apache-inlong-${release_version}-src.tar.gz` and check as follows:
 - [ ] DISCLAIMER-WIP file exists and the content is correct.
 - [ ] LICENSE and NOTICE files are correct for the repository.
@@ -140,7 +139,7 @@ Attentions:
    - The compilation commands are not limited, but since the modules in the project are dockerized, "mvn clean package install" is recommended for the first compilation, other recommended operations include "mvn clean compile", "mvn clean package";
    - When executing unit tests, you should run them separately with "mvn clean test" to ensure that there are no hidden problems.
 
-### 2.5 Check the binary package (if the binary package is included)
+### Check the binary package (if the binary package is included)
   Unzip `apache-inlong-client-${release_version}-src.tar.gz` and `
   apache-inlong-server-${release_version}-src.tar.gz`, check as follows:
 - [ ] DISCLAIMER-WIP file exists and the content is correct.

@@ -49,3 +49,4 @@ Apache InLong serves the entire life cycle from data collection to landing,  and
 - **inlong-sort**,  after consuming data from different MQ services,  perform ETL processing,  and then aggregate and write the data into Apache Hive, ClickHouse,  Hbase,  IceBerg,  etc.
 - **inlong-manager**, provides complete data service management and control capabilities,  including metadata,  OpenAPI,  task flow,  authority,  etc.
 - **inlong-dashboard**, a front-end page for managing data access,  simplifying the use of the entire InLong control platform.
+- **inlong-audit**, performs real-time audit and reconciliation on the incoming and outgoing traffic of the Agent, DataProxy, and Sort modules of the InLong system.

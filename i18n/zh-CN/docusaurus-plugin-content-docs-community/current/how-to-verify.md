@@ -3,18 +3,16 @@ title: 如何验证版本
 sidebar_position: 7
 ---
 
-# 验证候选版本
-
 详细的检查列表请参考: [check list](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist)
 
-## 1. 下载要发布的候选版本到本地环境
+## 下载要发布的候选版本到本地环境
 ```shell
 svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
 ```
-## 2. 验证上传的版本是否合规
+## 验证上传的版本是否合规
 > 开始验证环节，验证包含但不局限于以下内容和形式
 
-### 2.1 查看发布包是否完整
+### 查看发布包是否完整
 > 上传到dist的包必须包含源码包，二进制包可选
 
 1. 是否包含源码包
@@ -22,7 +20,7 @@ svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version
 3. 是否包含源码包的sha512
 4. 如果上传了二进制包，则同样检查(2)-(4)所列的内容
 
-### 2.2 检查gpg签名
+### 检查gpg签名
   - 导入公钥
   ```shell
   curl https://dist.apache.org/repos/dist/dev/incubator/inlong/KEYS > KEYS # 下载KEYS
@@ -100,7 +98,7 @@ gpg:                using RSA key 9B12C2228BDFF4F4CFE849445EF3A66D57EC647A
 gpg: Good signature from "Guangxu Cheng <gxcheng@apache.org>" [ultimate]gular2
 ```
 
-### 2.3 检查sha512哈希
+### 检查sha512哈希
 > 本地计算sha512哈希后，验证是否与dist上的一致
 ```shell
 for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i; done
@@ -113,7 +111,7 @@ gpg --print-md SHA512 apache-inlong-client-${release_version}-bin.tar.gz
 for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 ```
 
-### 2.4. 检查源码包的文件内容
+### 检查源码包的文件内容
 
   解压缩`apache-inlong-${release_version}-src.tar.gz`，进行如下检查:
 
@@ -130,7 +128,7 @@ for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
   - 编译方法不限制，但由于项目里的模块做了docker化处理，首次编译建议先“mvn clean package install”，其他推荐的操作还有“mvn compile”，“mvn clean package”；
   - 执行单元测试时，大家要用“mvn clean test”单独运行，确保没有隐藏问题。
 
-### 2.5 检查二进制包(如果上传了二进制包)
+### 检查二进制包
   解压缩`apache-inlong-client-${release_version}-src.tar.gz`和`
   apache-inlong-server-${release_version}-src.tar.gz`，进行如下检查:
   - DISCLAIMER文件是否存在及内容是否正确
