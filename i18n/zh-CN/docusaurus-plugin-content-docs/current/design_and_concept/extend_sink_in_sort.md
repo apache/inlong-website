@@ -1,5 +1,5 @@
 ---
-InLong-Sort中插件化扩展Sink
+Sort插件
 ---
 
 # 总览

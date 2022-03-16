@@ -1,5 +1,5 @@
 ---
-title: Extend sinks in sort
+title: Sort Plugin
 ---
 
 # Overview
