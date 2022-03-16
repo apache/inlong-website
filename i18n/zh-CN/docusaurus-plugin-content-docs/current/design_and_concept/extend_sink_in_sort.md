@@ -1,5 +1,6 @@
 ---
-Sort插件
+title: Sort 插件
+sidebar_position: 3
 ---
 
 # 总览
