@@ -32,6 +32,9 @@ public interface InlongShiro {
     CredentialsMatcher getCredentialsMatcher();
 
     ShiroFilterFactoryBean getShiroFilter(SecurityManager securityManager);
+
+    AuthorizationAttributeSourceAdvisor getAuthorizationAttributeSourceAdvisor(SecurityManager securityManager);
+
 }
 ```
 
