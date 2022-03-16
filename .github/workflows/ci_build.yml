@@ -23,7 +23,8 @@ on:
       - master
 
 jobs:
-  build-and-deploy:
+  build:
+    name: CI Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
