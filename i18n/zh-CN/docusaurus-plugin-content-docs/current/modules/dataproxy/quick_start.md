@@ -43,7 +43,7 @@ telnet 127.0.0.1 46801
   {
      "name": "default_dataproxy",
      "type": "DATA_PROXY",
-     "ip": "your_data_proxy_host",
+     "ip": "127.0.0.1:46800,127.0.0.2",
      "port": 46801,
      "mqSetName": "default_set_name",
      "inCharges": "admin",
@@ -51,4 +51,10 @@ telnet 127.0.0.1 46801
   }
   '
   ```
+  > **【说明】**
+  > 
+  > 请将 `ip` 字段修改为 DataProxy 服务的真实 IP（或 hostname），格式为 `node1:port1,node2:port2`，多个时用 `,` 分隔。
+  > 
+  > 如果 `ip` 字段中所有 node 的端口号都相同，可以使用 `node1,node2`，并将 `port` 字段修改为这些 node 的默认端口号。
+
 - 打开你的命令行工具，复制上面修改后的信息，然后敲击 [回车] 发起请求，上面的信息就会保存到 InLong-Manager 中。
