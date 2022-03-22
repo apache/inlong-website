@@ -8,7 +8,7 @@ title: 安装部署
 ### 配置消息队列
 消息队列服务目前可以使用Apache Pulsar或者InLong TubeMQ：
 
-- 若使用Pulsar，配置文件 `conf/audit-proxy-pulsar.conf`
+- 若使用Pulsar，配置文件 `conf/audit-proxy-pulsar.conf`，将**`PULSAR_BROKER_LIST`**替换为Pulsar集群的服务地址。
 
 ```Shell
 agent1.sources.tcp-source.host = 0.0.0.0
@@ -19,8 +19,7 @@ agent1.sinks.pulsar-sink-msg2.pulsar_server_url = pulsar://PULSAR_BROKER_LIST
 agent1.sinks.pulsar-sink-msg2.topic = persistent://public/default/inlong-audit
 ```
 
-- 若使用TubeMQ，配置文件 `conf/audit-proxy-tube.conf`
-
+- 若使用TubeMQ，配置文件 `conf/audit-proxy-tube.conf`，将**`TUBE_LIST`**替换为TubeMQ集群的master地址。
 ```Shell
 agent1.sources.tcp-source.host = 0.0.0.0
 agent1.sources.tcp-source.port = 10081
@@ -48,13 +47,13 @@ audit.config.proxy.type=pulsar
 # store.server: mysql / elasticsearch 
 audit.config.store.mode=mysql
 
-# audit pulsar config (optional)
-audit.pulsar.server.url=pulsar://127.0.0.1:6650
+# audit pulsar config (optional)，将PULSAR_BROKER_LIST替换为Pulsar集群的服务地址
+audit.pulsar.server.url=pulsar://PULSAR_BROKER_LIST
 audit.pulsar.topic=persistent://public/default/inlong-audit
 audit.pulsar.consumer.sub.name=sub-audit
 
-# audit tube config (optional)
-audit.tube.masterlist=127.0.0.1:8000
+# audit tube config (optional)，将TUBE_LIST替换为TubeMQ集群的master地址
+audit.tube.masterlist=TUBE_LIST
 audit.tube.topic=inlong-audit
 audit.tube.consumer.group.name=inlong-audit-consumer
 

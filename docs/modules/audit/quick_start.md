@@ -8,7 +8,7 @@ All deploying files at `inlong-audit` directory, if you use MySQL to store audit
 ### Configure MessageQueue
 You can choose Apache Pulsar or InLong TubeMQ as your MessageQueue service:
 
-- If using Pulsar, the configuration file is `conf/audit-proxy-pulsar.conf`
+- If using Pulsar, the configuration file is `conf/audit-proxy-pulsar.conf`. Replace **`PULSAR_BROKER_LIST`** with the service url of your Pulsar cluster.
 
 ```Shell
 agent1.sources.tcp-source.host = 0.0.0.0
@@ -19,7 +19,7 @@ agent1.sinks.pulsar-sink-msg2.pulsar_server_url = pulsar://PULSAR_BROKER_LIST
 agent1.sinks.pulsar-sink-msg2.topic = persistent://public/default/inlong-audit
 ```
 
-- If using TubeMQ, the configuration file is `conf/audit-proxy-tube.conf`
+- If using TubeMQ, the configuration file is `conf/audit-proxy-tube.conf`. Replace **`TUBE_LIST`** with the master address of your TubeMQ cluster.
 
 ```Shell
 agent1.sources.tcp-source.host = 0.0.0.0
@@ -47,13 +47,13 @@ audit.config.proxy.type=pulsar
 # store.server: mysql / elasticsearch 
 audit.config.store.mode=mysql
 
-# audit pulsar config (optional)
-audit.pulsar.server.url=pulsar://127.0.0.1:6650
+# audit pulsar config (optional), replace PULSAR_BROKER_LIST with your Pulsar service url
+audit.pulsar.server.url=pulsar://PULSAR_BROKER_LIST
 audit.pulsar.topic=persistent://public/default/inlong-audit
 audit.pulsar.consumer.sub.name=sub-audit
 
-# audit tube config (optional)
-audit.tube.masterlist=127.0.0.1:8000
+# audit tube config (optional), replace TUBE_LIST with your TubeMQ master address
+audit.tube.masterlist=TUBE_LIST
 audit.tube.topic=inlong-audit
 audit.tube.consumer.group.name=inlong-audit-consumer
 
