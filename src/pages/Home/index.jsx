@@ -128,7 +128,7 @@ export default function() {
               language === 'zh-CN' && <div>
                 <h3>任何问题</h3>
                 <p>
-                  功能请求、提问或报告错误? 随时<a href="https://the-asf.slack.com/archives/C01QAG6U00L" target="_blank">打开讨论</a>或者<a
+                  功能请求、提问或报告错误? 随时<a href="https://the-asf.slack.com/archives/C01QAG6U00L" target="_blank">GitHub Discussions</a>讨论或者<a
                     href="https://github.com/apache/incubator-inlong/issues" target="_blank">提交问题</a>。
                 </p>
               </div>
@@ -137,8 +137,8 @@ export default function() {
               language === 'en' && <div>
                 <h3>Any questions</h3>
                 <p>
-                  Features request, ask questions or report bugs? Feel free to <a href="https://the-asf.slack.com/archives/C01QAG6U00L" target="_blank">open a discussion</a> or <a
-                    href="https://github.com/apache/incubator-inlong/issues" target="_blank">file a issue</a>.
+                  Features request, ask questions or report bugs? Feel free to <a href="https://github.com/apache/incubator-inlong/discussions" target="_blank">GitHub Discussion</a> or <a
+                    href="https://github.com/apache/incubator-inlong/issues" target="_blank">submit an issue</a>.
                 </p>
               </div>
             }
@@ -213,7 +213,7 @@ export default function() {
               language === 'zh-CN' && <div>
                 <h3>微信互动</h3>
                 <p>
-                  欢迎大家关注微信公众号 <a href="https://github.com/apache/incubator-inlong-website/blob/master/static/img/apache-inlong-wechat.jpg" target="_blank">Apache InLong</a> 。
+                    欢迎大家关注微信公众号 <a href="https://github.com/apache/incubator-inlong-website/blob/master/static/img/apache-inlong-wechat.jpg" target="_blank"> Apache InLong </a>。
                 </p>
               </div>
             }
@@ -225,6 +225,32 @@ export default function() {
                 </p>
               </div>
             }
+          </div>
+          <div className="connect-div">
+              <div className="connect-div-img">
+                <svg t="1647868339633" className="icon" viewBox="0 0 1024 1024" version="1.1"
+                     xmlns="http://www.w3.org/2000/svg" p-id="1775" width="48" height="48">
+                  <path
+                      d="M1024 194.56a420.352 420.352 0 0 1-120.832 33.28 210.432 210.432 0 0 0 92.16-116.224 422.4 422.4 0 0 1-133.632 51.2A209.92 209.92 0 0 0 499.2 307.2a211.968 211.968 0 0 0 5.632 47.616 596.48 596.48 0 0 1-433.152-220.16 208.896 208.896 0 0 0-28.672 105.472A204.8 204.8 0 0 0 132.096 414.72C97.28 413.696 32.256 404.48 32.256 388.608v2.56a214.528 214.528 0 0 0 173.056 204.8 193.024 193.024 0 0 1-51.2 7.168 199.68 199.68 0 0 1-38.4-3.584 210.944 210.944 0 0 0 196.608 145.92A420.864 420.864 0 0 1 51.2 836.608a438.784 438.784 0 0 1-51.2-3.072 594.944 594.944 0 0 0 322.048 94.208A593.408 593.408 0 0 0 921.6 330.24v-27.136a427.008 427.008 0 0 0 102.4-108.544z m0 0"
+                      fill="#ffffff" p-id="1776"></path>
+                </svg>
+              </div>
+              {
+                  language === 'zh-CN' && <div>
+                      <h3>推特互动</h3>
+                      <p>
+                          欢迎大家关注Twitter <a href="https://github.com/apache/incubator-inlong-website/blob/master/static/img/apache-inlong-wechat.jpg" target="_blank">@ApacheInlong</a> 。
+                      </p>
+                  </div>
+              }
+              {
+                  language === 'en' && <div>
+                      <h3>Follow us on Twitter</h3>
+                      <p>
+                          Follow the latest developments of the project on <a href="https://twitter.com/ApacheInlong" target="_blank">@ApacheInlong</a> .
+                      </p>
+                  </div>
+              }
           </div>
         </div>
       </section>
