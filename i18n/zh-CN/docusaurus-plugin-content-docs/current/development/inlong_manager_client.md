@@ -168,9 +168,6 @@ public class InlongManagerClientHiveSinkTest {
         inlongGroupConf.setSortBaseConf(sortBaseConf);
         sortBaseConf.setServiceUrl(FLINK_URL);
         Map<String, String> map = new HashMap<>(16);
-        map.put(InlongGroupSettings.CLUSTER_ID, "cluster-3pcta51b");
-        map.put(InlongGroupSettings.SECRET_KEY, "atwiEVbR0IK5aomTt2uWrviGXXGjvqUr");
-        map.put(InlongGroupSettings.SECRET_ID, "AKIDA8qJVP3PUJq77qITO2PVKtCEzUifKjri");
         map.put(InlongGroupSettings.REGION, FLINK_REGION);
         sortBaseConf.setProperties(map);
         //enable zk
@@ -372,9 +369,6 @@ public class InlongManagerClientKafkaSinkTest {
         sortBaseConf.setServiceUrl(FLINK_URL);
         Map<String, String> map = new HashMap<>(16);
         // cluster-3pcta51b
-        map.put(InlongGroupSettings.CLUSTER_ID, "cluster-3pcta51b");
-        map.put(InlongGroupSettings.SECRET_KEY, "atwiEVbR0IK5aomTt2uWrviGXXGjvqUr");
-        map.put(InlongGroupSettings.SECRET_ID, "AKIDA8qJVP3PUJq77qITO2PVKtCEzUifKjri");
         map.put(InlongGroupSettings.REGION, FLINK_REGION);
         map.put(Constants.INLONG_SORT_COS_BUCKET, "pre-test-1257305158");
         map.put(Constants.INLONG_SORT_COS_RESOURCENAME, "sort-single-tenant-1.1.0-incubating-SNAPSHOT.jar");
