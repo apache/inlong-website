@@ -6,10 +6,10 @@ title: Configuration
 
 The TubeMQ server includes two modules for the Master and the Broker. The Master also includes a Web front-end module for external page access (this part is stored in the resources). Considering the actual deployment, two modules are often deployed in the same machine, TubeMQ. The contents of the three parts of the two modules are packaged and delivered to the operation and maintenance; the client does not include the lib package of the server part and is delivered to the user separately.
 
-Master and Broker use the ini configuration file format, and the relevant configuration files are placed in the master.ini and broker.ini files in the tubemq-server-3.9.0/conf/ directory:
+Master and Broker use the ini configuration file format, and the relevant configuration files are placed in the master.ini and broker.ini files in the tubemq-server-x.y.z/conf/ directory:
 ![](img/configure/conf_ini_pos.png)
 
-Their configuration is defined by a set of configuration units. The Master configuration consists of four mandatory units: [master], [zookeeper], [bdbStore], and optional [tlsSetting]. The Broker configuration is mandatory. Broker], [zookeeper] and optional [tlsSetting] consist of a total of 3 configuration units; in actual use, you can also combine the contents of the two configuration files into one ini file.
+Their configuration is defined by a set of configuration units. The Master configuration consists of four mandatory units: [master], required but optional in [meta_zookeeper], [meta_bdb], and optional [tlsSetting]. The Broker configuration is mandatory. Broker], [zookeeper] and optional [tlsSetting] consist of a total of 3 configuration units; in actual use, you can also combine the contents of the two configuration files into one ini file.
 
 In addition to the back-end system configuration file, the Master also stores the Web front-end page module in the resources. The root directory velocity.properties file of the resources is the Web front-end page configuration file of the Master.
 ![](img/configure/conf_velocity_pos.png)
@@ -47,27 +47,28 @@ In addition to the back-end system configuration file, the Master also stores th
 | startConsumeAuthenticate      | no       | boolean | Whether to enable consumer user authentication, the default is false |
 | startConsumeAuthorize         | no       | boolean | Whether to enable consumer consumption authorization authentication, the default is false |
 | maxGroupBrokerConsumeRate     | no       | int     | The maximum ratio of the number of clustered brokers to the number of members in the consumer group. The default is 50. In a 50-kerrow cluster, one consumer group is allowed to start at least one client. |
-| metaDataPath                  | no       | string  | Metadata storage path. Absolute, or relative to TubeMQ base directory (`$BASE_DIR`). Optional field, default is "var/meta_data". Should be the same as "[bdbStore].bdbEnvHome" if upgrade from version prior `0.5.0`. |
 
-[zookeeper]
->The corresponding Tom MQ cluster of the Master stores the information about the ZooKeeper cluster of the Offset. The required unit has a fixed value of "[zookeeper]".
+[meta_zookeeper]
+>Replication configuration for metadata storage replication and multi-node hot standby between Masters. The required unit has a fixed value of "[meta_zookeeper]"，this part and [meta_bdb] can choose one.
 
-| Name                  | Required                          | Type                          | Description                                                  |
-| --------------------- |  -----------------------------|  ----------------------------- | ------------------------------------------------------------ |
-| zkServerAddr          | no       | string | Zk server address, optional configuration, defaults to "localhost:2181" |
-| zkNodeRoot            | no       | string | The root path of the node on zk, optional configuration. The default is "/tube". |
-| zkSessionTimeoutMs    | no       | long   | Zk heartbeat timeout, in milliseconds, default 30 seconds    |
-| zkConnectionTimeoutMs | no       | long   | Zk connection timeout, in milliseconds, default 30 seconds   |
-| zkSyncTimeMs          | no       | long   | Zk data synchronization time, in milliseconds, default 5 seconds |
-| zkCommitPeriodMs      | no       | long   | The interval at which the Master cache data is flushed to zk, in milliseconds, default 5 seconds. |
+| Name                  | Required                          | Type                          | Description                                                                                                                                                                                                         |
+| --------------------- |  -----------------------------|  ----------------------------- |---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| zkServerAddr          | no       | string | Zk server address, optional configuration, defaults to "localhost:2181"                                                                                                                                             |
+| zkNodeRoot            | no       | string | The root path of the node on zk, optional configuration. The default is "/tube".                                                                                                                                    |
+| zkSessionTimeoutMs    | no       | long   | Zk heartbeat timeout, in milliseconds, default 30 seconds                                                                                                                                                           |
+| zkConnectionTimeoutMs | no       | long   | Zk connection timeout, in milliseconds, default 30 seconds                                                                                                                                                          |
+| zkSyncTimeMs          | no       | long   | Zk data synchronization time, in milliseconds, default 5 seconds                                                                                                                                                    |
+| zkCommitPeriodMs      | no       | long   | The interval at which the Master cache data is flushed to zk, in milliseconds, default 5 seconds.                                                                                                                   |
+| zkMasterCheckPeriodMs | no       | long   | The time interval for the node to check whether it is the Master role, in milliseconds, the default is 5 seconds. |
 
-[replication]
->Replication configuration for metadata storage replication and multi-node hot standby between Masters. The required unit has a fixed value of "[replication]".
+[meta_bdb]
+>Replication configuration for metadata storage replication and multi-node hot standby between Masters. The required unit has a fixed value of "[meta_bdb]"，this part and [meta_zookeeper] can choose one.
 
 | Name                    | Required                          | Type                          | Description                                                  |
 | ----------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
 | repGroupName            | no       | string | Cluster name, the primary and backup master node values must be the same. Optional field, default is "tubemqMasterGroup". |
 | repNodeName             | yes      | string | The name of the master node in the cluster. The value of each node MUST BE DIFFERENT. Required field. |
+| metaDataPath            | no       | string  | Metadata storage path. Absolute, or relative to TubeMQ base directory (`$BASE_DIR`). Optional field, default is "var/meta_data". |
 | repNodePort             | no       | int    | Node communication port, optional field, default is 9001. |
 | repHelperHost           | no       | string | Primary node when the master cluster starts, optional field, default is "127.0.0.1:9001". |
 | metaLocalSyncPolicy     | no       | int    | Replication data node local storage mode, the value range of this field is [1, 2, 3]. The default is 1: 1 is data saved to disk, 2 is data only saved to memory, and 3 is only data is written to file system buffer without flush. |
@@ -76,29 +77,12 @@ In addition to the back-end system configuration file, the Master also stores th
 | repStatusCheckTimeoutMs | no       | long   | Replication status check interval, optional field, in milliseconds, defaults to 10 seconds. |
 
 **Notice**:
-- Based on the need of Docker containerization, the [replication] above 3 parameters in the master.ini file are all the default settings used, and the actual information of the Master node needs to be configured when used in actual networking.
+- Based on the need of Docker containerization, the [meta_bdb] above 3 parameters in the master.ini file are all the default settings used, and the actual information of the Master node needs to be configured when used in actual networking.
 - The IP information of all master nodes should be mapped to the hostName in the hosts configuration file, such as "10.10.11.205 10-10-11-205"
 - It is necessary to ensure the clock synchronization between all master nodes
 
 
-[bdbStore]
->Deprecated, config in "[replication]" instead.
-
->Master configuration of the BDB cluster to which the master belongs. The master uses BDB for metadata storage and multi-node hot standby. The required unit has a fixed value of "[bdbStore]".
-
-| Name                    | Required                          | Type                          | Description                                                  |
-| ----------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
-| bdbRepGroupName         | yes      | string | BDB cluster name, the primary and backup master node values must be the same, required field |
-| bdbNodeName             | yes      | string | The name of the node of the master in the BDB cluster. The value of each BDB node must not be repeated. Required field. |
-| bdbNodePort             | no       | int    | BDB node communication port, optional field, default is 9001 |
-| bdbEnvHome              | yes      | string | BDB data storage path, required field                        |
-| bdbHelperHost           | yes      | string | Primary node when the BDB cluster starts, required field     |
-| bdbLocalSync            | no       | int    | BDB data node local storage mode, the value range of this field is [1, 2, 3]. The default is 1: 1 is data saved to disk, 2 is data only saved to memory, and 3 is only data is written to file system buffer. But not brush |
-| bdbReplicaSync          | no       | int    | BDB data node synchronization save mode, the value range of this field is [1, 2, 3]. The default is 1: 1 is data saved to disk, 2 is data only saved to memory, and 3 is only data is written to file system buffer. But not brush |
-| bdbReplicaAck           | no       | int    | The response policy of the BDB node data synchronization, the value range of this field is [1, 2, 3], the default is 1: 1 is more than 1/2 majority is valid, 2 is valid for all nodes, 3 is not Need node response |
-| bdbStatusCheckTimeoutMs | no       | long   | BDB status check interval, optional field, in milliseconds, defaults to 10 seconds |
-
-[tlsSetting]
+- [tlsSetting]
 >The Master uses TLS to encrypt the transport layer data. When TLS is enabled, the configuration unit provides related settings. The optional unit has a fixed value of "[tlsSetting]".
 
 | Name                  | Required                          | Type                          | Description                                                  |
