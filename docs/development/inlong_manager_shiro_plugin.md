@@ -8,7 +8,7 @@ The Apache Shiro framework is used in the inlong manager to realize the function
 
 ## Dependency
 - Add Maven Dependency
-```java
+```xml
 <dependency>
         <groupId>org.apache.inlong</groupId>
         <artifactId>manager-common</artifactId>
