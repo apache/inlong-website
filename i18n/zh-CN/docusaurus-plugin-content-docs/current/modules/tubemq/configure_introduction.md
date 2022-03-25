@@ -12,6 +12,11 @@ Master与Broker采用ini配置文件格式，相关配置文件分别放置在tu
 
 他们的配置是按照配置单元集合来定义的，Master配置由必选的[master]、可选择的必选[meta_zookeeper]、[meta_bdb]和可选的[tlsSetting]一共4个配置单元组成，Broker配置由必选的[broker]、[zookeeper]和可选的[tlsSetting]一共3个配置单元组成；实际使用时，大家也可将两个配置文件内容合并放置为一个ini文件。
 
+**注意**：
+- 由于Apache依赖包的LICENSE问题，从1.1.0版本开始TubeMQ发布的包不再包含BDB包；
+- 1.1.0版本开始，元数据缺省采用ZooKeeper存储，可选支持BDB，1.1.0版本需要手工设置master.ini配置文件，增加[meta_bdb]配置单元才能支持BDB存储。
+- 若业务使用BDB组件，需要自行下载com.sleepycat.je-7.3.7.jar包，要不会系统运行时会报“ java.lang.ClassNotFoundException: com.sleepycat.je.ReplicaConsistencyPolicy”错误；
+
 Master除了后端系统配置文件外，还在resources里存放了Web前端页面模块，resources的根目录velocity.properties文件为Master的Web前端页面配置文件。
 
 ![](img/configure/conf_velocity_pos.png)

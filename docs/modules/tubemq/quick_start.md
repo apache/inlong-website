@@ -9,11 +9,11 @@ There're two components in the cluster: **Master** and **Broker**. Master and Br
 can be deployed on the same server or different servers. In this example, we setup our cluster
 like this, and all services run on the same node. Zookeeper should be setup in your environment also.
 
-| Role | TCP Port | TLS Port | Web Port | Comment |
-| ---- | -------- | -------- | -------- | ------- |
-| Master | 8099 | 8199 | 8080 | Meta data is stored at /stage/meta_data |
-| Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data |
-| Zookeeper | 2181 |  |  | Offset is stored at /tubemq |
+| Role | TCP Port | TLS Port | Web Port | Comment                                                              |
+| ---- | -------- | -------- | -------- |----------------------------------------------------------------------|
+| Master | 8099 | 8199 | 8080 | Meta data is stored in ZooKeeper /tubemq                             |
+| Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data                                 |
+| Zookeeper | 2181 |  |  | Master metadata or Broker offset information are stored at /tubemq |
 
 ### 1.2 Prerequisites
 - ZooKeeper Cluster
@@ -36,7 +36,6 @@ You can change configurations in `conf/master.ini` according to cluster informat
 hostName=YOUR_SERVER_IP                  // replaced with your server IP
 port=8099
 webPort=8080
-metaDataPath=/stage/meta_data
 ```
 
 - Access Authorization Token
@@ -44,18 +43,20 @@ metaDataPath=/stage/meta_data
 confModAuthToken=abc                    // for configuring Web Resources\API etc
 ```
 
-- ZooKeeper Cluster
+- meta_zookeeper Cluster
 ```ini
-[zookeeper]                             // Master and Broker in the same cluster must use the same zookeeper environment and have the same configuration
+[meta_zookeeper]                        // Masters in the same cluster must use the same zookeeper environment and have the same configuration
 zkNodeRoot=/tubemq
 zkServerAddr=localhost:2181             // multi zookeeper addresses can separate with ","
 ```
 
-- Replication Strategy 
+- meta_bdb Strategy(Optional)
+  **Note**: Due to the LICENSE problem of Apache dependency packages, the packages released by TubeMQ from version 1.1.0 no longer contain BDB packages. If you need BDB to store metadata, you need to download com.sleepycat.je-7.3.7 by yourself. .jar package, otherwise a "java.lang.ClassNotFoundException: com.sleepycat.je.ReplicaConsistencyPolicy" error will be reported when the system is running.
 ```ini
-[replication]
+[meta_bdb]
 repGroupName=tubemqGroup1                // The Master of the same cluster must use the same group name, and the group names of different clusters must be different
 repNodeName=tubemqGroupNode1             // The master node names of the same cluster must be different names
+metaDataPath=/stage/meta_data
 repHelperHost=FIRST_MASTER_NODE_IP:9001  // helperHost is used for building HA master.
 ```
 
@@ -71,7 +72,7 @@ the introduction of availability level.
 | Minimum | 1 master | After the master crashed, there's no affect on existing producer and consumer. |
 
 **Notice**:
-- Based on the need of Docker containerization, the [replication] above 3 parameters in the master.ini file are all the default settings used, and the actual information of the Master node needs to be configured when used in actual networking.
+- Based on the need of Docker containerization, the [meta_zookeeper] or [meta_bdb] above 3 parameters in the master.ini file are all the default settings used, and the actual information of the Master node needs to be configured when used in actual networking.
 - The IP information of all master nodes should be mapped to the hostName in the hosts configuration file, such as "192.168.0.1 192-168-0-1"
 - It is necessary to ensure the clock synchronization between all master nodes
 
