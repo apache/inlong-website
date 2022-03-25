@@ -11,6 +11,11 @@ Master and Broker use the ini configuration file format, and the relevant config
 
 Their configuration is defined by a set of configuration units. The Master configuration consists of four mandatory units: [master], required but optional in [meta_zookeeper], [meta_bdb], and optional [tlsSetting]. The Broker configuration is mandatory. Broker], [zookeeper] and optional [tlsSetting] consist of a total of 3 configuration units; in actual use, you can also combine the contents of the two configuration files into one ini file.
 
+**Note**:
+- Due to the LICENSE problem of the Apache dependency package, the package released by TubeMQ from version 1.1.0 no longer contains the BDB package;
+- Starting from version 1.1.0, the metadata is stored in ZooKeeper by default, and BDB is optionally supported. In version 1.1.0, the master.ini configuration file needs to be manually set, and the [meta_bdb] configuration unit can be added to support BDB storage.
+- If the business uses the BDB component, you need to download the com.sleepycat.je-7.3.7.jar package by yourself, otherwise the system will report the error "java.lang.ClassNotFoundException: com.sleepycat.je.ReplicaConsistencyPolicy";
+
 In addition to the back-end system configuration file, the Master also stores the Web front-end page module in the resources. The root directory velocity.properties file of the resources is the Web front-end page configuration file of the Master.
 ![](img/configure/conf_velocity_pos.png)
 

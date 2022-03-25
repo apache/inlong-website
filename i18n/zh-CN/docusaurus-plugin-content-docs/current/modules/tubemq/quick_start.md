@@ -7,11 +7,11 @@ sidebar_position: 1
 ### 1.1 配置示例
 TubeMQ 集群包含有两个组件: **Master** 和 **Broker**. Master 和 Broker 可以部署在相同或者不同的节点上，依照业务对机器的规划进行处理。我们通过如下3台机器搭建有2台Master的生产、消费的集群进行配置示例：
 
-| 所属角色 | TCP端口 | TLS端口 | WEB端口 | 备注 |
-| --- | --- | --- | --- | --- |
-| Master | 8099 | 8199 | 8080 | 元数据存储在`/stage/meta_data` |
-| Broker | 8123 | 8124 | 8081 | 消息储存在`/stage/msg_data` |
-| ZooKeeper | 2181 |  |  | Offset储存在根目录`/tubemq` |
+| 所属角色 | TCP端口 | TLS端口 | WEB端口 | 备注                                       |
+| --- | --- | --- | --- |------------------------------------------|
+| Master | 8099 | 8199 | 8080 | 元数据存储在ZooKeeper的`/tubemq`目录              |
+| Broker | 8123 | 8124 | 8081 | 消息储存在`/stage/msg_data`                   |
+| ZooKeeper | 2181 |  |  | 存储Master元数据及Broker的Offset内容，根目录`/tubemq` |
 
 ### 1.2 准备工作
 - ZooKeeper集群
@@ -35,7 +35,6 @@ TubeMQ 集群包含有两个组件: **Master** 和 **Broker**. Master 和 Broker
 hostName=YOUR_SERVER_IP                   // 替换为当前主机IP
 port=8099
 webPort=8080
-metaDataPath=/stage/meta_data
 ```
 
 - 访问授权Token
@@ -43,18 +42,20 @@ metaDataPath=/stage/meta_data
 confModAuthToken=abc                     // 该token用于页面配置、API调用等
 ```
 
-- ZooKeeper集群地址
+- 配置meta_zookeeper策略
 ```ini
-[zookeeper]                              // 同一个集群里Master和Broker必须使用同一套zookeeper环境，且配置一致
+[meta_zookeeper]                              // 同一个集群里Master必须使用同一套zookeeper环境，且配置一致
 zkNodeRoot=/tubemq
 zkServerAddr=localhost:2181              // 指向zookeeper集群，多个地址逗号分开
 ```
 
-- 配置Replication策略
+- 配置meta_bdb策略（可选）
+  **注意**：由于Apache依赖包的LICENSE问题，从1.1.0版本开始TubeMQ发布的包不再包含BDB包，如果需要BDB存储元数据，业务需要自行下载com.sleepycat.je-7.3.7.jar包，要不系统运行时会报“ java.lang.ClassNotFoundException: com.sleepycat.je.ReplicaConsistencyPolicy”错误。
 ```ini
-[replication]
+[meta_bdb]
 repGroupName=tubemqGroup1                // 同一个集群的Master必须要用同一个组名，且不同集群的组名必须不同 
 repNodeName=tubemqGroupNode1             // 同一个集群的master节点名必须是不同的名称
+metaDataPath=/stage/meta_data
 repHelperHost=FIRST_MASTER_NODE_IP:9001  // helperHost用于创建master集群，一般配置第一个master节点ip
 ```
 
@@ -67,7 +68,7 @@ repHelperHost=FIRST_MASTER_NODE_IP:9001  // helperHost用于创建master集群�
 | 低 | 1 master | 主节点崩溃后，对现有的生产者和消费者没有影响。 |
 
 **注意**：
-- 基于Docker容器化的需要，master.ini文件里对[replication]如上3个参数部分都是使用的缺省设置，在实际组网使用时需要以Master节点真实信息配置
+- 基于Docker容器化的需要，master.ini文件里对[meta_zookeeper] 或 [meta_bdb] 如上3个参数部分都是使用的缺省设置，在实际组网使用时需要以Master节点真实信息配置
 - Master所有节点的IP信息要在hosts配置文件里构造IP与hostName映射关系，如类似“192.168.0.1 192-168-0-1”
 - 需保证Master所有节点之间的时钟同步
 
