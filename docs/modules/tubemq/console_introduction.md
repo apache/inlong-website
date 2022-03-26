@@ -6,8 +6,6 @@ title: Console Introduction
 
 The TubeMQ console is a simple operation tool for managing the TubeMQ cluster, including the Master, Broker in the cluster, and Topic metadata deployed on the Broker and other operational data and operations related to the TubeMQ system. It should be noted that the functions provided by the TubeMQ front desk currently provided do not cover the scope of functions provided by TubeMQ. You can refer to "TubeMQ HTTP Access Interface Definition.xls" to define your own management and control front desk that meets your business needs. The access address of the TubeMQ control console is http://portal:webport
 
-![](img/console/1568169770714.png)
-
 Among them, the portal parameter is the IP address of any Master or backup Master in the cluster, and the webport parameter is the web port of the configured Master.
 
 
@@ -19,11 +17,7 @@ The console has 3 parts: consumption query, configuration management, and cluste
 
 Click the consumption query, we will see the following list information, which is the registered consumer group information in the current TubeMQ cluster, including the specific consumer group name, the topic of consumption, and the summary information about the total number of consumer partitions in the group, as follows :
 
-![](img/console/1568169796122.png)
-
 Click on the page and you can see the consumer members in the selected consumer group, and the Broker and Partition information of the corresponding consumer, as shown in the following figure:
-
-![](img/console/1568169806810.png)
 
 This page can be used for us to query, enter the topic or consumer group name, you can quickly confirm which consumer groups in the system are consuming topics, and what the consumption goals of each consumer group are.
 
@@ -31,18 +25,13 @@ This page can be used for us to query, enter the topic or consumer group name, y
 
 Cluster management mainly manages the HA of the Master. On this page, we can see the current master's various nodes and node status. At the same time, we can change the active and standby status of the nodes through the "switch" operation:
 
-![](img/console/1568169823675.png)
-
 ### 2.3 Configuration Management
 
 The configuration management page includes not only the management of Broker and Topic metadata but also the online release and offline operations of Broker and Topic. It has two meanings. For example, the Broker list displays the configured Broker metadata in the current cluster. , Including Broker record information that is in draft, online, and offline state:
 
-![](img/console/1568169839931.png)
-
 From the page information, we can also see that in addition to Broker’s record information, there is also Broker’s management information in the cluster, including whether it is online, whether it is in command processing, whether it is readable, whether it is writable, and whether the configuration is done Change, whether the changed configuration information has been loaded.
 
 Click the Add button, and the pop-up box will be as follows. This indicates the metadata information of the broker to be added, including BrokerID, BrokerIP, BrokerPort, and the default configuration information of the Topic deployed in the Broker. For details of the related fields, see "TubeMQ HTTP API definition.xls ":
-![](img/console/1568169851085.png)
 
 All TubeMQ console change operations will require the input of the operation authorization code, which is defined by the operation and maintenance through the confModAuthToken field of the master configuration file master.ini: if you know the password of this cluster, you can proceed For this operation, for example, if you are an administrator, you are an authorized person, or you can log in to the master machine to get the password, you are considered to be authorized to operate this function.
 
@@ -56,29 +45,17 @@ The TubeMQ cluster manages the Broker in accordance with the state machine. As s
 
 After adding these records to the TubeMQ console, we can deploy and start the Broker node. At this time, the page of the Tube cluster environment will display the running status of the node. If it is in the unregistered state, as shown in the figure below, it means that the node registration has failed. Check the log on the corresponding broker node to confirm the reason. At present, this part is very mature, the error message will prompt the complete information, and you can directly deal with the problem according to the prompt.
 
-![](img/console/1568169863402.png)
-
 2. **Topic metadata information needs to be added and deleted through the topic_list page:**
 
 As shown in the figure below, if the business finds that the topic that it consumes is not on the TubeMQ console, it needs to operate directly on the TubeMQ console:
 
-![](img/console/1568169879529.png)
-
 When we add a topic through the topic_list page in the above figure, the following box will pop up:
-
-![](img/console/1568169889594.png)
 
 After clicking Confirm, there will be a list of Brokers that choose to deploy the added Topic, and confirm the operation after selecting the deployment scope:
 
-![](img/console/1568169900634.png)
-
 After completing the operation of adding a topic, we also need to reload the Broker that has made configuration changes, as shown in the following figure:
 
-![](img/console/1568169908522.png)
-
 The topic can only be used externally after the reload is completed. We will find that the following configuration changes have changed status after the restart is completed:
-
-![](img/console/1568169916091.png)
 
 Now, we can produce and consume the topic.
 
@@ -87,8 +64,6 @@ Now, we can produce and consume the topic.
 ### 4.1 How to configure Topic:
 
 After you click on any topic in the Topic list, the following box will pop up, which contains the related metadata information of the topic, which determines how many partitions the topic has set on the Broker, the current read and write states, and the frequency of data flashing. Information such as data aging cycle and time:
-
-![](img/console/1568169925657.png)
 
 This information is directly defined by the system administrator after setting the default values. Generally, it will not change. If the business has special needs, such as increasing the parallelism of consumption and increasing the partition or want to reduce the frequency of flashing, how to operate? As shown in the figure below, the meaning and function of the fields on each page are as follows:
 
@@ -114,15 +89,11 @@ This information is directly defined by the system administrator after setting t
 
 For the detail please see "Tube MQ HTTP API Definition.xls", which has a very clear definition. You can make changes through the **Modify** button in the upper right corner of the page, and after confirming, the following box will pop up:
 
-![](img/console/1568169946683.png)
-
 Its steps are:
 - a. Select the set of Broker nodes that participate in the modification of Topic metadata;
 - b. Provide the authorization information code for the modification operation.
 
 ** Special Notice: You need to note that after entering the authorization code to modify, the data change will not take effect until it is refreshed. At the same time, the effective Broker must be operated on a proportional basis. **
-
-![](img/console/1568169954746.png)
 
 ### 4.2 Precautions for Topic Change:
 
