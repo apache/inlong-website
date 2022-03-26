@@ -105,22 +105,18 @@ zkServerAddr=localhost:2181             // multi zookeeper addresses can separat
 ```
 
 ### 1.5 Start Master
-Please go to the `bin` folder and run this command to start
+- Please go to the `bin` folder and run this command to start
 the master service.
 ```bash
 ./tubemq.sh master start
 ```
 
-You should be able to access `http://your-master-ip:8080` to see the
+- You should be able to access `http://your-master-ip:8080` to see the
 web GUI now.
 
-![TubeMQ Console GUI](img/tubemq-console-gui.png)
 
 #### 1.5.1 Configure Broker Metadata
 Before we start a broker service, we need to configure it on master web GUI first. Go to the `Broker List` page, click `Add Single Broker`, and input the new broker information.
-
-![Add Broker 1](img/tubemq-add-broker-1.png)
-
 In this example, we only need to input broker IP and authToken:
 1. broker IP: broker server ip
 2. authToken: A token pre-configured in the `conf/master.ini` file. Please check the
@@ -128,46 +124,32 @@ In this example, we only need to input broker IP and authToken:
 
 Click the online link to activate the new added broker.
 
-![Add Broker 2](img/tubemq-add-broker-2.png)
 
 ### 1.6 Start Broker
-Please go to the `bin` folder and run this command to start the broker service
+- Please go to the `bin` folder and run this command to start the broker service
 ```bash
 ./tubemq.sh broker start
 ```
 
-Refresh the GUI broker list page, you can see that the broker now is registered.
+- Refresh the GUI broker list page, you can see that the broker now is registered.
 
-After the sub-state of the broker changed to `idle`, we can add topics to that broker.
+- After the sub-state of the broker changed to `idle`, we can add topics to that broker.
 
-![Add Broker 3](img/tubemq-add-broker-3.png)
 
 ## 2 Quick Start
 ### 3.1 Add Topic
-We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
+- 3.1.1 We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
 topic list page and click the add new topic button
 
-![Add Topic 1](img/tubemq-add-topic-1.png)
+- 3.1.2 Then select the brokers which you want to deploy the topics to.
 
-Then select the brokers which you want to deploy the topics to.
-
-![Add Topic 5](img/tubemq-add-topic-5.png)
-
-We can see the publish and subscribe state of the new added topic is still grey. We need
+- 3.1.3 We can see the publish and subscribe state of the new added topic is still grey. We need
 to go to the broker list page to reload the broker configuration.
 
-![Add Topic 6](img/tubemq-add-topic-6.png)
-
-![Add Topic 2](img/tubemq-add-topic-2.png)
-
-When the broker sub-state changed to idle, go to the topic list page. We can see
+- 3.1.4 When the broker sub-state changed to idle, go to the topic list page. We can see
 that the topic publish/subscribe state is active now.
 
-![Add Topic 3](img/tubemq-add-topic-3.png)
-
-![Add Topic 4](img/tubemq-add-topic-4.png)
-
-Now we can use the topic to send messages.
+- 3.1.5 Now we can use the topic to send messages.
 
 ### 2.2 Run Example
 Now we can use `demo` topic which created before to test our cluster.
