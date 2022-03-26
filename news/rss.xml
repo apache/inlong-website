@@ -7,6 +7,7 @@
         <lastBuildDate>Fri, 26 Nov 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
         <item>
             <title><![CDATA[Apache InLong welcomes new Committers]]></title>
             <link>https://inlong.apache.org/news/2021/11/26/new-committer-join</link>
