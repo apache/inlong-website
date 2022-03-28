@@ -29,6 +29,7 @@ At first, decompress the archive file, execute the shell file "./bin/sort-start.
 ## SortClusterConfig
 - Get SortClusterConfig from the file:SortClusterConfig.conf in classpath, but it can not support online updating.
 - Get SortClusterConfig from InlongManager URL, but it can support online updating.
+
 |  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
 |clusterName   | Y | NA  |  inlong-sort-standalone cluster id |
