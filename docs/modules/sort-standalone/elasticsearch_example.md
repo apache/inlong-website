@@ -118,9 +118,9 @@ sortSourceConfig.QueryConsumeConfigType=file
 - Get cluster configuration data from InlongManager URL, it can support online updating.
 
 |  Parameter | Required  |Type | DefaultValue  |Remark   |
-| ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
 |clusterName   | Y |String | NA  |  inlong-sort-standalone cluster id |
-|sortTasks   | Y  | JsonArray<SortTaskConfig> |NA  | Sort task list  |
+|sortTasks   | Y  | JsonArray&lt;SortTaskConfig&gt; |NA  | Sort task list  |
 
 ### Modify configuration: SortTaskConfig
 
@@ -166,29 +166,29 @@ sortSourceConfig.QueryConsumeConfigType=file
 ### Modify configuration: sid_es_v3.conf
 
 |  Parameter | Required  |Type | DefaultValue  |Remark   |
-| ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
 |sortClusterName   | Y |String | NA  |  inlong-sort-standalone cluster id |
 |sortTaskId   | Y  | String |NA  | Sort task name  |
-|cacheZones   | Y  | JsonObject<String, JsonObject> |NA  | Cache cluster list, Map<cacheClusterName, CacheCluster>  |
+|cacheZones   | Y  | JsonObject&lt;String, JsonObject&gt; |NA  | Cache cluster list, Map&lt;cacheClusterName, CacheCluster&gt;  |
 
 ### Modify configuration: CacheCluster
 
 |  Parameter | Required  |Type | DefaultValue  |Remark   |
-| ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
 |zoneName   | Y |String | NA  |  cache cluster name |
 |zoneType   | Y  | String |NA  | [pulsar,tube,kafka]  |
 |serviceUrl   | Y  | String |NA  | Pulsar serviceUrl or Kafka broker list  |
 |authentication   | Y  | String |NA  | Pulsar authentication  |
-|cacheZoneProperties   | N  | Map<String,String> |NA  | Cache consumer configuration  |
-|topics | N | List<Topic> |NA | Topic list of Cache consumer |
+|cacheZoneProperties   | N  | Map&lt;String,String&gt; |NA  | Cache consumer configuration  |
+|topics | N | List&lt;Topic&gt; |NA | Topic list of Cache consumer |
 
 ### Modify configuration: Topic
 
 |  Parameter | Required  |Type | DefaultValue  |Remark   |
-| ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
 |topic   | Y |String | NA  |  cache topic name |
 |partitionCnt   | Y  | Integer |NA  | cache topic partition count  |
-|topicProperties   | N  | Map<String,String> |NA  | Cache topic configuration  |
+|topicProperties   | N  | Map&lt;String,String&gt; |NA  | Cache topic configuration  |
 
 ## Start inlong-sort-standalone application
 At last, execute the shell file "./bin/sort-start.sh" for starting sort-standalone, you can check the log file "sort.log".

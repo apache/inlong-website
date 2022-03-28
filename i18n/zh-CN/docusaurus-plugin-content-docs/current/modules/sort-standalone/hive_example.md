@@ -120,9 +120,9 @@ sortSourceConfig.QueryConsumeConfigType=file
 - 可以从Inlong Manager的HTTP接口获取配置，支持实时更新
 
 |  参数名 | 是否必须  |类型 | 默认值  |描述   |
-| ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
 |clusterName   | Y |String | NA  |  用来唯一标识一个inlong-sort-standalone集群 |
-|sortTasks   | Y  | JsonArray<SortTaskConfig> |NA  | Sort任务列表  |
+|sortTasks   | Y  | JsonArray&lt;SortTaskConfig&gt; |NA  | Sort任务列表  |
 
 ### SortTaskConfig配置参数
 
@@ -171,29 +171,29 @@ sortSourceConfig.QueryConsumeConfigType=file
 ### sid_hive_inlong6th_v3.conf配置参数
 
 |  参数名 | 是否必须  |类型 | 默认值  |描述   |
-| ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
 |sortClusterName   | Y |String | NA  |  用来唯一标识一个inlong-sort-standalone集群 |
 |sortTaskId   | Y  | String |NA  | Sort任务名  |
-|cacheZones   | Y  | JsonObject<String, JsonObject> |NA  | 缓存层集群列表，格式：Map<cacheClusterName, CacheCluster>  |
+|cacheZones   | Y  | JsonObject&lt;String, JsonObject&gt; |NA  | 缓存层集群列表，格式：Map&lt;cacheClusterName, CacheCluster&gt;  |
 
 ### CacheCluster配置参数
 
 |  参数名 | 是否必须  |类型 | 默认值  |描述   |
-| ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
 |zoneName   | Y |String | NA  |  缓存层集群名 |
 |zoneType   | Y  | String |NA  | 缓存类型：[pulsar,tube,kafka]  |
 |serviceUrl   | Y  | String |NA  | Pulsar的serviceUrl参数，或者Kafka的Broker列表  |
 |authentication   | Y  | String |NA  | Pulsar鉴权  |
-|cacheZoneProperties   | N  | Map<String,String> |NA  | 缓存层Consumer参数  |
-|topics | N | List<Topic> |NA | 缓存层消费的Topic列表 |
+|cacheZoneProperties   | N  | Map&lt;String,String&gt; |NA  | 缓存层Consumer参数  |
+|topics | N | List&lt;Topic&gt; |NA | 缓存层消费的Topic列表 |
 
 ### Topic配置参数
 
 |  参数名 | 是否必须  |类型 | 默认值  |描述   |
-| ------------ | ------------ | ------------ | ------------ |
+| ------------ | ------------ | ------------ | ------------ | ------------ |
 |topic   | Y |String | NA  |  Topic完整名，Pulsar：tenant/namespace/topic |
 |partitionCnt   | Y  | Integer |NA  | Topic分区数  |
-|topicProperties   | N  | Map<String,String> |NA  | 缓存层Topic的Consumer参数  |
+|topicProperties   | N  | Map&lt;String,String&gt; |NA  | 缓存层Topic的Consumer参数  |
 
 ## 启动inlong-sort-standalone应用
 最后，执行脚本"./bin/sort-start.sh"，启动sort-standalone应用，之后可以检查日志文件sort.log，确认启动情况。
