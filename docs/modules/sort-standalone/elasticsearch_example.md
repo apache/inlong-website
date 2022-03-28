@@ -108,9 +108,9 @@ sortSourceConfig.QueryConsumeConfigType=file
 |sortSource.type   | N | org.apache.inlong.sort.standalone.source.sortsdk.SortSdkSource  | Source class name  |
 |sortClusterConfig.type   | N | manager  | Loader source of cluster configuration data: [file,manager,UserDefinedClassName]. |
 |sortClusterConfig.file   | N | SortClusterConfig.conf  | File name in class resource when sortClusterConfig.type=file. |
-|sortClusterConfig.managerUrl   | N  | NA  | The parameter is the cluster configuration URL of InlongManager when sortClusterConfig.type=manager. <br>For example:http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getClusterConfig  |
-|sortSourceConfig.QueryConsumeConfigType   | N | manager  | Loader source of sort task configuration data: [file,manager,UserDefinedClassName]. <br>Sort task configuration file is ${sortTaskId}.conf in the class resource when sortSourceConfig.QueryConsumeConfigType=file. |
-|sortSourceConfig.managerUrl   | N  | NA  | The parameter is the sort task configuration URL of InlongManager when sortClusterConfig.type=manager. <br>For example:http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getSortSource |
+|sortClusterConfig.managerUrl   | N  | NA  | The parameter is the cluster configuration URL of InlongManager when sortClusterConfig.type=manager. <br/>For example:http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getClusterConfig  |
+|sortSourceConfig.QueryConsumeConfigType   | N | manager  | Loader source of sort task configuration data: [file,manager,UserDefinedClassName]. <br/>Sort task configuration file is ${sortTaskId}.conf in the class resource when sortSourceConfig.QueryConsumeConfigType=file. |
+|sortSourceConfig.managerUrl   | N  | NA  | The parameter is the sort task configuration URL of InlongManager when sortClusterConfig.type=manager. <br/>For example:http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getSortSource |
 
 ## Modify configuration file: SortClusterConfig.conf
 

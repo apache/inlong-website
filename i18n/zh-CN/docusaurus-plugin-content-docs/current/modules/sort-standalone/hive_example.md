@@ -110,9 +110,9 @@ sortSourceConfig.QueryConsumeConfigType=file
 |sortSource.type   | N | org.apache.inlong.sort.standalone.source.sortsdk.SortSdkSource  | Source类名  |
 |sortClusterConfig.type   | N | manager  | 集群配置数据的加载来源，有三种方式：[文件，Manager，自定义类]。 |
 |sortClusterConfig.file   | N | SortClusterConfig.conf  | 当集群配置数据加载来源是file时，在类路径下的配置文件名 |
-|sortClusterConfig.managerUrl   | N  | NA  | 集群配置数据加载来源是manager时，这里定义InlongManager的URL<br>比如:http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getClusterConfig  |
-|sortSourceConfig.QueryConsumeConfigType   | N | manager  | Sort任务配置数据的加载来源，有三种方式：[文件，Manager，自定义类]。 <br>如果加载路径是file的话，Sort任务配置文件是在类路径里，文件名的格式：${sortTaskId}.conf。 |
-|sortSourceConfig.managerUrl   | N  | NA  | Sort任务配置数据加载来源是manager时，这里定义InlongManager的URL<br>比如::http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getSortSource |
+|sortClusterConfig.managerUrl   | N  | NA  | 集群配置数据加载来源是manager时，这里定义InlongManager的URL<br/>比如:http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getClusterConfig  |
+|sortSourceConfig.QueryConsumeConfigType   | N | manager  | Sort任务配置数据的加载来源，有三种方式：[文件，Manager，自定义类]。 <br/>如果加载路径是file的话，Sort任务配置文件是在类路径里，文件名的格式：${sortTaskId}.conf。 |
+|sortSourceConfig.managerUrl   | N  | NA  | Sort任务配置数据加载来源是manager时，这里定义InlongManager的URL<br/>比如::http://${manager ip:port}/api/inlong/manager/openapi/sort/standalone/getSortSource |
 
 ## SortClusterConfig.conf配置参数
 
