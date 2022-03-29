@@ -1,5 +1,5 @@
 ---
-title: Hive示例
+title: Hive 示例
 sidebar_position: 3
 ---
 ## 准备安装文件

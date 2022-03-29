@@ -1,5 +1,5 @@
 ---
-title: ElasticSearch示例
+title: Elasticsearch 示例
 sidebar_position: 4
 ---
 ## 准备安装文件
@@ -21,7 +21,7 @@ metricDomains=Sort
 metricDomains.Sort.domainListeners=org.apache.inlong.sort.standalone.metrics.prometheus.PrometheusMetricListener
 metricDomains.Sort.snapshotInterval=60000
 sortChannel.type=org.apache.inlong.sort.standalone.channel.BufferQueueChannel
-sortSink.type=org.apache.inlong.sort.standalone.sink.elasticsearch.EsSink
+sortSink.type=org.apache.inlong.sort.standalone.sink.Elasticsearch.EsSink
 sortSource.type=org.apache.inlong.sort.standalone.source.sortsdk.SortSdkSource
 
 sortClusterConfig.type=file
@@ -127,29 +127,29 @@ sortSourceConfig.QueryConsumeConfigType=file
 |  参数名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |name   | Y | NA  |  Sort任务名 |
-|type   | Y  | NA  | Sort任务类型，如:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), ElasticSearch("ElasticSearch"), UNKNOWN("n")  |
+|type   | Y  | NA  | Sort任务类型，如:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), Elasticsearch("Elasticsearch"), UNKNOWN("n")  |
 |idParams   | Y  | NA  | Inlong数据流参数列表  |
 |sinkParams   | Y  | NA  | Sort任务参数  |
 
-### Sort-ElasticSearch任务的idParams配置参数
+### Sort-Elasticsearch任务的idParams配置参数
 
 |  参数名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |inlongGroupId   | Y | NA  |  inlongGroupId |
 |inlongStreamId   | Y  | NA  | inlongStreamId  |
 |separator   | Y  | NA  | 分隔符  |
-|fieldNames   | Y  | NA  | ElasticSearch的Index字段列表，用空格分隔  |
+|fieldNames   | Y  | NA  | Elasticsearch的Index字段列表，用空格分隔  |
 |indexNamePattern   | Y  | NA  | Index的名字模板，支持三种日期时间格式变量：{yyyyMMdd},{yyyyMMddHH},{yyyyMMddHHmm}  |
 |contentOffset   | Y  | NA  | 源数据的有效字段开始偏移，从0开始  |
-|fieldOffset   | Y  | NA  | ElasticSearch的Index字段列表的开始偏移  |
+|fieldOffset   | Y  | NA  | Elasticsearch的Index字段列表的开始偏移  |
 
-### Sort-ElasticSearch任务的sinkParams配置参数
+### Sort-Elasticsearch任务的sinkParams配置参数
 
 |  参数名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
-|httpHosts   | Y | NA  |  ElasticSearch的Host的IP端口|
-|username   | Y  | NA  | ElasticSearch用户名  |
-|password   | Y  | NA  | ElasticSearch密码 |
+|httpHosts   | Y | NA  |  Elasticsearch的Host的IP端口|
+|username   | Y  | NA  | Elasticsearch用户名  |
+|password   | Y  | NA  | Elasticsearch密码 |
 |isUseIndexId   | N  | false  | 是否创建IndexId，影响Index分片分布  |
 |bulkSizeMb   | N  | 10  | 单Bulk的最大大小，单位MB |
 |flushInterval   | N  | 60  | 刷盘间隔，单位是秒  |
@@ -158,7 +158,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 |maxConnect   | N  | 10  | 最大HTTP连接数 |
 |concurrentRequests   | N  | 5  | 单个HTTP连接的最大等待请求数 |
 
-## Sort-ElasticSearch任务的sid_es_v3.conf配置参数
+## Sort-Elasticsearch任务的sid_es_v3.conf配置参数
 
 - 文件名格式：Sort任务名+".conf"。
 - 可以从ClassPath的SortClusterConfig.conf源文件读取，但不支持实时更新。

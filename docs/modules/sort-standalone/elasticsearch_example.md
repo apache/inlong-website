@@ -1,5 +1,5 @@
 ---
-title: ElasticSearch Example
+title: Elasticsearch Example
 sidebar_position: 4
 ---
 ## Prepare to get module archive
@@ -21,7 +21,7 @@ metricDomains=Sort
 metricDomains.Sort.domainListeners=org.apache.inlong.sort.standalone.metrics.prometheus.PrometheusMetricListener
 metricDomains.Sort.snapshotInterval=60000
 sortChannel.type=org.apache.inlong.sort.standalone.channel.BufferQueueChannel
-sortSink.type=org.apache.inlong.sort.standalone.sink.elasticsearch.EsSink
+sortSink.type=org.apache.inlong.sort.standalone.sink.Elasticsearch.EsSink
 sortSource.type=org.apache.inlong.sort.standalone.source.sortsdk.SortSdkSource
 
 sortClusterConfig.type=file
@@ -127,28 +127,28 @@ sortSourceConfig.QueryConsumeConfigType=file
 |  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
 |name   | Y | NA  |  sort task name |
-|type   | Y  | NA  | sort task type, for example:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), ElasticSearch("ElasticSearch"), UNKNOWN("n")  |
+|type   | Y  | NA  | sort task type, for example:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), Elasticsearch("Elasticsearch"), UNKNOWN("n")  |
 |idParams   | Y  | NA  | Inlong DataStream configuration  |
 |sinkParams   | Y  | NA  | Sort task parameters  |
 
-### Modify configuration: idParams of ElasticSearch sort task
+### Modify configuration: idParams of Elasticsearch sort task
 
 |  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
 |inlongGroupId   | Y | NA  |  inlongGroupId |
 |inlongStreamId   | Y  | NA  | inlongStreamId  |
 |separator   | Y  | NA  | separator of Inlong datastream in data source  |
-|fieldNames   | Y  | NA  | field name list of ElasticSearch index, separated by space.  |
-|indexNamePattern   | Y  | NA  | index name pattern of ElasticSearch,date time variable include {yyyyMMdd},{yyyyMMddHH},{yyyyMMddHHmm}.  |
+|fieldNames   | Y  | NA  | field name list of Elasticsearch index, separated by space.  |
+|indexNamePattern   | Y  | NA  | index name pattern of Elasticsearch,date time variable include {yyyyMMdd},{yyyyMMddHH},{yyyyMMddHHmm}.  |
 |contentOffset   | Y  | NA  | field index offset of source content  |
-|fieldOffset   | Y  | NA  | offset of ElasticSearch index field name list  |
+|fieldOffset   | Y  | NA  | offset of Elasticsearch index field name list  |
 
-### Modify configuration: sinkParams of ElasticSearch sort task
+### Modify configuration: sinkParams of Elasticsearch sort task
 |  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
-|httpHosts   | Y | NA  |  Hosts of ElasticSearch |
-|username   | Y  | NA  | Username of ElasticSearch  |
-|password   | Y  | NA  | Password of ElasticSearch |
+|httpHosts   | Y | NA  |  Hosts of Elasticsearch |
+|username   | Y  | NA  | Username of Elasticsearch  |
+|password   | Y  | NA  | Password of Elasticsearch |
 |isUseIndexId   | N  | false  | Create index id or not  |
 |bulkSizeMb   | N  | 10  | Max content size per bulk(MB) |
 |flushInterval   | N  | 60  | Max interval between flushing operation(Second)  |
