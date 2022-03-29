@@ -47,21 +47,21 @@ import java.util.concurrent.TimeUnit;
 
 public class InlongManagerClientHiveSinkTest {
     
-    public static String SERVICE_URL = "9.134.120.127:8083";
+    public static String SERVICE_URL = "{inlong.manager.ip:port}";
 
     public static DefaultAuthentication INLONG_AUTH = new DefaultAuthentication("admin", "inlong");
 
-    public static String GROUP_NAME = "hery_kafka_hive_4";
+    public static String GROUP_NAME = "{group.name}";
 
-    public static String STREAM_NAME = "wedatakafka43";
+    public static String STREAM_NAME = "{stream.name}";
 
-    public static String FLINK_URL = "oceanus.tencentcloudapi.com";
+    public static String FLINK_URL = "{flink.cluster.url}";
 
-    public static String FLINK_REGION = "ap-beijing";
+    public static String FLINK_REGION = "{flink.cluster.region}";
 
-    public static String tenant = "pulsar-q52aw2e3rwjj";
+    public static String tenant = "{pulsar.tenant}";
 
-    public static String topic = "herywang";
+    public static String topic = "{pulsar.topic}";
 
 
     @Test
@@ -112,22 +112,22 @@ public class InlongManagerClientHiveSinkTest {
 
     public KafkaSource createKafkaSource() {
         KafkaSource kafkaSource = new KafkaSource();
-        kafkaSource.setBootstrapServers("9.134.120.127:9092");
-        kafkaSource.setTopic("herywang");
-        kafkaSource.setSourceName("test-kafka-source");
+        kafkaSource.setBootstrapServers("{kafka.bootstrap}");
+        kafkaSource.setTopic("{kafka.topic}");
+        kafkaSource.setSourceName("{kafka.source.name}");
         kafkaSource.setDataFormat(DataFormat.JSON);
         return kafkaSource;
     }
 
     private HiveSink createHiveSink() {
         HiveSink hiveSink = new HiveSink();
-        hiveSink.setDbName("hery");
-        hiveSink.setJdbcUrl("jdbc:hive2://172.17.12.135:7001");
+        hiveSink.setDbName("{hive.db.name}");
+        hiveSink.setJdbcUrl("jdbc:hive2://{ip:port}");
         hiveSink.setAuthentication(new DefaultAuthentication("hive", "hive"));
         hiveSink.setCharset(StandardCharsets.UTF_8);
         hiveSink.setFileFormat(FileFormat.TextFile);
         hiveSink.setDataSeparator(DataSeparator.VERTICAL_BAR);
-        hiveSink.setDataPath("hdfs://172.17.147.2:4007/usr/hive/warehouse/hery.db");
+        hiveSink.setDataPath("hdfs://{ip:port}/usr/hive/warehouse/{hive.db.name}");
 
         List<SinkField> fields = new ArrayList<SinkField>();
         SinkField field1 = new SinkField(0, FieldType.INT,"age","","","age","int", 0);
@@ -135,8 +135,8 @@ public class InlongManagerClientHiveSinkTest {
         fields.add(field1);
         fields.add(field2);
         hiveSink.setSinkFields(fields);
-        hiveSink.setTableName("test");
-        hiveSink.setSinkName("test-hive-sink");
+        hiveSink.setTableName("{table.name}");
+        hiveSink.setSinkName("{hive.sink.name}");
         return hiveSink;
     }
 
@@ -169,7 +169,7 @@ public class InlongManagerClientHiveSinkTest {
         inlongGroupConf.setSortBaseConf(sortBaseConf);
         sortBaseConf.setServiceUrl(FLINK_URL);
         Map<String, String> map = new HashMap<>(16);
-        map.put(InlongGroupSettings.CLUSTER_ID, "cluster-3pcta51b");
+        map.put(InlongGroupSettings.CLUSTER_ID, "{cluster.id}");
         map.put(InlongGroupSettings.REGION, FLINK_REGION);
         sortBaseConf.setProperties(map);
         //enable zk
@@ -219,31 +219,31 @@ import org.apache.inlong.manager.client.api.auth.DefaultAuthentication;
 import org.apache.inlong.manager.client.api.sink.KafkaSink;
 import org.apache.inlong.manager.client.api.source.MySQLBinlogSource;
 import org.apache.inlong.manager.common.enums.FieldType;
-import org.apache.inlong.manager.common.enums.MqType;
+import org.apache.inlong.manager.common.enums.MQType;
 import org.apache.inlong.manager.common.settings.InlongGroupSettings;
 import org.junit.Test;
 
 public class InlongManagerClientKafkaSinkTest {
     
-    public static String SERVICE_URL = "127.0.0.1:8083";
+    public static String SERVICE_URL = "{inlong.manager.ip:port}";
 
     public static DefaultAuthentication INLONG_AUTH = new DefaultAuthentication("admin", "inlong");
 
-    public static String GROUP_NAME = "wedata_group_kafka117";
+    public static String GROUP_NAME = "{group.name}";
 
-    public static String STREAM_NAME = "wedatakafka43";
+    public static String STREAM_NAME = "{stream.name}";
 
-    public static String PULSAR_ADMIN_URL = "http://100.76.43.216:8080";
+    public static String PULSAR_ADMIN_URL = "{pulsar.admin.url}";
 
-    public static String PULSAR_SERVICE_URL = "pulsar://100.76.43.216:6650";
+    public static String PULSAR_SERVICE_URL = "{pulsar.service.url}";
 
-    public static String FLINK_URL = "oceanus.tencentcloudapi.com";
+    public static String FLINK_URL = "{flink.cluster.url}";
 
-    public static String FLINK_REGION = "ap-beijing";
+    public static String FLINK_REGION = "{flink.cluster.region}";
 
-    public static String tenant = "pulsar-q52aw2e3rwjj";
+    public static String tenant = "{pulsar.tenant}";
 
-    public static String topic = "b_wedatakafka43";
+    public static String topic = "{pulsar.topic}";
     
     @Test
     public void testCreateGroupForKafka() throws Exception {
@@ -330,11 +330,12 @@ public class InlongManagerClientKafkaSinkTest {
     private KafkaSink createKafkaSink() {
         KafkaSink kafkaSink = new KafkaSink();
         kafkaSink.setDataFormat(DataFormat.CANAL);
-        kafkaSink.setAddress("172.17.1.3:9092");
-        kafkaSink.setTopicName("pacinogong");
+        kafkaSink.setAddress("{kafka.bootstrap}");
+        kafkaSink.setTopicName("{kafka.topic}");
         kafkaSink.setNeedCreated(false);
-        kafkaSink.setSinkName("kafka");
+        kafkaSink.setSinkName("{kafka.sink.name}");
         Map<String, Object> properties = new HashMap<>();
+        //Not needed if kafka cluster is not set
         properties.put("transaction.timeout.ms", 15*60*1000);
         kafkaSink.setProperties(properties);
         return kafkaSink;
@@ -371,11 +372,8 @@ public class InlongManagerClientKafkaSinkTest {
         sortBaseConf.setServiceUrl(FLINK_URL);
         Map<String, String> map = new HashMap<>(16);
         // cluster-3pcta51b
-        map.put(InlongGroupSettings.CLUSTER_ID, "cluster-3pcta51b");
+        map.put(InlongGroupSettings.CLUSTER_ID, "{cluster.id}");
         map.put(InlongGroupSettings.REGION, FLINK_REGION);
-        map.put(Constants.INLONG_SORT_COS_BUCKET, "pre-test-1257305158");
-        map.put(Constants.INLONG_SORT_COS_RESOURCENAME, "sort-single-tenant-1.1.0-incubating-SNAPSHOT.jar");
-        map.put(Constants.INLONG_SORT_COS_PATH, "sort-single-tenant-1.1.0-incubating-SNAPSHOT.jar");
         map.put(Constants.INLONG_SORT_COS_REGION, FLINK_REGION);
         sortBaseConf.setProperties(map);
         //enable zk
