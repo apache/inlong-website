@@ -8,7 +8,7 @@ If you consume data directly from a message queue (InLong TubeMQ or Pulsar), you
 
 ## Dependency
 - Add Maven Dependency
-```java
+```xml
 <dependency>
         <groupId>org.apache.inlong</groupId>
         <artifactId>inlong-common</artifactId>

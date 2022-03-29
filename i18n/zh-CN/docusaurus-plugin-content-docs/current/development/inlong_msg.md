@@ -8,7 +8,7 @@ sidebar_position: 1
 
 ## 解析
 - 增加maven 依赖
-```java
+```xml
 <dependency>
         <groupId>org.apache.inlong</groupId>
         <artifactId>inlong-common</artifactId>
