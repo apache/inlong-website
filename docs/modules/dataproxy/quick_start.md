@@ -10,7 +10,7 @@ All deploying files at `inlong-dataproxy` directory.
 configuration file: `conf/common.properties`:
 ```
 # manager address
-manager_hosts=127.0.0.1:8083
+manager.hosts=127.0.0.1:8083
 # audit proxy address
 audit.proxys=127.0.0.1:10081
 ```

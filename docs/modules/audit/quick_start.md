@@ -8,25 +8,23 @@ All deploying files at `inlong-audit` directory, if you use MySQL to store audit
 ### Configure MessageQueue
 You can choose Apache Pulsar or InLong TubeMQ as your MessageQueue service:
 
-- If using Pulsar, the configuration file is `conf/audit-proxy-pulsar.conf`. Replace **`PULSAR_BROKER_LIST`** with the service url of your Pulsar cluster.
+- If using Pulsar, the configuration file is `conf/audit-proxy-pulsar.conf`. Change the Pulsar service url for next configuration.
 
 ```Shell
-agent1.sources.tcp-source.host = 0.0.0.0
 agent1.sources.tcp-source.port = 10081
-agent1.sinks.pulsar-sink-msg1.pulsar_server_url= pulsar://PULSAR_BROKER_LIST
+agent1.sinks.pulsar-sink-msg1.pulsar_server_url= pulsar://localhost:6650
 agent1.sinks.pulsar-sink-msg1.topic = persistent://public/default/inlong-audit
-agent1.sinks.pulsar-sink-msg2.pulsar_server_url = pulsar://PULSAR_BROKER_LIST
+agent1.sinks.pulsar-sink-msg2.pulsar_server_url = pulsar://localhost:6650
 agent1.sinks.pulsar-sink-msg2.topic = persistent://public/default/inlong-audit
 ```
 
-- If using TubeMQ, the configuration file is `conf/audit-proxy-tube.conf`. Replace **`TUBE_LIST`** with the master address of your TubeMQ cluster.
+- If using TubeMQ, the configuration file is `conf/audit-proxy-tube.conf`. Change the TubeMQ master address for next configuration.
 
 ```Shell
-agent1.sources.tcp-source.host = 0.0.0.0
 agent1.sources.tcp-source.port = 10081
-agent1.sinks.tube-sink-msg1.master-host-port-list = TUBE_LIST
+agent1.sinks.tube-sink-msg1.master-host-port-list = localhost:8715
 agent1.sinks.tube-sink-msg1.topic = inlong-audit
-agent1.sinks.tube-sink-msg2.master-host-port-list = TUBE_LIST
+agent1.sinks.tube-sink-msg2.master-host-port-list = localhost:8715
 agent1.sinks.tube-sink-msg2.topic = inlong-audit
 ```
 
