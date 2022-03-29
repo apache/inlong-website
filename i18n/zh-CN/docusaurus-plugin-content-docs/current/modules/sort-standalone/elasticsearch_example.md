@@ -21,7 +21,7 @@ metricDomains=Sort
 metricDomains.Sort.domainListeners=org.apache.inlong.sort.standalone.metrics.prometheus.PrometheusMetricListener
 metricDomains.Sort.snapshotInterval=60000
 sortChannel.type=org.apache.inlong.sort.standalone.channel.BufferQueueChannel
-sortSink.type=org.apache.inlong.sort.standalone.sink.Elasticsearch.EsSink
+sortSink.type=org.apache.inlong.sort.standalone.sink.elasticsearch.EsSink
 sortSource.type=org.apache.inlong.sort.standalone.source.sortsdk.SortSdkSource
 
 sortClusterConfig.type=file
@@ -127,7 +127,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 |  参数名 | 是否必须  | 默认值  |描述   |
 | ------------ | ------------ | ------------ | ------------ |
 |name   | Y | NA  |  Sort任务名 |
-|type   | Y  | NA  | Sort任务类型，如:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), Elasticsearch("Elasticsearch"), UNKNOWN("n")  |
+|type   | Y  | NA  | Sort任务类型，如:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), ELASTICSEARCH("elasticsearch"), UNKNOWN("n")  |
 |idParams   | Y  | NA  | Inlong数据流参数列表  |
 |sinkParams   | Y  | NA  | Sort任务参数  |
 

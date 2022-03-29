@@ -21,7 +21,7 @@ metricDomains=Sort
 metricDomains.Sort.domainListeners=org.apache.inlong.sort.standalone.metrics.prometheus.PrometheusMetricListener
 metricDomains.Sort.snapshotInterval=60000
 sortChannel.type=org.apache.inlong.sort.standalone.channel.BufferQueueChannel
-sortSink.type=org.apache.inlong.sort.standalone.sink.Elasticsearch.EsSink
+sortSink.type=org.apache.inlong.sort.standalone.sink.elasticsearch.EsSink
 sortSource.type=org.apache.inlong.sort.standalone.source.sortsdk.SortSdkSource
 
 sortClusterConfig.type=file
@@ -127,7 +127,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 |  Parameter | Required  | DefaultValue  |Remark   |
 | ------------ | ------------ | ------------ | ------------ |
 |name   | Y | NA  |  sort task name |
-|type   | Y  | NA  | sort task type, for example:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), Elasticsearch("Elasticsearch"), UNKNOWN("n")  |
+|type   | Y  | NA  | sort task type, for example:HIVE("hive"), TUBE("tube"), KAFKA("kafka"), PULSAR("pulsar"), ELASTICSEARCH("elasticsearch"), UNKNOWN("n")  |
 |idParams   | Y  | NA  | Inlong DataStream configuration  |
 |sinkParams   | Y  | NA  | Sort task parameters  |
 
