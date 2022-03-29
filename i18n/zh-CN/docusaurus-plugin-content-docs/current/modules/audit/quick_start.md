@@ -8,24 +8,22 @@ title: 安装部署
 ### 配置消息队列
 消息队列服务目前可以使用Apache Pulsar或者InLong TubeMQ：
 
-- 若使用Pulsar，配置文件 `conf/audit-proxy-pulsar.conf`，将**`PULSAR_BROKER_LIST`**替换为Pulsar集群的服务地址。
+- 若使用Pulsar，配置文件 `conf/audit-proxy-pulsar.conf`，修改下列配置中的 Pulsar service 地址。
 
 ```Shell
-agent1.sources.tcp-source.host = 0.0.0.0
 agent1.sources.tcp-source.port = 10081
-agent1.sinks.pulsar-sink-msg1.pulsar_server_url= pulsar://PULSAR_BROKER_LIST
+agent1.sinks.pulsar-sink-msg1.pulsar_server_url= pulsar://localhost:6650
 agent1.sinks.pulsar-sink-msg1.topic = persistent://public/default/inlong-audit
-agent1.sinks.pulsar-sink-msg2.pulsar_server_url = pulsar://PULSAR_BROKER_LIST
+agent1.sinks.pulsar-sink-msg2.pulsar_server_url = pulsar://localhost:6650
 agent1.sinks.pulsar-sink-msg2.topic = persistent://public/default/inlong-audit
 ```
 
-- 若使用TubeMQ，配置文件 `conf/audit-proxy-tube.conf`，将**`TUBE_LIST`**替换为TubeMQ集群的master地址。
+- 若使用TubeMQ，配置文件 `conf/audit-proxy-tube.conf`，修改下列配置中的 TubeMQ master 地址。
 ```Shell
-agent1.sources.tcp-source.host = 0.0.0.0
 agent1.sources.tcp-source.port = 10081
-agent1.sinks.tube-sink-msg1.master-host-port-list = TUBE_LIST
+agent1.sinks.tube-sink-msg1.master-host-port-list = localhost:8715
 agent1.sinks.tube-sink-msg1.topic = inlong-audit
-agent1.sinks.tube-sink-msg2.master-host-port-list = TUBE_LIST
+agent1.sinks.tube-sink-msg2.master-host-port-list = localhost:8715
 agent1.sinks.tube-sink-msg2.topic = inlong-audit
 ```
 
