@@ -394,10 +394,10 @@ public class InlongManagerClientKafkaSinkTest {
 
     public MySQLBinlogSource createMysqlSource() {
         MySQLBinlogSource mySQLBinlogSource = new MySQLBinlogSource();
-        mySQLBinlogSource.setDbNames(Arrays.asList("test"));
-        mySQLBinlogSource.setHostname("9.135.81.137");
+        mySQLBinlogSource.setDbNames(Arrays.asList("{db.name}"));
+        mySQLBinlogSource.setHostname("{db.url}");
         mySQLBinlogSource.setAuthentication(new DefaultAuthentication("root", "inlong"));
-        mySQLBinlogSource.setSourceName("mysql");
+        mySQLBinlogSource.setSourceName("{mysql.source.name}");
         mySQLBinlogSource.setAllMigration(true);
         return mySQLBinlogSource;
     }
