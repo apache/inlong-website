@@ -1,5 +1,5 @@
 ---
-title: Sort-Hive样例
+title: Hive示例
 sidebar_position: 3
 ---
 ## 准备安装文件

@@ -1,5 +1,5 @@
 ---
-title: Sort-ElasticSearch样例
+title: ElasticSearch示例
 sidebar_position: 4
 ---
 ## 准备安装文件

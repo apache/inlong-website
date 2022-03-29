@@ -1,5 +1,5 @@
 ---
-title: Sort-ElasticSearch Example
+title: ElasticSearch Example
 sidebar_position: 4
 ---
 ## Prepare to get module archive

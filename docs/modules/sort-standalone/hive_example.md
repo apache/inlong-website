@@ -1,5 +1,5 @@
 ---
-title: Sort-Hive Example
+title: Hive Example
 sidebar_position: 3
 ---
 ## Prepare to get module archive
