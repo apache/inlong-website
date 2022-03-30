@@ -17,6 +17,7 @@ You can get binary package from [Download Page](https://inlong.apache.org/downlo
 
 ## Deploy
 | order |  component | dependencies | deploy guide                                                          | description |
+|-----| ----  | ----  |-----------------------------------------------------------------------| ---- |
 | 1   | inlong-audit | MySQL or Elasticsearch | [InLong Audit](modules/audit/quick_start.md)                          |  |
 | 2   | inlong-manager | MySQL  | [InLong Manager](modules/manager/quick_start.md)                      |  |
 | 3   | inlong-dataproxy | None | [InLong DataProxy](modules/dataproxy/quick_start.md)                  |  |

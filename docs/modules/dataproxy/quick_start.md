@@ -35,23 +35,20 @@ telnet 127.0.0.1 46801
 ## Add DataProxy configuration to InLong-Manager
 
 After installing the DataProxy, you need to add the IP of the DataProxy service into the InLong-Manager.
+Modify the following information and execute command:
+```bash
+curl --header "Content-Type: application/json" --request POST http://your_manager_host:8083/api/inlong/manager/openapi/cluster/save --data '
+{
+   "name": "default_dataproxy",
+   "type": "DATA_PROXY",
+   "ip": "your_dataproxy_ip",
+   "port": 46801,
+   "mqSetName": "default_set_name",
+   "inCharges": "admin",
+   "creator": "admin"
+}
+'
+```
+- Please modify the `ip` field to the real IP (or hostname) of the DataProxy, the format is `node1:port1,node2:port2`, and separate them with `,`.
 
-- Modify the following information and execute command:
-  ```bash
-  curl --header "Content-Type: application/json" --request POST http://your_manager_host:8083/api/inlong/manager/openapi/cluster/save --data '
-  {
-     "name": "default_dataproxy",
-     "type": "DATA_PROXY",
-     "ip": "your_dataproxy_ip",
-     "port": 46801,
-     "mqSetName": "default_set_name",
-     "inCharges": "admin",
-     "creator": "admin"
-  }
-  '
-  ```
-  > **[Note]**
-  >
-  > Please modify the `ip` field to the real IP (or hostname) of the DataProxy, the format is `node1:port1,node2:port2`, and separate them with `,`.
-  >
-  > If all nodes in the `ip` field have the same port, you can use `node1,node2` and modify the `port` field to the default port for those nodes.
+- If all nodes in the `ip` field have the same port, you can use `node1,node2` and modify the `port` field to the default port for those nodes.
