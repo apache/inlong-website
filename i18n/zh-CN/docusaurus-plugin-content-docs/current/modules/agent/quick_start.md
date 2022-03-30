@@ -22,8 +22,6 @@ audit.proxys=127.0.0.1:10081
 - 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
 
 ## 启动
-
-解压后如下命令运行
 ```bash
 bash +x bin/agent.sh start
 ```

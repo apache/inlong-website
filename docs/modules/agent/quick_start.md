@@ -25,8 +25,6 @@ audit.proxys=127.0.0.1:10081
 
 
 ## Start
-After decompression, run the following command
-
 ```bash
 bash +x bin/agent.sh start
 ```
