@@ -1,6 +1,6 @@
 ---
-title: Manager SDK
-sidebar_position: 3
+title: Example
+sidebar_position: 1
 ---
 
 ## Overview

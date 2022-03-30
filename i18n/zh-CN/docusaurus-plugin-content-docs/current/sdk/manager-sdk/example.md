@@ -1,6 +1,6 @@
-                   ---
-title: Manager SDK
-sidebar_position: 3
+---
+title: 示例
+sidebar_position: 1
 ---
 
 ## 总览
