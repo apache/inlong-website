@@ -7,6 +7,16 @@ sidebar_position: 2
 cd inlong-agent
 ```
 
+## 环境准备
+- 安装并启动 MySQL 5.7+
+- 初始化数据库
+  `sql/apache_tube_manager.sql`文件，通过下述命令加载此文件，完成表结构及基础数据的初始化：
+
+  ```shell
+  # 通过用户名和密码，创建 DB 和表：
+  mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
+  ```
+  
 ## 配置
 
 线上运行需要从inlong-manager拉取配置，配置conf/agent.properties如下：
