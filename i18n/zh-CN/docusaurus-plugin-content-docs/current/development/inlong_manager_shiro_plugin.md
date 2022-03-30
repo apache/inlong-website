@@ -8,7 +8,7 @@ Inlong Manager中使用了Apache Shiro框架实现了认证和授权等功能，
 
 ## 依赖
 - 增加maven 依赖
-```java
+```xml
 <dependency>
         <groupId>org.apache.inlong</groupId>
         <artifactId>manager-common</artifactId>
