@@ -4,6 +4,15 @@ title: Deployment
 
 All deploying files at `inlong-tubemq-manager` directory.
 
+## Environment Preparation
+- Install and start MySQL 5.7+
+- Load `sql/apache_tube_manager.sql` through the command to complete the initialization of the table structure and basic data:
+
+```` shell
+# Create database and table with username and password:
+mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
+````
+  
 ## Configuration
 - create `tubemanager` and account in MySQL.
 - Add mysql information in conf/application.properties:
@@ -16,7 +25,7 @@ spring.datasource.password=mysql_password
 ```
 
 ## Dependencies
-- If the backend database is MySQL, please download [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar) and put it into `lib/` directory.
+- If the backend database is MySQL, please download [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar) and put it into `lib/` directory.
 
 - If the backend database is PostgreSQL, there's no need for additional dependencies.
 

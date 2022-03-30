@@ -3,46 +3,34 @@ title: Deployment
 sidebar_position: 2
 ---
 
-```
-cd inlong-agent
-```
+All deploying files at `inlong-agent` directory.
 
-## Environment Preparation
-- Install and start MySQL 5.7+
-- Initialize the database
-  `sql/apache_tube_manager.sql` file, load this file through the command to complete the initialization of the table structure and basic data:
-
-  ```` shell
-  # Create database and table with username and password:
-  mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
-  ````
-  
 ## Configuration
-
-Online operation needs to pull the configuration from inlong-manager, the configuration conf/agent.properties is as follows:
+Agent needs to pull the configuration from Manager, the configuration conf/agent.properties is as follows:
 ```ini
-agent.local.ip=Write local ip
-agent.manager.vip.http.host=manager host
-agent.manager.vip.http.port=manager port
+# replace by real IP
+agent.local.ip=127.0.0.1
+# manager IP
+agent.manager.vip.http.host=127.0.0.1
+# manager port
+agent.manager.vip.http.port=8083
 # audit proxy address
 audit.proxys=127.0.0.1:10081
 ```
 
 ## Dependencies
-- If the backend database is MySQL, please download [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar) and put it into `lib/` directory.
+- If the backend database is MySQL, please download [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar) and put it into `lib/` directory.
 
 - If the backend database is PostgreSQL, there's no need for additional dependencies.
 
 
 ## Start
-After decompression, run the following command
-
 ```bash
-sh agent.sh start
+bash +x bin/agent.sh start
 ```
 
 
-## Add job configuration in real time
+## Example: Add job configuration in real time
 
 ```bash
     curl --location --request POST 'http://localhost:8008/config/job' \

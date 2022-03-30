@@ -3,6 +3,10 @@ title: Deployment
 ---
 
 All deploying files at `inlong-audit` directory, if you use MySQL to store audit data, you need to first create the database through `sql/apache_inlong_audit.sql`.
+  ```shell
+  # initialize database
+  mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit.sql
+  ```
 
 ## Audit Proxy
 ### Configure MessageQueue
@@ -30,8 +34,8 @@ agent1.sinks.tube-sink-msg2.topic = inlong-audit
 
 ### Start
 ```Shell
-#By default, pulsar is used as the MessageQueue, and the audit-proxy-pulsar.conf configuration file is loaded.
-sh ./bin/proxy-start.sh [pulsar｜tube]
+# By default, pulsar is used as the MessageQueue, and the audit-proxy-pulsar.conf configuration file is loaded.
+bash +x ./bin/proxy-start.sh [pulsar｜tube]
 ```
 
 ## Audit Store
@@ -62,14 +66,13 @@ spring.datasource.druid.password=inlong
 ```
 
 ### Dependencies
-- If the backend database is MySQL, please download [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar) and put it into `lib/` directory.
+- If the backend database is MySQL, please download [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar) and put it into `lib/` directory.
 
 - If the backend database is PostgreSQL, there's no need for additional dependencies.
 
 ### Start
-The startup script file `./bin/store-start.sh`
 ```Shell
-sh ./bin/store-start.sh
+bash +x ./bin/store-start.sh
 ```
 
 The default listen port is `10081`.
