@@ -36,13 +36,13 @@ telnet 127.0.0.1 46801
 
 After installing the DataProxy, you need to add the IP of the DataProxy service into the InLong-Manager.
 
-- Modify the following information:
-  ```html
+- Modify the following information and execute command:
+  ```bash
   curl --header "Content-Type: application/json" --request POST http://your_manager_host:8083/api/inlong/manager/openapi/cluster/save --data '
   {
      "name": "default_dataproxy",
      "type": "DATA_PROXY",
-     "ip": "127.0.0.1:46800,127.0.0.2",
+     "ip": "your_dataproxy_ip",
      "port": 46801,
      "mqSetName": "default_set_name",
      "inCharges": "admin",
@@ -55,5 +55,3 @@ After installing the DataProxy, you need to add the IP of the DataProxy service 
   > Please modify the `ip` field to the real IP (or hostname) of the DataProxy, the format is `node1:port1,node2:port2`, and separate them with `,`.
   >
   > If all nodes in the `ip` field have the same port, you can use `node1,node2` and modify the `port` field to the default port for those nodes.
-
-- Open your command line tool, copy the above info, and click the Enter key, the above info will be saved to InLong-Manager.

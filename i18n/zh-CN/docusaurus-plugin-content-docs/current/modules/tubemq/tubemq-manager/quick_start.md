@@ -4,6 +4,16 @@ title: 安装部署
 
 安装文件在inlong-tubemq-manager目录.
 
+## 环境准备
+- 安装并启动 MySQL 5.7+
+- 初始化数据库
+  `sql/apache_tube_manager.sql`文件，通过下述命令加载此文件，完成表结构及基础数据的初始化：
+
+  ```shell
+  # 通过用户名和密码，创建 DB 和表：
+  mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
+  ```
+  
 ## 配置
 - 在mysql中创建`tubemanager`数据和相应用户.
 - 在conf/application.properties中添加mysql信息：
@@ -16,7 +26,7 @@ spring.datasource.password=mysql_password
 ```
 
 ### 依赖
-- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar), 并将其放入 `lib/` 目录。
+- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar), 并将其放入 `lib/` 目录。
 - 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
 
 ## 启动

@@ -13,6 +13,10 @@ title: Deployment
   mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_manager.sql
   ```
 
+## Dependencies
+- If the backend database is MySQL, please download [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar) and put it into `lib/` directory.
+- If the backend database is PostgreSQL, there's no need for additional dependencies.
+
 ## Configuration
 
 Go to the decompressed `inlong-manager` directory and modify the `conf/application.properties` file:
@@ -26,68 +30,56 @@ spring.profiles.active=dev
 ```
 
 The dev configuration is specified above, then modify the `conf/application-dev.properties` file:
-
-1) Modify the database URL, username and password:
-
-   ```properties
-   spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT%2b8
-   spring.datasource.druid.username=root
-   spring.datasource.druid.password=inlong
-   ```
- 
-2) Configure ZooKeeper clusters information:
-
-   ```properties
-   # ZK cluster, used to push the configuration of Sort
-   cluster.zk.url=127.0.0.1:2181
-   cluster.zk.root=inlong_hive
-   # application name, that is the cluster-id parameter of InLong Sort
-   sort.appName=inlong_app
-   ```
-
-## Dependencies
-- If the backend database is MySQL, please download [mysql-connector-java-8.0.26.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.26.jar) and put it into `lib/` directory.
-
-- If the backend database is PostgreSQL, there's no need for additional dependencies.
-
-## Add Message Queue
-You can choose InLong TubeMQ or Apache Pulsar as Message Queue Service:
-- If using TubeMQ, the SQL statement is:
-
-```sql
-INSERT INTO apache_inlong_manager.third_party_cluster 
-(name, type, url, ext_params, mq_set_name, in_charges, creator)
-VALUES 
-('tube_cluster', 'TUBE', 'tubemq_master_list', 'tube_config', 'default_set_name', 'admin', 'admin');
+```properties
+spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT%2b8
+spring.datasource.druid.username=root
+spring.datasource.druid.password=inlong
 ```
 
-- `tubemq_master_list`: the master address of your TubeMQ cluster. If there are multiple master nodes, addresses is separated by comma, such as `127.0.0.1:8000,127.0.0.1:8010`.
-- `tube_config`: the other info of your cluster. It is described in JSON format, for example:
+## 启动
+```shell
+bash +x bin/startup.sh
+```
 
+## Register Message Queue
+- If using InLong TubeMQ, the register command is:
+```bash
+curl --header "Content-Type: application/json" --request POST http://localhost:8083/api/inlong/manager/openapi/cluster/save --data '
+{
+        "name": "tube_cluster",
+        "type": "TUBE",
+        "mqSetName": "default_set_name",
+        "extParams": "{\"cluster_tube_manager\": \"127.0.0.1:8080\", \"tube_masterUrl\": \"127.0.0.1:8715\", \"cluster_tube_clusterId\": \"1\"}",
+        "inCharges": "admin"
+}'
+```
+
+- `extParams`: the other info of your cluster. It is described in JSON format, for example:
 ```json
 {
   "cluster_tube_manager": "http://127.0.0.1:8081",
+  "tube_masterUrl": "127.0.0.1:8715",
   "cluster_tube_clusterId": "1"
 }
 ```
 
-- If using Pulsar, the SQL statement is:
-
-```sql
-INSERT INTO apache_inlong_manager.third_party_cluster 
-(name, type, url, token, ext_params, mq_set_name, in_charges, creator)
-VALUES 
-('pulsar_cluster', 'PULSAR', 'puslar_service_url', 'pulsar_token', 'pulsar_config', 'default_set_name', 'admin', 'admin');
-```
-
-- `puslar_service_url`: the address of your Pulsar cluster, such as `pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650`.
-- `pulsar_config`: the other info of your cluster. It is described in JSON format, for example:
-
-```json
+- If using Pulsar, the register command is:
+```bash
+curl --header "Content-Type: application/json" --request POST http://localhost:8083/api/inlong/manager/openapi/cluster/save --data '
 {
-  "pulsar_adminUrl": "http://127.0.0.1:8080,127.0.0.2:8080,127.0.0.3:8080"
-}
+        "name": "pulsar_cluster",
+        "type": "PULSAR",
+        "url": "pulsar://pulsar:6650",
+        "token": "null",
+        "mqSetName": "default_set_name",
+        "extParams": "{\"pulsar_adminUrl\": \"http://pulsar:8080\"}",
+        "inCharges": "admin",
+        "creator": "admin"
+}'
 ```
+
+- `url`: the address of your Pulsar cluster, such as `pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650`
+- `pulsar_adminUrl`: the other info of your cluster
 
 ## Start
 
