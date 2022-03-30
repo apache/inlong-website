@@ -1,5 +1,5 @@
 ---
-title: Manager Client
+title: Manager SDK
 sidebar_position: 3
 ---
 
@@ -22,7 +22,7 @@ which means you can use client to manipulate your group task instead of UI.
 ## Code
 
 - We provide two unit cases for you to build your own group task, you can replace the predefined params and try it in your own cluster.
-- In following cases, **pulsar** and **flink** are needed when your group is inited. You can run Inlong group in your own cluster, or with the help of third-party services.
+- In following cases, **Apache Pulsar** and **Apache Flink** are needed when your group is inited. You can run Inlong group in your own cluster, or with the help of third-party services.
 
 ### Programming must know interface
 
@@ -56,12 +56,12 @@ try {
 ### Kafka2Hive
 
 Refer to **manager-client-test**
-``org.apache.inlong.manager.client.Kafka2HiveTest.java``
+[org.apache.inlong.manager.client.Kafka2HiveTest.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Kafka2HiveTest.java)
 
 ### Binlog2Kafka
 
-Refer to **manager-client-test** 
-``org.apache.inlong.manager.client.Binlog2KafkaTest.java``
+Refer to **manager-client-test**
+[org.apache.inlong.manager.client.Binlog2KafkaTest.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Binlog2KafkaTest.java)
 
 ## Last but not Least
 

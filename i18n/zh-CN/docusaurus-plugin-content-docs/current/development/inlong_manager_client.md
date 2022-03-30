@@ -1,5 +1,5 @@
                    ---
-title: Manager 客户端
+title: Manager SDK
 sidebar_position: 3
 ---
 
@@ -21,7 +21,7 @@ Apache InLong Manager 是整个数据集成平台面向用户的统一管理入�
 ## 代码
 
 - 我们以单元测试用例的方式提供了两个客户端用例, 你可以更换其中的参数并在自己的集群上实践;
-- 你可以在自己的Inlong集群上运行任务, 或借助第三方平台提供的**pulsar**及**flink**运行。
+- 在我们提供的用例中，需要**Apache Pulsar**及**Apache Flink**的支持。你可以在自己的Inlong集群上运行任务, 或借助第三方平台提供的相关服务运行。
 
 ### 参考Demo
 
@@ -55,12 +55,12 @@ try {
 ### Kafka2Hive
 
 参考 **manager-client-test**
-``org.apache.inlong.manager.client.Kafka2HiveTest.java``
+[org.apache.inlong.manager.client.Kafka2HiveTest.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Kafka2HiveTest.java)
 
 ### Binlog2Kafka
 
 参考 **manager-client-test**
-``org.apache.inlong.manager.client.Binlog2KafkaTest.java``
+[org.apache.inlong.manager.client.Binlog2KafkaTest.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Binlog2KafkaTest.java)
 
 ## 写在最后
 
