@@ -27,10 +27,6 @@
     "message": "新闻",
     "description": "Navbar item with label NEWS"
   },
-  "item.label.USERS": {
-    "message": "用户",
-    "description": "Navbar item with label USERS"
-  },
   "item.label.TEAM": {
     "message": "团队",
     "description": "Navbar item with label TEAM"
