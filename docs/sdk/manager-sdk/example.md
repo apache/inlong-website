@@ -56,12 +56,12 @@ try {
 ### Kafka2Hive
 
 Refer to **manager-client-test**
-[org.apache.inlong.manager.client.Kafka2HiveTest.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Kafka2HiveTest.java)
+[org.apache.inlong.manager.client.Kafka2HiveExample.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Kafka2HiveExample.java)
 
 ### Binlog2Kafka
 
 Refer to **manager-client-test**
-[org.apache.inlong.manager.client.Binlog2KafkaTest.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Binlog2KafkaTest.java)
+[org.apache.inlong.manager.client.Binlog2KafkaExample.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Binlog2KafkaExample.java)
 
 ## Last but not Least
 
