@@ -54,13 +54,13 @@ try {
 
 ### Kafka2Hive
 
-参考 **manager-client-test**
-[org.apache.inlong.manager.client.Kafka2HiveTest.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Kafka2HiveTest.java)
+参考 **manager-client-examples**
+[org.apache.inlong.manager.client.Kafka2HiveExample.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-examples/src/test/java/org/apache/inlong/manager/client/Kafka2HiveExample.java)
 
 ### Binlog2Kafka
 
-参考 **manager-client-test**
-[org.apache.inlong.manager.client.Binlog2KafkaTest.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-test/src/test/java/org/apache/inlong/manager/client/Binlog2KafkaTest.java)
+参考 **manager-client-examples**
+[org.apache.inlong.manager.client.Binlog2KafkaExample.java](https://github.com/apache/incubator-inlong/blob/master/inlong-manager/manager-client-examples/src/test/java/org/apache/inlong/manager/client/Binlog2KafkaExample.java)
 
 ## 写在最后
 
