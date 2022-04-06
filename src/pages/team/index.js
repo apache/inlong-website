@@ -144,6 +144,11 @@ export default function() {
                             <td>wf123537200</td>
                             <td>Zak Wu</td>
                         </tr>
+                        <tr>
+                            <td>healchow</td>
+                            <td>healchow</td>
+                            <td>Heal Chow</td>
+                        </tr>
                     </tbody>
                 </table>
                 <h2>Committer</h2>
@@ -165,11 +170,6 @@ export default function() {
                             <td>Haiji Li</td>
                         </tr>
                         <tr>
-                            <td>healchow</td>
-                            <td>healchow</td>
-                            <td>Heal Chow</td>
-                        </tr>
-                        <tr>
                             <td>yuanbo</td>
                             <td>yuanboliu</td>
                             <td>Yuanbo Liu</td>
@@ -178,6 +178,21 @@ export default function() {
                             <td>alfredlu</td>
                             <td>TszKitLo40</td>
                             <td>Zijie Lu</td>
+                        </tr>
+                        <tr>
+                            <td>zirui</td>
+                            <td>EMsnap</td>
+                            <td>Zirui Peng</td>
+                        </tr>
+                        <tr>
+                            <td>leezng</td>
+                            <td>leezng</td>
+                            <td>Daniel Li</td>
+                        </tr>
+                        <tr>
+                            <td>jiyuanhao</td>
+                            <td>shink</td>
+                            <td>Yuanhao Ji</td>
                         </tr>
                     </tbody>
                 </table>
