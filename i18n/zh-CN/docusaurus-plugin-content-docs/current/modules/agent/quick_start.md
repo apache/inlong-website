@@ -33,34 +33,35 @@ bash +x bin/agent.sh start
 curl --location --request POST 'http://localhost:8008/config/job' \
 --header 'Content-Type: application/json' \
 --data '{
-"job": {
-"dir": {
-"path": "",
-"pattern": "/data/inlong-agent/test.log"
-},
-"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
-"id": 1,
-"thread": {
-"running": {
-"core": "4"
-}
-},
-"name": "fileAgentTest",
-"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-"sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-},
-"proxy": {
-"inlongGroupId": "groupId10",
-"inlongStreamId": "streamId10"
-},
-"op": "add"
+  "job": {
+    "dir": {
+      "path": "",
+      "pattern": "/data/inlong-agent/test.log"
+    },
+    "sourceType": 3,
+    "id": 1,
+    "thread": {
+      "running": {
+        "core": "4"
+      }
+    },
+    "name": "fileAgentTest",
+    "source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
+    "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
+    "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
+  },
+  "proxy": {
+    "inlongGroupId": "groupId10",
+    "inlongStreamId": "streamId10"
+  },
+  "op": "add"
 }'
 ```
 
 其中各个参数含义为：
 - job.dir.pattern: 配置读取的文件路径，可包含正则表达式
 - job.trigger: 触发器名称，默认为DirectoryTrigger，功能为监听文件夹下的文件产生事件，任务运行时已有的文件不会读取
+- job.sourceType: 作业类型，可选的值为：0(DATABASE_MIGRATION)、1(SQL)、2(BINLOG)、3(FILE)、4(KAFKA)。  
 - job.source: 使用的数据源类型，默认为TextFileSource，读取文本文件
 - job.sink：使用的写入器类型，默认为ProxySink，发送消息到dataproxy中
 - proxy.groupId: 写入proxy时使用的groupId，groupId是指manager界面中，数据接入中业务信息的业务ID，此处不是创建的tube topic名称

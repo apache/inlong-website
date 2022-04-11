@@ -40,6 +40,7 @@ curl --location --request POST 'http://localhost:8008/config/job' \--header 'Con
       "separator": "|"
     },
     "id": 1,
+    "sourceType": 1,
     "thread": {
       "running": {
         "core": "4"

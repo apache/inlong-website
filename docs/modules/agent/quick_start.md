@@ -34,38 +34,38 @@ bash +x bin/agent.sh start
 ## Example: Add job configuration in real time
 
 ```bash
-    curl --location --request POST 'http://localhost:8008/config/job' \
-    --header 'Content-Type: application/json' \
-    --data '{
-    "job": {
+curl --location --request POST 'http://localhost:8008/config/job' \
+--header 'Content-Type: application/json' \
+--data '{
+  "job": {
     "dir": {
-    "path": "",
-    "pattern": "/data/inlong-agent/test.log"
+      "path": "",
+      "pattern": "/data/inlong-agent/test.log"
     },
-    "trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
+    "sourceType": 3,
     "id": 1,
     "thread": {
-    "running": {
-    "core": "4"
-    },
-    "onejob": true
+      "running": {
+        "core": "4"
+      }
     },
     "name": "fileAgentTest",
     "source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
     "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
     "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-    },
-    "proxy": {
-  "inlongGroupId": "groupId10",
-  "inlongStreamId": "groupId10"
-    },
-    "op": "add"
-    }'
+  },
+  "proxy": {
+    "inlongGroupId": "groupId10",
+    "inlongStreamId": "streamId10"
+  },
+  "op": "add"
+}'
 ```
 
 The meaning of each parameter is ：
 - job.dir.pattern: Configure the read file path, which can include regular expressions
 - job.trigger: Trigger name, the default is DirectoryTrigger, the function is to monitor the files under the folder to generate events
+- job.sourceType: The type of job，the value can be 0(DATABASE_MIGRATION), 1(SQL), 2(BINLOG), 3(FILE) or 4(KAFKA)
 - job.source: The type of data source used, the default is TextFileSource, which reads text files
 - job.sink：The type of writer used, the default is ProxySink, which sends messages to the proxy
 - proxy.groupId: The groupId type used when writing proxy, groupId is group id showed on data access in inlong-manager, not the topic name.

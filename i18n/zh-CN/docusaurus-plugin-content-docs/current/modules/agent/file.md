@@ -42,29 +42,29 @@ job.cycleUnit 包含如下两种类型：
 curl --location --request POST 'http://localhost:8008/config/job' \
 --header 'Content-Type: application/json' \
 --data '{
-"job": {
-"dir": {
-"path": "",
-"pattern": "/data/inlong-agent/2021020211.log"
-},
-"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
-"id": 1,
-"thread": {
-"running": {
-"core": "4"
-}
-},
-"name": "fileAgentTest",
-"cycleUnit": "D",
-"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-"sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-},
-"proxy": {
-"inlongGroupId": "groupId",
-"inlongStreamId": "streamId"
-},
-"op": "add"
+  "job": {
+    "dir": {
+      "path": "",
+      "pattern": "/data/inlong-agent/2021020211.log"
+    },
+    "sourceType": 3,
+    "id": 1,
+    "thread": {
+      "running": {
+        "core": "4"
+      }
+    },
+    "name": "fileAgentTest",
+    "cycleUnit": "D",
+    "source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
+    "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
+    "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
+  },
+  "proxy": {
+    "inlongGroupId": "groupId",
+    "inlongStreamId": "streamId"
+  },
+  "op": "add"
 }'
 ```
 
@@ -81,29 +81,29 @@ curl --location --request POST 'http://localhost:8008/config/job' \
 curl --location --request POST 'http://localhost:8008/config/job' \
 --header 'Content-Type: application/json' \
 --data '{
-"job": {
-"dir": {
-"path": "",
-"pattern": "/data/inlong-agent/test.log"
-},
-"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
-"id": 1,
-"thread": {
-"running": {
-"core": "4"
-}
-},
-"name": "fileAgentTest",
-"cycleUnit": "D",
-"timeOffset": "-1d",
-"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-"sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-},
-"proxy": {
-"inlongGroupId": "groupId",
-"inlongStreamId": "streamId"
-},
-"op": "add"
+  "job": {
+    "dir": {
+      "path": "",
+      "pattern": "/data/inlong-agent/test.log"
+    },
+    "sourceType": 3,
+    "id": 1,
+    "thread": {
+      "running": {
+        "core": "4"
+      }
+    },
+    "name": "fileAgentTest",
+    "cycleUnit": "D",
+    "timeOffset": "-1d",
+    "source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
+    "sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
+    "channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
+  },
+  "proxy": {
+    "inlongGroupId": "groupId",
+    "inlongStreamId": "streamId"
+  },
+  "op": "add"
 }'
 ```
