@@ -21,7 +21,7 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 ./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-[version].jar \
 --cluster-id debezium2hive --dataflow.info.file /YOUR_DATAFLOW_INFO_DIR/debezium-to-hive.json \
 --source.type pulsar --sink.type hive --sink.hive.rolling-policy.rollover-interval 60000 \
---sink.hive.rolling-policy.check-interval 30000
+--metrics.audit.proxy.hosts 127.0.0.1:10081 --sink.hive.rolling-policy.check-interval 30000
 ```
 
 注意：
@@ -35,6 +35,7 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 - `--dataflow.info.file` 流配置文件路径
 - `--source.type` 数据源的种类, 当前支持："pulsar"
 - `--sink.type` 存储系统的种类，当前支持："clickhouse"、"hive"、"iceberg"、"kafka"
+- `--metrics.audit.proxy.hosts` audit proxy 地址用于上报审计指标数据
 
 **启动参数配置示例**
 ```

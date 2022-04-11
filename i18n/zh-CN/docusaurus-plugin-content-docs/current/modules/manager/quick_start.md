@@ -17,7 +17,6 @@ title: 安装部署
 - 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
 
 ## 配置
-
 前往 `inlong-manager` 目录，修改 `conf/application.properties` 文件：
 
 ```properties
@@ -34,6 +33,17 @@ spring.profiles.active=dev
 spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_manager?useSSL=false&allowPublicKeyRetrieval=true&characterEncoding=UTF-8&nullCatalogMeansCurrent=true&serverTimezone=GMT%2b8
 spring.datasource.druid.username=root
 spring.datasource.druid.password=inlong
+```
+
+## Flink 插件
+InLong 支持 Manager 发起 Sort 任务进行数据分拣，需要先配置 Flink 环境信息。配置文件为`plugins/flink-sort-plugin.properties`.
+```properties
+# Flink host split by coma if more than one host, such as 'host1,host2'
+flink.rest.address=127.0.0.1
+# Flink port
+flink.rest.port=8081
+# Flink jobmanager port
+flink.jobmanager.port=6123
 ```
 
 ## 启动
