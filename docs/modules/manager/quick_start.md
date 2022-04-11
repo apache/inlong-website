@@ -36,7 +36,18 @@ spring.datasource.druid.username=root
 spring.datasource.druid.password=inlong
 ```
 
-## 启动
+## Flink Plugin
+InLong support to start a Sort task by Manager, you need to configure a Flink environment in the `plugins/flink-sort-plugin.properties`.
+```properties
+# Flink host split by coma if more than one host, such as 'host1,host2'
+flink.rest.address=127.0.0.1
+# Flink port
+flink.rest.port=8081
+# Flink jobmanager port
+flink.jobmanager.port=6123
+```
+
+## Start
 ```shell
 bash +x bin/startup.sh
 ```

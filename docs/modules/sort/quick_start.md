@@ -22,7 +22,7 @@ Example：
 ./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-[version].jar \
 --cluster-id debezium2hive --dataflow.info.file /YOUR_DATAFLOW_INFO_DIR/debezium-to-hive.json \
 --source.type pulsar --sink.type hive --sink.hive.rolling-policy.rollover-interval 60000 \
---sink.hive.rolling-policy.check-interval 30000
+--metrics.audit.proxy.hosts 127.0.0.1:10081 --sink.hive.rolling-policy.check-interval 30000
 ```
 
 Notice：
@@ -36,6 +36,7 @@ Notice：
 - `--dataflow.info.file` dataflow configuration file path
 - `--source.type` source of the application, currently "pulsar" is supported
 - `--sink.type` sink of the application, currently "clickhouse", "hive", "iceberg", "kafka" are supported
+- `--metrics.audit.proxy.hosts` audit proxy host address for reporting audit metrics
 
 **Example**
 ```
