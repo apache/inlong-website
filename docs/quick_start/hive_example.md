@@ -1,4 +1,4 @@
-![img.png](docs/quick_start/img/img.png)---
+---
 title: Hive Example
 sidebar_position: 2
 ---
