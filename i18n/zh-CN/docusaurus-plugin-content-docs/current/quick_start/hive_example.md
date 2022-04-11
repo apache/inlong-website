@@ -3,7 +3,7 @@ title: 入库 Hive 示例
 sidebar_position: 2
 ---
 
-本节用一个简单的示例，帮助您使用 Docker 快速体验 InLong 的完整流程。
+本节用一个简单的示例，帮助您快速体验 InLong 的完整流程。
 
 
 ## 安装 Hive
@@ -26,7 +26,9 @@ Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐�
 
 ![Create Stream](img/create-stream.png)
 
-注意其中消息来源选择“文件”，暂时不用新建数据源。
+注意其中消息来源选择“文件”，并“新建数据源”，配置 `Agent 地址`及采集`文件路径`：
+
+![File Source](img/file-source.png)
 
 然后我们在下面的“数据信息”一栏中填入以下信息
 
@@ -45,54 +47,16 @@ Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐�
 
 到此接入就已经创建完毕了，我们可以在 Hive 中看到相应的表已经被创建，并且在 TubeMQ 的管理界面中可以看到相应的 topic 已经创建成功。
 
-## 配置 agent
-使用 curl 向 agent 容器发送请求创建采集任务。
-```
-curl --location --request POST 'http://localhost:8008/config/job' \
---header 'Content-Type: application/json' \
---data '{
-"job": {
-"dir": {
-"path": "",
-"pattern": "/data/collect-data/test.log"
-},
-"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
-"id": 1,
-"thread": {
-"running": {
-"core": "4"
-}
-},
-"name": "fileAgentTest",
-"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-"sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-},
-"proxy": {
-"inlongGroupId": "b_test_group",
-"inlongStreamId": "test_stream"
-},
-"op": "add"
-}'
-```
-
-至此，agent 就配置完毕了。接下来我们可以新建 `./collect-data/test.log` ，并往里面添加内容，来触发 agent 向 dataproxy 发送数据了。
+## 配置 Agent 采集文件
+接下来我们可以新建 `/data/collect-data/test.log` ，并往里面添加内容，来触发 agent 向 dataproxy 发送数据了。
 
 ``` shell
 mkdir collect-data
 END=100000
 for ((i=1;i<=END;i++)); do
     sleep 3
-    echo "name_$i | $i" >> ./collect-data/test.log
+    echo "name_$i | $i" >> /data/collect-data/test.log
 done
 ```
 
-然后观察 agent 和 dataproxy 的日志，可以看到相关数据已经成功发送。
-
-```
-$ docker logs agent
-$ docker logs dataproxy
-```
-
-
-
+可以观察审计数据页面，看到数据已经成功采集和发送。

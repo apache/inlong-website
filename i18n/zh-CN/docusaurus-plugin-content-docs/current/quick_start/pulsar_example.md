@@ -21,16 +21,6 @@ Hive 是运行的必备组件。如果您的机器上没有 Hive，这里推荐�
 1. 按照 [这里的说明](deployment/docker.md)，使用 Docker 进行快速部署。（推荐）
 2. 按照 [这里的说明](deployment/bare_metal.md)，使用二进制包依次安装各组件。
 
-区别于 InLong TubeMQ，如果使用 Apache Pulsar，需要在 Manager 组件安装中配置 Pulsar 集群信息，格式如下：
-```
-# Pulsar admin URL
-pulsar.adminUrl=http://127.0.0.1:8080,127.0.0.2:8080,127.0.0.3:8080
-# Pulsar broker address
-pulsar.serviceUrl=pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650
-# Default tenant of Pulsar
-pulsar.defaultTenant=public
-```
-
 ## 创建数据接入
 ### 配置数据流 Group 信息
 ![](img/pulsar-group.png)
@@ -44,7 +34,9 @@ pulsar.defaultTenant=public
 
 ### 配置数据流
 ![](img/pulsar-stream.png)
-配置消息来源时，文件数据源中的文件路径，可参照 inlong-agent 中[File Agent的详细指引](https://inlong.apache.org/docs/next/modules/agent/file#file-agent-configuration)。
+
+### 配置文件 Agent
+![](img/file-source.png)
 
 ### 配置数据格式
 ![](img/pulsar-data.png)
@@ -55,52 +47,21 @@ pulsar.defaultTenant=public
 
 ## 数据接入审批
 进入**审批管理**页面，点击**我的审批**，审批上面提交的接入申请，审批结束后会在 Pulsar 集群同步创建数据流需要的 Topic 和订阅。
-我们可以在 Pulsar 集群使用命令行工具检查 Topic 是否创建成功：
-![](img/pulsar-topic.png)
+我们可以在 Pulsar 集群使用命令行工具检查 Topic 是否创建成功。
 
-## 配置文件 Agent
-使用 curl agent 发送请求创建采集任务。
-```
-curl --location --request POST 'http://localhost:8008/config/job' \
---header 'Content-Type: application/json' \
---data '{
-"job": {
-"dir": {
-"path": "",
-"pattern": "/data/collect-data/test.log"
-},
-"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
-"id": 1,
-"thread": {
-"running": {
-"core": "4"
-}
-},
-"name": "fileAgentTest",
-"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-"sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-},
-"proxy": {
-"inlongGroupId": "b_test_group",
-"inlongStreamId": "test_stream"
-},
-"op": "add"
-}'
-```
-
-至此，agent 就配置完毕了。接下来我们可以新建 `./collect-data/test.log` ，并往里面添加内容，来触发 agent 向 dataproxy 发送数据了。
+## 配置 Agent 采集文件
+接下来我们可以新建 `/data/collect-data/test.log` ，并往里面添加内容，来触发 agent 向 dataproxy 发送数据了。
 
 ``` shell
 mkdir collect-data
 END=100000
 for ((i=1;i<=END;i++)); do
     sleep 3
-    echo "name_$i | $i" >> ./collect-data/test.log
+    echo "name_$i | $i" >> /data/collect-data/test.log
 done
 ```
 
-然后观察 agent 和 dataproxy 的日志，可以看到相关数据已经成功发送。
+可以观察审计数据页面，看到数据已经成功采集和发送。
 
 ## 数据落地检查
 
@@ -112,10 +73,3 @@ done
 ```
 b_test_group/test_stream=persistent://public/b_test_group/test_stream
 ```
-
-- 检查 InLong Sort 监听的 ZooKeeper 中是否成功推送了数据流的配置信息：
-```
-get /inlong_hive/dataflows/{{sink_id}}
-```
-
-

@@ -3,7 +3,7 @@ title: Hive Example
 sidebar_position: 2
 ---
 
-Here we use a simple example to help you experience InLong by Docker.
+Here we use a simple example to help you experience InLong.
 
 ## Install Hive
 Hive is the necessary component. If you don't have Hive in your machine, we recommand using Docker to install it. Details can be found [here](https://github.com/big-data-europe/docker-hive).
@@ -24,7 +24,9 @@ Then we click the next button, and fill in the stream information as shown in th
 
 ![Create Stream](img/create-stream.png)
 
-Note that the message source is "File", and we don't need to create a message source manually.
+Note that the message source is "File", you can create a data source manually and configure `Agent Address` and `File Path`.
+
+![File Source](img/file-source.png)
 
 Then we fill in the following information in the "data information" column below.
 
@@ -43,53 +45,16 @@ Then we enter the "Approval Management" interface and click "My Approval" to app
 
 At this point, the data access has been created successfully. We can see that the corresponding table has been created in Hive, and we can see that the corresponding topic has been created successfully in the management GUI of TubeMQ.
 
-## Configure the agent
-Create a collect job by using `curl` to make a request.
-```
-curl --location --request POST 'http://localhost:8008/config/job' \
---header 'Content-Type: application/json' \
---data '{
-"job": {
-"dir": {
-"path": "",
-"pattern": "/data/collect-data/test.log"
-},
-"trigger": "org.apache.inlong.agent.plugin.trigger.DirectoryTrigger",
-"id": 1,
-"thread": {
-"running": {
-"core": "4"
-}
-},
-"name": "fileAgentTest",
-"source": "org.apache.inlong.agent.plugin.sources.TextFileSource",
-"sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-"channel": "org.apache.inlong.agent.plugin.channel.MemoryChannel"
-},
-"proxy": {
-"inlongGroupId": "b_test_group",
-"inlongStreamId": "test_stream"
-},
-"op": "add"
-}'
-```
-
-At this point, the agent is configured successfully.
-Then we need to create a new file `./collect-data/test.log` and add content to it to trigger the agent to send data to the dataproxy.
+## Configure the agent file
+Then we need to create a new file `/data/collect-data/test.log` and add content to it to trigger the agent to send data to the dataproxy.
 
 ``` shell
 mkdir collect-data
 END=100000
 for ((i=1;i<=END;i++)); do
     sleep 3
-    echo "name_$i | $i" >> ./collect-data/test.log
+    echo "name_$i | $i" >> /data/collect-data/test.log
 done
 ```
 
-Then we can observe the logs of agent and dataproxy, and we can see that the relevant data has been sent successfully.
-
-```
-$ docker logs agent
-$ docker logs dataproxy
-```
-
+Then you can observe the Audit Data Pages, and see that the data has been collected and sent successfully.
