@@ -18,7 +18,7 @@ helm upgrade inlong --install -n inlong ./
 ```
 
 ## Configuration
-The configuration file is [values.yaml](values.yaml), and the following tables lists the configurable parameters of InLong and their default values.
+The configuration file is **values.yaml**, and the following tables lists the configurable parameters of InLong and their default values.
 
 |                                    Parameter                                     |     Default      |                                                                         Description                                                                          | 
 |:--------------------------------------------------------------------------------:|:----------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|
