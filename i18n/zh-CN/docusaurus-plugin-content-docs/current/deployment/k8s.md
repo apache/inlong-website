@@ -62,7 +62,7 @@ export DASHBOARD_SERVICE_IP=$(kubectl get svc inlong-dashboard --template "{{"{{
 
 > 注意：这将花费一些时间，可以运行 `kubectl get svc inlong-dashboard -n inlong -w` 命令来查看其状态
 
-默认的用户名是 `admin`，默认密码是 `inlong`，你可以它们进入 InLong Dashboard。
+默认的用户名是 `admin`，默认密码是 `inlong`，你可以通过它们进入 InLong Dashboard。
 
 ### 配置
 
