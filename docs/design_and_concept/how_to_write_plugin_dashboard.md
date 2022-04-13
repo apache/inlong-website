@@ -5,7 +5,7 @@ sidebar_position: 4
 
 # Overview
 
-This article is aimed at InLong-Dashboard plug-in developers, trying to explain the process of developing a Dashboard plug-in as comprehensively as possible, and strive to eliminate the confusion of developers and make plug-in development easier.
+This article is aimed at InLong-Dashboard plug-in developers, trying to describe the process of developing a Dashboard plug-in as comprehensively as possible, helping developers quickly add a data storage LoadNode, and making plug-in development easier.
 
 ## Before
 
@@ -13,23 +13,23 @@ The InLong Dashboard itself acts as a front-end console, built with the React fr
 
 ## Extend a new sink
 
-In the `/inlong-dashboard/src/components/MetaData` directory, create a new `StorageAbc.tsx` file, and at the same time export the file in the `index.ts` file in the current directory (refer to the existing Sink writing method ), which completes a new sink named `Abc`.
+In the `/inlong-dashboard/src/components/MetaData` directory, create a new `StorageExample.tsx` file, and at the same time export the file in the `index.ts` file in the current directory (refer to the existing LoadNode writing method ), which completes a new sink named `Example`.
 
 ````js
 // export in index
 export const Storages: StoragesType[] = [
   // ... omit existing code
   {
-    label: 'ABC',
-    value: 'ABC',
-    ...StorageAbc,
+    label: 'Example',
+    value: 'Example',
+    ...StorageExample,
   },
 ];
 ````
 
-Next, we will introduce how to define the internal structure of the Sink.
+Next, we will introduce how to define the internal structure of the LoadNode.
 
-In the definition of Sink, we can view the unified specification of our agreement through the type declaration in the `import type { GetStorageFormFieldsType, GetStorageColumnsType } from '@/utils/metaData';` file, here we show a simplest Sink definition (emphasis inside the `--concerns--` tag):
+In the definition of LoadNode, we can view the unified specification of our agreement through the type declaration in the `import type { GetStorageFormFieldsType, GetStorageColumnsType } from '@/utils/metaData';` file, here we show a simplest LoadNode definition (emphasis inside the `--concerns--` tag):
 
 ````js
 import { getColsFromFields, GetStorageFormFieldsType } from '@/utils/metaData';
@@ -87,10 +87,10 @@ const getForm: GetStorageFormFieldsType = (
 // The following is a generic export
 const tableColumns = getForm('col') as ColumnsType;
 
-export const StorageAbc = {
+export const StorageExample = {
   getForm,
   tableColumns,
 };
 ````
 
-In the above example, we define a sink of `Abc`, which consists of three fields: name, sex, age. The field name corresponds to the name attribute (the API interface field that interacts with the manager), and the type attribute represents the display on the front-end page. The input form usually includes input, inputnumber, radio, select and other forms. More complex display forms or the complete definition of the entire object can be obtained through the ts type description.
+In the above example, we define a sink of `Example`, which consists of three fields: name, sex, age. The field name corresponds to the name attribute (the API interface field that interacts with the manager), and the type attribute represents the display on the front-end page. The input form usually includes input, inputnumber, radio, select and other forms. More complex display forms or the complete definition of the entire object can be obtained through the ts type description.
