@@ -29,7 +29,7 @@ export const Storages: StoragesType[] = [
 
 Next, we will introduce how to define the internal structure of the LoadNode.
 
-In the definition of LoadNode, we can view the unified specification of our agreement through the type declaration in the `import type { GetStorageFormFieldsType, GetStorageColumnsType } from '@/utils/metaData';` file, here we show a simplest LoadNode definition (emphasis inside the `--concerns--` tag):
+In the definition of LoadNode, we can view the unified specification of our agreement through the type declaration in the `import type { GetStorageFormFieldsType, GetStorageColumnsType } from '@/utils/metaData';` file, here we show a simplest LoadNode definition (emphasis inside the `--Focus--` tag):
 
 ````js
 import { getColsFromFields, GetStorageFormFieldsType } from '@/utils/metaData';
