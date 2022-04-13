@@ -14,7 +14,7 @@ default.admin.user=admin
 default.admin.password=inlong
 ```
 
-## 命令总览
+## 总览
 
 ```
 Usage: managerctl [options] [command] [command options]
@@ -34,7 +34,7 @@ Usage: managerctl [options] [command] [command options]
 
 目前命令行工具支持 `list`、`describe` 以及 `create` 三个命令。
 
-## list命令
+## List
 
 ```
 Usage: managerctl list [command] [command options]
@@ -77,9 +77,9 @@ Usage: managerctl list [command] [command options]
 
 > \* 号为必选项
 
-`list` 命令用于展示inlong group / stream / sink / source 的核心信息。
+`list` 用于展示inlong group / stream / sink / source 的核心信息。
 
-## describe命令
+## Describe
 
 ```
 Usage: managerctl describe [command] [command options]
@@ -120,9 +120,9 @@ Usage: managerctl describe [command] [command options]
             sink type
 ```
 
-`describe` 命令用于展示inlong group / stream / sink / source 的详细信息，并以Json格式输出。
+`describe` 用于展示inlong group / stream / sink / source 的详细信息，并以Json格式输出。
 
-## create命令
+## Create
 
 ```
 Usage: managerctl create [command] [command options]
@@ -134,11 +134,11 @@ Usage: managerctl create [command] [command options]
             json file
 ```
 
-`create` 命令不需要申请审核等步骤，只需将所配置信息准备在Json文件中即可。
+`create` 不需要申请审核等步骤，只需将所配置信息准备在Json文件中即可。
 
-### Json文件要求
+### Json文件
 
-Json文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource` 、`streamSink` 以及 `streamFieldList`
+Json 文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource` 、`streamSink` 以及 `streamFieldList`
 
 ```json
 {
@@ -214,17 +214,20 @@ Json文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource`
 }
 ```
 
-- streamSource 目前支持 `kafka` 、 `binlog` 和 `file`
+#### streamSource
+- Kafka
 > ```
 > "streamSource": {
 >   "sourceType": "KAFKA",
 >   "sourceName": "sourceName",
->   "bootstrapServers": "10.160.139.123:9092",
->   "topic": "haif_test",
+>   "bootstrapServers": "127.0.0.1:9092",
+>   "topic": "kafka_topic",
 >   "dataFormat": "json",
 >   "autoOffsetReset": "EARLIEST"
 >  },
 > ```
+
+- MySQL Binlog
 > ```
 > "mqBaseConf": {
 >   "type": "BINLOG",
@@ -243,6 +246,8 @@ Json文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource`
 >   "tableNames": ["tb1", "user"*],
 > }
 > ```
+
+- File
 > ```
 > "mqBaseConf": {
 >   "type": "FILE",
@@ -253,26 +258,31 @@ Json文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource`
 > }
 > ```
 
-- streamSink 目前支持 `hive` 、 `kafka` 和 `clickHouse`
+#### streamSink
+- Hive
 > ```
 > "streamSink": {
 >   "sinkType": "HIVE",
 >   "dbName": "test_db",
->   "jdbcUrl": "jdbc:hive2://10.160.142.179:10000",
+>   "jdbcUrl": "jdbc:hive2://127.0.0.1:10000",
 >   "authentication": {
 >     "userName": "hive",
 >     "password": "hive"
 >   },
 > ```
+
+- Kafka
 > ```
 > "mqBaseConf": {
 >   "type": "KAFKA",
->   "bootstrapServers": "pulsar://100.76.43.216:6650",
+>   "bootstrapServers": "pulsar://127.0.0.1:6650",
 >   "topicName": "http://100.76.43.216:8080",
 >   "dataFormat": "JSON",
 >   "boolean": false,
 > }
 > ```
+
+- ClickHouse
 > ```
 > "mqBaseConf": {
 >   "type": "CLICKHOUSE",
@@ -294,7 +304,3 @@ Json文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource`
 >   "needCreated": false
 > }
 > ```
-
-## 运行
-
-使用 `./bin/managerctl` 并加上所需命令以及参数。

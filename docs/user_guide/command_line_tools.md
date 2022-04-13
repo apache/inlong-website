@@ -215,17 +215,20 @@ Json files have five parts: `groupConf` 、`streamConf` 、`streamSource` 、`st
 }
 ```
 
-- streamSource support `kafka` 、 `binlog` and `file`
+#### streamSource
+- Kafka
 > ```
 > "streamSource": {
 >   "sourceType": "KAFKA",
 >   "sourceName": "sourceName",
->   "bootstrapServers": "10.160.139.123:9092",
->   "topic": "haif_test",
+>   "bootstrapServers": "127.0.0.1:9092",
+>   "topic": "kafka_topic",
 >   "dataFormat": "json",
 >   "autoOffsetReset": "EARLIEST"
 >  },
 > ```
+
+- MySQL Binlog
 > ```
 > "mqBaseConf": {
 >   "type": "BINLOG",
@@ -244,6 +247,8 @@ Json files have five parts: `groupConf` 、`streamConf` 、`streamSource` 、`st
 >   "tableNames": ["tb1", "user"*],
 > }
 > ```
+
+- File
 > ```
 > "mqBaseConf": {
 >   "type": "FILE",
@@ -254,7 +259,8 @@ Json files have five parts: `groupConf` 、`streamConf` 、`streamSource` 、`st
 > }
 > ```
 
-- streamSink support `hive` 、 `kafka` and `clickHouse`
+#### streamSink
+- Hive
 > ```
 > "streamSink": {
 >   "sinkType": "HIVE",
@@ -265,6 +271,8 @@ Json files have five parts: `groupConf` 、`streamConf` 、`streamSource` 、`st
 >     "password": "hive"
 >   },
 > ```
+
+- Kafka
 > ```
 > "mqBaseConf": {
 >   "type": "KAFKA",
@@ -274,6 +282,8 @@ Json files have five parts: `groupConf` 、`streamConf` 、`streamSource` 、`st
 >   "boolean": false,
 > }
 > ```
+
+- ClickHouse
 > ```
 > "mqBaseConf": {
 >   "type": "CLICKHOUSE",
@@ -295,7 +305,3 @@ Json files have five parts: `groupConf` 、`streamConf` 、`streamSource` 、`st
 >   "needCreated": false
 > }
 > ```
-
-## Start
-
-Use `./bin/managerctl` and add the required commands and options.
