@@ -3,7 +3,7 @@ title: Command-line Tools
 sidebar_position: 2
 ---
 
-## Deployment
+## Configuration
 
 Go to the `inlong-manager` directory , modify the following configurations of the `conf/application.properties` file.
 
