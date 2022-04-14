@@ -51,7 +51,7 @@ The parameter description is as follows:
 | inLongManagerAddr      | String   | inlong admin server address                           |
 | inLongManagerPort      | String   | inlong admin server port                            |
 | netTag                 | String   | Network label, not used yet, you can pass an empty string                |
-| dataProxyGroup         | String   | dataProup group name, the name used for local configuration when the user enables local configuration         |
+| dataProxyGroup         | String   | dataProxy group name, the name used for local configuration when the user enables local configuration         |
 | isLocalVisit           | boolean  | Whether to use local configuration, true use https to access the console, false use http to request the console|
 | isReadProxyIPFromLocal | boolean  | Whether to obtain the address information of the Dataproxy server from the local configuration file, local self-test, can be set to true if the management console cannot be accessede|
 | configBasePath         | String   | The path of the local configuration file. The default is ./inlong. When isReadProxyIPFromLocal is true, the configuration file is searched from this directory|                                 |
@@ -136,7 +136,7 @@ The parameter description is as follows:
 | inLongManagerAddr      | String   | inlong admin server address                |
 | inLongManagerPort      | String   | inlong admin server port                   |
 | netTag                 | String   | Network label, not used yet, you can pass an empty string   |
-| dataProxyGroup         | String   | dataProup group name, the name used for local configuration when the user enables local configuration         |
+| dataProxyGroup         | String   | dataProxy group name, the name used for local configuration when the user enables local configuration         |
 | isLocalVisit           | boolean  | Whether to use local configuration, true use https to access the console, false use http to request the console|
 | isReadProxyIPFromLocal | boolean  | Whether to obtain the address information of the Dataproxy server from the local configuration file, local self-test, can be set to true if the management console cannot be accessed|
 | configBasePath         | String   | The path of the local configuration file. The default is ./inlong. When isReadProxyIPFromLocal is true, the configuration file is searched from this directory.|                                 |
