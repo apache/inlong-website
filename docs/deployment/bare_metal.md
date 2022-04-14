@@ -25,4 +25,4 @@ You can get binary package from [Download Page](https://inlong.apache.org/downlo
 | 5   | inlong-dashboard | Nginx or Docker | [InLong Dashboard](modules/dashboard/quick_start.md)                    | |
 
 ## Create Data Stream
-After the InLong cluster deployed successfully, you can create a data stream refer to the [user manual](user_guide/dashboard_usage.md) to start using.
+After the InLong cluster deployed successfully, you can create a data stream refer to the [Dashboard Usage Guide](user_guide/dashboard_usage.md) to start using.
