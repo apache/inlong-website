@@ -50,7 +50,7 @@ Api 详情，请查看[总览](./overview)
 | inLongManagerAddr      | String   | inlong 管理台地址                             |
 | inLongManagerPort      | String   | inlong 管理台端口                             |
 | netTag                 | String   | 网络标签，暂未使用，可以传空字符串                |
-| dataProxyGroup         | String   | dataProup 组名称，用户在启用本地配置的时候，用于本地配置的名称         |
+| dataProxyGroup         | String   | dataProxy 组名称，用户在启用本地配置的时候，用于本地配置的名称         |
 | isLocalVisit           | boolean  | 是否使用本地配置， true 使用 https 访问管理台，false 使用 http 请求管理台|
 | isReadProxyIPFromLocal | boolean  | 是否从本地配置文件中获取 Dataproxy 服务器地址信息，本地自测，不能访问管理台的情况下可以配置为 true|
 | configBasePath         | String   | 本地配置文件的路径 默认 ./inlong，isReadProxyIPFromLocal 为 true 时从这个目录查找配置文件/                                 |
@@ -135,7 +135,7 @@ Api 详情，请查看[总览](./overview)
 | inLongManagerAddr      | String   | inlong 管理台地址                             |
 | inLongManagerPort      | String   | inlong 管理台端口                             |
 | netTag                 | String   | 网络标签，暂未使用，可以传空字符串                |
-| dataProxyGroup         | String   | dataProup 组名称，用户在启用本地配置的时候，用于本地配置的名称         |
+| dataProxyGroup         | String   | dataProxy 组名称，用户在启用本地配置的时候，用于本地配置的名称         |
 | isLocalVisit           | boolean  | 是否使用本地配置， true 使用 https 访问管理台，false 使用 http 请求管理台|
 | isReadProxyIPFromLocal | boolean  | 是否从本地配置文件中获取 Dataproxy 服务器地址信息，本地自测，不能访问管理台的情况下可以配置为 true|
 | configBasePath         | String   | 本地配置文件的路径 默认 ./inlong，isReadProxyIPFromLocal 为 true 时从这个目录查找配置文件/                                 |
