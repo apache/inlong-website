@@ -3,19 +3,8 @@ title: 命令行工具
 sidebar_position: 2
 ---
 
-## 配置
-
-前往 `inlong-manager` 目录，修改 `conf/application.properties` 文件的以下配置即可。
-
-```
-server.host=127.0.0.1
-server.port=8080
-default.admin.user=admin
-default.admin.password=inlong
-```
-
 ## 总览
-
+除了 [InLong Dashboard](user_guide/dashboard_usage.md)，你可以通过命令行工具来查看和创建数据 Group 和 Stream。
 ```
 Usage: managerctl [options] [command] [command options]
   Options:
@@ -33,6 +22,17 @@ Usage: managerctl [options] [command] [command options]
 ```
 
 目前命令行工具支持 `list`、`describe` 以及 `create` 三个命令。
+
+## 配置
+
+前往 `inlong-manager` 目录，修改 `conf/application.properties` 文件的以下配置即可。
+
+```
+server.host=127.0.0.1
+server.port=8080
+default.admin.user=admin
+default.admin.password=inlong
+```
 
 ## List
 

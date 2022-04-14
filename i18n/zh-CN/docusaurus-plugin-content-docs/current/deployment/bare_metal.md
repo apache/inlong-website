@@ -25,5 +25,5 @@ InLong 当前支持以下消息队列，根据使用情况**选择其一**即可
 | 5   | inlong-dashboard | Nginx 或者 Docker | [InLong Dashboard](modules/dashboard/quick_start.md)                    | |
 
 ## 创建数据流
-InLong 集群部署成功后，你可以参考[用户手册](user_guide/user_manual.md)创建一个数据流开始使用。
+InLong 集群部署成功后，你可以参考[Dashboard 使用指引](user_guide/dashboard_usage.md)创建一个数据流开始使用。
 

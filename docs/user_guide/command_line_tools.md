@@ -3,19 +3,8 @@ title: Command-line Tools
 sidebar_position: 2
 ---
 
-## Configuration
-
-Go to the `inlong-manager` directory , modify the following configurations of the `conf/application.properties` file.
-
-```
-server.host=127.0.0.1
-server.port=8080
-default.admin.user=admin
-default.admin.password=inlong
-```
-
 ## Overview
-
+In addition to [InLong Dashboard](user_guide/dashboard_usage.md), you can view and create data groups and streams through command-line tools.
 ```
 Usage: managerctl [options] [command] [command options]
   Options:
@@ -33,6 +22,17 @@ Usage: managerctl [options] [command] [command options]
 ```
 
 The current command line tool supports three commands of `list` , `describe` , and `create`.
+
+## Configuration
+
+Go to the `inlong-manager` directory , modify the following configurations of the `conf/application.properties` file.
+
+```
+server.host=127.0.0.1
+server.port=8080
+default.admin.user=admin
+default.admin.password=inlong
+```
 
 ## List
 
