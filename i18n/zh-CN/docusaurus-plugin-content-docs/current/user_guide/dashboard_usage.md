@@ -1,5 +1,5 @@
 ---
-title: Dashboard 使用指引
+title: Dashboard 指引
 sidebar_position: 1
 ---
 
