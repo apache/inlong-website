@@ -1,5 +1,5 @@
 ---
-title: Dashboard Usage Guide
+title: Dashboard Guide
 sidebar_position: 1
 ---
 

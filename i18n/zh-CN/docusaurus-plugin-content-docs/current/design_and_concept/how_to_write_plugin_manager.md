@@ -1,6 +1,6 @@
 ---
 title: Manager 插件
-sidebar_position: 2
+sidebar_position: 4
 ---
 # 总览
 

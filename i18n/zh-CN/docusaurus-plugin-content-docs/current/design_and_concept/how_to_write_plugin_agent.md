@@ -1,6 +1,6 @@
 ---
 title: Agent 插件
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # 总览
