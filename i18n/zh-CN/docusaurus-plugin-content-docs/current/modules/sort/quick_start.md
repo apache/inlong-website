@@ -18,7 +18,7 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 
 示例：
 ```
-./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-[version].jar \
+./bin/flink run -c org.apache.inlong.sort.singletenant.flink.Entrance inlong-sort/sort-[version].jar \
 --cluster-id debezium2hive --dataflow.info.file /YOUR_DATAFLOW_INFO_DIR/debezium-to-hive.json \
 --source.type pulsar --sink.type hive --sink.hive.rolling-policy.rollover-interval 60000 \
 --metrics.audit.proxy.hosts 127.0.0.1:10081 --sink.hive.rolling-policy.check-interval 30000
@@ -26,7 +26,7 @@ flink环境配置完成后，可以通过浏览器访问flink的web ui，对应�
 
 注意：
 
-- `-c org.apache.inlong.sort.flink.Entrance` 表示main class name
+- `-c org.apache.inlong.sort.singletenant.flink.Entrance` 表示main class name
 
 - `inlong-sort/sort-[version].jar` 为编译阶段产出的jar包
 
