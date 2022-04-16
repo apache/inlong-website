@@ -54,8 +54,9 @@ Usage: managerctl list [command] [command options]
             the number displayed
             Default: 10
           -s, --status
-            Default: 0
-
+            ( CREATE | REJECTED | INITIALIZING | OPERATING | 
+             STARTED | FAILED | STOPPED | FINISHED | DELETED )
+            
     sink      Get sink details
       Usage: sink [options]
         Options:
