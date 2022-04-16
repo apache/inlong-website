@@ -50,3 +50,16 @@ Apache InLong serves the entire life cycle from data collection to landing,  and
 - **inlong-manager**, provides complete data service management and control capabilities,  including metadata,  OpenAPI,  task flow,  authority,  etc.
 - **inlong-dashboard**, a front-end page for managing data access,  simplifying the use of the entire InLong control platform.
 - **inlong-audit**, performs real-time audit and reconciliation on the incoming and outgoing traffic of the Agent, DataProxy, and Sort modules of the InLong system.
+
+## Supported Data Nodes (Updating)
+| Type         | Name             | Version      | Other                                                                                                             |
+|--------------|------------------|--------------|-------------------------------------------------------------------------------------------------------------------|
+| Extract Node | Auto Push        | None         | Using [SDK](https://inlong.apache.org/docs/next/sdk/dataproxy-sdk/example) to send                                |
+|              | File             | None         | CSV, Key-Value, JSON, Avro                                                                                        |
+|              | Kafka            | 2.x          | Canal JSON                                                                                                        |
+|              | MySQL            | 5.x, 8.x     | Debezium JSON                                                                                                     |
+| Load Node    | Auto Consumption | None         | Using MQ SDK consume messages and [Parse InLongMsg](https://inlong.apache.org/docs/next/development/inlong_msg)   |
+|              | Hive             | 2.x          | TextFile, SequenceFile,OrcFile, Parquet, Avro                                                                     |
+|              | Iceberg          | 0.12.x       | Parquet, Orc, Avro                                                                                                |
+|              | ClickHouse       | v20+         | Canal JSON                                                                                                        |
+|              | Kafka            | 2.x          | JSON, Canal, Avro                                                                                                 |

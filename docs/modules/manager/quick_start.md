@@ -45,6 +45,8 @@ flink.rest.address=127.0.0.1
 flink.rest.port=8081
 # Flink jobmanager port
 flink.jobmanager.port=6123
+# InLong Audit Proxy Address
+metrics.audit.proxy.hosts=127.0.0.1:10081
 ```
 
 ## Start

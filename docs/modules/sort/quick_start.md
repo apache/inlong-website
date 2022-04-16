@@ -19,7 +19,7 @@ Now you can submit job to flink with the jar compiled, refer to [how to submit j
 
 Example：
 ```
-./bin/flink run -c org.apache.inlong.sort.flink.Entrance inlong-sort/sort-[version].jar \
+./bin/flink run -c org.apache.inlong.sort.singletenant.flink.Entrance inlong-sort/sort-[version].jar \
 --cluster-id debezium2hive --dataflow.info.file /YOUR_DATAFLOW_INFO_DIR/debezium-to-hive.json \
 --source.type pulsar --sink.type hive --sink.hive.rolling-policy.rollover-interval 60000 \
 --metrics.audit.proxy.hosts 127.0.0.1:10081 --sink.hive.rolling-policy.check-interval 30000
@@ -27,7 +27,7 @@ Example：
 
 Notice：
 
-- `-c org.apache.inlong.sort.flink.Entrance` is the main class name
+- `-c org.apache.inlong.sort.singletenant.flink.Entrance` is the main class name
 
 - `inlong-sort/sort-[version].jar` is the compiled jar
 

@@ -44,3 +44,18 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 - **inlong-manager**，提供完整的数据服务管控能力，包括元数据、任务流、权限，OpenAPI 等。
 - **inlong-dashboard**，用于管理数据接入的前端页面，简化整个 InLong 管控平台的使用。
 - **inlong-audit**，对InLong系统的Agent、DataProxy、Sort模块的入流量、出流量进行实时审计对账。
+
+## 已支持数据节点（更新中）
+| 类型           | 名称            | 版本           | 备注                                                                                                       |
+|--------------|---------------|--------------|---------------------------------------------------------------------------------------------------------------|
+| Extract Node | 自主推送          | 无            | 使用 [SDK](https://inlong.apache.org/zh-CN/docs/next/sdk/dataproxy-sdk/example) 发送                         |
+|              | File          | 无            | CSV, Key-Value, JSON, Avro                                                                                   |
+|              | Kafka         | 2.x          | Canal JSON                                                                                                    |
+|              | MySQL         | 5.x, 8.x     | Debezium JSON                                                                                                 |
+| Load Node    | 自主消费          | 无            | 使用 MQ SDK 消费后再[解析 InLongMsg](https://inlong.apache.org/zh-CN/docs/next/development/inlong_msg)        |
+|              | Hive          | 2.x          | TextFile, SequenceFile,OrcFile, Parquet, Avro                                                                 |
+|              | Iceberg       | 0.12.x       | Parquet, Orc, Avro                                                                                            |
+|              | ClickHouse    | v20+         | Canal JSON                                                                                                    |
+|              | Kafka         | 2.x          | JSON, Canal, Avro                                                                                             |
+
+
