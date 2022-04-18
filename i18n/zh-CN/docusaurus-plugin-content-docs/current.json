@@ -58,5 +58,9 @@
   "sidebar.tutorialSidebar.category.User Guide": {
     "message": "用户指引",
     "description": "The label for category User Guide in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Data Nodes": {
+    "message": "数据节点",
+    "description": "The label for category Data Nodes in sidebar tutorialSidebar"
   }
 }

@@ -1,6 +1,6 @@
 ---
 title: Contact Us
-sidebar_position: 10
+sidebar_position: 11
 ---
 
 Contact information
