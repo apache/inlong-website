@@ -1,5 +1,5 @@
 ---
-title: Auto Push
+title: Auto Consumption
 sidebar_position: 1
 ---
 
