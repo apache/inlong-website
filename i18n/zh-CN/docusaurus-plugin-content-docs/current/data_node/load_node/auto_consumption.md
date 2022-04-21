@@ -1,5 +1,5 @@
 ---
-title: Auto Push
+title: 自主消费
 sidebar_position: 1
 ---
 
