@@ -93,12 +93,3 @@ curl --header "Content-Type: application/json" --request POST http://localhost:8
 
 - `url`: the address of your Pulsar cluster, such as `pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650`
 - `pulsar_adminUrl`: the other info of your cluster
-
-## Start
-
-Enter the decompressed directory, execute `sh bin/startup.sh` to start the service, and check the
-log `tailf log/manager-web.log`. If a log similar to the following appears, the service has started successfully:
-
-```shell
-Started InLongWebApplication in 6.795 seconds (JVM running for 7.565)
-```
