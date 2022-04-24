@@ -3,15 +3,24 @@ title: Download InLong
 sidebar_position: 1
 ---
 
-Use the links below to download the Apache InLong Releases, the latest release is 1.0.0.
+Use the links below to download the Apache InLong Releases, the latest release is 1.1.0.
+
+## 1.1.0 release
+- Released: Apr 24, 2022
+- [Release Notes](release-1.1.0.md)
+
+|     Date     | Version| Comment |                                                                                                                                                                                            Downloads                                                                                                                                                                                            |
+|:------------:| :----: |:-------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Apr 24, 2022 | 1.1.0 | Source  | [[SRC](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz)]                 [[ASC](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz.asc)]             [[SHA512](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz.sha512)] |
+| Apr 24, 2022 | 1.1.0 | Binary  | [[BIN](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz)]                 [[ASC](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz.asc)]             [[SHA512](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz.sha512)] |
+
+## Release Integrity
+You must [verify](https://www.apache.org/info/verification.html) the integrity of the downloaded files. We provide OpenPGP signatures for every release file. This signature should be matched against the [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) file which contains the OpenPGP keys of InLong's Release Managers. We also provide <code>SHA-512</code> checksums for every release file. After you download the file, you should calculate a checksum for your download, and make sure it is the same as ours.
 
 ## 1.0.0 release
 - Released: Feb 17, 2022
 - [Release Notes](release-1.0.0.md)
 - Source: [inlong-1.0.0-incubating-src.tar.gz](https://downloads.apache.org/incubator/inlong/1.0.0-incubating/apache-inlong-1.0.0-incubating-src.tar.gz)          [[ASC](https://downloads.apache.org/incubator/inlong/1.0.0-incubating/apache-inlong-1.0.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/1.0.0-incubating/apache-inlong-1.0.0-incubating-src.tar.gz.sha512)]
-
-## Release Integrity
-You must [verify](https://www.apache.org/info/verification.html) the integrity of the downloaded files. We provide OpenPGP signatures for every release file. This signature should be matched against the [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) file which contains the OpenPGP keys of InLong's Release Managers. We also provide <code>SHA-512</code> checksums for every release file. After you download the file, you should calculate a checksum for your download, and make sure it is the same as ours.
 
 ## 0.12.0 release
 - Released: Dec 22, 2021

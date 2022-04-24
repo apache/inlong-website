@@ -3,7 +3,19 @@ title: 下载 InLong
 sidebar_position: 1
 ---
 
-使用以下链接，下载InLong，最新版本为1.0.0.
+使用以下链接，下载 InLong，最新版本为 1.1.0.
+
+## 1.1.0 release
+- 发布时间: 2022-4-24
+- [发版说明](release-1.1.0.md)
+
+|      日期      |  版本   | 备注 |                                                                                                                                                                                               下载                                                                                                                                                                                                |
+|:------------:|:-----:| :----: |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| Apr 24, 2022 | 1.1.0 | Source | [[SRC](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz)]                 [[ASC](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz.asc)]             [[SHA512](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz.sha512)] |
+| Apr 24, 2022 | 1.1.0 | Binary  | [[BIN](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz)]                 [[ASC](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz.asc)]             [[SHA512](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz.sha512)] |
+
+## 发布完整性
+您必须[验证](https://www.apache.org/info/verification.html) 下载文件的完整性。 我们为每个发布文件提供 OpenPGP 签名。 此签名应与包含 InLong 发布经理的 OpenPGP 密钥的 [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) 文件匹配。 我们还为每个发布文件提供 <code>SHA-512</code> 校验和。 下载文件后，您应该计算下载的校验和，并确保它与我们的相同。
 
 ## 1.0.0 release
 - 发布时间: 2022-2-17
@@ -16,9 +28,6 @@ sidebar_position: 1
 - 发布时间: 2021-12-22
 - [发版说明](release-0.12.0.md)
 - 源码: [inlong-0.12.0-incubating-src.tar.gz](https://archive.apache.org/dist/incubator/inlong/0.12.0-incubating/apache-inlong-0.12.0-incubating-src.tar.gz)          [[ASC](https://archive.apache.org/dist/incubator/inlong/0.12.0-incubating/apache-inlong-0.12.0-incubating-src.tar.gz.asc)]        [[SHA512](https://archive.apache.org/dist/incubator/inlong/0.12.0-incubating/apache-inlong-0.12.0-incubating-src.tar.gz.sha512)]
-
-## 发布完整性
-您必须[验证](https://www.apache.org/info/verification.html) 下载文件的完整性。 我们为每个发布文件提供 OpenPGP 签名。 此签名应与包含 InLong 发布经理的 OpenPGP 密钥的 [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) 文件匹配。 我们还为每个发布文件提供 <code>SHA-512</code> 校验和。 下载文件后，您应该计算下载的校验和，并确保它与我们的相同。
 
 ## 0.11.0 release
 - 发布时间: 2021-11-05
