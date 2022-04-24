@@ -1,0 +1,66 @@
+{
+  "version.label": {
+    "message": "1.1.0",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.Design and Concept": {
+    "message": "设计和概念",
+    "description": "The label for category Design and Concept in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Quick Start": {
+    "message": "快速开始",
+    "description": "The label for category Quick Start in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Deployment": {
+    "message": "安装部署",
+    "description": "The label for category Deployment in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Components": {
+    "message": "组件介绍",
+    "description": "The label for category Components in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Manager": {
+    "message": "Manager",
+    "description": "The label for category Manager in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Dashboard": {
+    "message": "Dashboard",
+    "description": "The label for category Dashboard in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Agent": {
+    "message": "Agent",
+    "description": "The label for category Agent in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.DataProxy": {
+    "message": "DataProxy",
+    "description": "The label for category DataProxy in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.DataProxy-SDK": {
+    "message": "DataProxy-SDK",
+    "description": "The label for category DataProxy-SDK in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TubeMQ": {
+    "message": "TubeMQ",
+    "description": "The label for category TubeMQ in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.tubemq-manager": {
+    "message": "tubemq-manager",
+    "description": "The label for category tubemq-manager in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Sort": {
+    "message": "Sort",
+    "description": "The label for category Sort in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Development": {
+    "message": "开发指引",
+    "description": "The label for category Development in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.User Guide": {
+    "message": "用户指引",
+    "description": "The label for category User Guide in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Data Nodes": {
+    "message": "数据节点",
+    "description": "The label for category Data Nodes in sidebar tutorialSidebar"
+  }
+}

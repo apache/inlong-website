@@ -27,9 +27,6 @@ You must [verify](https://www.apache.org/info/verification.html) the integrity o
 - [Release Notes](release-0.12.0.md)
 - Source: [inlong-0.12.0-incubating-src.tar.gz](https://archive.apache.org/dist/incubator/inlong/0.12.0-incubating/apache-inlong-0.12.0-incubating-src.tar.gz)          [[ASC](https://archive.apache.org/dist/incubator/inlong/0.12.0-incubating/apache-inlong-0.12.0-incubating-src.tar.gz.asc)]        [[SHA512](https://archive.apache.org/dist/incubator/inlong/0.12.0-incubating/apache-inlong-0.12.0-incubating-src.tar.gz.sha512)]
 
-## Release Integrity
-You must [verify](https://www.apache.org/info/verification.html) the integrity of the downloaded files. We provide OpenPGP signatures for every release file. This signature should be matched against the [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) file which contains the OpenPGP keys of InLong's Release Managers. We also provide <code>SHA-512</code> checksums for every release file. After you download the file, you should calculate a checksum for your download, and make sure it is the same as ours.
-
 ## 0.11.0 release
 - Released: Nov 5th, 2021
 - [Release Notes](release-0.11.0.md)

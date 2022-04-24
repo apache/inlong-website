@@ -13,7 +13,7 @@
           "buttons": [
               {
                   "text": "立即开始",
-                  "link": "/zh-CN/docs/next/introduction",
+                  "link": "/zh-CN/docs/introduction",
                   "type": "primary"
               },
               {
@@ -71,7 +71,7 @@
           "buttons": [
               {
                   "text": "Quick Start",
-                  "link": "docs/next/introduction",
+                  "link": "docs/introduction",
                   "type": "primary"
               },
               {
