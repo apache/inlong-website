@@ -1,6 +1,6 @@
 ---
-title: Apache InLong 0.11.0
-sidebar_position: 2
+title: Release InLong 0.11.0
+sidebar_position: 3
 ---
 
 Apache InLong (incubating)  has been renamed from the original Apache TubeMQ (incubating) from 0.9.0.  With the name change,  InLong has also been upgraded from a single message queue to a one-stop integration framework for massive data.  InLong supports data collection,  aggregation,  caching,  and sorting,  users can import data from the data source to the real-time computing engine or land to offline storage with a simple configuration.
