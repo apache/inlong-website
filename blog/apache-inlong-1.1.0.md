@@ -74,7 +74,7 @@ Version 1.1.0 fully supports the collection of data from MySQL, and supports bot
 ### Sort Added Iceberg, ClickHouse, Kafka
 In version 1.1.0, the storage of data nodes for various scenarios has been added, including Iceberg, ClickHouse, and Kafka. The support of these three streams enriches the usage scenarios of InLong. New stream support, mainly contributed by @chantccc @KevinWen007 @healchow.
 
-### Sort Standalone supports Hive, ElasticSearch, Kafka
+### Sort Standalone supports Hive, Elasticsearch, Kafka
 As mentioned in the previous version, for non-Flink environments, we can sort data streams through Sort Standalone. In version 1.1.0, we added support for Hive, ElasticSearch, Kafka, and expanded the usage scenarios of Sort Standalone. Sort Standalone is mainly contributed by @vernedeng @luchunliang.
 
 ### Protocol Buffers upgrade
