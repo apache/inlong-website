@@ -72,7 +72,7 @@ InLong 使用 ZooKeeper 保存数据流元数据，增加了开发者和用户�
 ### Sort 新增 Iceberg、 ClickHouse、 Kafka 流向入库
 1.1.0 版本中增加了多种场景数据节点的入库，包括 Iceberg、 ClickHouse、 Kafka，这三种流向的支持丰富了 InLong 的使用场景。新流向的支持，主要由@chantccc @KevinWen007 @healchow 参与贡献。
 
-### Sort Standalone 支持 Hive、ElasticSearch、Kafka
+### Sort Standalone 支持 Hive、Elasticsearch、Kafka
 之前版本有提到，对于非 Flink 环境，我们可以通过 Sort Standalone 来进行数据流分拣。在 1.1.0 版本中，我们增加了对 Hive、ElasticSearch、Kafka 的支持，扩展了 Sort Standalone 的使用场景。Sort Standalone 主要有 @vernedeng @luchunliang 参与贡献。
 
 ### Protocol Buffers 升级
