@@ -1,6 +1,6 @@
 ---
 title: 0.12.0 版本发布
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 InLong(应龙) : 中国神话故事里的神兽，引流入海，借喻 InLong 系统提供数据接入能力。

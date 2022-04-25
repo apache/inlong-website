@@ -1,6 +1,6 @@
 ---
-title: Apache InLong 0.12.0
-sidebar_position: 1
+title: Release InLong 0.12.0
+sidebar_position: 2
 ---
 
 InLong: the sacred animal in Chinese myths stories, draws rivers into the sea, as a metaphor for the InLong system to provide data access capabilities.
