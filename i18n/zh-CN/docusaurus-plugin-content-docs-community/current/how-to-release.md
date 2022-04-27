@@ -8,6 +8,8 @@ sidebar_position: 6
 Source Release是Apache关注的重点，也是发布的必须内容；
 Binary Release是可选项，InLong可以选择是否发布二进制包到Apache仓库或者发布到Maven中央仓库。
 
+注意，对于二进制发布包，需要检查新版本里是否包含了x类的第三方依赖包，包括直接引用和间接引用部分，如果包含了，需要去掉后再发布版本
+
 请参考以下链接，找到更多关于ASF的发布指南:
 
 [Apache Release Guide](https://incubator.apache.org/guides/releasemanagement.html)

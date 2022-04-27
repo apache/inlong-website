@@ -53,6 +53,8 @@ Pull requests should not be merged before the review has approved from at least 
 
 For more about merging pull request, please refer to [this page](https://github.com/apache/incubator-inlong/pulls)
 
+If you add a module or modify the content of the pom.xml file, you need to perform LICENSE maintenance for third-party dependencies. For details, refer to [How to maintain third-party dependencies](how-to-maintain-3rd-party-dependencies.md). 
+
 ## Report a security issue
 InLong community cares deeply about the security and actively addresses any security issues as the top priority. 
 We follow the Apache security guidelines for [handling security issues](https://www.apache.org/security/), please see the Apache doc about handling security issues. 

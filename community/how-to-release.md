@@ -9,6 +9,8 @@ sidebar_position: 6
 Source Release is the key point which Apache values, also, is necessary for a release;
 Binary Release is optional. InLong can choose whether to release the binary package to the Apache repository or to the Maven central repository.
 
+Note that for binary distribution packages, it is necessary to check that the new version does not contain third-party dependencies of class x, including direct reference and indirect reference parts.
+
 For more guideline, you can refer the following links:
 
 [Apache Release Guide](https://incubator.apache.org/guides/releasemanagement.html)
