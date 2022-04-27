@@ -6,7 +6,7 @@ sidebar_position: 7
 To verify the release, the following checklist can be used to reference:
 - [ ] Download links are valid.
 - [ ] Checksums and PGP signatures are valid.
-- [ ] DISCLAIMER-WIP is included.
+- [ ] DISCLAIMER is included.
 - [ ] Source code artifacts have correct names matching the current release.
 - [ ] LICENSE and NOTICE files are correct for the repository.
 - [ ] All files have license headers if necessary.
@@ -126,7 +126,7 @@ for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 
 ### Check the file content of the source package
 Unzip `apache-inlong-${release_version}-src.tar.gz` and check as follows:
-- [ ] DISCLAIMER-WIP file exists and the content is correct.
+- [ ] DISCLAIMER file exists and the content is correct.
 - [ ] LICENSE and NOTICE files are correct for the repository.
 - [ ] All files have ASF license headers if necessary.
 - [ ] The source code can be compiled normally.
@@ -142,7 +142,7 @@ Attentions:
 ### Check the binary package (if the binary package is included)
   Unzip `apache-inlong-client-${release_version}-src.tar.gz` and `
   apache-inlong-server-${release_version}-src.tar.gz`, check as follows:
-- [ ] DISCLAIMER-WIP file exists and the content is correct.
+- [ ] DISCLAIMER file exists and the content is correct.
 - [ ] LICENSE and NOTICE files are correct for the repository.
 - [ ] The deployment can be successful
 - [ ] Deploy a test environment to verify whether production and consumption can run normally.
