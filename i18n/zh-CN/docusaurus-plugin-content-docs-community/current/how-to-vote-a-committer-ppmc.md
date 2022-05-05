@@ -100,6 +100,14 @@ sidebar_position: 5
    you don’t already have one, once you get an account name, or if you
    have one already, please email it to me.
 
+   NOTICE: when you fill out ICLA file, the value of preferred Apache id(s)
+           needs to be a valid ID, including:
+           1. The ID must not already be in use in https://people.apache.org/committer-index.html;
+           2. The characters "-" and "_" are not allowed in id;
+           3. The id must consist of lowercase alphanumeric characters only,
+              start with an alphabetic character, have a minimum length of 3 characters,
+              and have no special characters.
+
    With the expectation of your acceptance, welcome!
 
    The Apache InLong PPMC
