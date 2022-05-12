@@ -71,9 +71,9 @@ curl --header "Content-Type: application/json" --request POST http://localhost:8
 - `extParams`: the other info of your cluster. It is described in JSON format, for example:
 ```json
 {
-  "cluster_tube_manager": "http://127.0.0.1:8081",
-  "tube_masterUrl": "127.0.0.1:8715",
-  "cluster_tube_clusterId": "1"
+  "tube.manager.url": "http://127.0.0.1:8080",
+  "tube.master.url": "127.0.0.1:8715",
+  "tube.cluster.id": "1"
 }
 ```
 
@@ -93,4 +93,4 @@ curl --header "Content-Type: application/json" --request POST http://localhost:8
 ```
 
 - `url`: the address of your Pulsar cluster, such as `pulsar://127.0.0.1:6650,127.0.0.1:6650,127.0.0.1:6650`
-- `pulsar_adminUrl`: the other info of your cluster
+- `pulsar.adminUrl`: the other info of your cluster
