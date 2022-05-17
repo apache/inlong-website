@@ -7,305 +7,1717 @@ sidebar_position: 3
 
 To make it easier for you to create inlong-sort jobs, here we list some dataflow configuration examples.
 
-## Pulsar to Kafka
+## MySQL to Kafka
 
-Normal example:
+- Normal example:
 
 ```json
 {
-    "id": 1,
-    "source_info": {
-        "type": "pulsar",
-        "admin_url": "YOUR_PULSAR_ADMIN_URL",
-        "service_url": "YOUR_PULSAR_SERVICE_URL",
-        "topic": "YOUR_PULSAR_TOPIC",
-        "subscription_name": "debezium2canal",
-        "deserialization_info": {
-            "type": "debezium_json",
-            "ignore_parse_errors": true,
-            "timestamp_format_standard": "ISO_8601"
-        },
-        "fields": [
-            {
-                "type": "base",
-                "name": "name",
-                "format_info": {
-                    "type": "string"
+    "groupId":"1",
+    "streams":[
+        {
+            "streamId":"1",
+            "nodes":[
+                {
+                    "type":"mysqlExtract",
+                    "id":"1",
+                    "name":"mysql_input",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "properties":{
+                        "append-mode":"true"
+                    },
+                    "primaryKey":"id",
+                    "tableNames":[
+                        "YOUR_TABLE"
+                    ],
+                    "hostname":"YOUR_MYSQL_HOST",
+                    "username":"YOUR_USERNAME",
+                    "password":"YOUR_PASSWORD",
+                    "database":"YOUR_DATABASE",
+                    "port":3306,
+                    "incrementalSnapshotEnabled":true
+                },
+                {
+                    "type":"kafkaLoad",
+                    "id":"2",
+                    "name":"kafka_output",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    },
+                    "primaryKey":"id"
                 }
-            },
-            {
-                "type": "base",
-                "name": "age",
-                "format_info": {
-                    "type": "int"
+            ],
+            "relations":[
+                {
+                    "type":"baseRelation",
+                    "inputs":[
+                        "1"
+                    ],
+                    "outputs":[
+                        "2"
+                    ]
                 }
-            }
-        ],
-        "authentication": null
-    },
-    "sink_info": {
-        "type": "kafka",
-        "fields": [
-            {
-                "type": "base",
-                "name": "name",
-                "format_info": {
-                    "type": "string"
-                }
-            },
-            {
-                "type": "base",
-                "name": "age",
-                "format_info": {
-                    "type": "int"
-                }
-            }
-        ],
-        "address": "YOUR_KAFKA_ADDRESS",
-        "topic": "sort_test_canal",
-        "serialization_info": {
-            "type": "canal"
+            ]
         }
-    },
-    "properties": {
-        "consumer.bootstrap-mode": "earliest",
-        "transaction.timeout.ms": 900000
-    }
+    ]
 }
 ```
 
-Whole-database migration example：
+- Whole-database migration example：
 
 ```json
 {
-    "id": 123,
-    "source_info": {
-        "type": "pulsar",
-        "admin_url": "YOUR_PULSAR_ADMIN_URL",
-        "service_url": "YOUR_PULSAR_SERVICE_URL",
-        "topic": "YOUR_PULSAR_TOPIC",
-        "subscription_name": "whole-db-migration",
-        "deserialization_info": {
-            "type": "debezium_json",
-            "ignore_parse_errors": false,
-            "timestamp_format_standard": "ISO_8601",
-            "include_update_before": true
+  "groupId":"1",
+  "streams":[
+    {
+      "streamId":"1",
+      "nodes":[
+        {
+          "type":"mysqlExtract",
+          "id":"1",
+          "name":"mysql_input",
+          "fields":[
+            {
+              "type":"builtin",
+              "name":"data",
+              "formatInfo":{
+                "type":"string"
+              },
+              "builtinField":"MYSQL_METADATA_DATA"
+            }
+          ],
+          "properties":{
+            "append-mode":"true",
+            "migrate-all":"true"
+          },
+          "tableNames":[
+            "[\\s\\S]*.*"
+          ],
+          "hostname":"YOUR_MYSQL_HOST",
+          "username":"YOUR_USERNAME",
+          "password":"YOUR_PASSWORD",
+          "database":"[\\s\\S]*.*",
+          "port":3306,
+          "incrementalSnapshotEnabled":false
         },
-        "fields": [
+        {
+          "type":"kafkaLoad",
+          "id":"2",
+          "name":"kafka_output",
+          "fields":[
             {
-                "type": "builtin",
-                "name": "db",
-                "format_info": {
-                    "type": "string"
-                },
-                "builtin_field": "MYSQL_METADATA_DATABASE"
-            },
-            {
-                "type": "builtin",
-                "name": "table",
-                "format_info": {
-                    "type": "string"
-                },
-                "builtin_field": "MYSQL_METADATA_TABLE"
-            },
-            {
-                "type": "builtin",
-                "name": "mydata",
-                "format_info": {
-                    "type": "string"
-                },
-                "builtin_field": "MYSQL_METADATA_DATA"
-            },
-            {
-                "type": "builtin",
-                "name": "es",
-                "format_info": {
-                    "type": "long"
-                },
-                "builtin_field": "MYSQL_METADATA_EVENT_TIME"
-            },
-            {
-                "type": "builtin",
-                "name": "isDdl",
-                "format_info": {
-                    "type": "boolean"
-                },
-                "builtin_field": "MYSQL_METADATA_IS_DDL"
-            },
-            {
-                "type": "builtin",
-                "name": "type",
-                "format_info": {
-                    "type": "string"
-                },
-                "builtin_field": "MYSQL_METADATA_EVENT_TYPE"
+              "type":"base",
+              "name":"data",
+              "formatInfo":{
+                "type":"string"
+              }
             }
-        ],
-        "authentication": null
-    },
-    "sink_info": {
-        "type": "kafka",
-        "fields": [
+          ],
+          "fieldRelationShips":[
             {
-                "type": "builtin",
-                "name": "db",
-                "format_info": {
-                    "type": "string"
-                },
-                "builtin_field": "MYSQL_METADATA_DATABASE"
-            },
-            {
-                "type": "builtin",
-                "name": "table",
-                "format_info": {
-                    "type": "string"
-                },
-                "builtin_field": "MYSQL_METADATA_TABLE"
-            },
-            {
-                "type": "builtin",
-                "name": "mydata",
-                "format_info": {
-                    "type": "string"
-                },
-                "builtin_field": "MYSQL_METADATA_DATA"
-            },
-            {
-                "type": "builtin",
-                "name": "es",
-                "format_info": {
-                    "type": "long"
-                },
-                "builtin_field": "MYSQL_METADATA_EVENT_TIME"
-            },
-            {
-                "type": "builtin",
-                "name": "isDdl",
-                "format_info": {
-                    "type": "boolean"
-                },
-                "builtin_field": "MYSQL_METADATA_IS_DDL"
-            },
-            {
-                "type": "builtin",
-                "name": "type",
-                "format_info": {
-                    "type": "string"
-                },
-                "builtin_field": "MYSQL_METADATA_EVENT_TYPE"
+              "type":"fieldRelationShip",
+              "inputField":{
+                "type":"base",
+                "name":"data",
+                "formatInfo":{
+                  "type":"string"
+                }
+              },
+              "outputField":{
+                "type":"base",
+                "name":"data",
+                "formatInfo":{
+                  "type":"string"
+                }
+              }
             }
-        ],
-        "address": "YOUR_KAFKA_ADDRESS",
-        "topic": "whole-db-migration",
-        "serialization_info": {
-            "type": "canal"
+          ],
+          "topic":"YOUR_TOPIC",
+          "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+          "format":{
+            "type":"csvFormat",
+            "fieldDelimiter":",",
+            "disableQuoteCharacter":true,
+            "quoteCharacter":null,
+            "allowComments":false,
+            "ignoreParseErrors":true,
+            "arrayElementDelimiter":";",
+            "escapeCharacter":null,
+            "nullLiteral":null
+          }
         }
-    },
-    "properties": {
-        "transaction.timeout.ms": 900000,
-        "consumer.bootstrap-mode": "earliest"
+      ],
+      "relations":[
+        {
+          "type":"baseRelation",
+          "inputs":[
+            "1"
+          ],
+          "outputs":[
+            "2"
+          ]
+        }
+      ]
     }
+  ]
 }
 ```
 
-## Pulsar to Hive
+## Kafka to Hive
 
-Normal example:
+- Normal example:
 
 ```json
 {
-    "id": 123,
-    "source_info": {
-        "type": "pulsar",
-        "admin_url": "http://100.76.43.216:8080",
-        "service_url": "pulsar://100.76.43.216:6650",
-        "topic": "persistent://public/public/b_pzr",
-        "subscription_name": "whole-db-migration",
-        "deserialization_info": {
-            "type": "debezium_json",
-            "ignore_parse_errors": false,
-            "timestamp_format_standard": "ISO_8601",
-            "include_update_before": true
-        },
-        "fields": [
-            {
-                "type": "base",
-                "name": "f1",
-                "format_info": {
-                    "type": "string"
-                }
-            },
-            {
-                "type": "base",
-                "name": "f2",
-                "format_info": {
-                    "type": "int"
-                }
-            },
-            {
-                "type": "builtin",
-                "name": "data_time",
-                "format_info": {
-                    "type": "string"
+    "groupId":"1",
+    "streams":[
+        {
+            "streamId":"1",
+            "nodes":[
+                {
+                    "type":"kafkaExtract",
+                    "id":"1",
+                    "name":"kafka_input",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    },
+                    "scanStartupMode":"EARLIEST_OFFSET"
                 },
-                "builtin_field": "DATA_TIME"
-            }
-        ],
-        "authentication": null
-    },
-    "sink_info": {
-        "type": "hive",
-        "fields": [
-            {
-                "type": "base",
-                "name": "f1",
-                "format_info": {
-                    "type": "string"
+                {
+                    "type":"hiveLoad",
+                    "id":"2",
+                    "name":"hive_output",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ],
+                    "sinkParallelism":1,
+                    "catalogName":"hivecatlog",
+                    "database":"YOUR_DATABASE",
+                    "tableName":"YOUR_TABLE_NAME",
+                    "hiveConfDir":"YOUR_HIVE_CONF_DIR",
+                    "hiveVersion":"3.1.2",
+                    "hadoopConfDir":"YOUR_HADOOP_CONF_DIR"
                 }
-            },
-            {
-                "type": "base",
-                "name": "f2",
-                "format_info": {
-                    "type": "int"
+            ],
+            "relations":[
+                {
+                    "type":"baseRelation",
+                    "inputs":[
+                        "1"
+                    ],
+                    "outputs":[
+                        "2"
+                    ]
                 }
-            },
-            {
-                "type": "builtin",
-                "name": "data_time",
-                "format_info": {
-                    "type": "string"
-                },
-                "builtin_field": "DATA_TIME"
-            }
-        ],
-        "hive_server_jdbc_url": "YOUR_HIVE_JDBC_URL",
-        "database": "YOUR_HIVE_DB_NAME",
-        "table": "YOUR_HIVE_TABLE_NAME",
-        "username": "username",
-        "password": "password",
-        "data_path": "YOUR_HIVE_TABLE_DATA_PATH_ON_HDFS",
-        "partitions": [
-            {
-                "type": "time",
-                "field_name": "data_time",
-                "date_format": "yyyy-MM-dd"
-            },
-            {
-                "type": "field",
-                "field_name": "f2"
-            }
-        ],
-        "file_format": {
-            "type": "text",
-            "splitter": "|",
-            "compression_type": "GZIP"
-        },
-        "hadoop_proxy_user": "proxyUser"
-    },
-    "properties": {
-        "transaction.timeout.ms": 900000,
-        "consumer.bootstrap-mode": "latest"
-    }
+            ]
+        }
+    ]
 }
 ```
+
+## Transform examples
+
+Currently only supports string split index, string regex replace, string regex replace first, distinct, regular join, and etc.
+The following takes kafka to kafka as an example to illustrate the usage of each transform。
+
+- String split index
+
+```json
+{
+    "groupId":"1",
+    "streams":[
+        {
+            "streamId":"1",
+            "nodes":[
+                {
+                    "type":"kafkaExtract",
+                    "id":"1",
+                    "name":"kafka_input",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    },
+                    "scanStartupMode":"EARLIEST_OFFSET"
+                },
+                {
+                    "type":"kafkaLoad",
+                    "id":"2",
+                    "name":"kafka_output",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"splitIndex",
+                                "field":{
+                                    "type":"base",
+                                    "name":"name",
+                                    "formatInfo":{
+                                        "type":"string"
+                                    }
+                                },
+                                "separator":{
+                                    "type":"stringConstant",
+                                    "value":"YOUR_SPLIT_STR"
+                                },
+                                "index":{
+                                    "type":"constant",
+                                    "value":0
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    }
+                }
+            ],
+            "relations":[
+                {
+                    "type":"baseRelation",
+                    "inputs":[
+                        "1"
+                    ],
+                    "outputs":[
+                        "2"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+- String regular replace
+
+```json
+{
+    "groupId":"1",
+    "streams":[
+        {
+            "streamId":"1",
+            "nodes":[
+                {
+                    "type":"kafkaExtract",
+                    "id":"1",
+                    "name":"kafka_input",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    },
+                    "scanStartupMode":"EARLIEST_OFFSET"
+                },
+                {
+                    "type":"kafkaLoad",
+                    "id":"2",
+                    "name":"kafka_output",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"regexpReplace",
+                                "field":{
+                                    "type":"base",
+                                    "name":"name",
+                                    "formatInfo":{
+                                        "type":"string"
+                                    }
+                                },
+                                "regex":{
+                                    "type":"stringConstant",
+                                    "value":"YOUR_REPLACE_REGEX"
+                                },
+                                "replacement":{
+                                    "type":"stringConstant",
+                                    "value":"YOUR_REPLACEMENT"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    }
+                }
+            ],
+            "relations":[
+                {
+                    "type":"baseRelation",
+                    "inputs":[
+                        "1"
+                    ],
+                    "outputs":[
+                        "2"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+- String regular replace the first value
+
+```json
+{
+    "groupId":"1",
+    "streams":[
+        {
+            "streamId":"1",
+            "nodes":[
+                {
+                    "type":"kafkaExtract",
+                    "id":"1",
+                    "name":"kafka_input",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    },
+                    "scanStartupMode":"EARLIEST_OFFSET"
+                },
+                {
+                    "type":"kafkaLoad",
+                    "id":"2",
+                    "name":"kafka_output",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"regexpReplaceFirst",
+                                "field":{
+                                    "type":"base",
+                                    "name":"name",
+                                    "formatInfo":{
+                                        "type":"string"
+                                    }
+                                },
+                                "regex":{
+                                    "type":"stringConstant",
+                                    "value":"YOUR_REPLACE_REGEX"
+                                },
+                                "replacement":{
+                                    "type":"stringConstant",
+                                    "value":"YOUR_REPLACEMENT"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    }
+                }
+            ],
+            "relations":[
+                {
+                    "type":"baseRelation",
+                    "inputs":[
+                        "1"
+                    ],
+                    "outputs":[
+                        "2"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+- Data filter
+
+```json
+{
+    "groupId":"1",
+    "streams":[
+        {
+            "streamId":"1",
+            "nodes":[
+                {
+                    "type":"kafkaExtract",
+                    "id":"1",
+                    "name":"kafka_input",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    },
+                    "scanStartupMode":"EARLIEST_OFFSET"
+                },
+                {
+                    "type":"kafkaLoad",
+                    "id":"2",
+                    "name":"kafka_output",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ],
+                    "filters":[
+                        {
+                            "type":"singleValueFilter",
+                            "logicOperator":{
+                                "type":"empty"
+                            },
+                            "source":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "compareOperator":{
+                                "type":"moreThanOrEqual"
+                            },
+                            "target":{
+                                "type":"constant",
+                                "value":18
+                            }
+                        },
+                        {
+                            "type":"singleValueFilter",
+                            "logicOperator":{
+                                "type":"and"
+                            },
+                            "source":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "compareOperator":{
+                                "type":"moreThanOrEqual"
+                            },
+                            "target":{
+                                "type":"constant",
+                                "value":25
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    }
+                }
+            ],
+            "relations":[
+                {
+                    "type":"baseRelation",
+                    "inputs":[
+                        "1"
+                    ],
+                    "outputs":[
+                        "2"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+- Data distinct
+
+```json
+{
+    "groupId":"1",
+    "streams":[
+        {
+            "streamId":"1",
+            "nodes":[
+                {
+                    "type":"kafkaExtract",
+                    "id":"1",
+                    "name":"kafka_input",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        },
+                        {
+                            "type":"builtin",
+                            "name":"proctime",
+                            "formatInfo":{
+                                "type":"time",
+                                "format":"HH:mm:ss"
+                            },
+                            "builtinField":"PROCESS_TIME"
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    },
+                    "scanStartupMode":"EARLIEST_OFFSET"
+                },
+                {
+                    "type":"distinct",
+                    "id":"2",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ],
+                    "distinctFields":[
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        }
+                    ],
+                    "orderField":{
+                        "type":"base",
+                        "name":"proctime",
+                        "formatInfo":{
+                            "type":"timestamp",
+                            "precision":2,
+                            "format":"yyyy-MM-dd HH:mm:ss"
+                        }
+                    },
+                    "orderDirection":"ASC"
+                },
+                {
+                    "type":"kafkaLoad",
+                    "id":"3",
+                    "name":"kafka_output",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    }
+                }
+            ],
+            "relations":[
+                {
+                    "type":"baseRelation",
+                    "inputs":[
+                        "1"
+                    ],
+                    "outputs":[
+                        "2"
+                    ]
+                },
+                {
+                    "type":"baseRelation",
+                    "inputs":[
+                        "2"
+                    ],
+                    "outputs":[
+                        "3"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
+- Regular join
+
+```json
+{
+    "groupId":"1",
+    "streams":[
+        {
+            "streamId":"1",
+            "nodes":[
+                {
+                    "type":"kafkaExtract",
+                    "id":"1",
+                    "name":"kafka_input_1",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    },
+                    "scanStartupMode":"EARLIEST_OFFSET"
+                },
+                {
+                    "type":"kafkaExtract",
+                    "id":"2",
+                    "name":"kafka_input_2",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    },
+                    "scanStartupMode":"EARLIEST_OFFSET"
+                },
+                {
+                    "type":"baseTransform",
+                    "id":"3",
+                    "name":"transform_node",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                },
+                                "nodeId":"1"
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                },
+                                "nodeId":"1"
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                },
+                                "nodeId":"2"
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ]
+                },
+                {
+                    "type":"kafkaLoad",
+                    "id":"4",
+                    "name":"kafka_output",
+                    "fields":[
+                        {
+                            "type":"base",
+                            "name":"id",
+                            "formatInfo":{
+                                "type":"long"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"name",
+                            "formatInfo":{
+                                "type":"string"
+                            }
+                        },
+                        {
+                            "type":"base",
+                            "name":"age",
+                            "formatInfo":{
+                                "type":"int"
+                            }
+                        }
+                    ],
+                    "fieldRelationShips":[
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                },
+                                "nodeId":"1"
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"id",
+                                "formatInfo":{
+                                    "type":"long"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                },
+                                "nodeId":"1"
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"name",
+                                "formatInfo":{
+                                    "type":"string"
+                                }
+                            }
+                        },
+                        {
+                            "type":"fieldRelationShip",
+                            "inputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                },
+                                "nodeId":"2"
+                            },
+                            "outputField":{
+                                "type":"base",
+                                "name":"age",
+                                "formatInfo":{
+                                    "type":"int"
+                                }
+                            }
+                        }
+                    ],
+                    "topic":"YOUR_TOPIC",
+                    "bootstrapServers":"YOUR_KAFKA_BOOTSTRAP_SERVERS",
+                    "format":{
+                        "type":"jsonFormat",
+                        "failOnMissingField":false,
+                        "ignoreParseErrors":true,
+                        "timestampFormatStandard":"SQL",
+                        "mapNullKeyMode":"DROP",
+                        "mapNullKeyLiteral":"null",
+                        "encodeDecimalAsPlainNumber":true
+                    }
+                }
+            ],
+            "relations":[
+                {
+                    "type":"innerJoin",
+                    "inputs":[
+                        "1",
+                        "2"
+                    ],
+                    "outputs":[
+                        "3"
+                    ],
+                    "joinConditionMap":{
+                        "2":[
+                            {
+                                "type":"singleValueFilter",
+                                "logicOperator":{
+                                    "type":"empty"
+                                },
+                                "source":{
+                                    "type":"base",
+                                    "name":"id",
+                                    "formatInfo":{
+                                        "type":"long"
+                                    },
+                                    "nodeId":"1"
+                                },
+                                "compareOperator":{
+                                    "type":"equal"
+                                },
+                                "target":{
+                                    "type":"base",
+                                    "name":"id",
+                                    "formatInfo":{
+                                        "type":"long"
+                                    },
+                                    "nodeId":"2"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "type":"baseRelation",
+                    "inputs":[
+                        "3"
+                    ],
+                    "outputs":[
+                        "4"
+                    ]
+                }
+            ]
+        }
+    ]
+}
+```
+
