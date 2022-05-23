@@ -9,34 +9,31 @@ Inlong-sort is simply an Flink application, and relys on Inlong-manager to manag
 
 # features
 
-## supported transforms
-- String split index
-- String regular replace 
-- String regular replace the first value
-- Data filter
-- Data distinct
-- Regular join
-
-## supported sources
+## supported Extract Node
 - Pulsar
 - MySQL
 - Kafka
 
-## supported storages
+## supported Transform
+- String Split
+- String Regular Replace
+- String Regular Replace First Matched Value
+- Data Filter
+- Data Distinct
+- Regular Join
+
+## supported Load Node
 - Hive
 - Kafka
 - ClickHouse
 - Iceberg
 
-## limitations
-Currently, we just support extracting specified fields in the stage of **Transform**.
-
 ## future plans
-### More kinds of source systems
+### More kinds of Extract Node
 Oracle,  Mongo DB, SqlServer, and etc
-
-### More kinds of storage systems
-Hbase, Elastic Search, and etc
 
 ### More kinds of transforms
 Time window aggregation, Content extraction, Type conversion, Time format conversion, and etc.
+
+### More kinds of Load Node
+Hbase, Elastic Search, and etc

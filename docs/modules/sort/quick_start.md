@@ -19,23 +19,22 @@ Now you can submit job to flink with the jar compiled, refer to [how to submit j
 
 Example：
 ```
-./bin/flink run -c org.apache.inlong.sort.singletenant.flink.Entrance inlong-sort/sort-[version].jar \
---lightweight true --group.info.file /YOUR_DATAFLOW_INFO_DIR/mysql-to-kafka.json
+./bin/flink run -c org.apache.inlong.sort.Entrance inlong-sort/sort-[version].jar \
+--group.info.file /YOUR_DATAFLOW_INFO_DIR/mysql-to-kafka.json
 ```
 
 Notice：
 
-- `-c org.apache.inlong.sort.singletenant.flink.Entrance` is the main class name
+- `-c org.apache.inlong.sort.Entrance` is the main class name
 
 - `inlong-sort/sort-[version].jar` is the compiled jar
 
 ## Necessary configurations
 - `--group.info.file` dataflow configuration file path
-- `--lightweight` whether to use lightweight sort,default false
-
+- 
 **Example**
 ```
---lightweight true --group.info.file /YOUR_DATAFLOW_INFO_DIR/mysql-to-kafka.json
+--group.info.file /YOUR_DATAFLOW_INFO_DIR/mysql-to-kafka.json
 ```
 
 ## All configurations

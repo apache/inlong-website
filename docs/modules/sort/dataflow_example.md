@@ -9,7 +9,7 @@ To make it easier for you to create inlong-sort jobs, here we list some dataflow
 
 ## MySQL to Kafka
 
-- Normal example:
+- Single table or sub-database sub-table sync example:
 
 ```json
 {
@@ -271,8 +271,6 @@ To make it easier for you to create inlong-sort jobs, here we list some dataflow
 
 ## Kafka to Hive
 
-- Normal example:
-
 ```json
 {
     "groupId":"1",
@@ -427,10 +425,10 @@ To make it easier for you to create inlong-sort jobs, here we list some dataflow
 
 ## Transform examples
 
-Currently only supports string split index, string regex replace, string regex replace first, distinct, regular join, and etc.
-The following takes kafka to kafka as an example to illustrate the usage of each transform。
+Currently only supports string split, string regex replace, string regex replace first matched value, data distinct,data filter, regular join, and etc.
+The following takes kafka to kafka as an example to illustrate the usage of each transform.
 
-- String split index
+- String Split:
 
 ```json
 {
@@ -599,7 +597,7 @@ The following takes kafka to kafka as an example to illustrate the usage of each
 }
 ```
 
-- String regular replace
+- String Regular Replace:
 
 ```json
 {
@@ -768,7 +766,7 @@ The following takes kafka to kafka as an example to illustrate the usage of each
 }
 ```
 
-- String regular replace the first value
+- String Regular Replace First Matched Value:
 
 ```json
 {
@@ -937,7 +935,7 @@ The following takes kafka to kafka as an example to illustrate the usage of each
 }
 ```
 
-- Data filter
+- Data Filter:
 
 ```json
 {
@@ -1136,7 +1134,7 @@ The following takes kafka to kafka as an example to illustrate the usage of each
     ]
 }
 ```
-- Data distinct
+- Data Distinct:
 
 ```json
 {
@@ -1411,7 +1409,7 @@ The following takes kafka to kafka as an example to illustrate the usage of each
 }
 ```
 
-- Regular join
+- Regular Join:
 
 ```json
 {
