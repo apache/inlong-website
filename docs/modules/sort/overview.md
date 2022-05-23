@@ -5,7 +5,7 @@ sidebar_position: 1
 
 # Overview
 InLong-Sort is used to extract data from different source systems, then transforms the data and finally loads the data into diffrent storage systems.
-InLong-Sort is simply an Flink application, and relys on InLong-Manager to manage meta data(such as the source informations and storage informations).
+InLong-Sort is simply a Flink application, and relys on InLong-Manager to manage meta data(such as the source informations and storage informations).
 
 # Features
 
