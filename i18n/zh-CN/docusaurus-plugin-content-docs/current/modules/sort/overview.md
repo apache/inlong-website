@@ -30,11 +30,11 @@ inlong-sort依赖inlong-manager进行系统元数据的管理。
 
 ## 未来规划
 ### 支持更多种类的Extract Node
-Oracle,  Mongo DB, SqlServer等
+Oracle,  Mongo DB, SqlServer等。
 
 ### 支持更多种类的Transform
-时间窗口聚合, 内容提取, 类型转换, 时间格式转换等
+时间窗口聚合, 内容提取, 类型转换, 时间格式转换等。
 
 ### 支持更多种类的Load Node
-Hbase, Elastic Search等
+Hbase, Elastic Search等。
 
