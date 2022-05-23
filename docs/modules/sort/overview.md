@@ -42,4 +42,4 @@ Oracle, SqlServer, and etc.
 Time window aggregation, Content extraction, Type conversion, Time format conversion, and etc.
 
 ### More kinds of Load Node
-Elastic Search, and etc.
+Elasticsearch, and etc.
