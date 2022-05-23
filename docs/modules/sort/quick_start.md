@@ -31,7 +31,7 @@ Notice：
 
 ## Necessary configurations
 - `--group.info.file` dataflow configuration file path
-- 
+
 **Example**
 ```
 --group.info.file /YOUR_DATAFLOW_INFO_DIR/mysql-to-kafka.json
