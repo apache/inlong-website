@@ -36,11 +36,11 @@ InLong-Sort 依赖 InLong-Manager 进行系统元数据的管理。
 
 ## 未来规划
 ### 支持更多种类的 Extract Node
-Oracle, SqlServer等。
+Oracle, SqlServer 等。
 
 ### 支持更多种类的 Transform 
 时间窗口聚合, 内容提取, 类型转换, 时间格式转换等。
 
 ### 支持更多种类的 Load Node 
-Elastic Search等。
+Elasticsearch 等。
 
