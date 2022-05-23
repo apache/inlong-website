@@ -7,7 +7,7 @@ sidebar_position: 3
 
 这里列出一些流配置示例以做参考。
 
-## 读MySQL写Kafka
+## 读 MySQL 写 Kafka 
 
 单表或者分库分表同步配置示例如下：
 
@@ -269,7 +269,7 @@ sidebar_position: 3
 }
 ```
 
-## 读Kafka写Hive
+## 读 Kafka 写 Hive
 
 ```json
 {
@@ -423,10 +423,10 @@ sidebar_position: 3
 }
 ```
 
-## Transform示例
+## Transform 示例
 
-目前我们仅支持字符串分割，字符串正则替换，字符串正则替换第一个匹配值、数据去重、数据过滤、常规Join等，
-下面以读Kafk写Kafka为例来说明各个Transform的具体用法。
+目前我们仅支持字符串分割，字符串正则替换，字符串正则替换第一个匹配值、数据去重、数据过滤、常规 Join 等，
+下面以读 Kafka 写 Kafka 为例来说明各个 Transform 的具体用法。
 - 字符串分割:
 
 ```json
@@ -1408,7 +1408,7 @@ sidebar_position: 3
 }
 ```
 
-- 常规Join:
+- 常规 Join :
 
 ```json
 {

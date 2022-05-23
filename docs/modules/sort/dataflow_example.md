@@ -5,7 +5,7 @@ sidebar_position: 3
 
 # Examples
 
-To make it easier for you to create inlong-sort jobs, here we list some dataflow configuration examples.
+To make it easier for you to create InLong-Sort jobs, here we list some dataflow configuration examples.
 
 ## MySQL to Kafka
 
