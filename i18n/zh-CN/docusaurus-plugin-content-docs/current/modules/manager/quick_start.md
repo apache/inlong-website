@@ -61,17 +61,18 @@ curl --header "Content-Type: application/json" --request POST http://localhost:8
         "name": "tube_cluster",
         "type": "TUBE",
         "mqSetName": "default_set_name",
-        "extParams": "{\"cluster_tube_manager\": \"127.0.0.1:8080\", \"tube_masterUrl\": \"127.0.0.1:8715\", \"cluster_tube_clusterId\": \"1\"}",
-        "inCharges": "admin"
+        "extParams": "{\"tube.manager.url\": \"127.0.0.1:8080\", \"tube.master.url\": \"127.0.0.1:8715\", \"tube.cluster.id\": \"1\"}",
+        "inCharges": "admin",
+        "creator": "admin"
 }'
 ```
 
 - `extParams`: 集群配置信息，按照JSON格式设置，比如:
 ```json
 {
-  "cluster_tube_manager": "http://127.0.0.1:8081",
-  "tube_masterUrl": "127.0.0.1:8715",
-  "cluster_tube_clusterId": "1"
+  "tube.manager.url": "http://127.0.0.1:8080",
+  "tube.master.url": "127.0.0.1:8715",
+  "tube.cluster.id": "1"
 }
 ```
 
