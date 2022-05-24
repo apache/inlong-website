@@ -82,6 +82,7 @@ brokerId=0
 hostName=YOUR_SERVER_IP                 // 替换为当前主机IP，broker目前只支持IP
 port=8123
 webPort=8081
+defEthName=eth1                         // 获取真实 IP 的网卡
 ```
 
 - Master地址
