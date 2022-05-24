@@ -3,30 +3,43 @@ title: Overview
 sidebar_position: 1
 ---
 
-# overview
-Inlong-sort is used to extract data from different source systems, then transforms the data and finally loads the data into diffrent storage systems.
-Inlong-sort is simply an Flink application, and relys on Inlong-manager to manage meta data(such as the source informations and storage informations)
+# Overview
+InLong-Sort is used to extract data from different source systems, then transforms the data and finally loads the data into diffrent storage systems.
+InLong-Sort is simply a Flink Application, and relys on InLong-Manager to manage meta data(such as the source informations and storage informations).
 
-# features
+# Features
 
-## supported sources
-- pulsar
+## Supported Extract Node
+- Pulsar
+- MySQL
+- Kafka
+- MongoDB
+- PostgreSQL
+- FileSystem
 
-## supported storages
-- hive（Currently we support parquet, orc and text file format）
-- kafka
-- clickhouse
-- iceberg
+## Supported Transform 
+- String Split
+- String Regular Replace
+- String Regular Replace First Matched Value
+- Data Filter
+- Data Distinct
+- Regular Join
 
-## limitations
-Currently, we just support extracting specified fields in the stage of **Transform**.
+## Supported Load Node 
+- Hive
+- Kafka
+- HBase
+- ClickHouse
+- Iceberg
+- PostgreSQL
+- FileSystem
 
-## future plans
-### More kinds of source systems
-kafka and etc
+## Future Plans
+### More kinds of Extract Node
+Oracle, SqlServer, and etc.
 
-### More kinds of storage systems
-Hbase, Elastic Search, and etc
+### More kinds of Transform
+Time window aggregation, Content extraction, Type conversion, Time format conversion, and etc.
 
-### More kinds of file format in hive sink
-sequence file
+### More kinds of Load Node
+Elasticsearch, and etc.
