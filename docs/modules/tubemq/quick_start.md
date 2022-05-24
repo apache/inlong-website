@@ -86,7 +86,7 @@ brokerId=0
 hostName=YOUR_SERVER_IP                 // replaced with your server IP
 port=8123
 webPort=8081
-defEthName=eth1                         // network interface used to get localhost IP
+defEthName=eth1                         // replaced with the network interface card corresponding to your server IP
 ```
 - Master Address
 ```ini
