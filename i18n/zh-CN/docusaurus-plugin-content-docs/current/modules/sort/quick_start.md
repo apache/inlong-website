@@ -19,7 +19,7 @@ Flink 环境配置完成后，可以通过浏览器访问 Flink 的 Web UI，对
 示例：
 ```
 ./bin/flink run -c org.apache.inlong.sort.Entrance inlong-sort/sort-[version].jar \
---group.info.file /YOUR_DATAFLOW_INFO_DIR/mysql-to-kafka.json
+--group.info.file /YOUR_DATASTREAM_INFO_DIR/mysql-to-kafka.json
 ```
 
 注意：
@@ -33,7 +33,7 @@ Flink 环境配置完成后，可以通过浏览器访问 Flink 的 Web UI，对
 
 **启动参数配置示例**
 ```
---group.info.file /YOUR_DATAFLOW_INFO_DIR/mysql-to-kafka.json
+--group.info.file /YOUR_DATASTREAM_INFO_DIR/mysql-to-kafka.json
 ```
 
 ## 所有支持的配置

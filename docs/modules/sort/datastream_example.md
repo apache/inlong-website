@@ -1,11 +1,11 @@
 ---
-title: Dataflow Example
+title: DataStream Example
 sidebar_position: 3
 ---
 
 # Examples
 
-To make it easier for you to create InLong-Sort jobs, here we list some dataflow configuration examples.
+To make it easier for you to create InLong-Sort jobs, here we list some data stream configuration examples.
 
 ## MySQL to Kafka
 

@@ -20,7 +20,7 @@ Now you can submit job to Flink with the jar compiled, refer to [How to submit j
 Example：
 ```
 ./bin/flink run -c org.apache.inlong.sort.Entrance inlong-sort/sort-[version].jar \
---group.info.file /YOUR_DATAFLOW_INFO_DIR/mysql-to-kafka.json
+--group.info.file /YOUR_DATASTREAM_DIR/mysql-to-kafka.json
 ```
 
 Notice：
@@ -30,11 +30,11 @@ Notice：
 - `inlong-sort/sort-[version].jar` is the compiled jar
 
 ## Necessary configurations
-- `--group.info.file` dataflow configuration file path
+- `--group.info.file` data stream configuration file path
 
 **Example**
 ```
---group.info.file /YOUR_DATAFLOW_INFO_DIR/mysql-to-kafka.json
+--group.info.file /YOUR_DATASTREAM_INFO_DIR/mysql-to-kafka.json
 ```
 
 ## All configurations
