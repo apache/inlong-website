@@ -33,6 +33,7 @@ InLong-Sort is simply a Flink Application, and relys on InLong-Manager to manage
 - Iceberg
 - PostgreSQL
 - FileSystem
+- TDSQL Postgres
 
 ## Future Plans
 ### More kinds of Extract Node
