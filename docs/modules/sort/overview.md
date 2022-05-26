@@ -15,7 +15,7 @@ InLong-Sort is simply a Flink Application, and relys on InLong-Manager to manage
 - Kafka
 - MongoDB
 - PostgreSQL
-- FileSystem
+- HDFS
 
 ## Supported Transform 
 - String Split
@@ -32,7 +32,8 @@ InLong-Sort is simply a Flink Application, and relys on InLong-Manager to manage
 - ClickHouse
 - Iceberg
 - PostgreSQL
-- FileSystem
+- HDFS
+- TDSQL Postgres
 
 ## Future Plans
 ### More kinds of Extract Node
