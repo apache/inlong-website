@@ -15,7 +15,8 @@ InLong-Sort 依赖 InLong-Manager 进行系统元数据的管理。
 - Kafka
 - MongoDB
 - PostgreSQL
-- FileSystem
+- HDFS
+- TDSQL Postgres
 
 ## 支持的 Transform 
 - 字符串分割
@@ -32,7 +33,8 @@ InLong-Sort 依赖 InLong-Manager 进行系统元数据的管理。
 - ClickHouse
 - Iceberg
 - PostgreSQL
-- FileSystem
+- HDFS
+- TDSQL Postgres
 
 ## 未来规划
 ### 支持更多种类的 Extract Node
