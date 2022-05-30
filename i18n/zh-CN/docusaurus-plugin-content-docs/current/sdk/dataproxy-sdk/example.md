@@ -79,7 +79,7 @@ Api 详情，请查看[总览](./overview)
 
 文件配置内容为( json 格式),其中 host 为 DataProxy 服务器地址，port为对应的端口，这需要至少配置两个（可以配置为相同的两项）：
 ```json
-    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
+    {"isInterVisit":1,"clusterId":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
 ```
 
 ### 发送消息
@@ -162,7 +162,7 @@ Api 详情，请查看[总览](./overview)
 ```
 文件配置内容为( json 格式),其中 host 为 DataProxy 服务器地址，port 为对应的端口，这需要至少配置两个（可以配置为相同的两项）：
 ```json
-    {"isInterVisit":1,"cluster_id":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
+    {"isInterVisit":1,"clusterId":"1","size":1,"switch":1,"address":[{"host":"127.0.0.1","port":"46802"},{"host":"127.0.0.1","port":"46802"}]}
 ```
 
 ### 发送消息
