@@ -7,10 +7,10 @@ sidebar_position: 5
 
 The MySQL Extract Node allows for reading snapshot data and incremental data from MySQL database. This document describes how to setup the MySQL Extract Node to run SQL queries against MySQL databases.
 
-## Supported Databases
-| Connector          | Database                                                                                                                                                                                                                                                                                                                                                                                               | Driver                  |
-|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
-| [mysql](mysql.md)  | <li> [MySQL](https://dev.mysql.com/doc): 5.6, 5.7, 8.0.x <li> [RDS MySQL](https://www.aliyun.com/product/rds/mysql): 5.6, 5.7, 8.0.x <li> [PolarDB MySQL](https://www.aliyun.com/product/polardb): 5.6, 5.7, 8.0.x <li> [Aurora MySQL](https://aws.amazon.com/cn/rds/aurora): 5.6, 5.7, 8.0.x <li> [MariaDB](https://mariadb.org): 10.x <li> [PolarDB X](https://github.com/ApsaraDB/galaxysql): 2.0.1 | JDBC Driver: 8.0.21     |
+## Supported Version
+| Extract Node        | Version                                                                                                                                                                                                                                                                                                                                                                                                | Driver                  |
+|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
+| [mysql](./mysql.md) | [MySQL](https://dev.mysql.com/doc): 5.6, 5.7, 8.0.x <br/> [RDS MySQL](https://www.aliyun.com/product/rds/mysql): 5.6, 5.7, 8.0.x <br/> [PolarDB MySQL](https://www.aliyun.com/product/polardb): 5.6, 5.7, 8.0.x <br/> [Aurora MySQL](https://aws.amazon.com/cn/rds/aurora): 5.6, 5.7, 8.0.x <br/> [MariaDB](https://mariadb.org): 10.x <br/> [PolarDB X](https://github.com/ApsaraDB/galaxysql): 2.0.1 | JDBC Driver: 8.0.21     |
 
 ## Dependencies
 
@@ -22,6 +22,7 @@ In order to setup the MySQL Extract Node, the following table provides dependenc
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mysql-cdc</artifactId>
+    <!-- Choose the version that suits your application -->
     <version>inlong_version</version>
 </dependency>
 ```
@@ -72,13 +73,13 @@ When an initial consistent snapshot is made for large databases, your establishe
 
 ### Usage for SQL API
 
-The MySQL CDC table can be defined as following:
+The example below shows how to create an MySQL Extract Node with `Flink SQL` :
 
 ```sql
 -- checkpoint every 3000 milliseconds                       
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';   
 
--- register a MySQL table 'orders' in Flink SQL
+-- register a MySQL table 'mysql_extract_node' in Flink SQL
 Flink SQL> CREATE TABLE mysql_extract_node (
      order_id INT,
      order_date TIMESTAMP(0),
@@ -97,7 +98,7 @@ Flink SQL> CREATE TABLE mysql_extract_node (
      'table-name' = 'YourTableName');
   
 -- read snapshot and binlogs from orders table
-Flink SQL> SELECT * FROM orders;
+Flink SQL> SELECT * FROM mysql_extract_node;
 ```
 
 ### Usage for InLong Dashboard
@@ -112,7 +113,7 @@ Flink SQL> SELECT * FROM orders;
 
 TODO: It will be supported in the future.
 
-## Connector Options
+## MySQL Extract Node Options
 
 <div class="highlight">
 <table class="colwidths-auto docutils">

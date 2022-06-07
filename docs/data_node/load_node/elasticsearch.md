@@ -11,6 +11,12 @@ The Load Node can operate in upsert mode for exchanging UPDATE/DELETE messages w
 
 If no primary key is defined on the DDL, the connector can only operate in append mode for exchanging INSERT only messages with external system.
 
+## Supported Version
+
+| Load Node                           | Version                                                  | 
+|-------------------------------------|----------------------------------------------------------|
+| [elasticsearch](./elasticsearch.md) | <li> [ElasticSearch](https://www.elastic.co/): 6.x, 7.x  |
+
 ### Dependencies
 
 - Elasticsearch 6
@@ -32,9 +38,11 @@ If no primary key is defined on the DDL, the connector can only operate in appen
 </dependency>
 ```
 
-### How to create an Elasticsearch Load Node
+## How to create an Elasticsearch Load Node
 
-The example below shows how to create an Elasticsearch Load Node:
+### Usage for SQL API
+
+The example below shows how to create an Elasticsearch Load Node with `Flink SQL` :
 
 ```sql
 CREATE TABLE myUserTable (
@@ -50,7 +58,15 @@ CREATE TABLE myUserTable (
 );
 ```
 
-### Connector Options
+### Usage for InLong Dashboard
+
+TODO: It will be supported in the future.
+
+### Usage for InLong Manager Client
+
+TODO: It will be supported in the future.
+
+## Elasticsearch Load Node Options
 
 <table class="table table-bordered">
     <thead>
@@ -92,7 +108,7 @@ CREATE TABLE myUserTable (
       <td>String</td>
       <td>Elasticsearch index for every record. Can be a static index (e.g. <code>'myIndex'</code>) or
        a dynamic index (e.g. <code>'index-{log_ts|yyyy-MM-dd}'</code>).
-       See the following <a href="#dynamic-index">Dynamic Index</a> section for more details.</td>
+       See the following <a href="https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/table/elasticsearch/#dynamic-index">Dynamic Index</a> section for more details.</td>
     </tr>
     <tr>
       <td><h5>document-type</h5></td>
@@ -262,13 +278,45 @@ CREATE TABLE myUserTable (
       <td style="word-wrap: break-word;">json</td>
       <td>String</td>
       <td>Elasticsearch connector supports to specify a format. The format must produce a valid json document.
-       By default uses built-in <code>'json'</code> format. Please refer to <a href="{{< ref "docs/connectors/table/formats/overview" >}}">JSON Format</a> page for more details.
+       By default uses built-in <code>'json'</code> format. Please refer to <a href="https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/table/formats/overview/">JSON Format</a> page for more details.
       </td>
     </tr>
     </tbody>
 </table>
 
-### Data Type Mapping
+## Features
+
+### Key Handling
+
+The Elasticsearch Load Node can work in either upsert mode or append mode, depending on whether a primary key is defined.
+If a primary key is defined, the Elasticsearch Load Node works in upsert mode which can consume queries containing UPDATE/DELETE messages.
+If a primary key is not defined, the Elasticsearch Load Node works in append mode which can only consume queries containing INSERT only messages.
+
+In the Elasticsearch Load Node, the primary key is used to calculate the Elasticsearch document id, which is a string of up to 512 bytes. It cannot have whitespaces.
+The Elasticsearch Load Node generates a document ID string for every row by concatenating all primary key fields in the order defined in the DDL using a key delimiter specified by `document-id.key-delimiter`.
+Certain types are not allowed as a primary key field as they do not have a good string representation, e.g. `BYTES`, `ROW`, `ARRAY`, `MAP`, etc.
+If no primary key is specified, Elasticsearch will generate a document id automatically.
+
+See <a href="https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/dev/table/sql/create/#create-table" >CREATE TABLE DDL</a> for more details about the PRIMARY KEY syntax.
+
+### Dynamic Index
+
+The Elasticsearch Load Node supports both static index and dynamic index.
+
+If you want to have a static index, the `index` option value should be a plain string, e.g. `'myusers'`, all the records will be consistently written into "myusers" index.
+
+If you want to have a dynamic index, you can use `{field_name}` to reference a field value in the record to dynamically generate a target index.
+You can also use `'{field_name|date_format_string}'` to convert a field value of `TIMESTAMP/DATE/TIME` type into the format specified by the `date_format_string`.
+The `date_format_string` is compatible with Java's [DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/index.html).
+For example, if the option value is `'myusers-{log_ts|yyyy-MM-dd}'`, then a record with `log_ts` field value `2020-03-27 12:25:55` will be written into "myusers-2020-03-27" index.
+
+You can also use `'{now()|date_format_string}'` to convert the current system time to the format specified by `date_format_string`. The corresponding time type of `now()` is `TIMESTAMP_WITH_LTZ`.
+When formatting the system time as a string, the time zone configured in the session through `table.local-time-zone` will be used. You can use `NOW()`, `now()`, `CURRENT_TIMESTAMP`, `current_timestamp`.
+
+**NOTE:**  When using the dynamic index generated by the current system time, for changelog stream, there is no guarantee that the records with the same primary key can generate the same index name.
+Therefore, the dynamic index based on the system time can only support append only stream.
+
+## Data Type Mapping
 
 <table class="table table-bordered">
     <thead>
