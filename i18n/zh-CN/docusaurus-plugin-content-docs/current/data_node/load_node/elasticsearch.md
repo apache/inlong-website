@@ -104,7 +104,7 @@ TODO: 将在未来支持这个特性。
       <td>必选</td>
       <td style="word-wrap: break-word;">(none)</td>
       <td>String</td>
-      <td>Elasticsearch 中每条记录的索引。可以是一个静态索引（例如 <code>'myIndex'</code>）或一个动态索引（例如 `'index-{log_ts|yyyy-MM-dd}'`）。
+      <td>Elasticsearch 中每条记录的索引。可以是一个静态索引（例如 <code>'myIndex'</code>）或一个动态索引（例如 <code>'index-{ts|yyyy-MM-dd}'</code>）。
        更多详细信息，请参见下面的<a href="#dymic-index">动态索引</a>部分。</td>
     </tr>
     <tr>
@@ -264,7 +264,7 @@ Elasticsearch Load 节点同时支持静态索引和动态索引。
 如果你想使用动态索引，你可以使用 `{field_name}` 来引用记录中的字段值来动态生成目标索引。
 你也可以使用 `'{field_name|date_format_string}'` 将 `TIMESTAMP/DATE/TIME` 类型的字段值转换为 `date_format_string` 指定的格式。
 `date_format_string` 与 Java 的 [DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/index.html) 兼容。
-例如，如果选项值设置为 `'myusers-{log_ts|yyyy-MM-dd}'`，则 `log_ts` 字段值为 `2020-03-27 12:25:55` 的记录将被写入到 "myusers-2020-03-27" 索引中。
+例如，如果选项值设置为 `'myusers-{ts|yyyy-MM-dd}'`，则 `ts` 字段值为 `2020-03-27 12:25:55` 的记录将被写入到 "myusers-2020-03-27" 索引中。
 
 ## 数据类型映射
 

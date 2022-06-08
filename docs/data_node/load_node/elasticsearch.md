@@ -105,7 +105,7 @@ TODO: It will be supported in the future.
       <td style="word-wrap: break-word;">(none)</td>
       <td>String</td>
       <td>Elasticsearch index for every record. Can be a static index (e.g. <code>'myIndex'</code>) or
-       a dynamic index (e.g. `'index-{log_ts|yyyy-MM-dd}'`).
+       a dynamic index (e.g. <code>'index-{ts|yyyy-MM-dd}'</code>).
        See the following <a href="#dynamic-index">Dynamic Index</a> section for more details.</td>
     </tr>
     <tr>
@@ -268,7 +268,7 @@ If you want to have a static index, the `index` option value should be a plain s
 If you want to have a dynamic index, you can use `{field_name}` to reference a field value in the record to dynamically generate a target index.
 You can also use `'{field_name|date_format_string}'` to convert a field value of `TIMESTAMP/DATE/TIME` type into the format specified by the `date_format_string`.
 The `date_format_string` is compatible with Java's [DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/index.html).
-For example, if the option value is `'myusers-{log_ts|yyyy-MM-dd}'`, then a record with `log_ts` field value `2020-03-27 12:25:55` will be written into "myusers-2020-03-27" index.
+For example, if the option value is `'myusers-{ts|yyyy-MM-dd}'`, then a record with `ts` field value `2020-03-27 12:25:55` will be written into "myusers-2020-03-27" index.
 
 ## Data Type Mapping
 
