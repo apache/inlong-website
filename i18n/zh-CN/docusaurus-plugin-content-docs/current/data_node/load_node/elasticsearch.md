@@ -104,7 +104,7 @@ TODO: 将在未来支持这个特性。
       <td>必选</td>
       <td style="word-wrap: break-word;">(none)</td>
       <td>String</td>
-      <td>Elasticsearch 中每条记录的索引。可以是一个静态索引（例如 <code>'myIndex'</code>）或一个动态索引（例如 <code>'index-{log_ts|yyyy-MM-dd}'</code>）。
+      <td>Elasticsearch 中每条记录的索引。可以是一个静态索引（例如 <code>'myIndex'</code>）或一个动态索引（例如 `'index-{log_ts|yyyy-MM-dd}'`）。
        更多详细信息，请参见下面的<a href="#dymic-index">动态索引</a>部分。</td>
     </tr>
     <tr>

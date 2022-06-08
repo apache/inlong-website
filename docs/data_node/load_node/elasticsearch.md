@@ -105,7 +105,7 @@ TODO: It will be supported in the future.
       <td style="word-wrap: break-word;">(none)</td>
       <td>String</td>
       <td>Elasticsearch index for every record. Can be a static index (e.g. <code>'myIndex'</code>) or
-       a dynamic index (e.g. <code>'index-{log_ts|yyyy-MM-dd}'</code>).
+       a dynamic index (e.g. `'index-{log_ts|yyyy-MM-dd}'`).
        See the following <a href="#dynamic-index">Dynamic Index</a> section for more details.</td>
     </tr>
     <tr>
