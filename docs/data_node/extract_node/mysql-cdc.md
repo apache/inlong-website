@@ -474,7 +474,7 @@ CREATE TABLE `mysql_extract_node` (
       <td>
         NUMERIC(p, s)<br/>
         DECIMAL(p, s)<br/>
-        where p <= 38<br/>
+        where p &lt;= 38<br/>
       </td>
       <td>DECIMAL(p, s)</td>
       <td></td>
@@ -483,7 +483,7 @@ CREATE TABLE `mysql_extract_node` (
       <td>
         NUMERIC(p, s)<br/>
         DECIMAL(p, s)<br/>
-        where 38 < p <= 65<br/>
+        where 38 &lt; p &lt;= 65<br/>
       </td>
       <td>STRING</td>
       <td>The precision for DECIMAL data type is up to 65 in MySQL, but the precision for DECIMAL is limited to 38 in Flink.
