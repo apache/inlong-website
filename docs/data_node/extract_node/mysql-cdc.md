@@ -14,7 +14,7 @@ The MySQL Extract Node allows for reading snapshot data and incremental data fro
 
 ## Dependencies
 
-In order to setup the MySQL Extract Node, the following table provides dependency information for both projects using a build automation tool (such as Maven or SBT) and SQL Client with SQL JAR bundles.
+In order to setup the MySQL Extract Node, the following table provides dependency information for both projects using a build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors JAR bundles.
 
 ### Maven dependency
 
@@ -331,7 +331,7 @@ The following format metadata can be exposed as read-only (VIRTUAL) columns in a
     <tr>
       <td>meta.op_ts</td>
       <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>It indicates the time that the change was made in the database. <br>If the record is read from snapshot of the table instead of the binlog, the value is always 0.</td>
+      <td>It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the binlog, the value is always 0.</td>
     </tr>
     <tr>
       <td>meta.op_type</td>
@@ -430,22 +430,22 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        SMALLINT<br>
+        SMALLINT<br/>
         TINYINT UNSIGNED</td>
       <td>SMALLINT</td>
       <td></td>
     </tr>
     <tr>
       <td>
-        INT<br>
-        MEDIUMINT<br>
+        INT<br/>
+        MEDIUMINT<br/>
         SMALLINT UNSIGNED</td>
       <td>INT</td>
       <td></td>
     </tr>
     <tr>
       <td>
-        BIGINT<br>
+        BIGINT<br/>
         INT UNSIGNED</td>
       <td>BIGINT</td>
       <td></td>
@@ -457,8 +457,8 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        REAL<br>
-        FLOAT<br>
+        REAL<br/>
+        FLOAT<br/>
         </td>
       <td>FLOAT</td>
       <td></td>
@@ -472,18 +472,18 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        NUMERIC(p, s)<br>
-        DECIMAL(p, s)<br>
-        where p <= 38<br>
+        NUMERIC(p, s)<br/>
+        DECIMAL(p, s)<br/>
+        where p <= 38<br/>
       </td>
       <td>DECIMAL(p, s)</td>
       <td></td>
     </tr>
     <tr>
       <td>
-        NUMERIC(p, s)<br>
-        DECIMAL(p, s)<br>
-        where 38 < p <= 65<br>
+        NUMERIC(p, s)<br/>
+        DECIMAL(p, s)<br/>
+        where 38 < p <= 65<br/>
       </td>
       <td>STRING</td>
       <td>The precision for DECIMAL data type is up to 65 in MySQL, but the precision for DECIMAL is limited to 38 in Flink.
@@ -491,8 +491,8 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        BOOLEAN<br>
-        TINYINT(1)<br>
+        BOOLEAN<br/>
+        TINYINT(1)<br/>
         BIT(1)
         </td>
       <td>BOOLEAN</td>
@@ -509,7 +509,7 @@ CREATE TABLE `mysql_extract_node` (
       <td></td>
     </tr>
     <tr>
-      <td>TIMESTAMP [(p)]<br>
+      <td>TIMESTAMP [(p)]<br/>
         DATETIME [(p)]
       </td>
       <td>TIMESTAMP [(p)]
@@ -553,20 +553,20 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        TINYTEXT<br>
-        TEXT<br>
-        MEDIUMTEXT<br>
-        LONGTEXT<br>
+        TINYTEXT<br/>
+        TEXT<br/>
+        MEDIUMTEXT<br/>
+        LONGTEXT<br/>
       </td>
       <td>STRING</td>
       <td></td>
     </tr>
     <tr>
       <td>
-        TINYBLOB<br>
-        BLOB<br>
-        MEDIUMBLOB<br>
-        LONGBLOB<br>
+        TINYBLOB<br/>
+        BLOB<br/>
+        MEDIUMBLOB<br/>
+        LONGBLOB<br/>
       </td>
       <td>BYTES</td>
       <td>Currently, for BLOB data type in MySQL, only the blob whose length isn't greater than 2,147,483,647(2 ** 31 - 1) is supported. </td>

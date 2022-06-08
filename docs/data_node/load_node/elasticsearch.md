@@ -9,7 +9,7 @@ The Elasticsearch Load Node allows for writing into an index of the Elasticsearc
 
 The Load Node can operate in upsert mode for exchanging UPDATE/DELETE messages with the external system using the primary key defined on the DDL.
 
-If no primary key is defined on the DDL, the connector can only operate in append mode for exchanging INSERT only messages with external system.
+If no primary key is defined on the DDL, the Load Node can only operate in append mode for exchanging INSERT only messages with external system.
 
 ## Supported Version
 
@@ -18,6 +18,8 @@ If no primary key is defined on the DDL, the connector can only operate in appen
 | [elasticsearch](./elasticsearch.md) | [ElasticSearch](https://www.elastic.co/): 6.x, 7.x    |
 
 ### Dependencies
+
+In order to use the Elasticsearch Load Node the following dependencies are required for both projects using a build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors JAR bundles.
 
 - Elasticsearch 6
 

@@ -28,7 +28,7 @@ MySQL Extract 节点允许从 MySQL 数据库中读取快照数据和增量数�
 </dependency>
 ```
 
-连接 MySQL 数据库还需要 MySQL 驱动程序依赖项。请下载[mysql-connector-java-8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21. jar) 并将其放入`FLINK_HOME/lib/`。
+连接 MySQL 数据库还需要 MySQL 驱动程序依赖项。请下载[mysql-connector-java-8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar) 并将其放入 `FLINK_HOME/lib/`。
 
 ## 设置 MySQL 服务器
 
@@ -54,7 +54,7 @@ mysql> FLUSH PRIVILEGES;
 
 查看更多关于[权限说明](https://debezium.io/documentation/reference/1.5/connectors/mysql.html#mysql-creating-user)。
 
-## 注意的点
+## 注意事项
 
 ### 为每个 Reader 设置一个不同的 SERVER ID
 
@@ -328,7 +328,7 @@ TODO: 将在未来支持此功能。
     <tr>
       <td>meta.op_ts</td>
       <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>它指示在数据库中进行更改的时间。 <br>如果记录是从表的快照而不是binlog中读取的，则该值始终为0。</td>
+      <td>它指示在数据库中进行更改的时间。 <br/>如果记录是从表的快照而不是binlog中读取的，则该值始终为0。</td>
     </tr>
     <tr>
       <td>meta.op_type</td>
@@ -428,22 +428,22 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        SMALLINT<br>
+        SMALLINT<br/>
         TINYINT UNSIGNED</td>
       <td>SMALLINT</td>
       <td></td>
     </tr>
     <tr>
       <td>
-        INT<br>
-        MEDIUMINT<br>
+        INT<br/>
+        MEDIUMINT<br/>
         SMALLINT UNSIGNED</td>
       <td>INT</td>
       <td></td>
     </tr>
     <tr>
       <td>
-        BIGINT<br>
+        BIGINT<br/>
         INT UNSIGNED</td>
       <td>BIGINT</td>
       <td></td>
@@ -455,8 +455,8 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        REAL<br>
-        FLOAT<br>
+        REAL<br/>
+        FLOAT<br/>
         </td>
       <td>FLOAT</td>
       <td></td>
@@ -470,18 +470,18 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        NUMERIC(p, s)<br>
-        DECIMAL(p, s)<br>
-        where p <= 38<br>
+        NUMERIC(p, s)<br/>
+        DECIMAL(p, s)<br/>
+        where p <= 38<br/>
       </td>
       <td>DECIMAL(p, s)</td>
       <td></td>
     </tr>
     <tr>
       <td>
-        NUMERIC(p, s)<br>
-        DECIMAL(p, s)<br>
-        where 38 < p <= 65<br>
+        NUMERIC(p, s)<br/>
+        DECIMAL(p, s)<br/>
+        where 38 < p <= 65<br/>
       </td>
       <td>STRING</td>
       <td>The precision for DECIMAL data type is up to 65 in MySQL, but the precision for DECIMAL is limited to 38 in Flink.
@@ -489,8 +489,8 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        BOOLEAN<br>
-        TINYINT(1)<br>
+        BOOLEAN<br/>
+        TINYINT(1)<br/>
         BIT(1)
         </td>
       <td>BOOLEAN</td>
@@ -507,7 +507,7 @@ CREATE TABLE `mysql_extract_node` (
       <td></td>
     </tr>
     <tr>
-      <td>TIMESTAMP [(p)]<br>
+      <td>TIMESTAMP [(p)]<br/>
         DATETIME [(p)]
       </td>
       <td>TIMESTAMP [(p)]
@@ -551,20 +551,20 @@ CREATE TABLE `mysql_extract_node` (
     </tr>
     <tr>
       <td>
-        TINYTEXT<br>
-        TEXT<br>
-        MEDIUMTEXT<br>
-        LONGTEXT<br>
+        TINYTEXT<br/>
+        TEXT<br/>
+        MEDIUMTEXT<br/>
+        LONGTEXT<br/>
       </td>
       <td>STRING</td>
       <td></td>
     </tr>
     <tr>
       <td>
-        TINYBLOB<br>
-        BLOB<br>
-        MEDIUMBLOB<br>
-        LONGBLOB<br>
+        TINYBLOB<br/>
+        BLOB<br/>
+        MEDIUMBLOB<br/>
+        LONGBLOB<br/>
       </td>
       <td>BYTES</td>
       <td>Currently, for BLOB data type in MySQL, only the blob whose length isn't greater than 2,147,483,647(2 ** 31 - 1) is supported. </td>
