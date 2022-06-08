@@ -1,5 +1,5 @@
 ---
-title: MySQL
+title: MySQL-CDC
 sidebar_position: 5
 ---
 
@@ -116,67 +116,67 @@ TODO: 将在未来支持此功能。
 <table class="colwidths-auto docutils">
     <thead>
       <tr>
-        <th class="text-left" style="width: 10%">参数</th>
-        <th class="text-left" style="width: 8%">是否必须</th>
-        <th class="text-left" style="width: 7%">默认值</th>
-        <th class="text-left" style="width: 10%">数据类型</th>
-        <th class="text-left" style="width: 65%">描述</th>
+        <th class="text-left" style={{width: '10%'}}>参数</th>
+        <th class="text-left" style={{width: '8%'}}>是否必须</th>
+        <th class="text-left" style={{width: '7%'}}>默认值</th>
+        <th class="text-left" style={{width: '10%'}}>数据类型</th>
+        <th class="text-left" style={{width: '65%'}}>描述</th>
       </tr>
     </thead>
     <tbody>
     <tr>
       <td>connector</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>指定要使用的连接器，这里应该是 <code>'mysql-cdc-inlong'</code>。</td>
     </tr>
     <tr>
       <td>hostname</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>MySQL 数据库服务器的 IP 地址或主机名。</td>
     </tr>
     <tr>
       <td>username</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>连接到 MySQL 数据库服务器时要使用的 MySQL 用户名称。</td>
     </tr>
     <tr>
       <td>password</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>连接到 MySQL 数据库服务器时使用的密码。</td>
     </tr>
     <tr>
       <td>database-name</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>要监控的 MySQL 服务器的数据库名称。 database-name 还支持正则表达式来监控多个表是否匹配正则表达式。</td>
     </tr> 
     <tr>
       <td>table-name</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>要监控的 MySQL 数据库的表名。 table-name 还支持正则表达式来监控多个表是否匹配正则表达式。</td>
     </tr>
     <tr>
       <td>port</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">3306</td>
+      <td style={{wordWrap: 'break-word'}}>3306</td>
       <td>Integer</td>
       <td>MySQL 数据库服务器的整数端口号。</td>
     </tr>
     <tr>
       <td>server-id</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>Integer</td>
       <td>此数据库客户端的数字 Id 或数字 Id 范围，数字 Id 语法类似于 '5400'，
           数字 Id 范围语法类似于“5400-5408”，启用“scan.incremental.snapshot.enabled”时建议使用数字 Id 范围语法。
@@ -188,7 +188,7 @@ TODO: 将在未来支持此功能。
     <tr>
           <td>scan.incremental.snapshot.enabled</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">true</td>
+          <td style={{wordWrap: 'break-word'}}>true</td>
           <td>Boolean</td>
           <td>增量快照是一种读取表快照的新机制。与旧的快照机制相比，
               增量快照有很多优点，包括：
@@ -203,21 +203,21 @@ TODO: 将在未来支持此功能。
     <tr>
           <td>scan.incremental.snapshot.chunk.size</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">8096</td>
+          <td style={{wordWrap: 'break-word'}}>8096</td>
           <td>Integer</td>
           <td>表快照的块大小（行数），读取表的快照时，表的快照被分成多个块。</td>
     </tr>
     <tr>
           <td>scan.snapshot.fetch.size</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">1024</td>
+          <td style={{wordWrap: 'break-word'}}>1024</td>
           <td>Integer</td>
           <td>读取表快照时每次轮询的最大获取大小。</td>
     </tr>
     <tr>
       <td>scan.startup.mode</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">initial</td>
+      <td style={{wordWrap: 'break-word'}}>initial</td>
       <td>String</td>
       <td>MySQL CDC 消费者的可选启动模式，有效枚举为"initial"
            和"latest-offset"。
@@ -226,7 +226,7 @@ TODO: 将在未来支持此功能。
     <tr>
       <td>server-time-zone</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">UTC</td>
+      <td style={{wordWrap: 'break-word'}}>UTC</td>
       <td>String</td>
       <td>数据库服务器中的会话时区，例如"Asia/Shanghai"。
           它控制 MYSQL 中的 TIMESTAMP 类型如何转换为 STRING。
@@ -236,63 +236,63 @@ TODO: 将在未来支持此功能。
       <td>debezium.min.row.
       count.to.stream.result</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">1000</td>
+      <td style={{wordWrap: 'break-word'}}>1000</td>
       <td>Integer</td>
       <td>在快照操作期间，连接器将查询每个包含的表，以便为该表中的所有行生成读取事件。此参数确定 MySQL 连接是否会将表的所有结果拉入内存（速度很快但需要大量内存），或者是否将结果改为流式传输（可能较慢，但适用于非常大的表）。该值指定在连接器流式传输结果之前表必须包含的最小行数，默认为 1,000。将此参数设置为'0'以跳过所有表大小检查并始终在快照期间流式传输所有结果。</td>
     </tr>
     <tr>
           <td>connect.timeout</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">30s</td>
+          <td style={{wordWrap: 'break-word'}}>30s</td>
           <td>Duration</td>
           <td>连接器在尝试连接到 MySQL 数据库服务器后在超时之前应等待的最长时间。</td>
     </tr>    
     <tr>
           <td>connect.max-retries</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">3</td>
+          <td style={{wordWrap: 'break-word'}}>3</td>
           <td>Integer</td>
           <td>连接器应重试以建立 MySQL 数据库服务器连接的最大重试次数。</td>
     </tr>
     <tr>
           <td>connection.pool.size</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">20</td>
+          <td style={{wordWrap: 'break-word'}}>20</td>
           <td>Integer</td>
           <td>连接池大小。</td>
     </tr>
     <tr>
           <td>jdbc.properties.*</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">20</td>
+          <td style={{wordWrap: 'break-word'}}>20</td>
           <td>String</td>
           <td>传递自定义 JDBC URL 属性的选项。用户可以传递自定义属性，例如 'jdbc.properties.useSSL' = 'false'。</td>
     </tr>
     <tr>
           <td>heartbeat.interval</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">30s</td>
+          <td style={{wordWrap: 'break-word'}}>30s</td>
           <td>Duration</td>
           <td>发送心跳事件的时间间隔，用于跟踪最新可用的 Binlog 偏移量。</td>
     </tr>
     <tr>
           <td>append-mode</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">false</td>
+          <td style={{wordWrap: 'break-word'}}>false</td>
           <td>Boolean</td>
           <td>是否仅支持 Append，如果为 'true'，MySQL Extract Node 会将所有 Upsert 流转换为 Append 流，以支持不支持 Upsert 流的下游场景。</td>
     </tr>
     <tr>
           <td>migrate-all</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">false</td>
+          <td style={{wordWrap: 'break-word'}}>false</td>
           <td>Boolean</td>
           <td>是否是全库迁移场景，如果为 'true'，MySQL Extract Node 则将表的物理字段和其他元字段压缩成 'canal-json' 格式的特殊元字段 'data'。</td>
     </tr>
     <tr>
       <td>debezium.*</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>将 Debezium 的属性传递给用于从 MySQL 服务器捕获数据更改的 Debezium Embedded Engine。
           例如：<code>'debezium.snapshot.mode' = 'never'</code>。
@@ -309,9 +309,9 @@ TODO: 将在未来支持此功能。
 <table class="colwidths-auto docutils">
   <thead>
      <tr>
-       <th class="text-left" style="width: 15%">字段名称</th>
-       <th class="text-left" style="width: 30%">数据类型</th>
-       <th class="text-left" style="width: 55%">描述</th>
+       <th class="text-left" style={{width: '15%'}}>字段名称</th>
+       <th class="text-left" style={{width: '30%'}}>数据类型</th>
+       <th class="text-left" style={{width: '55%'}}>描述</th>
      </tr>
   </thead>
   <tbody>

@@ -1,5 +1,5 @@
 ---
-title: MySQL
+title: MySQL-CDC
 sidebar_position: 5
 ---
 
@@ -119,67 +119,67 @@ TODO: It will be supported in the future.
 <table class="colwidths-auto docutils">
     <thead>
       <tr>
-        <th class="text-left" style="width: 10%">Option</th>
-        <th class="text-left" style="width: 8%">Required</th>
-        <th class="text-left" style="width: 7%">Default</th>
-        <th class="text-left" style="width: 10%">Type</th>
-        <th class="text-left" style="width: 65%">Description</th>
+        <th class="text-left" style={{width: '10%'}}>Option</th>
+        <th class="text-left" style={{width: '8%'}}>Required</th>
+        <th class="text-left" style={{width: '7%'}}>Default</th>
+        <th class="text-left" style={{width: '10%'}}>Type</th>
+        <th class="text-left" style={{width: '65%'}}>Description</th>
       </tr>
     </thead>
     <tbody>
     <tr>
       <td>connector</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Specify what connector to use, here should be <code>'mysql-cdc-inlong'</code>.</td>
     </tr>
     <tr>
       <td>hostname</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>IP address or hostname of the MySQL database server.</td>
     </tr>
     <tr>
       <td>username</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Name of the MySQL database to use when connecting to the MySQL database server.</td>
     </tr>
     <tr>
       <td>password</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Password to use when connecting to the MySQL database server.</td>
     </tr>
     <tr>
       <td>database-name</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Database name of the MySQL server to monitor. The database-name also supports regular expressions to monitor multiple tables matches the regular expression.</td>
     </tr> 
     <tr>
       <td>table-name</td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Table name of the MySQL database to monitor. The table-name also supports regular expressions to monitor multiple tables matches the regular expression.</td>
     </tr>
     <tr>
       <td>port</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">3306</td>
+      <td style={{wordWrap: 'break-word'}}>3306</td>
       <td>Integer</td>
       <td>Integer port number of the MySQL database server.</td>
     </tr>
     <tr>
       <td>server-id</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>Integer</td>
       <td>A numeric ID or a numeric ID range of this database client, The numeric ID syntax is like '5400', 
           the numeric ID range syntax is like '5400-5408', The numeric ID range syntax is recommended when 'scan.incremental.snapshot.enabled' enabled.
@@ -191,7 +191,7 @@ TODO: It will be supported in the future.
     <tr>
           <td>scan.incremental.snapshot.enabled</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">true</td>
+          <td style={{wordWrap: 'break-word'}}>true</td>
           <td>Boolean</td>
           <td>Incremental snapshot is a new mechanism to read snapshot of a table. Compared to the old snapshot mechanism,
               the incremental snapshot has many advantages, including:
@@ -206,21 +206,21 @@ TODO: It will be supported in the future.
     <tr>
           <td>scan.incremental.snapshot.chunk.size</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">8096</td>
+          <td style={{wordWrap: 'break-word'}}>8096</td>
           <td>Integer</td>
           <td>The chunk size (number of rows) of table snapshot, captured tables are split into multiple chunks when read the snapshot of table.</td>
     </tr>
     <tr>
           <td>scan.snapshot.fetch.size</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">1024</td>
+          <td style={{wordWrap: 'break-word'}}>1024</td>
           <td>Integer</td>
           <td>The maximum fetch size for per poll when read table snapshot.</td>
     </tr>
     <tr>
       <td>scan.startup.mode</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">initial</td>
+      <td style={{wordWrap: 'break-word'}}>initial</td>
       <td>String</td>
       <td>Optional startup mode for MySQL CDC consumer, valid enumerations are "initial"
            and "latest-offset". 
@@ -229,7 +229,7 @@ TODO: It will be supported in the future.
     <tr>
       <td>server-time-zone</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">UTC</td>
+      <td style={{wordWrap: 'break-word'}}>UTC</td>
       <td>String</td>
       <td>The session time zone in database server, e.g. "Asia/Shanghai". 
           It controls how the TIMESTAMP type in MYSQL converted to STRING.
@@ -239,63 +239,63 @@ TODO: It will be supported in the future.
       <td>debezium.min.row.
       count.to.stream.result</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">1000</td>
+      <td style={{wordWrap: 'break-word'}}>1000</td>
       <td>Integer</td>
       <td>During a snapshot operation, the connector will query each included table to produce a read event for all rows in that table. This parameter determines whether the MySQL connection will pull all results for a table into memory (which is fast but requires large amounts of memory), or whether the results will instead be streamed (can be slower, but will work for very large tables). The value specifies the minimum number of rows a table must contain before the connector will stream results, and defaults to 1,000. Set this parameter to '0' to skip all table size checks and always stream all results during a snapshot.</td>
     </tr>
     <tr>
           <td>connect.timeout</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">30s</td>
+          <td style={{wordWrap: 'break-word'}}>30s</td>
           <td>Duration</td>
           <td>The maximum time that the connector should wait after trying to connect to the MySQL database server before timing out.</td>
     </tr>    
     <tr>
           <td>connect.max-retries</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">3</td>
+          <td style={{wordWrap: 'break-word'}}>3</td>
           <td>Integer</td>
           <td>The max retry times that the connector should retry to build MySQL database server connection.</td>
     </tr>
     <tr>
           <td>connection.pool.size</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">20</td>
+          <td style={{wordWrap: 'break-word'}}>20</td>
           <td>Integer</td>
           <td>The connection pool size.</td>
     </tr>
     <tr>
           <td>jdbc.properties.*</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">20</td>
+          <td style={{wordWrap: 'break-word'}}>20</td>
           <td>String</td>
           <td>Option to pass custom JDBC URL properties. User can pass custom properties like 'jdbc.properties.useSSL' = 'false'.</td>
     </tr>
     <tr>
           <td>heartbeat.interval</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">30s</td>
+          <td style={{wordWrap: 'break-word'}}>30s</td>
           <td>Duration</td>
           <td>The interval of sending heartbeat event for tracing the latest available binlog offsets.</td>
     </tr>
     <tr>
           <td>append-mode</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">false</td>
+          <td style={{wordWrap: 'break-word'}}>false</td>
           <td>Boolean</td>
           <td>Whether to support append only, if true the MySQL Extract Node will Convert all upsert streams to append streams to support downstream scenarios where upsert streams are not supported.</td>
     </tr>
     <tr>
           <td>migrate-all</td>
           <td>optional</td>
-          <td style="word-wrap: break-word;">false</td>
+          <td style={{wordWrap: 'break-word'}}>false</td>
           <td>Boolean</td>
           <td>Whether it is a whole library migration, Whether it is a whole database migration scenario, if true, it compresses physical fields and other meta fields supported by MySQL Extract Node into a special meta field `data` in canal-json format.</td>
     </tr>
     <tr>
       <td>debezium.*</td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from MySQL server.
           For example: <code>'debezium.snapshot.mode' = 'never'</code>.
@@ -312,9 +312,9 @@ The following format metadata can be exposed as read-only (VIRTUAL) columns in a
 <table class="colwidths-auto docutils">
   <thead>
      <tr>
-       <th class="text-left" style="width: 15%">Key</th>
-       <th class="text-left" style="width: 30%">DataType</th>
-       <th class="text-left" style="width: 55%">Description</th>
+       <th class="text-left" style={{width: '15%'}}>Key</th>
+       <th class="text-left" style={{width: '30%'}}>DataType</th>
+       <th class="text-left" style={{width: '55%'}}>Description</th>
      </tr>
   </thead>
   <tbody>

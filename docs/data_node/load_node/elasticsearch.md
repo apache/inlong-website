@@ -73,18 +73,18 @@ TODO: It will be supported in the future.
 <table class="table table-bordered">
     <thead>
       <tr>
-        <th class="text-left" style="width: 25%">Option</th>
-        <th class="text-center" style="width: 8%">Required</th>
-        <th class="text-center" style="width: 7%">Default</th>
-        <th class="text-center" style="width: 10%">Type</th>
-        <th class="text-center" style="width: 50%">Description</th>
+        <th class="text-left" style={{width: '25%'}}>Option</th>
+        <th class="text-center" style={{width: '8%'}}>Required</th>
+        <th class="text-center" style={{width: '7%'}}>Default</th>
+        <th class="text-center" style={{width: '10%'}}>Type</th>
+        <th class="text-center" style={{width: '50%'}}>Description</th>
       </tr>
     </thead>
     <tbody>
     <tr>
       <td><h5>connector</h5></td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Specify what connector to use, valid values are:
       <ul>
@@ -95,51 +95,51 @@ TODO: It will be supported in the future.
     <tr>
       <td><h5>hosts</h5></td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>One or more Elasticsearch hosts to connect to, e.g. <code>'http://host_name:9092;http://host_name:9093'</code>.</td>
     </tr>
     <tr>
       <td><h5>index</h5></td>
       <td>required</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Elasticsearch index for every record. Can be a static index (e.g. <code>'myIndex'</code>) or
-       a dynamic index (e.g. <code>'index-{ts|yyyy-MM-dd}'</code>).
+       a dynamic index (e.g. <code>'index-\{'{log_ts|yyyy-MM-dd}'}'</code>).
        See the following <a href="#dynamic-index">Dynamic Index</a> section for more details.</td>
     </tr>
     <tr>
       <td><h5>document-type</h5></td>
       <td>required in 6.x</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Elasticsearch document type. Not necessary anymore in <code>elasticsearch-7</code>.</td>
     </tr>
     <tr>
       <td><h5>document-id.key-delimiter</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">_</td>
+      <td style={{wordWrap: 'break-word'}}>_</td>
       <td>String</td>
       <td>Delimiter for composite keys ("_" by default), e.g., "$" would result in IDs "KEY1$KEY2$KEY3".</td>
     </tr>
     <tr>
       <td><h5>username</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Username used to connect to Elasticsearch instance. Please notice that Elasticsearch doesn't pre-bundled security feature, but you can enable it by following the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/master/configuring-security.html">guideline</a> to secure an Elasticsearch cluster.</td>
     </tr>
     <tr>
       <td><h5>password</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Password used to connect to Elasticsearch instance. If <code>username</code> is configured, this option must be configured with non-empty string as well.</td>
     </tr>
     <tr>
       <td><h5>failure-handler</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">fail</td>
+      <td style={{wordWrap: 'break-word'}}>fail</td>
       <td>String</td>
       <td>Failure handling strategy in case a request to Elasticsearch fails. Valid strategies are:
       <ul>
@@ -153,7 +153,7 @@ TODO: It will be supported in the future.
     <tr>
       <td><h5>sink.flush-on-checkpoint</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">true</td>
+      <td style={{wordWrap: 'break-word'}}>true</td>
       <td>Boolean</td>
       <td>Flush on checkpoint or not. When disabled, a sink will not wait for all pending action requests
        to be acknowledged by Elasticsearch on checkpoints. Thus, a sink does NOT provide any strong
@@ -163,7 +163,7 @@ TODO: It will be supported in the future.
     <tr>
       <td><h5>sink.bulk-flush.max-actions</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">1000</td>
+      <td style={{wordWrap: 'break-word'}}>1000</td>
       <td>Integer</td>
       <td>Maximum number of buffered actions per bulk request.
       Can be set to <code>'0'</code> to disable it.
@@ -172,7 +172,7 @@ TODO: It will be supported in the future.
     <tr>
       <td><h5>sink.bulk-flush.max-size</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">2mb</td>
+      <td style={{wordWrap: 'break-word'}}>2mb</td>
       <td>MemorySize</td>
       <td>Maximum size in memory of buffered actions per bulk request. Must be in MB granularity.
       Can be set to <code>'0'</code> to disable it.
@@ -181,7 +181,7 @@ TODO: It will be supported in the future.
     <tr>
       <td><h5>sink.bulk-flush.interval</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">1s</td>
+      <td style={{wordWrap: 'break-word'}}>1s</td>
       <td>Duration</td>
       <td>The interval to flush buffered actions.
         Can be set to <code>'0'</code> to disable it. Note, both <code>'sink.bulk-flush.max-size'</code> and <code>'sink.bulk-flush.max-actions'</code>
@@ -191,7 +191,7 @@ TODO: It will be supported in the future.
     <tr>
       <td><h5>sink.bulk-flush.backoff.strategy</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">DISABLED</td>
+      <td style={{wordWrap: 'break-word'}}>DISABLED</td>
       <td>String</td>
       <td>Specify how to perform retries if any flush actions failed due to a temporary request error. Valid strategies are:
       <ul>
@@ -204,35 +204,35 @@ TODO: It will be supported in the future.
     <tr>
       <td><h5>sink.bulk-flush.backoff.max-retries</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">8</td>
+      <td style={{wordWrap: 'break-word'}}>8</td>
       <td>Integer</td>
       <td>Maximum number of backoff retries.</td>
     </tr>
     <tr>
       <td><h5>sink.bulk-flush.backoff.delay</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">50ms</td>
+      <td style={{wordWrap: 'break-word'}}>50ms</td>
       <td>Duration</td>
       <td>Delay between each backoff attempt. For <code>CONSTANT</code> backoff, this is simply the delay between each retry. For <code>EXPONENTIAL</code> backoff, this is the initial base delay.</td>
     </tr>
     <tr>
       <td><h5>connection.max-retry-timeout</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>Duration</td>
       <td>Maximum timeout between retries.</td>
     </tr>
     <tr>
       <td><h5>connection.path-prefix</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">(none)</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Prefix string to be added to every REST communication, e.g., <code>'/v1'</code>.</td>
     </tr>
     <tr>
       <td><h5>format</h5></td>
       <td>optional</td>
-      <td style="word-wrap: break-word;">json</td>
+      <td style={{wordWrap: 'break-word'}}>json</td>
       <td>String</td>
       <td>Elasticsearch connector supports to specify a format. The format must produce a valid json document.
        By default uses built-in <code>'json'</code> format. Please refer to <a href="https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/table/formats/overview/">JSON Format</a> page for more details.
@@ -268,7 +268,7 @@ If you want to have a static index, the `index` option value should be a plain s
 If you want to have a dynamic index, you can use `{field_name}` to reference a field value in the record to dynamically generate a target index.
 You can also use `'{field_name|date_format_string}'` to convert a field value of `TIMESTAMP/DATE/TIME` type into the format specified by the `date_format_string`.
 The `date_format_string` is compatible with Java's [DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/index.html).
-For example, if the option value is `'myusers-{ts|yyyy-MM-dd}'`, then a record with `ts` field value `2020-03-27 12:25:55` will be written into "myusers-2020-03-27" index.
+For example, if the option value is `'myusers-{'{log_ts|yyyy-MM-dd}'}'`, then a record with `log_ts` field value `2020-03-27 12:25:55` will be written into "myusers-2020-03-27" index.
 
 ## Data Type Mapping
 
