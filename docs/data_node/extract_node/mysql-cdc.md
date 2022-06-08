@@ -8,9 +8,9 @@ sidebar_position: 5
 The MySQL Extract Node allows for reading snapshot data and incremental data from MySQL database. This document describes how to setup the MySQL Extract Node to run SQL queries against MySQL databases.
 
 ## Supported Version
-| Extract Node        | Version                                                                                                                                                                                                                                                                                                                                                                                                | Driver                  |
-|---------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
-| [mysql](./mysql.md) | [MySQL](https://dev.mysql.com/doc): 5.6, 5.7, 8.0.x <br/> [RDS MySQL](https://www.aliyun.com/product/rds/mysql): 5.6, 5.7, 8.0.x <br/> [PolarDB MySQL](https://www.aliyun.com/product/polardb): 5.6, 5.7, 8.0.x <br/> [Aurora MySQL](https://aws.amazon.com/cn/rds/aurora): 5.6, 5.7, 8.0.x <br/> [MariaDB](https://mariadb.org): 10.x <br/> [PolarDB X](https://github.com/ApsaraDB/galaxysql): 2.0.1 | JDBC Driver: 8.0.21     |
+| Extract Node                | Version                                                                                                                                                                                                                                                                                                                                                                                                | Driver                  |
+|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
+| [mysql-cdc](./mysql-cdc.md) | [MySQL](https://dev.mysql.com/doc): 5.6, 5.7, 8.0.x <br/> [RDS MySQL](https://www.aliyun.com/product/rds/mysql): 5.6, 5.7, 8.0.x <br/> [PolarDB MySQL](https://www.aliyun.com/product/polardb): 5.6, 5.7, 8.0.x <br/> [Aurora MySQL](https://aws.amazon.com/cn/rds/aurora): 5.6, 5.7, 8.0.x <br/> [MariaDB](https://mariadb.org): 10.x <br/> [PolarDB X](https://github.com/ApsaraDB/galaxysql): 2.0.1 | JDBC Driver: 8.0.21     |
 
 ## Dependencies
 
@@ -76,10 +76,10 @@ When an initial consistent snapshot is made for large databases, your establishe
 The example below shows how to create an MySQL Extract Node with `Flink SQL` :
 
 ```sql
--- checkpoint every 3000 milliseconds                       
+-- Set checkpoint every 3000 milliseconds                       
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';   
 
--- register a MySQL table 'mysql_extract_node' in Flink SQL
+-- Create a MySQL table 'mysql_extract_node' in Flink SQL
 Flink SQL> CREATE TABLE mysql_extract_node (
      order_id INT,
      order_date TIMESTAMP(0),
@@ -97,7 +97,7 @@ Flink SQL> CREATE TABLE mysql_extract_node (
      'database-name' = 'YourDatabaseName',
      'table-name' = 'YourTableName');
   
--- read snapshot and binlogs from orders table
+-- Read snapshot and binlogs from mysql_extract_node
 Flink SQL> SELECT * FROM mysql_extract_node;
 ```
 
@@ -200,7 +200,7 @@ TODO: It will be supported in the future.
                 (3) source doesn't need to acquire global read lock (FLUSH TABLES WITH READ LOCK) before snapshot reading.
               If you would like the source run in parallel, each parallel reader should have an unique server id, so 
               the 'server-id' must be a range like '5400-6400', and the range must be larger than the parallelism.
-              Please see <a href="#incremental-snapshot-reading ">Incremental Snapshot Reading</a>section for more detailed information.
+              Please see <a href="https://ververica.github.io/flink-cdc-connectors/release-2.2/content/connectors/mysql-cdc.html#incremental-snapshot-reading">Incremental Snapshot Reading</a>section for more detailed information.
           </td>
     </tr>
     <tr>
@@ -224,7 +224,7 @@ TODO: It will be supported in the future.
       <td>String</td>
       <td>Optional startup mode for MySQL CDC consumer, valid enumerations are "initial"
            and "latest-offset". 
-           Please see <a href="#startup-reading-position">Startup Reading Position</a>section for more detailed information.</td>
+           Please see <a href="https://ververica.github.io/flink-cdc-connectors/release-2.2/content/connectors/mysql-cdc.html#startup-reading-position">Startup Reading Position</a>section for more detailed information.</td>
     </tr> 
     <tr>
       <td>server-time-zone</td>
@@ -417,8 +417,8 @@ CREATE TABLE `mysql_extract_node` (
 <table class="colwidths-auto docutils">
     <thead>
       <tr>
-        <th class="text-left">MySQL type<a href="https://dev.mysql.com/doc/man/8.0/en/data-types.html"></a></th>
-        <th class="text-left">Flink SQL type<a href="{% link dev/table/types.md %}"></a></th>
+        <th class="text-left">MySQL type</th>
+        <th class="text-left">Flink SQL type</th>
         <th class="text-left">NOTE</th>
       </tr>
     </thead>

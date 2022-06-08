@@ -1,14 +1,15 @@
 ---
-title: Overview
+title: 总览
 sidebar_position: 1
 ---
 
-## Overview
+## 简介
 
-Extract Nodes is a set of Source Connectors based on <a href="https://flink.apache.org/">Apache Flink<sup>®</sup></a> for extracting data from different source systems. 
+Extract 节点列表是一组基于 <a href="https://flink.apache.org/">Apache Flink<sup>®</sup></a> 的 Source Connectors 用于从不同的源系统抽取数据。
 
-## Supported Extract Nodes
-| Extract Node                        | Version                                                                                                                                                                                                                                                                                                                                                                                               | Driver                  |
+## 支持的 Extract 节点列表
+
+| Extract 节点                          | 版本                                                                                                                                                                                                                                                                                                                                                                                                    | 驱动包                     |
 |-------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------|
 | [kafka](./kafka.md)                 | [Kafka](https://kafka.apache.org/): 0.10+                                                                                                                                                                                                                                                                                                                                                             | None                    |
 | [pulsar](./pulsar.md)               | [Pulsar](https://pulsar.apache.org/): 2.8.x+                                                                                                                                                                                                                                                                                                                                                          | None                    |
@@ -19,26 +20,27 @@ Extract Nodes is a set of Source Connectors based on <a href="https://flink.apac
 | [postgres-cdc](./postgres-cdc.md)   | [PostgreSQL](https://www.postgresql.org): 9.6, 10, 11, 12                                                                                                                                                                                                                                                                                                                                             | None                    |
 | [sqlserver-cdc](./sqlserver-cdc.md) | [Sqlserver](https://www.microsoft.com/sql-server): 2012, 2014, 2016, 2017, 2019                                                                                                                                                                                                                                                                                                                       | None                    |
 
-## Supported Flink Versions
-The following table shows the version mapping between InLong<sup>®</sup> Extract Nodes and Flink<sup>®</sup>:
+## 支持的 Flink 版本列表
 
-|        InLong<sup>®</sup> Extract Nodes Version        |          Flink<sup>®</sup> Version          |
-|:------------------------------------------------------:|:-------------------------------------------:|
-|          <font color="DarkCyan">1.2.0</font>           | <font color="MediumVioletRed">1.13.5</font> |
+下表展示了 InLong<sup>®</sup> Extract 节点 和 Flink<sup>®</sup> 版本之间的对应关系。
 
-## Usage for SQL API
+|   InLong<sup>®</sup> Extract 节点版本   |            Flink<sup>®</sup> 版本             |
+|:-----------------------------------:|:-------------------------------------------:|
+| <font color="DarkCyan">1.2.0</font> | <font color="MediumVioletRed">1.13.5</font> |
 
-We need several steps to setup a Flink cluster with the provided connector.
+## SQL API 用法
 
-1. Setup a Flink cluster with version 1.13.5 and Java 8+ installed.
-2. Download and the Sort Connectors jars from the [Downloads](../../../download/main.md) page (or [build yourself](../../quick_start/how_to_build.md)).
-3. Put the Sort Connectors jars under `FLINK_HOME/lib/`.
-4. Restart the Flink cluster.
+我们需要几个步骤来使用提供的连接器设置 Flink 集群。
 
-The example shows how to create a MySQL Extract Node in [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-release-1.13/dev/table/sqlClient.html) and execute queries on it.
+- 设置一个安装了 1.13.5 版本和 Java 8+ 的 Flink 集群。
+- 从 [下载](../../../../../../download/main.md) 页面下载并解压 Sort Connectors jars (或者参考 [如何编译](../../quick_start/how_to_build.md) 编译需要的版本)。
+- 将下载并解压后的 Sort Connectors jars 放到 `FLINK_HOME/lib/`。
+- 重启 Flink 集群。
+
+下面例子展示了如何在 [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-release-1.13/dev/table/sqlClient.html) 创建 MySQL Extarct 节点，并从中查询数据：
 
 ```sql
--- Creates a MySQL Extract Node
+-- 创建一个 MySQL Extract 节点
 CREATE TABLE mysql_extract_node (
  id INT NOT NULL,
  name STRING,

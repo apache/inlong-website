@@ -5,7 +5,7 @@ sidebar_position: 1
 
 ## Overview
 
-Load Nodes is a set of sink connectors based on <a href="https://flink.apache.org/">Apache Flink<sup>®</sup></a> for loading data to different storage systems. 
+Load Nodes is a set of Sink Connectors based on <a href="https://flink.apache.org/">Apache Flink<sup>®</sup></a> for loading data to different storage systems. 
 
 ## Supported Load Nodes
 | Load Node                             | Version                                                                                                                                                                                                                                                                                                                                                                                                | Driver                  |
@@ -26,6 +26,7 @@ Load Nodes is a set of sink connectors based on <a href="https://flink.apache.or
 
 
 ## Supported Flink Versions
+
 The following table shows the version mapping between InLong<sup>®</sup> Load Nodes and Flink<sup>®</sup>:
 
 | InLong<sup>®</sup> Load Nodes Version |          Flink<sup>®</sup> Version          |
@@ -37,14 +38,14 @@ The following table shows the version mapping between InLong<sup>®</sup> Load N
 We need several steps to setup a Flink cluster with the provided connector.
 
 1. Setup a Flink cluster with version 1.13.5 and Java 8+ installed.
-2. Download and decompress the connector jars from the [Downloads](../../../download/main.md) page (or [build yourself](../../quick_start/how_to_build.md)).
-3. Put the downloaded jars under `FLINK_HOME/lib/`.
+2. Download and decompress the Sort Connectors jars from the [Downloads](../../../download/main.md) page (or [build yourself](../../quick_start/how_to_build.md)).
+3. Put the Sort Connectors jars under `FLINK_HOME/lib/`.
 4. Restart the Flink cluster.
 
 The example shows how to create a MySQL Load Node in [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-release-1.13/dev/table/sqlClient.html) and load data to it.
 
 ```sql
--- creates a mysql extract node
+-- Creates a MySQL Extract Node
 CREATE TABLE mysql_extract_node (
     id INT NOT NULL,
     name STRING,
@@ -60,7 +61,7 @@ CREATE TABLE mysql_extract_node (
       'database-name' = 'YourDatabaseName',
       'table-name' = 'YourTableName'
       );
--- creates a mysql load node
+-- Creates a MySQL Load Node
 CREATE TABLE mysql_load_node (
  id INT NOT NULL,
  name STRING,
