@@ -15,7 +15,7 @@ Apache InLong(incubating) 从 0.9.0 版本开始由原 Apache TubeMQ（incubatin
 [Apache InLong（应龙）](https://inlong.apache.org/zh-cn/)是腾讯捐献给 Apache 社区的一站式海量数据集成框架，提供自动、安全、可靠和高性能的数据传输能力，方便业务构建基于流式的数据分析、建模和应用。InLong 项目原本叫TubeMQ ，专注高性能、低成本的消息队列服务。为了进一步释放 TubeMQ 周边生态能力，我们将项目升级为 InLong ，专注打造一站式的数据集成解决方案。
 
 Apache InLong 以腾讯内部使用的 TDBank 为原型，依托万亿级别的数据接入和处理能力，整合了数据采集、汇聚、存储、分拣数据处理全流程，拥有简单易用、灵活扩展、稳定可靠等特性。
-<img src="/img/inlong_architecture.png" align="center" alt="Apache InLong"/>
+<img src="../img/inlong-structure-zh.png" align="center" alt="Apache InLong"/>
 
  Apache InLong 服务于数据采集到落地的整个生命周期，按数据的不同阶段提供不同的处理模块，主要包括：
  - **inlong-agent** ，数据采集 Agent ，支持从指定目录或文件读取常规日志，进行逐条的数据上报。后续也将扩展 DB 采集，扩展HTTP上报等能力。
