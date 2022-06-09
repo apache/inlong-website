@@ -15,7 +15,7 @@ Elasticsearch Load 节点允许将数据写入到 Elasticsearch 引擎的索引�
 
 | Load 节点                             | 版本                                                 | 
 |-------------------------------------|----------------------------------------------------|
-| [elasticsearch](./elasticsearch.md) | [ElasticSearch](https://www.elastic.co/): 6.x, 7.x |
+| [elasticsearch](./elasticsearch.md) | [Elasticsearch](https://www.elastic.co/): 6.x, 7.x |
 
 ### 依赖
 

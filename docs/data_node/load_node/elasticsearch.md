@@ -13,9 +13,9 @@ If no primary key is defined on the DDL, the Load Node can only operate in appen
 
 ## Supported Version
 
-| Load Node                           | Version                                               | 
-|-------------------------------------|-------------------------------------------------------|
-| [elasticsearch](./elasticsearch.md) | [ElasticSearch](https://www.elastic.co/): 6.x, 7.x    |
+| Load Node                           | Version                                            | 
+|-------------------------------------|----------------------------------------------------|
+| [elasticsearch](./elasticsearch.md) | [Elasticsearch](https://www.elastic.co/): 6.x, 7.x |
 
 ### Dependencies
 
