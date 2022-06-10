@@ -12,6 +12,14 @@ export default function() {
 
   useEffect(() => {
     if (isBrowser) {
+      const script = document.createElement('script');
+      script.src = 'https://www.apachecon.com/event-images/snippet.js';
+      document.body.appendChild(script);
+    }
+  }, [isBrowser])
+
+  useEffect(() => {
+    if (isBrowser) {
       const nav = document.getElementsByTagName('nav')[0];
       const classList = nav &&  nav.classList;
       if(!classList) return;
