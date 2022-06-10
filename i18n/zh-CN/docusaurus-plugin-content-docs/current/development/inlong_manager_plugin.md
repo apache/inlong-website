@@ -1,8 +1,8 @@
 ---
-title: Manager 插件
-sidebar_position: 4
+title: Manager 自定义插件
+sidebar_position: 3
 ---
-# 总览
+## 总览
 
 本文面向 InLong-Manager 插件开发人员, 尝试尽可能全面地阐述开发一个 Manager 插件所经过的历程，力求消除开发者的困惑，让插件开发变得简单。
 
@@ -19,19 +19,19 @@ sidebar_position: 4
 
 - Inlong Manager 插件机制如下图所示:
 
-  ![](img/Inlong_Plugin.png)
+  ![](img/inlong_plugin.png)
 
 - 如图所示，插件需要被放置在安装路径之下, 当 Inlong Manager 进程启动时，会自动寻找插件编译的 jar 包并加载其中的代码。
 
-![](img/Plugin_Location.png)
+![](img/plugin_location.png)
 
 - 作为开发人员，当你看到下图所示的日志时，可以确认插件已经加载成功了:
 
-![](img/Plugin_Log.png)
+![](img/plugin_log.png)
 
 ## 参考 Demo
 
-- 为方便开发人员理解. 我们在 Inlong Manager 目录下增加了 **manager-pluin-example** , 开发人员可参考 **EmptyProcessPlugin** 进行自己的插件开发;
+- 为方便开发人员理解. 我们在 Inlong Manager 目录下增加了 ***manager-plugins** , 开发人员可参考 **FlinkSortProcessPlugin** 进行自己的插件开发; 或者按照如下的案例开发插件；
 
 ```java
 public class EmptyProcessPlugin implements ProcessPlugin {
@@ -77,7 +77,7 @@ description: example for manager plugin
 javaVersion: 1.8
 pluginClass: org.apache.inlong.manager.plugin.EmptyProcessPlugin
 ```
-- 如果你不确定怎样开发一个可用的 Listener ,请参考`org.apache.inlong.manager.service.workflow.ServiceTaskListenerFactory`中原生 Listener 的逻辑。
+- 如果你不确定怎样开发一个可用的 Listener ,请参考`org.apache.inlong.manager.service.workflow.listener.GroupTaskListenerFactory`中原生 Listener 的逻辑。
 
 ## 写在最后
 
