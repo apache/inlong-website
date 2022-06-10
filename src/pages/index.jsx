@@ -4,6 +4,10 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Home from './Home'
 import useIsBrowser from '@docusaurus/useIsBrowser';
 
+const script = document.createElement('script');
+script.src = 'https://www.apachecon.com/event-images/snippet.js';
+document.body.appendChild(script);
+
 export default function() {
   const isBrowser = useIsBrowser();
   const {siteConfig} = useDocusaurusContext();

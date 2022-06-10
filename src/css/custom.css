@@ -40,11 +40,11 @@ html {
 
 .navbar.index-nav {
   background: rgb(255 255 255 / 40%);
+  margin-bottom: -60px;
 }
 
 .navbar.index-nav + .main-wrapper {
   position: relative;
-  top: -60px;
 }
 
 aside {
