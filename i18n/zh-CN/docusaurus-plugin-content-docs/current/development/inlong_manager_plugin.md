@@ -19,15 +19,15 @@ sidebar_position: 3
 
 - Inlong Manager 插件机制如下图所示:
 
-  ![](img/Inlong_Plugin.png)
+  ![](img/inlong_plugin.png)
 
 - 如图所示，插件需要被放置在安装路径之下, 当 Inlong Manager 进程启动时，会自动寻找插件编译的 jar 包并加载其中的代码。
 
-![](img/Plugin_Location.png)
+![](img/plugin_location.png)
 
 - 作为开发人员，当你看到下图所示的日志时，可以确认插件已经加载成功了:
 
-![](img/Plugin_Log.png)
+![](img/plugin_log.png)
 
 ## 参考 Demo
 

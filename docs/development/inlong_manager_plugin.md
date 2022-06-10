@@ -19,15 +19,15 @@ This article is aimed at InLong-Manager plugin developers, trying to explain the
 
 - The Inlong Manager plugin mechanism can be represented by the following figure:
 
-![](img/Inlong_Plugin.png)
+![](img/inlong_plugin.png)
 
 - When Inlong Manager is deployed, plugins must be located under installation directory, then **Manager Process** will find the plugin jar and install the plugin automatically.
 
-![](img/Plugin_Location.png)
+![](img/plugin_location.png)
 
 - As a developer, you can confirm your plugin be loaded successfully by searching logs below:
 
-![](img/Plugin_Log.png)
+![](img/plugin_log.png)
 
 ## Reference Demo
 
