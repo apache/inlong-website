@@ -102,15 +102,15 @@ TODO: It will be supported in the future.
 |-----------------|----------------|
 | BINARY_FLOAT    | FLOAT        |
 | BINARY_DOUBLE   | DOUBLE |
-| SMALLINT <br> FLOAT(s) <br> DOUBLE PRECISION <br> REAL <br> NUMBER(p, s) | DECIMAL(p, s) |
+| SMALLINT <br/> FLOAT(s) <br/> DOUBLE PRECISION <br/> REAL <br/> NUMBER(p, s) | DECIMAL(p, s) |
 | DATE | DATE |
 | | DECIMAL(20, 0) |
-| REAL <br> FLOAT4 | FLOAT |
-| FLOAT8 <br> DOUBLE PRECISION| DOUBLE |
-| NUMERIC(p, s) <br> DECIMAL(p, s) | DECIMAL(p, s) |
+| REAL <br/> FLOAT4 | FLOAT |
+| FLOAT8 <br/> DOUBLE PRECISION| DOUBLE |
+| NUMERIC(p, s) <br/> DECIMAL(p, s) | DECIMAL(p, s) |
 | BOOLEAN | BOOLEAN |
 | DATE | DATE |
 | TIMESTAMP [(p)] [WITHOUT TIMEZONE | TIMESTAMP [(p)] [WITHOUT TIMEZONE] |
-| CHAR(n) <br> VARCHAR(n) <br> CLOB(n) | STRING |
-| RAW(s) <br> BLOB | BYTES |
+| CHAR(n) <br/> VARCHAR(n) <br/> CLOB(n) | STRING |
+| RAW(s) <br/> BLOB | BYTES |
 |  | ARRAY |

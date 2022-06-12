@@ -99,16 +99,16 @@ TODO: It will be supported in the future.
 | PostgreSQL type | Flink SQL type |
 |-----------------|----------------|
 |                 | TINYINT        |
-| SMALLINT <br> INT2 <br> SMALLSERIAL <br> SERIAL2 | SMALLINT |
-| INTEGER <br> SERIAL | INT |
-| BIGINT <br> BIGSERIAL | BIGINT |
+| SMALLINT <br/> INT2 <br/> SMALLSERIAL <br/> SERIAL2 | SMALLINT |
+| INTEGER <br/> SERIAL | INT |
+| BIGINT <br/> BIGSERIAL | BIGINT |
 | | DECIMAL(20, 0) |
-| REAL <br> FLOAT4 | FLOAT |
-| FLOAT8 <br> DOUBLE PRECISION| DOUBLE |
-| NUMERIC(p, s) <br> DECIMAL(p, s) | DECIMAL(p, s) |
+| REAL <br/> FLOAT4 | FLOAT |
+| FLOAT8 <br/> DOUBLE PRECISION| DOUBLE |
+| NUMERIC(p, s) <br/> DECIMAL(p, s) | DECIMAL(p, s) |
 | BOOLEAN | BOOLEAN |
 | DATE | DATE |
 | TIME [(p)] [WITHOUT TIMEZONE] | TIME [(p)] [WITHOUT TIMEZONE] |
 | TIMESTAMP [(p)] [WITHOUT TIMEZONE | TIMESTAMP [(p)] [WITHOUT TIMEZONE] |
-| CHAR(n) <br> CHARACTER(n) <br> VARCHAR(n) <br> CHARACTER VARYING(n) <br> TEXT | STRING |
+| CHAR(n) <br/> CHARACTER(n) <br/> VARCHAR(n) <br/> CHARACTER VARYING(n) <br/> TEXT | STRING |
 | BYTEA | BYTES |

@@ -107,19 +107,19 @@ The data type mappings are as follows:
 
 | Flink SQL type | HBase conversion |
 |-----------------|-----------------|
-| CHAR <br> VARCHAR <br> STRING | byte[] toBytes(String s) <br> String toString(byte[] b) |
-| BOOLEAN | byte[] toBytes(boolean b) <br> boolean toBoolean(byte[] b) |
-| BINARY <br> VARBINARY | Returns byte[] as is. |
-| DECIMAL | byte[] toBytes(BigDecimal v) <br> BigDecimal toBigDecimal(byte[] b) |
-| TINYINT | new byte[] { val } <br> bytes[0] // returns first and only byte from bytes |
-| SMALLINT | byte[] toBytes(short val) <br> short toShort(byte[] bytes) |
-| INT | byte[] toBytes(int val) <br> int toInt(byte[] bytes) |
-| BIGINT | byte[] toBytes(long val) <br> long toLong(byte[] bytes) |
-| FLOAT | byte[] toBytes(float val) <br> float toFloat(byte[] bytes) |
-| DOUBLE | byte[] toBytes(double val) <br> double toDouble(byte[] bytes) |
+| CHAR <br/> VARCHAR <br/> STRING | byte[] toBytes(String s) <br/> String toString(byte[] b) |
+| BOOLEAN | byte[] toBytes(boolean b) <br/> boolean toBoolean(byte[] b) |
+| BINARY <br/> VARBINARY | Returns byte[] as is. |
+| DECIMAL | byte[] toBytes(BigDecimal v) <br/> BigDecimal toBigDecimal(byte[] b) |
+| TINYINT | new byte[] { val } <br/> bytes[0] // returns first and only byte from bytes |
+| SMALLINT | byte[] toBytes(short val) <br/> short toShort(byte[] bytes) |
+| INT | byte[] toBytes(int val) <br/> int toInt(byte[] bytes) |
+| BIGINT | byte[] toBytes(long val) <br/> long toLong(byte[] bytes) |
+| FLOAT | byte[] toBytes(float val) <br/> float toFloat(byte[] bytes) |
+| DOUBLE | byte[] toBytes(double val) <br/> double toDouble(byte[] bytes) |
 | DATE | Stores the number of days since epoch as int value. |
 | TIME | Stores the number of milliseconds of the day as int value. |
 | TIMESTAMP | Stores the milliseconds since epoch as long value. |
 | ARRAY | Not supported |
-| MAP <br> MULTISET | Not supported |
+| MAP <br/> MULTISET | Not supported |
 | ROW | Not supported |

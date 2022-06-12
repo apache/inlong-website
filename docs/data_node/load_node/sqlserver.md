@@ -99,17 +99,17 @@ TODO: It will be supported in the future.
 | SQLServer type | Flink SQL type |
 |----------------|----------------|
 |  char(n)       | CHAR(n)        |
-| varchar(n) <br> nvarchar(n) <br> nchar(n) | VARCHAR(n) |
-| text <br> ntext <br> xml | STRING |
-| BIGINT <br> BIGSERIAL | BIGINT |
-| decimal(p, s) <br> money <br> smallmoney | DECIMAL(p, s) |
+| varchar(n) <br/> nvarchar(n) <br/> nchar(n) | VARCHAR(n) |
+| text <br/> ntext <br/> xml | STRING |
+| BIGINT <br/> BIGSERIAL | BIGINT |
+| decimal(p, s) <br/> money <br/> smallmoney | DECIMAL(p, s) |
 | numeric  | NUMERIC |
-| float <br> real | FLOAT |
+| float <br/> real | FLOAT |
 | bit | BOOLEAN |
 | int | INT |
 | tinyint | TINYINT |
 | smallint | SMALLINT |
 | bigint | BIGINT |
 | time(n) | TIME(n) |
-| datetime2 <br> datetime <br> smalldatetime | TIMESTAMP(n) |
+| datetime2 <br/> datetime <br/> smalldatetime | TIMESTAMP(n) |
 | datetimeoffset | TIMESTAMP_LTZ(3) |

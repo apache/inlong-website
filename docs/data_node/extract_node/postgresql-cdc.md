@@ -113,8 +113,8 @@ TODO: It will be supported in the future.
 | slot.name | optional | flink | String | The name of the PostgreSQL logical decoding slot that was created for streaming changes from a particular plug-in for a particular database/schema. The server uses this slot to stream events to the connector that you are configuring. Slot names must conform to PostgreSQL replication slot naming rules, which state: "Each replication slot has a name, which can contain lower-case letters, numbers, and the underscore character." |
 | debezium.* | optional | (none) | String | Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Postgres server. For example: 'debezium.snapshot.mode' = 'never'. See more about the [Debezium's Postgres Connector properties](https://debezium.io/documentation/reference/1.5/connectors/postgresql.html#postgresql-connector-properties). |
 
-Note: `slot.name` is recommended to set for different tables to avoid the potential PSQLException: ERROR: replication slot "flink" is active for PID 974 error.  
-Note: PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. We can delete slot by the following statement.
+**Note**: `slot.name` is recommended to set for different tables to avoid the potential PSQLException: ERROR: replication slot "flink" is active for PID 974 error.  
+**Note**: PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. We can delete slot by the following statement.
 ```sql
 SELECT*FROM pg_replication_slots;
 -- get slot name is flink. delete it
@@ -160,16 +160,16 @@ CREATE TABLE postgresTable (
 | PostgreSQL type | Flink SQL type |
 |-----------------|----------------|
 |                 | TINYINT        |
-| SMALLINT <br> INT2 <br> SMALLSERIAL <br> SERIAL2 | SMALLINT |
-| INTEGER <br> SERIAL | INT |
-| BIGINT <br> BIGSERIAL | BIGINT |
+| SMALLINT <br/> INT2 <br/> SMALLSERIAL <br/> SERIAL2 | SMALLINT |
+| INTEGER <br/> SERIAL | INT |
+| BIGINT <br/> BIGSERIAL | BIGINT |
 | | DECIMAL(20, 0) |
-| REAL <br> FLOAT4 | FLOAT |
-| FLOAT8 <br> DOUBLE PRECISION| DOUBLE |
-| NUMERIC(p, s) <br> DECIMAL(p, s) | DECIMAL(p, s) |
+| REAL <br/> FLOAT4 | FLOAT |
+| FLOAT8 <br/> DOUBLE PRECISION| DOUBLE |
+| NUMERIC(p, s) <br/> DECIMAL(p, s) | DECIMAL(p, s) |
 | BOOLEAN | BOOLEAN |
 | DATE | DATE |
 | TIME [(p)] [WITHOUT TIMEZONE] | TIME [(p)] [WITHOUT TIMEZONE] |
 | TIMESTAMP [(p)] [WITHOUT TIMEZONE | TIMESTAMP [(p)] [WITHOUT TIMEZONE] |
-| CHAR(n) <br> CHARACTER(n) <br> VARCHAR(n) <br> CHARACTER VARYING(n) <br> TEXT | STRING |
+| CHAR(n) <br/> CHARACTER(n) <br/> VARCHAR(n) <br/> CHARACTER VARYING(n) <br/> TEXT | STRING |
 | BYTEA | BYTES |

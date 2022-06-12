@@ -101,17 +101,17 @@ TODO: It will be supported in the future.
 | MySQL type | Flink SQL type |
 |------------|----------------|
 | TINYINT | TINYINT |
-| SMALLINT <br> TINYINT UNSIGNED| SMALLINT |
-| INT <br> MEDIUMINT <br> SMALLINT UNSIGNED | INT |
-| BIGINT <br> INT UNSIGNED | BIGINT |
+| SMALLINT <br/> TINYINT UNSIGNED| SMALLINT |
+| INT <br/> MEDIUMINT <br/> SMALLINT UNSIGNED | INT |
+| BIGINT <br/> INT UNSIGNED | BIGINT |
 | BIGINT UNSIGNED | DECIMAL(20, 0) |
 | FLOAT | FLOAT |
-| DOUBLE <br> DOUBLE PRECISION | DOUBLE |
-| NUMERIC(p, s) <br> DECIMAL(p, s) | DECIMAL(p, s) |
-| BOOLEAN <br> TINYINT(1) | BOOLEAN |
+| DOUBLE <br/> DOUBLE PRECISION | DOUBLE |
+| NUMERIC(p, s) <br/> DECIMAL(p, s) | DECIMAL(p, s) |
+| BOOLEAN <br/> TINYINT(1) | BOOLEAN |
 | DATE | DATE |
 | TIME [(p)] | TIME [(p)] [WITHOUT TIMEZONE] |
 | DATETIME [(p)] | TIMESTAMP [(p)] [WITHOUT TIMEZONE] |
-| CHAR(n) <br> VARCHAR(n) <br> TEXT | STRING |
-| BINARY <br> VARBINARY <br> BLOB | BYTES |
+| CHAR(n) <br/> VARCHAR(n) <br/> TEXT | STRING |
+| BINARY <br/> VARBINARY <br/> BLOB | BYTES |
 |  |  ARRAY |

@@ -103,15 +103,15 @@ TODO: It will be supported in the future.
 | ClickHouse type | Flink SQL type |
 |-----------------|----------------|
 |  String         | CHAR           |
-| String <br> IP <br> UUID | VARCHAR |
-| String <br> EnumL | STRING |
+| String <br/> IP <br/> UUID | VARCHAR |
+| String <br/> EnumL | STRING |
 | UInt8 | BOOLEAN |
 | FixedString | BYTES |
-| Decimal <br> Int128 <br> Int256 <br> UInt64 <br> UInt128 <br> UInt256 | DECIMAL |
+| Decimal <br/> Int128 <br/> Int256 <br/> UInt64 <br/> UInt128 <br/> UInt256 | DECIMAL |
 | Int8 | TINYINT |
-| Int16 <br> UInt8 | SMALLINT |
-| Int32 <br> UInt16 <br> Interval | INTEGER |
-| Int64 <br> UInt32 | BIGINT |
+| Int16 <br/> UInt8 | SMALLINT |
+| Int32 <br/> UInt16 <br/> Interval | INTEGER |
+| Int64 <br/> UInt32 | BIGINT |
 | Float32 | FLOAT |
 | Date | DATE |
 | DateTime | TIME |
