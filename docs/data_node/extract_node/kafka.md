@@ -13,7 +13,7 @@ upsert fashion. The `upsert-kafka` connector produces a `changelog stream`, wher
 
 | Extract Node                | Kafka version |                                                                                                                                                                                                                                                                                                                                                                                           
 |-----------------------------|---------------|
-| [Kafka](./kafka.md)         | universal     |  
+| [Kafka](./kafka.md)         | 0.10+         |  
 
 ## Dependencies  
 
