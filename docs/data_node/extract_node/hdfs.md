@@ -6,4 +6,4 @@ The file system connector can be used to read single files or entire directories
 
 When using a directory as the source path, there is no defined order of ingestion for the files inside the directory.
 
-Notice:CDC future is developing.
+Notice:CDC feature is developing.
