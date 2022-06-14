@@ -10,11 +10,12 @@ SQLServer 提取节点从 SQLServer 数据库中读取数据和增量数据。�
 
 | Extract Node                | Version                                                                                                                                                                                                                                                                                                                                                                                                |
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [sqlserver-cdc](./sqlserver-cdc.md) | [SQLServer](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver16): 2014、2016、2017、2019、2022 |      |
+| [SQLServer-cdc](./sqlserver-cdc.md) | [SQLServer](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver16): 2014、2016、2017、2019、2022 |      |
 
 ## 依赖配置
 
-通过maven引入sort-connector-sqlserver-cdc构建自己的项目。
+通过 Maven 引入 sort-connector-sqlserver-cdc 构建自己的项目。
+当然，你也可以直接使用 INLONG 提供的 jar 包。([sort-connector-sqlserver-cdc](https://inlong.apache.org/download/main/))
 
 ### Maven依赖配置
 
@@ -22,28 +23,28 @@ SQLServer 提取节点从 SQLServer 数据库中读取数据和增量数据。�
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-sqlserver-cdc</artifactId>
-    <!-- Choose the version that suits your application -->
+    <!-- 填写适合你应用的 inlong 版本-->
     <version>inlong_version</version>
 </dependency>
 ```
-## 配置 SQLServer CDC
+## 配置 SQLServer 加载节点
 
-SQLServer CDC 需要开启库和表的CDC功能，配置步骤如下：
+SQLServer 加载节点需要开启库和表的 CDC 功能，配置步骤如下：
 
-1. 开启数据库CDC能力。
+1. 开启数据库 CDC 能力。
 ```sql
 if exists(select 1 from sys.databases where name='dbName' and is_cdc_enabled=0)
 begin
     exec sys.sp_cdc_enable_db
 end
 ```
-2. 检查数据库CDC是否开启。
+2. 检查数据库 CDC 是否开启。
 ```sql
 select is_cdc_enabled from sys.databases where name='dbName'
 ```
-备注: "1"表示数据库CDC开启
+备注: "1"表示数据库 CDC 开启
 
-3. 开启表的CDC能力。
+3. 开启表的 CDC 能力。
 ```sql
 IF EXISTS(SELECT 1 FROM sys.tables WHERE name='tableName' AND is_tracked_by_cdc = 0)
 BEGIN
@@ -60,15 +61,15 @@ END
 ```
 备注: 表必须有主键或者唯一索引。
 
-4. 检查表CDC是否开启。
+4. 检查表 CDC 是否开启。
 ```sql
 SELECT is_tracked_by_cdc FROM sys.tables WHERE name='tableName'
 ```
-备注: "1"表示表CDC开启
+备注: "1"表示表 CDC 开启
 
-## 如何创建一个SQLServer抽取节点
+## 如何创建一个 SQLServer 抽取节点
 
-### SQL API的使用
+### SQL API 的使用
 
 使用 `Flink SQL Cli` :
 
@@ -98,22 +99,22 @@ Flink SQL> CREATE TABLE sqlserver_extract_node (
 -- Read snapshot and binlog from sqlserver_extract_node
 Flink SQL> SELECT * FROM sqlserver_extract_node;
 ```
-### InLong Dashboard方式
+### InLong Dashboard 方式
 TODO
 
-### InLong Manager Client方式
+### InLong Manager Client 方式
 TODO
 
-## SQLServer抽取节点参数信息
+## SQLServer 抽取节点参数信息
 
 <div class="highlight">
 <table class="colwidths-auto docutils">
     <thead>
       <tr>
        <th class="text-left" style={{width: '10%'}}>参数</th>
-              <th class="text-left" style={{width: '8%'}}>是否必须</th>
-              <th class="text-left" style={{width: '7%'}}>默认值</th>
-              <th class="text-left" style={{width: '10%'}}>数据类型</th>
+       <th class="text-left" style={{width: '8%'}}>是否必须</th>
+       <th class="text-left" style={{width: '7%'}}>默认值</th>
+       <th class="text-left" style={{width: '10%'}}>数据类型</th>
               <th class="text-left" style={{width: '65%'}}>描述</th>
       </tr>
     </thead>
@@ -130,56 +131,56 @@ TODO
       <td>必须</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>SQLServer数据库IP地址或者hostname。</td>
+      <td>SQLServer 数据库 IP 地址或者 hostname。</td>
     </tr>
     <tr>
       <td>username</td>
       <td>必须</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>SQLServer数据库用户名。</td>
+      <td>SQLServer 数据库用户名。</td>
     </tr>
     <tr>
       <td>password</td>
       <td>必须</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>SQLServer数据库用户密码。</td>
+      <td>SQLServer 数据库用户密码。</td>
     </tr>
     <tr>
       <td>database-name</td>
       <td>必须</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>SQLServer数据库监控的数据库名称。</td>
+      <td>SQLServer 数据库监控的数据库名称。</td>
     </tr> 
     <tr>
       <td>schema-name</td>
       <td>必须</td>
       <td style={{wordWrap: 'break-word'}}>dbo</td>
       <td>String</td>
-      <td>SQLServer数据库监控的schema名称。</td>
+      <td>SQLServer 数据库监控的 schema 名称。</td>
     </tr>
     <tr>
       <td>table-name</td>
       <td>必须</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>SQLServer数据库监控的表名称。</td>
+      <td>SQLServer 数据库监控的表名称。</td>
     </tr>
     <tr>
       <td>port</td>
       <td>可选</td>
       <td style={{wordWrap: 'break-word'}}>1433</td>
       <td>Integer</td>
-      <td>SQLServer数据库端口。</td>
+      <td>SQLServer 数据库端口。</td>
     </tr>
     <tr>
       <td>server-time-zone</td>
       <td>可选</td>
       <td style={{wordWrap: 'break-word'}}>UTC</td>
       <td>String</td>
-      <td>SQLServer数据库连接配置时区。 例如： "Asia/Shanghai"。</td>
+      <td>SQLServer 数据库连接配置时区。 例如： "Asia/Shanghai"。</td>
     </tr>
     </tbody>
 </table>
@@ -193,8 +194,8 @@ TODO
   <thead>
      <tr>
         <th class="text-left" style={{width: '15%'}}>字段名称</th>
-             <th class="text-left" style={{width: '30%'}}>数据类型</th>
-             <th class="text-left" style={{width: '55%'}}>描述</th>
+        <th class="text-left" style={{width: '30%'}}>数据类型</th>
+        <th class="text-left" style={{width: '55%'}}>描述</th>
      </tr>
   </thead>
   <tbody>
@@ -206,7 +207,7 @@ TODO
      <tr>
       <td>meta.schema_name</td>
       <td>STRING NOT NULL</td>
-      <td>包含该行schema的名称。</td>
+      <td>包含该行 schema 的名称。</td>
     </tr>
     <tr>
       <td>meta.database_name</td>

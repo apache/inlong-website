@@ -4,17 +4,18 @@ sidebar_position: 11
 ---
 ## SQLServer Extract Node
 
-The SqlServer extract node reads data and incremental data from the SqlServer database. The following will describe how to set up the SqlServer extraction node.
+The SQLServer Extract Node reads data and incremental data from the SQLServer database. The following will describe how to set up the SQLServer extraction node.
 
 ## Supported Version
 
 | Extract Node                | Version                                                                                                                                                                                                                                                                                                                                                                                                |
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [sqlserver-cdc](./sqlserver-cdc.md) | [SQLServer](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver16): 2014、2016、2017、2019、2022 |      |
+| [SQLServer-cdc](./sqlserver-cdc.md) | [SQLServer](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver16): 2014、2016、2017、2019、2022 |      |
 
 ## Dependencies
 
-Introduce related SQLServer cdc connector dependencies through maven.
+Introduce related SQLServer Extract Node dependencies through maven.
+Of course, you can also use INLONG to provide jar packages.([sort-connector-sqlserver-cdc](https://inlong.apache.org/download/main/))
 
 ### Maven dependency
 
@@ -26,9 +27,9 @@ Introduce related SQLServer cdc connector dependencies through maven.
     <version>inlong_version</version>
 </dependency>
 ```
-## Setup SQLServer CDC
+## Setup SQLServer Extract Node
 
-SQLServer CDC needs to open related libraries and tables, the steps are as follows:
+SQLServer Extract Node needs to open related libraries and tables, the steps are as follows:
 
 1. Enable the CDC function for the database.
 ```sql
@@ -70,13 +71,13 @@ note: 1 is running CDC of table.
 
 ### Usage for SQL API
 
-The example below shows how to create a SqlServer Extract Node with `Flink SQL Cli` :
+The example below shows how to create a SQLServer Extract Node with `Flink SQL Cli` :
 
 ```sql
 -- Set checkpoint every 3000 milliseconds                       
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';   
 
--- Create a SqlServer table 'sqlserver_extract_node' in Flink SQL Cli
+-- Create a SQLServer table 'sqlserver_extract_node' in Flink SQL Cli
 Flink SQL> CREATE TABLE sqlserver_extract_node (
      order_id INT,
      order_date TIMESTAMP(0),

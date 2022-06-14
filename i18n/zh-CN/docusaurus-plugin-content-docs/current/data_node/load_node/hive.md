@@ -2,10 +2,10 @@
 title: Hive
 sidebar_position: 2
 ---
-## Hive加载节点
+## Hive 加载节点
 
-Hive加载节点可以将数据写入hive。使用flink方言，目前仅支持insert操作，upsert模式下的数据会转换成insert方式
-目前暂时不支持使用hive方言操作hive表。
+Hive 加载节点可以将数据写入 Hive。使用 Flink 方言，目前仅支持 Insert 操作，Upsert 模式下的数据会转换成 Insert 方式
+目前暂时不支持使用 Hive 方言操作 Hive 表。
 
 ## 支持的版本
 
@@ -15,18 +15,22 @@ Hive加载节点可以将数据写入hive。使用flink方言，目前仅支持i
 
 ### 依赖
 
-通过maven引入sort-connector-hive构建自己的项目。
+通过 Maven 引入 sort-connector-hive 构建自己的项目。
+当然，你也可以直接使用 INLONG 提供的 jar 包。([sort-connector-sqlserver-cdc](https://inlong.apache.org/download/main/))
+
+### Maven 依赖
 
 ```
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hive</artifactId>
+    <!-- 填写适合你应用的 inlong 版本-->
     <version>inlong_version</version>
 </dependency>
 ```
-## 如何配置Hive数据加载节点
+## 如何配置 Hive 数据加载节点
 
-### SQL API的使用
+### SQL API 的使用
 
 使用 `Flink SQL Cli` :
 
@@ -43,18 +47,18 @@ CREATE TABLE hiveTableName (
   'hive-conf-dir' = 'hdfs://localhost:9000/user/hive/hive-site.xml'
 );
 ```
-### InLong Dashboard方式
+### InLong Dashboard 方式
 
 #### 配置
-在创建数据流时，选择数据落地为'Hive然后点击'Add'来配置hive的相关信息。
+在创建数据流时，选择数据落地为 'Hive' 然后点击 'Add' 来配置 Hive 的相关信息。
 
 ![Hive Configuration](img/hive.png)
 
-### InLong Manager Client方式
+### InLong Manager Client 方式
 
 TODO: 未来版本支持
 
-## Hive加载节点参数信息
+## Hive 加载节点参数信息
 <table class="table table-bordered">
     <thead>
       <tr>
@@ -85,8 +89,8 @@ TODO: 未来版本支持
       <td>必须</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>本地构建项目可以将hive-site.xml构建到classpath中，未来dashboard将支持本地上传能力。
-      目前通用方式只支持配置已经上传文件后的HDFS路径。</td>
+      <td>本地构建项目可以将hive-site.xml构建到 classpath 中，未来 Dashboard 将支持本地上传能力。
+      目前通用方式只支持配置已经上传文件后的 HDFS 路径。</td>
     </tr>
     <tr>
       <td><h5>sink.partition-commit.trigger</h5></td>

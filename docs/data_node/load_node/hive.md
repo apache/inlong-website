@@ -15,11 +15,15 @@ Manipulating hive tables using the hive dialect is currently not supported.
 ### Dependencies
 
 Using Hive load requires the introduction of dependencies.
+Of course, you can also use INLONG to provide jar packages.([sort-connector-hive](https://inlong.apache.org/download/main/))
+
+### Maven dependency
 
 ```
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hive</artifactId>
+ <!-- Choose the version that suits your application -->
     <version>inlong_version</version>
 </dependency>
 ```
@@ -45,7 +49,7 @@ CREATE TABLE hiveTableName (
 ### Usage for InLong Dashboard
 
 #### Configuration
-When creating a data flow, select `Hive` for the data stream direction, and click "Add" to configure it.
+When creating a data stream, select `Hive` for the data stream direction, and click "Add" to configure it.
 
 ![Hive Configuration](img/hive.png)
 
