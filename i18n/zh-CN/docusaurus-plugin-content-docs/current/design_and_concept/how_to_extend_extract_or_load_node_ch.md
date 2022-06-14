@@ -35,7 +35,7 @@ FieldRelationShip: 数据同步中上下游节点字段间关系的抽象
 
 FieldInfo: 节点字段
 
-BuiltInFieldInfo: 节点内置字段
+MetaFieldInfo: 节点Meta字段
 
 Function: 转换函数的抽象
 

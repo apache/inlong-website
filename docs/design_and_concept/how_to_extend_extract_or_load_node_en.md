@@ -35,7 +35,7 @@ The concepts of each component are:
 
 **FieldInfo**: node field
 
-**BuiltInFieldInfo**: node built-in fields
+**MetaFieldInfo**: node meta fields
 
 **Function**: abstraction of transformation function
 
