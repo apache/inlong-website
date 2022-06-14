@@ -5,7 +5,7 @@ sidebar_position: 13
 
 ## Oracle Load 节点
 
-`Oracle Load Node`支持将数据写入 Oracle 数据库。 本文档介绍如何设置 Oracle Load 节点以对 Oracle 数据库运行 SQL 查询。
+`Oracle Load` 节点支持将数据写入 Oracle 数据库。 本文档介绍如何设置 Oracle Load 节点以对 Oracle 数据库运行 SQL 查询。
 
 ## 支持的版本
 

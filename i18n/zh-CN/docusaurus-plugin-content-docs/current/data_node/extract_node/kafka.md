@@ -2,9 +2,9 @@
 title: Kafka
 sidebar_position: 4
 ---
-## Kafka Extract Node
+## Kafka Extract 节点
 
-`Kafka Extract Node` 支持从 Kafka topics 中读取数据。它支持以普通的方式读取数据和 Upsert 的方式读取数据。`upsert-kafka` 连接器生产 `changelog` 流,
+`Kafka Extract` 节点 支持从 Kafka topics 中读取数据。它支持以普通的方式读取数据和 Upsert 的方式读取数据。`upsert-kafka` 连接器生产 `changelog` 流,
 其中每条数据记录代表一个更新或删除事件。`kafka-inlong` 连接器可以以普通方式读取数据和元数据信息。
 
 ## 支持的版本

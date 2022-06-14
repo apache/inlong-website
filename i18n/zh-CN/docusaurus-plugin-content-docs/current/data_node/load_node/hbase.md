@@ -5,7 +5,7 @@ sidebar_position: 10
 
 ## HBase Load 节点
 
-`HBase Load Node` 支持写数据都 HBase 数据库.
+`HBase Load` 节点支持写数据都 HBase 数据库.
 
 ## 支持的版本
 

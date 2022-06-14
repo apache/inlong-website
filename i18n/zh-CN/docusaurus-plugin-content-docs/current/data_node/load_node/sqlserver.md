@@ -5,7 +5,7 @@ sidebar_position: 15
 
 ## SQLServer Load 节点
 
-`SQLServer Load Node`支持将数据写入 MySQL 数据库。 本文档介绍如何设置 SQLServer Load 节点以对 SQLServer 数据库运行 SQL 查询。
+`SQLServer Load` 节点支持将数据写入 MySQL 数据库。 本文档介绍如何设置 SQLServer Load 节点以对 SQLServer 数据库运行 SQL 查询。
 
 ## 支持的版本
 

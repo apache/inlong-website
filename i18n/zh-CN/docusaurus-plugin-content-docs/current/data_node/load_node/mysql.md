@@ -5,7 +5,7 @@ sidebar_position: 12
 
 ## MySQL Load 节点
 
-`MySQL Load Node`支持将数据写入 MySQL 数据库。 本文档介绍如何设置 MySQL Load 节点以对 MySQL 数据库运行 SQL 查询。
+`MySQL Load` 节点支持将数据写入 MySQL 数据库。 本文档介绍如何设置 MySQL Load 节点以对 MySQL 数据库运行 SQL 查询。
 
 ## 支持的版本
 

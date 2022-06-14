@@ -5,7 +5,7 @@ sidebar_position: 14
 
 ## PostgreSQL Load 节点
 
-`PostgreSQL Load Node`支持将数据写入 PostgreSQL 数据库。 本文档介绍如何设置 PostgreSQL Load 节点以对 PostgreSQL 数据库运行 SQL 查询。
+`PostgreSQL Load` 节点支持将数据写入 PostgreSQL 数据库。 本文档介绍如何设置 PostgreSQL Load 节点以对 PostgreSQL 数据库运行 SQL 查询。
 
 
 ## 支持的版本

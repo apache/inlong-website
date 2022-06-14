@@ -102,7 +102,7 @@ TODO: It will be supported in the future.
 
 | ClickHouse type | Flink SQL type |
 |-----------------|----------------|
-|  String         | CHAR           |
+| String          | CHAR           |
 | String <br/> IP <br/> UUID | VARCHAR |
 | String <br/> EnumL | STRING |
 | UInt8 | BOOLEAN |

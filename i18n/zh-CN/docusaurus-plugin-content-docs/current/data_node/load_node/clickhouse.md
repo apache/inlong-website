@@ -5,7 +5,7 @@ sidebar_position: 5
 
 ## ClickHouse Load 节点
 
-`ClickHouse Load Node`支持将数据写入 ClickHouse 数据库。 本文档介绍如何设置 ClickHouse Load 节点以对 ClickHouse 数据库运行 SQL 查询。
+`ClickHouse Load` 节点支持将数据写入 ClickHouse 数据库。 本文档介绍如何设置 ClickHouse Load 节点以对 ClickHouse 数据库运行 SQL 查询。
 
 ## 支持的版本
 
@@ -96,11 +96,11 @@ TODO: 将在未来支持此功能。
 | sink.max-retries | 可选 | 3 | Integer | 写入记录到数据库失败后的最大重试次数。 |
 | sink.parallelism | 可选 | (none) | Integer | 用于定义 JDBC sink 算子的并行度。默认情况下，并行度是由框架决定：使用与上游链式算子相同的并行度。 |
 
-## Data Type Mapping
+## 数据类型映射
 
 | ClickHouse type | Flink SQL type |
 |-----------------|----------------|
-|  String         | CHAR           |
+| String         | CHAR           |
 | String <br/> IP <br/> UUID | VARCHAR |
 | String <br/> EnumL | STRING |
 | UInt8 | BOOLEAN |

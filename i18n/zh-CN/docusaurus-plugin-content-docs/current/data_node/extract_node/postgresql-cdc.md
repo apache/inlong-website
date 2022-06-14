@@ -5,7 +5,7 @@ sidebar_position: 9
 
 ## PostgreSQL Extract 节点
 
-`PostgreSQL Extract Node` 允许从 PostgreSQL 数据库中读取快照数据和增量数据。 本文档描述了如何设置 PostgreSQL Extract 节点以对 PostgreSQL 数据库运行 SQL 查询。
+`PostgreSQL Extract` 节点允许从 PostgreSQL 数据库中读取快照数据和增量数据。 本文档描述了如何设置 PostgreSQL Extract 节点以对 PostgreSQL 数据库运行 SQL 查询。
 
 ## 支持版本
 

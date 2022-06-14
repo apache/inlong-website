@@ -5,7 +5,7 @@ sidebar_position: 16
 
 ## TDSQL-PostgreSQL Load 节点
 
-`TDSQL-PostgreSQL Load Node`支持将数据写入 TDSQL-PostgreSQL 数据库。 本文档介绍如何设置 TDSQL-PostgreSQL Load 节点以对 TDSQL-PostgreSQL 数据库运行 SQL 查询。
+`TDSQL-PostgreSQL Load` 节点支持将数据写入 TDSQL-PostgreSQL 数据库。 本文档介绍如何设置 TDSQL-PostgreSQL Load 节点以对 TDSQL-PostgreSQL 数据库运行 SQL 查询。
 
 ## 支持的版本
 
