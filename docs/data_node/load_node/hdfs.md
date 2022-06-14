@@ -52,7 +52,6 @@ The policy rolls part files based on size, a timeout that specifies the maximum 
     <thead>
       <tr>
         <th class="text-left" style={{width: '25%'}}>Option</th>
-        <th class="text-center" style={{width: '8%'}}>Required</th>
         <th class="text-center" style={{width: '7%'}}>Default</th>
         <th class="text-center" style={{width: '10%'}}>Type</th>
         <th class="text-center" style={{width: '50%'}}>Description</th>
@@ -61,21 +60,18 @@ The policy rolls part files based on size, a timeout that specifies the maximum 
     <tbody>
     <tr>
         <td><h5>sink.rolling-policy.file-size</h5></td>
-        <td>optional</td>
         <td style={{wordWrap: 'break-word'}}>128MB</td>
         <td>MemorySize</td>
         <td>The maximum part file size before rolling.</td>
     </tr>
     <tr>
       <td><h5>sink.rolling-policy.rollover-interval</h5></td>
-      <td>optional</td>
       <td style={{wordWrap: 'break-word'}}>30 min</td>
       <td>String</td>
       <td>The maximum time duration a part file can stay open before rolling (by default 30 min to avoid to many small files). The frequency at which this is checked is controlled by the 'sink.rolling-policy.check-interval' option.</td>
     </tr>
     <tr>
       <td><h5>sink.rolling-policy.check-interval</h5></td>
-      <td>required</td>
       <td style={{wordWrap: 'break-word'}}>1 min</td>
       <td>String</td>
       <td>The interval for checking time based rolling policies. This controls the frequency to check whether a part file should rollover based on 'sink.rolling-policy.rollover-interval'.</td>
@@ -89,7 +85,6 @@ The file sink supports file compactions, which allows applications to have small
     <thead>
       <tr>
         <th class="text-left" style={{width: '25%'}}>Option</th>
-        <th class="text-center" style={{width: '8%'}}>Required</th>
         <th class="text-center" style={{width: '7%'}}>Default</th>
         <th class="text-center" style={{width: '10%'}}>Type</th>
         <th class="text-center" style={{width: '50%'}}>Description</th>
@@ -98,7 +93,6 @@ The file sink supports file compactions, which allows applications to have small
     <tbody>
     <tr>
         <td><h5>auto-compaction</h5></td>
-        <td>optional</td>
         <td style={{wordWrap: 'break-word'}}>false</td>
         <td>Boolean</td>
         <td>Whether to enable automatic compaction in streaming sink or not.
@@ -107,7 +101,6 @@ The file sink supports file compactions, which allows applications to have small
     </tr>
     <tr>
       <td><h5>compaction.file-size</h5></td>
-      <td>optional</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>The compaction target file size, the default value is the rolling file size.</td>
@@ -124,7 +117,6 @@ Commit actions are based on a combination of triggers and policies.
     <thead>
       <tr>
         <th class="text-left" style={{width: '25%'}}>Option</th>
-        <th class="text-center" style={{width: '8%'}}>Required</th>
         <th class="text-center" style={{width: '7%'}}>Default</th>
         <th class="text-center" style={{width: '10%'}}>Type</th>
         <th class="text-center" style={{width: '50%'}}>Description</th>
@@ -133,21 +125,18 @@ Commit actions are based on a combination of triggers and policies.
     <tbody>
     <tr>
         <td><h5>sink.partition-commit.trigger</h5></td>
-        <td>optional</td>
         <td style={{wordWrap: 'break-word'}}>process-time</td>
         <td>String</td>
         <td>Trigger type for partition commit: 'process-time': based on the time of the machine, it neither requires partition time extraction nor watermark generation. Commit partition once the 'current system time' passes 'partition creation system time' plus 'delay'. 'partition-time': based on the time that extracted from partition values, it requires watermark generation. Commit partition once the 'watermark' passes 'time extracted from partition values' plus 'delay'.</td>
     </tr>
     <tr>
       <td><h5>sink.partition-commit.delay</h5></td>
-      <td>optional</td>
       <td style={{wordWrap: 'break-word'}}>0 s</td>
       <td>Duration</td>
       <td>The partition will not commit until the delay time. If it is a daily partition, should be '1 d', if it is a hourly partition, should be '1 h'.</td>
     </tr>
     <tr>
       <td><h5>sink.partition-commit.watermark-time-zone</h5></td>
-      <td>optional</td>
       <td style={{wordWrap: 'break-word'}}>UTC</td>
       <td>String</td>
       <td>The time zone to parse the long watermark value to TIMESTAMP value,
@@ -163,5 +152,52 @@ Commit actions are based on a combination of triggers and policies.
     </tbody>
 </table>
 
+#### Partition Commit Policy
+
+
+The partition strategy defines the specific operation of partition submission.
+
+- metastore：This strategy is only supported when hive.
+- success: The '_SUCCESS' file will be generated after the part file is generated.
+
+<table class="table table-bordered">
+    <thead>
+      <tr>
+        <th class="text-left" style={{width: '25%'}}>Option</th>
+        <th class="text-left" style={{width: '8%'}}>Required</th>
+        <th class="text-center" style={{width: '7%'}}>Default</th>
+        <th class="text-center" style={{width: '10%'}}>Type</th>
+        <th class="text-center" style={{width: '50%'}}>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><h5>sink.partition-commit.policy.kind</h5></td>
+        <td>optional</td>
+        <td style={{wordWrap: 'break-word'}}>(none)</td>
+        <td>String</td>
+        <td>Policy to commit a partition is to notify the downstream application that the partition has finished writing, the partition is ready to be read. 
+        metastore: add partition to metastore. Only hive table supports metastore policy, 
+        file system manages partitions through directory structure. success-file: add '_success' file to directory. 
+        Both can be configured at the same time: 'metastore,success-file'. custom: use policy class to create a commit policy. 
+        Support to configure multiple policies: 'metastore,success-file'.</td>
+    </tr>
+    <tr>
+      <td><h5>sink.partition-commit.policy.class</h5></td>
+      <td>optional</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>The partition commit policy class for implement PartitionCommitPolicy interface. 
+      Only work in custom commit policy.</td>
+    </tr>
+    <tr>
+      <td><h5>sink.partition-commit.success-file.name</h5></td>
+      <td>optional</td>
+      <td style={{wordWrap: 'break-word'}}>_SUCCESS</td>
+      <td>String</td>
+      <td>The file name for success-file partition commit policy, default is '_SUCCESS'.</td>
+    </tr>
+    </tbody>
+</table>
 
 

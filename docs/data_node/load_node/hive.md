@@ -3,7 +3,7 @@ title: Hive
 sidebar_position: 3
 ---
 ## Hive Load Node
-Hive Load Node can write data to hive. Using the flink dialect, the insert operation is currently supported, and the data in the upper mode will be converted into insert.
+Hive Load Node can write data to hive. Using the flink dialect, the insert operation is currently supported, and the data in the upsert mode will be converted into insert.
 Manipulating hive tables using the hive dialect is currently not supported.
 
 ## Supported Version
@@ -115,7 +115,12 @@ TODO: It will be supported in the future.
       <td>optional</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>metastore,success-file</td>
+      <td>Policy to commit a partition is to notify the downstream application that the partition has finished writing, 
+      the partition is ready to be read. metastore: add partition to metastore. 
+      Only hive table supports metastore policy, file system manages partitions through directory structure.
+      success-file: add '_success' file to directory. Both can be configured at the same time: 'metastore,success-file'.
+      custom: use policy class to create a commit policy.
+      Support to configure multiple policies: 'metastore,success-file'.</td>
     </tr>
     </tbody>
 </table>

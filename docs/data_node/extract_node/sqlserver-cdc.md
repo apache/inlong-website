@@ -1,8 +1,8 @@
 ---
-title: SqlServer-CDC
+title: SQLServer-CDC
 sidebar_position: 11
 ---
-## SqlServer Extract Node
+## SQLServer Extract Node
 
 The SqlServer extract node reads data and incremental data from the SqlServer database. The following will describe how to set up the SqlServer extraction node.
 
@@ -10,7 +10,7 @@ The SqlServer extract node reads data and incremental data from the SqlServer da
 
 | Extract Node                | Version                                                                                                                                                                                                                                                                                                                                                                                                |
 |-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| [sqlserver-cdc](./sqlserver-cdc.md) | [SqlServer](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver16): 2014、2016、2017、2019、2022 |      |
+| [sqlserver-cdc](./sqlserver-cdc.md) | [SQLServer](https://docs.microsoft.com/en-us/sql/database-engine/install-windows/install-sql-server?view=sql-server-ver16): 2014、2016、2017、2019、2022 |      |
 
 ## Dependencies
 
@@ -26,24 +26,24 @@ Introduce related SQLServer cdc connector dependencies through maven.
     <version>inlong_version</version>
 </dependency>
 ```
-## Setup SqlServer CDC
+## Setup SQLServer CDC
 
-SqlServer CDC needs to open related libraries and tables, the steps are as follows:
+SQLServer CDC needs to open related libraries and tables, the steps are as follows:
 
-1.Enable the CDC function for the database.
+1. Enable the CDC function for the database.
 ```sql
 if exists(select 1 from sys.databases where name='dbName' and is_cdc_enabled=0)
 begin
     exec sys.sp_cdc_enable_db
 end
 ```
-2.Check the database CDC capability status.
+2. Check the database CDC capability status.
 ```sql
 select is_cdc_enabled from sys.databases where name='dbName'
 ```
-nodes: 1 is running CDC of DB.
+note: 1 is running CDC of DB.
 
-3.Turn on CDC for the table
+3. Turn on CDC for the table
 ```sql
 IF EXISTS(SELECT 1 FROM sys.tables WHERE name='tableName' AND is_tracked_by_cdc = 0)
 BEGIN
@@ -58,15 +58,15 @@ BEGIN
         @filegroup_name = 'PRIMARY' -- filegroup_name
 END
 ```
-node: The table must have a primary key or unique index.
+note: The table must have a primary key or unique index.
 
-4.Check the table CDC capability status.
+4. Check the table CDC capability status.
 ```sql
 SELECT is_tracked_by_cdc FROM sys.tables WHERE name='tableName'
 ```
-nodes: 1 is running CDC of table.
+note: 1 is running CDC of table.
 
-## How to create a SqlServer Extract Node
+## How to create a SQLServer Extract Node
 
 ### Usage for SQL API
 
@@ -104,7 +104,7 @@ TODO
 ### Usage for InLong Manager Client
 TODO
 
-## SqlServer Extract Node Options
+## SQLServer Extract Node Options
 
 <div class="highlight">
 <table class="colwidths-auto docutils">
