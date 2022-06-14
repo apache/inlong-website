@@ -5,7 +5,7 @@ sidebar_position: 5
 
 ## MySQL Extract Node
 
-The MySQL Extract Node allows for reading snapshot data and incremental data from MySQL database. This document describes how to setup the MySQL Extract Node to run SQL queries against MySQL databases.
+The MySQL Extract Node allows for reading snapshot data and incremental data from MySQL database. This document describes how to set up the MySQL Extract Node to run SQL queries against MySQL databases.
 
 ## Supported Version
 | Extract Node                | Version                                                                                                                                                                                                                                                                                                                                                                                                | Driver                  |
@@ -14,7 +14,7 @@ The MySQL Extract Node allows for reading snapshot data and incremental data fro
 
 ## Dependencies
 
-In order to setup the MySQL Extract Node, the following table provides dependency information for both projects using a build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors JAR bundles.
+In order to set up the MySQL Extract Node, the following table provides dependency information for both projects using a build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors JAR bundles.
 
 ### Maven dependency
 
