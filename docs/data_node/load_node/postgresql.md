@@ -82,7 +82,7 @@ TODO: It will be supported in the future.
 
 | Option | Required | Default | Type | Description |
 |---------|----------|---------|------|------------|
-| connector | required | (none) | String | Specify what connector to use, here should be 'jdbc-inlong'. |
+| connector | required | (none) | String | Specify what connector to use, here should be 'jdbc'. |
 | url | required | (none) | String | The JDBC database url. |
 | table-name | required | (none) | String | The name of JDBC table to connect. |
 | driver | optional | (none) | String | The class name of the JDBC driver to use to connect to this URL, if not set, it will automatically be derived from the URL. |

@@ -98,7 +98,7 @@ TODO: It will be supported in the future.
 
 | SQLServer type | Flink SQL type |
 |----------------|----------------|
-|  char(n)       | CHAR(n)        |
+| char(n)       | CHAR(n)        |
 | varchar(n) <br/> nvarchar(n) <br/> nchar(n) | VARCHAR(n) |
 | text <br/> ntext <br/> xml | STRING |
 | BIGINT <br/> BIGSERIAL | BIGINT |
