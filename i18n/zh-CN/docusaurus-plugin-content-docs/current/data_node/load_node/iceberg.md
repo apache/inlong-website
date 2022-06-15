@@ -19,7 +19,7 @@ sidebar_position: 3
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-iceberg</artifactId>
-    <!-- Choose the version that suits your application -->
+    <!-- 选择匹配你inlong应用的版本 -->
     <version>inlong_version</version>
 </dependency>
 ```

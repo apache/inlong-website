@@ -11,7 +11,7 @@ sidebar_position: 10
 
 | Extract Node          | Version                                                      |
 | --------------------- | ------------------------------------------------------------ |
-| [pulsar](./pulsar.md) | [pulsar](https://pulsar.apache.org/docs/next/): >= 2.8.x<br/> |
+| [Pulsar](./pulsar.md) | [Pulsar](https://pulsar.apache.org/docs/next/): >= 2.8.x<br/> |
 
 ## Dependencies
 

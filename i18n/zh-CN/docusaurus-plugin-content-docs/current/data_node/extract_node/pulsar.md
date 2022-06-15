@@ -19,7 +19,7 @@ sidebar_position: 10
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-pulsar</artifactId>
-    <!-- Choose the version that suits your application -->
+    <!-- 选择匹配你inlong应用的版本 -->
     <version>inlong_version</version>
 </dependency>
 ```

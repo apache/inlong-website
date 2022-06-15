@@ -9,7 +9,7 @@ sidebar_position: 4
 
 | Extract Node            | Version                                                    |
 | ----------------------- | ---------------------------------------------------------- |
-| [iceberg](./iceberg.md) | [Iceberg](https://dev.mysql.com/doc): 0.12.x, 0.13.x <br/> |
+| [Iceberg](./iceberg.md) | [Iceberg](https://dev.mysql.com/doc): 0.12.x, 0.13.x <br/> |
 
 ## Dependencies
 
