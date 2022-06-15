@@ -13,37 +13,29 @@ This article describes how to extend a new source (abstracted as extract node in
 
 The concepts of each component are:
 
-**Group**: data flow group, including multiple data flows, one group represents one data access
+| **Name**              | **Description**                                              |
+| --------------------- | ------------------------------------------------------------ |
+| **Group**             | data flow group, including multiple data flows, one group represents one data access |
+| **Stream**            | data flow, a data flow has a specific flow direction         |
+| **GroupInfo**         | encapsulation of data flow in sort. a groupinfo can contain multiple dataflowinfo |
+| **StreamInfo**        | abstract of data flow in sort, including various sources, transformations, destinations, etc. of the data flow |
+| **Node**              | abstraction of data source, data transformation and data destination in data synchronization |
+| **ExtractNode**       | source-side abstraction for data synchronization             |
+| **TransformNode**     | transformation process abstraction of data synchronization   |
+| **LoadNode**          | destination abstraction for data synchronization             |
+| **NodeRelationShip**  | abstraction of each node relationship in data synchronization |
+| **FieldRelationShip** | abstraction of the relationship between upstream and downstream node fields in data synchronization |
+| **FieldInfo**         | node field                                                   |
+| **MetaFieldInfo**     | node meta fields                                             |
+| **Function**          | abstraction of transformation function                       |
+| **FunctionParam**     | input parameter abstraction of function                      |
+| **ConstantParam**     | constant parameters                                          |
 
-**Stream**: data flow, a data flow has a specific flow direction
+To extend the extract node or load node, you need to do the following:
 
-**GroupInfo**: encapsulation of data flow in sort. a groupinfo can contain multiple dataflowinfo
-
-**StreamInfo**: abstract of data flow in sort, including various sources, transformations, destinations, etc. of the data flow
-
-**Node**: abstraction of data source, data transformation and data destination in data synchronization
-
-**ExtractNode**: source-side abstraction for data synchronization
-
-**TransformNode**: transformation process abstraction of data synchronization
-
-**LoadNode**: destination abstraction for data synchronization
-
-**NodeRelationShip**:  abstraction of each node relationship in data synchronization
-
-**FieldRelationShip**:  abstraction of the relationship between upstream and downstream node fields in data synchronization
-
-**FieldInfo**: node field
-
-**MetaFieldInfo**: node meta fields
-
-**Function**: abstraction of transformation function
-
-**FunctionParam**: input parameter abstraction of function
-
-**ConstantParam**: constant parameters
-
-To extend the extract node or load node, you need to do the following: 1.  Inherit the node class (such as MyExtractNode) and build specific extract or load usage logic; 2.  In a specific node class (such as MyExtractNode), specify the corresponding Flink connector; 3.  Use specific node classes in specific ETL implementation logic (such as MyExtractNode)
+- Inherit the node class (such as MyExtractNode) and build specific extract or load usage logic; 
+- In a specific node class (such as MyExtractNode), specify the corresponding Flink connector; 
+- Use specific node classes in specific ETL implementation logic (such as MyExtractNode)
 
 In the second step, you can use the existing flick connector or extend it yourself. How to extend the flink connector, please refer to the official flink documentation[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors).
 
