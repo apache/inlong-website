@@ -26,7 +26,7 @@ sidebar_position: 10
 
 ## 用法
 
-### Flink SQL 客户端的用法
+### SQL API 用法
 
 Step.1 准备好 sql 客户端
 
@@ -75,7 +75,7 @@ VALUES
  ('data 3', 3, TIMESTAMP '2020-03-10 13:12:11.123', MAP['k31', 'v31', 'k32', 'v32'], 'key3', TRUE)
 ```
 
-### Inlong Dashboard 方式
+### Inlong Dashboard 用法
 
 TODO
 
@@ -83,7 +83,7 @@ TODO
 
 TODO
 
-## Pulsar 提取节点选项
+## Pulsar Extract 节点参数
 
 | Parameter                     | Required | Default value | Type   | Description                                                  |
 | ----------------------------- | -------- | ------------- | ------ | ------------------------------------------------------------ |
@@ -122,4 +122,4 @@ METADATA 标志用于读取和写入 Pulsar 消息中的元数据。支持列表
 
 ## 数据类型映射
 
-Pulsar 将消息键和值存储为字节，因此 Pulsar 没有schema或数据类型。Pulsar 消息按格式进行反序列化和序列化，例如 csv、json、avro。因此，数据类型映射由特定格式确定。有关格式详细信息，请参阅[格式页面。](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/table/formats/overview/)
+Pulsar 将消息键和值存储为字节，因此 Pulsar 没有 schema 或数据类型。Pulsar 消息按格式进行反序列化和序列化，例如 csv、json、avro。因此，数据类型映射由特定格式确定。有关格式详细信息，请参阅[格式页面。](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/table/formats/overview/)

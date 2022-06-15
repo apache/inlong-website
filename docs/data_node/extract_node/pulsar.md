@@ -26,7 +26,7 @@ sidebar_position: 10
 
 ## Usage
 
-### Usage for Flink SQL Client
+### Usage for SQL API
 
 Step.1 Ready for sql client
 

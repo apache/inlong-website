@@ -26,7 +26,7 @@ sidebar_position: 3
 
 ## 用法
 
-### Flink SQL 客户端的用法
+### SQL API 用法
 
 在 flink 中创建Iceberg表，我们推荐使用[Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-stable/dev/table/sqlClient.html)，因为它更便于用户理解概念。
 
@@ -109,7 +109,7 @@ CREATE TABLE flink_table (
 );
 ```
 
-Step.6 向冰山表中插入数据
+Step.6 向Iceberg表中插入数据
 
 ```
 INSERT INTO `flink_table` 
@@ -140,13 +140,13 @@ CREATE TABLE flink_table (
 
 请检查“集成”选项卡下的部分以获取所有自定义目录。
 
-### 用于 InLong 仪表板
+### InLong Dashboard 用法
 TODO
 
-### 用于 InLong Manager 客户端
+### InLong Manager Client 用法
 TODO
 
-## Iceberg 加载节点选项
+## Iceberg Load 节点参数
 
 | 选项             | 是否必须                         | 默认值 | 类型    | 描述                                                         |
 | ---------------- | -------------------------------- | ------ | ------- | ------------------------------------------------------------ |
@@ -164,7 +164,7 @@ TODO
 
 ## 数据类型映射
 
-[Iceberg数据类型](https://iceberg.apache.org/spec/#schemas-and-data-types)详细信息。这里介绍了加载数据如何将Iceberg类型转换为Flink类型。
+[Iceberg数据类型](https://iceberg.apache.org/spec/#schemas-and-data-types)详细信息。这里介绍了加载数据如何将 Iceberg 类型转换为 Flink 类型。
 
 | Flink SQL 类型 | Iceberg 类型 |
 | -------------- | ------------ |

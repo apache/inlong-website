@@ -24,7 +24,7 @@ sidebar_position: 4
 
 ## Usage
 
-### Usage for Flink SQL Client
+### Usage for SQL API
 
 To create iceberg table in flink, we recommend to use [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-stable/dev/table/sqlClient.html) because it’s easier for users to understand the concepts.
 
