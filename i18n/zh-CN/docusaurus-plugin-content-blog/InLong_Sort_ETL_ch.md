@@ -147,8 +147,8 @@ Group、Stream、GroupInfo、StreamInfo、Node、NodeRelation、FieldRelation、
 |       名称        |                             说明                             |
 | :---------------: | :----------------------------------------------------------: |
 |  FlinkSQLParser   |       用于生成 FlinkSQL 核心类，包含 GroupInfo 的引用        |
-|     GroupInfo     | Sort内部对 inlong group 的抽象，用于封装整个 inlong group 同步相关信息，包含对 List<StreamInfo> 的引用 |
-|    StreamInfo     | Sort内部对 inlong stream 的抽象，用于封装 inlong stream 同步相关信息，包含List<Node>、List<NodeRelation> 的引用 |
+|     GroupInfo     | Sort内部对 inlong group 的抽象，用于封装整个 inlong group 同步相关信息，包含对 List\<StreamInfo\> 的引用 |
+|    StreamInfo     | Sort内部对 inlong stream 的抽象，用于封装 inlong stream 同步相关信息，包含List\<Node\>、List\<NodeRelation\> 的引用 |
 |       Node        | 同步节点的顶层接口，它的各个子类实现主要用于对同步数据源、转换节点的数据封装 |
 |    ExtractNode    |               数据extract节点抽象,继承自 Node                |
 |     LoadNode      |                 数据load节点抽象,继承自 Node                 |

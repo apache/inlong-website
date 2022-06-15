@@ -130,7 +130,7 @@ The above relationship can be represented by UML object relationship diagram as:
 
 ## 3.2 InLong Sort Internal Operation Flow Chart
 
-![](./img/sort-operation-flow.png)
+![sort-operation-flow](./img/sort-operation-flow.png)
 
 ## 3.3 Module Design
 
@@ -138,7 +138,7 @@ This design only adds Flink connector and flinksql generator to the original sys
 
 ### 3.3.1 Module Structure
 
-![](./img/sort-module-structure.png)
+![sort-module-structure](./img/sort-module-structure.png)
 
 ### 3.3.2 Module Division
 
@@ -147,8 +147,8 @@ Description of important module division:
 |       Name        |                         Description                          |
 | :---------------: | :----------------------------------------------------------: |
 |  FlinkSQLParser   | Used to generate flinksql core classes, including references to groupinfo |
-|     GroupInfo     | The internal abstraction of sort for inlong group is used to encapsulate the synchronization related information of the entire inlong group, including the reference to list<streaminfo> |
-|    StreamInfo     | The internal abstraction of sort to inlong stream is used to encapsulate inlong stream synchronization related information, including references to list<node>, list<noderelation> |
+|     GroupInfo     | The internal abstraction of sort for inlong group is used to encapsulate the synchronization related information of the entire inlong group, including the reference to list\<streaminfo\> |
+|    StreamInfo     | The internal abstraction of sort to inlong stream is used to encapsulate inlong stream synchronization related information, including references to list\<node>, list\<noderelation\> |
 |       Node        | The top-level interface of the synchronization node. Its subclass implementation is mainly used to encapsulate the data of the synchronization data source and the transformation node |
 |    ExtractNode    |      Data extract node abstraction, inherited from node      |
 |     LoadNode      |       Data load node abstraction, inherited from node        |
