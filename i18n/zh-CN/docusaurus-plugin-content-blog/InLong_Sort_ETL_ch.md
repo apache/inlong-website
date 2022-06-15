@@ -116,7 +116,7 @@ Group、Stream、GroupInfo、StreamInfo、Node、NodeRelation、FieldRelation、
 
 ## 3.1 系统架构图
 
-![整体架构图](./img/整体架构图.png)
+![architecture](./img/architecture.png)
 
 - Serialization: 序列化实现模块
 - Deserialization: 反序列化实现模块
@@ -130,7 +130,7 @@ Group、Stream、GroupInfo、StreamInfo、Node、NodeRelation、FieldRelation、
 
 ## 3.2 InLong Sort 内部运行流程图
 
-![](./img/sort内部运行流程图.png)
+![](./img/sort-operation-flow.png)
 
 ## 3.3 模块设计
 
@@ -138,7 +138,7 @@ Group、Stream、GroupInfo、StreamInfo、Node、NodeRelation、FieldRelation、
 
 ### 3.3.1 模块结构
 
-![](./img/sort模块结构图.png)
+![](./img/sort-module-structure.png)
 
 ### 3.3.2 模块划分
 
@@ -292,8 +292,6 @@ with (
 
 ```
 
-
-
 ## 4.2 字段 T 生成 SQL
 
 ### 4.2.1 过滤算子
@@ -363,5 +361,4 @@ private Node buildMySqlExtractNode() {
     }
 
 ```
-
 

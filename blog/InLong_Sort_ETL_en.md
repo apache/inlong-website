@@ -116,7 +116,7 @@ The above relationship can be represented by UML object relationship diagram as:
 
 ## 3.1 System Architecture Diagram
 
-![整体架构图](./img/整体架构图.png)
+![architecture](./img/architecture.png)
 
 - Serialization: Serialization Implementation Module
 - Deserialization: Deserialization Implementation Module
@@ -130,7 +130,7 @@ The above relationship can be represented by UML object relationship diagram as:
 
 ## 3.2 InLong Sort Internal Operation Flow Chart
 
-![](./img/sort内部运行流程图.png)
+![](./img/sort-operation-flow.png)
 
 ## 3.3 Module Design
 
@@ -138,7 +138,7 @@ This design only adds Flink connector and flinksql generator to the original sys
 
 ### 3.3.1 Module Structure
 
-![](./img/sort模块结构图.png)
+![](./img/sort-module-structure.png)
 
 ### 3.3.2 Module Division
 
