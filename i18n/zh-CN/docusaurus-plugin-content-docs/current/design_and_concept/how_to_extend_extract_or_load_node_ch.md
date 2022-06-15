@@ -13,37 +13,29 @@ InLong-Sort是一个ETL系统，当前支持的extract或load包括elasticsearch
 
 其中各个组件的概念为：
 
-Group: 数据流组，包含多个数据流，一个Group 代表一个数据接入
+| **名称**          | **描述**                                                    |
+| ----------------- | ----------------------------------------------------------- |
+| Group             | 数据流组，包含多个数据流，一个Group 代表一个数据接入        |
+| Stream            | 数据流，一个数据流有具体的流向                              |
+| GroupInfo         | Sort中对数据流向的封装，一个GroupInfo可包含多个DataFlowInfo |
+| StreamInfo        | Sort中数据流向的抽象，包含该数据流的各种来源、转换、去向等  |
+| Node              | 数据同步中数据源、数据转换、数据去向的抽象                  |
+| ExtractNode       | 数据同步的来源端抽象                                        |
+| TransformNode     | 数据同步的转换过程抽象                                      |
+| LoadNode          | 数据同步的去向端抽象                                        |
+| NodeRelationShip  | 数据同步中各个节点关系抽象                                  |
+| FieldRelationShip | 数据同步中上下游节点字段间关系的抽象                        |
+| FieldInfo         | 节点字段                                                    |
+| MetaFieldInfo     | 节点Meta字段                                                |
+| Function          | 转换函数的抽象                                              |
+| FunctionParam     | 函数的入参抽象                                              |
+| ConstantParam     | 常量参数                                                    |
 
-Stream: 数据流，一个数据流有具体的流向
+扩展Extract Node 或 Load Node需要做的工作是：
 
-GroupInfo: Sort中对数据流向的封装，一个GroupInfo可包含多个DataFlowInfo
-
-StreamInfo: Sort中数据流向的抽象，包含该数据流的各种来源、转换、去向等
-
-Node: 数据同步中数据源、数据转换、数据去向的抽象
-
-ExtractNode: 数据同步的来源端抽象
-
-TransformNode:数据同步的转换过程抽象
-
-LoadNode: 数据同步的去向端抽象
-
-NodeRelationShip: 数据同步中各个节点关系抽象
-
-FieldRelationShip: 数据同步中上下游节点字段间关系的抽象
-
-FieldInfo: 节点字段
-
-MetaFieldInfo: 节点Meta字段
-
-Function: 转换函数的抽象
-
-FunctionParam: 函数的入参抽象
-
-ConstantParam: 常量参数
-
-扩展Extract Node 或 Load Node需要做的工作是：一、继承Node类（例如MyExtractNode），构建具体的extract 或 load使用逻辑；二、在具体的Node类（例如MyExtractNode）中，指定对应Flink connector；三、在具体的ETL实现逻辑中使用具体的Node类（例如MyExtractNode）。
+- 继承Node类（例如MyExtractNode），构建具体的extract 或 load使用逻辑；
+- 在具体的Node类（例如MyExtractNode）中，指定对应Flink connector；
+- 在具体的ETL实现逻辑中使用具体的Node类（例如MyExtractNode）。
 
 其中第二步中可以使用已有的flink connector，或者用户自己扩展，如何扩展flink connector请参考flink官方文档[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors).
 
@@ -209,12 +201,5 @@ public class MongoExtractToKafkaLoad extends AbstractTestBase {
     }
 }
 ```
-
-
-
-
-
-
-
 
 
