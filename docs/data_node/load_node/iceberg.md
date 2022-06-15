@@ -42,7 +42,7 @@ Step.2 Start the flink SQL client.
 
 We’ve created a separate `flink-runtime` module in iceberg project to generate a bundled jar, which could be loaded by flink SQL client directly.
 
-If we want to build the `flink-runtime` bundled jar manually, please just build the `iceberg` project and it will generate the jar under `<iceberg-root-dir>/flink-runtime/build/libs`. Of course, we could also download the `flink-runtime` jar from the [apache official repository](https://repo.maven.apache.org/maven2/org/apache/iceberg/iceberg-flink-runtime/).
+If we want to build the `flink-runtime` bundled jar manually, please just build the `inlong` project and it will generate the jar under `<inlong-root-dir>/inlong-sort/sort-connectors/iceberg/target`.
 
 By default, iceberg has included hadoop jars for hadoop catalog. If we want to use hive catalog, we will need to load the hive jars when opening the flink sql client. Fortunately, inlong auto package a bundled hive jar into iceberg. So we could open the sql client as the following:
 
@@ -138,17 +138,11 @@ INSERT INTO `flink_table`
     FROM `source_table`
 ```
 
-
-
 ### Usage for InLong Dashboard
-
 TODO
 
 ### Usage for InLong Manager Client
-
 TODO
-
-
 
 ## Iceberg Load Node Options
 
@@ -166,8 +160,6 @@ TODO
 | warehouse        | optional for hadoop catalog or hive catalog | (none)  | String  | For Hive catalog，is the Hive warehouse location, users should specify this path if neither set the `hive-conf-dir` to specify a location containing a `hive-site.xml` configuration file nor add a correct `hive-site.xml` to classpath. For hadoop catalog，The HDFS directory to store metadata files and data files. |
 | hive-conf-dir    | optional for hive catalog                   | (none)  | String  | Path to a directory containing a `hive-site.xml` configuration file which will be used to provide custom Hive configuration values. The value of `hive.metastore.warehouse.dir` from `<hive-conf-dir>/hive-site.xml` (or hive configure file from classpath) will be overwrote with the `warehouse` value if setting both `hive-conf-dir` and `warehouse` when creating iceberg catalog. |
 
-
-
 ## Data Type Mapping
 
 [Iceberg data type](https://iceberg.apache.org/spec/#schemas-and-data-types) detail. Here is iceberg type convert to flink type when load data.
@@ -180,7 +172,6 @@ TODO
 | BOOLEAN        | BOOLEAN      |
 | BINARY         | FIXED(L)     |
 | VARBINARY      | BINARY       |
-| BYTES          |              |
 | DECIMAL        | DECIMAL(P,S) |
 | TINYINT        | INT          |
 | SMALLINT       | INT          |

@@ -113,12 +113,12 @@ METADATA 标志用于读取和写入 Pulsar 消息中的元数据。支持列表
 
 | 关键字      | 数据类型                                   | 描述                    | 读/写 |
 | ----------- | ------------------------------------------ | ----------------------- | ----- |
-| topic       | STRING NOT NULL                            | Pulsar 消息的主题名称。 | R     |
-| messageId   | BYTES NOT NULL                             | Pulsar 消息的消息 ID。  | R     |
-| sequenceId  | BIGINT NOT NULL                            | Pulsar 消息的序列 ID。  | R     |
-| publishTime | TIMESTAMP(3) WITH LOCAL TIME ZONE NOT NULL | Pulsar 消息的发布时间。 | R     |
-| eventTime   | TIMESTAMP(3) WITH LOCAL TIME ZONE NOT NULL | Pulsar 消息的生成时间。 | R/W   |
-| properties  | MAP<STRING, STRING> NOT NULL               | Pulsar 消息的扩展信息。 | R/W   |
+| topic       | STRING NOT NULL                            | Pulsar 消息的主题名称 | R     |
+| messageId   | BYTES NOT NULL                             | Pulsar 消息的消息 ID  | R     |
+| sequenceId  | BIGINT NOT NULL                            | Pulsar 消息的序列 ID  | R     |
+| publishTime | TIMESTAMP(3) WITH LOCAL TIME ZONE NOT NULL | Pulsar 消息的发布时间 | R     |
+| eventTime   | TIMESTAMP(3) WITH LOCAL TIME ZONE NOT NULL | Pulsar 消息的生成时间 | R/W   |
+| properties  | MAP<STRING, STRING> NOT NULL               | Pulsar 消息的扩展信息 | R/W   |
 
 ## 数据类型映射
 

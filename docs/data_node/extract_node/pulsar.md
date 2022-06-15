@@ -86,8 +86,6 @@ TODO
 
 ## Pulsar Extract Node Options
 
-
-
 | Parameter                     | Required | Default value | Type   | Description                                                  |
 | ----------------------------- | -------- | ------------- | ------ | ------------------------------------------------------------ |
 | connector                     | required | (none)        | String | Set the connector type. Available options are `pulsar-inlong`. |
@@ -108,8 +106,6 @@ TODO
 | format or value.format        | required | (none)        | String | Set the name with a prefix. When constructing data types in the key format, the prefix is removed and non-prefixed names are used within the key format. Pulsar message value serialization format, support JSON, Avro, etc. For more information, see the Flink format. |
 | value.fields-include          | optional | ALL           | Enum   | The Pulsar message value contains the field policy, optionally ALL, and EXCEPT_KEY. |
 
-
-
 ## Available Metadata
 
 The METADATA flag is used to read and write metadata in Pulsar messages. The support list is as follows.
@@ -125,8 +121,6 @@ The METADATA flag is used to read and write metadata in Pulsar messages. The sup
 | publishTime | TIMESTAMP(3) WITH LOCAL TIME ZONE NOT NULL | Publishing time of the Pulsar message.        | R    |
 | eventTime   | TIMESTAMP(3) WITH LOCAL TIME ZONE NOT NULL | Generation time of the Pulsar message.        | R/W  |
 | properties  | MAP<STRING, STRING> NOT NULL               | Extensions information of the Pulsar message. | R/W  |
-
-
 
 ##  Data Type Mapping
 
