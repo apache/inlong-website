@@ -5,9 +5,9 @@ sidebar_position: 3
 
 ## 总览
 
-InLong-Sort是一个ETL系统，当前支持的extract或load包括elasticsearch、hbase、hive、iceberg、jdbc、kafka、mongodb、mysql、orcale、postgres、pulsar等。InLong-Sort是基于Flink SQL的ETL方案，Flink SQL强大的表达能力带来的高可扩展性、灵活性，基本上Flink SQL支持的语意，InLong-Sort都支持。在个别场景，Flink SQL内置的函数不满足需求时，还可通过各种UDF来扩展。同时对于曾经使用过SQL尤其是使用过Flink SQL的人而言，会更容易上手。
+InLong-Sort是一个ETL系统，当前支持的extract或load包括 FileSystemExtractNode ， KafkaExtractNode ， MongoExtractNode ， MySqlExtractNode ，OracleExtractNode ，PostgresExtractNode ，PulsarExtractNode  ，SqlServerExtractNode ，ClickHouseLoadNode ，ElasticsearchLoadNode  ，FileSystemLoadNode ，GreenplumLoadNode ，HbaseLoadNode ， HiveLoadNode ，IcebergLoadNode ，KafkaLoadNode ，MySqlLoadNode ， OracleLoadNode ，PostgresLoadNode ， SqlServerLoadNode ，TDSQLPostgresLoadNode 等。InLong-Sort是基于Flink SQL的ETL方案，Flink SQL强大的表达能力带来的高可扩展性、灵活性，基本上Flink SQL支持的语意，InLong-Sort都支持。在个别场景，Flink SQL 内置的函数不满足需求时，还可通过各种UDF来扩展。同时对于曾经使用过SQL尤其是使用过 Flink SQL 的人而言，会更容易上手。
 
-本文介绍如何在InLong-Sort中扩展一个新的source（在InLong中抽象为Extract Node）或一个新的sink（在InLong中抽象为Load Node）。在弄清楚InLong的架构之后，就可以明白source与Extract Node如何对应，sink与Load Node如何对应。InLong-Sort的架构可以由UML对象关系图表示为：
+本文介绍如何在 InLong-Sort 中扩展一个新的 source（在 InLong 中抽象为 Extract Node）或一个新的sink（在InLong中抽象为 Load Node ）。在弄清楚 InLong 的架构之后，就可以明白 Source 与 Extract Node 如何对应，sink与Load Node如何对应。InLong-Sort 的架构可以由UML对象关系图表示为：
 
 ![sort_uml](img/sort_uml.png)
 
@@ -33,17 +33,17 @@ InLong-Sort是一个ETL系统，当前支持的extract或load包括elasticsearch
 
 扩展Extract Node 或 Load Node需要做的工作是：
 
-- 继承Node类（例如MyExtractNode），构建具体的extract 或 load使用逻辑；
-- 在具体的Node类（例如MyExtractNode）中，指定对应Flink connector；
+- 继承Node类（例如 MyExtractNode ），构建具体的extract 或 load使用逻辑；
+- 在具体的Node类（例如 MyExtractNode ）中，指定对应 Flink connector；
 - 在具体的ETL实现逻辑中使用具体的Node类（例如MyExtractNode）。
 
-其中第二步中可以使用已有的flink connector，或者用户自己扩展，如何扩展flink connector请参考flink官方文档[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors).
+其中第二步中可以使用已有的Flink connector，或者用户自己扩展，如何扩展Flink connector请参考Flink官方文档[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors).
 
-## 扩展Extract Node
+## 扩展 Extract Node
 
 扩展一个ExtractNode分为三步骤：
 
-**第一步**：继承ExtractNode类，类的位置在incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java；在实现的ExtractNode中指定connecter；
+**第一步**：继承 ExtractNode 类，类的位置在`incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java`；在实现的 ExtractNode 中指定 connecter ；
 
 ```Java
 // 继承ExtractNode类，实现具体的类，例如MongoExtractNode
@@ -57,14 +57,14 @@ public class MongoExtractNode extends ExtractNode implements Serializable {
 		...
 
     @JsonCreator
-    public MongoExtractNode(@JsonProperty("id") String id,
+    public MongoExtractNode(@JsonProperty("id") String id，
                            ...) { ... }
 
     @Override
-    public Map<String, String> tableOptions() {
-        Map<String, String> options = super.tableOptions();
-      	// 配置指定的connector, 这里指定的是mongodb-cdc
-        options.put("connector", "mongodb-cdc");
+    public Map<String， String> tableOptions() {
+        Map<String， String> options = super.tableOptions();
+      	// 配置指定的connector， 这里指定的是mongodb-cdc
+        options.put("connector"， "mongodb-cdc");
       	...
         return options;
     }
@@ -77,25 +77,25 @@ public class MongoExtractNode extends ExtractNode implements Serializable {
 // 在ExtractNode和Node的JsonSubTypes中添加字段
 ...
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = MongoExtractNode.class, name = "mongoExtract")
+        @JsonSubTypes.Type(value = MongoExtractNode.class， name = "mongoExtract")
 })
 ...
 public abstract class ExtractNode implements Node{...}
 
 ...
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = MongoExtractNode.class, name = "mongoExtract")
+        @JsonSubTypes.Type(value = MongoExtractNode.class， name = "mongoExtract")
 })
 public interface Node {...}
 ```
 
-**第三步**：扩展flink connector，查看该（/incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc）目录下是否已经存在对应的connector。如果还没有，则需要参考flink官方文档[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors)来扩展，直接调用已有的flink-connector（例如incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc）或自行实现相关的connecter。
+**第三步**：扩展 Sort  connector，查看该（`/incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`）目录下是否已经存在对应的 connector。如果还没有，则需要参考flink官方文档[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors)来扩展，直接调用已有的 Flink-connector（例如`incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`）或自行实现相关的 connecter。
 
-## 扩展Load Node
+## 扩展 Load Node
 
 扩展一个LoadNode分为三步骤：
 
-**第一步**：继承LoadNode类，类的位置在incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java；在实现的LoadNode中指定connecter；
+**第一步**：继承LoadNode类，类的位置在`incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java`；在实现的LoadNode中指定connecter；
 
 ```java
 // 继承LoadNode类，实现具体的类，例如KafkaLoadNode
@@ -110,23 +110,23 @@ public class KafkaLoadNode extends LoadNode implements Serializable {
   	...
 
     @JsonCreator
-    public KafkaLoadNode(@Nonnull @JsonProperty("topic") String topic,
+    public KafkaLoadNode(@Nonnull @JsonProperty("topic") String topic，
                         ...) {...}
 
   // 根据不同的条件配置使用不同的connector
     @Override
-    public Map<String, String> tableOptions() {
+    public Map<String， String> tableOptions() {
       ...
         if (format instanceof JsonFormat || format instanceof AvroFormat || format instanceof CsvFormat) {
             if (StringUtils.isEmpty(this.primaryKey)) {
-                options.put("connector", "kafka");   // kafka connector
+                options.put("connector"， "kafka");   // kafka connector
                 options.putAll(format.generateOptions(false));
             } else {
-                options.put("connector", "upsert-kafka"); // upsert-kafka connector
+                options.put("connector"， "upsert-kafka"); // upsert-kafka connector
                 options.putAll(format.generateOptions(true));
             }
         } else if (format instanceof CanalJsonFormat || format instanceof DebeziumJsonFormat) {
-            options.put("connector", "kafka-inlong");	 // kafka-inlong connector
+            options.put("connector"， "kafka-inlong");	 // kafka-inlong connector
             options.putAll(format.generateOptions(false));
         } else {
             throw new IllegalArgumentException("kafka load Node format is IllegalArgument");
@@ -142,46 +142,46 @@ public class KafkaLoadNode extends LoadNode implements Serializable {
 // 在LoadNode和Node的JsonSubTypes中添加字段
 ...
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = KafkaLoadNode.class, name = "kafkaLoad")
+        @JsonSubTypes.Type(value = KafkaLoadNode.class， name = "kafkaLoad")
 })
 ...
 public abstract class LoadNode implements Node{...}
 
 ...
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = KafkaLoadNode.class, name = "kafkaLoad")
+        @JsonSubTypes.Type(value = KafkaLoadNode.class， name = "kafkaLoad")
 })
 public interface Node {...}
 ```
 
-**第三步**：扩展flink connector ，Kafka的sort connector在incubator-inlong/inlong-sort/sort-connectors/kafka
+**第三步**：扩展Sort connector ，Kafka 的 sort connector 在`incubator-inlong/inlong-sort/sort-connectors/kafka`
 
-## 集成Extract 和Load 到InLong-Sort主流程
+## 集成 Extract 和 Load 到 InLong-Sort 主流程
 
-将Extract和Load集成到InLong-Sort主流程中，需要构建总览小节中提到的语意：Group、stream、node等。InLong-Sort的入口类在inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java。Extract和Load如何集成至InLong-Sort，可参考下面的UT，首先构建对应的ExtractNode、LoadNode，再构建NodeRelation、streamInfo、groupInfo，最后使用FlinkSqlParser去执行。
+将 Extract 和 Load 集成到 InLong-Sort 主流程中，需要构建总览小节中提到的语意：Group、Stream、Node等。InLong-Sort的入口类在`inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java`。Extract 和 Load 如何集成至 InLong-Sort，可参考下面的UT，首先构建对应的 ExtractNode 、LoadNode ，再构建 NodeRelation 、StreamInfo、GroupInfo ，最后使用FlinkSqlParser去执行。
 
 ```java
 public class MongoExtractToKafkaLoad extends AbstractTestBase {
 
   	// 构建MongoExtractNode
     private MongoExtractNode buildMongoNode() {
-        List<FieldInfo> fields = Arrays.asList(new FieldInfo("name", new StringFormatInfo()), ...);
-        return new MongoExtractNode(..., fields, ...);
+        List<FieldInfo> fields = Arrays.asList(new FieldInfo("name"， new StringFormatInfo())， ...);
+        return new MongoExtractNode(...， fields， ...);
     }
 
   	// 构建KafkaLoadNode
     private KafkaLoadNode buildAllMigrateKafkaNode() {
-        List<FieldInfo> fields = Arrays.asList(new FieldInfo("name", new StringFormatInfo()), ...);
-        List<FieldRelation> relations = Arrays.asList(new FieldRelation(new FieldInfo("name", new StringFormatInfo()), ...), ...);
+        List<FieldInfo> fields = Arrays.asList(new FieldInfo("name"， new StringFormatInfo())， ...);
+        List<FieldRelation> relations = Arrays.asList(new FieldRelation(new FieldInfo("name"， new StringFormatInfo())， ...)， ...);
         CsvFormat csvFormat = new CsvFormat();
-        return new KafkaLoadNode(..., fields, relations, csvFormat, ...);
+        return new KafkaLoadNode(...， fields， relations， csvFormat， ...);
     }
 
   	// 构建NodeRelation
-    private NodeRelation buildNodeRelation(List<Node> inputs, List<Node> outputs) {
+    private NodeRelation buildNodeRelation(List<Node> inputs， List<Node> outputs) {
         List<String> inputIds = inputs.stream().map(Node::getId).collect(Collectors.toList());
         List<String> outputIds = outputs.stream().map(Node::getId).collect(Collectors.toList());
-        return new NodeRelation(inputIds, outputIds);
+        return new NodeRelation(inputIds， outputIds);
     }
 
     // 测试主流程 mongodb to kafka
@@ -190,16 +190,15 @@ public class MongoExtractToKafkaLoad extends AbstractTestBase {
         EnvironmentSettings settings = EnvironmentSettings. ... .build();
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
       	...
-        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env, settings);
+        StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env， settings);
         Node inputNode = buildMongoNode();
         Node outputNode = buildAllMigrateKafkaNode();
-        StreamInfo streamInfo = new StreamInfo("1", Arrays.asList(inputNode, outputNode), ...);
-        GroupInfo groupInfo = new GroupInfo("1", Collections.singletonList(streamInfo));
-        FlinkSqlParser parser = FlinkSqlParser.getInstance(tableEnv, groupInfo);
+        StreamInfo streamInfo = new StreamInfo("1"， Arrays.asList(inputNode， outputNode)， ...);
+        GroupInfo groupInfo = new GroupInfo("1"， Collections.singletonList(streamInfo));
+        FlinkSqlParser parser = FlinkSqlParser.getInstance(tableEnv， groupInfo);
         ParseResult result = parser.parse();
         Assert.assertTrue(result.tryExecute());
     }
 }
 ```
-
 
