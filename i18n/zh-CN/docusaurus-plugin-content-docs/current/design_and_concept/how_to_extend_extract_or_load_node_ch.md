@@ -3,7 +3,7 @@ title: Sort 插件
 sidebar_position: 3
 ---
 
-# 总览
+## 总览
 
 InLong-Sort是一个ETL系统，当前支持的extract或load包括elasticsearch、hbase、hive、iceberg、jdbc、kafka、mongodb、mysql、orcale、postgres、pulsar等。InLong-Sort是基于Flink SQL的ETL方案，Flink SQL强大的表达能力带来的高可扩展性、灵活性，基本上Flink SQL支持的语意，InLong-Sort都支持。在个别场景，Flink SQL内置的函数不满足需求时，还可通过各种UDF来扩展。同时对于曾经使用过SQL尤其是使用过Flink SQL的人而言，会更容易上手。
 
@@ -39,7 +39,7 @@ InLong-Sort是一个ETL系统，当前支持的extract或load包括elasticsearch
 
 其中第二步中可以使用已有的flink connector，或者用户自己扩展，如何扩展flink connector请参考flink官方文档[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors).
 
-# 扩展Extract Node
+## 扩展Extract Node
 
 扩展一个ExtractNode分为三步骤：
 
@@ -91,7 +91,7 @@ public interface Node {...}
 
 **第三步**：扩展flink connector，查看该（/incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc）目录下是否已经存在对应的connector。如果还没有，则需要参考flink官方文档[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors)来扩展，直接调用已有的flink-connector（例如incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc）或自行实现相关的connecter。
 
-# 扩展Load Node
+## 扩展Load Node
 
 扩展一个LoadNode分为三步骤：
 
@@ -156,7 +156,7 @@ public interface Node {...}
 
 **第三步**：扩展flink connector ，Kafka的sort connector在incubator-inlong/inlong-sort/sort-connectors/kafka
 
-# 集成Extract 和Load 到InLong-Sort主流程
+## 集成Extract 和Load 到InLong-Sort主流程
 
 将Extract和Load集成到InLong-Sort主流程中，需要构建总览小节中提到的语意：Group、stream、node等。InLong-Sort的入口类在inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java。Extract和Load如何集成至InLong-Sort，可参考下面的UT，首先构建对应的ExtractNode、LoadNode，再构建NodeRelation、streamInfo、groupInfo，最后使用FlinkSqlParser去执行。
 

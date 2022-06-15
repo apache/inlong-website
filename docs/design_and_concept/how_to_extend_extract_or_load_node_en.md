@@ -3,7 +3,7 @@ title: Sort Plugin
 sidebar_position: 3
 ---
 
-# Overview
+## Overview
 
 InLong-Sort is known as a real-time ETL system.  Currently, supported extract or load includes elasticsearch, HBase, hive, iceberg, JDBC, Kafka, mongodb, mysql, orcale, Postgres, pulsar, etc。InLong-Sort is an ETL solution based on Flink SQL，The powerful expressive power of Flink SQL brings high scalability and flexibility. Basically, the semantics supported by Flink SQL are supported by InLong-Sort。In some scenarios, when the built-in functions of Flink SQL do not meet the requirements, they can also be extended through various UDFs in InLong-Sort. At the same time, it will be easier for those who have used SQL, especially Flink SQL, to get started.
 
@@ -39,7 +39,7 @@ To extend the extract node or load node, you need to do the following:
 
 In the second step, you can use the existing flick connector or extend it yourself. How to extend the flink connector, please refer to the official flink documentation[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors).
 
-# Extend a new extract node
+## Extend a new extract node
 
 There are three steps to extend an ExtractNode: 
 
@@ -91,7 +91,7 @@ public interface Node {...}
 
 **Step 3**：Expand the flink connector and check whether the corresponding connector already exists in the (/incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc) directory. If you haven't already, you need to refer to the official flink documentation [DataStream Connectors](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) to extend , directly call the existing flink-connector (such as incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc) or implement the related connector by yourself.
 
-# Extend a new load node
+## Extend a new load node
 
 There are three steps to extend an LoadNode: 
 
@@ -156,7 +156,7 @@ public interface Node {...}
 
 **Step 3**：Extend the flink connector, Kafka's sort connector is in incubator-inlong/inlong-sort/sort-connectors/kafka.
 
-# Bundle extract node and load node  into InLong-Sort
+## Bundle extract node and load node  into InLong-Sort
 
 To integrate extract and load into the InLong-Sort mainstream, you need to implement the semantics mentioned in the overview section: group, stream, node, etc. The entry class of InLong-sort is in inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java. How to integrate extract and load into InLong-Sort can refer to the following ut. First, build the corresponding extractnode and loadnode, then build noderelation, streaminfo and groupinfo, and finally use FlinkSqlParser to execute.
 
