@@ -18,13 +18,13 @@ We need `sort-dist-[version].jar` and `sort-connector-[database]-[version].jar`.
 
 `sort-connector-[database]-[version].jar` are connector jar.   
 
-We can choose required connector jar by our data integration requirement.    
+Please choose required connector jar by your data integration requirement.    
 
-We can [download](https://inlong.apache.org/download/main) `sort-dist-[version].jar` from `inlong-sort` of `apache-inlong-[version]-bin.tar.gz`.  
+[Download](https://inlong.apache.org/download/main) `sort-dist-[version].jar` from `inlong-sort` of `apache-inlong-[version]-bin.tar.gz`.  
 
-We can [download](https://inlong.apache.org/download/main) `sort-connector-[database]-[version].jar` from `apache-inlong-[version]-sort-connectors.tar.gz`.
+[Download](https://inlong.apache.org/download/main) `sort-connector-[database]-[version].jar` from `apache-inlong-[version]-sort-connectors.tar.gz`.
 
-We can put required jars into under `FLINK_HOME/lib/` after download.
+Please put required jars into under `FLINK_HOME/lib/` after download.
 
 ## Starting an inlong-sort application
 Now you can submit job to Flink with the jar compiled, refer to [How to submit job to Flink](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/cli/#submitting-a-job).

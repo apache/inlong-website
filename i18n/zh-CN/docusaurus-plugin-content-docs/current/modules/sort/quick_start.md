@@ -17,13 +17,13 @@ Flink 环境配置完成后，可以通过浏览器访问 Flink 的 Web UI，对
 
 `sort-connector-[database]-[version].jar` 是连接器 jar。  
 
-我们可以根据我们的数据集成要求选择所需的连接器 jar。  
+请根据你的数据集成要求选择所需的连接器 jar。  
 
-我们可以[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-bin.tar.gz` 解压后从 `inlong-sort` 目录拿到 `sort-dist-[version].jar` 。  
+请[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-bin.tar.gz` 解压后从 `inlong-sort` 目录拿到 `sort-dist-[version].jar` 。  
 
-我们可以[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-{version}-sort-connectors.tar.gz` 解压后拿到 `sort-connector-[database]-[version].jar`。
+请[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-{version}-sort-connectors.tar.gz` 解压后拿到 `sort-connector-[database]-[version].jar`。
 
-下载后我们可以将需要的jars放到`FLINK_HOME/lib/`下。
+下载后可以将需要的jars放到`FLINK_HOME/lib/`下。
 
 ## 启动 InLong-Sort 应用
 有了上述编译阶段产出的jar包后，就可以启动 InLong-Sort 的应用了。提交方式可以参考[如何提交 Flink 作业](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/cli/#submitting-a-job)。
