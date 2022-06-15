@@ -19,7 +19,9 @@ Flink 环境配置完成后，可以通过浏览器访问 Flink 的 Web UI，对
 
 我们可以根据我们的数据集成要求选择所需的连接器 jar。  
 
-我们可以[下载](https://inlong.apache.org/zh-CN/download/main/) jar 包。  
+我们可以[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-bin.tar.gz` 解压后从 `inlong-sort` 目录拿到 `sort-dist-[version].jar` 。  
+
+我们可以[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-{version}-sort-connectors.tar.gz` 解压后拿到 `sort-connector-[database]-[version].jar`。
 
 下载后我们可以将需要的jars放到`FLINK_HOME/lib/`下。
 

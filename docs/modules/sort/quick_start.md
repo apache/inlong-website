@@ -20,7 +20,9 @@ We need `sort-dist-[version].jar` and `sort-connector-[database]-[version].jar`.
 
 We can choose required connector jar by our data integration requirement.    
 
-We can [download](https://inlong.apache.org/download/main) jar bundle. 
+We can [download](https://inlong.apache.org/download/main) `sort-dist-[version].jar` from `inlong-sort` of `apache-inlong-[version]-bin.tar.gz`.  
+
+We can [download](https://inlong.apache.org/download/main) `sort-connector-[database]-[version].jar` from `apache-inlong-[version]-sort-connectors.tar.gz`.
 
 We can put required jars into under `FLINK_HOME/lib/` after download.
 
@@ -33,7 +35,7 @@ Example：
 --sql.script.file /YOUR_SQL_SCRIPT_DIR/mysql-to-postgresql.sql
 ```
 
-## Necessary configurations
+## Configuration
 `/YOUR_SQL_SCRIPT_DIR/mysql-to-postgresql.sql` is a sql script file includes multi Flink SQL statements that can be separated by semicolon.  
 Statement can support `CREATE TABLE`, `CRETAE VIEW`, `INSERT INTO`. We can write sql to do data integration.  
 
