@@ -8,7 +8,7 @@ sidebar_position: 7
 MongoDB CDC 连接器允许从 MongoDB 读取快照数据和增量数据。本文档介绍如何设置 MongoDB CDC 连接器以对 MongoDB 运行 SQL 查询。
 
 ## 支持的版本
-| Extract节点                     | 版本                                          |
+| Extract 节点                     | 版本                                          |
 | ------------------------------- | --------------------------------------------- |
 | [mongodb-cdc](./mongodb-cdc.md) | [MongoDB](https://www.mongodb.com/): `>=` 3.6 |
 
