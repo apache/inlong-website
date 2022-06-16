@@ -33,7 +33,7 @@ In order to setup the MongoDB CDC connector, the following table provides depend
 
 - MongoDB version
 
-  MongoDB version >= 3.6
+  MongoDB version \>= 3.6
   We use [change streams](https://docs.mongodb.com/manual/changeStreams/) feature (new in version 3.6) to capture change data.
 
 - Cluster Deployment
@@ -188,8 +188,8 @@ CREATE TABLE `mysql_extract_node` (
 | BinData                                                      | BYTES                                                        |
 | Object                                                       | ROW                                                          |
 | Array                                                        | ARRAY                                                        |
-| DBPointer                                                    | ROW<\$ref STRING, \$id STRING>                               |
-| [GeoJSON](https://docs.mongodb.com/manual/reference/geojson/) | Point : ROW<type STRING, coordinates ARRAY\<DOUBLE>> Line : ROW<type STRING, coordinates ARRAY<ARRAY\< DOUBLE>>> ... |
+| DBPointer                                                    | ROW\<\$ref STRING, \$id STRING\>                               |
+| [GeoJSON](https://docs.mongodb.com/manual/reference/geojson/) | Point : ROW\<type STRING, coordinates ARRAY\<DOUBLE\>\> Line : ROW\<type STRING, coordinates ARRAY\<ARRAY\< DOUBLE\>\>\> ... |
 
 
 

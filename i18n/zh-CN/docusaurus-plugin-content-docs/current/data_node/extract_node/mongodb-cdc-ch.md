@@ -18,7 +18,7 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 
 ### Maven依赖
 
-```
+```xml
 <dependency>
   <groupId>com.ververica</groupId>
   <artifactId>flink-connector-mongodb-cdc</artifactId>
@@ -33,7 +33,7 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 
 - MongoDB版本
 
-  MongoDB 版本 >= 3.6
+  MongoDB 版本 \>= 3.6
   我们使用[更改流](https://docs.mongodb.com/manual/changeStreams/)功能（3.6 版中的新功能）来捕获更改数据。
 
 - 集群部署
@@ -118,15 +118,15 @@ TODO:将会支持
 | ------------------------- | ------------ | ---------- | -------- | ------------------------------------------------------------ |
 | connector                 | 必须         | (none)     | String   | 指定要使用的连接器，这里应该是`mongodb-cdc`.                 |
 | hosts                     | 必须         | (none)     | String   | MongoDB 服务器的主机名和端口对的逗号分隔列表。例如。`localhost:27017,localhost:27018` |
-| username                  | 可选         | (none)     | String   | 连接到 MongoDB 时要使用的数据库用户的名称。<br/>仅当 MongoDB 配置为使用身份验证时才需要这样做。 |
-| password                  | 可选         | (none)     | String   | 连接 MongoDB 时使用的密码。<br/>仅当 MongoDB 配置为使用身份验证时才需要这样做。 |
+| username                  | 可选         | (none)     | String   | 连接到 MongoDB 时要使用的数据库用户的名称。仅当 MongoDB 配置为使用身份验证时才需要这样做。 |
+| password                  | 可选         | (none)     | String   | 连接 MongoDB 时使用的密码。仅当 MongoDB 配置为使用身份验证时才需要这样做。 |
 | database                  | 必须         | (none)     | String   | 要监视更改的数据库的名称。                                   |
 | collection                | 必须         | (none)     | String   | 数据库中要监视更改的集合的名称。                             |
-| connection.options        | 可选         | (none)     | String   | MongoDB的 & 分隔[连接选项](https://docs.mongodb.com/manual/reference/connection-string/#std-label-connections-connection-options)。例如。<br/>`replicaSet=test&connectTimeoutMS=300000` |
+| connection.options        | 可选         | (none)     | String   | MongoDB的 & 分隔[连接选项](https://docs.mongodb.com/manual/reference/connection-string/#std-label-connections-connection-options)。例如。`replicaSet=test&connectTimeoutMS=300000` |
 | errors.tolerance          | 可选         | none       | String   | 如果遇到错误，是否继续处理消息。接受`none`或`all`。设置为`none`时，连接器会报告错误并在遇到错误时阻止对其余记录的进一步处理。设置为`all`时，连接器会静默忽略任何错误消息。 |
 | errors.log.enable         | 可选         | true       | Boolean  | 是否应将失败操作的详细信息写入日志文件。                     |
 | copy.existing             | 可选         | true       | Boolean  | 是否从源集合中复制现有数据。                                 |
-| copy.existing.pipeline    | 可选         | (none)     | String   | 一组 JSON 对象，描述在复制现有数据时要运行的管道操作。<br/>这可以提高复制管理器对索引的使用，并使复制更有效。例如。`[{"$match": {"closed": "false"}}]`确保仅复制已关闭字段设置为 false 的文档。 |
+| copy.existing.pipeline    | 可选         | (none)     | String   | 一组 JSON 对象，描述在复制现有数据时要运行的管道操作。这可以提高复制管理器对索引的使用，并使复制更有效。例如。`[{"$match": {"closed": "false"}}]`确保仅复制已关闭字段设置为 false 的文档。 |
 | copy.existing.max.threads | 可选         | 处理器数量 | Integer  | 执行数据复制时使用的线程数。                                 |
 | copy.existing.queue.size  | 可选         | 16000      | Integer  | 执行数据复制时使用的线程数。                                 |
 | poll.max.batch.size       | 可选         | 1000       | Integer  | 轮询新数据时，单个批次中包含的最大更改流文档数。             |
@@ -141,7 +141,7 @@ TODO:将会支持
 | --------------- | ------------------------- | ------------------------------------------------------------ |
 | database_name   | STRING NOT NULL           | 包含该行的数据库的名称。                                     |
 | collection_name | STRING NOT NULL           | 包含该行的集合的名称。                                       |
-| op_ts           | TIMESTAMP_LTZ(3) NOT NULL | 它指示在数据库中进行更改的时间。<br/>如果记录是从表的快照而不是更改流中读取的，则该值始终为 0。 |
+| op_ts           | TIMESTAMP_LTZ(3) NOT NULL | 它指示在数据库中进行更改的时间。如果记录是从表的快照而不是更改流中读取的，则该值始终为 0。 |
 
 
 扩展的 CREATE TABLE 示例演示了公开这些元数据字段的语法：
@@ -187,7 +187,6 @@ CREATE TABLE `mysql_extract_node` (
 | BinData                                                      | BYTES                                                        |
 | Object                                                       | ROW                                                          |
 | Array                                                        | ARRAY                                                        |
-| DBPointer                                                    | ROW<\$ref STRING, \$id STRING>                               |
-| [GeoJSON](https://docs.mongodb.com/manual/reference/geojson/) | Point : ROW<type STRING, coordinates ARRAY\<DOUBLE>> Line : ROW<type STRING, coordinates ARRAY<ARRAY\< DOUBLE>>> ... |
-
+| DBPointer                                                    | ROW\<\$ref STRING, \$id STRING\>                               |
+| [GeoJSON](https://docs.mongodb.com/manual/reference/geojson/) | Point : ROW\<type STRING, coordinates ARRAY\<DOUBLE\>\> Line : ROW\<type STRING, coordinates ARRAY\<ARRAY\< DOUBLE\>\>\> ... |
 
