@@ -2,32 +2,35 @@
 title: 总览
 ---
 
-## 1 Apache InLong Manager介绍
+## 1 InLong Manager 介绍
 
-+ 目标定位：Apache inlong 定位为一站式海量数据集成框架，提供完整覆盖大数据接入场景从数据采集、传输、分拣、落地的技术能力。
+- 目标定位：Apache InLong 定位为一站式海量数据集成框架，提供大数据从采集 -> 传输 -> 分拣 -> 落地的技术能力。
 
-+ 平台价值：用户可以通过平台中自带的管理、配置平台完成任务的配置、管理、指标监控，同时通过平台在流程中各主要环节提供SPI扩展点按需要实现自定义逻辑。保证功能稳定高效的同时降低平台使用门槛。
+- 平台价值：用户可以通过平台中的管理、配置平台完成任务的配置、管理以及指标的监控，同时通过平台提供的插件化扩展能力，按需实现自定义的扩展。
 
-+ Apache InLong Manager作为整个数据集成平台面向用户的统一管理入口，用户登录后会根据对应角色提供不同的功能权限以及数据权限。页面提供平台各基础集群（如mq、分拣）维护入口，可随时查看维护基本信息、容量规划调整。同时业务用户可完成数据接入任务的创建、修改维护、指标查看、接入对账等功能。其对应的后台服务在用户创建并启动任务的同时会与底层各模块进行数据交互，将各模块需要执行的任务通过合理的方式下发。起到协调串联后台业务执行流程的作用。
+- InLong Manager 是 Apache InLong 项目的统一管理平台，平台提供各基础配置（如数据流配置、消费配置、集群管理等）的维护入口，用户可创建数据采集任务、查看指标数据等。 
 
 ## 2 Architecture
 
 ![](img/inlong-manager.png)
 
-
 ## 3 模块分工
 
 | 模块 | 职责 |
 | :-----| :---- |
-| manager-common | 模块公共代码，入异常定义，工具类，枚举等 |
+| manager-common | 模块公共代码，如异常定义、工具类、枚举等 |
 | manager-dao | 数据库操作 |
 | manager-service | 业务逻辑层 |
-| manager-web | 前端交互对应接口 |
-| manager-workflow-engine | 工作流引擎|
+| manager-workflow | 工作流服务 |
+| manager-plugins | Sort 插件服务 |
+| manager-web | 前端交互接口层 |
+| manager-client | 客户端服务 |
+| manager-client-examples | 客户端使用示例 |
+| manager-client-tools | 客户端命令行工具 |
 
 ## 4 系统使用流程
-![](img/interactive.jpg)
 
+![](img/interactive.jpg)
 
 ## 5 数据模型
 ![](img/datamodel.jpg)
