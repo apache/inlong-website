@@ -148,7 +148,7 @@ Description of important module division:
 | :---------------: | :----------------------------------------------------------: |
 |  FlinkSQLParser   | Used to generate flinksql core classes, including references to groupinfo |
 |     GroupInfo     | The internal abstraction of sort for inlong group is used to encapsulate the synchronization related information of the entire inlong group, including the reference to list\<streaminfo\> |
-|    StreamInfo     | The internal abstraction of sort to inlong stream is used to encapsulate inlong stream synchronization related information, including references to list\<node>, list\<noderelation\> |
+|    StreamInfo     | The internal abstraction of sort to inlong stream is used to encapsulate inlong stream synchronization related information, including references to list\<node\>, list\<noderelation\> |
 |       Node        | The top-level interface of the synchronization node. Its subclass implementation is mainly used to encapsulate the data of the synchronization data source and the transformation node |
 |    ExtractNode    |      Data extract node abstraction, inherited from node      |
 |     LoadNode      |       Data load node abstraction, inherited from node        |
