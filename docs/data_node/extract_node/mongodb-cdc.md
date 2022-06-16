@@ -22,7 +22,7 @@ In order to setup the MongoDB CDC connector, the following table provides depend
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mongodb-cdc</artifactId>
-    <!-- Choose the version that suits your application -->
+    <!-- 选择适合你应用的版本 -->
     <version>inlong_version</version>
 </dependency>
 ```
