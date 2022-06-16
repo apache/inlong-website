@@ -38,7 +38,7 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 ./bin/start-cluster.sh
 ```
 
-Step.2 Start the flink SQL client.
+Step.2 Start the Flink SQL client.
 
 We’ve created a separate `flink-runtime` module in iceberg project to generate a bundled jar, which could be loaded by flink SQL client directly.
 
