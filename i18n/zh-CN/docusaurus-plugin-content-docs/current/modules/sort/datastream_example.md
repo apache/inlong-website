@@ -3,19 +3,29 @@ title: 数据流示例
 sidebar_position: 3
 ---
 
-# 示例
+## 示例
 
 为了更容易创建InLong-Sort作业，这里我们列出了一些数据流配置示例。  
 下面将介绍InLong-Sort的SQL、Dashboard、Manager客户端工具的使用。
 
-# 前置配置
+## 前置配置
 
-Step1. 示例只需要构建一个 Flink Standalone 单集群。[Flink Standalone Mode](https://nightlies.apache.org/flink/flink-docs-master/docs/deployment/resource-providers/standalone/overview/)
+请确定是否有以下环境：
+* JDK 1.8.x
+* Flink 1.13.5
+* MySQL
+* Kafka
+* Hadoop
+* Hive 3.x
 
-Step2. 安装 MySQL 及开启 binlog 能力。[MySQL Installation Guide](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) 和 [MySQL binlog](https://dev.mysql.com/doc/refman/5.7/en/replication-howto-masterbaseconfig.html)
+如果没有相关环境可参见以下安装步骤：
+
+Step1. 如果没有可用的 Flink 集群环境，为了运行示例只需要构建一个 Flink Standalone 单集群。[Flink Standalone Mode](https://nightlies.apache.org/flink/flink-docs-master/docs/deployment/resource-providers/standalone/overview/)
+
+Step2. 如果没有 MySQL 环境，需要安装 MySQL 及开启 binlog 能力。[MySQL Installation Guide](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) 和 [MySQL binlog](https://dev.mysql.com/doc/refman/5.7/en/replication-howto-masterbaseconfig.html)
 （关于开启 MySQL binlog 能力也可以参考 Inlong MySQL 抽取节点配置的文档说明。）
 
-Step3. 安装单集群 Kafka 和 Hadoop 单集群。[Kafka Installation Guide](https://kafka.apache.org/quickstart) 和 [Hadoop Installation Guide](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
+Step3. 本地如果没有 Kafka 或者 Hadoop 集群环境，需要安装单集群 Kafka 和 Hadoop 单集群。[Kafka Installation Guide](https://kafka.apache.org/quickstart) 和 [Hadoop Installation Guide](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
 
 Step4. 下载安装 Hive 及开启 Hive metastore  服务。[Hive Installation Guide](https://cwiki.apache.org/confluence/display/Hive//GettingStarted)
 
@@ -26,7 +36,9 @@ Step6. 把 sort-dist-[version].jar 和 MySQL,Kafka,Hive 的 connector jar 放到
 
 备注： 其中 sort-dist-[version].jar 在 inlong-sort 包中。 [inlong-distribution-(version)-incubating-bin.tar.gz](https://inlong.apache.org/download/main) 
 
-# 使用 SQL 方式
+## 使用 SQL API 方式
+
+示例构建了 MySQL --> Kafka --> Hive 的数据流，为了便于理解流程执行过程进行了拆解。
 
 ### 读 MySQL 写 Kafka 
 
@@ -145,10 +157,10 @@ INSERT INTO `user`
 ```
 备注：以上过程所有的 SQL 可以放在一个文件中提交执行。
 
-# 使用 Inlong Dashboard 方式
+## 使用 Inlong Dashboard 方式
 
 目前 Dashboard 支持文件采集同步的方式，以上数据源可视化配置方式正在开发中。
 
-# 使用 Manager Client Tools 方式
+## 使用 Manager Client Tools 方式
 
 TODO: 未来发布的版本将会支持。
