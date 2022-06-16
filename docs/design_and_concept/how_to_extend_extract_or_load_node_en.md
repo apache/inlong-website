@@ -5,9 +5,9 @@ sidebar_position: 3
 
 ## Overview
 
-InLong-Sort is known as a real-time ETL system.  Currently, supported extract or load includes FileSystemExtractNode, KafkaExtractNode, MongoExtractNode, MySqlExtractNode, OracleExtractNode , PostgresExtractNode , PulsarExtractNode, SqlServerExtractNode, ClickHouseLoadNode, ElasticsearchLoadNode, FileSystemLoadNode, GreenplumLoadNode, HbaseLoadNode, HiveLoadNode, IcebergLoadNode, KafkaLoadNode, MySqlLoadNode, OracleLoadNode, PostgresLoadNode, SqlServerLoadNode, TDSQLPostgresLoadNode,  etc。InLong-Sort is an ETL solution based on Flink SQL,The powerful expressive power of Flink SQL brings high scalability and flexibility. Basically, the semantics supported by Flink SQL are supported by InLong-Sort。In some scenarios, when the built-in functions of Flink SQL do not meet the requirements, they can also be extended through various UDFs in InLong-Sort. At the same time, it will be easier for those who have used SQL, especially Flink SQL, to get started.
+InLong-Sort is known as a real-time ETL system. Currently, supported extract or load includes FileSystemExtractNode, KafkaExtractNode, MongoExtractNode, MySqlExtractNode, OracleExtractNode , PostgresExtractNode , PulsarExtractNode, SqlServerExtractNode, ClickHouseLoadNode, ElasticsearchLoadNode, FileSystemLoadNode, GreenplumLoadNode, HbaseLoadNode, HiveLoadNode, IcebergLoadNode, KafkaLoadNode, MySqlLoadNode, OracleLoadNode, PostgresLoadNode, SqlServerLoadNode, TDSQLPostgresLoadNode, etc. InLong-Sort is an ETL solution based on Flink SQL, the powerful expressive power of Flink SQL brings high scalability and flexibility. Basically, the semantics supported by Flink SQL are supported by InLong-Sort. In some scenarios, when the built-in functions of Flink SQL do not meet the requirements, they can also be extended through various UDFs in InLong-Sort. At the same time, it will be easier for those who have used SQL, especially Flink SQL, to get started.
 
-This article describes how to extend a new source (abstracted as extract node in inlong) or a new sink (abstracted as load node in inlong) in InLong-Sort. After understanding the InLong-Sort architecture, you can understand how the source corresponds to the extract node, and how the sink corresponds to the load node. The architecture of inlong sort can be represented by UML object relation diagram as: 
+This article describes how to extend a new source (abstracted as extract node in inlong) or a new sink (abstracted as load node in inlong) in InLong-Sort. After understanding the InLong-Sort architecture, you can understand how the source corresponds to the extract node, and how the sink corresponds to the load node. The architecture of inlong sort can be represented by UML object relation diagram as:
 
 ![sort_UML](img/sort_uml.png)
 
@@ -18,7 +18,7 @@ The concepts of each component are:
 | **Group**             | data flow group, including multiple data flows, one group represents one data access |
 | **Stream**            | data flow, a data flow has a specific flow direction         |
 | **GroupInfo**         | encapsulation of data flow in sort. a groupinfo can contain multiple dataflowinfo |
-| **StreamInfo**        | abstract of data flow in sort, including various sources, transformations, destinations, etc. of the data flow |
+| **StreamInfo**        | abstract of data flow in sort, including various sources, transformations, destinations, etc. |
 | **Node**              | abstraction of data source, data transformation and data destination in data synchronization |
 | **ExtractNode**       | source-side abstraction for data synchronization             |
 | **TransformNode**     | transformation process abstraction of data synchronization   |
@@ -33,8 +33,8 @@ The concepts of each component are:
 
 To extend the extract node or load node, you need to do the following:
 
-- Inherit the node class (such as MyExtractNode) and build specific extract or load usage logic; 
-- In a specific node class (such as MyExtractNode), specify the corresponding Flink connector; 
+- Inherit the node class (such as MyExtractNode) and build specific extract or load usage logic;
+- In a specific node class (such as MyExtractNode), specify the corresponding Flink connector;
 - Use specific node classes in specific ETL implementation logic (such as MyExtractNode)
 
 In the second step, you can use the existing flick connector or extend it yourself. How to extend the flink connector, please refer to the official flink documentation[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors).
@@ -54,18 +54,17 @@ public class MongoExtractNode extends ExtractNode implements Serializable {
     @JsonInclude(Include.NON_NULL)
     @JsonProperty("primaryKey")
     private String primaryKey;
-		...
+    ...
 
     @JsonCreator
-    public MongoExtractNode(@JsonProperty("id") String id,
-                           ...) { ... }
+    public MongoExtractNode(@JsonProperty("id") String id, ...) { ... }
 
     @Override
     public Map<String, String> tableOptions() {
         Map<String, String> options = super.tableOptions();
-      	// configure the specified connector, here is mongodb-cdc
+        // configure the specified connector, here is mongodb-cdc
         options.put("connector", "mongodb-cdc");
-      	...
+        ...
         return options;
     }
 }
@@ -89,13 +88,13 @@ public abstract class ExtractNode implements Node{...}
 public interface Node {...}
 ```
 
-**Step 3**：Expand the Sort connector and check whether the corresponding connector already exists in the (`/incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`) directory. If you haven't already, you need to refer to the official flink documentation [DataStream Connectors](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) to extend , directly call the existing flink-connector (such as`incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`) or implement the related connector by yourself.
+**Step 3**：Expand the Sort connector and check whether the corresponding connector already exists in the (`/incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`) directory. If you haven't already, you need to refer to the official flink documentation [DataStream Connectors](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) to extend, directly call the existing flink-connector (such as`incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`) or implement the related connector by yourself.
 
 ## Extend a new load node
 
 There are three steps to extend an LoadNode: 
 
-**Step 1**：Inherit the LoadNode class,the location of the class is：`incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java`, specify the connector in the implemented LoadNode.
+**Step 1**：Inherit the LoadNode class, the location of the class is `incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java`, specify the connector in the implemented LoadNode.
 
 ```java
 // Inherit LoadNode class and implement specific classes, such as KafkaLoadNode
@@ -107,26 +106,27 @@ public class KafkaLoadNode extends LoadNode implements Serializable {
     @Nonnull
     @JsonProperty("topic")
     private String topic;
-  	...
+    ...
 
     @JsonCreator
-    public KafkaLoadNode(@Nonnull @JsonProperty("topic") String topic,
-                        ...) {...}
+    public KafkaLoadNode(@Nonnull @JsonProperty("topic") String topic, ...) {...}
 
-  // configure and use different connectors according to different conditions
+    // configure and use different connectors according to different conditions
     @Override
     public Map<String, String> tableOptions() {
       ...
         if (format instanceof JsonFormat || format instanceof AvroFormat || format instanceof CsvFormat) {
             if (StringUtils.isEmpty(this.primaryKey)) {
-                options.put("connector", "kafka");   // kafka connector
+                // kafka connector
+                options.put("connector", "kafka");
                 options.putAll(format.generateOptions(false));
             } else {
                 options.put("connector", "upsert-kafka"); // upsert-kafka connector
                 options.putAll(format.generateOptions(true));
             }
         } else if (format instanceof CanalJsonFormat || format instanceof DebeziumJsonFormat) {
-            options.put("connector", "kafka-inlong");	 // kafka-inlong connector
+            // kafka-inlong connector
+            options.put("connector", "kafka-inlong");
             options.putAll(format.generateOptions(false));
         } else {
             throw new IllegalArgumentException("kafka load Node format is IllegalArgument");
@@ -156,20 +156,20 @@ public interface Node {...}
 
 **Step 3**：Extend the Sort connector, Kafka's sort connector is in incubator-inlong/inlong-sort/sort-connectors/kafka.
 
-## Bundle extract node and load node  into InLong-Sort
+## Bundle extract node and load node into InLong-Sort
 
 To integrate extract and load into the InLong-Sort mainstream, you need to implement the semantics mentioned in the overview section: group, stream, node, etc. The entry class of InLong-sort is in `inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java`. How to integrate extract and load into InLong-Sort can refer to the following ut. First, build the corresponding extractnode and loadnode, then build noderelation, streaminfo and groupinfo, and finally use FlinkSqlParser to execute.
 
 ```java
 public class MongoExtractToKafkaLoad extends AbstractTestBase {
 
-  	// create MongoExtractNode
+    // create MongoExtractNode
     private MongoExtractNode buildMongoNode() {
         List<FieldInfo> fields = Arrays.asList(new FieldInfo("name", new StringFormatInfo()), ...);
         return new MongoExtractNode(..., fields, ...);
     }
 
-  	// create KafkaLoadNode
+    // create KafkaLoadNode
     private KafkaLoadNode buildAllMigrateKafkaNode() {
         List<FieldInfo> fields = Arrays.asList(new FieldInfo("name", new StringFormatInfo()), ...);
         List<FieldRelation> relations = Arrays.asList(new FieldRelation(new FieldInfo("name", new StringFormatInfo()), ...), ...);
@@ -177,7 +177,7 @@ public class MongoExtractToKafkaLoad extends AbstractTestBase {
         return new KafkaLoadNode(..., fields, relations, csvFormat, ...);
     }
 
-  	// create NodeRelation
+    // create NodeRelation
     private NodeRelation buildNodeRelation(List<Node> inputs, List<Node> outputs) {
         List<String> inputIds = inputs.stream().map(Node::getId).collect(Collectors.toList());
         List<String> outputIds = outputs.stream().map(Node::getId).collect(Collectors.toList());
@@ -189,7 +189,7 @@ public class MongoExtractToKafkaLoad extends AbstractTestBase {
     public void testMongoDbToKafka() throws Exception {
         EnvironmentSettings settings = EnvironmentSettings. ... .build();
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-      	...
+        ...
         StreamTableEnvironment tableEnv = StreamTableEnvironment.create(env, settings);
         Node inputNode = buildMongoNode();
         Node outputNode = buildAllMigrateKafkaNode();
@@ -201,8 +201,3 @@ public class MongoExtractToKafkaLoad extends AbstractTestBase {
     }
 }
 ```
-
-
-
-
-
