@@ -10,7 +10,7 @@ The MongoDB CDC connector allows for reading snapshot data and incremental data 
 ## Supported Version
 | Extract Node                    | Version                                      |
 | ------------------------------- | -------------------------------------------- |
-| [mongodb-cdc](./mongodb-cdc.md) | [MongoDB](https://www.mongodb.com/): \>= 3.6 |
+| [mongodb-cdc](./mongodb-cdc.md) | [MongoDB](https://www.mongodb.com/): `>=` 3.6 |
 
 ## Dependencies
 
@@ -18,12 +18,12 @@ In order to setup the MongoDB CDC connector, the following table provides depend
 
 ### Maven dependency
 
-```
+```xml
 <dependency>
-  <groupId>com.ververica</groupId>
-  <artifactId>flink-connector-mongodb-cdc</artifactId>
-  <!-- the dependency is available only for stable releases. -->
-  <version>2.1.1</version>
+    <groupId>org.apache.inlong</groupId>
+    <artifactId>sort-connector-mongodb-cdc</artifactId>
+    <!-- Choose the version that suits your application -->
+    <version>inlong_version</version>
 </dependency>
 ```
 

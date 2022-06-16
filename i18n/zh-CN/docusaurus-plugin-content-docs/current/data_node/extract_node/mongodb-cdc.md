@@ -3,14 +3,14 @@ title: MongoDB-CDC
 sidebar_position: 7
 ---
 
-## MongoDB-CDC Extract节点
+## MongoDB-CDC Extract 节点
 
 MongoDB CDC 连接器允许从 MongoDB 读取快照数据和增量数据。本文档介绍如何设置 MongoDB CDC 连接器以对 MongoDB 运行 SQL 查询。
 
 ## 支持的版本
-| Extract节点                     | 版本                                         |
-| ------------------------------- | -------------------------------------------- |
-| [mongodb-cdc](./mongodb-cdc.md) | [MongoDB](https://www.mongodb.com/): \>= 3.6 |
+| Extract节点                     | 版本                                          |
+| ------------------------------- | --------------------------------------------- |
+| [mongodb-cdc](./mongodb-cdc.md) | [MongoDB](https://www.mongodb.com/): `>=` 3.6 |
 
 ## 依赖项
 
@@ -20,10 +20,10 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 
 ```xml
 <dependency>
-  <groupId>com.ververica</groupId>
-  <artifactId>flink-connector-mongodb-cdc</artifactId>
-  <!-- the dependency is available only for stable releases. -->
-  <version>2.1.1</version>
+    <groupId>org.apache.inlong</groupId>
+    <artifactId>sort-connector-mongodb-cdc</artifactId>
+    <!-- Choose the version that suits your application -->
+    <version>inlong_version</version>
 </dependency>
 ```
 
@@ -68,11 +68,11 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
   });
   ```
 
-## 如何创建 MongoDB Extract节点
+## 如何创建 MongoDB Extract 节点
 
-### SQL API的使用方法
+### SQL API 用法
 
-这个例子展示了如何使用`Flink SQL` 创建一个MongoDB Extract节点:
+这个例子展示了如何使用`Flink SQL` 创建一个 MongoDB Extract 节点:
 
 ```sql
 -- Set checkpoint every 3000 milliseconds                       
@@ -102,17 +102,17 @@ Flink SQL> SELECT * FROM mongodb_extract_node;
 
 **注意**
 
-MongoDB 的更改事件记录在消息之前没有更新。所以，我们只能将其转换为 Flink 的 UPSERT 变更日志流。upsert 流需要唯一键，因此我们必须声明`_id`为主键。我们不能将其他列声明为主键，因为删除操作不包含除`_id`和`sharding key` 之外的键和值。
+MongoDB 的更改事件记录在消息之前没有更新。所以，我们只能将其转换为 Flink 的 UPSERT 变更日志流。UPSERT 流需要唯一键，因此我们必须声明`_id`为主键。我们不能将其他列声明为主键，因为删除操作不包含除`_id`和`sharding key` 之外的键和值。
 
-### 在 InLong Dashboard的使用方法
+### InLong Dashboard 用法
 
 TODO: 将会支持
 
-### 在InLong Manager客户端的使用方法
+### InLong Manager 用法
 
 TODO:将会支持
 
-## MongoDB Extract节点选项
+## MongoDB Extract 节点选项
 
 | **选项**                  | **是否必须** | **默认**   | **类型** | **描述**                                                     |
 | ------------------------- | ------------ | ---------- | -------- | ------------------------------------------------------------ |
@@ -169,7 +169,7 @@ CREATE TABLE `mysql_extract_node` (
 
 ## 数据类型映射
 
-| BSON类型                                                     | Flink SQL类型                                                |
+| BSON 类型                                                    | Flink SQL 类型                                                |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 |                                                              | TINYINT                                                      |
 |                                                              | SMALLINT                                                     |
