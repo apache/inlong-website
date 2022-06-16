@@ -148,7 +148,7 @@ TODO:将会支持
 ```sql
 CREATE TABLE `mysql_extract_node` (
     db_name STRING METADATA FROM 'database_name' VIRTUAL,
-    table_name STRING METADATA  FROM 'table_name' VIRTUAL,
+    collection_name STRING METADATA  FROM 'collection_name' VIRTUAL,
     operation_ts TIMESTAMP_LTZ(3) METADATA FROM 'op_ts' VIRTUAL,
     _id STRING, // must be declared
     name STRING,
@@ -162,8 +162,8 @@ CREATE TABLE `mysql_extract_node` (
       'hostname' = 'YourHostname',
       'username' = 'YourUsername',
       'password' = 'YourPassword',
-      'database-name' = 'YourDatabase',
-      'table-name' = 'YourTable' 
+      'database' = 'YourDatabase',
+      'collection' = 'YourTable' 
 );
 ```
 
