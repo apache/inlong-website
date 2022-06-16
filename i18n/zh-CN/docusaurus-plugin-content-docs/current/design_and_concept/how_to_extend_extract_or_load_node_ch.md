@@ -5,9 +5,9 @@ sidebar_position: 3
 
 ## 总览
 
-InLong-Sort是一个ETL系统，当前支持的extract或load包括 FileSystemExtractNode ， KafkaExtractNode ， MongoExtractNode ， MySqlExtractNode ，OracleExtractNode ，PostgresExtractNode ，PulsarExtractNode  ，SqlServerExtractNode ，ClickHouseLoadNode ，ElasticsearchLoadNode  ，FileSystemLoadNode ，GreenplumLoadNode ，HbaseLoadNode ， HiveLoadNode ，IcebergLoadNode ，KafkaLoadNode ，MySqlLoadNode ， OracleLoadNode ，PostgresLoadNode ， SqlServerLoadNode ，TDSQLPostgresLoadNode 等。InLong-Sort是基于Flink SQL的ETL方案，Flink SQL强大的表达能力带来的高可扩展性、灵活性，基本上Flink SQL支持的语意，InLong-Sort都支持。在个别场景，Flink SQL 内置的函数不满足需求时，还可通过各种UDF来扩展。同时对于曾经使用过SQL尤其是使用过 Flink SQL 的人而言，会更容易上手。
+InLong-Sort是一个ETL系统，当前支持的extract或load包括 FileSystemExtractNode，KafkaExtractNode，MongoExtractNode，MySqlExtractNode，OracleExtractNode，PostgresExtractNode，PulsarExtractNode，SqlServerExtractNode，ClickHouseLoadNode ，ElasticsearchLoadNode，FileSystemLoadNode，GreenplumLoadNode，HbaseLoadNode，HiveLoadNode，IcebergLoadNode，KafkaLoadNode，MySqlLoadNode，OracleLoadNode，PostgresLoadNode，SqlServerLoadNode，TDSQLPostgresLoadNode等。InLong-Sort是基于Flink SQL的ETL方案，Flink SQL强大的表达能力带来的高可扩展性、灵活性，基本上Flink SQL支持的语意，InLong-Sort都支持。在个别场景，Flink SQL 内置的函数不满足需求时，还可通过各种UDF来扩展。同时对于曾经使用过SQL尤其是使用过 Flink SQL 的人而言，会更容易上手。
 
-本文介绍如何在 InLong-Sort 中扩展一个新的 source（在 InLong 中抽象为 Extract Node）或一个新的sink（在InLong中抽象为 Load Node ）。在弄清楚 InLong 的架构之后，就可以明白 Source 与 Extract Node 如何对应，sink与Load Node如何对应。InLong-Sort 的架构可以由UML对象关系图表示为：
+本文介绍如何在 InLong-Sort 中扩展一个新的 source（在 InLong 中抽象为 Extract Node）或一个新的 sink（在InLong中抽象为 Load Node ）。在弄清楚 InLong 的架构之后，就可以明白 Source 与 Extract Node 如何对应，sink与Load Node如何对应。InLong-Sort 的架构可以由UML对象关系图表示为：
 
 ![sort_uml](img/sort_uml.png)
 
