@@ -10,7 +10,7 @@ MongoDB CDC 连接器允许从 MongoDB 读取快照数据和增量数据。本�
 ## 支持的版本
 | Extract 节点                     | 版本                                          |
 | ------------------------------- | --------------------------------------------- |
-| [mongodb-cdc](./mongodb-cdc.md) | [MongoDB](https://www.mongodb.com/): `>=` 3.6 |
+| [MongoDB-CDC](./mongodb-cdc.md) | [MongoDB](https://www.mongodb.com/): &gt;= 3.6 |
 
 ## 依赖项
 
@@ -31,7 +31,7 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 
 ### 可用性
 
-- MongoDB版本
+- MongoDB 版本
 
   MongoDB 版本 \>= 3.6
   我们使用 [更改流](https://docs.mongodb.com/manual/changeStreams/)功能（3.6 版中的新功能）来捕获更改数据。
@@ -112,7 +112,7 @@ TODO: 未来会支持
 
 TODO: 未来会支持
 
-## MongoDB Extract 节点选项
+## MongoDB Extract 节点参数
 
 | **选项**                  | **是否必须** | **默认**   | **类型** | **描述**                                                     |
 | ------------------------- | ------------ | ---------- | -------- | ------------------------------------------------------------ |

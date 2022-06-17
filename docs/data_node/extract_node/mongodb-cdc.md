@@ -10,7 +10,7 @@ The MongoDB CDC connector allows for reading snapshot data and incremental data 
 ## Supported Version
 | Extract Node                    | Version                                      |
 | ------------------------------- | -------------------------------------------- |
-| [mongodb-cdc](./mongodb-cdc.md) | [MongoDB](https://www.mongodb.com/): `>=` 3.6 |
+| [MongoDB-CDC](./mongodb-cdc.md) | [MongoDB](https://www.mongodb.com/): &gt;= 3.6 |
 
 ## Dependencies
 
@@ -100,7 +100,7 @@ Flink SQL> CREATE TABLE mongodb_extract_node (
 Flink SQL> SELECT * FROM mongodb_extract_node;
 ```
 
-**Note that**
+**Note**
 
 MongoDB’s change event record doesn’t have update before message. So, we can only convert it to Flink’s UPSERT changelog stream. An upsert stream requires a unique key, so we must declare `_id` as primary key. We can’t declare other column as primary key, becauce delete operation do not contain’s the key and value besides `_id` and `sharding key`. 
 
