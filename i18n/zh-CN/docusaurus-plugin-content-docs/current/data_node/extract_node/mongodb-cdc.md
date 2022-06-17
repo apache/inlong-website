@@ -33,7 +33,7 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 
 - MongoDB 版本
 
-  MongoDB 版本 \>= 3.6
+  MongoDB 版本 &gt;= 3.6
   我们使用 [更改流](https://docs.mongodb.com/manual/changeStreams/)功能（3.6 版中的新功能）来捕获更改数据。
 
 - 集群部署

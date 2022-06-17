@@ -33,7 +33,7 @@ In order to setup the MongoDB CDC connector, the following table provides depend
 
 - MongoDB version
 
-  MongoDB version \>= 3.6
+  MongoDB version &gt;= 3.6
   We use [change streams](https://docs.mongodb.com/manual/changeStreams/) feature (new in version 3.6) to capture change data.
 
 - Cluster Deployment
