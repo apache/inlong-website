@@ -18,11 +18,11 @@ audit.proxys=127.0.0.1:10081
 ## run
 
 ```
-#By default, pulsar is used as the message middleware, and the dataproxy-pulsar.conf configuration file is loaded.
+# Default using Pulsar to cache data, and the dataproxy-pulsar.conf configuration file is loaded.
 bash +x bin/dataproxy-start.sh
-or
+# or
 bash +x bin/dataproxy-start.sh pulsar
-# If using Inlong TubeMQ
+# If using Inlong TubeMQ to cache data
 # bash +x bin/dataproxy-start.sh tube
 ```
 	
@@ -35,20 +35,21 @@ telnet 127.0.0.1 46801
 ## Add DataProxy configuration to InLong-Manager
 
 After installing the DataProxy, you need to add the IP of the DataProxy service into the InLong-Manager.
-Modify the following information and execute command:
-```bash
-curl --header "Content-Type: application/json" --request POST http://your_manager_host:8083/api/inlong/manager/openapi/cluster/save --data '
-{
-   "name": "default_dataproxy",
-   "type": "DATA_PROXY",
-   "ip": "your_dataproxy_ip",
-   "port": 46801,
-   "mqSetName": "default_set_name",
-   "inCharges": "admin",
-   "creator": "admin"
-}
-'
-```
-- Please modify the `ip` field to the real IP (or hostname) of the DataProxy, the format is `node1:port1,node2:port2`, and separate them with `,`.
 
-- If all nodes in the `ip` field have the same port, you can use `node1,node2` and modify the `port` field to the default port for those nodes.
+Open the Inlong-Dashboard page (the default is <http://127.0.0.1>), and select to add a DataProxy cluster on the [Clusters] tab:
+
+![](img/dp_cluster.png)
+
+Click the [Create] button, and fill in the cluster name, cluster label, and responsible person in the pop-up box to save.
+
+> Note: [Cluster Tag] is a logical concept. Tags with the same name will be regarded as the same cluster.
+>
+> For example, the DataProxy cluster and the Pulsar cluster with the same cluster tag belong to the same cluster.
+
+Then add nodes to this DataProxy cluster - a DataProxy cluster can support adding multiple nodes:
+
+![](img/dp_cluster_node.png)
+
+Just fill in the IP and port of the DataProxy node.
+
+![](img/dp_cluster_node_save.png)
