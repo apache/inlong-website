@@ -22,7 +22,7 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mongodb-cdc</artifactId>
-    <!-- Choose the version that suits your application -->
+    <!-- 选择你使用的 inlong 的版本 -->
     <version>inlong_version</version>
 </dependency>
 ```
@@ -34,15 +34,15 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 - MongoDB版本
 
   MongoDB 版本 \>= 3.6
-  我们使用[更改流](https://docs.mongodb.com/manual/changeStreams/)功能（3.6 版中的新功能）来捕获更改数据。
+  我们使用 [更改流](https://docs.mongodb.com/manual/changeStreams/)功能（3.6 版中的新功能）来捕获更改数据。
 
 - 集群部署
 
-  [需要副本集](https://docs.mongodb.com/manual/replication/)或[分片集群](https://docs.mongodb.com/manual/sharding/)。
+  需要 [副本集](https://docs.mongodb.com/manual/replication/)或 [分片集群](https://docs.mongodb.com/manual/sharding/)。
 
 - 存储引擎
 
-  [需要WiredTiger](https://docs.mongodb.com/manual/core/wiredtiger/#std-label-storage-wiredtiger)存储引擎。
+  需要 [WiredTiger](https://docs.mongodb.com/manual/core/wiredtiger/#std-label-storage-wiredtiger)存储引擎。
 
 - [副本集协议版本](https://docs.mongodb.com/manual/reference/replica-configuration/#mongodb-rsconf-rsconf.protocolVersion)
 
@@ -51,19 +51,19 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 
 - 特权
 
-  `changeStream`MongoDB Kafka 连接器`read`需要权限。
+  `changeStream` MongoDB Kafka 连接器 `read` 需要权限。
 
   您可以使用以下示例进行简单授权。
-  更详细的授权请参考[MongoDB 数据库用户角色](https://docs.mongodb.com/manual/reference/built-in-roles/#database-user-roles)。
+  更详细的授权请参考 [MongoDB 数据库用户角色](https://docs.mongodb.com/manual/reference/built-in-roles/#database-user-roles)。
 
-  ```json
+  ```shell
   use admin;
   db.createUser({
     user: "flinkuser",
     pwd: "flinkpw",
     roles: [
-      { role: "read", db: "admin" }, //read role includes changeStream privilege 
-      { role: "readAnyDatabase", db: "admin" } //for snapshot reading
+      { role: "read", db: "admin" }, // read role includes changeStream privilege 
+      { role: "readAnyDatabase", db: "admin" } // for snapshot reading
     ]
   });
   ```
@@ -72,7 +72,7 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 
 ### SQL API 用法
 
-这个例子展示了如何使用`Flink SQL` 创建一个 MongoDB Extract 节点:
+这个例子展示了如何使用 `Flink SQL` 创建一个 MongoDB Extract 节点:
 
 ```sql
 -- Set checkpoint every 3000 milliseconds                       
@@ -102,15 +102,15 @@ Flink SQL> SELECT * FROM mongodb_extract_node;
 
 **注意**
 
-MongoDB 的更改事件记录在消息之前没有更新。所以，我们只能将其转换为 Flink 的 UPSERT 变更日志流。UPSERT 流需要唯一键，因此我们必须声明`_id`为主键。我们不能将其他列声明为主键，因为删除操作不包含除`_id`和`sharding key` 之外的键和值。
+MongoDB 的更改事件记录在消息之前没有更新。所以，我们只能将其转换为 Flink 的 UPSERT 变更日志流。UPSERT 流需要唯一键，因此我们必须声明 `_id` 为主键。我们不能将其他列声明为主键，因为删除操作不包含除 `_id` 和 `sharding key` 之外的键和值。
 
 ### InLong Dashboard 用法
 
-TODO: 将会支持
+TODO: 未来会支持
 
 ### InLong Manager 用法
 
-TODO:将会支持
+TODO: 未来会支持
 
 ## MongoDB Extract 节点选项
 
