@@ -22,7 +22,7 @@ In order to setup the MongoDB CDC connector, the following table provides depend
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mongodb-cdc</artifactId>
-    <!-- Choose the version that suits your application -->
+    <!-- select inlong version -->
     <version>inlong_version</version>
 </dependency>
 ```
@@ -56,14 +56,14 @@ In order to setup the MongoDB CDC connector, the following table provides depend
   You can use the following example for simple authorization.
   For more detailed authorization, please refer to [MongoDB Database User Roles](https://docs.mongodb.com/manual/reference/built-in-roles/#database-user-roles).
 
-  ```json
+  ```shell
   use admin;
   db.createUser({
     user: "flinkuser",
     pwd: "flinkpw",
     roles: [
-      { role: "read", db: "admin" }, //read role includes changeStream privilege 
-      { role: "readAnyDatabase", db: "admin" } //for snapshot reading
+      { role: "read", db: "admin" }, // read role includes changeStream privilege 
+      { role: "readAnyDatabase", db: "admin" } // for snapshot reading
     ]
   });
   ```
