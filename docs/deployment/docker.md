@@ -14,7 +14,7 @@ Requirements:
 
 ## Build
 
-you can refer to [How to Build](quick_start/how_to_build.md).
+You can refer to [How to Build](quick_start/how_to_build.md).
 
 ## Deploy
 
