@@ -22,7 +22,7 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 <dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mongodb-cdc</artifactId>
-    <!-- Choose the version that suits your application -->
+    <!-- 选择适合你应用的版本 -->
     <version>inlong_version</version>
 </dependency>
 ```
