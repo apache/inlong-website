@@ -18,16 +18,16 @@ InLong Sort can manage metadata through InLong Manager.
 |              | MongoDB                                    | 
 |              | PostgreSQL                                 | 
 | Transform    | String Split                               | 
-| xx           | String Regular Replace                     | 
-| xx           | String Regular Replace First Matched Value | 
-| xx           | Data Filter                                |
-| xx           | Data Distinct                              | 
-| xx           | Regular Join                               | 
+|              | String Regular Replace                     | 
+|              | String Regular Replace First Matched Value | 
+|              | Data Filter                                |
+|              | Data Distinct                              | 
+|              | Regular Join                               | 
 | Load Node    | Hive                                       | 
-| xx           | Kafka                                      | 
-| xx           | HBase                                      | 
-| xx           | ClickHouse                                 | 
-| xx           | Iceberg                                    | 
-| xx           | PostgreSQL                                 | 
-| xx           | HDFS                                       | 
-| xx           | TDSQL Postgres                             | 
+|              | Kafka                                      | 
+|              | HBase                                      | 
+|              | ClickHouse                                 | 
+|              | Iceberg                                    | 
+|              | PostgreSQL                                 | 
+|              | HDFS                                       | 
+|              | TDSQL Postgres                             | 

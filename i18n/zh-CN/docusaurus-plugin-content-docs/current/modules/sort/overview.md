@@ -17,17 +17,17 @@ InLong Sort 可以通过 InLong Manager 进行系统元数据的管理。
 |              | MongoDB                                    | 
 |              | PostgreSQL                                 | 
 | Transform    | String Split                               | 
-| xx           | String Regular Replace                     | 
-| xx           | String Regular Replace First Matched Value | 
-| xx           | Data Filter                                |
-| xx           | Data Distinct                              | 
-| xx           | Regular Join                               | 
+|              | String Regular Replace                     | 
+|              | String Regular Replace First Matched Value | 
+|              | Data Filter                                |
+|              | Data Distinct                              | 
+|              | Regular Join                               | 
 | Load Node    | Hive                                       | 
-| xx           | Kafka                                      | 
-| xx           | HBase                                      | 
-| xx           | ClickHouse                                 | 
-| xx           | Iceberg                                    | 
-| xx           | PostgreSQL                                 | 
-| xx           | HDFS                                       | 
-| xx           | TDSQL Postgres                             | 
+|              | Kafka                                      | 
+|              | HBase                                      | 
+|              | ClickHouse                                 | 
+|              | Iceberg                                    | 
+|              | PostgreSQL                                 | 
+|              | HDFS                                       | 
+|              | TDSQL Postgres                             | 
 
