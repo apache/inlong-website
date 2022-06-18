@@ -46,16 +46,30 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 - **inlong-audit**，对InLong系统的Agent、DataProxy、Sort模块的入流量、出流量进行实时审计对账。
 
 ## 已支持数据节点（更新中）
-| 类型           | 名称            | 版本           | 备注                                                                                                       |
-|--------------|---------------|--------------|---------------------------------------------------------------------------------------------------------------|
-| Extract Node | 自主推送          | 无            | 使用 [SDK](https://inlong.apache.org/zh-CN/docs/next/sdk/dataproxy-sdk/example) 发送                         |
-|              | File          | 无            | CSV, Key-Value, JSON, Avro                                                                                   |
-|              | Kafka         | 2.x          | Canal JSON                                                                                                    |
-|              | MySQL         | 5.x, 8.x     | Debezium JSON                                                                                                 |
-| Load Node    | 自主消费          | 无            | 使用 MQ SDK 消费后再[解析 InLongMsg](https://inlong.apache.org/zh-CN/docs/next/development/inlong_msg)        |
-|              | Hive          | 2.x          | TextFile, SequenceFile,OrcFile, Parquet, Avro                                                                 |
-|              | Iceberg       | 0.12.x       | Parquet, Orc, Avro                                                                                            |
-|              | ClickHouse    | v20+         | Canal JSON                                                                                                    |
-|              | Kafka         | 2.x          | JSON, Canal, Avro                                                                                             |
+| Type         | Name              | Version                      | Architecture          |
+|--------------|-------------------|------------------------------|-----------------------|
+| Extract Node | Auto Push         | None                         | Standard              |
+|              | File              | None                         | Standard              |
+|              | Kafka             | 2.x                          | Lightweight, Standard |
+|              | MySQL             | 5.6, 5.7, 8.0.x              | Lightweight, Standard |
+|              | MongoDB           | >= 3.6                       | Lightweight           |
+|              | Oracle            | 11,12,19                     | Lightweight           |
+|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight           |
+|              | Pulsar            | 2.8.x                        | Lightweight           |
+|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight           |
+| Load Node    | Auto Consumption  | None                         | Standard              |
+|              | Hive              | 1.x, 2.x, 3.x                | Lightweight, Standard |
+|              | Iceberg           | 0.12.x                       | Lightweight, Standard |
+|              | ClickHouse        | 20.7+                        | Lightweight, Standard |
+|              | Kafka             | 2.x                          | Lightweight, Standard |
+|              | HBase             | 2.2.x                        | Lightweight, Standard |
+|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight, Standard |
+|              | Oracle            | 11, 12, 19                   | Lightweight, Standard |
+|              | MySQL             | 5.6, 5.7, 8.0.x              | Lightweight, Standard |
+|              | TDSQL-PostgreSQL  | 10.17                        | Lightweight, Standard |
+|              | Greenplum         | 4.x, 5.x, 6.x                | Lightweight, Standard |
+|              | Elasticsearch     | 6.x, 7.x                     | Lightweight, Standard |
+|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
+|              | HDFS              | 2.x, 3.x                     | Lightweight, Standard |
 
 
