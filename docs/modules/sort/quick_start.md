@@ -18,8 +18,8 @@ Notice: Please put required Connectors jars into under `FLINK_HOME/lib/` after d
 
 ## Start an inlong-sort application
 ```shell
-./bin/flink run -c org.apache.inlong.sort.Entrance FLINK_HOME/lib/sort-dist-[version].jar \
---sql.script.file /YOUR_SQL_SCRIPT_DIR/mysql-to-postgresql.sql
+./bin/flink run -c org.apache.inlong.sort.Entrance apache-inlong-[version]-bin/inlong-sort/sort-dist-[version].jar \
+--sql.script.file mysql-to-postgresql.sql
 ```
 
 ## Configuration
