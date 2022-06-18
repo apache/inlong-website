@@ -17,7 +17,7 @@ sidebar_position: 3
 - Hive 3.x
 
 ## 准备 InLong Sort 和 Connectors
-你可以通过参考[部署指引](quick_start.md)准备 InLong Sort 和 Connector。
+你可以通过参考[部署指引](quick_start.md)准备 InLong Sort 和数据节点 Connectors。
 
 ## 使用 SQL API 方式
 
