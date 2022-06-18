@@ -1,9 +1,9 @@
 ---
 title: HBase
-sidebar_position: 10
+sidebar_position: 6
 ---
 
-## HBase Load Node
+## Overview
 
 The `HBase Load Node` supports to write data into HBase database.
 

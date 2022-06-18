@@ -1,9 +1,9 @@
 ---
 title: MongoDB-CDC
-sidebar_position: 7
+sidebar_position: 5
 ---
 
-## MongoDB-CDC Extract Node
+## Overview
 
 The MongoDB CDC connector allows for reading snapshot data and incremental data from MongoDB. This document describes how to setup the MongoDB CDC connector to run SQL queries against MongoDB.
 

@@ -8,33 +8,16 @@ sidebar_position: 3
 为了更容易创建InLong-Sort作业，这里我们列出了一些数据流配置示例。  
 下面将介绍InLong-Sort的SQL、Dashboard、Manager客户端工具的使用。
 
-## 前置配置
+## 环境要求
+- JDK 1.8.x
+- Flink 1.13.5
+- MySQL
+- Kafka
+- Hadoop
+- Hive 3.x
 
-请确定是否有以下环境：
-* JDK 1.8.x
-* Flink 1.13.5
-* MySQL
-* Kafka
-* Hadoop
-* Hive 3.x
-
-如果没有相关环境可参见以下安装步骤：
-
-Step1. 如果没有可用的 Flink 集群环境，为了运行示例只需要构建一个 Flink Standalone 单集群。[Flink Standalone Mode](https://nightlies.apache.org/flink/flink-docs-master/docs/deployment/resource-providers/standalone/overview/)
-
-Step2. 如果没有 MySQL 环境，需要安装 MySQL 及开启 binlog 能力。[MySQL Installation Guide](https://dev.mysql.com/doc/mysql-installation-excerpt/5.7/en/) 和 [MySQL binlog](https://dev.mysql.com/doc/refman/5.7/en/replication-howto-masterbaseconfig.html)
-（关于开启 MySQL binlog 能力也可以参考 Inlong MySQL 抽取节点配置的文档说明。）
-
-Step3. 本地如果没有 Kafka 或者 Hadoop 集群环境，需要安装单集群 Kafka 和 Hadoop 单集群。[Kafka Installation Guide](https://kafka.apache.org/quickstart) 和 [Hadoop Installation Guide](https://hadoop.apache.org/docs/stable/hadoop-project-dist/hadoop-common/SingleCluster.html)
-
-Step4. 下载安装 Hive 及开启 Hive metastore  服务。[Hive Installation Guide](https://cwiki.apache.org/confluence/display/Hive//GettingStarted)
-
-Step5. 下载 Inlong 安装包 [inlong-distribution-(version)-incubating-bin.tar.gz] (https://inlong.apache.org/download/main) 
-和 Inlong Sort Connectors 依赖包 [inlong-distribution-(version)-incubating-sort-connectors.tar.gz](https://inlong.apache.org/download/main) ，示例需要的MySQL、Kakfa、Hive 等 connector 可以在 Connectors 中获取。
- 
-Step6. 把 sort-dist-[version].jar 和 MySQL,Kafka,Hive 的 connector jar 放到  FLINK_HOME/lib 中。
-
-备注： 其中 sort-dist-[version].jar 在 inlong-sort 包中。 [inlong-distribution-(version)-incubating-bin.tar.gz](https://inlong.apache.org/download/main) 
+## 准备 InLong Sort 和 Connectors
+你可以通过参考[部署指引](quick_start.md)准备 InLong Sort 和 Connector。
 
 ## 使用 SQL API 方式
 

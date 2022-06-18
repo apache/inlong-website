@@ -1,9 +1,9 @@
 ---
 title: Kafka
-sidebar_position: 4
+sidebar_position: 10
 ---
 
-## Kafka Load Node
+## 概览
 
 `Kafka Load` 节点支持写数据到 Kafka topics。 它支持以普通的方式写入数据和 Upsert 的方式写入数据。 upsert-kafka 连接器可以消费 changelog 流。它会将 INSERT/UPDATE_AFTER 数据作为正常的 Kafka 消息写入，并将 DELETE 数据以 value 为空的 Kafka 消息写入（表示对应 key 的消息被删除）。
 

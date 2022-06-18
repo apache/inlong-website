@@ -3,7 +3,7 @@ title: Kafka
 sidebar_position: 4
 ---
 
-## Kafka Extract Node
+## Overview
 
 The `Kafka Extract Node` supports to read data from Kafka topics. It can support read data in the normal fashion and read data in the
 upsert fashion. The `upsert-kafka` connector produces a `changelog stream`, where each data record represents an `update` or 

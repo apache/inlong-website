@@ -1,9 +1,9 @@
 ---
 title: Elasticsearch
-sidebar_position: 8
+sidebar_position: 4
 ---
 
-## Elasticsearch Load Node
+## Overview
 
 The Elasticsearch Load Node allows for writing into an index of the Elasticsearch engine. This document describes how to setup the Elasticsearch Load Node to run SQL queries against Elasticsearch.
 

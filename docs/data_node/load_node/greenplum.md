@@ -1,9 +1,9 @@
 ---
 title: Greenplum
-sidebar_position: 9
+sidebar_position: 5
 ---
 
-## Greenplum Load Node
+## Overview
 
 The `Greenplum Load Node` supports to write data into Greenplum database. This document describes how to set up the Greenplum Load
 Node to run SQL queries against Greenplum database.

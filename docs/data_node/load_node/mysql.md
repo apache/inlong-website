@@ -1,9 +1,9 @@
 ---
 title: MySQL
-sidebar_position: 12
+sidebar_position: 11
 ---
 
-## MySQL Load Node
+## Overview
 
 The `MySQL Load Node` supports to write data into MySQL database. This document describes how to set up the MySQL Load 
 Node to run SQL queries against MySQL database.

@@ -1,8 +1,9 @@
 ---
 title: Hive
-sidebar_position: 3
+sidebar_position: 8
 ---
-## Hive Load Node
+
+## Overview
 Hive Load Node can write data to hive. Using the flink dialect, the insert operation is currently supported, and the data in the upsert mode will be converted into insert.
 Manipulating hive tables using the hive dialect is currently not supported.
 

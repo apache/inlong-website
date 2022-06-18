@@ -4,32 +4,19 @@ sidebar_position: 2
 ---
 
 ## Set up Flink Environment
-Currently, InLong-Sort is based on Flink, before you run an InLong-Sort Application,
+Currently, InLong Sort is based on Flink, before you run an InLong Sort Application,
+
 you need to set up [Flink Environment](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/overview/).
 
-Currently, InLong-Sort relies on Flink-1.13.5. Chose `flink-1.13.5-bin-scala_2.11.tgz` when downloading package.
-
-Once your Flink Environment is set up, you can visit Web UI of Flink, whose address is stored in `/${your_flink_path}/conf/masters`.
+Currently, InLong Sort relies on Flink-1.13.5. Chose `flink-1.13.5-bin-scala_2.11.tgz` when downloading package.
 
 ## Prepare installation files
-We need `sort-dist-[version].jar` and `sort-connector-[database]-[version].jar`.   
+- Prepare InLong Sort file，[Download](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-bin.tar.gz`
+- Prepare Connectors，[Download](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-{version}-sort-connectors.tar.gz`
 
-`sort-dist-[version].jar` include main class `org.apache.inlong.sort.Entrance`.   
+Notice: Please put required Connectors jars into under `FLINK_HOME/lib/` after download.
 
-`sort-connector-[database]-[version].jar` are connector jar.   
-
-Please choose required connector jar by your data integration requirement.    
-
-[Download](https://inlong.apache.org/download/main) `sort-dist-[version].jar` from `inlong-sort` of `apache-inlong-[version]-bin.tar.gz`.  
-
-[Download](https://inlong.apache.org/download/main) `sort-connector-[database]-[version].jar` from `apache-inlong-[version]-sort-connectors.tar.gz`.
-
-Please put required jars into under `FLINK_HOME/lib/` after download.
-
-## Starting an inlong-sort application
-Now you can submit job to Flink with the jar compiled, refer to [How to submit job to Flink](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/cli/#submitting-a-job).
-
-Example：
+## Start an inlong-sort application
 ```shell
 ./bin/flink run -c org.apache.inlong.sort.Entrance FLINK_HOME/lib/sort-dist-[version].jar \
 --sql.script.file /YOUR_SQL_SCRIPT_DIR/mysql-to-postgresql.sql

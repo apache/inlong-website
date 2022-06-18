@@ -1,9 +1,9 @@
 ---
 title: Hive
-sidebar_position: 2
+sidebar_position: 8
 ---
-## Hive 加载节点
 
+## 概览
 Hive 加载节点可以将数据写入 Hive。使用 Flink 方言，目前仅支持 Insert 操作，Upsert 模式下的数据会转换成 Insert 方式
 目前暂时不支持使用 Hive 方言操作 Hive 表。
 

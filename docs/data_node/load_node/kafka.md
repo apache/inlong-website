@@ -1,9 +1,9 @@
 ---
 title: Kafka
-sidebar_position: 5
+sidebar_position: 10
 ---
 
-## Kafka Load Node
+## Overview
 
 The `Kafka Load Node` supports to write data into Kafka topics. It can support to write data in the normal fashion and write data in the
 upsert fashion. The `upsert-kafka` connector can consume a changelog stream. It will write INSERT/UPDATE_AFTER data as 

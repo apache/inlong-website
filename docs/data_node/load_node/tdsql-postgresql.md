@@ -1,9 +1,9 @@
 ---
 title: TDSQL-PostgreSQL
-sidebar_position: 16
+sidebar_position: 15
 ---
 
-## TDSQL-PostgreSQL Load Node
+## Overview
 
 The `TDSQL-PostgreSQL Load Node` supports to write data into TDSQL-PostgreSQL database. This document describes how to set up the TDSQL-PostgreSQL Load
 Node to run SQL queries against TDSQL-PostgreSQL database.

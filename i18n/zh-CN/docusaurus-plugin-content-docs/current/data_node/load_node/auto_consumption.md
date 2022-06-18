@@ -1,6 +1,6 @@
 ---
 title: 自主消费
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 ## Overview

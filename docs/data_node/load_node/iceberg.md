@@ -1,7 +1,8 @@
 ---
 title: Iceberg
-sidebar_position: 4
+sidebar_position: 9
 ---
+
 ## Overview
 [Apache Iceberg](https://iceberg.apache.org/) is a high-performance format for huge analytic tables.
 

@@ -1,8 +1,9 @@
 ---
 title: HDFS
-sidebar_position: 11
+sidebar_position: 7
 ---
-## HDFS Load Node
+
+## Overview
 
 HDFS uses the general capabilities of flink's fileSystem to support single files and partitioned files.
 The file system connector itself is included in Flink and does not require an additional dependency. 
