@@ -3,39 +3,34 @@ title: InLong Introduction
 sidebar_position: 1
 ---
 
-> InLong (应龙) is a divine beast in Chinese mythology who guides river into the sea, 
-> it is regarded as a metaphor of the InLong system for reporting streams of data.
+> InLong (应龙) is a divine beast in Chinese mythology who guides the river into the sea, 
+> and it is regarded as a metaphor of the InLong system for reporting data streams.
 
 ## About InLong
-[Apache InLong](https://inlong.apache.org) is a one-stop integration framework for massive data donated by Tencent to the Apache community.  It provides automatic,  safe,  reliable,  and high-performance data transmission capabilities to facilitate the construction of streaming-based data analysis,  modeling,  and applications.  
-The Apache InLong project was originally called TubeMQ,  focusing on high-performance,  low-cost message queuing services.  In order to further release the surrounding ecological capabilities of TubeMQ,  we upgraded the project to InLong,  focusing on creating a one-stop integration framework for massive data.
-Apache InLong uses TDBank internally used by Tencent as the prototype,  and relies on trillion-level data access and processing capabilities to integrate the entire process of data collection,  aggregation,  storage,  and sorting data processing.  It is simple to use,  flexible to expand,  stable and reliable characteristic.
+[Apache InLong](https://inlong.apache.org) is a one-stop integration framework for massive data donated by Tencent to the Apache community. It provides automatic, safe, reliable, and high-performance data transmission capabilities to facilitate the construction of streaming-based data analysis, modeling, and applications.  
+The Apache InLong project was originally called TubeMQ, focusing on high-performance, low-cost message queuing services. To further release the surrounding ecological capabilities of TubeMQ, the community upgraded the project to InLong, focusing on creating a one-stop integration framework for massive data. 
+Apache InLong relies on trillion-level data ingestion and processing capabilities to integrate the entire process of data collection, aggregation, storage, and sorting data processing. It is simple, flexible, stable, and reliable.
 
 ## Features
 - Ease of Use
 
-  Apache InLong is a SaaS-based service platform. You can easily and quickly report, transfer, and distribute data by publishing and subscribing to data based on topics
+  InLong is a SaaS-based service platform. Users can easily and quickly report, transfer, and distribute data by publishing and subscribing to data based on topics.
 
 - Stability & Reliability
 
-  Apache InLong is derived from the actual online production environment, 
-  it delivers high-performance processing capabilities for 10 trillion-level data streams and highly reliable services for 100 billion-level data streams
+  InLong is derived from the actual online production environment. It delivers high-performance processing capabilities for 100 trillion-level data streams and highly reliable services for 100 billion-level data streams.
 
 - Comprehensive Features
 
-  Apache InLong supports various types of data access methods and can be integrated with different types of Message Queue (MQ) services. It also provides real-time data extract, transform, 
-  and load (ETL) and sorting capabilities based on rules. Apache InLong also allows you to plug features to extend system capabilities
+  InLong supports various types of data access methods and can be integrated with different types of Message Queue (MQ). It also provides real-time data extract, transform, and load (ETL) and sorting capabilities based on rules. InLong also allows users to plug features to extend system capabilities.
 
 - Service Integration
 
-  Apache InLong provides unified system monitoring and alert services. It provides fine-grained metrics to facilitate data visualization. 
-  You can view the running status of queues and topic-based data statistics in a unified data metric platform. 
-  You can also configure the alert service based on your business requirements so that users can be alerted when errors occur
+  InLong provides unified system monitoring and alert services. It provides fine-grained metrics to facilitate data visualization. Users can view the running status of queues and topic-based data statistics in a unified data metric platform. Users can also configure the alert service based on their business requirements so that users can be alerted when errors occur.
 
 - Scalability
 
-  Apache InLong adopts a pluggable architecture that allows you to plug modules into the system based on specific protocols. 
-  You can replace components and add features based on your business requirements
+  InLong adopts a pluggable architecture that allows you to plug modules into the system based on specific protocols. Users can replace components and add features based on their business requirements.
 
 ## Architecture
 <img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>
