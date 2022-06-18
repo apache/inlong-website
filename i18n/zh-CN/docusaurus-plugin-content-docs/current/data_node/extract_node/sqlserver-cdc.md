@@ -1,8 +1,8 @@
 ---
 title: SQLServer-CDC
-sidebar_position: 11
+sidebar_position: 10
 ---
-## SQLServer抽取节点
+## 概述
 
 SQLServer 提取节点从 SQLServer 数据库中读取数据和增量数据。下面将介绍如何配置 SQLServer 抽取节点。
 

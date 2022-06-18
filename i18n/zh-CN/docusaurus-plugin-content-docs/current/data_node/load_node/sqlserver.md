@@ -3,7 +3,7 @@ title: SQLServer
 sidebar_position: 15
 ---
 
-## SQLServer Load 节点
+## 概览
 
 `SQLServer Load` 节点支持将数据写入 MySQL 数据库。 本文档介绍如何设置 SQLServer Load 节点以对 SQLServer 数据库运行 SQL 查询。
 

@@ -1,9 +1,9 @@
 ---
 title: PostgreSQL
-sidebar_position: 14
+sidebar_position: 13
 ---
 
-## PostgreSQL Load Node
+## Overview
 
 The `PostgreSQL Load Node` supports to write data into PostgreSQL database. This document describes how to set up the PostgreSQL Load
 Node to run SQL queries against PostgreSQL database.

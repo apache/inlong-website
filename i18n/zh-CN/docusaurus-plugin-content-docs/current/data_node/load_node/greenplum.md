@@ -1,9 +1,9 @@
 ---
 title: Greenplum
-sidebar_position: 9
+sidebar_position: 5
 ---
 
-## Greenplum Load 节点
+## 概览
 
 `Greenplum Load` 节点支持将数据写入 Greenplum 数据库。 本文档介绍如何设置 Greenplum Load 节点以对 Greenplum 数据库运行 SQL 查询。
 

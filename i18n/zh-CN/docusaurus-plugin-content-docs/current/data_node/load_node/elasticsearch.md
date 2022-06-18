@@ -1,9 +1,9 @@
 ---
 title: Elasticsearch
-sidebar_position: 8
+sidebar_position: 4
 ---
 
-## Elasticsearch Load 节点
+## 概览
 
 Elasticsearch Load 节点允许将数据写入到 Elasticsearch 引擎的索引中。本文档描述运行 SQL 查询时如何设置 Elasticsearch Load 节点。
 

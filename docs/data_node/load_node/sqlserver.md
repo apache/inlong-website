@@ -1,9 +1,9 @@
 ---
 title: SQLServer
-sidebar_position: 15
+sidebar_position: 14
 ---
 
-## SQLServer Load Node
+## Overview
 
 The `SQLServer Load Node` supports to write data into SQLServer database. This document describes how to set up the SQLServer Load
 Node to run SQL queries against SQLServer database.

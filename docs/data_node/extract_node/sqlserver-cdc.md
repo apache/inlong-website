@@ -1,8 +1,9 @@
 ---
 title: SQLServer-CDC
-sidebar_position: 11
+sidebar_position: 10
 ---
-## SQLServer Extract Node
+
+## Overview
 
 The SQLServer Extract Node reads data and incremental data from the SQLServer database. The following will describe how to set up the SQLServer extraction node.
 

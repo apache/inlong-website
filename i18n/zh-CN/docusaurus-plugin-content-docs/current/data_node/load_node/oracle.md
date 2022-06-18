@@ -1,9 +1,9 @@
 ---
 title: Oracle
-sidebar_position: 13
+sidebar_position: 12
 ---
 
-## Oracle Load 节点
+## 概览
 
 `Oracle Load` 节点支持将数据写入 Oracle 数据库。 本文档介绍如何设置 Oracle Load 节点以对 Oracle 数据库运行 SQL 查询。
 

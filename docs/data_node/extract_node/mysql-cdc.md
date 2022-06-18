@@ -1,9 +1,9 @@
 ---
 title: MySQL-CDC
-sidebar_position: 5
+sidebar_position: 6
 ---
 
-## MySQL Extract Node
+## Overview
 
 The MySQL Extract Node allows for reading snapshot data and incremental data from MySQL database. This document describes how to set up the MySQL Extract Node to run SQL queries against MySQL databases.
 

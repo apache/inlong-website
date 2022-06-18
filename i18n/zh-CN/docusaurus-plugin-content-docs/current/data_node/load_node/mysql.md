@@ -1,9 +1,9 @@
 ---
 title: MySQL
-sidebar_position: 12
+sidebar_position: 11
 ---
 
-## MySQL Load 节点
+## 概览
 
 `MySQL Load` 节点支持将数据写入 MySQL 数据库。 本文档介绍如何设置 MySQL Load 节点以对 MySQL 数据库运行 SQL 查询。
 

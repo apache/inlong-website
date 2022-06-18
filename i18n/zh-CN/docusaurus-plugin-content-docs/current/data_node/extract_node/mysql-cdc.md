@@ -1,9 +1,9 @@
 ---
 title: MySQL-CDC
-sidebar_position: 5
+sidebar_position: 6
 ---
 
-## MySQL Extract Node
+## 概述
 
 MySQL Extract 节点允许从 MySQL 数据库中读取快照数据和增量数据。本文档介绍如何设置 MySQL Extract 节点以对 MySQL 数据库运行 SQL 查询。
 

@@ -1,9 +1,9 @@
 ---
 title: ClickHouse
-sidebar_position: 5
+sidebar_position: 3
 ---
 
-## ClickHouse Load 节点
+## 概览
 
 `ClickHouse Load` 节点支持将数据写入 ClickHouse 数据库。 本文档介绍如何设置 ClickHouse Load 节点以对 ClickHouse 数据库运行 SQL 查询。
 

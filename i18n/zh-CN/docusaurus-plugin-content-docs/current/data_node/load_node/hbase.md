@@ -1,9 +1,9 @@
 ---
 title: HBase
-sidebar_position: 10
+sidebar_position: 6
 ---
 
-## HBase Load 节点
+## 概览
 
 `HBase Load` 节点支持写数据都 HBase 数据库.
 

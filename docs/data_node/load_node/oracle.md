@@ -1,9 +1,9 @@
 ---
 title: Oracle
-sidebar_position: 13
+sidebar_position: 12
 ---
 
-## Oracle Load Node
+## Overview
 
 The `Oracle Load Node` supports to write data into Oracle database. This document describes how to set up the Oracle Load
 Node to run SQL queries against Oracle database.

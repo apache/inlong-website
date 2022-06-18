@@ -1,9 +1,9 @@
 ---
 title: ClickHouse
-sidebar_position: 6
+sidebar_position: 3
 ---
 
-## ClickHouse Load Node
+## Overview
 
 The `ClickHouse Load Node` supports to write data into ClickHouse database. This document describes how to set up the ClickHouse Load
 Node to run SQL queries against ClickHouse database.

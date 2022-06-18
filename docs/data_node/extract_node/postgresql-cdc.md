@@ -1,9 +1,9 @@
 ---
 title: PostgreSQL-CDC
-sidebar_position: 9
+sidebar_position: 8
 ---
 
-## PostgreSQL Extract Node
+## Overview
 
 The `PostgreSQL Extract Node` allows for reading snapshot data and incremental data from PostgreSQL database. This document describes how to set up the `PostgreSQL Extract Node` to run SQL queries against PostgreSQL databases.
 

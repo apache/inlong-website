@@ -1,9 +1,9 @@
 ---
 title: PostgreSQL
-sidebar_position: 9
+sidebar_position: 8
 ---
 
-## PostgreSQL Extract 节点
+## 概述
 
 `PostgreSQL Extract` 节点允许从 PostgreSQL 数据库中读取快照数据和增量数据。 本文档描述了如何设置 PostgreSQL Extract 节点以对 PostgreSQL 数据库运行 SQL 查询。
 

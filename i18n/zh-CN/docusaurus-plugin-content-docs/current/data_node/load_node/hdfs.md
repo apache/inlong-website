@@ -1,8 +1,9 @@
 ---
 title: HDFS
-sidebar_position: 11
+sidebar_position: 7
 ---
-## HDFS 加载节点
+
+## 概览
 HDFS 连接器为 Flink 内部依赖，支持分区文件。
 在 Flink 中包含了该文件系统连接器，不需要添加额外的依赖。
 相应的 jar 包可以在 Flink 工程项目的 /lib 目录下找到。
