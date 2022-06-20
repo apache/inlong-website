@@ -125,6 +125,11 @@ export default function() {
                             <td>Jerry Shao</td>
                         </tr>
                         <tr>
+                            <td>junjie</td>
+                            <td>chenjunjiedada</td>
+                            <td>Junjie Chen</td>
+                        </tr>
+                        <tr>
                             <td>junping_du</td>
                             <td> </td>
                             <td>Junping Du</td>
@@ -208,11 +213,6 @@ export default function() {
                             <td>zeus</td>
                             <td>  </td>
                             <td>Jie Jiang</td>
-                        </tr>
-                        <tr>
-                            <td>junjie</td>
-                            <td>chenjunjiedada</td>
-                            <td>Junjie Chen</td>
                         </tr>
                         <tr>
                             <td>luchunliang</td>
