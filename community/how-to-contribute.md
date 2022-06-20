@@ -3,7 +3,7 @@ title: How to Contribute
 sidebar_position: 1
 ---
 
-The Apache InLong(incubating) community welcomes contributions from anyone with a passion for distributed systems! InLong has many different opportunities for contributions -- write new examples/tutorials, add new user-facing libraries or participate on the documentation effort.
+The Apache InLong community welcomes contributions from anyone with a passion for distributed systems! InLong has many different opportunities for contributions -- write new examples/tutorials, add new user-facing libraries or participate on the documentation effort.
 
 We use a review-then-commit workflow in InLong for all contributions.
 
