@@ -32,4 +32,4 @@ Inlong 设计初衷即是为了在不同数据源之间创建数据流，截止�
 
 ## 写在最后
 
-如果你有任何优化的建议，请通过邮件或以创建 [ISSUE](https://github.com/apache/incubator-inlong/issues/new/choose) 的形式告诉我们。
+如果你有任何优化的建议，请通过邮件或以创建 [ISSUE](https://github.com/apache/inlong/issues/new/choose) 的形式告诉我们。

@@ -316,11 +316,11 @@ Hello Apache InLong PPMC and Community,
 
     The tag to be voted on is ${release_version}-${rc_version}:
 
-    https://github.com/apache/incubator-inlong/tree/${release_version}-${rc_version}
+    https://github.com/apache/inlong/tree/${release_version}-${rc_version}
 
     The release tarball, signature, and checksums can be found at:
 
-    https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
+    https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_version}/
 
     Maven artifacts are available in a staging repository at:
 
@@ -328,11 +328,11 @@ Hello Apache InLong PPMC and Community,
 
     Artifacts were signed with the {YOUR_PUB_KEY} key which can be found in:
 
-    https://downloads.apache.org/incubator/inlong/KEYS
+    https://downloads.apache.org/inlong/KEYS
 
     ${release_version} includes ~ ${issue_count} bug fixes and improvements done since last versions which can be found at:
 
-    https://github.com/apache/incubator-inlong/blob/${release_version}-${rc_version}/CHANGES.md
+    https://github.com/apache/inlong/blob/${release_version}-${rc_version}/CHANGES.md
 
     Please download, verify, and test.
 
@@ -412,16 +412,16 @@ Hello Incubator Community,
     • [投票结果链接]
 
     The release candidate:
-    • https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
+    • https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_version}/
 
     Git tag for the release:
-    • https://github.com/apache/incubator-inlong/releases/tag/${release_version}-${rc_version}
+    • https://github.com/apache/inlong/releases/tag/${release_version}-${rc_version}
 
     Release notes:
-    • https://github.com/apache/incubator-inlong/blob/${release_version}-${rc_version}/CHANGES.md
+    • https://github.com/apache/inlong/blob/${release_version}-${rc_version}/CHANGES.md
 
     The artifacts signed with PGP key [填写你个人的KEY], corresponding to [填写你个人的邮箱], that can be found in keys file:
-    • https://downloads.apache.org/incubator/inlong/KEYS
+    • https://downloads.apache.org/inlong/KEYS
 
     The vote will be open for at least 72 hours or until necessary number of votes are reached.
 

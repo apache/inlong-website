@@ -31,4 +31,4 @@ Apache InLong Committer拥有InLong代码库的写权限，可以合并PR，任�
 邀请您成为Committer是您与社区长期稳定互动的结果，是InLong社区对您的信任和认可。
 
 Committer有义务审查(Review)和合并(merge)其他人提交的PR，版本发布时测试和投票候选版本，参与特性设计方案的讨论以及其他类型的项目贡献。
-当你足够活跃且对社区的贡献比较大后，就可以晋升为InLong项目的PPMC成员。
+当你足够活跃且对社区的贡献比较大后，就可以晋升为InLong项目的PMC成员。

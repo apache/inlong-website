@@ -10,7 +10,7 @@ Before version 0.12.0, the partition allocation of TubeMQ was controlled by the 
 In response to these problems, the 0.12.0 version launched a new client partition allocation management and control consumption model, combined with the current consumption lag situation awareness function of the partition, allowing the business to autonomously control the distribution and consumption of the partition.
 
 ## 2 Usage Demo
-The client of partition assign is defined based on the ClientBalanceConsumer interface class, including 17 APIs in total. For related demo codes, please refer to the [ClientBalanceConsumerExample.java](https://github.com/apache/incubator-inlong/blob/master/inlong- tubemq/tubemq-example/src/main/java/org/apache/inlong/tubemq/example/ClientBalanceConsumerExample.java). 
+The client of partition assign is defined based on the ClientBalanceConsumer interface class, including 17 APIs in total. For related demo codes, please refer to the [ClientBalanceConsumerExample.java](https://github.com/apache/inlong/blob/master/inlong- tubemq/tubemq-example/src/main/java/org/apache/inlong/tubemq/example/ClientBalanceConsumerExample.java). 
 
 The overall code implementation logic is as follows:
 ![](img/partition_assign/example.png)

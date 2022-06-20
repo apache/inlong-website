@@ -5,39 +5,39 @@ sidebar_position: 2
 
 Apache InLong uses github's Pull Request (PR) to receive contributed code. This document will introduce the process of code commit in detail.
 
-- InLong code base：https://github.com/apache/incubator-inlong
+- InLong code base：https://github.com/apache/inlong
 
-- InLong website base：https://github.com/apache/incubator-inlong-website
+- InLong website base：https://github.com/apache/inlong-website
 
 ## Fork the repository
 
-Open [apache/incubator-inlong](https://github.com/apache/incubator-inlong) 's github page, clicking on the `fork` button at the top right to fork.
+Open [apache/inlong](https://github.com/apache/inlong) 's github page, clicking on the `fork` button at the top right to fork.
 
 ## Configure git and commit changes
 
 ### Clone your fork to your local machine
 
 ```shell
-git clone https://github.com/<your_github_name>/incubator-inlong.git
+git clone https://github.com/<your_github_name>/inlong.git
 ```
 
 After clone is completed, `origin` will linked to the remote fork address on github by default.
 
-### Add apache/incubator-inlong to local repository's remote branch upstream
+### Add apache/inlong to local repository's remote branch upstream
 
 ```shell
-cd  incubator-inlong
-git remote add upstream https://github.com/apache/incubator-inlong.git
+cd  inlong
+git remote add upstream https://github.com/apache/inlong.git
 ```
 
 ### Check remote repository settings
               
 ```shell
 git remote -v
-origin    https://github.com/<your_github_name>/incubator-inlong.git (fetch)
-origin    https://github.com/<your_github_name>/incubator-inlong.git(push)
-upstream  https://github.com/apache/incubator-inlong.git (fetch)
-upstream  https://github.com/apache/incubator-inlong.git (push)
+origin    https://github.com/<your_github_name>/inlong.git (fetch)
+origin    https://github.com/<your_github_name>/inlong.git(push)
+upstream  https://github.com/apache/inlong.git (fetch)
+upstream  https://github.com/apache/inlong.git (push)
 ```
 
 There will be two repositories: `origin` (own repository) and `upstream` (official repository).
@@ -69,7 +69,7 @@ git push origin INLONG-123
 
 ## Open a Pull Request
 ### Open your github repository page
-   `https://github.com/<your_github_name>/incubator-inlong`
+   `https://github.com/<your_github_name>/inlong`
 ### Switch branch
    Switch to committed branch `INLONG-123`
 ###  New pull request
@@ -83,6 +83,6 @@ git push origin INLONG-123
 ## Code Review
 After creating PR, everyone can review your code and may discuss some implementation details with you, and you may need to modify them further.
 
-**Generally, the PR can be formally merged into the code base only after more than 2 PPMC/Committer reply + 1.**
+**Generally, the PR can be formally merged into the code base only after more than 2 PMC/Committer reply + 1.**
 
 Finally, congratulations on becoming an official contributor to InLong!

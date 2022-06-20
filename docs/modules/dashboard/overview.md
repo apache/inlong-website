@@ -3,7 +3,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-This is a dashboard console for us to use the [Apache InLong](https://github.com/apache/incubator-inlong).
+This is a dashboard console for us to use the [Apache InLong](https://github.com/apache/inlong).
 
 ## Guide For Developer
 You should check that `nodejs >= 12.0` is installed.

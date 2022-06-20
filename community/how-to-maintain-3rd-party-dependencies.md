@@ -21,7 +21,7 @@ The core of the above operation is to add or modify each pom.xml operation, we n
 
 ## Third-party dependency combing method
 1. Aggregate location of LICENSE and NOTICE relied on by third parties:
-   We currently summarize the licenses and NOTICEs of third-party dependencies of each module into the [third-party license directory](https://github.com/apache/incubator-inlong/tree/master/licenses)  according to the module name of the project, and you can import After the project, you can see the following content: ![](images/license-3rd/main-frame.png)
+   We currently summarize the licenses and NOTICEs of third-party dependencies of each module into the [third-party license directory](https://github.com/apache/inlong/tree/master/licenses)  according to the module name of the project, and you can import After the project, you can see the following content: ![](images/license-3rd/main-frame.png)
 
 2. How third-party dependencies of deliverables are mapped:
    - Let's take the inlong-dataproxy module as an example. We first package it locally through the `mvn clean package install` command to get the details of each dependent package: ![](images/license-3rd/3rdpart-to-sort.png);
