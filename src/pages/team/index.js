@@ -85,9 +85,9 @@ export default function() {
                             <td>Charles Zhang</td>
                         </tr>
                         <tr>
-                            <td>gosonzhang</td>
-                            <td>gosonzhang</td>
-                            <td>Guocheng Zhang</td>
+                            <td>leezng</td>
+                            <td>leezng</td>
+                            <td>Daniel Li</td>
                         </tr>
                         <tr>
                             <td>gxcheng</td>
@@ -95,24 +95,44 @@ export default function() {
                             <td>Guangxu Cheng</td>
                         </tr>
                         <tr>
+                            <td>technoboy</td>
+                            <td>technoboy-</td>
+                            <td>Guo Jiwei</td>
+                        </tr>
+                        <tr>
+                            <td>gosonzhang</td>
+                            <td>gosonzhang</td>
+                            <td>Guocheng Zhang</td>
+                        </tr>
+                        <tr>
+                            <td>charleli</td>
+                            <td>charlely</td>
+                            <td>Haiji Li</td>
+                        </tr>
+                        <tr>
+                            <td>healchow</td>
+                            <td>healchow</td>
+                            <td>Heal Chow</td>
+                        </tr>
+                        <tr>
+                            <td>jbonofre</td>
+                            <td>jbonofre</td>
+                            <td>Jean-Baptiste Onofré</td>
+                        </tr>
+                        <tr>
                             <td>jshao</td>
                             <td>jerryshao</td>
                             <td>Jerry Shao</td>
                         </tr>
                         <tr>
-                            <td>junjie</td>
-                            <td>chenjunjiedada</td>
-                            <td>Junjie Chen</td>
+                            <td>junping_du</td>
+                            <td> </td>
+                            <td>Junping Du</td>
                         </tr>
                         <tr>
-                            <td>kaynewu</td>
-                            <td>kaynewu</td>
-                            <td>ZhongBo Wu</td>
-                        </tr>
-                        <tr>
-                            <td>ke4qqq</td>
-                            <td>David</td>
-                            <td>Nalley</td>
+                            <td>jmclean</td>
+                            <td>justinmclean, jmclean</td>
+                            <td>Justin Mclean</td>
                         </tr>
                         <tr>
                             <td>lamberliu</td>
@@ -120,24 +140,29 @@ export default function() {
                             <td>Lamber Liu</td>
                         </tr>
                         <tr>
+                            <td>lzwang</td>
+                            <td>bluwang</td>
+                            <td>Lizhen</td>
+                        </tr>
+                        <tr>
                             <td>osgooli</td>
                             <td>lizhiboo</td>
                             <td>Osgoo Li</td>
                         </tr>
                         <tr>
-                            <td>tison</td>
-                            <td>tisonkun</td>
-                            <td>Zili Chen</td>
+                            <td>pengchen</td>
+                            <td>chinpeng</td>
+                            <td>Peng Chen</td>
                         </tr>
                         <tr>
-                            <td>xiangli</td>
-                            <td>waterlx</td>
-                            <td>Xiang Li</td>
+                            <td>yuanbo</td>
+                            <td>yuanboliu</td>
+                            <td>Yuanbo Liu</td>
                         </tr>
                         <tr>
-                            <td>yihengw</td>
-                            <td>yiheng</td>
-                            <td>Yiheng Wang</td>
+                            <td>jiyuanhao</td>
+                            <td>shink</td>
+                            <td>Yuanhao Ji</td>
                         </tr>
                         <tr>
                             <td>zakwu</td>
@@ -145,9 +170,24 @@ export default function() {
                             <td>Zak Wu</td>
                         </tr>
                         <tr>
-                            <td>healchow</td>
-                            <td>healchow</td>
-                            <td>Heal Chow</td>
+                            <td>kaynewu</td>
+                            <td>kaynewu</td>
+                            <td>ZhongBo Wu</td>
+                        </tr>
+                        <tr>
+                            <td>alfredlu</td>
+                            <td>TszKitLo40</td>
+                            <td>Zijie Lu</td>
+                        </tr>
+                        <tr>
+                            <td>tison</td>
+                            <td>tisonkun</td>
+                            <td>Zili Chen</td>
+                        </tr>
+                        <tr>
+                            <td>zirui</td>
+                            <td>EMsnap</td>
+                            <td>Zirui Peng</td>
                         </tr>
                     </tbody>
                 </table>
@@ -160,39 +200,49 @@ export default function() {
                             <td><b>Public Name</b></td>
                         </tr>
                         <tr>
-                            <td>technoboy</td>
-                            <td>technoboy-</td>
-                            <td>Guo Jiwei</td>
+                            <td>ke4qqq</td>
+                            <td>  </td>
+                            <td>David Nalley</td>
                         </tr>
                         <tr>
-                            <td>charleli</td>
-                            <td>charlely</td>
-                            <td>Haiji Li</td>
+                            <td>zeus</td>
+                            <td>  </td>
+                            <td>Jie Jiang</td>
                         </tr>
                         <tr>
-                            <td>yuanbo</td>
-                            <td>yuanboliu</td>
-                            <td>Yuanbo Liu</td>
+                            <td>junjie</td>
+                            <td>chenjunjiedada</td>
+                            <td>Junjie Chen</td>
                         </tr>
                         <tr>
-                            <td>alfredlu</td>
-                            <td>TszKitLo40</td>
-                            <td>Zijie Lu</td>
+                            <td>luchunliang</td>
+                            <td>luchunliang</td>
+                            <td>Lu Chunliang</td>
                         </tr>
                         <tr>
-                            <td>zirui</td>
-                            <td>EMsnap</td>
-                            <td>Zirui Peng</td>
+                            <td>sijie</td>
+                            <td>sijie</td>
+                            <td>Sijie Guo</td>
                         </tr>
                         <tr>
-                            <td>leezng</td>
-                            <td>leezng</td>
-                            <td>Daniel Li</td>
+                            <td>xiangli</td>
+                            <td>waterlx</td>
+                            <td>Xiang Li</td>
                         </tr>
                         <tr>
-                            <td>jiyuanhao</td>
-                            <td>shink</td>
-                            <td>Yuanhao Ji</td>
+                            <td>yihengw</td>
+                            <td>yiheng</td>
+                            <td>Yiheng Wang</td>
+                        </tr>
+                        <tr>
+                            <td>ehomeliu</td>
+                            <td>  </td>
+                            <td>Yuhong Liu</td>
+                        </tr>
+                        <tr>
+                            <td>zjshen</td>
+                            <td>zjshen14</td>
+                            <td>Zhijie Shen</td>
                         </tr>
                     </tbody>
                 </table>
