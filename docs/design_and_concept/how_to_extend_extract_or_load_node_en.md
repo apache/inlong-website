@@ -43,7 +43,7 @@ In the second step, you can use the existing flick connector or extend it yourse
 
 There are three steps to extend an ExtractNode: 
 
-**Step 1**：Inherit the ExtractNode class,the location of the class is： `inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java`,  Specify the connector in the implemented ExtractNode.
+**Step 1**：Inherit the ExtractNode class,the location of the class is: `inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java`. Specify the connector in the implemented ExtractNode.
 
 ```Java
 // Inherit ExtractNode class and implement specific classes, such as MongoExtractNode
