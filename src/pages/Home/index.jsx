@@ -46,7 +46,6 @@ export default function() {
           <div className="product-name">
             <div className="brandname">{dataSource.brand.brandName}</div>
             <div className="projectname" style={{backgroundImage: `url("${useBaseUrl('/img/inlong-en.svg')}"`}}>
-              {/* <img src="/static/img/incubating.svg"></img> */}
             </div>
           </div>
           <div className="product-desc2">
