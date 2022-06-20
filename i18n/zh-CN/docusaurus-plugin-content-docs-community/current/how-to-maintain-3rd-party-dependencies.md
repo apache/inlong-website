@@ -19,7 +19,7 @@ sidebar_position: 9
 
 ## 第三方依赖梳理方法
    1. 第三方依赖的 LICENSE 及 NOTICE 汇总位置：
-      按照项目的模块名，我们将各个模块第三方依赖的 LICENSE 及 NOTICE 汇总到 [第三方license目录](https://github.com/apache/incubator-inlong/tree/master/licenses) ， 大家导入项目后即可看到如下内容：![](images/license-3rd/main-frame.png)
+      按照项目的模块名，我们将各个模块第三方依赖的 LICENSE 及 NOTICE 汇总到 [第三方license目录](https://github.com/apache/inlong/tree/master/licenses) ， 大家导入项目后即可看到如下内容：![](images/license-3rd/main-frame.png)
    2. 交付物的第三方依赖如何映射：
       以 inlong-dataproxy 模块为例，我们首先通过 `mvn clean package install` 命令进行本地打包，获取各个依赖包的详情信息：![](images/license-3rd/3rdpart-to-sort.png)；
       从图中可以看到，我们获得了模块的 DEPENDENCIES 文件，根据交付物里依赖包的 artifactId 查找 DEPENDENCIES 文件对应条目，将该依赖按照 LICENSE 的类型归档梳理：![](images/license-3rd/3rdparty-to-license.png)，这里的条目格式为 “groupId:artifactId:version - name (url), (license.name)”，每个单元按照 artifactId 的字母进行排序；

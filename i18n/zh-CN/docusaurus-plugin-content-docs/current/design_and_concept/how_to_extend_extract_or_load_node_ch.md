@@ -43,7 +43,7 @@ InLong-Sort 是一个 ETL 系统，当前支持的 extract 或 load 包括 FileS
 
 扩展一个 ExtractNode 分为三个步骤：
 
-**第一步**：继承 ExtractNode 类，类的位置在 `incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java`；在实现的 ExtractNode 中指定 connecter；
+**第一步**：继承 ExtractNode 类，类的位置在 `inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java`；在实现的 ExtractNode 中指定 connecter；
 
 ```Java
 // 继承 ExtractNode 类，实现具体的类，例如 MongoExtractNode
@@ -88,13 +88,13 @@ public abstract class ExtractNode implements Node{...}
 public interface Node {...}
 ```
 
-**第三步**：扩展 Sort Connector，查看此（`/incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`）目录下是否已经存在对应的 connector。如果没有，则需要参考 Flink 官方文档 [DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) 来扩展，调用已有的 Flink-connector（例如`incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`）或自行实现相关的 connecter 均可。
+**第三步**：扩展 Sort Connector，查看此（`/inlong/inlong-sort/sort-connectors/mongodb-cdc`）目录下是否已经存在对应的 connector。如果没有，则需要参考 Flink 官方文档 [DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) 来扩展，调用已有的 Flink-connector（例如`inlong/inlong-sort/sort-connectors/mongodb-cdc`）或自行实现相关的 connecter 均可。
 
 ## 扩展 Load Node
 
 扩展一个 LoadNode 分为三个步骤：
 
-**第一步**：继承 LoadNode 类，类的位置在 `incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java`；在实现的LoadNode 中指定 connecter；
+**第一步**：继承 LoadNode 类，类的位置在 `inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java`；在实现的LoadNode 中指定 connecter；
 
 ```java
 // 继承 LoadNode 类，实现具体的类，例如 KafkaLoadNode
@@ -155,7 +155,7 @@ public abstract class LoadNode implements Node{...}
 public interface Node {...}
 ```
 
-**第三步**：扩展 Sort Connector，Kafka 的 sort connector 在 `incubator-inlong/inlong-sort/sort-connectors/kafka` 目录下。
+**第三步**：扩展 Sort Connector，Kafka 的 sort connector 在 `inlong/inlong-sort/sort-connectors/kafka` 目录下。
 
 ## 集成 Extract 和 Load 到 InLong-Sort 主流程
 

@@ -3,7 +3,7 @@ title: 概览
 sidebar_position: 1
 ---
 
-Dashboard 是 [Apache InLong](https://github.com/apache/incubator-inlong)的管控端。
+Dashboard 是 [Apache InLong](https://github.com/apache/inlong)的管控端。
 
 ## 开发指引
 

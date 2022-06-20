@@ -37,13 +37,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           sidebarPath: require.resolve('./sidebars.js'),
           sidebarCollapsible: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/apache/incubator-inlong-website/edit/master/',
+          editUrl: 'https://github.com/apache/inlong-website/edit/master/',
         },
         blog: {
           // showReadingTime: true,
           // Please change this to your repo.
           editUrl:
-            'https://github.com/apache/incubator-inlong-website/edit/master/blog/',
+            'https://github.com/apache/inlong-website/edit/master/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -56,7 +56,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     ({
       announcementBar: {
         id: 'announcementBar-2', // Increment on change
-        content: `⭐️ &nbsp; If you like Apache InLong , give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/apache/incubator-inlong">GitHub</a>`,
+        content: `⭐️ &nbsp; If you like Apache InLong , give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/apache/inlong">GitHub</a>`,
         backgroundColor: "#BBDFFF",
       },
       navbar: {
@@ -139,10 +139,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
                 to: "https://www.apache.org/",
               },
               {
-                label: "Apache Incubator",
-                to: "https://incubator.apache.org/",
-              },
-              {
                 label: "License",
                 to: "https://www.apache.org/licenses/",
               },
@@ -173,7 +169,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             position: 'right',
           },
           {
-            href: 'https://github.com/apache/incubator-inlong',
+            href: 'https://github.com/apache/inlong',
             label: 'GitHub',
             position: 'right',
           },
@@ -217,14 +213,14 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         //       },
         //       {
         //         label: 'GitHub',
-        //         href: 'https://github.com/apache/incubator-inlong',
+        //         href: 'https://github.com/apache/inlong',
         //       },
         //     ],
         //   },
         // ],
         // logo: {
         //   alt: 'Apache Inlong',
-        //   src: 'img/incubator-logo.svg',
+        //   src: 'img/logo.svg',
         //   href: 'https://inlong.apache.org',
         // },
         copyright: `<div style="text-align: left;">
@@ -256,9 +252,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         routeBasePath: 'community',
         editUrl: ({locale, versionDocsDirPath, docPath}) => {
           if (locale !== 'en') {
-            return `https://github.com/apache/incubator-inlong-website/edit/master/i18n/${locale}/${docPath}`;
+            return `https://github.com/apache/inlong-website/edit/master/i18n/${locale}/${docPath}`;
           }
-          return `https://github.com/apache/incubator-inlong-website/edit/master/${versionDocsDirPath}/${docPath}`;
+          return `https://github.com/apache/inlong-website/edit/master/${versionDocsDirPath}/${docPath}`;
         },
         sidebarPath: require.resolve('./sidebarsDevelopment.js'),
       },
@@ -271,9 +267,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         routeBasePath: 'download',
         editUrl: ({locale, versionDocsDirPath, docPath}) => {
           if (locale !== 'en') {
-            return `https://github.com/apache/incubator-inlong-website/edit/master/i18n/${locale}/${docPath}`;
+            return `https://github.com/apache/inlong-website/edit/master/i18n/${locale}/${docPath}`;
           }
-          return `https://github.com/apache/incubator-inlong-website/edit/master/${versionDocsDirPath}/${docPath}`;
+          return `https://github.com/apache/inlong-website/edit/master/${versionDocsDirPath}/${docPath}`;
         },
         sidebarPath: require.resolve('./sidebarsDevelopment.js'),
         async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {

@@ -7,7 +7,7 @@ sidebar_position: 3
 
 - Kubernetes 1.10+
 - Helm 3.0+
-- [InLong Helm Chart](https://github.com/apache/incubator-inlong/tree/master/docker/kubernetes)
+- [InLong Helm Chart](https://github.com/apache/inlong/tree/master/docker/kubernetes)
 - A dynamic provisioner for the PersistentVolumes(`production environment`)
 
 ## Usage
@@ -28,7 +28,7 @@ helm upgrade inlong --install -n inlong ./
 
 ### Access InLong Dashboard
 
-If `ingress.enabled` in [values.yaml](https://github.com/apache/incubator-inlong/blob/master/docker/kubernetes/values.yaml) is set to `true`, you just access `http://${ingress.host}/dashboard` in browser.
+If `ingress.enabled` in [values.yaml](https://github.com/apache/inlong/blob/master/docker/kubernetes/values.yaml) is set to `true`, you just access `http://${ingress.host}/dashboard` in browser.
 
 Otherwise, when `dashboard.service.type` is set to `ClusterIP`, you need to execute the port-forward command like:
 
@@ -65,7 +65,7 @@ The default username is `admin` and the default password is `inlong`. You can ac
 
 ### Configuration
 
-The configuration file is [values.yaml](https://github.com/apache/incubator-inlong/blob/master/docker/kubernetes/values.yaml), and the following tables lists the configurable parameters of InLong and their default values.
+The configuration file is [values.yaml](https://github.com/apache/inlong/blob/master/docker/kubernetes/values.yaml), and the following tables lists the configurable parameters of InLong and their default values.
 
 |                                    Parameter                                     |     Default      |                                                                         Description                                                                          | 
 |:--------------------------------------------------------------------------------:|:----------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -135,7 +135,7 @@ It runs a local Kubernetes cluster in Docker container. Therefore, it requires v
 
 You can install kind by following the [Quick Start](https://kind.sigs.k8s.io/docs/user/quick-start) section of their official documentation.
 
-After installing kind, you can create a Kubernetes cluster with the [kind.yml](https://github.com/apache/incubator-inlong/tree/master/.github/kind.yml), try:
+After installing kind, you can create a Kubernetes cluster with the [kind.yml](https://github.com/apache/inlong/tree/master/.github/kind.yml), try:
 
 ```shell
 kind create cluster --config kind.yml
@@ -188,4 +188,4 @@ Then, you can check the rendered templates in the `result` directory.
 
 We've done our best to make these charts as seamless as possible, but occasionally there are circumstances beyond our control.
 We've collected tips and tricks for troubleshooting common issues.
-Please examine these first before raising an [issue](https://github.com/apache/incubator-inlong/issues/new/choose), and feel free to make a [Pull Request](https://github.com/apache/incubator-inlong/compare)!
+Please examine these first before raising an [issue](https://github.com/apache/inlong/issues/new/choose), and feel free to make a [Pull Request](https://github.com/apache/inlong/compare)!

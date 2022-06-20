@@ -43,7 +43,7 @@ In the second step, you can use the existing flick connector or extend it yourse
 
 There are three steps to extend an ExtractNode: 
 
-**Step 1**：Inherit the ExtractNode class,the location of the class is： `incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java`,  Specify the connector in the implemented ExtractNode.
+**Step 1**：Inherit the ExtractNode class,the location of the class is: `inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java`. Specify the connector in the implemented ExtractNode.
 
 ```Java
 // Inherit ExtractNode class and implement specific classes, such as MongoExtractNode
@@ -88,13 +88,13 @@ public abstract class ExtractNode implements Node{...}
 public interface Node {...}
 ```
 
-**Step 3**：Expand the Sort connector and check whether the corresponding connector already exists in the (`/incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`) directory. If you haven't already, you need to refer to the official flink documentation [DataStream Connectors](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) to extend, directly call the existing flink-connector (such as`incubator-inlong/inlong-sort/sort-connectors/mongodb-cdc`) or implement the related connector by yourself.
+**Step 3**：Expand the Sort connector and check whether the corresponding connector already exists in the (`/inlong/inlong-sort/sort-connectors/mongodb-cdc`) directory. If you haven't already, you need to refer to the official flink documentation [DataStream Connectors](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) to extend, directly call the existing flink-connector (such as`inlong/inlong-sort/sort-connectors/mongodb-cdc`) or implement the related connector by yourself.
 
 ## Extend a new load node
 
 There are three steps to extend an LoadNode: 
 
-**Step 1**：Inherit the LoadNode class, the location of the class is `incubator-inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java`, specify the connector in the implemented LoadNode.
+**Step 1**：Inherit the LoadNode class, the location of the class is `inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java`, specify the connector in the implemented LoadNode.
 
 ```java
 // Inherit LoadNode class and implement specific classes, such as KafkaLoadNode
@@ -154,7 +154,7 @@ public abstract class LoadNode implements Node{...}
 public interface Node {...}
 ```
 
-**Step 3**：Extend the Sort connector, Kafka's sort connector is in incubator-inlong/inlong-sort/sort-connectors/kafka.
+**Step 3**：Extend the Sort connector, Kafka's sort connector is in inlong/inlong-sort/sort-connectors/kafka.
 
 ## Bundle extract node and load node into InLong-Sort
 

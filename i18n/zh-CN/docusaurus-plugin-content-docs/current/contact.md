@@ -19,6 +19,6 @@ sidebar_position: 10
 
 License
 -------
-© Contributors Licensed under an [Apache-2.0](https://github.com/apache/incubator-inlong/blob/master/LICENSE) license.
+© Contributors Licensed under an [Apache-2.0](https://github.com/apache/inlong/blob/master/LICENSE) license.
 
 

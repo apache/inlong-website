@@ -128,7 +128,7 @@ export default function() {
                 <h3>任何问题</h3>
                 <p>
                   功能请求、提问或报告错误? 随时<a href="https://the-asf.slack.com/archives/C01QAG6U00L" target="_blank">GitHub Discussions</a>讨论或者<a
-                    href="https://github.com/apache/incubator-inlong/issues" target="_blank">提交问题</a>。
+                    href="https://github.com/apache/inlong/issues" target="_blank">提交问题</a>。
                 </p>
               </div>
             }
@@ -136,8 +136,8 @@ export default function() {
               language === 'en' && <div>
                 <h3>Any questions</h3>
                 <p>
-                  Features request, ask questions or report bugs? Feel free to <a href="https://github.com/apache/incubator-inlong/discussions" target="_blank">GitHub Discussion</a> or <a
-                    href="https://github.com/apache/incubator-inlong/issues" target="_blank">submit an issue</a>.
+                  Features request, ask questions or report bugs? Feel free to <a href="https://github.com/apache/inlong/discussions" target="_blank">GitHub Discussion</a> or <a
+                    href="https://github.com/apache/inlong/issues" target="_blank">submit an issue</a>.
                 </p>
               </div>
             }
@@ -185,7 +185,7 @@ export default function() {
               language === 'zh-CN' && <div>
                 <h3>欢迎贡献</h3>
                 <p>
-                  欢迎大家可以随时创建 <a href="https://github.com/apache/incubator-inlong" target="_blank">Pull Request</a> 贡献自己的代码。
+                  欢迎大家可以随时创建 <a href="https://github.com/apache/inlong" target="_blank">Pull Request</a> 贡献自己的代码。
                 </p>
               </div>
             }
@@ -193,7 +193,7 @@ export default function() {
               language === 'en' && <div>
                 <h3>Contributions welcome</h3>
                 <p>
-                  Everyone is welcome to create <a href="https://github.com/apache/incubator-inlong" target="_blank">Pull Request</a> and contribute their own code at any time!
+                  Everyone is welcome to create <a href="https://github.com/apache/inlong" target="_blank">Pull Request</a> and contribute their own code at any time!
                 </p>
               </div>
             }
@@ -212,7 +212,7 @@ export default function() {
               language === 'zh-CN' && <div>
                 <h3>微信互动</h3>
                 <p>
-                    欢迎大家关注微信公众号 <a href="https://github.com/apache/incubator-inlong-website/blob/master/static/img/apache-inlong-wechat.jpg" target="_blank"> Apache InLong </a>。
+                    欢迎大家关注微信公众号 <a href="https://github.com/apache/inlong-website/blob/master/static/img/apache-inlong-wechat.jpg" target="_blank"> Apache InLong </a>。
                 </p>
               </div>
             }
@@ -220,7 +220,7 @@ export default function() {
               language === 'en' && <div>
                 <h3>Follow us on WeChat</h3>
                 <p>
-                  Welcome everyone to follow the WeChat public account <a href="https://github.com/apache/incubator-inlong-website/blob/master/static/img/apache-inlong-wechat.jpg" target="_blank">Apache InLong</a> .
+                  Welcome everyone to follow the WeChat public account <a href="https://github.com/apache/inlong-website/blob/master/static/img/apache-inlong-wechat.jpg" target="_blank">Apache InLong</a> .
                 </p>
               </div>
             }
@@ -238,7 +238,7 @@ export default function() {
                   language === 'zh-CN' && <div>
                       <h3>推特互动</h3>
                       <p>
-                          欢迎大家关注Twitter <a href="https://github.com/apache/incubator-inlong-website/blob/master/static/img/apache-inlong-wechat.jpg" target="_blank">@ApacheInlong</a> 。
+                          欢迎大家关注Twitter <a href="https://github.com/apache/inlong-website/blob/master/static/img/apache-inlong-wechat.jpg" target="_blank">@ApacheInlong</a> 。
                       </p>
                   </div>
               }

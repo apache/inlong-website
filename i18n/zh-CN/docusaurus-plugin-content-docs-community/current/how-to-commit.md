@@ -5,35 +5,35 @@ sidebar_position: 2
 
 Apache InLong使用Github的Pull Request (PR)来接收贡献的代码，本文将详细介绍提交代码的详细流程。
 
-- InLong代码库：https://github.com/apache/incubator-inlong
+- InLong代码库：https://github.com/apache/inlong
 
-- InLong官网库：https://github.com/apache/incubator-inlong-website
+- InLong官网库：https://github.com/apache/inlong-website
 
 ## Fork仓库
 
-进入 [apache/incubator-inlong](https://github.com/apache/incubator-inlong) 的Github页面 ，点击右上角按钮 `Fork` 进行 Fork。如下图所示：
+进入 [apache/inlong](https://github.com/apache/inlong) 的Github页面 ，点击右上角按钮 `Fork` 进行 Fork。如下图所示：
 
 
 ## 配置git和提交修改
 
 ### 将代码克隆到本地
 ```shell
-git clone https://github.com/<your_github_name>/incubator-inlong.git
+git clone https://github.com/<your_github_name>/inlong.git
 ```
 clone完成后，origin会默认指向github上的远程fork地址。
 
-### 将 apache/incubator-inlong 添加为本地仓库的远程分支upstream
+### 将 apache/inlong 添加为本地仓库的远程分支upstream
 ```shell
-cd  incubator-inlong
-git remote add upstream https://github.com/apache/incubator-inlong.git
+cd  inlong
+git remote add upstream https://github.com/apache/inlong.git
 ```
 ### 检查远程仓库设置
 ```shell
 git remote -v
-origin    https://github.com/<your_github_name>/incubator-inlong.git (fetch)
-origin    https://github.com/<your_github_name>/incubator-inlong.git(push)
-upstream  https://github.com/apache/incubator-inlong.git (fetch)
-upstream  https://github.com/apache/incubator-inlong.git (push)
+origin    https://github.com/<your_github_name>/inlong.git (fetch)
+origin    https://github.com/<your_github_name>/inlong.git(push)
+upstream  https://github.com/apache/inlong.git (fetch)
+upstream  https://github.com/apache/inlong.git (push)
 ```
 此时会有两个仓库：origin(自己的仓库)和upstream（官方的仓库）
 
@@ -59,7 +59,7 @@ git push origin INLONG-123
 ```
 ## 创建PR
 ### 打开自己的github仓库页面
-    https://github.com/<your_github_name>/incubator-inlong
+    https://github.com/<your_github_name>/inlong
 ### 切换分支
     切换到提交的分支 `INLONG-123`
 ### 创建新PR
@@ -74,6 +74,6 @@ git push origin INLONG-123
 
 ## Review代码
 创建完PR后，所有的人都可以Review代码，可能会与您讨论一些实现的细节，可能还需要你进一步修改。
-**一般该PR必须有2位以上的社区PPMC/Committer +1后，才可能正式合入官方代码库。**
+**一般该PR必须有2位以上的社区PMC/Committer +1后，才可能正式合入官方代码库。**
 
 最后，恭喜您已经成为了InLong的官方贡献者了！

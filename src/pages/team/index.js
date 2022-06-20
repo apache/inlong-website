@@ -16,7 +16,7 @@ export default function() {
     const dataSource = config?.[language];
 
     let contributors = isBrowser && axios({
-        url: 'https://api.github.com/repos/apache/incubator-inlong/contributors',
+        url: 'https://api.github.com/repos/apache/inlong/contributors',
         method: 'get',
         headers: { "Authorization": `token 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` },
         params: {
@@ -36,7 +36,7 @@ export default function() {
     })
 
     let doc_contributors = isBrowser &&  axios({
-        url: 'https://api.github.com/repos/apache/incubator-inlong-website/contributors',
+        url: 'https://api.github.com/repos/apache/inlong-website/contributors',
         method: 'get',
         headers: { "Authorization": `token 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` },
         params: {

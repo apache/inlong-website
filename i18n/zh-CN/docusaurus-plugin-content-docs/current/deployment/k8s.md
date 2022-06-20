@@ -7,7 +7,7 @@ sidebar_position: 3
 
 - Kubernetes 1.10+
 - Helm 3.0+
-- [InLong Helm Chart](https://github.com/apache/incubator-inlong/tree/master/docker/kubernetes)
+- [InLong Helm Chart](https://github.com/apache/inlong/tree/master/docker/kubernetes)
 - A dynamic provisioner for the PersistentVolumes(`production environment`)
 
 ## 使用
@@ -20,7 +20,7 @@ sidebar_position: 3
 kubectl create namespace inlong
 ```
 
-在 [docker/kubernetes](https://github.com/apache/incubator-inlong/tree/master/docker/kubernetes) 目录下安装 chart：
+在 [docker/kubernetes](https://github.com/apache/inlong/tree/master/docker/kubernetes) 目录下安装 chart：
 
 ```shell
 helm upgrade inlong --install -n inlong ./
@@ -28,7 +28,7 @@ helm upgrade inlong --install -n inlong ./
 
 ### 进入 InLong Dashboard
 
-如果 [values.yaml](https://github.com/apache/incubator-inlong/blob/master/docker/kubernetes/values.yaml) 中的 `ingress.enabled` 字段值是 `true`，
+如果 [values.yaml](https://github.com/apache/inlong/blob/master/docker/kubernetes/values.yaml) 中的 `ingress.enabled` 字段值是 `true`，
 则直接在浏览器中访问 `http://${ingress.host}/dashboard` 即可
 
 否则，如果 `dashboard.service.type` 字段值设置为 `ClusterIP`，则需要执行以下命令进行端口转发：
@@ -66,7 +66,7 @@ export DASHBOARD_SERVICE_IP=$(kubectl get svc inlong-dashboard --template "{{"{{
 
 ### 配置
 
-配置项在 [values.yaml](https://github.com/apache/incubator-inlong/blob/master/docker/kubernetes/values.yaml) 文件中，下表展示了所有可配置项及其默认值：
+配置项在 [values.yaml](https://github.com/apache/inlong/blob/master/docker/kubernetes/values.yaml) 文件中，下表展示了所有可配置项及其默认值：
 
 |                                    Parameter                                     |     Default      |                                                                         Description                                                                          | 
 |:--------------------------------------------------------------------------------:|:----------------:|:------------------------------------------------------------------------------------------------------------------------------------------------------------:|
@@ -136,7 +136,7 @@ kubectl delete pvc -n inlong --all
 ### kind 快速开始
 
 你可以按照 [快速开始](https://kind.sigs.k8s.io/docs/user/quick-start) 章节中的指示安装 kind。
-安装好 kind 后，你可以通过 [kind.yml](https://github.com/apache/incubator-inlong/tree/master/.github/kind.yml) 配置文件来创建一个 Kubernetes 集群。
+安装好 kind 后，你可以通过 [kind.yml](https://github.com/apache/inlong/tree/master/.github/kind.yml) 配置文件来创建一个 Kubernetes 集群。
 
 ```shell
 kind create cluster --config kind.yml
@@ -189,4 +189,4 @@ helm template ./ --output-dir ./result
 
 我们已尽最大努力使这些 chart 尽可能正确，但偶尔也会出现我们无法控制的情况。
 我们已经收集了用于解决常见问题的提示和技巧。
-请在提出 [issue](https://github.com/apache/incubator-inlong/issues/new/choose) 之前先检查这些内容，并随时欢迎向我们提出 [Pull Request](https://github.com/apache/incubator-inlong/compare) ！
+请在提出 [issue](https://github.com/apache/inlong/issues/new/choose) 之前先检查这些内容，并随时欢迎向我们提出 [Pull Request](https://github.com/apache/inlong/compare) ！

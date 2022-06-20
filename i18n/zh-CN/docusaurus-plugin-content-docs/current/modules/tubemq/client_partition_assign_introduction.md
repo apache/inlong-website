@@ -10,7 +10,7 @@ title: 客户端分区分配
 针对这些问题，0.12.0版本上线了新的客户端分区分配管控消费模式，结合分区当前消费滞后情况感知功能，让业务自主控制分区的分配和消费。
 
 ## 2 使用示例
-客户端分区分配基于ClientBalanceConsumer接口类进行定义，一共17个API，相关的使用示例代码参考示例代码[ClientBalanceConsumerExample.java](https://github.com/apache/incubator-inlong/blob/master/inlong-tubemq/tubemq-example/src/main/java/org/apache/inlong/tubemq/example/ClientBalanceConsumerExample.java) 。总的代码实现逻辑如下图示：
+客户端分区分配基于ClientBalanceConsumer接口类进行定义，一共17个API，相关的使用示例代码参考示例代码[ClientBalanceConsumerExample.java](https://github.com/apache/inlong/blob/master/inlong-tubemq/tubemq-example/src/main/java/org/apache/inlong/tubemq/example/ClientBalanceConsumerExample.java) 。总的代码实现逻辑如下图示：
 ![](img/partition_assign/example.png)
 
 ## 3 实现方案

@@ -6,7 +6,7 @@ sidebar_position: 8
 ## 对于 InLong 用户
 如果您对 InLong 操作有任何疑问，请遵循以下指南：
 
-如果您在设置、配置或在其他不符合您期望的行为方面遇到问题时，请在 [GitHub Discussions](https://github.com/apache/incubator-inlong/discussions) 中提问。 
+如果您在设置、配置或在其他不符合您期望的行为方面遇到问题时，请在 [GitHub Discussions](https://github.com/apache/inlong/discussions) 中提问。 
 有关邮件列表的信息，请参见 [如何订阅页面](https://inlong.apache.org/zh-CN/community/how-to-subscribe/)。 您也可以向 InLong slack 频道寻求帮助，查看网页了解如何加入的详细信息。 
 如果您在代码或文档中有需要修复的错误，请按照下面的 GitHub Issues 中的步骤进行操作。
 
@@ -17,10 +17,10 @@ Apache InLong 项目使用 GitHub Issues 来跟踪所有问题。 这些包括�
 - 改进现有功能
 - 报告代码库中需要修复的错误
 
-如果您对在 GitHub Issues 中跟踪开发问题感兴趣，可以浏览这个[链接](https://github.com/apache/incubator-inlong/issues)。
+如果您对在 GitHub Issues 中跟踪开发问题感兴趣，可以浏览这个[链接](https://github.com/apache/inlong/issues)。
 
 ## 为 InLong 问题提交 GitHub Issues
-请转到 [InLong GitHub Issues](https://github.com/apache/incubator-inlong/issues) 页面来提交您的问题。
+请转到 [InLong GitHub Issues](https://github.com/apache/inlong/issues) 页面来提交您的问题。
 
 请确保项目设置为 InLong。需要根据您的分析或请求适当设置问题类型字段：
 

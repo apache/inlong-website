@@ -25,7 +25,7 @@ Then you are all set to run and build the website. Follow the build instruction 
 
 ## How to send a PR
 
-Make sure you have submit issue for tracking PR: [https://github.com/apache/incubator-inlong/issues](https://github.com/apache/incubator-inlong/issues)
+Make sure you have submit issue for tracking PR: [https://github.com/apache/inlong/issues](https://github.com/apache/inlong/issues)
 
 1. Do not use `git add .` to commit all the changes.
 2. Just push your changed files, such as:

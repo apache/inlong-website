@@ -1,5 +1,5 @@
 ---
-title: How to Become a Committer or PPMC
+title: How to Become a Committer or PMC
 sidebar_position: 4
 ---
 
@@ -34,4 +34,4 @@ Pleasant manners and dedication are all you need to have a positive impact on th
 We are inviting you to become Committer results from your long-term and stable interaction with the community, and it means the trust and recognition of the InLong community.
 
 Committer is obliged to review and merge PRs submitted by others, test and vote on candidate versions when the version is released, participate in the discussion of feature design plans and other types of project contributions.
-When you are active enough and contribute a lot to the community, you can be promoted to a PPMC member of the InLong project.
+When you are active enough and contribute a lot to the community, you can be promoted to a PMC member of the InLong project.

@@ -6,7 +6,7 @@ sidebar_position: 8
 ## For InLong Users
 If you have an issue with InLong operation, please follow these guidelines:
 
-If you are having an issue with setup, configuration, or some other form of behavior not matching your expectation, ask your questions in [GitHub Discussions](https://github.com/apache/incubator-inlong/discussions). 
+If you are having an issue with setup, configuration, or some other form of behavior not matching your expectation, ask your questions in [GitHub Discussions](https://github.com/apache/inlong/discussions). 
 See the [how-to-subscribe page](https://inlong.apache.org/community/how-to-subscribe) for information on mailing lists. You can also ask the InLong slack channel for help, check the web page for details on how to join. 
 If you have a bug that needs a fix in the code or in the documentation, please follow the procedure in the GitHub Issues below.
 
@@ -17,10 +17,10 @@ GitHub Issues is used by the Apache InLong project to track all issues. These in
 - Improving existing features
 - Report bugs that need to be fixed in the codebase
 
-If you are interested in tracking development issues in GitHub Issues, you can browse this [link](https://github.com/apache/incubator-inlong/issues).
+If you are interested in tracking development issues in GitHub Issues, you can browse this [link](https://github.com/apache/inlong/issues).
 
 ## Filing a GitHub Issues for InLong issues
-Go to the [InLong GitHub Issues](https://github.com/apache/incubator-inlong/issues) page to file your issue.
+Go to the [InLong GitHub Issues](https://github.com/apache/inlong/issues) page to file your issue.
 
 Make sure the Project is set to InLong. Set the issue type field appropriately based on your analysis or request:
 
