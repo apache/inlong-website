@@ -5,16 +5,16 @@ sidebar_position: 1
 
 使用以下链接下载 InLong，最新版本为 1.2.0。
 
-## 1.1.0 release
+## 1.2.0 release
 
 - 发布时间: 2022-06-20
 - [发版说明](release-1.2.0.md)
 
-|     日期    |  版本   |  备注   |                                                                                                                                                                                               下载                                                                                                                                                                                                        |
-|:----------:| :----: |:-------:|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| 2022-06-20 | 1.2.0  | Source  | [[SRC](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-src.tar.gz)]                [[ASC](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-src.tar.gz.asc)]                [[SHA512](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-src.tar.gz.sha512)]                                      |
-| 2022-06-20 | 1.2.0  | Binary  | [[BIN](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-bin.tar.gz)]                [[ASC](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-bin.tar.gz.asc)]                [[SHA512](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-bin.tar.gz.sha512)]                                      |
-| 2022-06-20 | 1.2.0  | Binary  | [[BIN](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-sort-connectors.tar.gz)]                [[ASC](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-sort-connectors.tar.gz.asc)]                [[SHA512](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-sort-connectors.tar.gz.sha512)]  |
+|         名称           |   版本  |     日期     |                                                                                                                                                                                          Downloads                                                                                                                                                                                                       |
+|:---------------------:| :----: | :----------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| InLong Source Code    | 1.2.0  | Jun 20, 2022 | [[SRC](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-src.tar.gz)]                [[ASC](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-src.tar.gz.asc)]                [[SHA512](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-src.tar.gz.sha512)]                                      |
+| InLong Binary file    | 1.2.0  | Jun 20, 2022 | [[BIN](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-bin.tar.gz)]                [[ASC](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-bin.tar.gz.asc)]                [[SHA512](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-bin.tar.gz.sha512)]                                      |
+| Connector Binary file | 1.2.0  | Jun 20, 2022 | [[BIN](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-sort-connectors.tar.gz)]                [[ASC](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-sort-connectors.tar.gz.asc)]                [[SHA512](https://downloads.apache.org/inlong/1.2.0-incubating/apache-inlong-1.2.0-incubating-sort-connectors.tar.gz.sha512)]  |
 
 ### 发布完整性
 
