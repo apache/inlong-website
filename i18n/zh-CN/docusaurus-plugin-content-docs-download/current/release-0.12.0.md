@@ -1,15 +1,20 @@
-# InLong Release-0.12.0
+---
+title: InLong v0.12.0
+---
 
-使用以下镜像下载 InLong
+使用以下链接下载 InLong。
 
 ## InLong
+
 | 日期 | 版本| 备注 | 下载 |
 |:---:|:--:|:--:|:--:|
 | 2021-12-22 | 0.12.0 | Source | [[SRC](https://archive.apache.org/dist/incubator/inlong/0.12.0-incubating/apache-inlong-0.12.0-incubating-src.tar.gz)]                 [[ASC](https://archive.apache.org/dist/incubator/inlong/0.12.0-incubating/apache-inlong-0.12.0-incubating-src.tar.gz.asc)]             [[SHA512](https://archive.apache.org/dist/incubator/inlong/0.12.0-incubating/apache-inlong-0.12.0-incubating-src.tar.gz.sha512)] |
 
 ### 发布完整性
-您必须[验证](https://www.apache.org/info/verification.html) 下载文件的完整性。 我们为每个发布文件提供 OpenPGP 签名。 此签名应与包含 InLong 发布经理的 OpenPGP 密钥的 [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) 文件匹配。 我们还为每个发布文件提供 <code>SHA-512</code> 校验和。 下载文件后，您应该计算下载的校验和，并确保它与我们的相同。
 
+您必须 [验证](https://www.apache.org/info/verification.html) 下载文件的完整性。
+我们为每个发布文件提供 OpenPGP 签名。此签名应与包含 InLong 发布经理的 OpenPGP 密钥的 [KEYS](https://downloads.apache.org/incubator/inlong/KEYS) 文件匹配。
+我们还为每个发布文件提供 <code>SHA-512</code> 校验和。下载文件后，您应该计算下载的校验和，并确保它与我们提供的相同。
 
 ## 发版说明
 
