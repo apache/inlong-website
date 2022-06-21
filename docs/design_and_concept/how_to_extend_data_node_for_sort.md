@@ -5,9 +5,9 @@ sidebar_position: 3
 
 ## Overview
 
-InLong-Sort is known as a real-time ETL system. Currently, supported extract or load includes FileSystemExtractNode, KafkaExtractNode, MongoExtractNode, MySqlExtractNode, OracleExtractNode , PostgresExtractNode , PulsarExtractNode, SqlServerExtractNode, ClickHouseLoadNode, ElasticsearchLoadNode, FileSystemLoadNode, GreenplumLoadNode, HbaseLoadNode, HiveLoadNode, IcebergLoadNode, KafkaLoadNode, MySqlLoadNode, OracleLoadNode, PostgresLoadNode, SqlServerLoadNode, TDSQLPostgresLoadNode, etc. InLong-Sort is an ETL solution based on Flink SQL, the powerful expressive power of Flink SQL brings high scalability and flexibility. Basically, the semantics supported by Flink SQL are supported by InLong-Sort. In some scenarios, when the built-in functions of Flink SQL do not meet the requirements, they can also be extended through various UDFs in InLong-Sort. At the same time, it will be easier for those who have used SQL, especially Flink SQL, to get started.
+InLong Sort is known as a real-time ETL system. Currently, supported extract or load includes FileSystemExtractNode, KafkaExtractNode, MongoExtractNode, MySqlExtractNode, OracleExtractNode , PostgresExtractNode , PulsarExtractNode, SqlServerExtractNode, ClickHouseLoadNode, ElasticsearchLoadNode, FileSystemLoadNode, GreenplumLoadNode, HbaseLoadNode, HiveLoadNode, IcebergLoadNode, KafkaLoadNode, MySqlLoadNode, OracleLoadNode, PostgresLoadNode, SqlServerLoadNode, TDSQLPostgresLoadNode, etc. InLong Sort is an ETL solution based on Flink SQL, the powerful expressive power of Flink SQL brings high scalability and flexibility. Basically, the semantics supported by Flink SQL are supported by InLong Sort. In some scenarios, when the built-in functions of Flink SQL do not meet the requirements, they can also be extended through various UDFs in InLong Sort. At the same time, it will be easier for those who have used SQL, especially Flink SQL, to get started.
 
-This article describes how to extend a new source (abstracted as extract node in inlong) or a new sink (abstracted as load node in inlong) in InLong-Sort. After understanding the InLong-Sort architecture, you can understand how the source corresponds to the extract node, and how the sink corresponds to the load node. The architecture of inlong sort can be represented by UML object relation diagram as:
+This article describes how to extend a new source (abstracted as extract node in inlong) or a new sink (abstracted as load node in inlong) in InLong Sort. After understanding the InLong Sort architecture, you can understand how the source corresponds to the extract node, and how the sink corresponds to the load node. The architecture of inlong sort can be represented by UML object relation diagram as:
 
 ![sort_UML](img/sort_uml.png)
 
@@ -156,9 +156,9 @@ public interface Node {...}
 
 **Step 3**：Extend the Sort connector, Kafka's sort connector is in inlong/inlong-sort/sort-connectors/kafka.
 
-## Bundle extract node and load node into InLong-Sort
+## Bundle extract node and load node into InLong Sort
 
-To integrate extract and load into the InLong-Sort mainstream, you need to implement the semantics mentioned in the overview section: group, stream, node, etc. The entry class of InLong-sort is in `inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java`. How to integrate extract and load into InLong-Sort can refer to the following ut. First, build the corresponding extractnode and loadnode, then build noderelation, streaminfo and groupinfo, and finally use FlinkSqlParser to execute.
+To integrate extract and load into the InLong Sort mainstream, you need to implement the semantics mentioned in the overview section: group, stream, node, etc. The entry class of InLong Sort is in `inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java`. How to integrate extract and load into InLong Sort can refer to the following ut. First, build the corresponding extractnode and loadnode, then build noderelation, streaminfo and groupinfo, and finally use FlinkSqlParser to execute.
 
 ```java
 public class MongoExtractToKafkaLoad extends AbstractTestBase {

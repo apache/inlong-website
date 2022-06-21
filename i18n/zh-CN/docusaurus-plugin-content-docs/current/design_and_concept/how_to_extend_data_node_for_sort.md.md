@@ -5,9 +5,9 @@ sidebar_position: 3
 
 ## 总览
 
-InLong-Sort 是一个 ETL 系统，当前支持的 extract 或 load 包括 FileSystemExtractNode，KafkaExtractNode，MongoExtractNode，MySqlExtractNode，OracleExtractNode，PostgresExtractNode，PulsarExtractNode，SqlServerExtractNode，ClickHouseLoadNode ，ElasticsearchLoadNode，FileSystemLoadNode，GreenplumLoadNode，HbaseLoadNode，HiveLoadNode，IcebergLoadNode，KafkaLoadNode，MySqlLoadNode，OracleLoadNode，PostgresLoadNode，SqlServerLoadNode，TDSQLPostgresLoadNode 等。InLong-Sort是基于Flink SQL的ETL方案，Flink SQL强大的表达能力带来的高可扩展性、灵活性，基本上 Flink SQL 支持的语意，InLong-Sort 都支持。当 Flink SQL 内置的函数不满足需求时，还可通过 UDF 来扩展。这对于曾经使用过 SQL 尤其是 Flink SQL 的开发者非常友好。
+InLong Sort 是一个 ETL 系统，当前支持的 extract 或 load 包括 FileSystemExtractNode，KafkaExtractNode，MongoExtractNode，MySqlExtractNode，OracleExtractNode，PostgresExtractNode，PulsarExtractNode，SqlServerExtractNode，ClickHouseLoadNode ，ElasticsearchLoadNode，FileSystemLoadNode，GreenplumLoadNode，HbaseLoadNode，HiveLoadNode，IcebergLoadNode，KafkaLoadNode，MySqlLoadNode，OracleLoadNode，PostgresLoadNode，SqlServerLoadNode，TDSQLPostgresLoadNode 等。InLong Sort是基于Flink SQL的ETL方案，Flink SQL强大的表达能力带来的高可扩展性、灵活性，基本上 Flink SQL 支持的语意，InLong Sort 都支持。当 Flink SQL 内置的函数不满足需求时，还可通过 UDF 来扩展。这对于曾经使用过 SQL 尤其是 Flink SQL 的开发者非常友好。
 
-本文介绍如何在 InLong-Sort 中扩展一个新的 source（在 InLong 中抽象为 Extract Node）或一个新的 sink（在InLong中抽象为 Load Node ）。在弄清楚 InLong 的架构之后，就可以明白 Source 与 Extract Node 如何对应，Sink 与 Load Node 如何对应。InLong-Sort 架构的 UML 对象关系图如下：
+本文介绍如何在 InLong Sort 中扩展一个新的 source（在 InLong 中抽象为 Extract Node）或一个新的 sink（在InLong中抽象为 Load Node ）。在弄清楚 InLong 的架构之后，就可以明白 Source 与 Extract Node 如何对应，Sink 与 Load Node 如何对应。InLong Sort 架构的 UML 对象关系图如下：
 
 ![sort_uml](img/sort_uml.png)
 
@@ -157,12 +157,12 @@ public interface Node {...}
 
 **第三步**：扩展 Sort Connector，Kafka 的 sort connector 在 `inlong/inlong-sort/sort-connectors/kafka` 目录下。
 
-## 集成 Extract 和 Load 到 InLong-Sort 主流程
+## 集成 Extract 和 Load 到 InLong Sort 主流程
 
-将 Extract 和 Load 集成到 InLong-Sort 主流程中，需要构建总览小节中提到的语意：Group、Stream、Node 等。
-InLong-Sort 的入口类在`inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java`。
+将 Extract 和 Load 集成到 InLong Sort 主流程中，需要构建总览小节中提到的语意：Group、Stream、Node 等。
+InLong Sort 的入口类在`inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java`。
 
-Extract 和 Load 如何集成至 InLong-Sort，可参考下面的 UT，首先构建对应的 ExtractNode、LoadNode，再构建 NodeRelation、StreamInfo、GroupInfo，最后通过 FlinkSqlParser 执行。
+Extract 和 Load 如何集成至 InLong Sort，可参考下面的 UT，首先构建对应的 ExtractNode、LoadNode，再构建 NodeRelation、StreamInfo、GroupInfo，最后通过 FlinkSqlParser 执行。
 
 ```java
 public class MongoExtractToKafkaLoad extends AbstractTestBase {
