@@ -5,14 +5,14 @@ sidebar_position: 3
 
 ## JMX 配置
 Agent 提供了 JMX 和 Prometheus 方式的监控指标能力，默认使用 JMX 方式。JMX 方式的监控指标已经注册到 MBeanServer
-用户可以在Agent的启动参数中增加如下类似JMX定义（端口和鉴权根据情况进行调整），实现监控指标从远端采集。
+用户可以在 Agen t的启动参数中增加如下类似 JMX 定义（端口和鉴权根据情况进行调整），实现监控指标从远端采集。
 
 ```shell
-	-Dcom.sun.management.jmxremote
-	-Djava.rmi.server.hostname=127.0.0.1
-	-Dcom.sun.management.jmxremote.port=9999
-	-Dcom.sun.management.jmxremote.authenticate=false
-	-Dcom.sun.management.jmxremote.ssl=false
+-Dcom.sun.management.jmxremote
+-Djava.rmi.server.hostname=127.0.0.1
+-Dcom.sun.management.jmxremote.port=9999
+-Dcom.sun.management.jmxremote.authenticate=false
+-Dcom.sun.management.jmxremote.ssl=false
 ```
 
 ## Prometheus 配置 

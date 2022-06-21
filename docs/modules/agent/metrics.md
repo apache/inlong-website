@@ -7,7 +7,7 @@ sidebar_position: 3
 Agent provides the ability of monitoring indicators in JMX and Prometheus mode, and JMX mode is used by default. The monitoring indicators have been registered to MBeanServer
 Users can add similar JMX (port and authentication are adjusted according to the situation) to the startup parameters of the Agent to realize the collection of monitoring indicators from the remote end.
 
-```Shell
+```shell
 -Dcom.sun.management.jmxremote
 -Djava.rmi.server.hostname=127.0.0.1
 -Dcom.sun.management.jmxremote.port=9999
