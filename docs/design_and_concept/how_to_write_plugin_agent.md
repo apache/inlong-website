@@ -3,13 +3,13 @@ title: Agent Plugin
 sidebar_position: 2
 ---
 
-# Overview
+## Overview
 
-This article is aimed at InLong-Agent plug-in developers, trying to explain the process of developing an Agent plug-in as comprehensively as possible, and strive to eliminate the confusion of developers and make plug-in development easier.
+In Standard Architecture, we can collect various types of data through InLong Agent. InLong Agent supports extending new collection types in the form of plug-ins. This article will guide developers on customizing the new Agent collection plug-ins.
 
-## Before Development
+## Concepts and Models
 
-InLong Agent itself, as a data collection framework, is constructed with a Job + Task architecture. And abstract data source reading and writing into Reader/Sink plug-ins, which are incorporated into the entire framework.
+InLong Agent is a data collection framework, adopted `Job` + `Task` architectural model. And abstract data source reading and writing into Reader/Sink plugins.
 
 Developers need to be clear about the concepts of Job and Task:
 
@@ -18,33 +18,29 @@ Developers need to be clear about the concepts of Job and Task:
 
 A Task contains the following components:
 
-- Reader: Reader is a data collection module, which is responsible for collecting data from the data source and sending the data to the channel.
-- Sink: Sink is a data writing module, responsible for continuously fetching data from the channel and writing the data to the destination.
-- Channel: Channel is used to connect reader and sink, as a data transmission channel for both, and plays a role in monitoring data writing and reading
+- Reader: a data collection module, which is responsible for collecting data from the data source and sending the data to the Channel.
+- Sink: a data writing module, responsible for continuously fetching data from the Channel and writing the data to the destination.
+- Channel: connect Reader and Sink, as a data transmission channel for both, and plays a role in monitoring data writing and reading.
 
-As a developer, you only need to develop specific Source, Reader and Sink. If the data needs to be persisted to the local disk, use the persistent Channel, otherwise use the memory Channel
+When extending an Agent plugin, you need to develop specific Source, Reader and Sink. If the data needs to be persisted to the local disk, use the persistent Channel, otherwise use the memory Channel
 
 ## Demonstration
 
-The Job\Task\Reader\Sink\Channel concept introduced above can be represented by the following figure:
+The Job/Task/Reader/Sink/Channel concept introduced above can be represented by the following figure:
 ![](img/Agent_Flow.png)
 
-1. The user submits a Job (via the manager or via curl), and the Job defines the Source, Channel, and Sink that need to be used (defined by the fully qualified name of the class)
-2. The framework starts the Job and creates the Source through the reflection mechanism
-3. The framework starts the Source and calls the Split interface of the Source to generate one or more Tasks
-4. When a Task is generated, a Reader (a type of Source will generate a corresponding reader), a User-configured Channel and a User-configured Sink are generated at the same time
-5. Task starts to execute, Reader starts to read data to Channel, Sink fetches data from Channel and sends it
-6. All the information needed for Job and Task execution is encapsulated in the JobProfile
-
-## Reference Demo
-
-Please understand the above process by reading the Job class, Task class, TextFileSource class, TextFileReader class, and ProxySink class in the Agent source
+- The user submits a Job (via the manager), and the Job defines the Source, Channel, and Sink that need to be used (defined by the fully qualified name of the class)
+- The framework starts the Job and creates the Source through the reflection mechanism
+- The framework starts the Source and calls the Split interface of the Source to generate one or more Tasks
+- When a Task is generated, a Reader (a type of Source will generate a corresponding reader), a User-configured Channel and a User-configured Sink are generated at the same time
+- Task starts to execute, Reader starts to read data to Channel, Sink fetches data from Channel and sends it
+- All the information needed for Job and Task execution is encapsulated in the JobProfile
 
 ## Development Process
 
-1. First develop Source, implement split logic, and return ReaderList
-2. The developed Reader implements the logic of reading data and writing to Channel
-3. The sink under development implements the logic of fetching data from the channel and writing it to the specified sink
+- First develop Source, implement split logic, and return ReaderList
+- The developed Reader implements the logic of reading data and writing to Channel
+- The sink under development implements the logic of fetching data from the channel and writing it to the specified sink
 
 ## Programming must know interface
 
@@ -190,16 +186,3 @@ public interface Message {
 ```
 
 Developers can expand customized Message according to this interface. For example, ProxyMessage contains InLongGroupId, InLongStreamId and other attributes
-
-
-## Last but not Least
-
-All new plugins must have a document in the `InLong` official wiki. The document needs to include but not limited to the following:
-
-1. **Quick introduction**: Introduce the usage scenarios and features of the plug-in.
-2. **Implementation principle**: Introduce the underlying principle of plug-in implementation, such as `sqlReader` to read data in the database by executing Sql query
-3. **Configuration Instructions**
-    - Give the json configuration file of synchronization tasks in typical scenarios.
-    - Introduce the meaning of each parameter, whether it is required, default value, value range and other constraints.
-4. **Restrictions**: Are there other restrictions on use.
-5. **FAQ**: Frequently asked questions by users.
