@@ -1,4 +1,6 @@
-# InLong Release-0.9.0
+---
+title: InLong v0.9.0
+---
 
 使用以下链接下载 InLong。
 

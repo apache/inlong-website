@@ -1,4 +1,6 @@
-# InLong Release-0.8.0
+---
+title: InLong v0.8.0
+---
 
 Use the links below to download the Apache InLong from one of our mirrors.
 

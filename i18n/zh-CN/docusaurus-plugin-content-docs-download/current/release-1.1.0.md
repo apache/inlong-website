@@ -1,6 +1,5 @@
 ---
 title: InLong v1.1.0
-sidebar_position: 2
 ---
 
 使用以下链接下载 InLong。

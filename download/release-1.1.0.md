@@ -1,6 +1,5 @@
 ---
 title: InLong v1.1.0
-sidebar_position: 2
 ---
 
 Use the links below to download the Apache InLong from one of our mirrors.
