@@ -16,7 +16,7 @@ Hive 加载节点可以将数据写入 Hive。使用 Flink 方言，目前仅支
 ### 依赖
 
 通过 Maven 引入 sort-connector-hive 构建自己的项目。
-当然，你也可以直接使用 INLONG 提供的 jar 包。([sort-connector-sqlserver-cdc](https://inlong.apache.org/download/main/))
+当然，你也可以直接使用 INLONG 提供的 jar 包。([sort-connector-hive](https://inlong.apache.org/download/main/))
 
 ### Maven 依赖
 
