@@ -6,7 +6,7 @@ sidebar_position: 5
 ## Overview
 
 Inlong is aimed at create dataflow between different data sources, now Inlong has support several universal data sources such as **MySQL**, **Apache Kafka**, **ClickHouse** on Input/Output respectively,
-You can refer to [Data Node]((data_node/extract_node/overview.md)) for specific information.
+You can refer to [Data Node](data_node/extract_node/overview.md) for specific information.
 We Plan to support more data sources in the future, and this article is a development manual to extend data nodes.
 
 ## Extend Extract Node
