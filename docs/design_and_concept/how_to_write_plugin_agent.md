@@ -42,9 +42,9 @@ The Job/Task/Reader/Sink/Channel concept introduced above can be represented by 
 - The developed Reader implements the logic of reading data and writing to Channel
 - The sink under development implements the logic of fetching data from the channel and writing it to the specified sink
 
-## Programming must know interface
+## Interface
 
-Some of the plug-ins that will be developed below, the classes and interfaces that need to be known are as follows:
+The following will introduce the classes and interfaces you need to know to develop an Agent plug-in.
 
 ### Reader
 ```java
