@@ -1,5 +1,5 @@
 ---
-title: PostgreSQL
+title: PostgreSQL-CDC
 sidebar_position: 8
 ---
 
