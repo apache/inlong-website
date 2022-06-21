@@ -3,17 +3,14 @@ title: Dashboard Plugin
 sidebar_position: 4
 ---
 
-# Overview
+## Overview
 
-This article is aimed at InLong-Dashboard plug-in developers, trying to describe the process of developing a Dashboard plug-in as comprehensively as possible, helping developers quickly add a data storage LoadNode, and making plug-in development easier.
-
-## Before
-
+This article is aimed at InLong Dashboard plug-in developers, trying to describe the process of developing a Dashboard plug-in as comprehensively as possible, helping developers quickly add a data storage LoadNode, and making plug-in development easier.
 The InLong Dashboard itself acts as a front-end console, built with the React framework.
 
-## Extend a new sink
+## Extend a new Load Node
 
-In the `/inlong-dashboard/src/components/MetaData` directory, create a new `StorageExample.tsx` file, and at the same time export the file in the `index.ts` file in the current directory (refer to the existing LoadNode writing method ), which completes a new sink named `Example`.
+In the `inlong-dashboard/src/components/MetaData` directory, create a new `StorageExample.tsx` file, and at the same time export the file in the `index.ts` file in the current directory (refer to the existing LoadNode writing method ), which completes a new sink named `Example`.
 
 ````js
 // export in index

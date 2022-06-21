@@ -5,9 +5,11 @@ sidebar_position: 3
 
 ## 总览
 
-InLong Sort 是一个 ETL 系统，当前支持的 extract 或 load 包括 FileSystemExtractNode，KafkaExtractNode，MongoExtractNode，MySqlExtractNode，OracleExtractNode，PostgresExtractNode，PulsarExtractNode，SqlServerExtractNode，ClickHouseLoadNode ，ElasticsearchLoadNode，FileSystemLoadNode，GreenplumLoadNode，HbaseLoadNode，HiveLoadNode，IcebergLoadNode，KafkaLoadNode，MySqlLoadNode，OracleLoadNode，PostgresLoadNode，SqlServerLoadNode，TDSQLPostgresLoadNode 等。InLong Sort是基于Flink SQL的ETL方案，Flink SQL强大的表达能力带来的高可扩展性、灵活性，基本上 Flink SQL 支持的语意，InLong Sort 都支持。当 Flink SQL 内置的函数不满足需求时，还可通过 UDF 来扩展。这对于曾经使用过 SQL 尤其是 Flink SQL 的开发者非常友好。
+InLong Sort 是一个基于 Apache Flink SQL 的 ETL 服务。Flink SQL 强大的表达能力带来的高可扩展性、灵活性，基本上 Flink SQL 支持的语意，InLong Sort 都支持。
+当 Flink SQL 内置的函数不满足需求时，还可通过 UDF 来扩展。这对于曾经使用过 SQL 尤其是 Flink SQL 的开发者非常友好。
 
-本文介绍如何在 InLong Sort 中扩展一个新的 source（在 InLong 中抽象为 Extract Node）或一个新的 sink（在InLong中抽象为 Load Node ）。在弄清楚 InLong 的架构之后，就可以明白 Source 与 Extract Node 如何对应，Sink 与 Load Node 如何对应。InLong Sort 架构的 UML 对象关系图如下：
+本文介绍如何在 InLong Sort 中扩展一个新的 source（在 InLong 中抽象为 Extract Node）或一个新的 sink（在InLong中抽象为 Load Node ）。
+InLong Sort 架构的 UML 对象关系图如下：
 
 ![sort_uml](img/sort_uml.png)
 
@@ -43,7 +45,11 @@ InLong Sort 是一个 ETL 系统，当前支持的 extract 或 load 包括 FileS
 
 扩展一个 ExtractNode 分为三个步骤：
 
-**第一步**：继承 ExtractNode 类，类的位置在 `inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java`；在实现的 ExtractNode 中指定 connecter；
+**第一步**：继承 ExtractNode 类，类的位置在:
+```bash
+inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/ExtractNode.java
+```
+在实现的 ExtractNode 中指定 connector；
 
 ```Java
 // 继承 ExtractNode 类，实现具体的类，例如 MongoExtractNode
@@ -88,13 +94,18 @@ public abstract class ExtractNode implements Node{...}
 public interface Node {...}
 ```
 
-**第三步**：扩展 Sort Connector，查看此（`/inlong/inlong-sort/sort-connectors/mongodb-cdc`）目录下是否已经存在对应的 connector。如果没有，则需要参考 Flink 官方文档 [DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) 来扩展，调用已有的 Flink-connector（例如`inlong/inlong-sort/sort-connectors/mongodb-cdc`）或自行实现相关的 connecter 均可。
+**第三步**：扩展 Sort Connector，查看此（`inlong-sort/sort-connectors/mongodb-cdc`）目录下是否已经存在对应的 connector。如果没有，则需要参考 Flink 官方文档 [DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) 来扩展，
+调用已有的 Flink-connector（例如`inlong-sort/sort-connectors/mongodb-cdc`）或自行实现相关的 connector 均可。
 
 ## 扩展 Load Node
 
 扩展一个 LoadNode 分为三个步骤：
 
-**第一步**：继承 LoadNode 类，类的位置在 `inlong/inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java`；在实现的LoadNode 中指定 connecter；
+**第一步**：继承 LoadNode 类，类的位置在:
+```bash
+inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/LoadNode.java
+```
+在实现的LoadNode 中指定 connector；
 
 ```java
 // 继承 LoadNode 类，实现具体的类，例如 KafkaLoadNode
@@ -155,12 +166,15 @@ public abstract class LoadNode implements Node{...}
 public interface Node {...}
 ```
 
-**第三步**：扩展 Sort Connector，Kafka 的 sort connector 在 `inlong/inlong-sort/sort-connectors/kafka` 目录下。
+**第三步**：扩展 Sort Connector，Kafka 的 sort connector 在 `inlong-sort/sort-connectors/kafka` 目录下。
 
-## 集成 Extract 和 Load 到 InLong Sort 主流程
+## 集成 Extract 和 Load Node 到 InLong Sort 主流程
 
 将 Extract 和 Load 集成到 InLong Sort 主流程中，需要构建总览小节中提到的语意：Group、Stream、Node 等。
-InLong Sort 的入口类在`inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java`。
+InLong Sort 的入口类在:
+```bash
+inlong-sort/sort-core/src/main/java/org/apache/inlong/sort/Entrance.java
+```
 
 Extract 和 Load 如何集成至 InLong Sort，可参考下面的 UT，首先构建对应的 ExtractNode、LoadNode，再构建 NodeRelation、StreamInfo、GroupInfo，最后通过 FlinkSqlParser 执行。
 
