@@ -36,7 +36,7 @@ Extract 节点列表是一组基于 <a href="https://flink.apache.org/">Apache F
 - 将下载并解压后的 Sort Connectors jars 放到 `FLINK_HOME/lib/`。
 - 重启 Flink 集群。
 
-下面例子展示了如何在 [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-release-1.13/dev/table/sqlClient.html) 创建 MySQL Extarct 节点，并从中查询数据：
+下面例子展示了如何在 [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-release-1.13/dev/table/sqlClient.html) 创建 MySQL Extract 节点，并从中查询数据：
 
 ```sql
 -- 创建一个 MySQL Extract 节点
