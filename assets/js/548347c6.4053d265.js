@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs_website=self.webpackChunkdocs_website||[]).push([[8388],{40931:e=>{e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"Apache InLong welcomes new Committers","permalink":"/news/2021/11/26/new-committer-join"}]}')}}]);
