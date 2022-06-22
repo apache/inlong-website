@@ -1,12 +1,11 @@
 ---
-title: 数据流示例
+title: Example
 sidebar_position: 3
 ---
 
 ## 示例
 
-为了更容易创建InLong-Sort作业，这里我们列出了一些数据流配置示例。  
-下面将介绍InLong-Sort的SQL、Dashboard、Manager客户端工具的使用。
+为了更容易创建 InLong Sort 作业，这里我们列出了一些数据流配置示例。下面将介绍 InLong Sort 的 SQL、Dashboard、Manager 客户端工具的使用。
 
 ## 环境要求
 - JDK 1.8.x

@@ -2,10 +2,10 @@
 title: 总览
 ---
 
-InLong-dataProxy属于inlong proxy层，用于数据的汇集接收以及转发。通过格式转换，将数据转为cache层可以缓存处理的TDMsg1格式
-InLong-dataProxy充当了InLong采集端到InLong缓冲端的桥梁，dataproxy从manager模块拉取业务id与对应topic名称的关系，内部管理多个topic的生产者
-当dataproxy收到消息时，会首先缓存到本地的Channel中，并使用本地的producer往后端即cache层发送数据
-InLong-dataProxy整体架构基于Apache Flume。inlong-dataproxy在该项目的基础上，扩展了source层和sink层，并对容灾转发做了优化处理，提升了系统的稳定性。
+InLong DataProxy 主要有连接收敛、路由、数据压缩和协议转换等作用。DataProxy 充当了 InLong 采集端到消息队列的桥梁，
+当 DataProxy 从 Manager 模块拉取数据流元数据后，数据流和消息队列 Topic 名称对应关系也就确定了。当 DataProxy 收到消息时，会首先发送到 Memory Channel 中进行压缩，
+并使用本地的 Producer 往后端 Cache 层（即消息队列）发送数据。当消息队列异常出现发送失败时，DataProxy 会将消息缓存到 Disk Channel，也就是本地磁盘中。 
+InLong DataProxy 整体架构基于 Apache Flume，扩展了 Source 层和 Sink 层，并对容灾转发做了优化处理，提升了系统的稳定性。
     
 ## 架构
 

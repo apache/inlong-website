@@ -1,11 +1,11 @@
 ---
-title: DataStream Example
+title: Example
 sidebar_position: 3
 ---
 
 ## Overview
 
-To make it easier for you to create InLong-Sort jobs, here we list some data stream configuration examples.
+To make it easier for you to create InLong Sort jobs, here we list some data stream configuration examples.
 The following will introduce SQL, Dashboard, Manager Client Tools methods to use Inlong Sort.
 
 ## Environment Requirements
