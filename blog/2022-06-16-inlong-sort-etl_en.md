@@ -1,6 +1,5 @@
 ---
-title: Analysis of InLong Sort ETL Solution Based on Apache Flink SQL
-sidebar_position: 4
+title: Analysis of InLong Sort ETL Solution
 ---
 
 # Analysis of InLong Sort ETL Solution Based on Apache Flink SQL
@@ -9,7 +8,7 @@ sidebar_position: 4
 
 With the increasing number of users and developers of Apache InLong(incubating), the demand for richer usage scenarios and low-cost operation is getting stronger and stronger. Among them, the demand for adding Transform (T) to the whole link of InLong has received the most feedback. After the research and design of @yunqingmoswu, @EMsnap, @gong, @thexiay community developers, the InLong Sort ETL solution based on Flink SQL has been completed. This article will introduce the implementation details of the solution in detail.
 
-First of all, based on Apache Flink SQL, there are mainly the following considerations：
+Firstly, based on Apache Flink SQL, there are mainly the following considerations：
 
 -  Flink SQL has high scalability and flexibility brought about by its powerful expression ability. Basically, Flink SQL can support most demand scenarios in the community. When the built-in functions of Flink SQL do not meet the requirements, we can also extend them through various UDFs.
 -  Compared with the implementation of the underlying API of Flink, the development cost of Flink SQL is lower. Only for the first time, the conversion logic of Flink SQL needs to be implemented. In the future, we can focus on the construction of the ability of Flink SQL, such as the extension connector and the UDF.
@@ -56,7 +55,7 @@ The core concept refers to the explanation of terms in the outline design
 
 |            Name             |                           Meaning                            |
 | :-------------------------: | :----------------------------------------------------------: |
-|      InLong Dashborad       |            Inlong front end management interface             |
+|      InLong Dashboard       |            Inlong front end management interface             |
 |    InLong Manager Client    | Wrap the interface in the manager for external user programs to call without going through the front-end inlong dashboard |
 |   InLong Manager Openapi    |      Inlong manager and external system call interface       |
 |   InLong Manager metaData   | Inlong manager metadata management, including metadata information of group and stream dimensions |
@@ -65,7 +64,7 @@ The core concept refers to the explanation of terms in the outline design
 |        InLong Stream        |     Data flow: a data flow has a specific flow direction     |
 |        Stream Source        | There are corresponding acquisition end and sink end in the stream. This design only involves the stream source |
 |         Stream Info         | Abstract of data flow in sort, including various sources, transformations, destinations, etc. of the data flow |
-|         Group Info          | Encapsulation of data flow in sort. A groupinfo can contain multiple stream infos |
+|         Group Info          | Encapsulation of data flow in sort. A group info can contain multiple stream infos |
 |            Node             | Abstraction of data source, data transformation and data destination in data synchronization |
 |        Extract Node         |       Source side abstraction of data synchronization        |
 |          Load Node          |       Destination abstraction of data synchronization        |
@@ -89,19 +88,19 @@ The core concept refers to the explanation of terms in the outline design
 
 This design mainly involves the following entities: 
 
-Group、Stream、GroupInfo、StreamInfo、Node、NodeRelation、FieldRelation、Function、FilterFunction、SubstringFunction、FunctionParam、FieldInfo、MetaFieldInfo、MySQLExtractNode、KafkaLoadNode and etc.
+Group, Stream, GroupInfo, StreamInfo, Node, NodeRelation, FieldRelation, Function, FilterFunction, SubstringFunction, FunctionParam, FieldInfo, MetaFieldInfo, MySQLExtractNode, KafkaLoadNode, etc.
 
 For ease of understanding, this section will model and analyze the relationship between entities. Description of entity correspondence of domain model:
 
-- One group corresponds to one groupinfo
+- One group corresponds to one group info
 - A group contains one or more streams
-- One stream corresponds to one streaminfo
-- A groupinfo contains one or more streaminfo
-- A streaminfo contains multiple nodes
-- A streaminfo contains one or more NodeRelations
-- A noderelation contains one or more fieldrelations
-- A NodeRelation contains 0 or more filterfunctions
-- A fieldrelation contains one function or one fieldinfo as the source field and one fieldinfo as the target field
+- One stream corresponds to one StreamInfo
+- A GroupInfo contains one or more StreamInfo
+- A StreamInfo contains multiple nodes
+- A StreamInfo contains one or more NodeRelations
+- A NodeRelation contains one or more FieldRelations
+- A NodeRelation contains 0 or more FilterFunctions
+- A FieldRelation contains one function or one FieldInfo as the source field and one FieldInfo as the target field
 - A function contains one or more FunctionParams
 
 The above relationship can be represented by UML object relationship diagram as:
@@ -134,7 +133,7 @@ The above relationship can be represented by UML object relationship diagram as:
 
 ## 3.3 Module Design
 
-This design only adds Flink connector and flinksql generator to the original system, and modifies the data model module.
+This design only adds Flink connector and Flink SQL generator to the original system, and modifies the data model module.
 
 ### 3.3.1 Module Structure
 
@@ -146,9 +145,9 @@ Description of important module division:
 
 |       Name        |                         Description                          |
 | :---------------: | :----------------------------------------------------------: |
-|  FlinkSQLParser   | Used to generate flinksql core classes, including references to groupinfo |
-|     GroupInfo     | The internal abstraction of sort for inlong group is used to encapsulate the synchronization related information of the entire inlong group, including the reference to list\<streaminfo\> |
-|    StreamInfo     | The internal abstraction of sort to inlong stream is used to encapsulate inlong stream synchronization related information, including references to list\<node\>, list\<noderelation\> |
+|  FlinkSQLParser   | Used to generate Flink SQL core classes, including references to GroupInfo |
+|     GroupInfo     | The internal abstraction of sort for inlong group is used to encapsulate the synchronization related information of the entire inlong group, including the reference to list\<StreamInfo\> |
+|    StreamInfo     | The internal abstraction of sort to inlong stream is used to encapsulate inlong stream synchronization related information, including references to list\<node\>, list\<NodeRelation\> |
 |       Node        | The top-level interface of the synchronization node. Its subclass implementation is mainly used to encapsulate the data of the synchronization data source and the transformation node |
 |    ExtractNode    |      Data extract node abstraction, inherited from node      |
 |     LoadNode      |       Data load node abstraction, inherited from node        |
@@ -160,8 +159,8 @@ Description of important module division:
 | SubstringFunction | Used for string interception function abstraction, inherited from function |
 |   FunctionParam   |             Abstraction for function parameters              |
 |   ConstantParam   | Encapsulation of function constant parameters, inherited from FunctionParam |
-|     FieldInfo     | The encapsulation of node fields can also be used as function input parameters, inherited from functionparam |
-|   MetaFieldInfo   | The encapsulation of built-in fields is currently mainly used in the metadata field scenario of canal JSON, which is inherited from fieldinfo |
+|     FieldInfo     | The encapsulation of node fields can also be used as function input parameters, inherited from FunctionParam |
+|   MetaFieldInfo   | The encapsulation of built-in fields is currently mainly used in the metadata field scenario of canal JSON, which is inherited from FieldInfo |
 
 # 4. Detailed System Design
 
@@ -201,10 +200,7 @@ with
 'password' = 'password',
 'database-name' = 'inlong',
 'table-name' = 'tableName')
-
 ```
-
-
 
 ### 4.1.2 TransformNode  Described in SQL
 
@@ -221,7 +217,6 @@ The node configuration is:
                         new FieldInfo("age", new IntFormatInfo()),
                         MoreThanOrEqualOperator.getInstance(), new ConstantParam(18))
         );
-
 ```
 
 The generated SQL is:
@@ -230,10 +225,7 @@ The generated SQL is:
 
 ```sql
 SELECT `name` AS `name`,`age` AS `age` FROM `mysql_1` WHERE `age` < 25 AND `age` >= 18
-
 ```
-
-
 
 ### 4.1.3 LoadNode Described in SQL
 
@@ -267,7 +259,6 @@ The node configuration is:
                 new CanalJsonFormat(), null,
                 null, "id");
     }
-
 ```
 
 The generated SQL is:
@@ -287,9 +278,7 @@ with (
 'canal-json-inlong.timestamp-format.standard' = 'SQL',
 'canal-json-inlong.map-null-key.literal' = 'null'
 )
-
 ```
-
 
 
 ## 4.2 Field T Described in SQL
@@ -304,12 +293,11 @@ The generated SQL is:
 
 ```sql
 INSERT INTO `kafka_3` SELECT `name` AS `name`,`age` AS `age` FROM `mysql_1` WHERE `age` < 25 AND `age` >= 18
-
 ```
 
 ### 4.2.2 Watermark
 
-The complete configuration of groupinfo is as follows:
+The complete configuration of GroupInfo is as follows:
 
 **nodeconfig3**
 

@@ -1,6 +1,5 @@
 ---
-title: 基于 Apache Flink SQL 的 InLong Sort ETL 方案解析
-sidebar_position: 4
+title: InLong Sort ETL 方案解析
 ---
 
 # 基于 Apache Flink SQL 的 InLong Sort ETL 方案解析
