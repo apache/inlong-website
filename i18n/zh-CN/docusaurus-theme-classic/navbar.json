@@ -23,10 +23,6 @@
     "message": "博客",
     "description": "Navbar item with label BLOG"
   },
-  "item.label.NEWS": {
-    "message": "新闻",
-    "description": "Navbar item with label NEWS"
-  },
   "item.label.TEAM": {
     "message": "团队",
     "description": "Navbar item with label TEAM"
