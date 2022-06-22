@@ -14,14 +14,14 @@
       "nextLink": "/zh-CN/docs/next/introduction",
       "version": [
         {
-          "title": "0.11.0",
-          "link": "/zh-CN/docs/0.11.0/user_guide/quick_start",
-          "releaseUrl": "/zh-CN/download/release-0.11.0"
+          "title": "1.2.0",
+          "link": "/zh-CN/docs/introduction",
+          "releaseUrl": "/zh-CN/download/release-1.2.0"
         },
         {
-          "title": "0.12.0",
-          "link": "/zh-CN/docs/0.12.0/introduction",
-          "releaseUrl": "/zh-CN/download/release-0.12.0"
+          "title": "1.1.0",
+          "link": "/zh-CN/docs/1.1.0/introduction",
+          "releaseUrl": "/zh-CN/download/release-1.1.0"
         },
         {
           "title": "1.0.0",
@@ -29,9 +29,14 @@
           "releaseUrl": "/zh-CN/download/release-1.0.0"
         },
         {
-          "title": "1.1.0",
-          "link": "/zh-CN/docs/introduction",
-          "releaseUrl": "/zh-CN/download/release-1.1.0"
+          "title": "0.12.0",
+          "link": "/zh-CN/docs/0.12.0/introduction",
+          "releaseUrl": "/zh-CN/download/release-0.12.0"
+        },
+        {
+          "title": "0.11.0",
+          "link": "/zh-CN/docs/0.11.0/user_guide/quick_start",
+          "releaseUrl": "/zh-CN/download/release-0.11.0"
         }
       ]
     }
@@ -52,14 +57,14 @@
       "nextLink": "/docs/next/introduction",
       "version": [
         {
-          "title": "0.11.0",
-          "link": "/docs/0.11.0/user_guide/quick_start",
-          "releaseUrl": "/download/release-0.11.0"
+          "title": "1.2.0",
+          "link": "/docs/introduction",
+          "releaseUrl": "/download/release-1.2.0"
         },
         {
-          "title": "0.12.0",
-          "link": "/docs/0.12.0/introduction",
-          "releaseUrl": "/download/release-0.12.0"
+          "title": "1.1.0",
+          "link": "/docs/1.1.0/introduction",
+          "releaseUrl": "/download/release-1.1.0"
         },
         {
           "title": "1.0.0",
@@ -67,9 +72,14 @@
           "releaseUrl": "/download/release-1.0.0"
         },
         {
-          "title": "1.1.0",
-          "link": "/docs/introduction",
-          "releaseUrl": "/download/release-1.1.0"
+          "title": "0.12.0",
+          "link": "/docs/0.12.0/introduction",
+          "releaseUrl": "/download/release-0.12.0"
+        },
+        {
+          "title": "0.11.0",
+          "link": "/docs/0.11.0/user_guide/quick_start",
+          "releaseUrl": "/download/release-0.11.0"
         }
       ]
     }
