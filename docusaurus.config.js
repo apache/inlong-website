@@ -125,11 +125,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             position: 'right'
           },
           {
-            to: '/news',
-            label: 'NEWS',
-            position: 'right'
-          },
-          {
             to: '/team',
             label: 'TEAM',
             position: 'right'
@@ -293,14 +288,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             }
           });
         },
-      },
-    ],
-    [
-      '@docusaurus/plugin-content-blog',
-      {
-        id: 'news',
-        routeBasePath: 'news',
-        path: 'news',
       },
     ],
   ]
