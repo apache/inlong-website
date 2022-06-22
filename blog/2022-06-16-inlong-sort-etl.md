@@ -4,7 +4,7 @@ title: Analysis of InLong Sort ETL Solution
 
 # Analysis of InLong Sort ETL Solution Based on Apache Flink SQL
 
-# 1. Background
+## 1. Background
 
 With the increasing number of users and developers of Apache InLong(incubating), the demand for richer usage scenarios and low-cost operation is getting stronger and stronger. Among them, the demand for adding Transform (T) to the whole link of InLong has received the most feedback. After the research and design of @yunqingmoswu, @EMsnap, @gong, @thexiay community developers, the InLong Sort ETL solution based on Flink SQL has been completed. This article will introduce the implementation details of the solution in detail.
 
@@ -18,9 +18,9 @@ Firstly, based on Apache Flink SQL, there are mainly the following consideration
 
 **Note**:  for all codes of this scheme, please refer to [Apache inlong sort]（ https://github.com/apache/incubator-inlong/tree/master/inlong-sort ）Module, which can be downloaded and used in the upcoming version 1.2.0.
 
-# 2. Introduction
+## 2. Introduction
 
-## 2.1 Requirements
+### 2.1 Requirements
 
 The main requirements of this solution are the completed inlong sort module transform (T) capability, including:
 
@@ -36,11 +36,11 @@ The main requirements of this solution are the completed inlong sort module tran
 |            Join             |                    Support two table join                    |
 |     Value substitution      | Given a matching value, if the field's value is equal to that value, replace it with the target value |
 
-## 2.2 Usage Scenarios
+### 2.2 Usage Scenarios
 
 Users of big data integration have transform requirements such as data transformation, connection and filtering in many business scenarios.
 
-## 2.3 Design Goal
+### 2.3 Design Goal
 
 This design needs to achieve the following goals:
 
@@ -49,7 +49,7 @@ This design needs to achieve the following goals:
 - Maintainability: The conversion of the InLong Sort data model to Flink SQL only needs to be implemented once. When there are new functional requirements later, this part does not need to be changed, even if there are changes, it can be supported with a small amount of changes.
 - Extensibility: When the open source Flink Connector or the built-in Flink SQL function does not meet the requirements, you can customize the Flink Connector and UDF to achieve its function expansion.
 
-## 2.4 Basic Concepts
+### 2.4 Basic Concepts
 
 The core concept refers to the explanation of terms in the outline design
 
@@ -82,9 +82,7 @@ The core concept refers to the explanation of terms in the outline design
 |         Field Info          |                          Node field                          |
 |       Meta FieldInfo        |                 Node meta information field                  |
 
-
-
-## 2.5 Domain Model
+### 2.5 Domain Model
 
 This design mainly involves the following entities: 
 
@@ -107,13 +105,13 @@ The above relationship can be represented by UML object relationship diagram as:
 
 ![sort_UML](./img/sort_UML.png)
 
-## 2.6 Function Use-case Diagram
+### 2.6 Function Use-case Diagram
 
 ![sort-usecase](./img/sort-usecase.png)
 
-# 3. System Outline Design
+## 3. System Outline Design
 
-## 3.1 System Architecture Diagram
+### 3.1 System Architecture Diagram
 
 ![architecture](./img/architecture.png)
 
@@ -127,19 +125,19 @@ The above relationship can be represented by UML object relationship diagram as:
 - Node: Abstraction of data source, data conversion and data destination in data synchronization
 - FlinkSQLParser: SQL parser
 
-## 3.2 InLong Sort Internal Operation Flow Chart
+### 3.2 InLong Sort Internal Operation Flow Chart
 
 ![sort-operation-flow](./img/sort-operation-flow.png)
 
-## 3.3 Module Design
+### 3.3 Module Design
 
 This design only adds Flink connector and Flink SQL generator to the original system, and modifies the data model module.
 
-### 3.3.1 Module Structure
+#### 3.3.1 Module Structure
 
 ![sort-module-structure](./img/sort-module-structure.png)
 
-### 3.3.2 Module Division
+#### 3.3.2 Module Division
 
 Description of important module division:
 
@@ -162,17 +160,15 @@ Description of important module division:
 |     FieldInfo     | The encapsulation of node fields can also be used as function input parameters, inherited from FunctionParam |
 |   MetaFieldInfo   | The encapsulation of built-in fields is currently mainly used in the metadata field scenario of canal JSON, which is inherited from FieldInfo |
 
-# 4. Detailed System Design
+## 4. Detailed System Design
 
 The following describes the principle of SQL generation by taking MySQL synchronizing data to Kafka as an example
 
-## 4.1 Node Described in SQL
+### 4.1 Node Described in SQL
 
-### 4.1.1 ExtractNode Described in SQL
+#### 4.1.1 ExtractNode Described in SQL
 
 The node configuration is:
-
-**nodeconfig1**
 
 ```java
  private Node buildMySQLExtractNode() {
@@ -189,8 +185,6 @@ The node configuration is:
 
 The generated SQL is:
 
-**ss**
-
 ```sql
 CREATE TABLE `mysql_1` (`name` string,`age` int) 
 with 
@@ -202,11 +196,9 @@ with
 'table-name' = 'tableName')
 ```
 
-### 4.1.2 TransformNode  Described in SQL
+#### 4.1.2 TransformNode  Described in SQL
 
 The node configuration is:
-
-**nodeconfig2**
 
 ```java
  List<FilterFunction> filters = Arrays.asList(
@@ -221,17 +213,13 @@ The node configuration is:
 
 The generated SQL is:
 
-**ss2**
-
 ```sql
 SELECT `name` AS `name`,`age` AS `age` FROM `mysql_1` WHERE `age` < 25 AND `age` >= 18
 ```
 
-### 4.1.3 LoadNode Described in SQL
+#### 4.1.3 LoadNode Described in SQL
 
 The node configuration is:
-
-**nodeconfig3**
 
 ```java
  private Node buildKafkaLoadNode(FilterStrategy filterStrategy) {
@@ -263,8 +251,6 @@ The node configuration is:
 
 The generated SQL is:
 
-**ss3**
-
 ```sql
 CREATE TABLE `kafka_3` (`name` string,`age` int) 
 with (
@@ -280,26 +266,21 @@ with (
 )
 ```
 
+### 4.2 Field T Described in SQL
 
-## 4.2 Field T Described in SQL
-
-### 4.2.1 Filter operator
+#### 4.2.1 Filter operator
 
 See 4.1 node configuration for relevant configurations
 
 The generated SQL is:
 
-**ss4**
-
 ```sql
 INSERT INTO `kafka_3` SELECT `name` AS `name`,`age` AS `age` FROM `mysql_1` WHERE `age` < 25 AND `age` >= 18
 ```
 
-### 4.2.2 Watermark
+#### 4.2.2 Watermark
 
 The complete configuration of GroupInfo is as follows:
-
-**nodeconfig3**
 
 ```java
 private Node buildMySqlExtractNode() {
@@ -348,4 +329,3 @@ private Node buildMySqlExtractNode() {
         return new GroupInfo("1", Collections.singletonList(streamInfo));
     }
 ```
-
