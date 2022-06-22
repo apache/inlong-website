@@ -13,8 +13,8 @@ title: 安装部署
   mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_manager.sql
   ```
 
-## 添加依赖（可选）
-
+## 添加依赖
+- 下载 Sort [Connector Binary file](https://inlong.apache.org/download/main), 并解压放入`inlong-sort/connectors`目录。
 - 如果使用 MySQL 数据库，请下载 [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar)，将其放入 `lib/` 目录。
 - 如果使用 PostgreSQL 数据库，则无需额外下载依赖包。
 
