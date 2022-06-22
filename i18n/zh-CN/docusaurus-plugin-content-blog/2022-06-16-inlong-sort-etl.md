@@ -16,7 +16,7 @@ title: InLong Sort ETL 方案解析
 - 对用户来说，Flink SQL 也更加通俗易懂，特别是对使用过 SQL 用户来说，使用方式简单、熟悉，这有助于用户快速落地。
 - 对于存量实时任务的迁移，如果其原本就是 SQL 类型的任务，尤其是 Flink SQL 任务，其迁移成本极低，部分情况下甚至都不用做任何改动。
 
-注意：本方案的所有代码，可以参考[ Apache InLong Sort ](https://github.com/apache/incubator-inlong/tree/master/inlong-sort)模块，所含功能可在即将发布的 1.2.0 版本中下载使用。
+注意：本方案的所有代码，可以参考 [Apache InLong Sort](https://github.com/apache/incubator-inlong/tree/master/inlong-sort) 模块，所含功能可在即将发布的 1.2.0 版本中下载使用。
 
 ## 2. 方案介绍
 

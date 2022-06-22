@@ -16,7 +16,7 @@ Firstly, based on Apache Flink SQL, there are mainly the following consideration
 - For users, Flink SQL is also easier to understand, especially for users who have used SQL, the usage is simple and familiar, which helps users to land quickly.
 - For the migration of existing real-time tasks, if they are originally SQL-type tasks, especially Flink SQL tasks, the migration cost is extremely low, and in some cases, no changes are even required.
 
-**Note**:  for all codes of this scheme, please refer to [Apache inlong sort]（ https://github.com/apache/incubator-inlong/tree/master/inlong-sort ）Module, which can be downloaded and used in the upcoming version 1.2.0.
+**Note**: For all codes of this scheme, please refer to [Apache InLong Sort](https://github.com/apache/incubator-inlong/tree/master/inlong-sort), which can be downloaded and used in the upcoming version 1.2.0.
 
 ## 2. Introduction
 
