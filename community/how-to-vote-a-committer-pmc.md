@@ -1,10 +1,14 @@
 ---
-title: How to vote a Committer or PPMC
+title: How to vote a Committer or PMC
 sidebar_position: 5
 ---
 
 ## Initiate discussion in the community private mailing group
-   Any InLong PPMC member can initiate a voting discussion. After PPMC finds any valuable contributions from community contributors and obtains the consent of the candidate, they can initiate a discussion on InLong's private mailing list. In the discussion email, the proposer should clearly state the candidate's contribution and give the address for reviewing the corresponding contribution, so that everyone can discuss and analyze it. The discussion email is sent to private@inlong.apache.org. The discussion will last at least 72 hours. Project team members, including mentors, will fully express their views on the proposed email. The following is a sample discussion email:
+   Any InLong PMC member can initiate a voting discussion.
+   After PMC finds any valuable contributions from community contributors and obtains the consent of the candidate, they can initiate a discussion on InLong's private mailing list.
+   In the discussion email, the proposer should clearly state the candidate's contribution and give the address for reviewing the corresponding contribution, so that everyone can discuss and analyze it.
+   The discussion email is sent to private@inlong.apache.org. The discussion will last at least 72 hours. PMC members will fully express their views on the proposed email.
+   The following is a sample discussion email:
    ```shell
     [DISCUSS] YYYYY as an InLong XXXXXX
      
@@ -14,12 +18,14 @@ sidebar_position: 5
      
     So I nominated YYYYY as XXXXXX of the InLong project.
      
-    1. https://github.com/apache/incubator-inlong/issues/created_by/YYYYY 
-    2. https://github.com/apache/incubator-inlong/commits?author=YYYYY 
+    1. https://github.com/apache/inlong/issues/created_by/YYYYY 
+    2. https://github.com/apache/inlong/commits?author=YYYYY 
    ```
     
 ## Initiate vote in the community private mailing group
-   If the discussion email does not receive the disagreement information within the specified time, the poll initiator needs to initiate a Committer or PPMC election vote on InLong's private mailing list. The voting email is sent to private@inlong.apache.org for at least 72 hours, and at least 3 votes +1 passed; if 0 votes or 1 vote -1 vote, the vote will fail; if a -1 vote is initiated, the voter needs to EXPLAIN the reason for the -1 score clearly so that everyone can understand and know. The following is a sample poll email: 
+   If the discussion email does not receive the disagreement information within the specified time, the poll initiator needs to initiate a Committer or PMC election vote on InLong's private mailing list.
+   The voting email is sent to private@inlong.apache.org for at least 72 hours, and at least 3 votes +1 passed; if 0 votes or 1 vote -1 vote, the vote will fail; if a -1 vote is initiated, the voter needs to EXPLAIN the reason for the -1 score clearly so that everyone can understand and know.
+   The following is a sample poll email: 
    ```shell
     [VOTE] YYYYY as an InLong XXXXXX
      
@@ -34,13 +40,14 @@ sidebar_position: 5
     [ ] -1 disapprove with the reason  
       
     Here are three links to his contributions to InLong:
-    1. Issues: https://github.com/apache/incubator-inlong/pulls?q=YYYYY
-    2. PRs   : https://github.com/apache/incubator-inlong/issues?q=YYYYY
+    1. Issues: https://github.com/apache/inlong/pulls?q=YYYYY
+    2. PRs   : https://github.com/apache/inlong/issues?q=YYYYY
     3. Others:  https://xxx.com/xxx/xxx/?q=YYYYY
    ```
 
 ## Feedback on voting results
-   After the voting email is over, the initiator of the vote needs to remind the voting end in the second [VOTE] email; at the same time, the initiator of the vote needs to initiate a vote summary email, and the summary email is sent to private@inlong.apache.org. The following is a sample vote summary email:
+   After the voting email is over, the initiator of the vote needs to remind the voting end in the second [VOTE] email; at the same time, the initiator of the vote needs to initiate a vote summary email, and the summary email is sent to private@inlong.apache.org.
+   The following is a sample vote summary email:
    ```shell
    [RESULTS][VOTE] YYYYY as an InLong XXXXXX
    
@@ -50,7 +57,7 @@ sidebar_position: 5
 
    The result is as follows:
 
-   3 PPMC  +1 Votes
+   3 PMC  +1 Votes
    - aaa
    - bbb
    - ccc
@@ -64,14 +71,16 @@ sidebar_position: 5
    ```
    Note: If it is not passed, the result is "The vote for "YYYYY as an InLong XXXXXX" has FAILED and closed now."
 
-## Newly added PPMC notification email
-   This step is only processed for the PPMC that passed the vote. If the election is Committer, this step is skipped and not executed. Voting initiators need to send notification emails to IPMC’s private mailing group and wait at least 72 hours; email owners send private@incubator.apache.org and CC private@inlong.apache.org; IPMC will analyze compliance Until there is no doubt. The following is an example of a new PPMC notification email:
+## Newly added PMC notification email
+   This step is only processed for the PMC that passed the vote. If the election is Committer, this step is skipped and not executed.
+   Voting initiators need to send notification emails to Board’s mailing group and wait at least 72 hours; email owners send board@apache.org and CC private@inlong.apache.org; Board will analyze compliance Until there is no doubt.
+   The following is an example of a new PMC notification email:
    ```shell
-   [NOTICE] YYYYY for InLong PPMC
+   [NOTICE] YYYYY for InLong PMC
    
    Hi everyone,
 
-   YYYYY has been voted as a new member of the InLong PPMC. 
+   YYYYY has been voted as a new member of the InLong PMC. 
 
    The vote thread is at:
    https://lists.apache.org/thread/aaaaaxxxx
@@ -80,17 +89,19 @@ sidebar_position: 5
    ```
 
 ## Initiate invitation email
-   After the result summary email is sent, the poll initiator must send an invitation email to the candidates. The invitation email is sent to the invitee with a CC to private@inlong.apache.org; the invited candidate must reply to accept or decline the invitation through the specified email address. The following is an example of an email inviting candidates:
+   After the result summary email is sent, the poll initiator must send an invitation email to the candidates.
+   The invitation email is sent to the invitee with a CC to private@inlong.apache.org; the invited candidate must reply to accept or decline the invitation through the specified email address.
+   The following is an example of an email inviting candidates:
    ```shell
    [Invitation] Invitation to join Apache InLong as a XXXXXX
    
    Hi YYYYY,
 
-   In recognition of your contributions to Apache InLong, the InLong PPMC
+   In recognition of your contributions to Apache InLong, the InLong PMC
    has recently voted to add you as a XXXXXX. The XXXXXX role gives
    you access to merge patches into Apache InLong and is also a
    stepping-stone towards membership in the
-   Podling Project Management Committee (PPMC). We hope that you accept
+   Project Management Committee (PMC). We hope that you accept
    this invitation and continue to help us make Apache InLong better.
 
    If you'd like to accept, you will need to send an Individual
@@ -110,14 +121,18 @@ sidebar_position: 5
 
    With the expectation of your acceptance, welcome!
 
-   The Apache InLong PPMC
+   The Apache InLong PMC
    ```
 
 ## Processing after accepting the invitation
-   Create an Apache account and add the candidate account to the project. After the candidate accepts the invitation, if the candidate does not have an apache email account, the voting initiator needs to assist the candidate to create an apache account according to the guidelines. When signing the ICLA, the candidate needs to write the project name of “Apache InLong” in the "notify project:" column, so that the candidate account will be added to the list of corresponding project personnel by Apache. If the candidate does not join the project, the voting initiator needs to apply to Mentors adding project team members, open a permission account for the apache project, and confirm that the candidate’s Apache account has been added to the project address: http://people.apache.org/phonebook.html?podling=inlong.
+   Create an Apache account and add the candidate account to the project.
+   After the candidate accepts the invitation, if the candidate does not have an apache email account, the voting initiator needs to assist the candidate to create an apache account according to the guidelines.
+   When signing the ICLA, the candidate needs to write the project name of “Apache InLong” in the "notify project:" column, so that the candidate account will be added to the list of corresponding project personnel by Apache.
+   The voting initiator needs to add project team members, open a permission account for the apache project, and confirm that the candidate’s Apache account has been added to the project address: http://people.apache.org/phonebook.html?podling=inlong.
 
 ## ANNOUNCE to the community
    After the above steps are completed, the vote initiator must send a notification email to the dev@inlong.apache.org mail group. The following is a sample notification email:
+
    ```shell
    [ANNOUNCE] New XXXXXX: YYYYY
    
@@ -133,5 +148,5 @@ sidebar_position: 5
       
    ```   
  
-At this point, the entire process is completed, and the candidate officially becomes the Committer or PPMC of the project.
+At this point, the entire process is completed, and the candidate officially becomes the Committer or PMC of the project.
 
