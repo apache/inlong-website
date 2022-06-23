@@ -3,27 +3,25 @@ title: 如何验证版本
 sidebar_position: 7
 ---
 
-详细的检查列表请参考: [check list](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist)
-
 ## 下载要发布的候选版本到本地环境
 ```shell
-svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
+svn co https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_version}/
 ```
 ## 验证上传的版本是否合规
 > 开始验证环节，验证包含但不局限于以下内容和形式
 
 ### 查看发布包是否完整
-> 上传到dist的包必须包含源码包，二进制包可选
+> 上传到 dist 的包必须包含源码包，二进制包可选
 
 1. 是否包含源码包
 2. 是否包含源码包的签名
-3. 是否包含源码包的sha512
+3. 是否包含源码包的 sha512
 4. 如果上传了二进制包，则同样检查(2)-(4)所列的内容
 
-### 检查gpg签名
+### 检查 gpg 签名
   - 导入公钥
   ```shell
-  curl https://dist.apache.org/repos/dist/dev/incubator/inlong/KEYS > KEYS # 下载KEYS
+  curl https://downloads.apache.org/inlong/KEYS > KEYS # 下载KEYS
   gpg --import KEYS # 导入KEYS到本地
   ```
   - 信任公钥
@@ -92,14 +90,14 @@ svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version
   - 检查结果
   > 出现类似以下内容则说明签名正确，关键字：**`Good signature`**
 ```shell
-apache-inlong-0.3.0-incubating-src.tar.gz
+apache-inlong-1.3.0-src.tar.gz
 gpg: Signature made Sat May 30 11:45:01 2020 CST
 gpg:                using RSA key 9B12C2228BDFF4F4CFE849445EF3A66D57EC647A
 gpg: Good signature from "Guangxu Cheng <gxcheng@apache.org>" [ultimate]gular2
 ```
 
-### 检查sha512哈希
-> 本地计算sha512哈希后，验证是否与dist上的一致
+### 检查 sha512 哈希
+> 本地计算 sha512 哈希后，验证是否与 dist 上的一致
 ```shell
 for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i; done
 #或者
@@ -113,11 +111,10 @@ for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 
 ### 检查源码包的文件内容
 
-  解压缩`apache-inlong-${release_version}-src.tar.gz`，进行如下检查:
+  解压缩 `apache-inlong-${release_version}-src.tar.gz`，进行如下检查:
 
-  - DISCLAIMER文件是否存在及内容是否正确
-  - LICENSE and NOTICE文件是否存在及内容是否正确
-  - 所有文件是否带有ASF License头
+  - LICENSE and NOTICE 文件是否存在及内容是否正确
+  - 所有文件是否带有 ASF License 头
   - 源码是否能够正常编译
   - 单测是否能够跑通
   - ....
@@ -125,14 +122,13 @@ for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
   注意事项：
   在实践过程中，发现比较多的困扰问题影响到我们的版本验证，如下处理供参考：
   - 校验版本前先清理掉本地仓库；
-  - 编译方法不限制，但由于项目里的模块做了docker化处理，首次编译建议先“mvn clean package install”，其他推荐的操作还有“mvn compile”，“mvn clean package”；
-  - 执行单元测试时，大家要用“mvn clean test”单独运行，确保没有隐藏问题。
+  - 编译方法不限制，但由于项目里的模块做了 docker 化处理，首次编译建议先 “mvn clean package install”，其他推荐的操作还有 “mvn compile”，“mvn clean package”；
+  - 执行单元测试时，大家要用 “mvn clean test” 单独运行，确保没有隐藏问题。
 
 ### 检查二进制包
-  解压缩`apache-inlong-client-${release_version}-src.tar.gz`和`
+  解压缩 `apache-inlong-client-${release_version}-src.tar.gz` 和 `
   apache-inlong-server-${release_version}-src.tar.gz`，进行如下检查:
-  - DISCLAIMER文件是否存在及内容是否正确
-  - LICENSE and NOTICE文件是否存在及内容是否正确
+  - LICENSE and NOTICE 文件是否存在及内容是否正确
   - 能否正常部署成功
   - 部署测试环境、验证生产消费能否正常运行
   - 验证你认为可能会出问题的地方
