@@ -3,6 +3,8 @@ title: 示例
 sidebar_position: 2
 ---
 
+import {siteVariables} from '../../version';
+
 ## 总览
 Inlong-dataproxy-sdk 提供 TCP、HTTP两种协议的接入 api ，使用 TCP 或者 HTTP 接入时需要保证 Dataproxy 服务器端，有对应的协议的接入配置（即对应的 Source 服务配置）。如果，需要使用 UDP 方式接入，
 需要自己按照 TCP 传输的 bytes 数组格式进行组包，采用 UDP 协议发送到 dataproxy 服务器，服务器端采用与TCP一样的方式对接。
@@ -11,13 +13,14 @@ Inlong-dataproxy-sdk 提供 TCP、HTTP两种协议的接入 api ，使用 TCP �
 Api 详情，请查看[总览](./overview)
 
 ## 增加依赖
-```
-   <dependency>
-           <groupId>org.apache.inlong</groupId>
-           <artifactId>dataproxy-sdk</artifactId>
-           <version>${inlong_version}</version>
-   </dependency>
-```
+<pre><code parentName="pre">
+{`<dependency>
+    <groupId>org.apache.inlong</groupId>
+    <artifactId>dataproxy-sdk</artifactId>
+    <version>${siteVariables.inLongVersion}</version>
+</dependency>
+`}
+</code></pre>
   
 ## TCP 示例
 

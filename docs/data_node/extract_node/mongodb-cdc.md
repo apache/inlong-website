@@ -3,6 +3,8 @@ title: MongoDB-CDC
 sidebar_position: 5
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The MongoDB CDC connector allows for reading snapshot data and incremental data from MongoDB. This document describes how to setup the MongoDB CDC connector to run SQL queries against MongoDB.
@@ -18,14 +20,14 @@ In order to setup the MongoDB CDC connector, the following table provides depend
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mongodb-cdc</artifactId>
-    <!-- select inlong version -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## Setup MongoDB
 

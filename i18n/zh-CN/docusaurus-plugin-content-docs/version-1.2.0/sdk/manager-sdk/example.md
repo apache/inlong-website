@@ -3,6 +3,8 @@ title: 示例
 sidebar_position: 1
 ---
 
+import {siteVariables} from '../../version';
+
 ## 总览
 
 Apache InLong Manager 是整个数据集成平台面向用户的统一管理入口。为方便用户使用在无界面的场景下部署InLong group任务，我们提供了Manager的客户端SDK。
@@ -10,13 +12,14 @@ Apache InLong Manager 是整个数据集成平台面向用户的统一管理入�
 ## 依赖
 
 - 增加 maven 依赖
-```xml
- <dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>manager-client</artifactId>
-    <version>${inlong.version}</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 代码
 

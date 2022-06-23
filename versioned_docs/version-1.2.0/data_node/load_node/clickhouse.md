@@ -3,6 +3,8 @@ title: ClickHouse
 sidebar_position: 3
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The `ClickHouse Load Node` supports to write data into ClickHouse database. This document describes how to set up the ClickHouse Load
@@ -21,15 +23,14 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-jdbc</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
-
+`}
+</code></pre>
 ## How to create a ClickHouse Load Node
 
 ### Usage for SQL API

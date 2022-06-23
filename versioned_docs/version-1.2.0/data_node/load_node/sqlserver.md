@@ -3,6 +3,8 @@ title: SQLServer
 sidebar_position: 14
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The `SQLServer Load Node` supports to write data into SQLServer database. This document describes how to set up the SQLServer Load
@@ -21,14 +23,14 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-jdbc</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## How to create an SQLServer Load Node
 

@@ -3,6 +3,8 @@ title: Elasticsearch
 sidebar_position: 4
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The Elasticsearch Load Node allows for writing into an index of the Elasticsearch engine. This document describes how to setup the Elasticsearch Load Node to run SQL queries against Elasticsearch.
@@ -23,22 +25,24 @@ In order to use the Elasticsearch Load Node the following dependencies are requi
 
 - Elasticsearch 6
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-elasticsearch6</artifactId>
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 - Elasticsearch 7
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-elasticsearch7</artifactId>
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## How to create an Elasticsearch Load Node
 

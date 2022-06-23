@@ -3,6 +3,8 @@ title: Example
 sidebar_position: 1
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 Apache InLong Manager is the user-oriented unified UI of the entire data access platform. Now we provide client SDK for users,
@@ -11,13 +13,14 @@ which means you can use client to manipulate your group task instead of UI.
 ## Dependency
 
 - Add Maven Dependency
-```xml
- <dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>manager-client</artifactId>
-    <version>${inlong.version}</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## Code
 

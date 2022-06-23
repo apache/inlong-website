@@ -3,6 +3,8 @@ title: Oracle-CDC
 sidebar_position: 7
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概述
 
 Oracle Extract 节点允许从 Oracle 数据库中读取快照数据和增量数据。本文档介绍如何设置 Oracle Extract 节点以对 Oracle 数据库运行 SQL 查询。
@@ -19,14 +21,14 @@ Oracle Extract 节点允许从 Oracle 数据库中读取快照数据和增量数
 
 ### Maven 依赖
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-oracle-cdc</artifactId>
-    <!-- 选择适合你的 Application 的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 连接 Oracle 数据库还需要 Oracle 驱动程序依赖项。请下载[ojdbc8-19.3.0.0.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/19.3.0.0/ojdbc8-19.3.0.0.jar) 并将其放入 `FLINK_HOME/lib/`。
 

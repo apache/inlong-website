@@ -3,18 +3,21 @@ title: Parse InLongMsg
 sidebar_position: 1
 ---
 
+import {siteVariables} from '../version';
+
 ## Overview
 If you consume data directly from a message queue (InLong TubeMQ or Pulsar), you need to parse `InLongMsg` first. Origin data can be parsed in the following ways.
 
 ## Dependency
 - Add Maven Dependency
-```xml
-<dependency>
-        <groupId>org.apache.inlong</groupId>
-        <artifactId>inlong-common</artifactId>
-        <version>inlong_version</version>
+<pre><code parentName="pre">
+{`<dependency>
+    <groupId>org.apache.inlong</groupId>
+    <artifactId>inlong-common</artifactId>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 - Add Parse Method
 ```java

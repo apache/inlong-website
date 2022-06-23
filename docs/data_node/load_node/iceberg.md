@@ -3,6 +3,8 @@ title: Iceberg
 sidebar_position: 9
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 [Apache Iceberg](https://iceberg.apache.org/) is a high-performance format for huge analytic tables.
 
@@ -14,14 +16,14 @@ sidebar_position: 9
 
 ## Dependencies
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-iceberg</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## Usage
 

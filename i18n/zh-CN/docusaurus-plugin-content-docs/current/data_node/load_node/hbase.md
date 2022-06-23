@@ -3,6 +3,8 @@ title: HBase
 sidebar_position: 6
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概览
 
 `HBase Load` 节点支持写数据都 HBase 数据库.
@@ -20,14 +22,14 @@ sidebar_position: 6
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hbase</artifactId>
-    <!-- 选择适合你的 Application 的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 ## 如何创建 HBase Load 节点
 
 ### SQL API 用法

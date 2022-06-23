@@ -3,6 +3,8 @@ title: SQLServer
 sidebar_position: 14
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概览
 
 `SQLServer Load` 节点支持将数据写入 MySQL 数据库。 本文档介绍如何设置 SQLServer Load 节点以对 SQLServer 数据库运行 SQL 查询。
@@ -15,18 +17,18 @@ sidebar_position: 14
 
 ## 依赖
 
-为了设置 SQLServer Load 节点, 下面提供了使用构建自动化工具（例如 Maven 或 SBT）和带有 Sort Connector JAR 包的 SQL 客户端的两个项目的依赖关系信息。
+为了设置 SQLServer Load 节点, 下面提供了使用构建自动化工具（例如 Maven 或 version）和带有 Sort Connector JAR 包的 SQL 客户端的两个项目的依赖关系信息。
 
 ### Maven 依赖
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-jdbc</artifactId>
-    <!-- 选择适合你的 Application 的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 如何创建 SQLServer Load 节点
 

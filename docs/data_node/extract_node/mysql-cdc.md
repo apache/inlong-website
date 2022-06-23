@@ -3,6 +3,8 @@ title: MySQL-CDC
 sidebar_position: 6
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The MySQL Extract Node allows for reading snapshot data and incremental data from MySQL database. This document describes how to set up the MySQL Extract Node to run SQL queries against MySQL databases.
@@ -18,14 +20,15 @@ In order to set up the MySQL Extract Node, the following table provides dependen
 
 ### Maven dependency
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
-    <artifactId>sort-connector-mysql-cdc</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <artifactId>sort-connector-mongodb-cdc</artifactId>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
+
 
 The MySQL driver dependency is also required to connect to MySQL database. Please download [mysql-connector-java-8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar) and put it into `FLINK_HOME/lib/`.
 

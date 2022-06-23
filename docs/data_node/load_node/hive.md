@@ -3,6 +3,8 @@ title: Hive
 sidebar_position: 8
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 Hive Load Node can write data to hive. Using the flink dialect, the insert operation is currently supported, and the data in the upsert mode will be converted into insert.
 Manipulating hive tables using the hive dialect is currently not supported.
@@ -20,14 +22,14 @@ Of course, you can also use INLONG to provide jar packages.([sort-connector-hive
 
 ### Maven dependency
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hive</artifactId>
- <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 ## How to create a Hive Load Node
 
 ### Usage for SQL API

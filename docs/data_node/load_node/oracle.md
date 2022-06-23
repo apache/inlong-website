@@ -3,6 +3,8 @@ title: Oracle
 sidebar_position: 12
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The `Oracle Load Node` supports to write data into Oracle database. This document describes how to set up the Oracle Load
@@ -21,14 +23,14 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-jdbc</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 Oracle license is conflict with Inlong license. So We remove Oracle driver in pom.xml. User can modify pom.xml before maven
 packaging if User need use it.
 

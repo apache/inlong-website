@@ -3,6 +3,8 @@ title: Oracle-CDC
 sidebar_position: 7
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The Oracle Extract Node allows for reading snapshot data and incremental data from Oracle database.
@@ -19,14 +21,14 @@ In order to setup the Oracle Extract Node, the following table provides dependen
 
 ### Maven dependency
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-oracle-cdc</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 The Oracle driver dependency is also required to connect to Oracle database. Please download [ojdbc8-19.3.0.0.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/19.3.0.0/ojdbc8-19.3.0.0.jar) and put it into `FLINK_HOME/lib/`.
 
