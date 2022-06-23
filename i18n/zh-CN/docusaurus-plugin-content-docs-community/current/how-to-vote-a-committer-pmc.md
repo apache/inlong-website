@@ -1,13 +1,13 @@
 ---
-title: 成为InLong Committer 或 PMC 的投票过程
+title: 成为 InLong Committer 或 PMC 的投票过程
 sidebar_position: 5
 ---
 
-## 发起社区Private邮件组投票讨论
-   任何InLong的PMC成员都可以发起投票讨论，PMC在发现社区贡献者任何有价值的贡献并取得候选人本人同意后，可以在InLong的private邮件列表发起讨论。
+## 发起社区 Private 邮件组投票讨论
+   任何 InLong 的 PMC 成员都可以发起投票讨论，PMC 在发现社区贡献者任何有价值的贡献并取得候选人本人同意后，可以在 InLong 的 private 邮件列表发起讨论。
    讨论邮件里提议者要把候选人的贡献说清楚，并且给出复核对应贡献的地址，便于大家讨论分析。
-   讨论邮件主送private@inlong.apache.org邮箱，讨论将持续至少72个小时，项目PMC成员会针对提议邮件充分发表自己的看法。
-   如下是讨论邮件样例，其中YYYYY为候选人的github ID，XXXXXX为希望候选人成为的角色，包括Committer，PMC，候选人也可以直接被提名为PMC：
+   讨论邮件主送 private@inlong.apache.org 邮箱，讨论将持续至少72个小时，项目 PMC 成员会针对提议邮件充分发表自己的看法。
+   如下是讨论邮件样例，其中 YYYYY 为候选人的 github ID，XXXXXX 为希望候选人成为的角色，包括 Committer，PMC，候选人也可以直接被提名为PMC：
    ```shell
     [DISCUSS] YYYYY as an InLong XXXXXX
      
@@ -21,10 +21,10 @@ sidebar_position: 5
     2. https://github.com/apache/inlong/commits?author=YYYYY 
    ```
     
-## 发起社区Private邮件组投票
-   如果讨论邮件在规定时间内没有收到分歧信息，投票发起者需要在InLong的private邮件列表发起Committer或PMC的选举投票。
-   投票邮件主送private@inlong.apache.org，至少持续72小时，至少要3票+1通过；如果0票或者有1票-1投票票则整个投票失败；如果发起-1投票，投票人需要把打分-1的原因说清楚，便于大家理解和知晓。
-   如下是投票邮件样例，其中YYYYY为候选人的github ID，XXXXXX为希望候选人成为的角色，包括Committer，PMC，候选人也可以直接被提名为PMC：
+## 发起社区 Private 邮件组投票
+   如果讨论邮件在规定时间内没有收到分歧信息，投票发起者需要在 InLong 的 private 邮件列表发起 Committer 或 PMC 的选举投票。
+   投票邮件主送 private@inlong.apache.org，至少持续72小时，至少要3票+1通过；如果0票或者有1票-1投票票则整个投票失败；如果发起-1投票，投票人需要把打分-1的原因说清楚，便于大家理解和知晓。
+   如下是投票邮件样例，其中 YYYYY 为候选人的 github ID，XXXXXX 为希望候选人成为的角色，包括 Committer，PMC，候选人也可以直接被提名为PMC：
    ```shell
     [VOTE] YYYYY as an InLong XXXXXX
      
@@ -45,7 +45,7 @@ sidebar_position: 5
    ```
 
 ## 投票结果反馈
-投票邮件结束后，投票发起者需要在上一封[VOTE]邮件里提醒投票结束；同时，投票发起者需要发起邮票总结邮件，总结邮件主送private@inlong.apache.org。
+投票邮件结束后，投票发起者需要在上一封 [VOTE] 邮件里提醒投票结束；同时，投票发起者需要发起邮票总结邮件，总结邮件主送 private@inlong.apache.org。
 如下是投票总结邮件样例：
    ```shell
    [RESULTS][VOTE] YYYYY as an InLong XXXXXX
@@ -70,10 +70,10 @@ sidebar_position: 5
    ```
    备注：如果是未通过，结果是 "The vote for "YYYYY as an InLong XXXXXX" has FAILED and closed now."
 
-## 新增PMC通知邮件
-该步骤只针对投票通过的PMC进行处理，如果选举的是Committer，该步跳过不执行。
-投票发起者需要向Board邮件组发送知会邮件，并等待至少72小时；邮件主送board@apache.org，抄送private@inlong.apache.org。
-Board们会分析合规性，直到没有疑义。如下是新增PMC通知邮件样例：
+## 新增 PMC 通知邮件
+该步骤只针对投票通过的 PMC 进行处理，如果选举的是 Committer，该步跳过不执行。
+投票发起者需要向 Board 邮件组发送知会邮件，并等待至少72小时；邮件主送 board@apache.org，抄送 private@inlong.apache.org。
+Board 们会分析合规性，直到没有疑义。如下是新增 PMC 通知邮件样例：
    ```shell
    [NOTICE] YYYYY for InLong PMC
    
@@ -88,8 +88,8 @@ Board们会分析合规性，直到没有疑义。如下是新增PMC通知邮件
    ```
 
 ## 发起邀请邮件
-投票总结邮件发出后，或者PMC选举的周知邮件到期后，投票发起人要给候选人发送邀请邮件。
-邀请邮件主送被邀请人，抄送private@inlong.apache.org；被邀请的候选人必须通过指定的邮箱地址回复接受或者拒绝该邀请。
+投票总结邮件发出后，或者 PMC 选举的周知邮件到期后，投票发起人要给候选人发送邀请邮件。
+邀请邮件主送被邀请人，抄送 private@inlong.apache.org；被邀请的候选人必须通过指定的邮箱地址回复接受或者拒绝该邀请。
 如下是邀请候选人邮件样例：
    ```shell
    [Invitation] Invitation to join Apache InLong as a XXXXXX
@@ -124,12 +124,12 @@ Board们会分析合规性，直到没有疑义。如下是新增PMC通知邮件
    ```
 
 ## 接受邀请后处理
-创建Apache帐号并将候选人帐号加入项目。
-候选人接受邀请后，如果候选人没有apache邮箱帐号，投票发起人需要协助候选人按照指引创建好apache帐号。
-在签署ICLA时，候选人需要在“notify project:”栏目写上Apache InLong项目名，这样候选人帐号才会被Apache正确的加入对应项目人员名单，确认候选人的Apache帐号已加入项目的地址：http://people.apache.org/phonebook.html?podling=inlong 。
+创建 Apache 帐号并将候选人帐号加入项目。
+候选人接受邀请后，如果候选人没有 apache 邮箱帐号，投票发起人需要协助候选人按照指引创建好 apache 帐号。
+在签署 ICLA 时，候选人需要在 “notify project:” 栏目写上 Apache InLong 项目名，这样候选人帐号才会被 Apache 正确的加入对应项目人员名单，确认候选人的 Apache 帐号已加入项目的地址：http://people.apache.org/phonebook.html?podling=inlong 。
 
 ## 向社区发布申明邮件
-如上步骤都完成后，投票发起人向dev@inlong.apache.org邮件组发通知邮件。
+如上步骤都完成后，投票发起人向 dev@inlong.apache.org 邮件组发通知邮件。
 如下是通知邮件样例：
    ```shell
    [ANNOUNCE] New XXXXXX: YYYYY
@@ -146,5 +146,5 @@ Board们会分析合规性，直到没有疑义。如下是新增PMC通知邮件
       
    ```   
  
-到此，整个流程才算走完，候选人才正式的成为项目的Committer或者PMC。
+到此，整个流程才算走完，候选人才正式的成为项目的 Committer 或者 PMC。
 
