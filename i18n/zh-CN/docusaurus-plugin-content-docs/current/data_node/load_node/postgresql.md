@@ -18,7 +18,7 @@ import {siteVariables} from '../../version';
 
 ## 依赖
 
-为了设置 PostgreSQL Load 节点, 下面提供了使用构建自动化工具（例如 Maven 或 version）和带有 Sort Connector JAR 包的 SQL 客户端的两个项目的依赖关系信息。
+为了设置 PostgreSQL Load 节点, 下面提供了使用构建自动化工具（例如 Maven 或 SBT）和带有 Sort Connector JAR 包的 SQL 客户端的两个项目的依赖关系信息。
 
 ### Maven 依赖
 
