@@ -27,16 +27,16 @@ sidebar_position: 1
 - 发布时间: 2022-04-24
 - [发版说明](release-1.1.0.md)
 
-|     日期    |  版本  |  备注  |                                                                                                                                                                                               下载                                                                                                                                                                          |
-|:----------:|:-----:| :----: |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-| 2022-04-24 | 1.1.0 | Source | [[SRC](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz)]    [[ASC](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz.asc)]    [[SHA512](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz.sha512)]  |
-| 2022-04-24 | 1.1.0 | Binary | [[BIN](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz)]    [[ASC](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz.asc)]    [[SHA512](https://downloads.apache.org/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz.sha512)]  |
+|     日期    |  版本  |  备注  |                                                                                                                                                                                               下载                                                                                                                                                                                   |
+|:----------:|:-----:| :----: |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
+| 2022-04-24 | 1.1.0 | Source | [[SRC](https://archive.apache.org/dist/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz)]    [[ASC](https://archive.apache.org/dist/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz.asc)]    [[SHA512](https://archive.apache.org/dist/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-src.tar.gz.sha512)]  |
+| 2022-04-24 | 1.1.0 | Binary | [[BIN](https://archive.apache.org/dist/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz)]    [[ASC](https://archive.apache.org/dist/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz.asc)]    [[SHA512](https://archive.apache.org/dist/incubator/inlong/1.1.0-incubating/apache-inlong-1.1.0-incubating-bin.tar.gz.sha512)]  |
 
 ## 1.0.0 release
 
 - 发布时间: 2022-02-17
 - [发版说明](release-1.0.0.md)
-- 源码: [inlong-1.0.0-incubating-src.tar.gz](https://downloads.apache.org/incubator/inlong/1.0.0-incubating/apache-inlong-1.0.0-incubating-src.tar.gz)          [[ASC](https://downloads.apache.org/incubator/inlong/1.0.0-incubating/apache-inlong-1.0.0-incubating-src.tar.gz.asc)]        [[SHA512](https://downloads.apache.org/incubator/inlong/1.0.0-incubating/apache-inlong-1.0.0-incubating-src.tar.gz.sha512)]
+- 源码: [inlong-1.0.0-incubating-src.tar.gz](https://archive.apache.org/dist/incubator/inlong/1.0.0-incubating/apache-inlong-1.0.0-incubating-src.tar.gz)          [[ASC](https://archive.apache.org/dist/incubator/inlong/1.0.0-incubating/apache-inlong-1.0.0-incubating-src.tar.gz.asc)]        [[SHA512](https://archive.apache.org/dist/incubator/inlong/1.0.0-incubating/apache-inlong-1.0.0-incubating-src.tar.gz.sha512)]
 
 ## 0.12.0 release
 
