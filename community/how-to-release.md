@@ -13,9 +13,10 @@ Note that for binary distribution packages, it is necessary to check that the ne
 
 For more guideline, you can refer the following links:
 
-[Apache Release Guide](https://incubator.apache.org/guides/releasemanagement.html)
+[ASF Release Creation Process](https://infra.apache.org/release-publishing.html)
 
-[Apache incubator official website](https://incubator.apache.org/)
+[ASF Release Policy](https://www.apache.org/legal/release-policy.html)
+
 
 ## Adding PG KEY
 > Ref：https://infra.apache.org/openpgp.html
@@ -118,11 +119,11 @@ Uploading takes about one minute, after that, you can check by your email at `ht
 
 ### Add your gpg public key to the KEYS document
 > SVN is required for this step
-The svn repository of the DEV branch is: https://dist.apache.org/repos/dist/dev/incubator/inlong
-The svn repository of the Release branch is: https://dist.apache.org/repos/dist/release/incubator/inlong
+The svn repository of the DEV branch is: https://dist.apache.org/repos/dist/dev/inlong
+The svn repository of the Release branch is: https://dist.apache.org/repos/dist/release/inlong
 #### Add the public key to KEYS in the dev branch to release the RC version
 ```shell
-➜  ~ svn co https://dist.apache.org/repos/dist/dev/incubator/inlong /tmp/inlong-dist-dev
+➜  ~ svn co https://dist.apache.org/repos/dist/dev/inlong /tmp/inlong-dist-dev
 # As this step will copy all the versions, it will take some time. If the network is broken, please use svn cleanup to delete the lock before re-execute it.
 ➜  ~ cd inlong-dist-dev
 ➜  inlong-dist-dev ~ (gpg --list-sigs YOUR_NAME@apache.org && gpg --export --armor YOUR_NAME@apache.org) >> KEYS # Append your key to the KEYS file
@@ -132,7 +133,7 @@ The svn repository of the Release branch is: https://dist.apache.org/repos/dist/
 
 #### Add the public key to the KEYS in the release branch for releasing official version
 ```shell
-➜  ~ svn co https://dist.apache.org/repos/dist/release/incubator/inlong /tmp/inlong-dist-release
+➜  ~ svn co https://dist.apache.org/repos/dist/release/inlong /tmp/inlong-dist-release
 ➜  ~ cd inlong-dist-release
 ➜  inlong-dist-release ~ (gpg --list-sigs YOUR_NAME@apache.org && gpg --export --armor YOUR_NAME@apache.org) >> KEYS	# Append the KEY you generated to the document KEYS, after appending, it is best to check whether it is correct
 ➜  inlong-dist-release ~ svn add .	# It is not needed if the KEYS document exists before.
@@ -251,12 +252,12 @@ git push origin ${release_version}-${rc_version}
 ```
 
 ### Upload tar file to dist repo
-> SVN is need in this step, SVN repo for DEV branch is https://dist.apache.org/repos/dist/dev/incubator/inlong
+> SVN is need in this step, SVN repo for DEV branch is https://dist.apache.org/repos/dist/dev/inlong
 
 ### Checkout InLong to local directory
 ```shell
 # As this step will copy all the versions, it will take some time. If the network is broken, please use svn cleanup to delete the lock before re-execute it.
-svn co https://dist.apache.org/repos/dist/dev/incubator/inlong /tmp/inlong-dist-dev
+svn co https://dist.apache.org/repos/dist/dev/inlong /tmp/inlong-dist-dev
 ```
 
 ### Add public key to KEYS file adn commit to SVN repository
@@ -281,10 +282,8 @@ svn commit -m "prepare for ${release_version} ${rc_version}"     # commit to SVN
 WARN: Close operation may fail, you should check the causes and fix them.
 
 ## Voting
-> A release need two votes due to InLong is still an incubating project now.
+> InLong has graduated and only needs to vote once now.
 - InLong community vote，send email to ：`dev@inlong.apache.org`
-- incubator community vote，send email to：`general@incubator.apache.org`
-Once InLong is graduated, InLong community vote is only needed.
 
 ### InLong community vote
 
@@ -295,17 +294,17 @@ Title：[VOTE] Release Apache InLong ${release_version} ${rc_version}
 
 Content：
 
-Hello Apache InLong PPMC and Community,
+Hello Apache InLong PMC and Community,
 
     This is a call for a vote to release Apache InLong version ${release_version}-${rc_version}.
 
     The tag to be voted on is ${release_version}-${rc_version}:
 
-    https://github.com/apache/incubator-inlong/tree/${release_version}-${rc_version}
+    https://github.com/apache/inlong/tree/${release_version}-${rc_version}
 
     The release tarball, signature, and checksums can be found at:
 
-    https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
+    https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_version}/
 
     Maven artifacts are available in a staging repository at:
 
@@ -313,11 +312,11 @@ Hello Apache InLong PPMC and Community,
 
     Artifacts were signed with the {YOUR_PUB_KEY} key which can be found in:
 
-    https://downloads.apache.org/incubator/inlong/KEYS
+    https://downloads.apache.org/inlong/KEYS
 
     ${release_version} includes ~ ${issue_count} bug fixes and improvements done since last versions which can be found at:
 
-    https://github.com/apache/incubator-inlong/blob/${release_version}-${rc_version}/CHANGES.md
+    https://github.com/apache/inlong/blob/${release_version}-${rc_version}/CHANGES.md
 
     Please download, verify, and test.
 
@@ -334,14 +333,14 @@ Hello Apache InLong PPMC and Community,
 
       [ ] Download links are valid.
       [ ] Checksums and signatures.
-      [ ] LICENSE/NOTICE/DISCLAIMER files exist
+      [ ] LICENSE/NOTICE files exist
       [ ] No unexpected binary files
       [ ] All source files have ASF headers
       [ ] Can compile from source
       [ ] All Tests Passed
 
       More detailed checklist  please refer to:
-      https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist
+      https://inlong.apache.org/community/how-to-verify
 
 Thanks,
 Your InLong Release Manager
@@ -353,98 +352,19 @@ Title：[RESULT][VOTE] Release Apache InLong ${release_version} ${rc_version}
 
 Content：
 
-Hello Apache InLong PPMC and Community,
+Hello Apache InLong PMC and Community,
 
     The vote closes now as 72hr have passed. The vote PASSES with
-    xx (+1 non-binding) votes from the PPMC,
-    xx (+1 binding) vote from the IPMC,
+    xx (+1 non-binding) votes from the PMC,
     xx (+1 non-binding) vote from the rest of the developer community,
     and no further 0 or -1 votes.
 
     The vote thread: {vote_mail_address}
 
-    I will now bring the vote to general@incubator.apache.org to get approval by the IPMC.
-    If this vote passes also, the release is accepted and will be published.
+    The release is accepted and will be published.
 
 Thank you for your support.
 Your InLong Release Manager
-```
-
-### incubator community vote
-
-#### Vote template
-
-```html
-Title：[VOTE] Release Apache InLong(Incubating) ${release_version} ${rc_version}
-
-Content：
-
-Hello Incubator Community,
-
-    This is a call for a vote to release Apache InLong(Incubating) version
-    ${release_version} ${rc_version}
-
-    The Apache InLong community has voted on and approved a proposal to release
-    Apache InLong(Incubating) version ${release_version} ${rc_version}
-
-    We now kindly request the Incubator PMC members review and vote on this
-    incubator release.
-
-    InLong community vote thread:
-    • [Link for vote thread]
-
-    Vote result thread:
-    • [Link for vote result thread]
-
-    The release candidate:
-    • https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
-
-    Git tag for the release:
-    • https://github.com/apache/incubator-inlong/releases/tag/${release_version}-${rc_version}
-
-    Release notes:
-    • https://github.com/apache/incubator-inlong/blob/${release_version}-${rc_version}/CHANGES.md
-
-    The artifacts signed with PGP key [your personal KEY], corresponding to [your email], that can be found in keys file:
-    • https://downloads.apache.org/incubator/inlong/KEYS
-
-    The vote will be open for at least 72 hours or until necessary number of votes are reached.
-
-    Please vote accordingly:
-
-    [ ] +1 approve
-    [ ] +0 no opinion
-    [ ] -1 disapprove with the reason
-
-Thanks,
-On behalf of Apache InLong(Incubating) community
-
-```
-
-#### Vote Result template
-```html
-Title：[RESULT][VOTE] Release Apache InLong ${release_version} {rc_version}
-
-Content：
-Hi all
-
-Thanks for reviewing and voting for Apache InLong(Incubating) ${release_version} {rc_version}
-release, I am happy to announce the release voting has passed with [vote result count]
-binding votes, no +0 or -1 votes. Binding votes are from IPMC
-
-   - xxx
-   - xxx
-   - xxx
-
-The voting thread is:
-[Link for vote thread]
-
-Many thanks for all our mentors helping us with the release procedure, and
-all IPMC helped us to review and vote for Apache InLong(Incubating) release. I will
-be working on publishing the artifacts soon.
-
-Thanks
-On behalf of Apache InLong(Incubating) community
 ```
 
 ## Officially released
@@ -452,13 +372,13 @@ On behalf of Apache InLong(Incubating) community
 ### Merge branch release-${release_version} to master branch
 ### Move source code and binary package from DEV to release repository on SVN.
 ```shell
-svn mv https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/incubator/inlong/${release_version} -m "Release ${release_version}"
+svn mv https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/inlong/${release_version} -m "Release ${release_version}"
 ```
 ### Check whether the dev and release is correct
-1. Make sure [dev](https://dist.apache.org/repos/dist/dev/incubator/inlong/)下的`${release_version}-${rc_version}` is deleted
-2. Delete release package of pre versions[release](https://dist.apache.org/repos/dist/release/incubator/inlong/)，these packages will be saved [here](https://archive.apache.org/dist/incubator/inlong/)
+1. Make sure `${release_version}-${rc_version}` is deleted in [dev](https://dist.apache.org/repos/dist/dev/inlong/).
+2. Delete release package of pre versions[release](https://dist.apache.org/repos/dist/release/inlong/)，these packages will be saved [here](https://archive.apache.org/dist/inlong/)
 ```shell
-svn delete https://dist.apache.org/repos/dist/release/incubator/inlong/${last_release_version} -m "Delete ${last_release_version}"
+svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_version} -m "Delete ${last_release_version}"
 ```
 
 ### Release version in Apache Staging
@@ -472,32 +392,40 @@ svn delete https://dist.apache.org/repos/dist/release/incubator/inlong/${last_re
 
 ### Update links on official website
 
-### Send email to `dev@inlong.apache.org` and `general@incubator.apache.org`
+### Send email to `dev@inlong.apache.org` and CC `announce@apache.org`
 **Please make sure deployment in step 6.4 is successfully, and generally wait 24 hours between 6.4 and send emails** 
 
 Release announce email template：
 ```html
-Title： [ANNOUNCE] Release Apache InLong(incubating) ${release_version}
+Title： [ANNOUNCE] Release Apache InLong ${release_version}
 Content：
 Hi all,
 
-The Apache InLong(incubating) community is pleased to announce 
-that Apache InLong(incubating) ${release_version} has been released!
+The Apache InLong community is pleased to announce 
+that Apache InLong ${release_version} has been released!
 
 Apache InLong is a one-stop integration framework for massive data that provides automatic, secure,
 distributed, and efficient data publishing and subscription capabilities.
 This platform helps you easily build stream-based data applications.
 
+This release contains a number of new features, bug fixes and
+improvements compared to the last version released before.
+The notable changes since ${release_version} include:
+1. xxxxx
+2. yyyyyy
+3. zzzzzz
+
+Please refer to the change log for the complete list of changes:
+https://github.com/apache/inlong/blob/${release_version}-${rc_version}/CHANGES.md
+
+Apache InLong website: https://inlong.apache.org/
+
 Download Links: https://inlong.apache.org/download/main
 
-Release Notes: https://inlong.apache.org/download/release-${release_version}
-
-Website: https://inlong.apache.org/
-
 InLong Resources:
-- Issue: https://github.com/apache/incubator-inlong/issues
+- Issue: https://github.com/apache/inlong/issues
 - Mailing list: dev@inlong.apache.org
 
 Thanks
-On behalf of Apache InLong(Incubating) community
+On behalf of Apache InLong community
 ```

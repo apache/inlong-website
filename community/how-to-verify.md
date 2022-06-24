@@ -6,19 +6,17 @@ sidebar_position: 7
 To verify the release, the following checklist can be used to reference:
 - [ ] Download links are valid.
 - [ ] Checksums and PGP signatures are valid.
-- [ ] DISCLAIMER is included.
 - [ ] Source code artifacts have correct names matching the current release.
 - [ ] LICENSE and NOTICE files are correct for the repository.
 - [ ] All files have license headers if necessary.
 - [ ] No compiled archives bundled in source archive.
 - [ ] Building is OK.
 
-For a detailed checklist, please refer to [check list](https://cwiki.apache.org/confluence/display/INCUBATOR/Incubator+Release+Checklist), here we introduce how to do the verification.
 
 ## Download the release package to be verified to the local environment
 > Use the following command to download all artifacts, replace "${release_version}-${rc_version}" with the version ID of the version to be released:
 ```shell
-svn co https://dist.apache.org/repos/dist/dev/incubator/inlong/${release_version}-${rc_version}/
+svn co https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_version}/
 ```
 
 ## Verify signature and hash
@@ -36,7 +34,7 @@ The package to release must check:
 GnuPG is recommended, which can install by yum install GnuPG or apt-get install GnuPG.
   - Import public key
   ```shell
-  curl https://dist.apache.org/repos/dist/dev/incubator/inlong/KEYS > KEYS # Download KEYS
+  curl https://downloads.apache.org/inlong/KEYS > KEYS # Download KEYS
   gpg --import KEYS # Import KEYS to local
   ```
   - Trust the public key
@@ -105,7 +103,7 @@ GnuPG is recommended, which can install by yum install GnuPG or apt-get install 
   - Confirm result
   > If something similar to the following appears, it means that the signature is correct, and the keywords: **`Good signature`**
 ```shell
-apache-inlong-0.3.0-incubating-src.tar.gz
+apache-inlong-1.3.0-src.tar.gz
 gpg: Signature made Sat May 30 11:45:01 2020 CST
 gpg:                using RSA key 9B12C2228BDFF4F4CFE849445EF3A66D57EC647A
 gpg: Good signature from "Guangxu Cheng <gxcheng@apache.org>" [ultimate]gular2
@@ -126,7 +124,6 @@ for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
 
 ### Check the file content of the source package
 Unzip `apache-inlong-${release_version}-src.tar.gz` and check as follows:
-- [ ] DISCLAIMER file exists and the content is correct.
 - [ ] LICENSE and NOTICE files are correct for the repository.
 - [ ] All files have ASF license headers if necessary.
 - [ ] The source code can be compiled normally.
@@ -142,7 +139,6 @@ Attentions:
 ### Check the binary package (if the binary package is included)
   Unzip `apache-inlong-client-${release_version}-src.tar.gz` and `
   apache-inlong-server-${release_version}-src.tar.gz`, check as follows:
-- [ ] DISCLAIMER file exists and the content is correct.
 - [ ] LICENSE and NOTICE files are correct for the repository.
 - [ ] The deployment can be successful
 - [ ] Deploy a test environment to verify whether production and consumption can run normally.
