@@ -16,7 +16,7 @@ title: Deployment
 
 ## Add Dependencies
 - Download Sort [Connector Binary file](https://inlong.apache.org/download/main), and unzip it into `inlong-sort/connectors` directory.
-- If using MySQL database, please download [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector- java-8.0.27.jar) and put it in the `lib/` directory.
+- If using MySQL database, please download [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar) and put it in the `lib/` directory.
 - If you use PostgreSQL database, you don't need to download additional dependencies.
 
 ## Update Configuration
