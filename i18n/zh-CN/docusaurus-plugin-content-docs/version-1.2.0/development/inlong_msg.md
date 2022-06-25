@@ -3,18 +3,21 @@ title: 解析 InLongMsg
 sidebar_position: 1
 ---
 
+import {siteVariables} from '../version';
+
 ## 总览
 如果直接从消息队列（InLong TubeMQ 或Pulsar)消费数据，需要先对`InLongMsg` 进行解析。可通过以下方式可以解析出源数据。
 
 ## 解析
 - 增加maven 依赖
-```xml
-<dependency>
-        <groupId>org.apache.inlong</groupId>
-        <artifactId>inlong-common</artifactId>
-        <version>inlong_version</version>
+<pre><code parentName="pre">
+{`<dependency>
+    <groupId>org.apache.inlong</groupId>
+    <artifactId>inlong-common</artifactId>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 - 增加解析逻辑
 ```java

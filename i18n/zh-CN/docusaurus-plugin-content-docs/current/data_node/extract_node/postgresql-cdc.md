@@ -3,6 +3,8 @@ title: PostgreSQL-CDC
 sidebar_position: 8
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概述
 
 `PostgreSQL Extract` 节点允许从 PostgreSQL 数据库中读取快照数据和增量数据。 本文档描述了如何设置 PostgreSQL Extract 节点以对 PostgreSQL 数据库运行 SQL 查询。
@@ -19,14 +21,14 @@ sidebar_position: 8
 
 ### Maven 依赖
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-postgres-cdc</artifactId>
-    <!-- 选择适合你的 Application 的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 ## 设置 PostgreSQL 服务
 
 更改数据捕获 (CDC) 允许您跟踪 PostgreSQL 数据库中的更改并将其传播到基于其预写日志 (WAL) 的下游消费者。

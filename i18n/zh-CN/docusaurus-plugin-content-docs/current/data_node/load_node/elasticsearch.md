@@ -3,6 +3,8 @@ title: Elasticsearch
 sidebar_position: 4
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概览
 
 Elasticsearch Load 节点允许将数据写入到 Elasticsearch 引擎的索引中。本文档描述运行 SQL 查询时如何设置 Elasticsearch Load 节点。
@@ -23,22 +25,24 @@ Elasticsearch Load 节点允许将数据写入到 Elasticsearch 引擎的索引�
 
 - Elasticsearch 6
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-elasticsearch6</artifactId>
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 - Elasticsearch 7
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-elasticsearch7</artifactId>
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 如何创建一个 Elasticsearch Load 节点
 

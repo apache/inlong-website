@@ -3,6 +3,8 @@ title: Hive
 sidebar_position: 8
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概览
 Hive 加载节点可以将数据写入 Hive。使用 Flink 方言，目前仅支持 Insert 操作，Upsert 模式下的数据会转换成 Insert 方式
 目前暂时不支持使用 Hive 方言操作 Hive 表。
@@ -11,7 +13,7 @@ Hive 加载节点可以将数据写入 Hive。使用 Flink 方言，目前仅支
 
 | Load Node                           | Version                                            | 
 |-------------------------------------|----------------------------------------------------|
-| [Hive](./hive.md) | [Hive](https://nightlies.apache.org/flink/flink-docs-master/docs/connectors/table/hive/overview/#supported-hive-versions): 1.x, 2.x, 3.x |
+| [Hive](./hive.md) | [Hive](https://nightlies.apache.org/flink/flink-docs-master/docs/connectors/table/hive/overview/#supported-hive-version): 1.x, 2.x, 3.x |
 
 ### 依赖
 
@@ -20,14 +22,14 @@ Hive 加载节点可以将数据写入 Hive。使用 Flink 方言，目前仅支
 
 ### Maven 依赖
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hive</artifactId>
-    <!-- 填写适合你应用的 inlong 版本-->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 ## 如何配置 Hive 数据加载节点
 
 ### SQL API 的使用

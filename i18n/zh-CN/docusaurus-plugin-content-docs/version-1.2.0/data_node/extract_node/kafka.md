@@ -2,6 +2,9 @@
 title: Kafka
 sidebar_position: 4
 ---
+
+import {siteVariables} from '../../version';
+
 ## 概述
 
 `Kafka Extract` 节点 支持从 Kafka topics 中读取数据。它支持以普通的方式读取数据和 Upsert 的方式读取数据。`upsert-kafka` 连接器生产 `changelog` 流,
@@ -19,14 +22,14 @@ sidebar_position: 4
 
 ### Maven 依赖
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-kafka</artifactId>
-    <!-- 选择适合你的 Application 的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 如何创建 Kafka Extract 节点
 

@@ -3,6 +3,8 @@ title: Pulsar
 sidebar_position: 9
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 [Apache Pulsar](https://pulsar.apache.org/) is a distributed, open source pub-sub messaging and steaming platform for real-time workloads, managing hundreds of billions of events per day.
@@ -15,14 +17,14 @@ sidebar_position: 9
 
 ## Dependencies
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-pulsar</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## Usage
 

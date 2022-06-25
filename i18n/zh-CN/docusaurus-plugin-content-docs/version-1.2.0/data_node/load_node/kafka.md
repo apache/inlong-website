@@ -3,6 +3,8 @@ title: Kafka
 sidebar_position: 10
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概览
 
 `Kafka Load` 节点支持写数据到 Kafka topics。 它支持以普通的方式写入数据和 Upsert 的方式写入数据。 upsert-kafka 连接器可以消费 changelog 流。它会将 INSERT/UPDATE_AFTER 数据作为正常的 Kafka 消息写入，并将 DELETE 数据以 value 为空的 Kafka 消息写入（表示对应 key 的消息被删除）。
@@ -19,14 +21,14 @@ sidebar_position: 10
 
 ### Maven 依赖
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-kafka</artifactId>
-    <!-- 选择适合你的 Application 的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 如何创建 Kafka Load 节点
 

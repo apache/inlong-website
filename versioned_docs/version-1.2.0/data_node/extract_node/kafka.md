@@ -3,6 +3,8 @@ title: Kafka
 sidebar_position: 4
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The `Kafka Extract Node` supports to read data from Kafka topics. It can support read data in the normal fashion and read data in the
@@ -22,14 +24,15 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-kafka</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
+
 
 ## How to create a Kafka Extract Node
 

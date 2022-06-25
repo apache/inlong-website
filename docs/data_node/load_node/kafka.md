@@ -3,6 +3,8 @@ title: Kafka
 sidebar_position: 10
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The `Kafka Load Node` supports to write data into Kafka topics. It can support to write data in the normal fashion and write data in the
@@ -22,14 +24,14 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-kafka</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## How to create a Kafka Load Node
 

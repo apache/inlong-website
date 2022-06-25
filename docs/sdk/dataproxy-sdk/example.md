@@ -3,6 +3,8 @@ title: Example
 sidebar_position: 2
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 Inlong-dataproxy-sdk provides access api for TCP and HTTP protocols. When using TCP or HTTP access, you need to ensure that the dataproxy server has the access configuration of the corresponding protocol (ie the TCP or HTTP source service). If the user needs to use the UDP protocol to access, the user needs to packets data according to the bytes arrays transmitted by TCP, and send them to the dataproxy server using the UDP protocol.
 and dataproxy server will handle messages in the same way as TCP.
@@ -11,13 +13,14 @@ In addition, access demo codes for TCP, HTTP, and UDP protocols are provided in 
 To view detailed API information [overview](./overview).
 
 ## Add Dependency
-```
-   <dependency>
-           <groupId>org.apache.inlong</groupId>
-           <artifactId>dataproxy-sdk</artifactId>
-           <version>${inlong_version}</version>
-   </dependency>
-```
+<pre><code parentName="pre">
+{`<dependency>
+    <groupId>org.apache.inlong</groupId>
+    <artifactId>dataproxy-sdk</artifactId>
+    <version>${siteVariables.inLongVersion}</version>
+</dependency>
+`}
+</code></pre>
 
 ## TCP Example
 

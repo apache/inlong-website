@@ -3,6 +3,8 @@ title: Oracle
 sidebar_position: 12
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概览
 
 `Oracle Load` 节点支持将数据写入 Oracle 数据库。 本文档介绍如何设置 Oracle Load 节点以对 Oracle 数据库运行 SQL 查询。
@@ -19,14 +21,14 @@ sidebar_position: 12
 
 ### Maven 依赖
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-jdbc</artifactId>
-    <!-- 选择适合你的 Application 的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 Oracle license 和 Inlong license 是冲突的。 所以我们移除了pom中的 Oracle 驱动依赖。 如果我们想使用这个连接器，我们可以修改pom文件。
 
 ## 如何创建 Oracle Load 节点

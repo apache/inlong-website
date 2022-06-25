@@ -3,6 +3,8 @@ title: MongoDB-CDC
 sidebar_position: 5
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概述
 
 MongoDB CDC 连接器允许从 MongoDB 读取快照数据和增量数据。本文档介绍如何设置 MongoDB CDC 连接器以对 MongoDB 运行 SQL 查询。
@@ -18,14 +20,14 @@ I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工�
 
 ### Maven依赖
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mongodb-cdc</artifactId>
-    <!-- 选择你使用的 inlong 的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 设置 MongoDB
 

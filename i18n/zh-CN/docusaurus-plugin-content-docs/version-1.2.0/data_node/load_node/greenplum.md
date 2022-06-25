@@ -3,6 +3,8 @@ title: Greenplum
 sidebar_position: 5
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概览
 
 `Greenplum Load` 节点支持将数据写入 Greenplum 数据库。 本文档介绍如何设置 Greenplum Load 节点以对 Greenplum 数据库运行 SQL 查询。
@@ -19,14 +21,14 @@ sidebar_position: 5
 
 ### Maven 依赖
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-jdbc</artifactId>
-    <!-- 选择适合你的 Application 的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 如何创建 PostgreSQL Load 节点
 

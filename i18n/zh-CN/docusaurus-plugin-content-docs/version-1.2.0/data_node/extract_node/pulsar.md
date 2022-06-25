@@ -3,6 +3,8 @@ title: Pulsar
 sidebar_position: 9
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概述
 
 [Apache Pulsar](https://pulsar.apache.org/)是一个分布式、开源的 pub-sub 消息传递和流平台，用于实时工作负载，每天管理数千亿个事件。
@@ -15,14 +17,14 @@ sidebar_position: 9
 
 ## 依赖项
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-pulsar</artifactId>
-    <!-- 选择匹配你inlong应用的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 用法
 

@@ -3,6 +3,8 @@ title: Iceberg
 sidebar_position: 9
 ---
 
+import {siteVariables} from '../../version';
+
 ## 概览
 
 [Apache Iceberg](https://iceberg.apache.org/)是一种用于大型分析表的高性能格式。
@@ -15,14 +17,14 @@ sidebar_position: 9
 
 ## 依赖项
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-iceberg</artifactId>
-    <!-- 选择匹配你inlong应用的版本 -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 用法
 

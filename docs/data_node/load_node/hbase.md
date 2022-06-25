@@ -3,6 +3,8 @@ title: HBase
 sidebar_position: 6
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The `HBase Load Node` supports to write data into HBase database.
@@ -20,14 +22,14 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hbase</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 ## How to create a HBase Load Node
 
 ### Usage for SQL API

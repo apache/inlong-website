@@ -2,6 +2,9 @@
 title: SQLServer-CDC
 sidebar_position: 10
 ---
+
+import {siteVariables} from '../../version';
+
 ## 概述
 
 SQLServer 提取节点从 SQLServer 数据库中读取数据和增量数据。下面将介绍如何配置 SQLServer 抽取节点。
@@ -19,14 +22,14 @@ SQLServer 提取节点从 SQLServer 数据库中读取数据和增量数据。�
 
 ### Maven依赖配置
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-sqlserver-cdc</artifactId>
-    <!-- 填写适合你应用的 inlong 版本-->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 ## 配置 SQLServer 加载节点
 
 SQLServer 加载节点需要开启库和表的 CDC 功能，配置步骤如下：

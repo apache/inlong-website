@@ -3,6 +3,8 @@ title: PostgreSQL-CDC
 sidebar_position: 8
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The `PostgreSQL Extract Node` allows for reading snapshot data and incremental data from PostgreSQL database. This document describes how to set up the `PostgreSQL Extract Node` to run SQL queries against PostgreSQL databases.
@@ -20,14 +22,14 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-postgres-cdc</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 ## Setup PostgreSQL server
 
 Change Data Capture (CDC) allows you to track and propagate changes in a PostgreSQL database to downstream consumers based on its Write-Ahead Log (WAL).

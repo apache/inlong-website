@@ -3,6 +3,8 @@ title: SQLServer-CDC
 sidebar_position: 10
 ---
 
+import {siteVariables} from '../../version';
+
 ## Overview
 
 The SQLServer Extract Node reads data and incremental data from the SQLServer database. The following will describe how to set up the SQLServer extraction node.
@@ -20,14 +22,14 @@ Of course, you can also use INLONG to provide jar packages.([sort-connector-sqls
 
 ### Maven dependency
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-sqlserver-cdc</artifactId>
-    <!-- Choose the version that suits your application -->
-    <version>inlong_version</version>
+    <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 ## Setup SQLServer Extract Node
 
 SQLServer Extract Node needs to open related libraries and tables, the steps are as follows:
