@@ -7,9 +7,12 @@ sidebar_position: 1
 > and it is regarded as a metaphor of the InLong system for reporting data streams.
 
 ## About InLong
-[Apache InLong](https://inlong.apache.org) is a one-stop integration framework for massive data donated by Tencent to the Apache community. It provides automatic, safe, reliable, and high-performance data transmission capabilities to facilitate the construction of streaming-based data analysis, modeling, and applications.  
-The Apache InLong project was originally called TubeMQ, focusing on high-performance, low-cost message queuing services. To further release the surrounding ecological capabilities of TubeMQ, the community upgraded the project to InLong, focusing on creating a one-stop integration framework for massive data. 
-Apache InLong relies on trillion-level data ingestion and processing capabilities to integrate the entire process of data collection, aggregation, storage, and sorting data processing. It is simple, flexible, stable, and reliable.
+[Apache InLong](https://inlong.apache.org) is a one-stop integration framework for massive data ,it provides automatic, safe, reliable, and high-performance data transmission capabilities to 
+facilitate the construction of streaming-based data analysis, modeling, and applications. The Apache InLong project was originally called TubeMQ, focusing on high-performance, 
+low-cost message queuing services. To further release the surrounding ecological capabilities of TubeMQ, the community upgraded the project to InLong, focusing on creating a one-stop integration framework for massive data. 
+Apache InLong relies on 10 trillion-level data ingestion and processing capabilities to integrate the entire process of data collection, aggregation, storage, and sorting data processing. It is simple, flexible, stable, and reliable.
+The project was initially donated to the Apache incubator by the Tencent Big Data team in November 2019 and officially graduated as an Apache top-level project in June 2022. Currently, InLong is widely used in various industries such as advertising, 
+payment, social networking, games, artificial intelligence, etc., to provide efficient and convenient customer services in multiple fields.
 
 ## Features
 - Ease of Use
