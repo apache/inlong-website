@@ -33,7 +33,7 @@ bin/inlong-daemon start standalone
 ```
 
 ## Register Message Queue
-You can register message queue for Manger according to [Register Step](https://inlong.apache.org/docs/next/modules/manager/quick_start#register-message-queue).
+You can register message queue for Manger according to [Register MQ Cluster](https://inlong.apache.org/docs/next/modules/manager/quick_start/#register-mq-cluster).
 
 ## Check
 After all component run successfully, you can access `http://localhost` with default account:

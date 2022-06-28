@@ -34,7 +34,7 @@ bin/inlong-daemon start standalone
 ```
 
 ## 注册消息队列
-可参考 [注册步骤](https://inlong.apache.org/docs/next/modules/manager/quick_start#register-message-queue) 向 Manger 注册消息队列服务。
+可参考 [注册 MQ 集群](https://inlong.apache.org/zh-CN/docs/next/modules/manager/quick_start/#%E6%B3%A8%E5%86%8C-mq-%E9%9B%86%E7%BE%A4) 向 Manger 注册消息队列服务。
 
 ## 检查
 当所有组件都成功启动后，可以访问`http://localhost`，并使用以下默认账号登录:
