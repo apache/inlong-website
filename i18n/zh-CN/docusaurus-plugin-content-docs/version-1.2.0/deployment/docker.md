@@ -47,10 +47,6 @@ docker-compose up -d
 
 与上述 DataProxy 集群的添加入口相似，填写示例如下：
 
-![](img/pulsar_cluster_cn.png)
-
-填写示例：
-
 ![](img/pulsar_cluster_save_cn.png)
 
 ## 使用
