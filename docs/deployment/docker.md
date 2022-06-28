@@ -7,8 +7,7 @@ Deploy all InLong module by Docker Compose, it's only available for development.
 
 *Notice: The default message queue is Apache Pulsar for Docker.*
 
-Requirements:
-
+## Environment Requirements
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 - Docker Compose 1.29.2+
 
