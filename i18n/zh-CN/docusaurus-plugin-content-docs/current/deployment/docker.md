@@ -7,7 +7,7 @@ sidebar_position: 2
 
 *注意：Docker 部署默认使用 Apache Pulsar 作为消息队列服务。*
 
-准备条件:
+## 环境要求
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 - Docker Compose 1.29.2+
 
