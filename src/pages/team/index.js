@@ -1,10 +1,9 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import config from "../team/config.json";
 import Layout from '@theme/Layout';
 import './index.less';
-import axios from 'axios';
 
 export default function() {
     const isBrowser = useIsBrowser();
@@ -15,46 +14,14 @@ export default function() {
     const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
     const dataSource = config?.[language];
 
-    let contributors = isBrowser && axios({
-        url: 'https://api.github.com/repos/apache/inlong/contributors',
-        method: 'get',
-        headers: { "Authorization": `token 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` },
-        params: {
-            per_page: 100
+    useEffect(() => {
+        if (isBrowser) {
+            const script = document.createElement('script');
+            script.type = 'module';
+            script.src = '../js/contributors.js';
+            document.body.appendChild(script);
         }
-    }).then(result => {
-        let data = result.data;
-        var eles = document.getElementById("conID");
-        for(let i of data){
-            var lid = document.createElement("li");
-            lid.className = "mb-2";
-            lid.innerHTML = "<a href='"+i.html_url+"' target='_blank'>" +
-                "<img src='"+i.avatar_url+"'/>" + "<span>"+i.login+"</span>" +
-                "</a>";
-            eles.appendChild(lid);
-        }
-    })
-
-    let doc_contributors = isBrowser &&  axios({
-        url: 'https://api.github.com/repos/apache/inlong-website/contributors',
-        method: 'get',
-        headers: { "Authorization": `token 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` },
-        params: {
-            per_page: 100
-        }
-    }).then(result => {
-        let data = result.data;
-        var eles = document.getElementById("docID");
-        for(let i of data){
-            var lid = document.createElement("li");
-            lid.className = "mb-2";
-            lid.innerHTML = "<a href='"+i.html_url+"' target='_blank'>" +
-                "<img src='"+i.avatar_url+"'/>" + "<span>"+i.login+"</span>" +
-                "</a>";
-            eles.appendChild(lid);
-        }
-    })
-
+    }, [isBrowser])
 
     return (
         <Layout>
@@ -146,7 +113,7 @@ export default function() {
                         </tr>
                         <tr>
                             <td>lzwang</td>
-                            <td>bluwang</td>
+                            <td>bluewang</td>
                             <td>Lizhen</td>
                         </tr>
                         <tr>
