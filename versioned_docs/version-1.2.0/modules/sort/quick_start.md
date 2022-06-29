@@ -12,7 +12,7 @@ Currently, InLong Sort relies on Flink-1.13.5. Chose `flink-1.13.5-bin-scala_2.1
 
 ## Prepare installation files
 - InLong Sort file, [Download](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-bin.tar.gz`
-- Data Nodes Connectors, [Download](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-{version}-sort-connectors.tar.gz`
+- Data Nodes Connectors, [Download](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-sort-connectors.tar.gz`
 
 Notice: Please put required Connectors jars into under `FLINK_HOME/lib/` after download.
 
