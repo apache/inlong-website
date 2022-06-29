@@ -5,6 +5,7 @@ sidebar_position: 1
 ## 环境要求
 - MySQL 5.7+
 - Flink 1.13.5
+- [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 
 ## 准备消息队列
 InLong 当前支持以下消息队列，根据使用情况**选择其一**即可。
@@ -13,6 +14,8 @@ InLong 当前支持以下消息队列，根据使用情况**选择其一**即可
 
 ## 下载安装包
 可以从 [下载页面](https://inlong.apache.org/download/main/) 获取二进制包，或参考 [如何编译](quick_start/how_to_build.md) 编译需要的版本。
+
+解压 `apache-inlong-[version]-bin.tar.gz` 和 `apache-inlong-[version]-sort-connectors.tar.gz`，并确保 `inlong-sort/connectors/` 目录包含 Connectors。
 
 ## DB 依赖
 - 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar), 并将其放入以下目录：
@@ -26,7 +29,7 @@ inlong-tubemq-manager/lib/
 - 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
 
 ## 配置
-在`conf/inlong.conf`文件中根据实际情况替换参数：
+在`conf/inlong.conf`文件中根据实际情况配置参数。
 
 ## 启动
 ```shell

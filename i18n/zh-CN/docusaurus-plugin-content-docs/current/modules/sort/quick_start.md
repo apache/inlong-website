@@ -10,7 +10,7 @@ sidebar_position: 2
 
 ## 准备安装文件
 - InLong Sort 运行文件，[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-bin.tar.gz`
-- 数据节点 Connectors，[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-{version}-sort-connectors.tar.gz`
+- 数据节点 Connectors，[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-sort-connectors.tar.gz`
 
 注意：Connectors 下载后可以将需要的 jars 放到`FLINK_HOME/lib/`下。
 
