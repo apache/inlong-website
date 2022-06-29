@@ -75,14 +75,13 @@ sidebar_position: 5
 投票发起者需要向 Board 邮件组发送知会邮件，并等待至少72小时；邮件主送 board@apache.org，抄送 private@inlong.apache.org。
 Board 们会分析合规性，直到没有疑义。如下是新增 PMC 通知邮件样例：
    ```shell
-   [NOTICE] YYYYY for InLong PMC
+   [NOTICE] YYYYY for Apache InLong PMC
    
    Hi everyone,
 
-   YYYYY has been voted as a new member of the InLong PMC. 
+   Apache InLong proposes to invite YYYYY to join the PMC.
 
-   The vote thread is at:
-   https://lists.apache.org/thread/aaaaaxxxx
+   The vote result is available here: https://lists.apache.org/...
  
    Thanks!
    ```
@@ -126,7 +125,7 @@ Board 们会分析合规性，直到没有疑义。如下是新增 PMC 通知邮
 ## 接受邀请后处理
 创建 Apache 帐号并将候选人帐号加入项目。
 候选人接受邀请后，如果候选人没有 apache 邮箱帐号，投票发起人需要协助候选人按照指引创建好 apache 帐号。
-在签署 ICLA 时，候选人需要在 “notify project:” 栏目写上 Apache InLong 项目名，这样候选人帐号才会被 Apache 正确的加入对应项目人员名单，确认候选人的 Apache 帐号已加入项目的地址：http://people.apache.org/phonebook.html?podling=inlong 。
+在签署 ICLA 时，候选人需要在 “notify project:” 栏目写上 Apache InLong 项目名，这样候选人帐号才会被 Apache 正确的加入对应项目人员名单，确认候选人的 Apache 帐号已加入项目的地址：http://people.apache.org/phonebook.html?project=inlong。
 
 ## 向社区发布申明邮件
 如上步骤都完成后，投票发起人向 dev@inlong.apache.org 邮件组发通知邮件。

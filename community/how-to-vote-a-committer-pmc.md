@@ -76,14 +76,13 @@ sidebar_position: 5
    Voting initiators need to send notification emails to Board’s mailing group and wait at least 72 hours; email owners send board@apache.org and CC private@inlong.apache.org; Board will analyze compliance Until there is no doubt.
    The following is an example of a new PMC notification email:
    ```shell
-   [NOTICE] YYYYY for InLong PMC
+   [NOTICE] YYYYY for Apache InLong PMC
    
    Hi everyone,
 
-   YYYYY has been voted as a new member of the InLong PMC. 
+   Apache InLong proposes to invite YYYYY to join the PMC.
 
-   The vote thread is at:
-   https://lists.apache.org/thread/aaaaaxxxx
+   The vote result is available here: https://lists.apache.org/...
  
    Thanks!
    ```
@@ -128,7 +127,7 @@ sidebar_position: 5
    Create an Apache account and add the candidate account to the project.
    After the candidate accepts the invitation, if the candidate does not have an apache email account, the voting initiator needs to assist the candidate to create an apache account according to the guidelines.
    When signing the ICLA, the candidate needs to write the project name of “Apache InLong” in the "notify project:" column, so that the candidate account will be added to the list of corresponding project personnel by Apache.
-   The voting initiator needs to add project team members, open a permission account for the apache project, and confirm that the candidate’s Apache account has been added to the project address: http://people.apache.org/phonebook.html?podling=inlong.
+   The voting initiator needs to add project team members, open a permission account for the apache project, and confirm that the candidate’s Apache account has been added to the project address: http://people.apache.org/phonebook.html?project=inlong.
 
 ## ANNOUNCE to the community
    After the above steps are completed, the vote initiator must send a notification email to the dev@inlong.apache.org mail group. The following is a sample notification email:
