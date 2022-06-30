@@ -7,7 +7,12 @@ All deploying files at `inlong-audit` directory, if you use MySQL to store audit
   # initialize database
   mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit.sql
   ```
-
+If you use ClickHouse to store audit data, you need to first create the database through `sql/apache_inlong_audit_clickhouse.sql`.
+  ```shell
+  # initialize database
+  clickhouse client -u DB_USER --password DB_PASSWD < sql/apache_inlong_audit_clickhouse.sql
+  ```
+  
 ## Audit Proxy
 ### Configure MessageQueue
 You can choose Apache Pulsar or InLong TubeMQ as your MessageQueue service:
@@ -46,7 +51,7 @@ The configuration file  is `conf/application.properties`.
 # proxy.type: pulsar / tube
 audit.config.proxy.type=pulsar
 
-# store.server: mysql / elasticsearch 
+# store.server: mysql / elasticsearch / clickhouse 
 audit.config.store.mode=mysql
 
 # audit pulsar config (optional), replace PULSAR_BROKER_LIST with your Pulsar service url
@@ -59,10 +64,34 @@ audit.tube.masterlist=TUBE_LIST
 audit.tube.topic=inlong-audit
 audit.tube.consumer.group.name=inlong-audit-consumer
 
-# mysql
+# mysql config
 spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
 spring.datasource.druid.username=root
 spring.datasource.druid.password=inlong
+
+# es config
+elasticsearch.host=127.0.0.1
+elasticsearch.port=9200
+elasticsearch.authEnable=false
+elasticsearch.username=elastic
+elasticsearch.password=inlong
+elasticsearch.shardsNum=5
+elasticsearch.replicaNum=1
+elasticsearch.indexDeleteDay=5
+elasticsearch.enableDocId=true
+elasticsearch.bulkInterval=10
+elasticsearch.bulkThreshold=5000
+elasticsearch.auditIdSet=1,2
+
+# clickhouse config
+clickhouse.driver=ru.yandex.clickhouse.ClickHouseDriver
+clickhouse.url=jdbc:clickhouse://127.0.0.1:8123/default
+clickhouse.username=default
+clickhouse.password=default
+clickhouse.batchIntervalMs=1000
+clickhouse.batchThreshold=500
+clickhouse.processIntervalMs=100
+
 ```
 
 ### Dependencies
