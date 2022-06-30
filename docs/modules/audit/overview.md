@@ -13,8 +13,8 @@ The transmission status of each module, and whether the data stream is lost or r
 ![](img/audit_architecture.png)
 1. The audit SDK is nested in the service that needs to be audited, audits the service, and sends the audit result to the audit access layer
 2. The audit proxy writes audit data to MQ (Pulsar or TubeMQ)
-3. The distribution service consumes the audit data of MQ, and writes the audit data to MySQL and Elasticsearch
-4. The interface layer encapsulates the data of MySQL and Elasticsearch
+3. The distribution service consumes the audit data of MQ, and writes the audit data to MySQL, Elasticsearch and ClickHouse.
+4. The interface layer encapsulates the data of MySQL, Elasticsearch and ClickHouse.
 5. Application scenarios mainly include report display, audit reconciliation, etc.
 
 ## Audit Dimension
@@ -196,10 +196,22 @@ MySQL distribution supports distribution to different MySQL instances according 
   1. When the audit scale of the business is relatively small, less than ten million per day, you can consider using MySQL as the audit storage. Because the deployment of MySQL is much simpler than that of Elasticsearch, the resource cost will be much less.
   2. If the scale of audit data is large and MySQL cannot support it, you can consider using Elasticsearch as storage. After all, a single Elasticsearch cluster can support tens of billions of audit data and horizontal expansion.
   
+## ClickHouse Distribution Implementation
+### Target
+***1. High real-time performance (minute level)***  
+***2. Simple to deploy***  
+***3. Can be deduplicated***  
+
+### Main Logic Diagram
+ClickHouse distribution supports distribution to different ClickHouse instances according to the audit ID, and supports horizontal expansion.
+
+### Usage introduction
+  1. When the audit scale of the business is huge and you want to use SQL to access audit data, you can consider using ClickHouse as the audit storage. Because ClickHouse support SQL accessing, and support tens of billions of audit data and horizontal expansion.
+  
 ## Audit Usage Interface Design
 ### Main Logic Diagram
 ![](img/audit_api.png)
-The audit interface layer uses SQL to check MySQL or restful to check Elasticsearch. How to check which type of storage the interface uses depends on which type of storage is used.
+The audit interface layer uses SQL to check MySQL/ClickHouse or restful to check Elasticsearch. How to check which type of storage the interface uses depends on which type of storage is used.
 
 ### UI Interface Display
 ### Main Logic Diagram

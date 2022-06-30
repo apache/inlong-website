@@ -13,8 +13,8 @@ InLong审计是独立于InLong的一个子系统，对InLong系统的Agent、Dat
 ![](img/audit_architecture.png)
 1. 审计SDK嵌套在需要审计的服务，对服务进行审计，将审计结果发送到审计接入层。
 2. 审计接入层将审计数据写到MQ(Pulsar或者TubeMQ)。
-3. 分发服务消费MQ的审计数据，将审计数据写到MySQL、Elasticsearch。
-4. 接口层将MySQL、Elasticsearch的数据进行封装。
+3. 分发服务消费MQ的审计数据，将审计数据写到MySQL、Elasticsearch、ClickHouse。
+4. 接口层将MySQL、Elasticsearch、ClickHouse的数据进行封装。
 5. 应用场景主要包括报表展示、审计对账等等。
 
 ## 审计维度
@@ -198,10 +198,22 @@ MySQL分发支持根据审计ID分发到不同的MySQL实例，支持水平扩�
   1.当业务的审计规模比较小，小于千万级/天时，就可以考虑采用MySQL作为审计的存储。因为MySQL的部署相对Elasticsearch要简单的多， 资源成本也会少很多。   
   2.如果审计数据规模很大，MySQL支撑不了时，就可以考虑采用Elasticsearch作为存储，毕竟单个Elasticsearch集群能够支持百亿级别的审计数据，也支持水平扩容。
   
+## ClickHouse分发实现
+### 目标
+***1.高实时性(分钟级)***   
+***2.部署简单***  
+***3.可去重***
+
+### 主要逻辑图
+ClickHouse分发支持根据审计ID分发到不同的ClickHouse实例，支持水平扩展。
+
+### 使用介绍
+  1.ClickHouse集群支持百亿级审计数据，也支持水平扩容，同时支持SQL方式访问审计数据，资源成本和ElasticSearch差不多。
+  
 ## 审计使用接口设计
 ### 主要逻辑图
 ![](img/audit_api.png)
-审计接口层通过SQL查MySQL或者restful查Elasticsearch。接口具体怎么查哪一种存储，取决使用了哪一种存储
+审计接口层通过SQL查MySQL/ClickHouse或者restful查Elasticsearch。接口具体怎么查哪一种存储，取决使用了哪一种存储
 
 ### UI 界面展示
 ### 主要逻辑图
