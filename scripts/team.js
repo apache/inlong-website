@@ -2,11 +2,13 @@ const process = require('process');
 const fs = require('fs');
 const axios = require('axios');
 
-const contributorsFile = './static/js/contributors.json';
-const docContributorsFile = './static/js/doc-contributors.json';
+const folderName = './static/json/';
+const contributorsFile = './static/json/contributors.json';
+const docContributorsFile = './static/json/doc-contributors.json';
 
 class Contributors {
-  constructor(contributorsFile,docContributorsFile) {
+  constructor(folderName, contributorsFile, docContributorsFile) {
+    this.folderName = folderName;
     this.contributorsFile = contributorsFile;
     this.docContributorsFile = docContributorsFile;
   }
@@ -26,6 +28,19 @@ class Contributors {
     await this.getDocContributors();
   }
 
+  async writeFile(file, data) {
+    try {
+      if (!fs.existsSync(this.folderName)) {
+        fs.mkdirSync(this.folderName)
+        console.log('create folder');
+      }
+      const jsonString = JSON.stringify(data);
+      fs.writeFileSync(file, jsonString);
+      console.log('write success');
+    } catch (err) {
+      console.error(err)
+    }
+  }
 
   async getContributors (page= 1, per_page= 100, extraContributors = [], list = []) {
     await axios.get(`https://api.github.com/repos/apache/inlong/contributors?page=${page}&per_page=${per_page}`).then(result =>{
@@ -36,8 +51,7 @@ class Contributors {
         this.getContributors(page, per_page, extraContributors, list);
       }else {
         const repoContributors = [...list, ...extraContributors];
-        const yamlString = JSON.stringify(repoContributors);
-        fs.writeFileSync(this.contributorsFile, yamlString);
+        this.writeFile(this.contributorsFile, repoContributors);
         console.log('writing to contributors succeeded');
       }
     });
@@ -52,8 +66,7 @@ class Contributors {
         this.getDocContributors(page, per_page, extraContributors, list);
       }else {
         const repoContributors = [...list, ...extraContributors];
-        const yamlString = JSON.stringify(repoContributors);
-        fs.writeFileSync(this.docContributorsFile, yamlString);
+        this.writeFile(this.docContributorsFile, repoContributors);
         console.log('writing to doc contributors succeeded');
       }
     });
@@ -61,5 +74,5 @@ class Contributors {
 
 }
 
-new Contributors(contributorsFile, docContributorsFile).init()
+new Contributors(folderName, contributorsFile, docContributorsFile).init()
 
