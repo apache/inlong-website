@@ -4,7 +4,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import config from "../team/config.json";
 import Layout from '@theme/Layout';
 import './index.less';
-import axios from 'axios';
 
 export default function() {
     const isBrowser = useIsBrowser();
@@ -15,46 +14,43 @@ export default function() {
     const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
     const dataSource = config?.[language];
 
-    let contributors = isBrowser && axios({
-        url: 'https://api.github.com/repos/apache/inlong/contributors',
-        method: 'get',
-        headers: { "Authorization": `token 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` },
-        params: {
-            per_page: 100
-        }
-    }).then(result => {
-        let data = result.data;
-        var eles = document.getElementById("conID");
-        for(let i of data){
-            var lid = document.createElement("li");
+    const contributors = isBrowser && readTextFile("../json/contributors.json", function (text) {
+        let data = JSON.parse(text);
+        let eles = document.getElementById("conID");
+        for (let i = 0; i < data.length; i++) {
+            let lid = document.createElement("li");
             lid.className = "mb-2";
-            lid.innerHTML = "<a href='"+i.html_url+"' target='_blank'>" +
-                "<img src='"+i.avatar_url+"'/>" + "<span>"+i.login+"</span>" +
+            lid.innerHTML = "<a href='"+data[i].html_url+"' target='_blank'>" +
+                "<img src='"+data[i].avatar_url+"'/>" + "<span>"+data[i].login+"</span>" +
                 "</a>";
             eles.appendChild(lid);
         }
-    })
+    });
 
-    let doc_contributors = isBrowser &&  axios({
-        url: 'https://api.github.com/repos/apache/inlong-website/contributors',
-        method: 'get',
-        headers: { "Authorization": `token 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` },
-        params: {
-            per_page: 100
-        }
-    }).then(result => {
-        let data = result.data;
-        var eles = document.getElementById("docID");
-        for(let i of data){
-            var lid = document.createElement("li");
+    let doc_contributors = isBrowser && readTextFile("../json/doc-contributors.json", function (text) {
+        let data = JSON.parse(text);
+        let eles = document.getElementById("docID");
+        for (let i = 0; i < data.length; i++) {
+            let lid = document.createElement("li");
             lid.className = "mb-2";
-            lid.innerHTML = "<a href='"+i.html_url+"' target='_blank'>" +
-                "<img src='"+i.avatar_url+"'/>" + "<span>"+i.login+"</span>" +
+            lid.innerHTML = "<a href='"+data[i].html_url+"' target='_blank'>" +
+                "<img src='"+data[i].avatar_url+"'/>" + "<span>"+data[i].login+"</span>" +
                 "</a>";
             eles.appendChild(lid);
         }
-    })
+    });
 
+    function readTextFile(file, callback) {
+        let rawFile = new XMLHttpRequest();
+        rawFile.overrideMimeType("application/json");
+        rawFile.open("GET", file, true);
+        rawFile.onreadystatechange = function () {
+            if (rawFile.readyState === 4 && rawFile.status == "200") {
+                callback(rawFile.responseText);
+            }
+        }
+        rawFile.send(null);
+    }
 
     return (
         <Layout>
@@ -146,7 +142,7 @@ export default function() {
                         </tr>
                         <tr>
                             <td>lzwang</td>
-                            <td>bluwang</td>
+                            <td>bluewang</td>
                             <td>Lizhen</td>
                         </tr>
                         <tr>
