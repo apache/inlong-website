@@ -13,6 +13,8 @@ configuration file: `conf/common.properties`:
 manager.hosts=127.0.0.1:8083
 # audit proxy address
 audit.proxys=127.0.0.1:10081
+# report config log
+report.config.log.server.url=http://127.0.0.1:8083/api/inlong/manager/openapi/stream/log/reportConfigLogStatus
 ```
 
 ## run
