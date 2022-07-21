@@ -108,7 +108,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             ],
           },
           {
-            to: '/downloads/downloads',
+            to: '/download',
             position: 'right',
             label: 'DOWNLOAD',
           },
@@ -258,35 +258,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       },
     ],
     [
-      '@docusaurus/plugin-content-docs',
+      '@docusaurus/plugin-content-pages',
       {
         id: 'download',
         path: 'download',
         routeBasePath: 'download',
-        editUrl: ({locale, versionDocsDirPath, docPath}) => {
-          if (locale !== 'en') {
-            return `https://github.com/apache/inlong-website/edit/master/i18n/${locale}/${docPath}`;
-          }
-          return `https://github.com/apache/inlong-website/edit/master/${versionDocsDirPath}/${docPath}`;
-        },
-        sidebarPath: require.resolve('./sidebarsDevelopment.js'),
-        async sidebarItemsGenerator({ defaultSidebarItemsGenerator, ...args }) {
-          const sidebarItems = await defaultSidebarItemsGenerator(args);
-          const gen = (item) => item.id
-            ?.match(/release-([\d|\.]+)/)?.[1]
-            ?.split('.')
-          return sidebarItems.sort((a, b) => {
-            let i = 0;
-            const arr1 = gen(a);
-            const arr2 = gen(b);
-            while (true) {
-              const s1 = arr1?.[i];
-              const s2 = arr2?.[i++];
-              if (s1 === s2) continue;
-              return s2 - s1 || 1;
-            }
-          });
-        },
       },
     ],
   ]

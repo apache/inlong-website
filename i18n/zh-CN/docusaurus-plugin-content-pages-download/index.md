@@ -2,7 +2,7 @@
 title: 下载
 ---
 
-## 最新版本 1.2.0
+## 最新版本 1.2.0s
 你可以在这里下载到最新的版本。
 
 |         Release        |       Date   |                                                                        Link                                                                                         |                                                                                     Crypto files                                                                                                                              |
