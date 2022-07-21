@@ -32,7 +32,7 @@ Extract 节点列表是一组基于 <a href="https://flink.apache.org/">Apache F
 我们需要几个步骤来使用提供的连接器设置 Flink 集群。
 
 - 设置一个安装了 1.13.5 版本和 Java 8+ 的 Flink 集群。
-- 从 [下载](/zh-CN/download/main) 页面下载并解压 Sort Connectors jars (或者参考 [如何编译](../../quick_start/how_to_build.md) 编译需要的版本)。
+- 从 [下载](/zh-CN/download) 页面下载并解压 Sort Connectors jars (或者参考 [如何编译](../../quick_start/how_to_build.md) 编译需要的版本)。
 - 将下载并解压后的 Sort Connectors jars 放到 `FLINK_HOME/lib/`。
 - 重启 Flink 集群。
 
