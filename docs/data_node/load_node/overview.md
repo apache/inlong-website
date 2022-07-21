@@ -38,7 +38,7 @@ The following table shows the version mapping between InLong<sup>®</sup> Load N
 We need several steps to setup a Flink cluster with the provided connector.
 
 1. Setup a Flink cluster with version 1.13.5 and Java 8+ installed.
-2. Download and decompress the Sort Connectors jars from the [Downloads](/download/main) page (or [build yourself](../../quick_start/how_to_build.md)).
+2. Download and decompress the Sort Connectors jars from the [Downloads](/download) page (or [build yourself](../../quick_start/how_to_build.md)).
 3. Put the Sort Connectors jars under `FLINK_HOME/lib/`.
 4. Restart the Flink cluster.
 
