@@ -1,5 +1,7 @@
 ---
 title: Analysis of InLong Sort ETL Solution
+author: Oneal65
+tags: [Apache InLong, Sort]
 ---
 
 # Analysis of InLong Sort ETL Solution Based on Apache Flink SQL
