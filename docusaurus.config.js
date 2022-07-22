@@ -62,14 +62,8 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         },
         items: [
           {
-            to: '/',
             position: 'right',
-            label: 'HOME',
-            activeBaseRegex: `^/$`,
-          },
-          {
-            position: 'right',
-            label: 'DOC',
+            label: 'Docs',
             to: "/docs/introduction",
             items: [
               {
@@ -105,22 +99,22 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           {
             to: '/download',
             position: 'right',
-            label: 'DOWNLOAD',
+            label: 'Download',
           },
           {
             to: '/community/how-to-contribute',
-            label: 'COMMUNITY',
+            label: 'Community',
             position: 'right',
             activeBaseRegex: `/community/`,
           },
           {
             to: '/blog',
-            label: 'BLOG',
+            label: 'Blog',
             position: 'right'
           },
           {
             to: '/team',
-            label: 'TEAM',
+            label: 'Team',
             position: 'right'
           },
           {
