@@ -54,11 +54,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      announcementBar: {
-        id: 'announcementBar-2', // Increment on change
-        content: `⭐️ &nbsp; If you like Apache InLong , give it a star on <a target="_blank" rel="noopener noreferrer" href="https://github.com/apache/inlong">GitHub</a>`,
-        backgroundColor: "#BBDFFF",
-      },
       navbar: {
         title: 'Apache InLong',
         logo: {
