@@ -3,6 +3,9 @@ title: InLong Introduction
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 > InLong (应龙) is a divine beast in Chinese mythology who guides the river into the sea, 
 > and it is regarded as a metaphor of the InLong system for reporting data streams.
 
@@ -36,7 +39,19 @@ payment, social networking, games, artificial intelligence, etc., to provide eff
   InLong adopts a pluggable architecture that allows you to plug modules into the system based on specific protocols. Users can replace components and add features based on their business requirements.
 
 ## Architecture
+<Tabs
+defaultValue="standard"
+values={[
+{label: 'Standard', value: 'standard'},
+{label: 'Lightweight', value: 'lightweight'},
+]}>
+<TabItem value="standard">
 <img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>
+</TabItem>
+<TabItem value="lightweight">
+<img src="/img/inlong-structure-light.png" align="center" alt="Apache InLong"/>
+</TabItem>
+</Tabs>
 
 ## Modules
 Apache InLong serves the entire life cycle from data collection to landing,  and provides different processing modules according to different stages of data,  including the next modules:
