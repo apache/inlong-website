@@ -18,7 +18,7 @@ Manipulating hive tables using the hive dialect is currently not supported.
 ### Dependencies
 
 Using Hive load requires the introduction of dependencies.
-Of course, you can also use INLONG to provide jar packages.([sort-connector-hive](https://inlong.apache.org/download/main/))
+Of course, you can also use INLONG to provide jar packages.([sort-connector-hive](https://inlong.apache.org/download))
 
 ### Maven dependency
 

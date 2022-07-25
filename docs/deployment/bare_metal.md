@@ -13,7 +13,7 @@ InLong Support the following Message Queue services now, you can choose one of t
 - [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/en/2.8.1/standalone/)
 
 ## Download the Binary Package
-You can get binary package from [Download Page](https://inlong.apache.org/download/main/) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).。
+You can get binary package from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).。
 
 ## Deploy
 | order |  component | dependencies | deploy guide                                                          | description |

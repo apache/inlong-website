@@ -12,7 +12,7 @@ InLong 当前支持以下消息队列，根据使用情况**选择其一**即可
 - [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/en/2.8.1/standalone/)
 
 ## 下载安装包
-可以从 [下载页面](https://inlong.apache.org/download/main/) 获取二进制包，或参考 [如何编译](quick_start/how_to_build.md) 编译需要的版本。
+可以从 [下载页面](https://inlong.apache.org/download) 获取二进制包，或参考 [如何编译](quick_start/how_to_build.md) 编译需要的版本。
 
 ## DB 依赖
 - 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar), 并将其放入以下目录：
