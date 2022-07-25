@@ -1,6 +1,8 @@
 ---
 title: InLong Sort ETL 方案解析
 author: Oneal65
+author_url: https://github.com/Oneal65
+author_image_url: https://avatars.githubusercontent.com/u/13121552?v=4
 tags: [Apache InLong, Sort]
 ---
 
