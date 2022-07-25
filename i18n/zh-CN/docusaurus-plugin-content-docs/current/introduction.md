@@ -3,6 +3,9 @@ title: InLong 简介
 sidebar_position: 1
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 > InLong(应龙)，中国神话故事里的神兽，引流入海，借喻 InLong 系统提供数据集成能力。
 
 ## 关于 InLong
@@ -33,7 +36,19 @@ Apache InLong 依托 10 万亿级别的数据接入和处理能力，整合了�
   全链条上的各个模块基于协议以可插拔方式组成服务，业务可根据自身需要进行组件替换和功能扩展
 
 ## 架构
+<Tabs
+defaultValue="standard"
+values={[
+{label: 'Standard', value: 'standard'},
+{label: 'Lightweight', value: 'lightweight'},
+]}>
+<TabItem value="standard">
 <img src="/img/inlong-structure-zh.png" align="center" alt="Apache InLong"/>
+</TabItem>
+<TabItem value="lightweight">
+<img src="/img/inlong-structure-light.png" align="center" alt="Apache InLong"/>
+</TabItem>
+</Tabs>
 
 ## 模块
 Apache InLong 服务于数据采集到落地的整个生命周期，按数据的不同阶段提供不同的处理模块，主要包括：
