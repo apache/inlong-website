@@ -3,7 +3,7 @@ title: How to Build
 sidebar_position: 1
 ---
 ## Download Source Code
-Download Source Code from [InLong Download Page](https://inlong.apache.org/download/main/).
+Download Source Code from [InLong Download Page](https://inlong.apache.org/download/).
 
 ## Build Binary Package
 - Java [JDK 8](https://adoptopenjdk.net/?variant=openjdk8)

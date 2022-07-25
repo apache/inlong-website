@@ -3,7 +3,7 @@ title: 如何编译
 sidebar_position: 1
 ---
 ## 下载源码
-从[InLong Download Page](https://inlong.apache.org/download/main/)下载源码.
+从[InLong Download Page](https://inlong.apache.org/download)下载源码.
 
 ## 编译二进制文件
 - Java [JDK 8](https://adoptopenjdk.net/?variant=openjdk8)

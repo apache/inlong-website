@@ -18,7 +18,7 @@ SQLServer 提取节点从 SQLServer 数据库中读取数据和增量数据。�
 ## 依赖配置
 
 通过 Maven 引入 sort-connector-sqlserver-cdc 构建自己的项目。
-当然，你也可以直接使用 INLONG 提供的 jar 包。([sort-connector-sqlserver-cdc](https://inlong.apache.org/download/main/))
+当然，你也可以直接使用 INLONG 提供的 jar 包。([sort-connector-sqlserver-cdc](https://inlong.apache.org/download))
 
 ### Maven依赖配置
 

@@ -18,7 +18,7 @@ The SQLServer Extract Node reads data and incremental data from the SQLServer da
 ## Dependencies
 
 Introduce related SQLServer Extract Node dependencies through maven.
-Of course, you can also use INLONG to provide jar packages.([sort-connector-sqlserver-cdc](https://inlong.apache.org/download/main/))
+Of course, you can also use INLONG to provide jar packages.([sort-connector-sqlserver-cdc](https://inlong.apache.org/download))
 
 ### Maven dependency
 
