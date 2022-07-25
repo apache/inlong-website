@@ -1,5 +1,7 @@
 ---
 title: InLong Sort ETL 方案解析
+author: Oneal65
+tags: [Apache InLong, Sort]
 ---
 
 # 基于 Apache Flink SQL 的 InLong Sort ETL 方案解析
@@ -7,6 +9,8 @@ title: InLong Sort ETL 方案解析
 ## 1. 背景
 
 随着 Apache InLong(incubating) 的用户和开发者逐渐增多，更丰富的使用场景和低成本运营诉求越来越强烈，其中，InLong 全链路增加 Transform（T）的需求反馈最多。经过@yunqingmoswu、@EMsnap、@gong、@thexiay 社区开发者的调研和设计，完成了基于 Flink SQL 的 InLong Sort ETL 方案，本文将详细介绍该方案的实现细节。
+
+<!--truncate-->
 
 首先，基于 Apache Flink SQL 主要有以下方面的考量：
 

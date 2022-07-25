@@ -1,5 +1,7 @@
 ---
 title: Analysis of InLong Sort ETL Solution
+author: Oneal65
+tags: [Apache InLong, Sort]
 ---
 
 # Analysis of InLong Sort ETL Solution Based on Apache Flink SQL
@@ -7,6 +9,8 @@ title: Analysis of InLong Sort ETL Solution
 ## 1. Background
 
 With the increasing number of users and developers of Apache InLong(incubating), the demand for richer usage scenarios and low-cost operation is getting stronger and stronger. Among them, the demand for adding Transform (T) to the whole link of InLong has received the most feedback. After the research and design of @yunqingmoswu, @EMsnap, @gong, @thexiay community developers, the InLong Sort ETL solution based on Flink SQL has been completed. This article will introduce the implementation details of the solution in detail.
+
+<!--truncate-->
 
 Firstly, based on Apache Flink SQL, there are mainly the following considerations：
 
