@@ -46,7 +46,7 @@ values={[
 {label: 'Lightweight', value: 'lightweight'},
 ]}>
 <TabItem value="standard">
-<img src="/img/inlong-structure-en.png" align="center" style={{objectFit: 'cover', height: '460px', width: '860px'}} alt="Apache InLong"/>
+<img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>
 </TabItem>
 <TabItem value="lightweight">
 <img src="/img/inlong-structure-light.png" align="center" style={{objectFit: 'cover', height: '460px', width: '860px'}} alt="Apache InLong"/>

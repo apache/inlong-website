@@ -2,13 +2,11 @@ const process = require('process');
 const fs = require('fs');
 const axios = require('axios');
 
-const folderName = './static/json/';
-const contributorsFile = './static/json/contributors.json';
-const docContributorsFile = './static/json/doc-contributors.json';
+const contributorsFile = './config/contributors.json';
+const docContributorsFile = './config/doc-contributors.json';
 
 class Contributors {
-  constructor(folderName, contributorsFile, docContributorsFile) {
-    this.folderName = folderName;
+  constructor(contributorsFile, docContributorsFile) {
     this.contributorsFile = contributorsFile;
     this.docContributorsFile = docContributorsFile;
   }
@@ -30,10 +28,6 @@ class Contributors {
 
   async writeFile(file, data) {
     try {
-      if (!fs.existsSync(this.folderName)) {
-        fs.mkdirSync(this.folderName)
-        console.log('create folder');
-      }
       const jsonString = JSON.stringify(data);
       fs.writeFileSync(file, jsonString);
       console.log('write success');
@@ -74,5 +68,5 @@ class Contributors {
 
 }
 
-new Contributors(folderName, contributorsFile, docContributorsFile).init()
+new Contributors(contributorsFile, docContributorsFile).init()
 
