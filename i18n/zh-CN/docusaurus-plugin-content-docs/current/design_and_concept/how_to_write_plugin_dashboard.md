@@ -8,7 +8,7 @@ sidebar_position: 4
 本文面向 InLong Dashboard 插件开发人员，尝试尽可能全面地阐述开发一个 Dashboard 插件所经过的历程，帮助开发者快速新增一个 Load Node，让插件开发变得简单。
 InLong Dashboard 本身作为前端控制台，采用 React 框架构建。
 
-## 集成新的 Load Node 到 InLong Dashboard 的主流程
+## 扩展 Load Node
 
 在 `inlong-dashboard/src/components/MetaData` 目录下，新建一个 `StorageExampleNode.tsx` 文件，同时讲该文件在当前目录的 `index.ts` 文件内部进行导出（可参考已有 LoadNode 的写法），这样便完成了新增一种名为 `ExampleNode` 的 LoadNode，接下来，我们将介绍怎么定义该 LoadNode 的内部结构。
 
