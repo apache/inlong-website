@@ -168,7 +168,7 @@ public interface Node {...}
 
 **第三步**：扩展 Sort Connector，Kafka 的 sort connector 在 `inlong-sort/sort-connectors/kafka` 目录下。
 
-## 集成 Extract 和 Load Node 到 InLong Sort 主流程
+## 集成到 Entrance
 
 将 Extract 和 Load 集成到 InLong Sort 主流程中，需要构建总览小节中提到的语意：Group、Stream、Node 等。
 InLong Sort 的入口类在:

@@ -42,7 +42,7 @@ To extend the extract node or load node, you need to do the following:
 
 In the second step, you can use the existing flick connector or extend it yourself. How to extend the flink connector, please refer to the official flink documentation[DataStream Connectors ](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors).
 
-## Extend a new extract node
+## Extend Extract Node
 
 There are three steps to extend an ExtractNode: 
 
@@ -100,7 +100,7 @@ public interface Node {...}
 you need to refer to the official flink documentation [DataStream Connectors](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/datastream/overview/#datastream-connectors) to extend, 
 directly call the existing flink-connector (such as`inlong-sort/sort-connectors/mongodb-cdc`) or implement the related connector by yourself.
 
-## Extend a new load node
+## Extend Load Node
 
 There are three steps to extend an LoadNode: 
 
@@ -170,7 +170,7 @@ public interface Node {...}
 
 **Step 3**：Extend the Sort connector, Kafka's sort connector is in `inlong-sort/sort-connectors/kafka`.
 
-## Bundle extract node and load node into InLong Sort
+## Integrate Entrance
 
 To integrate extract and load into the InLong Sort mainstream, you need to implement the semantics mentioned in the overview section: group, stream, node, etc. The entry class of InLong Sort is in :
 ```bash
