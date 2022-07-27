@@ -28,7 +28,7 @@ class Contributors {
 
   async writeFile(file, data) {
     try {
-      const jsonString = JSON.stringify(data, null, "\t");
+      const jsonString = JSON.stringify(data, null, 2);
       fs.writeFileSync(file, jsonString);
       console.log('write success');
     } catch (err) {
