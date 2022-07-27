@@ -49,66 +49,22 @@ export default function() {
                 <h3>{dataSource.passVersion}</h3>
                 <p>{dataSource.passVersionExplain}</p>
                 <table>
-                    <tr>
-                        <td>{dataSource.table.version[0].title}</td>
-                        <td>
-                            <a href={dataSource.table.version[0].link}>{dataSource.table.doc}</a>
-                        </td>
-                        <td>
-                            <a href={dataSource.table.version[0].releaseUrl}>{dataSource.table.release}</a>
-                        </td>
-                        <td>
-                            <a href="https://github.com/apache/inlong">{dataSource.table.source}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{dataSource.table.version[1].title}</td>
-                        <td>
-                            <a href={dataSource.table.version[1].link}>{dataSource.table.doc}</a>
-                        </td>
-                        <td>
-                            <a href={dataSource.table.version[1].releaseUrl}>{dataSource.table.release}</a>
-                        </td>
-                        <td>
-                            <a href="https://github.com/apache/inlong">{dataSource.table.source}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{dataSource.table.version[2].title}</td>
-                        <td>
-                            <a href={dataSource.table.version[2].link}>{dataSource.table.doc}</a>
-                        </td>
-                        <td>
-                            <a href={dataSource.table.version[2].releaseUrl}>{dataSource.table.release}</a>
-                        </td>
-                        <td>
-                            <a href="https://github.com/apache/inlong">{dataSource.table.source}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{dataSource.table.version[3].title}</td>
-                        <td>
-                            <a href={dataSource.table.version[3].link}>{dataSource.table.doc}</a>
-                        </td>
-                        <td>
-                            <a href={dataSource.table.version[3].releaseUrl}>{dataSource.table.release}</a>
-                        </td>
-                        <td>
-                            <a href="https://github.com/apache/inlong">{dataSource.table.source}</a>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>{dataSource.table.version[4].title}</td>
-                        <td>
-                            <a href={dataSource.table.version[4].link}>{dataSource.table.doc}</a>
-                        </td>
-                        <td>
-                            <a href={dataSource.table.version[4].releaseUrl}>{dataSource.table.release}</a>
-                        </td>
-                        <td>
-                            <a href="https://github.com/apache/inlong">{dataSource.table.source}</a>
-                        </td>
-                    </tr>
+                    {
+                        dataSource.table.version.map((version, i) => (
+                            <tr key={i} index={i}>
+                                <td>{version.title}</td>
+                                <td>
+                                    <a href={version.link}>{dataSource.table.doc}</a>
+                                </td>
+                                <td>
+                                    <a href={version.releaseUrl}>{dataSource.table.release}</a>
+                                </td>
+                                <td>
+                                    <a href="https://github.com/apache/inlong">{dataSource.table.source}</a>
+                                </td>
+                            </tr>
+                        ))
+                    }
                 </table>
             </div>
         </Layout>

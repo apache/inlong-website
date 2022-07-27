@@ -2,6 +2,7 @@ import React, { useState }  from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import config from "../team/config.json";
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import './index.less';
 
@@ -14,43 +15,10 @@ export default function() {
     const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
     const dataSource = config?.[language];
 
-    const contributors = isBrowser && readTextFile("../json/contributors.json", function (text) {
-        let data = JSON.parse(text);
-        let eles = document.getElementById("conID");
-        for (let i = 0; i < data.length; i++) {
-            let lid = document.createElement("li");
-            lid.className = "mb-2";
-            lid.innerHTML = "<a href='"+data[i].html_url+"' target='_blank'>" +
-                "<img src='"+data[i].avatar_url+"'/>" + "<span>"+data[i].login+"</span>" +
-                "</a>";
-            eles.appendChild(lid);
-        }
-    });
-
-    let doc_contributors = isBrowser && readTextFile("../json/doc-contributors.json", function (text) {
-        let data = JSON.parse(text);
-        let eles = document.getElementById("docID");
-        for (let i = 0; i < data.length; i++) {
-            let lid = document.createElement("li");
-            lid.className = "mb-2";
-            lid.innerHTML = "<a href='"+data[i].html_url+"' target='_blank'>" +
-                "<img src='"+data[i].avatar_url+"'/>" + "<span>"+data[i].login+"</span>" +
-                "</a>";
-            eles.appendChild(lid);
-        }
-    });
-
-    function readTextFile(file, callback) {
-        let rawFile = new XMLHttpRequest();
-        rawFile.overrideMimeType("application/json");
-        rawFile.open("GET", file, true);
-        rawFile.onreadystatechange = function () {
-            if (rawFile.readyState === 4 && rawFile.status == "200") {
-                callback(rawFile.responseText);
-            }
-        }
-        rawFile.send(null);
-    }
+    const { siteConfig } = useDocusaurusContext();
+    const team = siteConfig.customFields.team;
+    const contributors = siteConfig.customFields.contributors;
+    const docContributors = siteConfig.customFields.docContributors;
 
     return (
         <Layout>
@@ -64,193 +32,73 @@ export default function() {
                 <h2>Members</h2>
                 <p>{dataSource.members}</p>
                 <table>
-                    <tbody>
+                    <thead>
                         <tr>
                             <td><b>Apache ID</b></td>
                             <td><b>GitHub User Name</b></td>
                             <td><b>Public Name</b></td>
                         </tr>
-                        <tr>
-                            <td>aloyszhang</td>
-                            <td>aloyszhang</td>
-                            <td>Aloys Zhang</td>
-                        </tr>
-                        <tr>
-                            <td>dockerzhang</td>
-                            <td>dockerzhang</td>
-                            <td>Charles Zhang</td>
-                        </tr>
-                        <tr>
-                            <td>leezng</td>
-                            <td>leezng</td>
-                            <td>Daniel Li</td>
-                        </tr>
-                        <tr>
-                            <td>gxcheng</td>
-                            <td>guangxuCheng</td>
-                            <td>Guangxu Cheng</td>
-                        </tr>
-                        <tr>
-                            <td>technoboy</td>
-                            <td>technoboy-</td>
-                            <td>Guo Jiwei</td>
-                        </tr>
-                        <tr>
-                            <td>gosonzhang</td>
-                            <td>gosonzhang</td>
-                            <td>Guocheng Zhang</td>
-                        </tr>
-                        <tr>
-                            <td>charleli</td>
-                            <td>charlely</td>
-                            <td>Haiji Li</td>
-                        </tr>
-                        <tr>
-                            <td>healchow</td>
-                            <td>healchow</td>
-                            <td>Heal Chow</td>
-                        </tr>
-                        <tr>
-                            <td>jbonofre</td>
-                            <td>jbonofre</td>
-                            <td>Jean-Baptiste Onofré</td>
-                        </tr>
-                        <tr>
-                            <td>jshao</td>
-                            <td>jerryshao</td>
-                            <td>Jerry Shao</td>
-                        </tr>
-                        <tr>
-                            <td>junjie</td>
-                            <td>chenjunjiedada</td>
-                            <td>Junjie Chen</td>
-                        </tr>
-                        <tr>
-                            <td>junping_du</td>
-                            <td> </td>
-                            <td>Junping Du</td>
-                        </tr>
-                        <tr>
-                            <td>jmclean</td>
-                            <td>justinmclean, jmclean</td>
-                            <td>Justin Mclean</td>
-                        </tr>
-                        <tr>
-                            <td>lamberliu</td>
-                            <td>lamberliu</td>
-                            <td>Lamber Liu</td>
-                        </tr>
-                        <tr>
-                            <td>lzwang</td>
-                            <td>bluewang</td>
-                            <td>Lizhen</td>
-                        </tr>
-                        <tr>
-                            <td>osgooli</td>
-                            <td>lizhiboo</td>
-                            <td>Osgoo Li</td>
-                        </tr>
-                        <tr>
-                            <td>pengchen</td>
-                            <td>chinpeng</td>
-                            <td>Peng Chen</td>
-                        </tr>
-                        <tr>
-                            <td>yuanbo</td>
-                            <td>yuanboliu</td>
-                            <td>Yuanbo Liu</td>
-                        </tr>
-                        <tr>
-                            <td>jiyuanhao</td>
-                            <td>shink</td>
-                            <td>Yuanhao Ji</td>
-                        </tr>
-                        <tr>
-                            <td>zakwu</td>
-                            <td>wf123537200</td>
-                            <td>Zak Wu</td>
-                        </tr>
-                        <tr>
-                            <td>kaynewu</td>
-                            <td>kaynewu</td>
-                            <td>ZhongBo Wu</td>
-                        </tr>
-                        <tr>
-                            <td>alfredlu</td>
-                            <td>TszKitLo40</td>
-                            <td>Zijie Lu</td>
-                        </tr>
-                        <tr>
-                            <td>tison</td>
-                            <td>tisonkun</td>
-                            <td>Zili Chen</td>
-                        </tr>
-                        <tr>
-                            <td>zirui</td>
-                            <td>EMsnap</td>
-                            <td>Zirui Peng</td>
-                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            team.members.map((member, i) => (
+                                <tr key={i} index={i}>
+                                    <td>{member.apacheID}</td>
+                                    <td>{member.githubName}</td>
+                                    <td>{member.publicName}</td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
                 <h2>Committer</h2>
                 <table>
-                    <tbody>
+                    <thead>
                         <tr>
                             <td><b>Apache ID</b></td>
                             <td><b>GitHub User Name</b></td>
                             <td><b>Public Name</b></td>
                         </tr>
-                        <tr>
-                            <td>ke4qqq</td>
-                            <td>  </td>
-                            <td>David Nalley</td>
-                        </tr>
-                        <tr>
-                            <td>zeus</td>
-                            <td>  </td>
-                            <td>Jie Jiang</td>
-                        </tr>
-                        <tr>
-                            <td>luchunliang</td>
-                            <td>luchunliang</td>
-                            <td>Lu Chunliang</td>
-                        </tr>
-                        <tr>
-                            <td>sijie</td>
-                            <td>sijie</td>
-                            <td>Sijie Guo</td>
-                        </tr>
-                        <tr>
-                            <td>xiangli</td>
-                            <td>waterlx</td>
-                            <td>Xiang Li</td>
-                        </tr>
-                        <tr>
-                            <td>yihengw</td>
-                            <td>yiheng</td>
-                            <td>Yiheng Wang</td>
-                        </tr>
-                        <tr>
-                            <td>ehomeliu</td>
-                            <td>  </td>
-                            <td>Yuhong Liu</td>
-                        </tr>
-                        <tr>
-                            <td>zjshen</td>
-                            <td>zjshen14</td>
-                            <td>Zhijie Shen</td>
-                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            team.committers.map((committer, i) => (
+                                <tr key={i} index={i}>
+                                    <td>{committer.apacheID}</td>
+                                    <td>{committer.githubName}</td>
+                                    <td>{committer.publicName}</td>
+                                </tr>
+                            ))
+                        }
                     </tbody>
                 </table>
                 <h2>Contributors</h2>
                 <p>{dataSource.code_contributors}</p>
                 <div className="contributors-div">
                     <ul id="conID" className="ul-flex">
+                        {
+                            contributors.map((contributor, i) => (
+                                <li className="mb-2" key={i} index={i}>
+                                    <a href={contributor.html_url} target="_blank">
+                                        <img src={contributor.avatar_url} /><span>{contributor.login}</span>
+                                    </a>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
                 <p>{dataSource.doc_contributors}</p>
                 <div className="contributors-div">
                     <ul id="docID" className="ul-flex">
+                        {
+                            docContributors.map((docContributor, i) => (
+                                <li className="mb-2" key={i} index={i}>
+                                    <a href={docContributor.html_url} target="_blank">
+                                        <img src={docContributor.avatar_url} /><span>{docContributor.login}</span>
+                                    </a>
+                                </li>
+                            ))
+                        }
                     </ul>
                 </div>
             </div>

@@ -14,6 +14,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
   favicon: 'img/logo.svg',
   organizationName: 'Apache Inlong', // Usually your GitHub org/user name.
   projectName: 'Apache Inlong', // Usually your repo name.
+  customFields: {
+    team: require('./config/team.json'),
+    contributors: require('./config/contributors.json'),
+    docContributors: require('./config/doc-contributors.json')
+  },
   i18n: {
     defaultLocale: "en",
     locales: ["en", "zh-CN"],
