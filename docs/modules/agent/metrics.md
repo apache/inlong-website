@@ -15,15 +15,25 @@ Users can add similar JMX (port and authentication are adjusted according to the
 -Dcom.sun.management.jmxremote.ssl=false
 ```
 
+The `agent.properties` file needs to specify the listener class
+```properties
+# The listener of JMX is AgentJmxMetricListener
+agent.domainListeners=org.apache.inlong.agent.metrics.AgentJmxMetricListener
+```
+
 ## Prometheus Configuration 
 You can declare whether to enable Prometheus and HTTPServer port in `agent.properties`.
 
 ```properties
-# the default is false
-agent.prometheus.enable=true
-# the default is 8080
-agent.prometheus.exporter.port=8080
+# The listener of Prometheus is AgentPrometheusMetricListener
+agent.domainListeners=org.apache.inlong.agent.metrics.AgentPrometheusMetricListener
+# the default is 9080
+agent.prometheus.exporter.port=9080
 ```
+
+## User-Defined Configuration
+If the user wants to monitor the indicator capabilities in other ways, You can inherit the `org.apache.inlong.agent.metrics.AgentMetricBaseListener`  class and implement it, 
+and finally configure the `agent.domainListeners` property in the `agent.properties` file. 
 
 ## Appendix: Metrics Items
 
