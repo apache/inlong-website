@@ -9,6 +9,8 @@ All deploying files at `inlong-dataproxy` directory.
 
 configuration file: `conf/common.properties`:
 ```
+# local IP
+proxy.local.ip=127.0.0.1
 # manager address
 manager.hosts=127.0.0.1:8083
 # audit proxy address
