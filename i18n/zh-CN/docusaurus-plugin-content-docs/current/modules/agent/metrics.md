@@ -21,8 +21,6 @@ agent.domainListeners=org.apache.inlong.agent.metrics.AgentJmxMetricListener
 ```
 
 ## Prometheus 配置 
-用户可以在`agent.properties`中声明是否启用Prometheus以及HTTPServer端口号
-
 ```properties
 # Prometheus监听类是AgentPrometheusMetricListener
 agent.domainListeners=org.apache.inlong.agent.metrics.AgentPrometheusMetricListener
@@ -30,7 +28,7 @@ agent.domainListeners=org.apache.inlong.agent.metrics.AgentPrometheusMetricListe
 agent.prometheus.exporter.port=9080
 ```
 
-## 自定义 配置
+## 自定义配置
 如果用户想通过其他监控指标能力，可以继承`org.apache.inlong.agent.metrics.AgentMetricBaseListener`类并实现，
 最后在 `agent.properties` 文件中配置 `agent.domainListeners` 属性。
 

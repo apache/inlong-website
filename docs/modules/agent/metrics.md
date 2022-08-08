@@ -22,8 +22,6 @@ agent.domainListeners=org.apache.inlong.agent.metrics.AgentJmxMetricListener
 ```
 
 ## Prometheus Configuration 
-You can declare whether to enable Prometheus and HTTPServer port in `agent.properties`.
-
 ```properties
 # The listener of Prometheus is AgentPrometheusMetricListener
 agent.domainListeners=org.apache.inlong.agent.metrics.AgentPrometheusMetricListener
@@ -31,7 +29,7 @@ agent.domainListeners=org.apache.inlong.agent.metrics.AgentPrometheusMetricListe
 agent.prometheus.exporter.port=9080
 ```
 
-## User-Defined Configuration
+## Custom Configuration
 If the user wants to monitor the indicator capabilities in other ways, You can inherit the `org.apache.inlong.agent.metrics.AgentMetricBaseListener`  class and implement it, 
 and finally configure the `agent.domainListeners` property in the `agent.properties` file. 
 
