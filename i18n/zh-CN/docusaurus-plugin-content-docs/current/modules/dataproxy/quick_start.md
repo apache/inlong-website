@@ -11,6 +11,8 @@ title: 安装部署
 配置文件：`conf/common.properties`：
 
 ```
+# local IP
+proxy.local.ip=127.0.0.1
 # manager 地址
 manager.hosts=127.0.0.1:8083
 # audit proxy 地址
