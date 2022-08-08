@@ -134,10 +134,10 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 |              | tlsTwoWayAuthEnable | 否    | boolean | 是否启用TLS双向认证功能，可选配置，缺省为false                                                                                      |
 |              | tlsTrustStorePath | 否    | String  | TLS的TrustStore文件的绝对存储路径+TrustStore文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空                                                |
 |              | tlsTrustStorePassword | 否    | String  | TLS的TrustStorePassword文件的绝对存储路径+TrustStorePassword文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空                                |
-| [audit]      | | 否    | 配置单元    | [audit]是Broker使用审计模块来报告数据设置单元。 启用审计时，配置单元提供相关设置，该可选配置单位有一个固定值&quot;[audit]&quot;                                 |
+| [audit]      | | 否    | 配置单元    | [audit] 是 Broker 使用审计模块来报告数据设置单元，启用审计时，配置单元提供相关设置，该可选配置单位有一个固定值 &quot; [audit] &quot;                           |
 |              | auditEnable | 否    | boolean | 是否启用审计上报功能，可选配置，缺省为false                                                                                         |
-|              | auditProxyAddr | 是    | String     | 审计上报地址，当auditEnable为true时必填字段，格式必须是”ip1:port1,ip2:port2,ip3:port3“.                                              |
-|              | auditCacheFilePath | 否    | String  | 审计上报数据的缓存文件路径，缺省为“/data/inlong/audit”                                                                            |
+|              | auditProxyAddr | 是    | String     | 审计上报地址，当 auditEnable 为 true 时必填字段，格式必须是 &quot; ip1:port1,ip2:port2,ip3:port3 &quot;                              |
+|              | auditCacheFilePath | 否    | String  | 审计上报数据的缓存文件路径，缺省为 &quot; /data/inlong/audit &quot;                                                               |
 |              | auditCacheMaxRows | 否    | int     | 最大审计缓存的数据条数，缺省为2000000条                                                                                          |
 |              | auditIdProduce | 否    | int     | 上报生产数据的审计ID，缺省值为9                                                                                                |
 |              | auditIdConsume | 否    | int     | 上报消费数据的审计ID，缺省值为10                                                                                               |
