@@ -4,26 +4,22 @@ sidebar_position: 3
 ---
 
 ## JMX 配置
-Agent 提供了 JMX 和 Prometheus 方式的监控指标能力，默认使用 JMX 方式。JMX 方式的监控指标已经注册到 MBeanServer
-用户可以在 Agen t的启动参数中增加如下类似 JMX 定义（端口和鉴权根据情况进行调整），实现监控指标从远端采集。
-
-```shell
--Dcom.sun.management.jmxremote
--Djava.rmi.server.hostname=127.0.0.1
--Dcom.sun.management.jmxremote.port=9999
--Dcom.sun.management.jmxremote.authenticate=false
--Dcom.sun.management.jmxremote.ssl=false
+```properties
+# JMX监听类是AgentJmxMetricListener
+agent.domainListeners=org.apache.inlong.agent.metrics.AgentJmxMetricListener
 ```
 
 ## Prometheus 配置 
-用户可以在`agent.properties`中声明是否启用Prometheus以及HTTPServer端口号
-
 ```properties
-# 默认不启用Prometheus
-agent.prometheus.enable=true
-# 默认端口为8080
-agent.prometheus.exporter.port=8080
+# Prometheus监听类是AgentPrometheusMetricListener
+agent.domainListeners=org.apache.inlong.agent.metrics.AgentPrometheusMetricListener
+# 默认端口为9080
+agent.prometheus.exporter.port=9080
 ```
+
+## 自定义配置
+如果用户想通过其他监控指标能力，可以继承`org.apache.inlong.agent.metrics.AgentMetricBaseListener`类并实现，
+最后在 `agent.properties` 文件中配置 `agent.domainListeners` 属性。
 
 ## 附录：指标项
 

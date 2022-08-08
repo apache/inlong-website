@@ -4,26 +4,22 @@ sidebar_position: 3
 ---
 
 ## JMX Configuration
-Agent provides the ability of monitoring indicators in JMX and Prometheus mode, and JMX mode is used by default. The monitoring indicators have been registered to MBeanServer
-Users can add similar JMX (port and authentication are adjusted according to the situation) to the startup parameters of the Agent to realize the collection of monitoring indicators from the remote end.
-
-```shell
--Dcom.sun.management.jmxremote
--Djava.rmi.server.hostname=127.0.0.1
--Dcom.sun.management.jmxremote.port=9999
--Dcom.sun.management.jmxremote.authenticate=false
--Dcom.sun.management.jmxremote.ssl=false
+```properties
+# The listener of JMX is AgentJmxMetricListener
+agent.domainListeners=org.apache.inlong.agent.metrics.AgentJmxMetricListener
 ```
 
 ## Prometheus Configuration 
-You can declare whether to enable Prometheus and HTTPServer port in `agent.properties`.
-
 ```properties
-# the default is false
-agent.prometheus.enable=true
-# the default is 8080
-agent.prometheus.exporter.port=8080
+# The listener of Prometheus is AgentPrometheusMetricListener
+agent.domainListeners=org.apache.inlong.agent.metrics.AgentPrometheusMetricListener
+# the default is 9080
+agent.prometheus.exporter.port=9080
 ```
+
+## Custom Configuration
+If the user wants to monitor the indicator capabilities in other ways, You can inherit the `org.apache.inlong.agent.metrics.AgentMetricBaseListener`  class and implement it, 
+and finally configure the `agent.domainListeners` property in the `agent.properties` file. 
 
 ## Appendix: Metrics Items
 
