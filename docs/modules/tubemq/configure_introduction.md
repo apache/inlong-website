@@ -163,5 +163,19 @@ In addition to the back-end system configuration file, the Master also stores th
 | tlsTrustStorePath     | no       | string  | The absolute storage path of the TLS TrustStore file + the TrustStore file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
 | tlsTrustStorePassword | no       | string  | The absolute storage path of the TLS TrustStorePassword file + the TrustStorePassword file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
 
+[audit]
+>The Broker uses audit module to report data. When audit is enabled, the configuration unit provides related settings. The optional unit has a fixed value of "[audit]".
+
+
+| Name                  | Required | Type    | Description                                                                                                                      |
+| --------------------- |----------|---------|----------------------------------------------------------------------------------------------------------------------------------|
+| auditEnable             | no       | boolean | Whether to enable audit report function, optional configuration, default is false                                                |
+| auditProxyAddr               | yes      | string  | Audit server address list. Required fields if the auditEnable value is true. The format must be ip1:port1, ip2:port2, ip3:port3. |
+| auditCacheFilePath       | no       | string  | The absolute file path for audit cache data. the default value is "/data/inlong/audit".                                          |
+| auditCacheMaxRows   | no       | int     | The max cache records for audit cache， the default value is 200000 records                                                       |
+| auditIdProduce   | no       | int     | The audit id value for production, the default value is 9                                                                        |
+| auditIdConsume     | no       | int     | The audit id value for production, the default value is 10.                                                                      |
+
+
 ---
 <a href="#top">Back to top</a>
