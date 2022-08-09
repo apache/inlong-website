@@ -81,6 +81,16 @@ In addition to the back-end system configuration file, the Master also stores th
 | repReplicaAckPolicy     | no       | int    | The response policy of the replication node data synchronization, the value range of this field is [1, 2, 3], the default is 1: 1 is more than 1/2 majority is valid, 2 is valid for all nodes, 3 is not Need node response. |
 | repStatusCheckTimeoutMs | no       | long   | Replication status check interval, optional field, in milliseconds, defaults to 10 seconds. |
 
+[prometheus]
+> Master uses Prometheus to provide querying metric data, optional
+
+| Name | Required | Type    | Description                                                                    |
+|-----|------|---------|--------------------------------------------------------------------------------|
+| promEnable | no  | boolean | whether to enable prometheus service, optional configuration, default is false |
+| promClusterName | no | String  | cluster name which the node belong to, default is &quot; InLong &quot; |
+| promHttpPort | no  | int   | port that prometheus listens to, optional, default is 9081                     |
+
+
 **Notice**:
 - Based on the need of Docker containerization, the [meta_bdb] above 3 parameters in the master.ini file are all the default settings used, and the actual information of the Master node needs to be configured when used in actual networking.
 - The IP information of all master nodes should be mapped to the hostName in the hosts configuration file, such as "10.10.11.205 10-10-11-205"
@@ -166,15 +176,23 @@ In addition to the back-end system configuration file, the Master also stores th
 [audit]
 >The Broker uses audit module to report data. When audit is enabled, the configuration unit provides related settings. The optional unit has a fixed value of "[audit]".
 
+| Name                 | Required | Type    | Description                                                                             |
+|----------------------|----------|---------|-----------------------------------------------------------------------------------------|
+| auditEnable          | no       | boolean | Whether to enable audit report function, optional configuration, default is false       |
+| auditProxyAddr       | no      | string  | Audit server address list, the format must be ip1:port1, ip2:port2, ip3:port3; default is 127.0.0.1:10081         |
+| auditCacheFilePath   | no       | string  | The absolute file path for audit cache data. the default value is "/data/inlong/audit". |
+| auditCacheMaxRows    | no       | int     | The max cache records for audit cache， the default value is 200000 records              |
+| auditIdProduce       | no       | int     | The audit id value for production, the default value is 9                               |
+| auditIdConsume       | no       | int     | The audit id value for production, the default value is 10.                             |
 
-| Name                  | Required | Type    | Description                                                                                                                      |
-| --------------------- |----------|---------|----------------------------------------------------------------------------------------------------------------------------------|
-| auditEnable             | no       | boolean | Whether to enable audit report function, optional configuration, default is false                                                |
-| auditProxyAddr               | yes      | string  | Audit server address list. Required fields if the auditEnable value is true. The format must be ip1:port1, ip2:port2, ip3:port3. |
-| auditCacheFilePath       | no       | string  | The absolute file path for audit cache data. the default value is "/data/inlong/audit".                                          |
-| auditCacheMaxRows   | no       | int     | The max cache records for audit cache， the default value is 200000 records                                                       |
-| auditIdProduce   | no       | int     | The audit id value for production, the default value is 9                                                                        |
-| auditIdConsume     | no       | int     | The audit id value for production, the default value is 10.                                                                      |
+[prometheus]
+> Broker uses Prometheus to provide querying metric data, optional
+
+| Name | Required | Type    | Description                                                                    |
+|-----|------|---------|--------------------------------------------------------------------------------|
+| promEnable | no  | boolean | whether to enable prometheus service, optional configuration, default is false |
+| promClusterName | no | String  | cluster name which the node belong to, default is &quot; InLong &quot; |
+| promHttpPort | no  | int   | port that prometheus listens to, optional, default is 9081                     |
 
 
 ---
