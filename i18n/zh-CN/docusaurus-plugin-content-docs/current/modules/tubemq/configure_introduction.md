@@ -83,7 +83,6 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | repReplicaAckPolicy | 否 | int | 节点数据同步时的应答策略，该字段取值范围为[1，2，3]，缺省为1：其中1为超过1/2多数为有效，2为所有节点应答才有效；3为不需要节点应答 |
 | repStatusCheckTimeoutMs | 否 | long | 节点状态检查间隔，可选字段，单位毫秒，缺省为10秒 |
 
-
 [tlsSetting]
 > Master 启用 TLS 进行传输层数据加密通的相关设置，可选单元，值固定为 &quot;[tlsSetting]&quot;
 
@@ -96,6 +95,15 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | tlsTwoWayAuthEnable | 否 | boolean | 是否启用TLS双向认证功能，可选配置，缺省为false |
 | tlsTrustStorePath | 否 | String | TLS的TrustStore文件的绝对存储路径+TrustStore文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空 |
 | tlsTrustStorePassword | 否 | String | TLS的TrustStorePassword文件的绝对存储路径+TrustStorePassword文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空 |
+
+[prometheus]
+> Master 使用 prometheus 提供指标数据查询时的相关配置单元设置，可选配置单元集合 &quot; [prometheus] &quot;
+
+| 配置项 | 是否必选 | 值类型     | 配置说明                                                                    |
+|-----|------|---------|---------------------------------------------------------------------------------|
+| promEnable | 否    | boolean | 是否启用 prometheus服务，可选配置，缺省为false                                |
+| promClusterName | 否 | String  | 启用 prometheus 服务时 服务节点所属于的集群名，缺省值为 &quot; InLong &quot; |
+| promHttpPort | 否    | int   | 启用 prometheus 服务时的侦听端口，可选配置，缺省值为 9081                     |
 
 **注意**：
 - 基于Docker容器化的需要，master.ini文件里对[meta_bdb]如上3个参数部分都是使用的缺省设置，在实际组网使用时需要以Master节点真实信息配置
@@ -164,18 +172,26 @@ Master除了后端系统配置文件外，还在resources里存放了Web前端�
 | tlsTrustStorePath | 否    | String  | TLS的TrustStore文件的绝对存储路径+TrustStore文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空                                                |
 | tlsTrustStorePassword | 否    | String  | TLS的TrustStorePassword文件的绝对存储路径+TrustStorePassword文件名，在启动TLS功能且启用双向认证时，该字段必填且不能为空                                |
 
-
 [audit]
 > Broker 使用审计模块来报告数据设置单元，启用审计时，配置单元提供相关设置，该可选配置单位有一个固定值 &quot; [audit] &quot;
 
-| 配置项 | 是否必选 | 值类型 | 配置说明                                                    |
-|-----| --- | --- |---------------------------------------------------------|
-| auditEnable | 否    | boolean | 是否启用审计上报功能，可选配置，缺省为false                                                                                         |
-| auditProxyAddr | 是    | String     | 审计上报地址，当 auditEnable 为 true 时必填字段，格式必须是 &quot; ip1:port1,ip2:port2,ip3:port3 &quot;                              |
-| auditCacheFilePath | 否    | String  | 审计上报数据的缓存文件路径，缺省为 &quot; /data/inlong/audit &quot;                                                               |
-| auditCacheMaxRows | 否    | int     | 最大审计缓存的数据条数，缺省为2000000条                                                                                          |
-| auditIdProduce | 否    | int     | 上报生产数据的审计ID，缺省值为9                                                                                                |
-| auditIdConsume | 否    | int     | 上报消费数据的审计ID，缺省值为10                                                                                               |
+| 配置项 | 是否必选 | 值类型 | 配置说明                                                                            |
+|-----|------| --- |---------------------------------------------------------------------------------|
+| auditEnable | 否    | boolean | 是否启用审计上报功能，可选配置，缺省为false                                                        |
+| auditProxyAddr | 否  | String | 审计上报地址，格式必须是 &quot; ip1:port1,ip2:port2,ip3:port3 &quot;, 缺省值为 127.0.0.1:10081 |
+| auditCacheFilePath | 否  | String  | 审计上报数据的缓存文件路径，缺省为 &quot; /data/inlong/audit &quot;                              |
+| auditCacheMaxRows | 否   | int  | 最大审计缓存的数据条数，缺省为2000000条                                                         |
+| auditIdProduce | 否    | int    | 上报生产数据的审计ID，缺省值为9                                                               |
+| auditIdConsume | 否    | int    | 上报消费数据的审计ID，缺省值为10                                                              |
+
+[prometheus]
+> Broker 使用 prometheus 提供指标数据查询时的相关配置单元设置，可选配置单元集合 &quot; [prometheus] &quot; 
+
+| 配置项 | 是否必选 | 值类型     | 配置说明                                                                    |
+|-----|------|---------|---------------------------------------------------------------------------------|
+| promEnable | 否    | boolean | 是否启用 prometheus服务，可选配置，缺省为false                                |
+| promClusterName | 否 | String  | 启用 prometheus 服务时 服务节点所属于的集群名，缺省值为 &quot; InLong &quot; |
+| promHttpPort | 否    | int   | 启用 prometheus 服务时的侦听端口，可选配置，缺省值为 9081                     |
 
 ---
 <a href="#top">Back to top</a>
