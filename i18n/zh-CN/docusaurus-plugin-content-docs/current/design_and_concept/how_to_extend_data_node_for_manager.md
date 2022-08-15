@@ -13,15 +13,15 @@ Inlong 设计初衷即是为了在不同数据源之间创建数据流，截止�
  
 - 首先需要在 Sort 组件内支持该数据源，详情参考 [Sort 插件](design_and_concept/how_to_extend_data_node_for_sort.md)
 - 在枚举类`org.apache.inlong.common.enums.TaskTypeEnum`中增加对应的枚举
-- 在枚举类`org.apache.inlong.manager.common.enums.SourceType`中同样增加对应枚举
+- 在枚举类`org.apache.inlong.manager.common.consts.SourceType`中同样增加对应枚举
 - 在`org.apache.inlong.manager.common.pojo.source`路径下创建文件夹，创建对应实体类
 - 在`org.apache.inlong.manager.service.source`路径下，创建对应工具类
-- 支持数据源到**ExtractNode**的转换函数，参考 `org.apache.inlong.manager.service.sort.util.ExtractNodeUtils`
+- 支持数据源到**ExtractNode**的转换函数，参考 `org.apache.inlong.manager.pojo.sort.util.ExtractNodeUtils`
 
 ## 扩展 Load Node
 
 - 首先需要在 Sort 组件内支持该数据源，详情参考 [Sort 插件](design_and_concept/how_to_extend_data_node_for_sort.md)
-- 在枚举类`org.apache.inlong.manager.common.enums.SinkType`中增加对应枚举
+- 在枚举类`org.apache.inlong.manager.common.consts.SinkType`中增加对应枚举
 - 在`org.apache.inlong.manager.common.pojo.sink`路径下创建文件夹, 创建对应实体类
 - 在`org.apache.inlong.manager.service.sink`路径下创建对应工具类
-- 支持数据源到**LoadNode**的转换函数，参考代码 `org.apache.inlong.manager.service.sort.util.LoadNodeUtils`
+- 支持数据源到**LoadNode**的转换函数，参考代码 `org.apache.inlong.manager.pojo.sort.util.LoadNodeUtils`
