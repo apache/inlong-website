@@ -278,7 +278,7 @@ Json files have five parts: `groupConf` 、`streamConf` 、`streamSource` 、`st
 > "mqBaseConf": {
 >   "type": "KAFKA",
 >   "bootstrapServers": "127.0.0.1:9092",
->   "topicName": "http://100.76.43.216:8080",
+>   "topicName": "test_topic",
 >   "dataFormat": "JSON",
 >   "boolean": false,
 > }
