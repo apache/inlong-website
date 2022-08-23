@@ -285,7 +285,7 @@ Json 文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource
 > ```
 > "mqBaseConf": {
 >   "type": "KAFKA",
->   "bootstrapServers": "pulsar://127.0.0.1:6650",
+>   "bootstrapServers": "127.0.0.1:9092",
 >   "topicName": "http://100.76.43.216:8080",
 >   "dataFormat": "JSON",
 >   "boolean": false,
