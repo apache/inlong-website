@@ -89,8 +89,9 @@ Similar to the above entry for adding a Pulsar cluster, the filling example is a
 
 ![](img/tube_cluster_save.png)
 
-## Enable OpenAPI Athentication
+## (Optional) Enable OpenAPI Authentication
 
+### Enable Authentication
 Manager supports the option to authenticate client component access to its open APIs. To enable authentication modify `conf/application.properties`：
 
 ```properties
@@ -98,7 +99,8 @@ Manager supports the option to authenticate client component access to its open 
 openapi.auth.enabled=true
 ```
 
-Components that access manager now must be authenticated by secret id and secret key, for example (please configure user's own instead of the example) :
+### Authentication Configuration
+Components that access manager must be authenticated by secret id and secret key if enabled, for example (please configure user's own instead of the example) :
 
 Modify `agent.properties` in agent's conf directory:
 ```properties
@@ -112,5 +114,6 @@ manager.auth.secretId=admin
 manager.auth.secretKey=87haw3VYTPqK5fK0
 ```
 
-Admin user can login inlong dashboard to allocate secret ids and keys: **System->Create**.
+### Authentication Key Generation
+Admin user can log in inlong dashboard to allocate secret ids and keys: **System->User->Create**.
 
