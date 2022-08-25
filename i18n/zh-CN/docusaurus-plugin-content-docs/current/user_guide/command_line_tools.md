@@ -1,5 +1,5 @@
 ---
-title: 命令行工具 
+title: 命令行工具
 sidebar_position: 2
 ---
 
@@ -19,9 +19,18 @@ Usage: managerctl [options] [command] [command options]
 
     list      Displays main information for one or more resources
       Usage: list [options]
+
+    delete       Deletes the inlong group corresponding to the given id
+      Usage: managerctl delete [command] 
+      
+    update       Updates the inlong group corresponding to the given id
+      Usage: managerctl update [command] [command options]
+      
+    log          Filters out inlong groups according to its properties
+      Usage: managerctl log [command] [command options]
 ```
 
-目前命令行工具支持 `list`、`describe` 以及 `create` 三个命令。
+目前命令行工具支持 `list`、`describe`、`create`、`log`、`update`、`delete` 六个命令。
 
 ## 配置
 
@@ -276,8 +285,8 @@ Json 文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource
 > ```
 > "mqBaseConf": {
 >   "type": "KAFKA",
->   "bootstrapServers": "pulsar://127.0.0.1:6650",
->   "topicName": "http://100.76.43.216:8080",
+>   "bootstrapServers": "127.0.0.1:9092",
+>   "topicName": "test_topic",
 >   "dataFormat": "JSON",
 >   "boolean": false,
 > }
@@ -305,3 +314,65 @@ Json 文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource
 >   "needCreated": false
 > }
 > ```
+>
+>
+## Delete
+
+```
+Usage: managerctl delete [command] 
+  Commands:
+    group      The id of the inlong group that is to be deleted
+      Usage: group
+```
+
+`delete` 删除对应任务id的任务实例
+
+## Update
+
+```
+Usage: managerctl update [command] [command options]
+  Commands:
+    group      The id of the inlong group that is to be updated
+  Usage: group [options]
+  Options:
+    *-c --config
+    the config file as json
+```
+
+`update` 命令指定一个任务实例，并使用--config中指定的sortconf json文件对其进行更新
+- Sortconf json 示例
+> ```
+> "FlinkSortConf": {
+>   "sortType": "flink",
+>   "authentication": "NONE",
+>   "serviceUrl": "127.0.0.1:8123",
+>   "region": "beijing",
+>   "properties": {}
+> }
+> ```
+
+## Log
+
+```
+Usage: managerctl log [command] [command options]
+    Commands:
+    group      Get group details
+    Usage: group [options]
+    Options:
+    *-q --query [parameter:value]
+    select the list of groups accourding to one selected query.
+    Supported filters: 
+        inlongGroupId
+        name (Inlong group name)   
+        mqType     
+        mqResource
+        inlongClusterTag   
+        inCharges
+        status
+        creator
+        modifier
+        createTime
+        modifyTime
+```
+
+`log` 命令行使用时需选择过滤参数，当存在的任务数不多时，该命令将打印出所有满足参数的任务实例

@@ -21,7 +21,7 @@ Usage: managerctl [options] [command] [command options]
       Usage: list [options]
 ```
 
-The current command line tool supports three commands of `list` , `describe` , and `create`.
+The current command line tool supports six commands of `list` , `describe` , `update` , `delete` , `log` , and `create`.
 
 ## Configuration
 
@@ -121,7 +121,7 @@ Usage: managerctl describe [command] [command options]
             sink type
 ```
 
-The `describe` command is used to show the details of the Inlong Group / Stream / Sink / Source 
+The `describe` command is used to show the details of the Inlong Group / Stream / Sink / Source
 and output in JSON format.
 
 ## Create
@@ -277,8 +277,8 @@ Json files have five parts: `groupConf` 、`streamConf` 、`streamSource` 、`st
 > ```
 > "mqBaseConf": {
 >   "type": "KAFKA",
->   "bootstrapServers": "pulsar://100.76.43.216:6650",
->   "topicName": "http://100.76.43.216:8080",
+>   "bootstrapServers": "127.0.0.1:9092",
+>   "topicName": "test_topic",
 >   "dataFormat": "JSON",
 >   "boolean": false,
 > }
@@ -305,4 +305,69 @@ Json files have five parts: `groupConf` 、`streamConf` 、`streamSource` 、`st
 >   "retryTimes": 3,
 >   "needCreated": false
 > }
+> 
 > ```
+
+## Delete
+
+```
+Usage: managerctl delete [command] 
+  Commands:
+    group      The id of the inlong group that is to be deleted
+      Usage: group
+```
+
+The `delete` command deletes the inlong group corresponding to the given id.
+
+## Update
+
+```
+Usage: managerctl update [command] [command options]
+  Commands:
+    group      The id of the inlong group that is to be updated
+  Usage: group [options]
+  Options:
+    *-c --config
+    the config file as json
+```
+
+The `update` command updates the inlong group corresponding to the given id, using the config file provided.
+- Sortconf json example
+> ```
+> "FlinkSortConf": {
+>   "sortType": "flink",
+>   "authentication": "NONE",
+>   "serviceUrl": "127.0.0.1:8080",
+>   "region": "beijing",
+>   "properties": {}
+> }
+> 
+> ```
+
+
+
+## Log
+
+```
+Usage: managerctl log [command] [command options]
+    Commands:
+    group      Get group details
+    Usage: group [options]
+    Options:
+    *-q --query [parameter:value]
+    select the list of groups accourding to one selected query.
+    Supported filters: 
+        inlongGroupId
+        name (Inlong group name)   
+        mqType     
+        mqResource
+        inlongClusterTag   
+        inCharges
+        status
+        creator
+        modifier
+        createTime
+        modifyTime
+```
+
+The `log` command is used to filter out inlong groups according to its properties from a small list of inlong groups.
