@@ -10,10 +10,13 @@ Deploy all InLong module by Docker Compose, it's only available for development.
 ## Environment Requirements
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 - Docker Compose 1.29.2+
+- Flink 1.13.5
 
-## Build
+## Download
+You can get `apache-inlong-[version]-bin.tar.gz` from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).
 
-You can refer to [How to Build](quick_start/how_to_build.md).
+## Configure
+Replace the `FLINK_HOST` and `FLINK_PORT` environment variables in `docker/docker-compose/docker-compose.yml` refer to the Flink cluster address.
 
 ## Deploy
 

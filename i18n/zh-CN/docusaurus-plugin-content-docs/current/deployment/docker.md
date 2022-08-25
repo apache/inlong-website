@@ -10,6 +10,13 @@ sidebar_position: 2
 ## 环境要求
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 - Docker Compose 1.29.2+
+- Flink 1.13.5
+
+## 下载
+你可以从 [下载页面](https://inlong.apache.org/zh-CN/download/) 获取 `apache-inlong-[version]-bin.tar.gz`，或者参考 [How to Build](quick_start/how_to_build.md) 编译。
+
+## 配置
+根据 Flink 集群地址替换 `docker/docker-compose/docker-compose.yml` 中的 `FLINK_HOST` 和 `FLINK_PORT` 环境变量。
 
 ## 编译
 
