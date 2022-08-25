@@ -9,8 +9,8 @@ sidebar_position: 2
 由于当前 InLong Sort 依赖的是 Flink1.13.5 版本，因此在下载部署包时，请选择`flink-1.13.5-bin-scala_2.11.tgz`
 
 ## 准备安装文件
-- InLong Sort 运行文件，[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-bin.tar.gz`
-- 数据节点 Connectors，[下载](https://inlong.apache.org/zh-CN/download/main/) `apache-inlong-[version]-sort-connectors.tar.gz`
+- InLong Sort 运行文件，[下载](https://inlong.apache.org/zh-CN/download/) `apache-inlong-[version]-bin.tar.gz`
+- 数据节点 Connectors，[下载](https://inlong.apache.org/zh-CN/download/) `apache-inlong-[version]-sort-connectors.tar.gz`
 
 注意：Connectors 下载后可以将需要的 jars 放到`FLINK_HOME/lib/`下。
 
