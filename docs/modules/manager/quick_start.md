@@ -89,3 +89,31 @@ Similar to the above entry for adding a Pulsar cluster, the filling example is a
 
 ![](img/tube_cluster_save.png)
 
+## (Optional) Enable OpenAPI Authentication
+
+### Enable Authentication
+Manager supports the option to authenticate client component access to its open APIs. To enable authentication modify `conf/application.properties`：
+
+```properties
+# Manager open api authentication enabled
+openapi.auth.enabled=true
+```
+
+### Authentication Configuration
+Components that access manager must be authenticated by secret id and secret key if enabled, for example (please configure user's own instead of the example) :
+
+Modify `agent.properties` in agent's conf directory:
+```properties
+agent.manager.auth.secretId=admin
+agent.manager.auth.secretKey=87haw3VYTPqK5fK0
+```
+
+Modify `common.properties` in dataproxy's conf directory:
+```properties
+manager.auth.secretId=admin
+manager.auth.secretKey=87haw3VYTPqK5fK0
+```
+
+### Authentication Key Generation
+Admin user can log in inlong dashboard to allocate secret ids and keys: **System->User->Create**.
+

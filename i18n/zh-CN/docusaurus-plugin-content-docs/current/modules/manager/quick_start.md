@@ -85,3 +85,31 @@ bash +x bin/startup.sh
 与上述 Pulsar 集群的添加入口相似，填写示例如下：
 
 ![](img/tube_cluster_save_cn.png)
+
+## (可选) 开启OpenAPI认证
+
+### 开启认证
+Manager 提供 OpenAPI 安全访问认证，默认关闭。如需开启，在 `conf/application.properties` 打开：
+
+```properties
+# Manager OpenAPI安全认证开关
+openapi.auth.enabled=true
+```
+
+### 配置认证
+相关组件需配置由 Manager 分配的认证 secret id 和 secret key，例如 (建议使用新分配的替代默认值)：
+
+`Agent` conf 目录下 `agent.properties`：
+```properties
+agent.manager.auth.secretId=admin
+agent.manager.auth.secretKey=87haw3VYTPqK5fK0
+```
+
+`Dataproxy` conf 目录下 `common.properties`：
+```properties
+manager.auth.secretId=admin
+manager.auth.secretKey=87haw3VYTPqK5fK0
+```
+
+### 创建认证Key
+管理员可以登录应龙 Dashboard 管理端来创建 secret id 和 secret key： **系统管理->用户管理->新建账号**.
