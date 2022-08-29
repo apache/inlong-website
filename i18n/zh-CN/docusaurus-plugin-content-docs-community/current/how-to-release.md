@@ -112,11 +112,8 @@ $ gpg --keyserver pgpkeys.mit.edu --send-key <key id>
 ```
 
 ### 查看 key 是否创建成功
-通过下面的网址，使用邮箱查询上传成功没，大概需要一分钟才能查到，查询时候把 advance 下边的 show full-key hashes 勾上
-http://keys.gnupg.net
-
-查询结果如下：
-
+通过下面的网址，使用邮箱查询上传成功没，大概需要一分钟才能查到
+https://pgpkeys.mit.edu/
 
 
 ### 将你的 gpg 公钥加入 KEYS 文件
@@ -235,6 +232,7 @@ tar xzvf apache-inlong-${release_version}-src.tar.gz #解压源码包
 cd apache-inlong-${release_version} # 进入源码目录
 mvn compile clean install package -DskipTests # 编译
 cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/  # 拷贝二进制包拷到源码包目录下，方便下一步对包进行签名
+cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connectors.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/ # 拷贝connectors二进制包拷到源码包目录下，方便下一步对包进行签名
 ```
 
 ### 对源码包/二进制包进行签名/sha512

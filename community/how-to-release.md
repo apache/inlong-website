@@ -114,7 +114,7 @@ $ gpg --keyserver pgpkeys.mit.edu --send-key <key id>
 ```
 
 ### Check whether the key is created successfully
-Uploading takes about one minute, after that, you can check by your email at `http://keys.gnupg.net`. Be reminded to tick "the show full-key hashes" under advance.
+Uploading takes about one minute, after that, you can check by your email at `https://pgpkeys.mit.edu/`.
 
 
 ### Add your gpg public key to the KEYS document
@@ -222,6 +222,7 @@ cd /tmp/apache-inlong-${release_version}-${rc_version} # go to directory where t
 tar xzvf apache-inlong-${release_version}-src.tar.gz # uncompress the tar file
 cd apache-inlong-${release_version} # go to the source code directory
 cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/  # for signature convenient, copy the binary package to the source code directory
+cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connectors.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/ # for signature convenient, copy the connectors binary package to the source code directory
 ```
 
 ### sign the source package/binary package/sha512
