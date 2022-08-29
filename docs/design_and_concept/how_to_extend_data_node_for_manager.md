@@ -13,15 +13,15 @@ This article describes how to extend a new data node through the Manager to prov
 
 - Develop extract node plugin in sort, refer to [Sort Plugin](design_and_concept/how_to_extend_data_node_for_sort.md)
 - Add **TaskType** in `org.apache.inlong.common.enums.TaskTypeEnum`
-- Add **SourceType** in `org.apache.inlong.manager.common.enums.SourceType`
+- Add **SourceType** in `org.apache.inlong.manager.common.consts.SourceType`
 - Create new package under package path: `org.apache.inlong.manager.common.pojo.source`, develop every entity class needed.
 - Create Operation class for new data source under package path: `org.apache.inlong.manager.service.source`.
-- Transfer data source to **ExtractNode** supported in **Sort**, refer to `org.apache.inlong.manager.service.sort.util.ExtractNodeUtils`
+- Transfer data source to **ExtractNode** supported in **Sort**, refer to `org.apache.inlong.manager.pojo.sort.util.ExtractNodeUtils`
 
 ## Extend Load Node
 
 - Develop load node plugin in sort, refer to [Sort Plugin](design_and_concept/how_to_extend_data_node_for_sort.md)
-- Add **SinkType** in `org.apache.inlong.manager.common.enums.SinkType`
+- Add **SinkType** in `org.apache.inlong.manager.common.consts.SinkType`
 - Create new package under package path: `org.apache.inlong.manager.common.pojo.sink`, develop every entity class needed.
 - Create Operation class for new data source under package path: `org.apache.inlong.manager.service.sink`.
-- Transfer data sink to **LoadNode** supported in **Sort**, refer to `org.apache.inlong.manager.service.sort.util.LoadNodeUtils`
+- Transfer data sink to **LoadNode** supported in **Sort**, refer to `org.apache.inlong.manager.pojo.sort.util.LoadNodeUtils`
