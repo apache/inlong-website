@@ -34,6 +34,7 @@ We can write following SQL script if we want to read data from MySQL and write i
     WITH (
     'connector' = 'mysql-cdc-inlong',
     'hostname' = 'localhost',
+    'port' = '3306',
     'username' = 'root',
     'password' = 'inlong',
     'database-name' = 'test',
@@ -50,8 +51,7 @@ CREATE TABLE `table_2`(
     'url' = 'jdbc:postgresql://localhost:5432/postgres',
     'username' = 'postgres',
     'password' = 'inlong',
-    'table-name' = 'public.user',
-    'port' = '3306'
+    'table-name' = 'public.user'
 );
 INSERT INTO `table_2` 
     SELECT 
