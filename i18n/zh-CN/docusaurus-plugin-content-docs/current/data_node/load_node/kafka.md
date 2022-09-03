@@ -57,7 +57,7 @@ Flink SQL> CREATE TABLE kafka_load_node (
           `name` STRINTG,
            PRIMARY KEY (`id`) NOT ENFORCED
           ) WITH (
-          'connector' = 'upsert-kafka',
+          'connector' = 'upsert-kafka-inlong',
           'topic' = 'user',
           'properties.bootstrap.servers' = 'localhost:9092',
           'key.format' = 'csv',
@@ -78,7 +78,7 @@ TODO: 将在未来支持此功能。
 
 | 参数 | 是否必选 | 默认值 | 数据类型 | 描述 |
 |---------|----------|---------|------|------------|
-| connector | 必选 | (none) | String | 指定要使用的连接器  1. Upsert Kafka 连接器使用： `upsert-kafka`  2. Kafka连接器使用： `kafka-inlong` |
+| connector | 必选 | (none) | String | 指定要使用的连接器  1. Upsert Kafka 连接器使用： `upsert-kafka-inlong`  2. Kafka连接器使用： `kafka-inlong` |
 | topic | 必选 | (none) | String | 当表用作 source 时读取数据的 topic 名。亦支持用分号间隔的 topic 列表，如 `topic-1;topic-2`。注意，对 source 表而言，`topic` 和 `topic-pattern` 两个选项只能使用其中一个。 |
 | properties.bootstrap.servers | 必选 | (none) | String | 逗号分隔的 Kafka broker 列表。 |
 | properties.* | 可选 | (none) | String | 可以设置和传递任意 Kafka 的配置项。后缀名必须匹配在 [Kafka 配置文档](https://kafka.apache.org/documentation/#configuration) 中定义的配置键。Flink 将移除 "properties." 配置键前缀并将变换后的配置键和值传入底层的 Kafka 客户端。例如，你可以通过 'properties.allow.auto.create.topics' = 'false' 来禁用 topic 的自动创建。但是某些配置项不支持进行配置，因为 Flink 会覆盖这些配置，例如 'key.deserializer' 和 'value.deserializer'。 |
@@ -91,6 +91,7 @@ TODO: 将在未来支持此功能。
 | sink.partitioner | 可选 | 'default' | String | Flink partition 到 Kafka partition 的分区映射关系，可选值有：<br/>default：使用 Kafka 默认的分区器对消息进行分区。<br/>fixed：每个 Flink partition 最终对应最多一个 Kafka partition。<br/>round-robin：Flink partition 按轮循（round-robin）的模式对应到 Kafka partition。只有当未指定消息的消息键时生效。<br/>自定义 FlinkKafkaPartitioner 的子类：例如 'org.mycompany.MyPartitioner'。请参阅 [Sink 分区](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/connectors/table/kafka/#sink-%E5%88%86%E5%8C%BA) 以获取更多细节。 |
 | sink.semantic | 可选 | at-least-once | String | 定义 Kafka sink 的语义。有效值为 'at-least-once'，'exactly-once' 和 'none'。请参阅 [一致性保证](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/connectors/table/kafka/#%E4%B8%80%E8%87%B4%E6%80%A7%E4%BF%9D%E8%AF%81) 以获取更多细节。 |
 | sink.parallelism | 可选 | (none) | Integer | 定义 Kafka sink 算子的并行度。默认情况下，并行度由框架定义为与上游串联的算子相同。 |
+| inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 
 ## 可用的元数据字段
 

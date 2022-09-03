@@ -49,7 +49,7 @@ CREATE TABLE hbase_load_node (
     family3 ROW<q4 DOUBLE, q5 BOOLEAN, q6 STRING>,
     PRIMARY KEY (rowkey) NOT ENFORCED
 ) WITH (
-      'connector' = 'hbase-2.2',
+      'connector' = 'hbase-2.2-inlong',
       'table-name' = 'mytable',
       'zookeeper.quorum' = 'localhost:2181'
 );
@@ -80,7 +80,7 @@ TODO: 将在未来支持此功能。
 
 | 参数 | 是否必选 | 默认值 | 数据类型 | 描述 |
 |-----|---------|-------|---------|-----|
-| connector | 必选 | (none) | String | 指定使用的连接器: hbase-2.2: 连接 HBase 2.2.x 集群 |
+| connector | 必选 | (none) | String | 指定使用的连接器: hbase-2.2-inlong: 连接 HBase 2.2.x 集群 |
 | table-name | 必选 | (none) | String | 连接的 HBase 表名。 |
 | zookeeper.quorum | 必选 | (none) | String | HBase Zookeeper quorum 信息。 |
 | zookeeper.znode.parent | 可选 | /hbase | String | HBase 集群的 Zookeeper 根目录。|
@@ -94,6 +94,7 @@ TODO: 将在未来支持此功能。
 | lookup.cache.ttl | 可选 | (none) | Duration | 查找缓存中每一行的最大生存时间，在这段时间内，最老的行将过期。注意："lookup.cache.max-rows" 和 "lookup.cache.ttl" 必须同时被设置。默认情况下，查找缓存是禁用的。 |
 | lookup.max-retries | 可选 | 3 | Integer | 查找数据库失败时的最大重试次数。 |
 | properties.* | 可选 | (none) | String | 可以设置任意 HBase 的配置项。后缀名必须匹配在 [HBase 配置文档](https://hbase.apache.org/2.3/book.html#hbase_default_configurations) 中定义的配置键。Flink 将移除 "properties." 配置键前缀并将变换后的配置键和值传入底层的 HBase 客户端。 例如您可以设置 'properties.hbase.security.authentication' = 'kerberos' 等kerberos认证参数。 |
+| inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 
 ## 数据类型映射
 

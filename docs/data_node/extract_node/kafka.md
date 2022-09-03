@@ -70,7 +70,7 @@ Flink SQL> CREATE TABLE kafka_extract_node (
           `name` STRINTG,
            PRIMARY KEY (`id`) NOT ENFORCED
           ) WITH (
-          'connector' = 'upsert-kafka',
+          'connector' = 'upsert-kafka-inlong',
           'topic' = 'user',
           'properties.bootstrap.servers' = 'localhost:9092',
           'properties.group.id' = 'testGroup',
@@ -94,7 +94,7 @@ TODO: It will be supported in the future.
 
 | Option | Required | Default | Type | Description |
 |---------|----------|---------|------|------------|
-| connector | required | (none) | String | Specify which connector to use, valid values are:  1. for the Upsert Kafka use: `upsert-kafka`  2. for normal Kafka use: `kafka-inlong` |
+| connector | required | (none) | String | Specify which connector to use, valid values are:  1. for the Upsert Kafka use: `upsert-kafka-inlong`  2. for normal Kafka use: `kafka-inlong` |
 | topic | optional | (none) | String | Topic name(s) to read data from when the table is used as source. It also supports  topic list for source by separating topic by semicolon like `topic-1;topic-2`. Note, only one of `topic-pattern` and `topic` can be specified for sources. |
 | topic-pattern | optional | (none) | String | The regular expression for a pattern of topic names to read from. All topics with names that match the specified regular expression will be subscribed by the consumer when the job starts running. Note, only one of `topic-pattern` and `topic` can be specified for sources. |
 | properties.bootstrap.servers | required | (none) | String | Comma separated list of Kafka brokers. |
@@ -110,6 +110,7 @@ TODO: It will be supported in the future.
 | scan.startup.specific-offsets | optional | (none) | String | Specify offsets for each partition in case of 'specific-offsets' startup mode, e.g. 'partition:0,offset:42;partition:1,offset:300'. |
 | scan.startup.timestamp-millis | optional | (none) | Long | Start from the specified epoch timestamp (milliseconds) used in case of 'timestamp' startup mode. |
 | scan.topic-partition-discovery.interval | optional | (none) | Duration | Interval for consumer to discover dynamically created Kafka topics and partitions periodically. |
+| inlong.metric | optional | (none) | String | Inlong metric label, format of value is groupId&streamId&nodeId. |
 | sink.ignore.changelog | optional | false | Boolean |  Importing all changelog mode data ingest into Kafka . |
 
 ## Available Metadata

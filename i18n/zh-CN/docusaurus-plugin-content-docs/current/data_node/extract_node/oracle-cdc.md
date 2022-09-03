@@ -201,7 +201,7 @@ Oracle Extract 节点允许从 Oracle 数据库中读取快照数据和增量数
 
 Oracle Extract 节点可以定义如下：
 
-```sql 
+```sql
 -- 创建 an Oracle Extract 节点 'products' in Flink SQL
 Flink SQL> CREATE TABLE products (
      ID INT NOT NULL,
@@ -210,7 +210,7 @@ Flink SQL> CREATE TABLE products (
      WEIGHT DECIMAL(10, 3),
      PRIMARY KEY(id) NOT ENFORCED
      ) WITH (
-     'connector' = 'oracle-cdc',
+     'connector' = 'oracle-cdc-inlong',
      'hostname' = 'localhost',
      'port' = '1521',
      'username' = 'flinkuser',
@@ -252,7 +252,7 @@ TODO: 将在未来支持此功能。
       <td>required</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>指定要使用的连接器，这里应该是 <code>'oracle-cdc'</code>。</td>
+      <td>指定要使用的连接器，这里应该是 <code>'oracle-cdc-inlong'</code>。</td>
     </tr>
     <tr>
       <td>hostname</td>
@@ -322,6 +322,13 @@ Oracle CDC 消费者的可选启动模式，有效枚举为"initial"
           例如：<code>'debezium.snapshot.mode' = 'never'</code>。
           详细了解 <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium 的 Oracle 连接器属性</a></td> 
      </tr>
+     <tr>
+       <td>inlong.metric</td>
+       <td>可选</td>
+       <td style={{wordWrap: 'break-word'}}>(none)</td>
+       <td>String</td>
+       <td>inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。</td> 
+     </tr>
     </tbody>
 </table>    
 </div>
@@ -388,7 +395,7 @@ CREATE TABLE products (
     WEIGHT DECIMAL(10, 3),
     PRIMARY KEY(id) NOT ENFORCED
 ) WITH (
-    'connector' = 'oracle-cdc',
+    'connector' = 'oracle-cdc-inlong',
     'hostname' = 'localhost',
     'port' = '1521',
     'username' = 'flinkuser',

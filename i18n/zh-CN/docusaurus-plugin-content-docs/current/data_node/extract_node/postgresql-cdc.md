@@ -78,7 +78,7 @@ CREATE TABLE `postgresTable`(
   `name` STRING,
   `age` INT
 ) WITH (
-  'connector' = 'postgres-cdc',
+  'connector' = 'postgres-cdc-inlong',
   'hostname' = 'localhost',
   'username' = 'postgres',
   'password' = 'inlong',
@@ -103,7 +103,7 @@ TODO: 将在未来支持此功能。
 
 | 参数 | 是否必选 | 默认值 | 数据类型 | 描述 |
 |---------|----------|---------|------|------------|
-| connector | 必选 | (none) | String | 指定使用的连接器，这是设置 `postgres-cdc`.|
+| connector | 必选 | (none) | String | 指定使用的连接器，这是设置 `postgres-cdc-inlong`.|
 | hostname | 必选 | (none) | String | PostgreSQL 数据库的 IP 地址或者主机名 |
 | username | 必选 | (none) | String | 连接到 PostgreSQL 数据库服务器时要使用的 PostgreSQL 数据库的名称。 |
 | password | 必选 | (none) | String |  |
@@ -114,6 +114,7 @@ TODO: 将在未来支持此功能。
 | decoding.plugin.name | 可选 | decoderbufs | String | 服务器上安装的 Postgres 逻辑解码插件的名称。 支持的值是 decoderbufs、wal2json、wal2json_rds、wal2json_streaming、wal2json_rds_streaming 和 pgoutput。 |
 | slot.name | 可选 | flink | String | PostgreSQL 逻辑解码槽的名称，它是为从特定数据库/模式的特定插件流式传输更改而创建的。 服务器使用此插槽将事件流式传输到您正在配置的连接器。 插槽名称必须符合 PostgreSQL 复制插槽命名规则，其中规定：“每个复制插槽都有一个名称，可以包含小写字母、数字和下划线字符。” |
 | debezium.* | 可选 | (none) | String | 将 Debezium 的属性传递给用于从 Postgres 服务器捕获数据更改的 Debezium Embedded Engine。 例如：“debezium.snapshot.mode”=“never”。 查看更多关于 [Debezium 的 Postgres 连接器属性](https://debezium.io/documentation/reference/1.5/connectors/postgresql.html#postgresql-connector-properties)。 |
+| inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 
 **Note**: `slot.name` 建议为不同的表设置以避免潜在的 PSQLException: ERROR: replication slot "flink" is active for PID 974 error。  
 **Note**: PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. 我们可以通过以下语句删除槽。  
@@ -144,7 +145,7 @@ CREATE TABLE postgresTable (
     `name` STRING,
     `age` INT
 ) WITH (
-     'connector' = 'postgres-cdc',
+     'connector' = 'postgres-cdc-inlong',
      'hostname' = 'localhost',
      'username' = 'postgres',
      'password' = 'inlong',

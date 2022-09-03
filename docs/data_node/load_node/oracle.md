@@ -97,6 +97,7 @@ TODO: It will be supported in the future.
 | sink.buffer-flush.interval | optional | 1s | Duration | The flush interval mills, over this time, asynchronous threads will flush data. Can be set to '0' to disable it. Note, 'sink.buffer-flush.max-rows' can be set to '0' with the flush interval set allowing for complete async processing of buffered actions. | |
 | sink.max-retries | optional | 3 | Integer | The max retry times if writing records to database failed. |
 | sink.parallelism | optional | (none) | Integer | Defines the parallelism of the JDBC sink operator. By default, the parallelism is determined by the framework using the same parallelism of the upstream chained operator. |
+| inlong.metric | optional | (none) | String | Inlong metric label, format of value is groupId&streamId&nodeId. |
 
 ## Data Type Mapping
 

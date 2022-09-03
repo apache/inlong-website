@@ -129,6 +129,13 @@ TODO: It will be supported in the future.
       custom: use policy class to create a commit policy.
       Support to configure multiple policies: 'metastore,success-file'.</td>
     </tr>
+    <tr>
+      <td>inlong.metric</td>
+      <td>optional</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>Inlong metric label, format of value is groupId&streamId&nodeId.</td> 
+    </tr>
     </tbody>
 </table>
 
