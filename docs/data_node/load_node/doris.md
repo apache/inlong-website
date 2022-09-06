@@ -193,4 +193,4 @@ TODO: It will be supported in the future.
 | TIME        | DOUBLE               |
 | HLL         | Unsupported datatype |
 
-See [flink-doris-connector](https://github.com/apache/doris/blob/1.0.0-rc03/docs/zh-CN/extending-doris/flink-doris-connector.md) for more details.
+See [flink-doris-connector](https://github.com/apache/doris/blob/1.0.0-rc03/docs/en/extending-doris/flink-doris-connector.md) for more details.
