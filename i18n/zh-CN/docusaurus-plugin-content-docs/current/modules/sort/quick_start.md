@@ -12,7 +12,8 @@ sidebar_position: 2
 - InLong Sort 运行文件，[下载](https://inlong.apache.org/zh-CN/download/) `apache-inlong-[version]-bin.tar.gz`
 - 数据节点 Connectors，[下载](https://inlong.apache.org/zh-CN/download/) `apache-inlong-[version]-sort-connectors.tar.gz`
 
-注意：Connectors 下载后可以将需要的 jars 放到`FLINK_HOME/lib/`下。
+注意：Connectors 下载后可以将需要的 jars 放到`FLINK_HOME/lib/`下。  
+如果使用`mysql-cdc-inlong` 连接器，请将 `mysql-connector-java:8.0.21` jar 包放到 `FLINK_HOME/lib/`下。
 
 ## 启动 InLong Sort
 ```

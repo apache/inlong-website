@@ -25,6 +25,22 @@ InLong Agent本身作为数据采集框架，采用channel + plugin架构构建�
 目录正则过滤，支持YYYYMMDD+正则表达式的路径配置
 断点重传，InLong-Agent重启时，能够支持自动从上次读取位置重新读取，保证不重读不漏读。\
 
+#### 文件采集参数
+| 参数                           | 是否必须  | 默认值         | 类型    | 描述                                                  |
+| ----------------------------- | -------- | ------------- | ------ | ------------------------------------------------------------ |
+| pattern                       | required | (none)        | String | 文件正则匹配，例如: /root/[*].log      |
+| timeOffset                    | optional | (none)        | String | 文件偏移匹配针对文件文件名称为: *** YYYYMMDDHH *** YYYY 表示年， MM 表示月， DD 表示天，  HH 表示小时， *** 表示任意的字符；'1m' 表示一分钟以后， '-1m' 表示一分钟以前， '1h' 一小时以后， '-1h' 一小时以前， '1d' 一天以后， '-1d' 一天以前。|
+| collectType                   | optional |  FULL         | String | "FULL" 目录下所有匹配的文件， "INCREMENT" 任务启动后匹配新增的文件。                      |
+| lineEndPattern                | optional | '\n'          | String | 文件行结束正则匹配。 |
+| contentCollectType            | optional |  FULL         | String | 文件内容采集方式全量"FULL"、增量"INCREMENT" 。|
+| envList                       | optional | (none)        | String | 文件采集携带环境信息，例如在容器环境下: kubernetes 。           |
+| dataContentStyle              | optional | (none)        | String | 采集后数据输出方式， Json 格式设置为 json ； CSV 格式设置分割类型: `,` &#124; `:`            |
+| dataSeparator                 | optional | (none)        | String | 文件数据原始列分割方式。           |
+| monitorStatus                 | optional | (none)        | Integer| 文件监控开关 1 开启 、 0 关闭。场景：在批量采集是设置为 0，实时数据采集时 1。 |
+| monitorInterval               | optional | (none)        | Long   | 文件监控探测频率，毫秒/单位 |
+| monitorExpire                 | optional | (none)        | Long   | 文件监控探测过期时间，毫秒/单位 |
+
+
 ### Sql
 这类数据是指通过SQL执行的方式
 SQL正则分解，转化成多条SQL语句
