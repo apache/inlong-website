@@ -110,6 +110,7 @@ TODO: It will be supported in the future.
 | scan.startup.specific-offsets | optional | (none) | String | Specify offsets for each partition in case of 'specific-offsets' startup mode, e.g. 'partition:0,offset:42;partition:1,offset:300'. |
 | scan.startup.timestamp-millis | optional | (none) | Long | Start from the specified epoch timestamp (milliseconds) used in case of 'timestamp' startup mode. |
 | scan.topic-partition-discovery.interval | optional | (none) | Duration | Interval for consumer to discover dynamically created Kafka topics and partitions periodically. |
+| sink.ignore.changelog | optional | false | Boolean |  Importing all changelog mode data ingest into Kafka . |
 
 ## Available Metadata
 
