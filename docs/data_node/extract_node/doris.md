@@ -43,9 +43,9 @@ You can turn off this feature to get a quicker startup with -A
 
 Database changed
 mysql> CREATE TABLE `doris_extract_node` (
-       `id` int(11) NOT NULL COMMENT "用户id",
-       `name` varchar(50) NOT NULL COMMENT "昵称",
-       `dr` tinyint(4) NULL COMMENT "逻辑删除"
+       `id` int(11) NOT NULL COMMENT "user id",
+       `name` varchar(50) NOT NULL COMMENT "user name",
+       `dr` tinyint(4) NULL COMMENT "delete tag"
        ) ENGINE=OLAP
        UNIQUE KEY(`id`)
        COMMENT "OLAP"
