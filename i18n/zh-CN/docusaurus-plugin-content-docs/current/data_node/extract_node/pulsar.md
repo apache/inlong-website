@@ -93,7 +93,7 @@ TODO
 | topic                         | 可选     | (none)        | String | 设置输入或输出主题，多个和连接主题使用半逗号。选择一个主题模式。Set the input or output topic, use half comma for multiple and concatenate topics. Choose one with the topic-pattern. |
 | topic-pattern                 | 可选     | (none)        | String | 使用正则获取匹配的主题。                                     |
 | service-url                   | 必需     | (none)        | String | 设置 Pulsar 代理服务地址。                                   |
-| admin-url                     | 必需     | (none)        | String | 设置 Pulsar 管理服务地址。                                   |
+| admin-url                     | 可选     | (none)        | String | 设置 Pulsar 管理服务地址。**不传入该参数时，启动模式只支持`earliest`和`latest`，并且无法更新 Pulsar Topic 的 offset。** |
 | scan.startup.mode             | 可选     | latest        | String | 配置 Source 的启动模式。可用选项为`earliest`、`latest`、`external-subscription`和`specific-offsets`。 |
 | scan.startup.specific-offsets | 可选     | (none)        | String | 指定参数时需要该`specific-offsets`参数。                     |
 | scan.startup.sub-name         | 可选     | (none)        | String | 指定参数时需要该`external-subscription`参数。                |

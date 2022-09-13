@@ -94,7 +94,7 @@ TODO
 | topic                         | optional | (none)        | String | Set the input or output topic, use half comma for multiple and concatenate topics. Choose one with the topic-pattern. |
 | topic-pattern                 | optional | (none)        | String | Use regular to get the matching topic.                       |
 | service-url                   | required | (none)        | String | Set the Pulsar broker service address.                       |
-| admin-url                     | required | (none)        | String | Set the Pulsar administration service address.               |
+| admin-url                     | optional | (none)        | String | Set the Pulsar administration service address.**When this parameter is not passed in, the `startup mode` only supports `earliest` and `latest`, and the offset in the pulsar cluster cannot be updated.**               |
 | scan.startup.mode             | optional | latest        | String | Configure the Source's startup mode. Available options are `earliest`, `latest`, `external-subscription`, and `specific-offsets`. |
 | scan.startup.specific-offsets | optional | (none)        | String | This parameter is required when the `specific-offsets` parameter is specified. |
 | scan.startup.sub-name         | optional | (none)        | String | This parameter is required when the `external-subscription` parameter is specified. |
