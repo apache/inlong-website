@@ -230,6 +230,13 @@ TODO: 将在未来支持这个特性。
       <td>添加到每个 REST 通信中的前缀字符串，例如，<code>'/v1'</code>。</td>
     </tr>
     <tr>
+      <td><h5>routing.filed-name</h5></td>
+      <td>可选</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>使用 field 值来生成该 field 的动态路由</td>
+    </tr>
+    <tr>
       <td><h5>format</h5></td>
       <td>可选</td>
       <td style={{wordWrap: 'break-word'}}>json</td>

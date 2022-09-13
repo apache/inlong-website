@@ -234,6 +234,13 @@ TODO: It will be supported in the future.
       <td>Prefix string to be added to every REST communication, e.g., <code>'/v1'</code>.</td>
     </tr>
     <tr>
+      <td><h5>routing.filed-name</h5></td>
+      <td>optional</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>Using field value in the record to dynamically generate routing filed.</td>
+    </tr>
+    <tr>
       <td><h5>format</h5></td>
       <td>optional</td>
       <td style={{wordWrap: 'break-word'}}>json</td>
