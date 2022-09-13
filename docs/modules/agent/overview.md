@@ -25,6 +25,21 @@ User-configured path monitoring, able to monitor the created file information
 Directory regular filtering, support YYYYMMDD+regular expression path configuration
 Breakpoint retransmission, when InLong-Agent restarts, it can automatically re-read from the last read position to ensure no reread or missed reading.
 
+#### File options
+| Parameter                     | Required | Default value | Type   | Description                                                  |
+| ----------------------------- | -------- | ------------- | ------ | ------------------------------------------------------------ |
+| pattern                       | required | (none)        | String | File pattern. For example: /root/[*].log      |
+| timeOffset                    | optional | (none)        | String | File name includes time, for example: *** YYYYMMDDHH *** YYYY represents the year, MM represents the month, DD represents the day, and HH represents the hour, *** is any character. '1m' means one minute after, '-1m' means one minute before. '1h' means one hour after, '-1h' means one hour before. '1d' means one day after, '-1d' means one day before.|
+| collectType                   | optional |  FULL         | String | FULL is all file. INCREMENT is the newly created file after start task.                      |
+| lineEndPattern                | optional | '\n'          | String | Line of file end pattern. |
+| contentCollectType            | optional |  FULL         | String | Collect data of file content. |
+| envList                       | optional | (none)        | String | File needs to collect environment information, for example: kubernetes.            |
+| dataContentStyle              | optional | (none)        | String | Type of data result for column separator. Json format, set this parameter to json. CSV format, set this parameter to a custom separator: `,` &#124; `:`           |
+| dataSeparator                 | optional | (none)        | String | Column separator of data source.            |
+| monitorStatus                 | optional | (none)        | Integer| Monitor switch, 1 true and 0 false. Batch data is 0,real time data is 1. |
+| monitorInterval               | optional | (none)        | Long   | Monitor interval for file. |
+| monitorExpire                 | optional | (none)        | Long   | Monitor expire time and the time in milliseconds. |
+
 ### SQL
 This type of data refers to the way it is executed through SQL
 SQL regular decomposition, converted into multiple SQL statements
