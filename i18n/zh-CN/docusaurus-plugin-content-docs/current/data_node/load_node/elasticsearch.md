@@ -234,7 +234,7 @@ TODO: 将在未来支持这个特性。
       <td>可选</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>使用 field 值来生成该field的动态路由</td>
+      <td>使用 field 值来生成该 field 的动态路由</td>
     </tr>
     <tr>
       <td><h5>format</h5></td>
