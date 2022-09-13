@@ -32,7 +32,7 @@ import {siteVariables} from '../../version';
 
 ## 准备
 ### 创建 Doris Extract 表
-先在 Doris数据库中创建表 `doris_extract_node`, 命令如下:
+先在 Doris 数据库中创建表 `doris_extract_node`, 命令如下:
 ```
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
 mysql> use test;
@@ -106,24 +106,24 @@ TODO: 将在未来支持此功能。
 
 ## Doris Extract 节点参数
 
-| 参数                                | 是否必选    | 默认值               | 数据类型    | 描述                                                                                           |
-|-----------------------------------|---------|-------------------|---------|----------------------------------------------------------------------------------------------|
-| connector                         | 必选      | (none)            | string  | 指定要使用的连接器 `doris`                                                                            |
-| fenodes                           | 必选      | (none)            | string  | Doris FE http 地址                                                                             |
-| table.identifier	                 | 必选      | (none)            | string  | Doris 表名，如：db1.tbl1                                                                          |
-| username	                         | 必选      | (none)            | string  | 访问Doris的用户名                                                                                  |
-| password                          | 必选      | (none)            | string  | 访问Doris的密码                                                                                   |
-| doris.request.retries	            | 可选      | 3                 | int     | 向Doris发送请求的重试次数                                                                              |
-| doris.request.connect.timeout.ms	 | 可选      | 30000             | int     | 向Doris发送请求的连接超时时间                                                                            |
-| doris.request.read.timeout.ms	    | 可选      | 30000             | int     | 向Doris发送请求的读取超时时间                                                                            |
-| doris.request.query.timeout.s	    | 可选      | 3600              | int     | 查询doris的超时时间，默认值为1小时，-1表示无超时限制                                                               |
-| doris.request.tablet.size	        | 可选      | Integer.MAX_VALUE | int     | 一个Partition对应的Doris Tablet个数。<br/>此数值设置越小，则会生成越多的Partition。从而提升Flink侧的并行度，但同时会对Doris造成更大的压力。 |
-| doris.batch.size                  | 可选      | 1024              | int     | 一次从BE读取数据的最大行数。增大此数值可减少flink与Doris之间建立连接的次数。<br/>从而减轻网络延迟所带来的的额外时间开销。                        |
-| doris.exec.mem.limit	             | 可选      | 2147483648        | long    | 单个查询的内存限制。默认为 2GB，单位为字节                                                                      |
-| doris.deserialize.arrow.async	    | 可选      | false             | boolean | 是否支持异步转换Arrow格式到flink-doris-connector迭代所需的RowBatch                                           |
-| doris.deserialize.queue.size	     | 可选      | 64                | int     | 异步转换Arrow格式的内部处理队列，当doris.deserialize.arrow.async为true时生效                                    |
-| doris.read.field	                 | 可选      | (none)            | string  | 读取Doris表的列名列表，多列之间使用逗号分隔                                                                     |
-| doris.filter.query                | 可选      | (none)            | string  | 过滤读取数据的表达式，此表达式透传给Doris。Doris使用此表达式完成源端数据过滤。                                                 |
+| 参数                                | 是否必选    | 默认值               | 数据类型    | 描述                                                                                                    |
+|-----------------------------------|---------|-------------------|---------|-------------------------------------------------------------------------------------------------------|
+| connector                         | 必选      | (none)            | string  | 指定要使用的连接器 `doris`                                                                                     |
+| fenodes                           | 必选      | (none)            | string  | Doris FE http 地址                                                                                      |
+| table.identifier	                 | 必选      | (none)            | string  | Doris 表名，如：db1.tbl1                                                                                   |
+| username	                         | 必选      | (none)            | string  | 访问 Doris 的用户名                                                                                         |
+| password                          | 必选      | (none)            | string  | 访问 Doris 的密码                                                                                          |
+| doris.request.retries	            | 可选      | 3                 | int     | 向 Doris 发送请求的重试次数                                                                                     |
+| doris.request.connect.timeout.ms	 | 可选      | 30000             | int     | 向 Doris 发送请求的连接超时时间                                                                                   |
+| doris.request.read.timeout.ms	    | 可选      | 30000             | int     | 向 Doris 发送请求的读取超时时间                                                                                   |
+| doris.request.query.timeout.s	    | 可选      | 3600              | int     | 查询 Doris 的超时时间，默认值为1小时，-1表示无超时限制                                                                      |
+| doris.request.tablet.size	        | 可选      | Integer.MAX_VALUE | int     | 一个 Partition 对应的 Doris Tablet 个数。<br/>此数值设置越小，则会生成越多的 Partition。从而提升 Flink 侧的并行度，但同时会对 Doris 造成更大的压力。 |
+| doris.batch.size                  | 可选      | 1024              | int     | 一次从 BE 读取数据的最大行数。增大此数值可减少 Flink 与 Doris 之间建立连接的次数。<br/>从而减轻网络延迟所带来的的额外时间开销。                           |
+| doris.exec.mem.limit	             | 可选      | 2147483648        | long    | 单个查询的内存限制。默认为 2GB，单位为字节                                                                               |
+| doris.deserialize.arrow.async	    | 可选      | false             | boolean | 是否支持异步转换 Arrow 格式到 flink-doris-connector 迭代所需的 RowBatch                                               |
+| doris.deserialize.queue.size	     | 可选      | 64                | int     | 异步转换 Arrow 格式的内部处理队列，当 doris.deserialize.arrow.async 为 true 时生效                                       |
+| doris.read.field	                 | 可选      | (none)            | string  | 读取 Doris 表的列名列表，多列之间使用逗号分隔                                                                            |
+| doris.filter.query                | 可选      | (none)            | string  | 过滤读取数据的表达式，此表达式透传给 Doris。Doris 使用此表达式完成源端数据过滤。                                                        |
 
 ## 数据类型映射
 
