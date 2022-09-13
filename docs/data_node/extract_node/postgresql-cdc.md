@@ -78,7 +78,7 @@ CREATE TABLE `postgresTable`(
   `name` STRING,
   `age` INT
 ) WITH (
-  'connector' = 'postgres-cdc',
+  'connector' = 'postgres-cdc-inlong',
   'hostname' = 'localhost',
   'username' = 'postgres',
   'password' = 'inlong',
@@ -103,7 +103,7 @@ TODO: It will be supported in the future.
 
 | Option | Required | Default | Type | Description |
 |---------|----------|---------|------|------------|
-| connector | required | (none) | String | Specify what connector to use, here should be `postgres-cdc`.|
+| connector | required | (none) | String | Specify what connector to use, here should be `postgres-cdc-inlong`.|
 | hostname | required | (none) | String | IP address or hostname of the PostgreSQL database server. |
 | username | required | (none) | String | Name of the PostgreSQL database to use when connecting to the PostgreSQL database server. |
 | password | required | (none) | String | Password to use when connecting to the PostgreSQL database server. |
@@ -114,6 +114,7 @@ TODO: It will be supported in the future.
 | decoding.plugin.name | optional | decoderbufs | String | The name of the Postgres logical decoding plug-in installed on the server. Supported values are decoderbufs, wal2json, wal2json_rds, wal2json_streaming, wal2json_rds_streaming and pgoutput. |
 | slot.name | optional | flink | String | The name of the PostgreSQL logical decoding slot that was created for streaming changes from a particular plug-in for a particular database/schema. The server uses this slot to stream events to the connector that you are configuring. Slot names must conform to PostgreSQL replication slot naming rules, which state: "Each replication slot has a name, which can contain lower-case letters, numbers, and the underscore character." |
 | debezium.* | optional | (none) | String | Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Postgres server. For example: 'debezium.snapshot.mode' = 'never'. See more about the [Debezium's Postgres Connector properties](https://debezium.io/documentation/reference/1.5/connectors/postgresql.html#postgresql-connector-properties). |
+| inlong.metric | optional | (none) | String | Inlong metric label, format of value is groupId&streamId&nodeId. |
 
 **Note**: `slot.name` is recommended to set for different tables to avoid the potential PSQLException: ERROR: replication slot "flink" is active for PID 974 error.  
 **Note**: PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. We can delete slot by the following statement.
@@ -144,7 +145,7 @@ CREATE TABLE postgresTable (
     `name` STRING,
     `age` INT
 ) WITH (
-     'connector' = 'postgres-cdc',
+     'connector' = 'postgres-cdc-inlong',
      'hostname' = 'localhost',
      'username' = 'postgres',
      'password' = 'inlong',

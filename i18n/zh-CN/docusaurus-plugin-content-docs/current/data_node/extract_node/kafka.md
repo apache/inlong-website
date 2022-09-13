@@ -68,7 +68,7 @@ Flink SQL> CREATE TABLE kafka_extract_node (
           `name` STRINTG,
            PRIMARY KEY (`id`) NOT ENFORCED
           ) WITH (
-          'connector' = 'upsert-kafka',
+          'connector' = 'upsert-kafka-inlong',
           'topic' = 'user',
           'properties.bootstrap.servers' = 'localhost:9092',
           'properties.group.id' = 'testGroup',
@@ -92,7 +92,7 @@ TODO: 将在未来支持此功能。
 
 | 参数 | 是否必选 | 默认值 | 数据类型 | 描述 |
 |---------|----------|---------|------|------------|
-| connector | 必选 | (none) | String | 指定要使用的连接器  1. Upsert Kafka 连接器使用： `upsert-kafka`  2. Kafka连接器使用： `kafka-inlong` |
+| connector | 必选 | (none) | String | 指定要使用的连接器  1. Upsert Kafka 连接器使用： `upsert-kafka-inlong`  2. Kafka连接器使用： `kafka-inlong` |
 | topic | 可选 | (none) | String | 当表用作 source 时读取数据的 topic 名。亦支持用分号间隔的 topic 列表，如 `topic-1;topic-2`。注意，对 source 表而言，`topic` 和 `topic-pattern` 两个选项只能使用其中一个。 |
 | topic-pattern | 可选 | (none) | String | 匹配读取 topic 名称的正则表达式。在作业开始运行时，所有匹配该正则表达式的 topic 都将被 Kafka consumer 订阅。注意，对 source 表而言，`topic` 和 `topic-pattern` 两个选项只能使用其中一个。 |
 | properties.bootstrap.servers | 必选 | (none) | String | 逗号分隔的 Kafka broker 列表。 |
@@ -108,6 +108,7 @@ TODO: 将在未来支持此功能。
 | scan.startup.specific-offsets | 可选 | (none) | String | 在使用 'specific-offsets' 启动模式时为每个 partition 指定 offset，例如 'partition:0,offset:42;partition:1,offset:300'。 |
 | scan.startup.timestamp-millis | 可选 | (none) | Long | 在使用 'timestamp' 启动模式时指定启动的时间戳（单位毫秒）。 |
 | scan.topic-partition-discovery.interval | 可选 | (none) | Duration | Consumer 定期探测动态创建的 Kafka topic 和 partition 的时间间隔。 |
+| inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 | sink.ignore.changelog | 可选 | false | 布尔型 | 支持所有类型的 changelog 流 ingest 到 Kafka。 |
 
 ## 可用的元数据字段

@@ -58,7 +58,7 @@ CREATE TABLE myUserTable (
   pv BIGINT,
   PRIMARY KEY (user_id) NOT ENFORCED
 ) WITH (
-  'connector' = 'elasticsearch-7',
+  'connector' = 'elasticsearch-7-inlong',
   'hosts' = 'http://localhost:9200',
   'index' = 'users'
 );
@@ -92,8 +92,8 @@ TODO: It will be supported in the future.
       <td>String</td>
       <td>Specify what connector to use, valid values are:
       <ul>
-      <li><code>elasticsearch-6</code>: connect to Elasticsearch 6.x cluster.</li>
-      <li><code>elasticsearch-7</code>: connect to Elasticsearch 7.x and later versions cluster.</li>
+      <li><code>elasticsearch-6-inlong</code>: connect to Elasticsearch 6.x cluster.</li>
+      <li><code>elasticsearch-7-inlong</code>: connect to Elasticsearch 7.x and later versions cluster.</li>
       </ul></td>
     </tr>
     <tr>
@@ -241,6 +241,13 @@ TODO: It will be supported in the future.
       <td>Elasticsearch connector supports to specify a format. The format must produce a valid json document.
        By default uses built-in <code>'json'</code> format. Please refer to <a href="https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/table/formats/overview/">JSON Format</a> page for more details.
       </td>
+    </tr>
+    <tr>
+      <td>inlong.metric</td>
+      <td>optional</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>Inlong metric label, format of value is groupId&streamId&nodeId.</td> 
     </tr>
     </tbody>
 </table>

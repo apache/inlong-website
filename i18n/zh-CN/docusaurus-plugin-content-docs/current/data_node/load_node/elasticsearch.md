@@ -238,6 +238,13 @@ TODO: 将在未来支持这个特性。
        默认使用内置的 <code>'json'</code> 格式。更多详细信息，请参阅 <a href="https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/connectors/table/formats/overview/">JSON Format</a> 页面。
       </td>
     </tr>
+    <tr>
+      <td>inlong.metric</td>
+      <td>可选</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。</td> 
+     </tr>
     </tbody>
 </table>
 

@@ -1,5 +1,5 @@
 ---
-title: Example
+title: 例子
 sidebar_position: 3
 ---
 

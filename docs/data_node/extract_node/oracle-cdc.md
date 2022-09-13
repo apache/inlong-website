@@ -201,7 +201,7 @@ See more about the [Setting up Oracle](https://debezium.io/documentation/referen
 
 The Oracle Extract Node can be defined as following:
 
-```sql 
+```sql
 -- Create an Oracle Extract Node 'user' in Flink SQL
 Flink SQL> CREATE TABLE oracle_extract_node (
      ID INT NOT NULL,
@@ -210,7 +210,7 @@ Flink SQL> CREATE TABLE oracle_extract_node (
      WEIGHT DECIMAL(10, 3),
      PRIMARY KEY(id) NOT ENFORCED
      ) WITH (
-     'connector' = 'oracle-cdc',
+     'connector' = 'oracle-cdc-inlong',
      'hostname' = 'localhost',
      'port' = '1521',
      'username' = 'flinkuser',
@@ -252,7 +252,7 @@ TODO: It will be supported in the future.
       <td>required</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>Specify what connector to use, here should be <code>'oracle-cdc'</code>.</td>
+      <td>Specify what connector to use, here should be <code>'oracle-cdc-inlong'</code>.</td>
     </tr>
     <tr>
       <td>hostname</td>
@@ -321,6 +321,13 @@ TODO: It will be supported in the future.
           For example: <code>'debezium.snapshot.mode' = 'never'</code>.
           See more about the <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium's Oracle Connector properties</a></td> 
      </tr>
+     <tr>
+      <td>inlong.metric</td>
+      <td>optional</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>Inlong metric label, format of value is groupId&streamId&nodeId.</td> 
+    </tr>
     </tbody>
 </table>    
 </div>
@@ -387,7 +394,7 @@ CREATE TABLE products (
     WEIGHT DECIMAL(10, 3),
     PRIMARY KEY(id) NOT ENFORCED
 ) WITH (
-    'connector' = 'oracle-cdc',
+    'connector' = 'oracle-cdc-inlong',
     'hostname' = 'localhost',
     'port' = '1521',
     'username' = 'flinkuser',

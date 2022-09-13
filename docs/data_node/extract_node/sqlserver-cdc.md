@@ -90,7 +90,7 @@ Flink SQL> CREATE TABLE sqlserver_extract_node (
      order_status BOOLEAN,
      PRIMARY KEY(order_id) NOT ENFORCED
      ) WITH (
-     'connector' = 'sqlserver-cdc',
+     'connector' = 'sqlserver-cdc-inlong',
      'hostname' = 'YourHostname',
      'port' = 'port', --default:1433
      'username' = 'YourUsername',
@@ -127,7 +127,7 @@ TODO
       <td>required</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>Specify what connector to use, here should be 'sqlserver-cdc'.</td>
+      <td>Specify what connector to use, here should be 'sqlserver-cdc-inlong'.</td>
     </tr>
     <tr>
       <td>hostname</td>
@@ -185,6 +185,13 @@ TODO
       <td>String</td>
       <td>The session time zone in database server, e.g. "Asia/Shanghai".</td>
     </tr>
+    <tr>
+      <td>inlong.metric</td>
+      <td>optional</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>Inlong metric label, format of value is groupId&streamId&nodeId.</td> 
+    </tr>
     </tbody>
 </table>
 </div>
@@ -233,7 +240,7 @@ CREATE TABLE sqlserver_extract_node (
     operation_ts TIMESTAMP_LTZ(3) METADATA FROM 'op_ts' VIRTUAL,
     id INT NOT NULL
 ) WITH (
-    'connector' = 'sqlserver-cdc',
+    'connector' = 'sqlserver-cdc-inlong',
     'hostname' = 'localhost',
     'port' = '1433',
     'username' = 'sa',

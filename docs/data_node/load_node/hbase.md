@@ -51,7 +51,7 @@ CREATE TABLE hbase_load_node (
     family3 ROW<q4 DOUBLE, q5 BOOLEAN, q6 STRING>,
     PRIMARY KEY (rowkey) NOT ENFORCED
 ) WITH (
-      'connector' = 'hbase-2.2',
+      'connector' = 'hbase-2.2-inlong',
       'table-name' = 'mytable',
       'zookeeper.quorum' = 'localhost:2181'
 );
@@ -82,7 +82,7 @@ TODO: It will be supported in the future.
 
 | Option | Required | Default | Type | Description |
 |---------|----------|---------|------|------------|
-| connector | required | (none) | String | Specify what connector to use, valid values are: hbase-2.2: connect to HBase 2.2.x cluster |
+| connector | required | (none) | String | Specify what connector to use, valid values are: hbase-2.2-inlong: connect to HBase 2.2.x cluster |
 | table-name | required | (none) | String | The name of HBase table to connect. |
 | zookeeper.quorum | required | (none) | String | The HBase Zookeeper quorum. |
 | zookeeper.znode.parent | optional | /hbase | String | The root dir in Zookeeper for HBase cluster. |
@@ -96,6 +96,7 @@ TODO: It will be supported in the future.
 | lookup.cache.ttl | optional | (none) | Duration | The max time to live for each rows in lookup cache, over this time, the oldest rows will be expired. Note, "cache.max-rows" and "cache.ttl" options must all be specified if any of them is specified.Lookup cache is disabled by default. |
 | lookup.max-retries | optional | 3 | Integer | The max retry times if lookup database failed. |
 | properties.* | optional | (none) | String | This can set and pass arbitrary HBase configurations. Suffix names must match the configuration key defined in [HBase Configuration documentation](https://hbase.apache.org/2.3/book.html#hbase_default_configurations). Flink will remove the "properties." key prefix and pass the transformed key and values to the underlying HBaseClient. For example, you can add a kerberos authentication parameter 'properties.hbase.security.authentication' = 'kerberos'. |
+| inlong.metric | optional | (none) | String | Inlong metric label, format of value is groupId&streamId&nodeId. |
 
 ## Data Type Mapping
 

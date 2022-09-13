@@ -90,7 +90,7 @@ Flink SQL> CREATE TABLE mongodb_extract_node (
   suppliers ARRAY<ROW<name STRING, address STRING>>, -- embedded documents
   PRIMARY KEY(_id) NOT ENFORCED
 ) WITH (
-  'connector' = 'mongodb-cdc',
+  'connector' = 'mongodb-cdc-inlong',
   'hosts' = 'localhost:27017,localhost:27018,localhost:27019',
   'username' = 'flinkuser',
   'password' = 'flinkpw',
@@ -118,7 +118,7 @@ TODO: 未来会支持
 
 | **选项**                  | **是否必须** | **默认**   | **类型** | **描述**                                                     |
 | ------------------------- | ------------ | ---------- | -------- | ------------------------------------------------------------ |
-| connector                 | 必须         | (none)     | String   | 指定要使用的连接器，这里应该是`mongodb-cdc`.                 |
+| connector                 | 必须         | (none)     | String   | 指定要使用的连接器，这里应该是`mongodb-cdc-inlong`.                 |
 | hosts                     | 必须         | (none)     | String   | MongoDB 服务器的主机名和端口对的逗号分隔列表。例如。`localhost:27017,localhost:27018` |
 | username                  | 可选         | (none)     | String   | 连接到 MongoDB 时要使用的数据库用户的名称。仅当 MongoDB 配置为使用身份验证时才需要这样做。 |
 | password                  | 可选         | (none)     | String   | 连接 MongoDB 时使用的密码。仅当 MongoDB 配置为使用身份验证时才需要这样做。 |
@@ -134,6 +134,7 @@ TODO: 未来会支持
 | poll.max.batch.size       | 可选         | 1000       | Integer  | 轮询新数据时，单个批次中包含的最大更改流文档数。             |
 | poll.await.time.ms        | 可选         | 1500       | Integer  | 在更改流上检查新结果之前等待的时间量。                       |
 | heartbeat.interval.ms     | 可选         | 0          | Integer  | 发送心跳消息之间的时间长度（以毫秒为单位）。使用 0 禁用。    |
+| inlong.metric             | 可选         | (none)     | String   | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 
 ## 可用元数据
 
@@ -160,7 +161,7 @@ CREATE TABLE `mysql_extract_node` (
     suppliers ARRAY<ROW<name STRING, address STRING>>, -- embedded documents
     PRIMARY KEY(_id) NOT ENFORCED
 ) WITH (
-      'connector' = 'mongodb-cdc', 
+      'connector' = 'mongodb-cdc-inlong', 
       'hostname' = 'YourHostname',
       'username' = 'YourUsername',
       'password' = 'YourPassword',

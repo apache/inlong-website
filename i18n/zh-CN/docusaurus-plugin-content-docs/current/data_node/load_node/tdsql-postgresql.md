@@ -93,6 +93,7 @@ TODO: 将在未来支持此功能。
 | sink.buffer-flush.interval | 可选 | 1s | Duration | flush 间隔时间，超过该时间后异步线程将 flush 数据。可以设置为 '0' 来禁用它。注意, 为了完全异步地处理缓存的 flush 事件，可以将 'sink.buffer-flush.max-rows' 设置为 '0' 并配置适当的 flush 时间间隔。 |
 | sink.max-retries | 可选 | 3 | Integer | 写入记录到数据库失败后的最大重试次数。 |
 | sink.parallelism | 可选 | (none) | Integer | 用于定义 JDBC sink 算子的并行度。默认情况下，并行度是由框架决定：使用与上游链式算子相同的并行度。 |
+| inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 
 ## 数据类型映射
 

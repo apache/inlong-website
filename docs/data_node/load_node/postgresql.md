@@ -59,7 +59,8 @@ CREATE TABLE `postgresql_load_table`(
   `name` STRING,
   `age` INT
 ) WITH (
-  'connector' = 'jdbc',
+  'connector' = 'jdbc-inlong',
+  'dialect-impl' = 'org.apache.inlong.sort.jdbc.dialect.PostgresDialect',
   'url' = 'jdbc:postgresql://localhost:5432/write',
   'username' = 'inlong',
   'password' = 'inlong',
@@ -84,7 +85,7 @@ TODO: It will be supported in the future.
 
 | Option | Required | Default | Type | Description |
 |---------|----------|---------|------|------------|
-| connector | required | (none) | String | Specify what connector to use, here should be 'jdbc'. |
+| connector | required | (none) | String | Specify what connector to use, here should be 'jdbc-inlong'. |
 | url | required | (none) | String | The JDBC database url. |
 | table-name | required | (none) | String | The name of JDBC table to connect. |
 | driver | optional | (none) | String | The class name of the JDBC driver to use to connect to this URL, if not set, it will automatically be derived from the URL. |
@@ -95,6 +96,7 @@ TODO: It will be supported in the future.
 | sink.buffer-flush.interval | optional | 1s | Duration | The flush interval mills, over this time, asynchronous threads will flush data. Can be set to '0' to disable it. Note, 'sink.buffer-flush.max-rows' can be set to '0' with the flush interval set allowing for complete async processing of buffered actions. | |
 | sink.max-retries | optional | 3 | Integer | The max retry times if writing records to database failed. |
 | sink.parallelism | optional | (none) | Integer | Defines the parallelism of the JDBC sink operator. By default, the parallelism is determined by the framework using the same parallelism of the upstream chained operator. |
+| inlong.metric | optional | (none) | String | Inlong metric label, format of value is groupId&streamId&nodeId. |
 
 ## Data Type Mapping
 

@@ -127,6 +127,13 @@ TODO: 未来版本支持
       custom：通过指定的类来创建提交策略， 
       支持同时指定多个提交策略：'metastore,success-file'。</td>
     </tr>
+    <tr>
+      <td>inlong.metric</td>
+      <td>可选</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。</td> 
+     </tr>
     </tbody>
 </table>
 

@@ -23,7 +23,7 @@ CREATE TABLE hdfs_load_node (
   dt STRING,
  `hour` STRING
   ) PARTITIONED BY (dt, `hour`) WITH (
-    'connector'='filesystem',
+    'connector'='filesystem-inlong',
     'path'='...',
     'format'='orc',
     'sink.partition-commit.delay'='1 h',
@@ -107,6 +107,13 @@ CREATE TABLE hdfs_load_node (
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>合并目标文件大小，默认值为滚动文件大小。</td>
+    </tr>
+    <tr>
+      <td>inlong.metric</td>
+      <td>可选</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。</td> 
     </tr>
     </tbody>
 </table>

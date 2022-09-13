@@ -24,7 +24,7 @@ CREATE TABLE hdfs_load_node (
   dt STRING,
  `hour` STRING
   ) PARTITIONED BY (dt, `hour`) WITH (
-    'connector'='filesystem',
+    'connector'='filesystem-inlong',
     'path'='...',
     'format'='orc',
     'sink.partition-commit.delay'='1 h',
@@ -105,6 +105,13 @@ The file sink supports file compactions, which allows applications to have small
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>The compaction target file size, the default value is the rolling file size.</td>
+    </tr>
+    <tr>
+      <td>inlong.metric</td>
+      <td>optional</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>Inlong metric label, format of value is groupId&streamId&nodeId.</td> 
     </tr>
     </tbody>
 </table>

@@ -90,7 +90,7 @@ Flink SQL> CREATE TABLE sqlserver_extract_node (
      order_status BOOLEAN,
      PRIMARY KEY(order_id) NOT ENFORCED
      ) WITH (
-     'connector' = 'sqlserver-cdc',
+     'connector' = 'sqlserver-cdc-inlong',
      'hostname' = 'YourHostname',
      'port' = 'port', --default:1433
      'username' = 'YourUsername',
@@ -127,7 +127,7 @@ TODO
       <td>必须</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>指定使用什么连接器，这里应该是 'sqlserver-cdc'。</td>
+      <td>指定使用什么连接器，这里应该是 'sqlserver-cdc-inlong'。</td>
     </tr>
     <tr>
       <td>hostname</td>
@@ -185,6 +185,13 @@ TODO
       <td>String</td>
       <td>SQLServer 数据库连接配置时区。 例如： "Asia/Shanghai"。</td>
     </tr>
+    <tr>
+      <td>inlong.metric</td>
+      <td>可选</td>
+      <td style={{wordWrap: 'break-word'}}>(none)</td>
+      <td>String</td>
+      <td>inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。</td> 
+     </tr>
     </tbody>
 </table>
 </div>

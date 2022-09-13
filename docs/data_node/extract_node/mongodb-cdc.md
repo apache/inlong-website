@@ -90,7 +90,7 @@ Flink SQL> CREATE TABLE mongodb_extract_node (
   suppliers ARRAY<ROW<name STRING, address STRING>>, -- embedded documents
   PRIMARY KEY(_id) NOT ENFORCED
 ) WITH (
-  'connector' = 'mongodb-cdc',
+  'connector' = 'mongodb-cdc-inlong',
   'hosts' = 'localhost:27017,localhost:27018,localhost:27019',
   'username' = 'flinkuser',
   'password' = 'flinkpw',
@@ -118,7 +118,7 @@ TODO: It will be supported in the future.
 
 | **Option**                | **Required** | **Default**      | **Type** | **Description**                                              |
 | ------------------------- | ------------ | ---------------- | -------- | ------------------------------------------------------------ |
-| connector                 | required     | (none)           | String   | Specify what connector to use, here should be `mongodb-cdc`. |
+| connector                 | required     | (none)           | String   | Specify what connector to use, here should be `mongodb-cdc-inlong`. |
 | hosts                     | required     | (none)           | String   | The comma-separated list of hostname and port pairs of the MongoDB servers. eg. `localhost:27017,localhost:27018` |
 | username                  | optional     | (none)           | String   | Name of the database user to be used when connecting to MongoDB. This is required only when MongoDB is configured to use authentication. |
 | password                  | optional     | (none)           | String   | Password to be used when connecting to MongoDB. This is required only when MongoDB is configured to use authentication. |
@@ -134,7 +134,7 @@ TODO: It will be supported in the future.
 | poll.max.batch.size       | optional     | 1000             | Integer  | Maximum number of change stream documents to include in a single batch when polling for new data. |
 | poll.await.time.ms        | optional     | 1500             | Integer  | The amount of time to wait before checking for new results on the change stream. |
 | heartbeat.interval.ms     | optional     | 0                | Integer  | The length of time in milliseconds between sending heartbeat messages. Use 0 to disa |
-
+| inlong.metric | optional | (none) | String | Inlong metric label, format of value is groupId&streamId&nodeId. |
 
 ## Available Metadata
 
@@ -161,7 +161,7 @@ CREATE TABLE `mysql_extract_node` (
     suppliers ARRAY<ROW<name STRING, address STRING>>, -- embedded documents
     PRIMARY KEY(_id) NOT ENFORCED
 ) WITH (
-      'connector' = 'mongodb-cdc', 
+      'connector' = 'mongodb-cdc-inlong', 
       'hostname' = 'YourHostname',
       'username' = 'YourUsername',
       'password' = 'YourPassword',
