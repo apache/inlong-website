@@ -29,7 +29,7 @@ $ gpg --version #检查版本，应该为2.x
 ### 生成 gpg Key
 #### 需要注意以下几点：
 - 输入名字时最好与 Apache 中登记的 Full name 保持一致
-- 使用的邮箱应该是 apache 邮箱
+- 使用的邮箱必须是 apache 邮箱，建议先 gpg -k 查看所有 key, 确保只有一个 key，多余的其他邮箱的 key 先删除
 - 名字最好使用拼音或者英文，否则会出现乱码
 
 #### 根据提示，生成key
@@ -405,7 +405,8 @@ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_vers
 ### 更新官网链接
 
 ### 发ANNOUNCE邮件，主送 `dev@inlong.apache.org`，抄送 `announce@apache.org`
-**请确保6.4中的仓库已发布成功，一般是在6.4后的24小时后发布邮件** 
+**请确保6.4中的仓库已发布成功，一般是在6.4后的24小时后发布邮件**
+**确保已经发布成功的方式为登陆 https://downloads.apache.org/inlong/${release-version}/ 查看是否有安装包**
 
 宣布 release 邮件模板：
 ```html
@@ -433,7 +434,7 @@ https://github.com/apache/inlong/blob/${release_version}-${rc_version}/CHANGES.m
 
 Apache InLong website: https://inlong.apache.org/
 
-Download Links: https://inlong.apache.org/download/main
+Download Links: https://inlong.apache.org/download
 
 InLong Resources:
 - Issue: https://github.com/apache/inlong/issues
@@ -442,3 +443,8 @@ InLong Resources:
 Thanks
 On behalf of Apache InLong community
 ```
+
+### 官网新增 release 包
+
+1. 进入 https://github.com/apache/inlong ，点击右侧 Releases 下 + 号， 然后点击 Draft a new release
+2. release title 为 ${release_version}，上传 https://downloads.apache.org/inlong/${release-version} 下的所有文件到上传栏中再发布
