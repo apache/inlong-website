@@ -3,7 +3,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-## Overview
+## Introduction
 Inlong sort standalone is a module responsible for consuming the data stream reported by users from the cache layer and distributing it to different data stores. It supports hive, elasticsearch, CLS and other data stores.  
 Inlong sort standalone relies on inlong manager to manage system metadata. Inlong sort standalone is deployed by cluster and aggregates and distributes tasks by target storage.
 
@@ -23,20 +23,21 @@ After the inlong data stream is distributed offline, it goes online again. If th
 If the consumption location at the time of offline is no longer within the life cycle of the cache layer, consumption starts from the latest location of the cache layer.
 
 ### message queues supported by the cache layer
-- Inlong-tubemq
-- Apache Pulsar
-
-### supported data storage
-- Apache hive (currently only supports sequence file format)
+- Inlong-Tube
 - Apache Pulsar
 - Apache Kafka
 
-### Future planning
-#### support more types of cache layer message queues
-Apache Kafka, etc.
+### supported data storage
+- Apache Hive (currently only supports sequence file format)
+- Apache Pulsar
+- Apache Kafka
+- Elasticsearch
+- ClickHouse
+- Tencent CLS
 
+### Future planning
 #### support more kinds of data storage
-HBase, elasticsearch, etc.
+HBase, etc.
 
 #### support more file formats written to Apache hive
 Orc file, etc.
