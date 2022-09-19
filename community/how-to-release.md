@@ -31,7 +31,7 @@ $ gpg --version #check the version, should be 2.x
 ### Generate gpg Key
 #### Attentions：
 - Name is best to keep consistent with your full name of Apache ID
-- The mailbox used must be an apache mailbox, it is recommended to check all keys with gpg -k first
+- The mailbox used is apache. It is recommended that pg -k view all the keys. If the first one is not the key of the apache mailbox, if you need to specify the key in the step for encryption operation, the parameter is -u
 - Make sure that there is only one key, and delete the keys of other spare mailboxes first
 - Name is best to only use English to avoid garbled
 
