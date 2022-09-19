@@ -31,7 +31,8 @@ $ gpg --version #check the version, should be 2.x
 ### Generate gpg Key
 #### Attentions：
 - Name is best to keep consistent with your full name of Apache ID
-- Email should be the Apache email
+- The mailbox used is apache. It is recommended that pg -k view all the keys. If the first one is not the key of the apache mailbox, if you need to specify the key in the step for encryption operation, the parameter is -u
+- Make sure that there is only one key, and delete the keys of other spare mailboxes first
 - Name is best to only use English to avoid garbled
 
 #### Generate the key as prompt
@@ -394,7 +395,8 @@ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_vers
 ### Update links on official website
 
 ### Send email to `dev@inlong.apache.org` and CC `announce@apache.org`
-**Please make sure deployment in step 6.4 is successfully, and generally wait 24 hours between 6.4 and send emails** 
+**Please make sure deployment in step 6.4 is successfully, and generally wait 24 hours between 6.4 and send emails**
+**Log in to https://downloads.apache.org/inlong/${release-version}/ to see if there is an installation package**
 
 Release announce email template：
 ```html
@@ -421,7 +423,7 @@ https://github.com/apache/inlong/blob/${release_version}-${rc_version}/CHANGES.m
 
 Apache InLong website: https://inlong.apache.org/
 
-Download Links: https://inlong.apache.org/download/main
+Download Links: https://inlong.apache.org/download
 
 InLong Resources:
 - Issue: https://github.com/apache/inlong/issues
@@ -430,3 +432,8 @@ InLong Resources:
 Thanks
 On behalf of Apache InLong community
 ```
+
+### Official website added release package
+
+1. Go to https://github.com/apache/inlong, click the + sign under Releases on the right, then click Draft a new release
+2. The release title is ${release_version}, upload all files under https://downloads.apache.org/inlong/${release-version}
