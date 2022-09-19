@@ -406,7 +406,7 @@ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_vers
 
 ### 发ANNOUNCE邮件，主送 `dev@inlong.apache.org`，抄送 `announce@apache.org`
 **请确保6.4中的仓库已发布成功，一般是在6.4后的24小时后发布邮件**
-**确保已经发布成功的方式为登陆 https://downloads.apache.org/inlong/${release-version}/ 查看是否有安装包**
+**登陆 https://downloads.apache.org/inlong/${release-version}/ 查看是否有安装包**
 
 宣布 release 邮件模板：
 ```html

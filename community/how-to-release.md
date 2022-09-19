@@ -396,7 +396,7 @@ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_vers
 
 ### Send email to `dev@inlong.apache.org` and CC `announce@apache.org`
 **Please make sure deployment in step 6.4 is successfully, and generally wait 24 hours between 6.4 and send emails**
-**The way to ensure that the release is successful is to log in to https://downloads.apache.org/inlong/${release-version}/ to see if there is an installation package**
+**Log in to https://downloads.apache.org/inlong/${release-version}/ to see if there is an installation package**
 
 Release announce email template：
 ```html
