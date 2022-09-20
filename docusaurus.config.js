@@ -217,7 +217,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       },
       algolia: {
         appId: 'YUW9QEL53E',
-        apiKey: '644ca189e445f85a881e4d96307b1f07',
+        apiKey: 'fcc3191e7a0fb95834381a6c9faecde9',
         indexName: 'inlong',
         contextualSearch: true,
       },
