@@ -56,7 +56,7 @@ values={[
 ## Modules
 Apache InLong serves the entire life cycle from data collection to landing,  and provides different processing modules according to different stages of data,  including the next modules:
 
-- **inlong-agent**,  data collection agent, supports reading regular logs from specified directories or files and reporting data one by one.  In the future,  DB collection capabilities will also be expanded.
+- **inlong-agent**,  data collection services, including file collection, DB collection, etc.
 - **inlong-dataproxy**,  a Proxy component based on Flume-ng,  supports data transmission blocking,  placing retransmission, and has the ability to forward received data to different MQ (message queues).
 - **inlong-tubemq**,  Tencent's self-developed message queuing service,  focuses on high-performance storage and transmission of massive data in big data scenarios and has a relatively good core advantage in mass practice and low cost.
 - **inlong-sort**,  after consuming data from different MQ services,  perform ETL processing,  and then aggregate and write the data into Apache Hive, ClickHouse,  Hbase,  IceBerg,  etc.
@@ -71,11 +71,11 @@ Apache InLong serves the entire life cycle from data collection to landing,  and
 |              | File              | None                         | Standard              |
 |              | Kafka             | 2.x                          | Lightweight, Standard |
 |              | MySQL             | 5.6, 5.7, 8.0.x              | Lightweight, Standard |
-|              | MongoDB           | >= 3.6                       | Lightweight           |
+|              | MongoDB           | >= 3.6                       | Lightweight, Standard |
 |              | Oracle            | 11,12,19                     | Lightweight           |
-|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight           |
+|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight, Standard |
 |              | Pulsar            | 2.8.x                        | Lightweight           |
-|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight           |
+|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
 | Load Node    | Auto Consumption  | None                         | Standard              |
 |              | Hive              | 1.x, 2.x, 3.x                | Lightweight, Standard |
 |              | Iceberg           | 0.12.x                       | Lightweight, Standard |
