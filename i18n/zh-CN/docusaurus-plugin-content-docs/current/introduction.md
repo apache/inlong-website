@@ -53,13 +53,13 @@ values={[
 ## 模块
 Apache InLong 服务于数据采集到落地的整个生命周期，按数据的不同阶段提供不同的处理模块，主要包括：
 
-- **inlong-agent**，数据采集 Agent，支持从指定目录或文件读取常规日志、逐条上报。后续也将扩展 DB 采集等能力。
+- **inlong-agent**，数据采集服务，包括文件采集、DB采集等。
 - **inlong-dataproxy**，一个基于 Flume-ng 的 Proxy 组件，支持数据发送阻塞和落盘重发，拥有将接收到的数据转发到不同 MQ（消息队列）的能力。
 - **inlong-tubemq**，腾讯自研的消息队列服务，专注于大数据场景下海量数据的高性能存储和传输，在海量实践和低成本方面有着良好的核心优势。
 - **inlong-sort**，对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、Hbase、Iceberg 等存储系统。
 - **inlong-manager**，提供完整的数据服务管控能力，包括元数据、任务流、权限，OpenAPI 等。
 - **inlong-dashboard**，用于管理数据接入的前端页面，简化整个 InLong 管控平台的使用。
-- **inlong-audit**，对InLong系统的Agent、DataProxy、Sort模块的入流量、出流量进行实时审计对账。
+- **inlong-audit**，对 InLong 系统的 Agent、DataProxy、Sort 模块的入流量、出流量进行实时审计对账。
 
 ## 已支持数据节点（更新中）
 | Type         | Name              | Version                      | Architecture          |
@@ -68,11 +68,11 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 |              | File              | None                         | Standard              |
 |              | Kafka             | 2.x                          | Lightweight, Standard |
 |              | MySQL             | 5.6, 5.7, 8.0.x              | Lightweight, Standard |
-|              | MongoDB           | >= 3.6                       | Lightweight           |
+|              | MongoDB           | >= 3.6                       | Lightweight, Standard |
 |              | Oracle            | 11,12,19                     | Lightweight           |
-|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight           |
+|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight, Standard |
 |              | Pulsar            | 2.8.x                        | Lightweight           |
-|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight           |
+|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
 | Load Node    | Auto Consumption  | None                         | Standard              |
 |              | Hive              | 1.x, 2.x, 3.x                | Lightweight, Standard |
 |              | Iceberg           | 0.12.x                       | Lightweight, Standard |

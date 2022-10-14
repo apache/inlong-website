@@ -10,7 +10,7 @@ sidebar_position: 1
 | Group                     | 数据流组，包含多个数据流，一个Group 代表一个数据接入                                | Group 有ID、Name 等属性                            |
 | Stream                    | 数据流，一个数据流有具体的流向                                              | Stream 有ID、Name、数据字段等属性                       |
 | Node                      | 数据节点，包括`Extract Node` 和 `Load Node`，分别代表数据源类型和数据流向目标类型       |                                               |
-| InLongMsg                 | InLong 数据格式，如果从消息队列中直接消费，需要先进行`InLongMsg` 解析                 |                                               |
+| InLongMsg                 | InLong 数据格式，如果从消息队列中直接消费，需要先进行 `InLongMsg` 解析                |                                               |
 | Agent                     | 标准架构使用 Agent 进行数据采集，Agent 代表不同类型的采集能力                        | 包含文件 Agent、SQL Agent、Binlog Agent 等           |
 | DataProxy                 | 将接收到的数据转发到不同的消息队列                                            | 支持数据发送阻塞和落盘重发                                 |
 | Sort                      | 数据流分拣                                                        | 主要有基于 Flink 的 sort-flink，sort-standalone 本地分拣 |
