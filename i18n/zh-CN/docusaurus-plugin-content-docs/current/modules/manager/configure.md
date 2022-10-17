@@ -74,9 +74,9 @@ title: 配置
 - 本节介绍在给定配置文件中指定的重要参数：
 - application-dev.properties, application-prod.properties, application-test.properties
 
-| 参数                               | 值         | 默认值   | 注释                                                 |
-|----------------------------------|-----------|-------|----------------------------------------------------|
-| audit.query.source   | MYSQL/ELASTICSEARCH/CLICKHOUSE | MYSQL | 决定要查询的数据源的审计信息，当前仅支持MYSQL,ELASTICSEARCH,CLICKHOUSE |
+| 参数                               | 值         | 默认值   | 注释                                                  |
+|----------------------------------|-----------|-------|-----------------------------------------------------|
+| audit.query.source   | MYSQL/ELASTICSEARCH/CLICKHOUSE | MYSQL | 决定要查询的数据源的审计信息，当前仅支持，MYSQL，ELASTICSEARCH，CLICKHOUSE |
 
 ## Elasticsearch配置
 
