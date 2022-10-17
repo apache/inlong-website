@@ -1,5 +1,6 @@
 ---
 title: 安装部署
+sidebar_position: 2
 ---
 
 ## 环境准备
