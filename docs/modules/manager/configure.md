@@ -69,26 +69,15 @@ title: Configuration
 
 - application-dev.properties, application-prod.properties, application-test.properties
 
-| Parameter                               | Value                          | Default | Notes                                                                                                              |
-|----------------------------------|--------------------------------|---------|--------------------------------------------------------------------------------------------------------------------|
-| audit.query.source   | MYSQL/ELASTICSEARCH/CLICKHOUSE | MYSQL   | Audit query source that decide what data source to query, currently only supports MYSQL, ELASTICSEARCH, CLICKHOUSE |
-
-## Elasticsearch Configuration
-
-- application-dev.properties, application-prod.properties, application-test.properties
-
-| Parameter                 | Value                                         | Default   | Notes                                     |
-|---------------------------|-----------------------------------------------|-----------|-------------------------------------------|
+| Parameter                               | Value                                         | Default | Notes                                                                                                              |
+|----------------------------------|-----------------------------------------------|---------|--------------------------------------------------------------------------------------------------------------------|
+| audit.query.source   | MYSQL/ELASTICSEARCH/CLICKHOUSE                | MYSQL   | Audit query source that decide what data source to query, currently only supports MYSQL, ELASTICSEARCH, CLICKHOUSE |
 | es.index.search.hostname  | Elasticsearch hostname                        | 127.0.0.1 | Elasticsearch host split by coma if more than one host, such as 'host1,host2'                                          |
 | es.index.search.port      | Elasticsearch port                            | 9200      |                                           |
 | es.auth.enable            | true/false                                    | false     | Elasticsearch support authentication flag |
 | es.auth.user              | Elasticsearch user of authentication info     | admin     |                                           |
 | es.auth.password          | Elasticsearch password of authentication info | inlong    |                                           |
+| audit.ck.jdbcUrl        | Clickhouse jdbc url                           | jdbc:clickhouse://127.0.0.1:8123/apache_inlong_audit |                                   |
+| audit.ck.username       | Clickhouse usename                            | default                                              |                                   |
+| audit.ck.password       | Clickhouse password                           |                                                      |                                   |
 
-## Additional Configuration
-
-- application-dev.properties, application-prod.properties, application-test.properties
-
-| Parameter                               | Value         | Default  | Notes |
-|----------------------------------|-----------|------|-------|
-| spring.autoconfigure.exclude   | Fully qualified class name of the configuration class | org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchRestClientAutoConfiguration |       |

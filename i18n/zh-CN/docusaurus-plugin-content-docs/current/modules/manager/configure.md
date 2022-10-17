@@ -70,27 +70,15 @@ title: 配置
 
 - application-dev.properties, application-prod.properties, application-test.properties
 
-| 参数                               | 值         | 默认值   | 注释                                                  |
-|----------------------------------|-----------|-------|-----------------------------------------------------|
-| audit.query.source   | MYSQL/ELASTICSEARCH/CLICKHOUSE | MYSQL | 决定要查询的数据源的审计信息，当前仅支持，MYSQL，ELASTICSEARCH，CLICKHOUSE |
-
-## Elasticsearch 配置
-
-- application-dev.properties, application-prod.properties, application-test.properties
-
-| 参数                 | 值                 | 默认值   | 注释                                |
-|---------------------------|-------------------|-----------|-----------------------------------|
-| es.index.search.hostname  | Elasticsearch的主机地址 | 127.0.0.1 | 主机地址如果存在多个使用逗号分隔开，比如'host1,host2' |
-| es.index.search.port      | Elasticsearch端口号  | 9200      |                                   |
-| es.auth.enable            | true/false        | false     | 是否支持认证                            |
-| es.auth.user              | Elasticsearch用户名  | admin     |                                   |
-| es.auth.password          | Elasticsearch密码   | inlong    |                                   |
-
-## 额外配置
-
-- application-dev.properties, application-prod.properties, application-test.properties
-
-| 参数                               | 值         | 默认值  | 注释          |
-|----------------------------------|-----------|------|-------------|
-| spring.autoconfigure.exclude   | 配置类的全限定类名 | org.springframework.boot.autoconfigure.elasticsearch.ElasticsearchRestClientAutoConfiguration | 用来排除相关自动配置类 |
+| 参数                      | 值                              | 默认值                                                  | 注释                                                  |
+|-------------------------|--------------------------------|------------------------------------------------------|-----------------------------------------------------|
+| audit.query.source      | MYSQL/ELASTICSEARCH/CLICKHOUSE | MYSQL                                                | 决定要查询的数据源的审计信息，当前仅支持，MYSQL，ELASTICSEARCH，CLICKHOUSE |
+| es.index.search.hostname | Elasticsearch的主机地址             | 127.0.0.1                                            | 主机地址如果存在多个使用逗号分隔开，比如'host1,host2' |
+| es.index.search.port    | Elasticsearch端口号               | 9200                                                 |                                   |
+| es.auth.enable          | true/false                     | false                                                | 是否支持认证                            |
+| es.auth.user            | Elasticsearch用户名               | admin                                                |                                   |
+| es.auth.password        | Elasticsearch密码                | inlong                                               |                                   |
+| audit.ck.jdbcUrl        | Clickhouse地址                   | jdbc:clickhouse://127.0.0.1:8123/apache_inlong_audit |                                   |
+| audit.ck.username       | Clickhouse用户名                  | default                                              |                                   |
+| audit.ck.password       | Clickhouse密码                   |                                                      |                                   |
 
