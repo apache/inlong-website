@@ -34,7 +34,7 @@ sidebar_position: 3
 | inlong.auth.type                                       | Custom Authentication Configuration                                                  | default                              |                                                                                                                          |
 | inlong.encrypt.version                                 | Encrypted version                                                                    | 1                                    |                                                                                                                          |
 | inlong.encrypt.key.value1                              |                                                                                      |                                      |                                                                                                                          |
-| openapi.auth.enabled                                   | true/false                                                                           | false                                | 是否开启openapi认证                                                                                                            |
+| openapi.auth.enabled                                   | true/false                                                                           | false                                | Whether to enable openApi authentication                                                                                                           |
 
 ## Log Configuration
 
@@ -78,7 +78,7 @@ sidebar_position: 3
 | es.auth.enable            | true/false                                    | false     | Elasticsearch support authentication flag |
 | es.auth.user              | Elasticsearch user of authentication info     | admin     |                                           |
 | es.auth.password          | Elasticsearch password of authentication info | inlong    |                                           |
-| audit.ck.jdbcUrl        | Clickhouse jdbc url                           | jdbc:clickhouse://127.0.0.1:8123/apache_inlong_audit |                                   |
-| audit.ck.username       | Clickhouse usename                            | default                                              |                                   |
-| audit.ck.password       | Clickhouse password                           |                                                      |                                   |
+| audit.ck.jdbcUrl        | ClickHouse jdbc url                           | jdbc:clickhouse://127.0.0.1:8123/apache_inlong_audit |                                   |
+| audit.ck.username       | ClickHouse usename                            | default                                              |                                   |
+| audit.ck.password       | ClickHouse password                           |                                                      |                                   |
 
