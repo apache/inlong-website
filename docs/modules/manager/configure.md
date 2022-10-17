@@ -3,7 +3,6 @@ title: Configuration
 ---
 ## Basic Configuration
 
-- This section deals with important parameters to be specified in the given configuration files:
 - application.properties
 
 | Parameter                                                     | Value                                                                                | Default                                  | Notes                                                                                                                    |
@@ -38,7 +37,6 @@ title: Configuration
 
 ## Log Configuration
 
-- This section deals with important parameters to be specified in the given configuration files:
 - application-dev.properties, application-prod.properties, application-test.properties
 
 | Parameter                            | Value           | Default |  Notes   |
@@ -47,7 +45,6 @@ title: Configuration
 
 ## Datasource Configuration
 
-- This section deals with important parameters to be specified in the given configuration files:
 - application-dev.properties, application-prod.properties, application-test.properties
 
 | Parameter                                          | Value                                                                   | Default                                                                                                                                                                 |  Notes   |
@@ -70,7 +67,6 @@ title: Configuration
 
 ## Audit Configuration
 
-- This section deals with important parameters to be specified in the given configuration files:
 - application-dev.properties, application-prod.properties, application-test.properties
 
 | Parameter                               | Value                          | Default | Notes                                                                                                              |
@@ -79,7 +75,6 @@ title: Configuration
 
 ## Elasticsearch Configuration
 
-- This section deals with important parameters to be specified in the given configuration files:
 - application-dev.properties, application-prod.properties, application-test.properties
 
 | Parameter                 | Value                                         | Default   | Notes                                     |
@@ -92,7 +87,6 @@ title: Configuration
 
 ## Additional Configuration
 
-- This section deals with important parameters to be specified in the given configuration files:
 - application-dev.properties, application-prod.properties, application-test.properties
 
 | Parameter                               | Value         | Default  | Notes |

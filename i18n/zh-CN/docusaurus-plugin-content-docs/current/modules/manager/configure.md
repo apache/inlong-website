@@ -4,7 +4,6 @@ title: 配置
 
 ## 基本配置
 
-- 本节介绍在给定配置文件中指定的重要参数：
 - application.properties
 
 | 参数                                                     | 值                                    | 默认值                                  | 注释                                            |
@@ -48,7 +47,6 @@ title: 配置
 
 ## 数据库配置
 
-- 本节介绍在给定配置文件中指定的重要参数：
 - application-dev.properties, application-prod.properties, application-test.properties
 
 | 参数                                                 | 值                | 默认值                                                                                                                                                                     | 注释                                                                |
@@ -71,7 +69,6 @@ title: 配置
 
 ## 审计配置
 
-- 本节介绍在给定配置文件中指定的重要参数：
 - application-dev.properties, application-prod.properties, application-test.properties
 
 | 参数                               | 值         | 默认值   | 注释                                                  |
@@ -80,7 +77,6 @@ title: 配置
 
 ## Elasticsearch配置
 
-- 本节介绍在给定配置文件中指定的重要参数：
 - application-dev.properties, application-prod.properties, application-test.properties
 
 | 参数                 | 值                 | 默认值   | 注释                                |
@@ -93,7 +89,6 @@ title: 配置
 
 ## 额外配置
 
-- 本节介绍在给定配置文件中指定的重要参数：
 - application-dev.properties, application-prod.properties, application-test.properties
 
 | 参数                               | 值         | 默认值  | 注释          |
