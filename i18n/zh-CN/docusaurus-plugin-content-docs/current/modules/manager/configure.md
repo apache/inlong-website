@@ -1,5 +1,6 @@
 ---
 title: 配置
+sidebar_position: 3
 ---
 
 ## 基本配置

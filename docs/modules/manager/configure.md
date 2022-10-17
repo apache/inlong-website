@@ -1,5 +1,6 @@
 ---
 title: Configuration
+sidebar_position: 3
 ---
 ## Basic Configuration
 

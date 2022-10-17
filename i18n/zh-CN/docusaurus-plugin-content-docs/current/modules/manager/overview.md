@@ -1,5 +1,6 @@
 ---
 title: 总览
+sidebar_position: 1
 ---
 
 ## 1 InLong Manager 介绍
