@@ -1,5 +1,6 @@
 ---
 title: 安装部署
+sidebar_position: 2
 ---
 
 所有的安装文件都在 `inlong-dataproxy` 目录下。

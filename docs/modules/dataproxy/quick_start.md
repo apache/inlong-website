@@ -1,5 +1,6 @@
 ---
 title: Deployment
+sidebar_position: 2
 ---
 
 All deploying files at `inlong-dataproxy` directory.
