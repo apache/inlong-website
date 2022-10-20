@@ -18,7 +18,7 @@ sidebar_position: 3
 | metricDomains.DataProxy.snapshotInterval                | Time interval for periodic reporting of indicators (unit: ms)                                                                 | 60000                             |                                                                                                                   |
 | prometheusHttpPort                                      | The port when reporting using Prometheus                                                           | 9081                               |                                                                                                                   |
 | audit.enable                                            | Whether to enable data reporting InLong-Audit service                                                         | true                                |                                                                                                                   |
-| audit.proxys                                            | The address of the InLong-Audit service                                                                | 127.0.0.1:10081                      | 格式按照 {ip1:port1}[ {ip2:port2}][ {ip3:port3}]进行配置，不同ip:port间通过空格、回车，或换行符进行分隔                                       |
+| audit.proxys                                            | The address of the InLong-Audit service                                                                | 127.0.0.1:10081                      | The format is configured according to {ip1:port1}[ {ip2:port2}][ {ip3:port3}], and different ip:ports are separated by spaces, carriage returns, or line feeds                                     |
 
 
 ## Log Output Configuration（log4j2.xml）
