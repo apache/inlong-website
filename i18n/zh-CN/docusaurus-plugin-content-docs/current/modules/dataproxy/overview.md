@@ -1,5 +1,6 @@
 ---
 title: 总览
+sidebar_position: 1
 ---
 
 InLong DataProxy 主要有连接收敛、路由、数据压缩和协议转换等作用。DataProxy 充当了 InLong 采集端到消息队列的桥梁，
