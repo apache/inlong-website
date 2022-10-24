@@ -1,5 +1,6 @@
 ---
-title: 参数配置 sidebar_position: 3
+title: Configuration 
+sidebar_position: 3
 ---
 
 ## audit-proxy source-channel-sink pipeline configuration (dataproxy-{tube|pulsar}.con)

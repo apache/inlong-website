@@ -1,5 +1,6 @@
 ---
-title: 参数配置 sidebar_position: 3
+title: 参数配置 
+sidebar_position: 3
 ---
 
 ## audit-proxy代理层 source-channel-sink 管道配置（dataproxy-{tube|pulsar}.conf）
