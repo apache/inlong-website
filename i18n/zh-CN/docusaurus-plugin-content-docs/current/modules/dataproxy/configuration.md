@@ -1,5 +1,5 @@
 ---
-title: 配置
+title: 参数配置
 sidebar_position: 3
 ---
 
