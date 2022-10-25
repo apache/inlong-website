@@ -10,6 +10,7 @@
   /* --ifm-dropdown-hover-background-color: #fff;
   --ifm-link-hover-color: #5494FF; */
   --ifm-code-font-size: 95%;
+  --doc-sidebar-width: 560px !important;
 }
 
 .docusaurus-highlight-code-line {
@@ -49,4 +50,13 @@ html {
 
 aside {
   font-family: Avenir-Heavy;
+}
+
+.theme-doc-sidebar-menu {
+  margin: 0 auto 0 50%;
+}
+
+.padding-top--md {
+  max-width: 80%;
+  margin: 0 auto 0 100px;
 }
