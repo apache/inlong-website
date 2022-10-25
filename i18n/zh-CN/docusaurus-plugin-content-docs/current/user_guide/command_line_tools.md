@@ -277,3 +277,154 @@ $ bin/inlongctl describe user
 | 参数              | 描述      | 默认值 |
 |-----------------|---------|-----|
 | `-id`, `--id` * | user id |     |
+
+[//]: # (待补充)
+
+## Create
+
+`create` 用于创建相关资源，目前通过使用 json 文件的方式创建
+
+[//]: # (待补充)
+
+## Update
+
+`create` 用于修改相关资源，目前通过使用 json 文件的方式创建
+
+## Delete
+
+`delete` 用于删除相关资源。
+
+命令：
+
+- `group`
+- `stream`
+- `source`
+- `sink`
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+### `group`
+
+```
+$ bin/inlongctl delete group
+```
+
+选项：
+
+| 参数               | 描述                                                                                                                               | 默认值 |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------|-----|
+| `-g`, `--group`  | inlong group id，支持模糊查询                                                                                                           |     |
+| `-s`, `--status` | inlong group status ，可选值有：`CREATE`，`REJECTED`，`INITIALIZING`，`OPERATING`，<br/> `STARTED`，`FAILED`，`STOPPED`，`FINISHED`，`DELETED` |     |
+| `-n`, `--num`    | 最多显示条数                                                                                                                           | 10  |
+
+### `stream`
+
+```
+$ bin/inlongctl delete stream
+```
+
+选项：
+
+| 参数                | 描述                                               | 默认值 |
+|-------------------|--------------------------------------------------|-----|
+| `-g`, `--group` * | inlong group id，该 inlong stream 所在的 inlong group |     |
+
+### `source`
+
+```
+$ bin/inlongctl delete source
+```
+
+选项：
+
+| 参数                 | 描述                                                                                                                                                                  | 默认值 |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
+| `-g`, `--group` *  | inlong group id                                                                                                                                                     |     |
+| `-s`, `--stream` * | inlong stream id                                                                                                                                                    |     |
+| `-t`, `--type`     | stream source type，可选值有：`AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |     |
+
+### `sink`
+
+```
+$ bin/inlongctl delete sink
+```
+
+选项：
+
+| 参数                 | 描述                                               | 默认值 |
+|--------------------|--------------------------------------------------|-----|
+| `-g`, `--group` *  | inlong group id                                  |     |
+| `-s`, `--stream` * | inlong stream id，该 stream sink 所在的 inlong stream |     |
+
+### `cluster-tag`
+
+```
+$ bin/inlongctl delete cluster-tag
+```
+
+选项：
+
+| 参数              | 描述             | 默认值 |
+|-----------------|----------------|-----|
+| `-id`, `--id` * | cluster tag id |     |
+
+### `cluster`
+
+```
+$ bin/inlongctl delete cluster
+```
+
+选项：
+
+| 参数              | 描述         | 默认值 |
+|-----------------|------------|-----|
+| `-id`, `--id` * | cluster id |     |
+
+### `cluster-node`
+
+```
+$ bin/inlongctl delete cluster-node
+```
+
+选项：
+
+| 参数              | 描述              | 默认值 |
+|-----------------|-----------------|-----|
+| `-id`, `--id` * | cluster node id |     |
+
+### `user`
+
+```
+$ bin/inlongctl delete user
+```
+
+选项：
+
+| 参数              | 描述      | 默认值 |
+|-----------------|---------|-----|
+| `-id`, `--id` * | user id |     |
+
+[//]: # (TODO:修改使用方法)
+
+## Log
+
+创建任务流程之后，可以使用 `log` 命令查看任务各阶段的执行日志
+
+命令：
+
+- `group`
+
+### `group`
+
+```
+$ bin/inlongctl log group
+```
+
+选项：
+
+| 参数               | 描述                      | 默认值 |
+|------------------|-------------------------|-----|
+| `-g`, `--group`  | inlong group id，不支持模糊查询 |     |
+
