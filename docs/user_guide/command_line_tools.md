@@ -285,11 +285,170 @@ options:
 
 `create` is used to create resources, currently created by using a json file.
 
+command:
+
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+### `cluster`
+
+```
+$ bin/inlongctl create cluster
+```
+
+options:
+
+| parameter      | description    | default |
+|----------------|----------------|---------|
+| `-f`, `--file` | json file name |         |
+
+json:
+
+```json
+{
+  "name": "test_cluster",
+  "url": "127.0.0.1:8080",
+  "clusterTags": "test_cluster_tag",
+  "extTag": null,
+  "description": null,
+  "inCharges": "admin",
+  "type": "PULSAR",
+  "adminUrl": "http://127.0.0.1:8080",
+  "tenant": "public"
+}
+```
+
+### `cluster-tag`
+
+```
+$ bin/inlongctl create cluster-tag
+```
+
+options:
+
+| parameter      | description     | default |
+|----------------|-----------------|---------|
+| `-f`, `--file` | json file  name |         |
+
+json:
+
+```json
+{
+  "clusterTag": "test_cluster_tag",
+  "inCharges": "ctl",
+  "extParams": null,
+  "description": null
+}
+```
+
+### `cluster-node`
+
+```
+$ bin/inlongctl create cluster-node
+```
+
+options:
+
+| parameter      | description     | default |
+|----------------|-----------------|---------|
+| `-f`, `--file` | json file  name |         |
+
+json:
+
+```json
+{
+  "parentId": 1,
+  "type": "AGENT",
+  "ip": "127.0.0.1",
+  "port": 8008,
+  "extParams": null,
+  "description": "null"
+}
+```
+
+> `parentId` is the corresponding cluster id of this node, and the cluster id can be obtained through `list cluster` or `describe cluster`
+
+### `user`
+
+```
+$ bin/inlongctl create user
+```
+
+options:
+
+| parameter          | description  | default |
+|--------------------|--------------|---------|
+| `-u`, `--username` | username     |         |
+| `-p`, `--password` | password     |         |
+| `-t`, `--type`     | account type |         |
+| `-d`, `--day`      | valid days   |         |
+
 [//]: # (To be added)
 
 ## Update
 
-`create` is used to update resources, currently update by using a json file.
+`update` is used to update resources, currently update by using a json file.
+
+command:
+
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+> The json file required by `update` can be modified on the json obtained by `describe`.
+
+### `cluster`
+
+```
+$ bin/inlongctl update cluster
+```
+
+options:
+
+| parameter      | description    | default |
+|----------------|----------------|---------|
+| `-f`, `--file` | json file name |         |
+
+### `cluster-tag`
+
+```
+$ bin/inlongctl update cluster-tag
+```
+
+options:
+
+| parameter      | description    | default |
+|----------------|----------------|---------|
+| `-f`, `--file` | json file name |         |
+
+### `cluster-node`
+
+```
+$ bin/inlongctl update cluster-node
+```
+
+options:
+
+| parameter      | description    | default |
+|----------------|----------------|---------|
+| `-f`, `--file` | json file name |         |
+
+### `user`
+
+```
+$ bin/inlongctl update user
+```
+
+options:
+
+| parameter          | description    | default |
+|--------------------|----------------|---------|
+| `-u`, `--username` | username       |         |
+| `-p`, `--password` | new password   |         |
+| `-d`, `--day`      | new valid days |         |
 
 ## Delete
 

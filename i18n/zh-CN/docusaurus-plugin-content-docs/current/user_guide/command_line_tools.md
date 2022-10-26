@@ -284,11 +284,170 @@ $ bin/inlongctl describe user
 
 `create` 用于创建相关资源，目前通过使用 json 文件的方式创建
 
+命令：
+
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+### `cluster`
+
+```
+$ bin/inlongctl create cluster
+```
+
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+json 示例：
+
+```json
+{
+  "name": "test_cluster",
+  "url": "127.0.0.1:8080",
+  "clusterTags": "test_cluster_tag",
+  "extTag": null,
+  "description": null,
+  "inCharges": "admin",
+  "type": "PULSAR",
+  "adminUrl": "http://127.0.0.1:8080",
+  "tenant": "public"
+}
+```
+
+### `cluster-tag`
+
+```
+$ bin/inlongctl create cluster-tag
+```
+
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+json 示例：
+
+```json
+{
+  "clusterTag": "test_cluster_tag",
+  "inCharges": "ctl",
+  "extParams": null,
+  "description": null
+}
+```
+
+### `cluster-node`
+
+```
+$ bin/inlongctl create cluster-node
+```
+
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+json 示例：
+
+```json
+{
+  "parentId": 1,
+  "type": "AGENT",
+  "ip": "127.0.0.1",
+  "port": 8008,
+  "extParams": null,
+  "description": "null"
+}
+```
+
+> parentId 为该节点对应 cluster 的 id，可通过 `list cluster` 或 `describe cluster` 查看
+
+### `user`
+
+```
+$ bin/inlongctl create user
+```
+
+选项：
+
+| 参数                 | 描述   | 默认值 |
+|--------------------|------|-----|
+| `-u`, `--username` | 用户名称 |     |
+| `-p`, `--password` | 用户密码 |     |
+| `-t`, `--type`     | 用户类型 |     |
+| `-d`, `--day`      | 有效期  |     |
+
 [//]: # (待补充)
 
 ## Update
 
-`create` 用于修改相关资源，目前通过使用 json 文件的方式创建
+`update` 用于修改相关资源，目前通过使用 json 文件的方式修改
+
+命令：
+
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+> `update` 所需的 json 文件可以在 `describe` 得到的 json 上进行需要的修改即可。
+
+### `cluster`
+
+```
+$ bin/inlongctl update cluster
+```
+
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+### `cluster-tag`
+
+```
+$ bin/inlongctl update cluster-tag
+```
+
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+### `cluster-node`
+
+```
+$ bin/inlongctl update cluster-node
+```
+
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+### `user`
+
+```
+$ bin/inlongctl update user
+```
+
+选项：
+
+| 参数                 | 描述   | 默认值 |
+|--------------------|------|-----|
+| `-u`, `--username` | 用户名称 |     |
+| `-p`, `--password` | 新密码  |     |
+| `-d`, `--day`      | 新有效期 |     |
 
 ## Delete
 
