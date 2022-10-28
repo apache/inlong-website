@@ -70,6 +70,23 @@ $ bin/inlongctl list group
 | `-s`, `--status` | inlong group status ，可选值有：`CREATE`，`REJECTED`，`INITIALIZING`，`OPERATING`，<br/> `STARTED`，`FAILED`，`STOPPED`，`FINISHED`，`DELETED` |     |
 | `-n`, `--num`    | 最多显示条数                                                                                                                           | 10  |
 
+<details>
+<summary>group status 说明</summary>
+
+| group status   | 描述           |
+|----------------|--------------|
+| `CREATE`       | 待提交、待审批状态    |
+| `REJECTED`     | 审批被驳回        |
+| `INITIALIZING` | 配置中          |
+| `OPERATING`    | 删除中、停止中以及重启中 |
+| `STARTED`      | 配置成功以及重启成功   |
+| `FAILED`       | 配置失败         |
+| `STOPPED`      | 暂停           |
+| `FINISHED`     | 停止           |
+| `DELETED`      | 已删除          |
+
+</details>
+
 ### `stream`
 
 ```
@@ -97,6 +114,26 @@ $ bin/inlongctl list source
 | `-g`, `--group` *  | inlong group id                                                                                                                                                     |     |
 | `-s`, `--stream` * | inlong stream id                                                                                                                                                    |     |
 | `-t`, `--type`     | stream source type，可选值有：`AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |     |
+
+<details>
+<summary>stream source type 说明</summary>
+
+| stream source type | 描述         |
+|--------------------|------------|
+| `AUTO_PUSH`        | 自主推送       |
+| `TUBEMQ`           | TubeMQ     |
+| `PULSAR`           | Pulsar     |
+| `KAFKA`            | Kafka      |
+| `FILE`             | 文件         |
+| `MYSQL_SQL`        | SQL        |
+| `MYSQL_BINLOG`     | Binlog     |
+| `POSTGRESQL`       | PostgreSQL |
+| `ORACLE`           | Oracle     |
+| `SQLSERVER`        | SQL server |
+| `MONGODB`          | MongoDB    |
+| `REDIS`            | Redis      |
+
+</details>
 
 ### `sink`
 
@@ -136,6 +173,19 @@ $ bin/inlongctl list cluster
 | `--tag`  | cluster tag                                                         |     |
 | `--type` | cluster type，可选值有：`AGENT`, `TUBEMQ`, `PULSAR`, `DATAPROXY`, `KAFKA` |     |
 
+<details>
+<summary>cluster type 说明</summary>
+
+| cluster type | 描述        |
+|--------------|-----------|
+| `AGENT`      | Agent     |
+| `TUBEMQ`     | TubeMQ    |
+| `PULSAR`     | Pulsar    |
+| `DATAPROXY`  | DataProxy |
+| `KAFKA`      | Kafka     |
+
+</details>
+
 ### `cluster-node`
 
 ```
@@ -161,6 +211,16 @@ $ bin/inlongctl list user
 |--------------------|------------------------------------|-----|
 | `-u`, `--username` | username，支持模糊查询                    |     |
 | `--type`           | user type，可选值有：`ADMIN`, `OPERATOR` |     |
+
+<details>
+<summary>user type 说明</summary>
+
+| user type  | 描述   |
+|------------|------|
+| `ADMIN`    | 管理员  |
+| `OPERATOR` | 普通用户 |
+
+</details>
 
 ## Describe
 
@@ -191,6 +251,23 @@ $ bin/inlongctl describe group
 | `-s`, `--status` | inlong group status ，可选值有：`CREATE`，`REJECTED`，`INITIALIZING`，`OPERATING`，<br/> `STARTED`，`FAILED`，`STOPPED`，`FINISHED`，`DELETED` |     |
 | `-n`, `--num`    | 最多显示条数                                                                                                                           | 10  |
 
+<details>
+<summary>group status 说明</summary>
+
+| group status   | 描述           |
+|----------------|--------------|
+| `CREATE`       | 待提交、待审批状态    |
+| `REJECTED`     | 审批被驳回        |
+| `INITIALIZING` | 配置中          |
+| `OPERATING`    | 删除中、停止中以及重启中 |
+| `STARTED`      | 配置成功以及重启成功   |
+| `FAILED`       | 配置失败         |
+| `STOPPED`      | 暂停           |
+| `FINISHED`     | 停止           |
+| `DELETED`      | 已删除          |
+
+</details>
+
 ### `stream`
 
 ```
@@ -216,6 +293,26 @@ $ bin/inlongctl describe source
 | `-g`, `--group` *  | inlong group id                                                                                                                                                     |     |
 | `-s`, `--stream` * | inlong stream id                                                                                                                                                    |     |
 | `-t`, `--type`     | stream source type，可选值有：`AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |     |
+
+<details>
+<summary>stream source type 说明</summary>
+
+| stream source type | 描述         |
+|--------------------|------------|
+| `AUTO_PUSH`        | 自主推送       |
+| `TUBEMQ`           | TubeMQ     |
+| `PULSAR`           | Pulsar     |
+| `KAFKA`            | Kafka      |
+| `FILE`             | 文件         |
+| `MYSQL_SQL`        | SQL        |
+| `MYSQL_BINLOG`     | Binlog     |
+| `POSTGRESQL`       | PostgreSQL |
+| `ORACLE`           | Oracle     |
+| `SQLSERVER`        | SQL server |
+| `MONGODB`          | MongoDB    |
+| `REDIS`            | Redis      |
+
+</details>
 
 ### `sink`
 
@@ -478,6 +575,23 @@ $ bin/inlongctl delete group
 | `-s`, `--status` | inlong group status ，可选值有：`CREATE`，`REJECTED`，`INITIALIZING`，`OPERATING`，<br/> `STARTED`，`FAILED`，`STOPPED`，`FINISHED`，`DELETED` |     |
 | `-n`, `--num`    | 最多显示条数                                                                                                                           | 10  |
 
+<details>
+<summary>group status 说明</summary>
+
+| group status   | 描述           |
+|----------------|--------------|
+| `CREATE`       | 待提交、待审批状态    |
+| `REJECTED`     | 审批被驳回        |
+| `INITIALIZING` | 配置中          |
+| `OPERATING`    | 删除中、停止中以及重启中 |
+| `STARTED`      | 配置成功以及重启成功   |
+| `FAILED`       | 配置失败         |
+| `STOPPED`      | 暂停           |
+| `FINISHED`     | 停止           |
+| `DELETED`      | 已删除          |
+
+</details>
+
 ### `stream`
 
 ```
@@ -503,6 +617,26 @@ $ bin/inlongctl delete source
 | `-g`, `--group` *  | inlong group id                                                                                                                                                     |     |
 | `-s`, `--stream` * | inlong stream id                                                                                                                                                    |     |
 | `-t`, `--type`     | stream source type，可选值有：`AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |     |
+
+<details>
+<summary>stream source type 说明</summary>
+
+| stream source type | 描述         |
+|--------------------|------------|
+| `AUTO_PUSH`        | 自主推送       |
+| `TUBEMQ`           | TubeMQ     |
+| `PULSAR`           | Pulsar     |
+| `KAFKA`            | Kafka      |
+| `FILE`             | 文件         |
+| `MYSQL_SQL`        | SQL        |
+| `MYSQL_BINLOG`     | Binlog     |
+| `POSTGRESQL`       | PostgreSQL |
+| `ORACLE`           | Oracle     |
+| `SQLSERVER`        | SQL server |
+| `MONGODB`          | MongoDB    |
+| `REDIS`            | Redis      |
+
+</details>
 
 ### `sink`
 

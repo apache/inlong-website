@@ -71,6 +71,23 @@ options:
 | `-s`, `--status` | inlong group status , Optional values: `CREATE`, `REJECTED`, `INITIALIZING`, `OPERATING`, <br/> `STARTED`, `FAILED`, `STOPPED`, `FINISHED`, `DELETED` |         |
 | `-n`, `--num`    | maximum number of displays                                                                                                                            | 10      |
 
+<details>
+<summary>group status</summary>
+
+| group status   | description                          |
+|----------------|--------------------------------------|
+| `CREATE`       | to be submit or to be approval       |
+| `REJECTED`     | approval rejected                    |
+| `INITIALIZING` | configuring                          |
+| `OPERATING`    | deleting, stopping or restarting     |
+| `STARTED`      | successful configuration and restart |
+| `FAILED`       | failed to configure                  |
+| `STOPPED`      | suspended                            |
+| `FINISHED`     | finish                               |
+| `DELETED`      | deleted                              |
+
+</details>
+
 ### `stream`
 
 ```
@@ -98,6 +115,26 @@ options:
 | `-g`, `--group` *  | inlong group id                                                                                                                                                                  |         |
 | `-s`, `--stream` * | inlong stream id                                                                                                                                                                 |         |
 | `-t`, `--type`     | stream source type, Optional values: `AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |         |
+
+<details>
+<summary>stream source type</summary>
+
+| stream source type | description |
+|--------------------|-------------|
+| `AUTO_PUSH`        | Auto Push   |
+| `TUBEMQ`           | TubeMQ      |
+| `PULSAR`           | Pulsar      |
+| `KAFKA`            | Kafka       |
+| `FILE`             | File        |
+| `MYSQL_SQL`        | SQL         |
+| `MYSQL_BINLOG`     | Binlog      |
+| `POSTGRESQL`       | PostgreSQL  |
+| `ORACLE`           | Oracle      |
+| `SQLSERVER`        | SQL server  |
+| `MONGODB`          | MongoDB     |
+| `REDIS`            | Redis       |
+
+</details>
 
 ### `sink`
 
@@ -137,6 +174,19 @@ options:
 | `--tag`   | cluster tag                                                                      |         |
 | `--type`  | cluster type, Optional values: `AGENT`, `TUBEMQ`, `PULSAR`, `DATAPROXY`, `KAFKA` |         |
 
+<details>
+<summary>cluster type</summary>
+
+| cluster type | description |
+|--------------|-------------|
+| `AGENT`      | Agent       |
+| `TUBEMQ`     | TubeMQ      |
+| `PULSAR`     | Pulsar      |
+| `DATAPROXY`  | DataProxy   |
+| `KAFKA`      | Kafka       |
+
+</details>
+
 ### `cluster-node`
 
 ```
@@ -162,6 +212,16 @@ options:
 |--------------------|-------------------------------------------------|---------|
 | `-u`, `--username` | username, support fuzzy query                   |         |
 | `--type`           | user type, Optional values: `ADMIN`, `OPERATOR` |         |
+
+<details>
+<summary>user type</summary>
+
+| user type  | description |
+|------------|-------------|
+| `ADMIN`    | admin       |
+| `OPERATOR` | other user  |
+
+</details>
 
 ## Describe
 
@@ -192,6 +252,23 @@ options:
 | `-s`, `--status` | inlong group status , Optional values: `CREATE`, `REJECTED`, `INITIALIZING`, `OPERATING`, <br/> `STARTED`, `FAILED`, `STOPPED`, `FINISHED`, `DELETED` |         |
 | `-n`, `--num`    | maximum number of displays                                                                                                                            | 10      |
 
+<details>
+<summary>group status</summary>
+
+| group status   | description                          |
+|----------------|--------------------------------------|
+| `CREATE`       | to be submit or to be approval       |
+| `REJECTED`     | approval rejected                    |
+| `INITIALIZING` | configuring                          |
+| `OPERATING`    | deleting, stopping or restarting     |
+| `STARTED`      | successful configuration and restart |
+| `FAILED`       | failed to configure                  |
+| `STOPPED`      | suspended                            |
+| `FINISHED`     | finish                               |
+| `DELETED`      | deleted                              |
+
+</details>
+
 ### `stream`
 
 ```
@@ -217,6 +294,26 @@ options:
 | `-g`, `--group` *  | inlong group id                                                                                                                                                                  |         |
 | `-s`, `--stream` * | inlong stream id                                                                                                                                                                 |         |
 | `-t`, `--type`     | stream source type, Optional values: `AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |         |
+
+<details>
+<summary>stream source type</summary>
+
+| stream source type | description |
+|--------------------|-------------|
+| `AUTO_PUSH`        | Auto Push   |
+| `TUBEMQ`           | TubeMQ      |
+| `PULSAR`           | Pulsar      |
+| `KAFKA`            | Kafka       |
+| `FILE`             | File        |
+| `MYSQL_SQL`        | SQL         |
+| `MYSQL_BINLOG`     | Binlog      |
+| `POSTGRESQL`       | PostgreSQL  |
+| `ORACLE`           | Oracle      |
+| `SQLSERVER`        | SQL server  |
+| `MONGODB`          | MongoDB     |
+| `REDIS`            | Redis       |
+
+</details>
 
 ### `sink`
 
@@ -479,6 +576,23 @@ options:
 | `-s`, `--status` | inlong group status , Optional values: `CREATE`, `REJECTED`, `INITIALIZING`, `OPERATING`, <br/> `STARTED`, `FAILED`, `STOPPED`, `FINISHED`, `DELETED` |         |
 | `-n`, `--num`    | maximum number of displays                                                                                                                            | 10      |
 
+<details>
+<summary>group status</summary>
+
+| group status   | description                          |
+|----------------|--------------------------------------|
+| `CREATE`       | to be submit or to be approval       |
+| `REJECTED`     | approval rejected                    |
+| `INITIALIZING` | configuring                          |
+| `OPERATING`    | deleting, stopping or restarting     |
+| `STARTED`      | successful configuration and restart |
+| `FAILED`       | failed to configure                  |
+| `STOPPED`      | suspended                            |
+| `FINISHED`     | finish                               |
+| `DELETED`      | deleted                              |
+
+</details>
+
 ### `stream`
 
 ```
@@ -504,6 +618,26 @@ options:
 | `-g`, `--group` *  | inlong group id                                                                                                                                                                  |         |
 | `-s`, `--stream` * | inlong stream id                                                                                                                                                                 |         |
 | `-t`, `--type`     | stream source type, Optional values: `AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |         |
+
+<details>
+<summary>stream source type</summary>
+
+| stream source type | description |
+|--------------------|-------------|
+| `AUTO_PUSH`        | Auto Push   |
+| `TUBEMQ`           | TubeMQ      |
+| `PULSAR`           | Pulsar      |
+| `KAFKA`            | Kafka       |
+| `FILE`             | File        |
+| `MYSQL_SQL`        | SQL         |
+| `MYSQL_BINLOG`     | Binlog      |
+| `POSTGRESQL`       | PostgreSQL  |
+| `ORACLE`           | Oracle      |
+| `SQLSERVER`        | SQL server  |
+| `MONGODB`          | MongoDB     |
+| `REDIS`            | Redis       |
+
+</details>
 
 ### `sink`
 
