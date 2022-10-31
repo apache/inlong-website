@@ -4,33 +4,31 @@ sidebar_position: 2
 ---
 
 ## 总览
-除了 [InLong Dashboard](user_guide/dashboard_usage.md)，你可以通过命令行工具来查看和创建数据 Group 和 Stream。
+
+除了 [InLong Dashboard](user_guide/dashboard_usage.md)，你可以通过命令行工具来查看管理 InLong 的相关资源。
+
+命令行工具可以在 InLong 的 `bin` 目录运行。
+
+用法：
+
 ```
-Usage: managerctl [options] [command] [command options]
-  Options:
-    -h, --help
-      Get all command about managerctl.
-  Commands:
-    create      Create resource by json file
-      Usage: create [options]
-
-    describe      Display details of one or more resources
-      Usage: describe [options]
-
-    list      Displays main information for one or more resources
-      Usage: list [options]
-
-    delete       Deletes the inlong group corresponding to the given id
-      Usage: managerctl delete [command] 
-      
-    update       Updates the inlong group corresponding to the given id
-      Usage: managerctl update [command] [command options]
-      
-    log          Filters out inlong groups according to its properties
-      Usage: managerctl log [command] [command options]
+$ bin/inlongctl [options] [command] [command options]
 ```
 
-目前命令行工具支持 `list`、`describe`、`create`、`log`、`update`、`delete` 六个命令。
+命令：
+
+- `list`
+- `describe`
+- `create`
+- `update`
+- `delete`
+- `log`
+
+> 同时也可以使用 `--help` 或者 `-h` 获取上述命令的帮助，例如：
+
+```
+$ bin/inlongctl list -h
+```
 
 ## 配置
 
@@ -45,334 +43,681 @@ default.admin.password=inlong
 
 ## List
 
+`list` 用于展示相关资源的核心信息，并以表格的方式展示。
+
+命令：
+
+- `group`
+- `stream`
+- `source`
+- `sink`
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+### `group`
+
 ```
-Usage: managerctl list [command] [command options]
-  Commands:
-    stream      Get stream main information
-      Usage: stream [options]
-        Options:
-        * -g, --group
-            inlong group id
-
-    group      Get group details
-      Usage: group [options]
-        Options:
-          -g, --group
-            inlong group id
-          -n, --num
-            the number displayed
-            Default: 10
-          -s, --status
-            ( CREATE | REJECTED | INITIALIZING | OPERATING | 
-             STARTED | FAILED | STOPPED | FINISHED | DELETED )
-            
-    sink      Get sink details
-      Usage: sink [options]
-        Options:
-        * -g, --group
-            group id
-        * -s, --stream
-            stream id
-
-    source      Get source details
-      Usage: source [options]
-        Options:
-        * -g, --group
-            inlong group id
-        * -s, --stream
-            inlong stream id
-          -t, --type
-            sink type
+$ bin/inlongctl list group
 ```
 
-> \* 号为必选项
+选项：
 
-`list` 用于展示inlong group / stream / sink / source 的核心信息。
+| 参数               | 描述                                                                                                                               | 默认值 |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------|-----|
+| `-g`, `--group`  | inlong group id，支持模糊查询                                                                                                           |     |
+| `-s`, `--status` | inlong group status ，可选值有：`CREATE`，`REJECTED`，`INITIALIZING`，`OPERATING`，<br/> `STARTED`，`FAILED`，`STOPPED`，`FINISHED`，`DELETED` |     |
+| `-n`, `--num`    | 最多显示条数                                                                                                                           | 10  |
+
+<details>
+<summary>group status 说明</summary>
+
+| group status   | 描述           |
+|----------------|--------------|
+| `CREATE`       | 待提交、待审批状态    |
+| `REJECTED`     | 审批被驳回        |
+| `INITIALIZING` | 配置中          |
+| `OPERATING`    | 删除中、停止中以及重启中 |
+| `STARTED`      | 配置成功以及重启成功   |
+| `FAILED`       | 配置失败         |
+| `STOPPED`      | 暂停           |
+| `FINISHED`     | 停止           |
+| `DELETED`      | 已删除          |
+
+</details>
+
+### `stream`
+
+```
+$ bin/inlongctl list stream
+```
+
+选项：
+
+| 参数                | 描述                                               | 默认值 |
+|-------------------|--------------------------------------------------|-----|
+| `-g`, `--group` * | inlong group id，该 inlong stream 所在的 inlong group |     |
+
+> \* 表示为必需参数
+
+### `source`
+
+```
+$ bin/inlongctl list source
+```
+
+选项：
+
+| 参数                 | 描述                                                                                                                                                                  | 默认值 |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
+| `-g`, `--group` *  | inlong group id                                                                                                                                                     |     |
+| `-s`, `--stream` * | inlong stream id                                                                                                                                                    |     |
+| `-t`, `--type`     | stream source type，可选值有：`AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |     |
+
+<details>
+<summary>stream source type 说明</summary>
+
+| stream source type | 描述         |
+|--------------------|------------|
+| `AUTO_PUSH`        | 自主推送       |
+| `TUBEMQ`           | TubeMQ     |
+| `PULSAR`           | Pulsar     |
+| `KAFKA`            | Kafka      |
+| `FILE`             | 文件         |
+| `MYSQL_SQL`        | SQL        |
+| `MYSQL_BINLOG`     | Binlog     |
+| `POSTGRESQL`       | PostgreSQL |
+| `ORACLE`           | Oracle     |
+| `SQLSERVER`        | SQL server |
+| `MONGODB`          | MongoDB    |
+| `REDIS`            | Redis      |
+
+</details>
+
+### `sink`
+
+```
+$ bin/inlongctl list sink
+```
+
+选项：
+
+| 参数                 | 描述                                               | 默认值 |
+|--------------------|--------------------------------------------------|-----|
+| `-g`, `--group` *  | inlong group id                                  |     |
+| `-s`, `--stream` * | inlong stream id，该 stream sink 所在的 inlong stream |     |
+
+### `cluster-tag`
+
+```
+$ bin/inlongctl list cluster-tag
+```
+
+选项：
+
+| 参数      | 描述                      | 默认值 |
+|---------|-------------------------|-----|
+| `--tag` | cluster tag，集群标签，支持模糊查询 |     |
+
+### `cluster`
+
+```
+$ bin/inlongctl list cluster
+```
+
+选项：
+
+| 参数       | 描述                                                                  | 默认值 |
+|----------|---------------------------------------------------------------------|-----|
+| `--tag`  | cluster tag                                                         |     |
+| `--type` | cluster type，可选值有：`AGENT`, `TUBEMQ`, `PULSAR`, `DATAPROXY`, `KAFKA` |     |
+
+<details>
+<summary>cluster type 说明</summary>
+
+| cluster type | 描述        |
+|--------------|-----------|
+| `AGENT`      | Agent     |
+| `TUBEMQ`     | TubeMQ    |
+| `PULSAR`     | Pulsar    |
+| `DATAPROXY`  | DataProxy |
+| `KAFKA`      | Kafka     |
+
+</details>
+
+### `cluster-node`
+
+```
+$ bin/inlongctl list cluster-node
+```
+
+选项：
+
+| 参数        | 描述                                                                  | 默认值 |
+|-----------|---------------------------------------------------------------------|-----|
+| `--tag` * | cluster tag                                                         |     |
+| `--type`  | cluster type，可选值有：`AGENT`, `TUBEMQ`, `PULSAR`, `DATAPROXY`, `KAFKA` |     |
+
+### `user`
+
+```
+$ bin/inlongctl list user
+```
+
+选项：
+
+| 参数                 | 描述                                 | 默认值 |
+|--------------------|------------------------------------|-----|
+| `-u`, `--username` | username，支持模糊查询                    |     |
+| `--type`           | user type，可选值有：`ADMIN`, `OPERATOR` |     |
+
+<details>
+<summary>user type 说明</summary>
+
+| user type  | 描述   |
+|------------|------|
+| `ADMIN`    | 管理员  |
+| `OPERATOR` | 普通用户 |
+
+</details>
 
 ## Describe
 
+`describe` 用于展示相关资源的详细信息，直接以 Json 格式展示。
+
+命令：
+
+- `group`
+- `stream`
+- `source`
+- `sink`
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+### `group`
+
 ```
-Usage: managerctl describe [command] [command options]
-  Commands:
-    stream      Get stream details
-      Usage: stream [options]
-        Options:
-        * -g, --group
-            inlong group id
-
-    group      Get group details
-      Usage: group [options]
-        Options:
-          -g, --group
-            inlong group id
-          -n, --num
-            the number displayed
-            Default: 10
-          -s, --status
-            Default: 0
-
-    sink      Get sink details
-      Usage: sink [options]
-        Options:
-        * -g, --group
-            inlong group id
-        * -s, --stream
-            inlong stream id
-
-    source      Get source details
-      Usage: source [options]
-        Options:
-        * -g, --group
-            inlong group id
-        * -s, --stream
-            inlong stream id
-        * -t, --type
-            sink type
+$ bin/inlongctl describe group
 ```
 
-`describe` 用于展示inlong group / stream / sink / source 的详细信息，并以Json格式输出。
+选项：
+
+| 参数               | 描述                                                                                                                               | 默认值 |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------|-----|
+| `-g`, `--group`  | inlong group id，支持模糊查询                                                                                                           |     |
+| `-s`, `--status` | inlong group status ，可选值有：`CREATE`，`REJECTED`，`INITIALIZING`，`OPERATING`，<br/> `STARTED`，`FAILED`，`STOPPED`，`FINISHED`，`DELETED` |     |
+| `-n`, `--num`    | 最多显示条数                                                                                                                           | 10  |
+
+<details>
+<summary>group status 说明</summary>
+
+| group status   | 描述           |
+|----------------|--------------|
+| `CREATE`       | 待提交、待审批状态    |
+| `REJECTED`     | 审批被驳回        |
+| `INITIALIZING` | 配置中          |
+| `OPERATING`    | 删除中、停止中以及重启中 |
+| `STARTED`      | 配置成功以及重启成功   |
+| `FAILED`       | 配置失败         |
+| `STOPPED`      | 暂停           |
+| `FINISHED`     | 停止           |
+| `DELETED`      | 已删除          |
+
+</details>
+
+### `stream`
+
+```
+$ bin/inlongctl describe stream
+```
+
+选项：
+
+| 参数                | 描述                                               | 默认值 |
+|-------------------|--------------------------------------------------|-----|
+| `-g`, `--group` * | inlong group id，该 inlong stream 所在的 inlong group |     |
+
+### `source`
+
+```
+$ bin/inlongctl describe source
+```
+
+选项：
+
+| 参数                 | 描述                                                                                                                                                                  | 默认值 |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
+| `-g`, `--group` *  | inlong group id                                                                                                                                                     |     |
+| `-s`, `--stream` * | inlong stream id                                                                                                                                                    |     |
+| `-t`, `--type`     | stream source type，可选值有：`AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |     |
+
+<details>
+<summary>stream source type 说明</summary>
+
+| stream source type | 描述         |
+|--------------------|------------|
+| `AUTO_PUSH`        | 自主推送       |
+| `TUBEMQ`           | TubeMQ     |
+| `PULSAR`           | Pulsar     |
+| `KAFKA`            | Kafka      |
+| `FILE`             | 文件         |
+| `MYSQL_SQL`        | SQL        |
+| `MYSQL_BINLOG`     | Binlog     |
+| `POSTGRESQL`       | PostgreSQL |
+| `ORACLE`           | Oracle     |
+| `SQLSERVER`        | SQL server |
+| `MONGODB`          | MongoDB    |
+| `REDIS`            | Redis      |
+
+</details>
+
+### `sink`
+
+```
+$ bin/inlongctl describe sink
+```
+
+选项：
+
+| 参数                 | 描述                                               | 默认值 |
+|--------------------|--------------------------------------------------|-----|
+| `-g`, `--group` *  | inlong group id                                  |     |
+| `-s`, `--stream` * | inlong stream id，该 stream sink 所在的 inlong stream |     |
+
+### `cluster-tag`
+
+```
+$ bin/inlongctl describe cluster-tag
+```
+
+选项：
+
+| 参数              | 描述             | 默认值 |
+|-----------------|----------------|-----|
+| `-id`, `--id` * | cluster tag id |     |
+
+### `cluster`
+
+```
+$ bin/inlongctl describe cluster
+```
+
+选项：
+
+| 参数              | 描述         | 默认值 |
+|-----------------|------------|-----|
+| `-id`, `--id` * | cluster id |     |
+
+### `cluster-node`
+
+```
+$ bin/inlongctl describe cluster-node
+```
+
+选项：
+
+| 参数              | 描述              | 默认值 |
+|-----------------|-----------------|-----|
+| `-id`, `--id` * | cluster node id |     |
+
+### `user`
+
+```
+$ bin/inlongctl describe user
+```
+
+选项：
+
+| 参数              | 描述      | 默认值 |
+|-----------------|---------|-----|
+| `-id`, `--id` * | user id |     |
+
+[//]: # (待补充)
 
 ## Create
 
+`create` 用于创建相关资源，目前通过使用 json 文件的方式创建
+
+命令：
+
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+### `cluster`
+
 ```
-Usage: managerctl create [command] [command options]
-  Commands:
-    group      Create group by json file
-      Usage: group [options]
-        Options:
-        * -f, --file
-            json file
+$ bin/inlongctl create cluster
 ```
 
-`create` 不需要申请审核等步骤，只需将所配置信息准备在Json文件中即可。
+选项：
 
-### Json文件
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
 
-Json 文件主要有五个部分： `groupConf` 、`streamConf` 、`streamSource` 、`streamSink` 以及 `streamFieldList`
+json 示例：
 
 ```json
 {
-  "groupConf": {
-    "groupName": "test_group",
-    "description": "",
-    "proxyClusterId": "1",
-    "mqBaseConf": {
-      "type": "PULSAR",
-      "pulsarServiceUrl": "pulsar://127.0.0.1:6650",
-      "pulsarAdminUrl": "http://127.0.0.1:8080",
-      "tenant": "tenant",
-      "namespace": "namespace",
-      "enableCreateResource": false
-    },
-    "sortBaseConf": {
-      "type": "FLINK",
-      "serviceUrl": "127.0.0.1:8081"
-    },
-    "zookeeperEnabled": false,
-    "dailyRecords": 10000000,
-    "peakRecords": 100000,
-    "maxLength": 10000
-  },
-  "streamConf": {
-    "name": "test_stream",
-    "description": "",
-    "dataSeparator": "|",
-    "strictlyOrdered": true,
-    "topic": "topic"
-  },
-  "streamSource": {
-    "sourceType": "KAFKA",
-    "bootstrapServers": "127.0.0.1:9092",
-    "topic": "kafka_topic",
-    "sourceName": "kafka_sourceName",
-    "dataFormat": "json",
-    "autoOffsetReset": "EARLIEST"
-  },
-  "streamSink": {
-    "sinkType": "HIVE",
-    "dbName": "test_db",
-    "jdbcUrl": "jdbc:hive2://127.0.0.1:10000",
-    "authentication": {
-      "userName": "hive",
-      "password": "hive"
-    },
-    "fileFormat": "TextFile",
-    "dataSeparator": "|",
-    "dataPath": "hdfs://127.0.0.1:9000/user/hive/warehouse/test_db",
-    "sinkFields": [
-      {
-        "id": 0,
-        "fieldType": "STRING",
-        "fieldName": "name",
-        "sourceFieldType": "STRING",
-        "sourceFieldName": "name"
-      }
-    ],
-    "tableName": "test_table",
-    "sinkName": "test",
-    "dataFormat": "json"
-  },
-  "streamFieldList": [
-    {
-      "id": 0,
-      "fieldType": "STRING",
-      "fieldName": "name",
-      "fieldComment": null,
-      "fieldValue": null
-    }
-  ]
+  "name": "test_cluster",
+  "url": "127.0.0.1:8080",
+  "clusterTags": "test_cluster_tag",
+  "extTag": null,
+  "description": null,
+  "inCharges": "admin",
+  "type": "PULSAR",
+  "adminUrl": "http://127.0.0.1:8080",
+  "tenant": "public"
 }
 ```
 
-#### streamSource
-- Kafka
-> ```
-> "streamSource": {
->   "sourceType": "KAFKA",
->   "sourceName": "sourceName",
->   "bootstrapServers": "127.0.0.1:9092",
->   "topic": "kafka_topic",
->   "dataFormat": "json",
->   "autoOffsetReset": "EARLIEST"
->  },
-> ```
-
-- MySQL Binlog
-> ```
-> "mqBaseConf": {
->   "type": "BINLOG",
->   "sourceName": "sourceName",
->   "hostname": "127.0.0.1",
->   "port" : "3306",
->   "authentication": {
->     "userName": "root",
->     "password": "root"
->   },
->   "includeSchema": false,
->   "serverTimezone": "UTC",
->   "monitoredDdl": false,
->   "allMigration": false,
->   "dbNames": ["db1", "test_db*"],
->   "tableNames": ["tb1", "user"*],
-> }
-> ```
-
-- File
-> ```
-> "mqBaseConf": {
->   "type": "FILE",
->   "sourceName": "sourceName",
->   "ip": "127.0.0.1",
->   "pattern" : "/a/b/*.txt",
->   "timeOffset": "-1d"
-> }
-> ```
-
-#### streamSink
-- Hive
-> ```
-> "streamSink": {
->   "sinkType": "HIVE",
->   "dbName": "test_db",
->   "jdbcUrl": "jdbc:hive2://127.0.0.1:10000",
->   "authentication": {
->     "userName": "hive",
->     "password": "hive"
->   },
-> ```
-
-- Kafka
-> ```
-> "mqBaseConf": {
->   "type": "KAFKA",
->   "bootstrapServers": "127.0.0.1:9092",
->   "topicName": "test_topic",
->   "dataFormat": "JSON",
->   "boolean": false,
-> }
-> ```
-
-- ClickHouse
-> ```
-> "mqBaseConf": {
->   "type": "CLICKHOUSE",
->   "sinkName": "sinkName",
->   "dbName": "db_test",
->   "tableName": "table_test",
->   "jdbcUrl": "jdbc:clickhouse://127.0.0.1:8123/db",
->   "authentication": {
->     "userName": "default",
->     "password": "default"
->   },
->   "isDistributed": 1,
->   "flushInterval": 1,
->   "flushRecord": 10,
->   "keyFieldNames": "keyField",
->   "partitionFields": "partition",
->   "partitionStrategy": "BALANCE",
->   "retryTimes": 3,
->   "needCreated": false
-> }
-> ```
->
->
-## Delete
+### `cluster-tag`
 
 ```
-Usage: managerctl delete [command] 
-  Commands:
-    group      The id of the inlong group that is to be deleted
-      Usage: group
+$ bin/inlongctl create cluster-tag
 ```
 
-`delete` 删除对应任务id的任务实例
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+json 示例：
+
+```json
+{
+  "clusterTag": "test_cluster_tag",
+  "inCharges": "ctl",
+  "extParams": null,
+  "description": null
+}
+```
+
+### `cluster-node`
+
+```
+$ bin/inlongctl create cluster-node
+```
+
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+json 示例：
+
+```json
+{
+  "parentId": 1,
+  "type": "AGENT",
+  "ip": "127.0.0.1",
+  "port": 8008,
+  "extParams": null,
+  "description": "null"
+}
+```
+
+> parentId 为该节点对应 cluster 的 id，可通过 `list cluster` 或 `describe cluster` 查看
+
+### `user`
+
+```
+$ bin/inlongctl create user
+```
+
+选项：
+
+| 参数                 | 描述   | 默认值 |
+|--------------------|------|-----|
+| `-u`, `--username` | 用户名称 |     |
+| `-p`, `--password` | 用户密码 |     |
+| `-t`, `--type`     | 用户类型 |     |
+| `-d`, `--day`      | 有效期  |     |
+
+[//]: # (待补充)
 
 ## Update
 
+`update` 用于修改相关资源，目前通过使用 json 文件的方式修改
+
+命令：
+
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+> `update` 所需的 json 文件可以在 `describe` 得到的 json 上进行需要的修改即可。
+
+### `cluster`
+
 ```
-Usage: managerctl update [command] [command options]
-  Commands:
-    group      The id of the inlong group that is to be updated
-  Usage: group [options]
-  Options:
-    *-c --config
-    the config file as json
+$ bin/inlongctl update cluster
 ```
 
-`update` 命令指定一个任务实例，并使用--config中指定的sortconf json文件对其进行更新
-- Sortconf json 示例
-> ```
-> "FlinkSortConf": {
->   "sortType": "flink",
->   "authentication": "NONE",
->   "serviceUrl": "127.0.0.1:8123",
->   "region": "beijing",
->   "properties": {}
-> }
-> ```
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+### `cluster-tag`
+
+```
+$ bin/inlongctl update cluster-tag
+```
+
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+### `cluster-node`
+
+```
+$ bin/inlongctl update cluster-node
+```
+
+选项：
+
+| 参数             | 描述        | 默认值 |
+|----------------|-----------|-----|
+| `-f`, `--file` | json 文件名称 |     |
+
+### `user`
+
+```
+$ bin/inlongctl update user
+```
+
+选项：
+
+| 参数                 | 描述   | 默认值 |
+|--------------------|------|-----|
+| `-u`, `--username` | 用户名称 |     |
+| `-p`, `--password` | 新密码  |     |
+| `-d`, `--day`      | 新有效期 |     |
+
+## Delete
+
+`delete` 用于删除相关资源。
+
+命令：
+
+- `group`
+- `stream`
+- `source`
+- `sink`
+- `cluster`
+- `cluster-tag`
+- `cluster-node`
+- `user`
+
+### `group`
+
+```
+$ bin/inlongctl delete group
+```
+
+选项：
+
+| 参数               | 描述                                                                                                                               | 默认值 |
+|------------------|----------------------------------------------------------------------------------------------------------------------------------|-----|
+| `-g`, `--group`  | inlong group id，支持模糊查询                                                                                                           |     |
+| `-s`, `--status` | inlong group status ，可选值有：`CREATE`，`REJECTED`，`INITIALIZING`，`OPERATING`，<br/> `STARTED`，`FAILED`，`STOPPED`，`FINISHED`，`DELETED` |     |
+| `-n`, `--num`    | 最多显示条数                                                                                                                           | 10  |
+
+<details>
+<summary>group status 说明</summary>
+
+| group status   | 描述           |
+|----------------|--------------|
+| `CREATE`       | 待提交、待审批状态    |
+| `REJECTED`     | 审批被驳回        |
+| `INITIALIZING` | 配置中          |
+| `OPERATING`    | 删除中、停止中以及重启中 |
+| `STARTED`      | 配置成功以及重启成功   |
+| `FAILED`       | 配置失败         |
+| `STOPPED`      | 暂停           |
+| `FINISHED`     | 停止           |
+| `DELETED`      | 已删除          |
+
+</details>
+
+### `stream`
+
+```
+$ bin/inlongctl delete stream
+```
+
+选项：
+
+| 参数                | 描述                                               | 默认值 |
+|-------------------|--------------------------------------------------|-----|
+| `-g`, `--group` * | inlong group id，该 inlong stream 所在的 inlong group |     |
+
+### `source`
+
+```
+$ bin/inlongctl delete source
+```
+
+选项：
+
+| 参数                 | 描述                                                                                                                                                                  | 默认值 |
+|--------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----|
+| `-g`, `--group` *  | inlong group id                                                                                                                                                     |     |
+| `-s`, `--stream` * | inlong stream id                                                                                                                                                    |     |
+| `-t`, `--type`     | stream source type，可选值有：`AUTO_PUSH`, `TUBEMQ`, `PULSAR`, `KAFKA`, `FILE`, `MYSQL_SQL`,<br/> `MYSQL_BINLOG`, `POSTGRESQL`, `ORACLE`, `SQLSERVER`, `MONGODB`, `REDIS` |     |
+
+<details>
+<summary>stream source type 说明</summary>
+
+| stream source type | 描述         |
+|--------------------|------------|
+| `AUTO_PUSH`        | 自主推送       |
+| `TUBEMQ`           | TubeMQ     |
+| `PULSAR`           | Pulsar     |
+| `KAFKA`            | Kafka      |
+| `FILE`             | 文件         |
+| `MYSQL_SQL`        | SQL        |
+| `MYSQL_BINLOG`     | Binlog     |
+| `POSTGRESQL`       | PostgreSQL |
+| `ORACLE`           | Oracle     |
+| `SQLSERVER`        | SQL server |
+| `MONGODB`          | MongoDB    |
+| `REDIS`            | Redis      |
+
+</details>
+
+### `sink`
+
+```
+$ bin/inlongctl delete sink
+```
+
+选项：
+
+| 参数                 | 描述                                               | 默认值 |
+|--------------------|--------------------------------------------------|-----|
+| `-g`, `--group` *  | inlong group id                                  |     |
+| `-s`, `--stream` * | inlong stream id，该 stream sink 所在的 inlong stream |     |
+
+### `cluster-tag`
+
+```
+$ bin/inlongctl delete cluster-tag
+```
+
+选项：
+
+| 参数              | 描述             | 默认值 |
+|-----------------|----------------|-----|
+| `-id`, `--id` * | cluster tag id |     |
+
+### `cluster`
+
+```
+$ bin/inlongctl delete cluster
+```
+
+选项：
+
+| 参数              | 描述         | 默认值 |
+|-----------------|------------|-----|
+| `-id`, `--id` * | cluster id |     |
+
+### `cluster-node`
+
+```
+$ bin/inlongctl delete cluster-node
+```
+
+选项：
+
+| 参数              | 描述              | 默认值 |
+|-----------------|-----------------|-----|
+| `-id`, `--id` * | cluster node id |     |
+
+### `user`
+
+```
+$ bin/inlongctl delete user
+```
+
+选项：
+
+| 参数              | 描述      | 默认值 |
+|-----------------|---------|-----|
+| `-id`, `--id` * | user id |     |
+
+[//]: # (TODO:修改使用方法)
 
 ## Log
 
+创建任务流程之后，可以使用 `log` 命令查看任务各阶段的执行日志
+
+命令：
+
+- `group`
+
+### `group`
+
 ```
-Usage: managerctl log [command] [command options]
-    Commands:
-    group      Get group details
-    Usage: group [options]
-    Options:
-    *-q --query [parameter:value]
-    select the list of groups accourding to one selected query.
-    Supported filters: 
-        inlongGroupId
-        name (Inlong group name)   
-        mqType     
-        mqResource
-        inlongClusterTag   
-        inCharges
-        status
-        creator
-        modifier
-        createTime
-        modifyTime
+$ bin/inlongctl log group
 ```
 
-`log` 命令行使用时需选择过滤参数，当存在的任务数不多时，该命令将打印出所有满足参数的任务实例
+选项：
+
+| 参数               | 描述                      | 默认值 |
+|------------------|-------------------------|-----|
+| `-g`, `--group`  | inlong group id，不支持模糊查询 |     |
+
