@@ -291,7 +291,7 @@ TODO: 将在未来支持此功能。
           <td>Boolean</td>
           <td>是否是全库迁移场景，如果为 'true'，MySQL Extract Node 则将表的物理字段和其他元字段压缩成 'json' 
               格式的特殊 'data' 元字段, 目前支持两种 data 格式, 如果需要 'canal json' 格式的数据，
-              则使用 'data_canal' 元数据字段，如果需要使用 'debezium json' 格式的数据则使用 'data_debezium' 元数据字段</td>
+              则使用 'data_canal' 元数据字段，如果需要使用 'debezium json' 格式的数据则使用 'data_debezium' 元数据字段。</td>
     </tr>
     <tr>
           <td>row-kinds-filtered</td>
@@ -299,8 +299,8 @@ TODO: 将在未来支持此功能。
           <td style={{wordWrap: 'break-word'}}>false</td>
           <td>Boolean</td>
           <td>需要保留的特定的操作类型，其中 +U 对应更新前的数据，-U 对应更新后的数据，+I 对应
-              插入的数据（存量数据为插入类型的数据），-D 代表删除的数据， 如需保留多个操作类型则使用 & 连接
-              举例 +I&-D，connector 只会输出插入以及删除的数据，更新的数据则不会输出 </td>
+              插入的数据（存量数据为插入类型的数据），-D 代表删除的数据， 如需保留多个操作类型则使用 & 连接。
+              举例 +I&-D，connector 只会输出插入以及删除的数据，更新的数据则不会输出。</td>
     </tr>
     <tr>
       <td>debezium.*</td>

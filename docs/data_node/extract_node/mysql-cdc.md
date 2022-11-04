@@ -302,9 +302,9 @@ TODO: It will be supported in the future.
           <td>optional</td>
           <td style={{wordWrap: 'break-word'}}>false</td>
           <td>Boolean</td>
-          <td>The specific operation type that needs to be retained, where +U corresponds to the data before the update, -U corresponds to the updated data, and +I corresponds to the data before the update
-              Inserted data (the existing data is the data of the insert type), -D represents the deleted data, if you want to keep multiple operation types, use & connection
-              For example +I&-D, the connector will only output the inserted and deleted data, and the updated data will not be output </td>
+          <td>The specific operation type that needs to be retained, where +U corresponds to the data before the update, -U corresponds to the updated data, and +I corresponds to the data before the update.
+              Inserted data (the existing data is the data of the insert type), -D represents the deleted data, if you want to keep multiple operation types, use & connection.
+              For example +I&-D, the connector will only output the inserted and deleted data, and the updated data will not be output. </td>
     </tr>
     <tr>
       <td>debezium.*</td>
