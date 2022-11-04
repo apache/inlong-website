@@ -295,7 +295,7 @@ TODO: It will be supported in the future.
           <td>Boolean</td>
           <td>Whether it is a full database migration scenario, if it is 'true', MySQL Extract Node will compress the physical fields and other meta fields of the table into 'json'.
               The special 'data' meta field of the format, currently supports two data formats, if you need data in 'canal json' format,
-              then use the 'data_canal' metadata field, or use the 'data_debezium' metadata field if data in 'debezium json' format is required</td>
+              then use the 'data_canal' metadata field, or use the 'data_debezium' metadata field if data in 'debezium json' format is required.</td>
     </tr>
     <tr>
           <td>row-kinds-filtered</td>
