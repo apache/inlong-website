@@ -107,7 +107,7 @@ TODO
 | key.fields-prefix             | optional | (none)        | String | Define a custom prefix for all fields in the key format to avoid name conflicts with fields in the value format. By default, the prefix is empty. If a custom prefix is defined, the Table schema and `key.fields` are used. |
 | format or value.format        | required | (none)        | String | Set the name with a prefix. When constructing data types in the key format, the prefix is removed and non-prefixed names are used within the key format. Pulsar message value serialization format, support JSON, Avro, etc. For more information, see the Flink format. |
 | value.fields-include          | optional | ALL           | Enum   | The Pulsar message value contains the field policy, optionally ALL, and EXCEPT_KEY. |
-| inlong.metric | optional | (none) | String | Inlong metric label, format of value is groupId&streamId&nodeId. |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode. |
 
 ## Available Metadata
 

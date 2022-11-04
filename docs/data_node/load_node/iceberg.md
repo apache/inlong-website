@@ -162,7 +162,7 @@ TODO
 | clients          | optional for hive catalog                   | 2       | Integer | The Hive metastore client pool size, default value is 2.     |
 | warehouse        | optional for hadoop catalog or hive catalog | (none)  | String  | For Hive catalog，is the Hive warehouse location, users should specify this path if neither set the `hive-conf-dir` to specify a location containing a `hive-site.xml` configuration file nor add a correct `hive-site.xml` to classpath. For hadoop catalog，The HDFS directory to store metadata files and data files. |
 | hive-conf-dir    | optional for hive catalog                   | (none)  | String  | Path to a directory containing a `hive-site.xml` configuration file which will be used to provide custom Hive configuration values. The value of `hive.metastore.warehouse.dir` from `<hive-conf-dir>/hive-site.xml` (or hive configure file from classpath) will be overwrote with the `warehouse` value if setting both `hive-conf-dir` and `warehouse` when creating iceberg catalog. |
-| inlong.metric | optional | (none) | String | Inlong metric label, format of value is groupId&streamId&nodeId. |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode. |
 
 ## Data Type Mapping
 

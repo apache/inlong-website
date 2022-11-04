@@ -5,7 +5,7 @@ sidebar_position: 4
 
 ## Overview
 
-We add metric computing for node. Sort will compute metric when user just need add with option `inlong.metric` that includes `groupId&streamId&nodeId`.
+We add metric computing for node. Sort will compute metric when user just need add with option `inlong.metric.labels` that includes `groupId=xxgroup&streamId=xxstream&nodeId=xxnode`.
 Sort will export metric by flink metric group, So user can use [metric reporter](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/deployment/metric_reporters/) to get metric data.
 
 ## Metric
@@ -49,7 +49,7 @@ One example about sync mysql data to postgresql data. And We will introduce usag
         'scan.incremental.snapshot.enabled' = 'true',
         'server-time-zone' = 'GMT+8',
         'table-name' = 'user',
-        'inlong.metric' = 'mysqlGroup&mysqlStream&mysqlNode1'
+        'inlong.metric.labels' = 'groupId=xxgroup&streamId=xxstream&nodeId=xxnode'
 );
 
  CREATE TABLE `table_groupId_streamId_nodeId2`(
@@ -63,7 +63,7 @@ One example about sync mysql data to postgresql data. And We will introduce usag
          'username' = 'postgres',
          'password' = 'inlong',
          'table-name' = 'public.user',
-         'inlong.metric' = 'pggroup&pgStream&pgNode'
+         'inlong.metric.labels' = 'groupId=pggroup&streamId=pgStream&nodeId=pgNode'
          );
 
  INSERT INTO `table_groupId_streamId_nodeId2`
