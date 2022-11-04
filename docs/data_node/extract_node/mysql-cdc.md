@@ -293,7 +293,18 @@ TODO: It will be supported in the future.
           <td>optional</td>
           <td style={{wordWrap: 'break-word'}}>false</td>
           <td>Boolean</td>
-          <td>Whether it is a whole library migration, Whether it is a whole database migration scenario, if true, it compresses physical fields and other meta fields supported by MySQL Extract Node into a special meta field `data` in canal-json format.</td>
+          <td>Whether it is a full database migration scenario, if it is 'true', MySQL Extract Node will compress the physical fields and other meta fields of the table into 'json'
+              The special 'data' meta field of the format, currently supports two data formats, if you need data in 'canal json' format,
+              then use the 'data_canal' metadata field, or use the 'data_debezium' metadata field if data in 'debezium json' format is required</td>
+    </tr>
+    <tr>
+          <td>row-kinds-filtered</td>
+          <td>optional</td>
+          <td style={{wordWrap: 'break-word'}}>false</td>
+          <td>Boolean</td>
+          <td>The specific operation type that needs to be retained, where +U corresponds to the data before the update, -U corresponds to the updated data, and +I corresponds to the data before the update
+              Inserted data (the existing data is the data of the insert type), -D represents the deleted data, if you want to keep multiple operation types, use & connection
+              For example +I&-D, the connector will only output the inserted and deleted data, and the updated data will not be output </td>
     </tr>
     <tr>
       <td>debezium.*</td>
@@ -349,9 +360,14 @@ The following format metadata can be exposed as read-only (VIRTUAL) columns in a
       <td>Type of database operation, such as INSERT/DELETE, etc.</td>
     </tr>
     <tr>
-      <td>meta.data</td>
-      <td>STRING</td>
-      <td>Data of the row that format by `canal-json` only exists when the option `migrate-all` is 'true'.</td>
+      <td>meta.data_canal</td>
+      <td>STRING/BYTES</td>
+      <td>Data for rows in `canal-json` format only exists when the `migrate-all` option is 'true'.</td>
+    </tr>
+    <tr>
+      <td>meta.data_debezium</td>
+      <td>STRING/BYTES</td>
+      <td>Data for `debezium-json` formatted lines only exists if the `migrate-all` option is 'true'.</td>
     </tr>
     <tr>
       <td>meta.is_ddl</td>
@@ -394,30 +410,31 @@ The following format metadata can be exposed as read-only (VIRTUAL) columns in a
 The extended CREATE TABLE example demonstrates the syntax for exposing these metadata fields:
 ```sql
 CREATE TABLE `mysql_extract_node` (
-      `id` INT,
-      `name` STRING,
-      `database_name` string METADATA FROM 'meta.database_name',
-      `table_name`    string METADATA FROM 'meta.table_name',
-      `op_ts`         timestamp(3) METADATA FROM 'meta.op_ts',
-      `op_type` string METADATA FROM 'meta.op_type',
-      `batch_id` bigint METADATA FROM 'meta.batch_id',
-      `is_ddl` boolean METADATA FROM 'meta.is_ddl',
-      `update_before` ARRAY<MAP<STRING, STRING>> METADATA FROM 'meta.update_before',
-      `mysql_type` MAP<STRING, STRING> METADATA FROM 'meta.mysql_type',
-      `pk_names` ARRAY<STRING> METADATA FROM 'meta.pk_names',
-      `data` STRING METADATA FROM 'meta.data',
-      `sql_type` MAP<STRING, INT> METADATA FROM 'meta.sql_type',
-      `ingestion_ts` TIMESTAMP(3) METADATA FROM 'meta.ts',
-      PRIMARY KEY (`id`) NOT ENFORCED 
+     `id` INT,
+     `name` STRING,
+     `database_name` string METADATA FROM 'meta.database_name',
+     `table_name`    string METADATA FROM 'meta.table_name',
+     `op_ts`         timestamp(3) METADATA FROM 'meta.op_ts',
+     `op_type` string METADATA FROM 'meta.op_type',
+     `batch_id` bigint METADATA FROM 'meta.batch_id',
+     `is_ddl` boolean METADATA FROM 'meta.is_ddl',
+     `update_before` ARRAY<MAP<STRING, STRING>> METADATA FROM 'meta.update_before',
+     `mysql_type` MAP<STRING, STRING> METADATA FROM 'meta.mysql_type',
+     `pk_names` ARRAY<STRING> METADATA FROM 'meta.pk_names',
+     `data` STRING METADATA FROM 'meta.data_canal',
+     `sql_type` MAP<STRING, INT> METADATA FROM 'meta.sql_type',
+     `ingestion_ts` TIMESTAMP(3) METADATA FROM 'meta.ts',
+     PRIMARY KEY (`id`) NOT ENFORCED
 ) WITH (
-      'connector' = 'mysql-cdc-inlong', 
+      'connector' = 'mysql-cdc-inlong',
       'hostname' = 'YourHostname',
       'migrate-all' = 'true',
-      'port' = '3306',                
+      'port' = '3306',
       'username' = 'YourUsername',
       'password' = 'YourPassword',
       'database-name' = 'YourDatabase',
-      'table-name' = 'YourTable' 
+      'table-name' = 'YourTable',
+      'row-kinds-filtered' = '+I'
       );
 ```
 
