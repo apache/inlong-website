@@ -328,6 +328,13 @@ TODO: It will be supported in the future.
       <td>String</td>
       <td>Inlong metric label, format of value is groupId&streamId&nodeId.</td> 
     </tr>
+    <tr>
+       <td>source.multiple.enable</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>false</td>
+       <td>Boolean</td>
+       <td>Whether to enable multiple schema and table migration. If it is' true ', Oracle Extract Node will compress the physical field of the table into a special meta field' data 'in the format of 'canal json'.</td> 
+     </tr>
     </tbody>
 </table>    
 </div>
@@ -378,6 +385,61 @@ The following format metadata can be exposed as read-only (VIRTUAL) columns in a
       <td>TIMESTAMP_LTZ(3) NOT NULL</td>
       <td>It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the change stream, the value is always 0.</td>
     </tr>
+    <tr>
+      <td>meta.table_name</td>
+      <td>STRING NOT NULL</td>
+      <td>Name of the table that contain the row.</td>
+    </tr>
+    <tr>
+      <td>meta.schema_name</td>
+      <td>STRING NOT NULL</td>
+      <td>Name of the schema that contain the row.</td>
+    </tr>
+    <tr>
+      <td>meta.database_name</td>
+      <td>STRING NOT NULL</td>
+      <td>Name of the database that contain the row.</td>
+    </tr>
+    <tr>
+      <td>meta.op_ts</td>
+      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
+      <td>It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the change stream, the value is always 0.</td>
+    </tr>
+    <tr>
+      <td>meta.op_type</td>
+      <td>STRING</td>
+      <td>Type of database operation, such as INSERT/DELETE, etc.</td>
+    </tr>
+    <tr>
+      <td>meta.data_canal</td>
+      <td>STRING/BYTES</td>
+      <td>Data for rows in `canal-json` format only exists when the `source.multiple.enable` option is 'true'.</td>
+    </tr>
+    <tr>
+      <td>meta.is_ddl</td>
+      <td>BOOLEAN</td>
+      <td>Whether the DDL statement.</td>
+    </tr>
+    <tr>
+      <td>meta.ts</td>
+      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
+      <td>The current time when the row was received and processed.</td>
+    </tr>
+    <tr>
+      <td>meta.sql_type</td>
+      <td>MAP</td>
+      <td>Mapping of sql_type table fields to java data type IDs.</td>
+    </tr>
+    <tr>
+      <td>meta.oracle_type</td>
+      <td>MAP</td>
+      <td>Structure of the table.</td>
+    </tr>
+    <tr>
+      <td>meta.pk_names</td>
+      <td>ARRAY</td>
+      <td>Primay key name of the table.</td>
+    </tr>
   </tbody>
 </table>
 
@@ -387,7 +449,18 @@ CREATE TABLE products (
     db_name STRING METADATA FROM 'database_name' VIRTUAL,
     schema_name STRING METADATA FROM 'schema_name' VIRTUAL, 
     table_name STRING METADATA  FROM 'table_name' VIRTUAL,
-    operation_ts TIMESTAMP_LTZ(3) METADATA FROM 'op_ts' VIRTUAL,
+    op_ts TIMESTAMP_LTZ(3) METADATA FROM 'op_ts' VIRTUAL,
+    meta_db_name STRING METADATA FROM 'meta.database_name' VIRTUAL,
+    meta_schema_name STRING METADATA FROM 'meta.schema_name' VIRTUAL, 
+    meta_table_name STRING METADATA  FROM 'meta.table_name' VIRTUAL,
+    meat_op_ts TIMESTAMP_LTZ(3) METADATA FROM 'meta.op_ts' VIRTUAL,
+    meta_op_type STRING METADATA  FROM 'meta.op_type' VIRTUAL,
+    meta_data_canal STRING METADATA  FROM 'meta.data_canal' VIRTUAL,
+    meta_is_ddl BOOLEAN METADATA FROM 'meta.is_ddl' VIRTUAL,
+    meta_ts TIMESTAMP_LTZ(3) METADATA FROM 'meta.ts' VIRTUAL,
+    meta_sql_type MAP<STRING, INT> METADATA FROM 'meta.sql_type' VIRTUAL,
+    meat_oracle_type MAP<STRING, STRING> METADATA FROM 'meta.oracle_type' VIRTUAL,
+    meta_pk_names ARRAY<STRING> METADATA FROM 'meta.pk_names' VIRTUAL
     ID INT NOT NULL,
     NAME STRING,
     DESCRIPTION STRING,
@@ -401,7 +474,7 @@ CREATE TABLE products (
     'password' = 'flinkpw',
     'database-name' = 'XE',
     'schema-name' = 'inventory',
-    'table-name' = 'products'
+    'table-name' = 'inventory.products'
 );
 ```
 
