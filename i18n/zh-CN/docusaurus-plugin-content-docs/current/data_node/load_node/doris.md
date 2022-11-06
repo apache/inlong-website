@@ -7,7 +7,9 @@ import {siteVariables} from '../../version';
 
 ## 概览
 
-`Doris Load` 节点支持将数据写入 Doris 数据库。 本文档介绍如何设置 Doris Load 节点以对 Doris 数据库运行 SQL 查询。
+`Doris Load` 节点支持将数据写入 Doris 数据库。 
+支持单表写入和多表写入两种模式：单表写入为指定固定库名表名写入；多表写入支持根据源端数据格式自定义库名表名写入，适用于源端多表写入或者整库同步等场景。
+本文档介绍如何设置 Doris Load 节点实现写入 Doris 数据库表。
 
 ## 支持的版本
 
@@ -32,10 +34,10 @@ import {siteVariables} from '../../version';
 
 ## 准备
 ### 创建 MySql Extract 表
-在 MySql 数据库中创建表 `cdc_mysql_source`, 命令如下:
+##### 1.在 MySql `cdc` 数据库中创建表 `cdc_mysql_source`，用于单表读取。 命令如下:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
-mysql> use test;
+mysql> use cdc;
 Database changed
 mysql> CREATE TABLE `cdc_mysql_source` (
        `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -57,18 +59,65 @@ mysql> select * from cdc_mysql_source;
 |  2 | lisi     |  0 |
 |  3 | wangwu   |  0 |
 +----+----------+----+
-3 rows in set (0.07 sec)     
+3 rows in set (0.07 sec)
+```
+##### 2.在 MySql `user_db` 数据库中创建表 `user_id_name`、`user_id_score`,用于多表读取。 命令如下:
+```sql
+[root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
+mysql> use user_db;
+Database changed
+mysql> CREATE TABLE `user_id_name` (
+       `id` int(11) NOT NULL AUTO_INCREMENT,
+       `name` varchar(64) DEFAULT NULL
+       PRIMARY KEY (`id`)
+       );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> CREATE TABLE `user_id_score` (
+       `id` int(11) NOT NULL AUTO_INCREMENT,
+       `score` double default 0,
+       PRIMARY KEY (`id`)
+       );
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into user_id_name values(1001, 'lily'),(1002, 'tom'),(1003, 'alan');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0 
+
+mysql> insert into user_id_score values(1001, 99),(1002, 96),(1003, 98);
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0 
+
+mysql> select * from user_id_name;
++------+--------+
+|  id  | name   |
++------+--------+
+| 1001 | lily   |
+| 1002 | tom    |
+| 1003 | alan   |
++----+----------+
+3 rows in set (0.07 sec)    
+
+mysql> select * from user_id_score;
++------+------+
+|  id  | name |
++------+------+
+| 1001 | 99   |
+| 1002 | 96   |
+| 1003 | 98   |
++----+--------+
+3 rows in set (0.07 sec)  
 ```
 
 ### 创建 Doris Load 表
-在 Doris 数据库中创建表 `cdc_doris_sink`, 命令如下:
+##### 1.在 Doris `cdc`数据库中创建表`cdc_doris_sink`, 用于单表写入。命令如下:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
-mysql> use test;
+mysql> use cdc;
 Reading table information for completion of table and column names
 You can turn off this feature to get a quicker startup with -A
-
 Database changed
+
 mysql> CREATE TABLE `cdc_doris_sink` (
        `id` int(11) NOT NULL COMMENT "用户id",
        `name` varchar(50) NOT NULL COMMENT "昵称",
@@ -82,13 +131,92 @@ mysql> CREATE TABLE `cdc_doris_sink` (
        );
 Query OK, 0 rows affected (0.06 sec)
 ```
+##### 2.在 Doris `user_db`数据库中创建表`doris_user_id_name`、`doris_user_id_score`,用于多表写入。命令如下:
+```sql
+[root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
+mysql> use user_db;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+Database changed
+
+mysql> CREATE TABLE `doris_user_id_name` (
+       `id` int(11) NOT NULL COMMENT "用户id",
+       `name` varchar(50) NOT NULL COMMENT "昵称"
+       ) ENGINE=OLAP
+       UNIQUE KEY(`id`)
+       COMMENT "OLAP"
+       DISTRIBUTED BY HASH(`id`) BUCKETS 1
+       PROPERTIES (
+       "replication_allocation" = "tag.location.default: 1"
+       );
+Query OK, 0 rows affected (0.06 sec)
+
+mysql> CREATE TABLE `doris_user_id_score` (
+       `id` int(11) NOT NULL COMMENT "用户id",
+       `score` double default 0
+       ) ENGINE=OLAP
+       UNIQUE KEY(`id`)
+       COMMENT "OLAP"
+       DISTRIBUTED BY HASH(`id`) BUCKETS 1
+       PROPERTIES (
+       "replication_allocation" = "tag.location.default: 1"
+       );
+Query OK, 0 rows affected (0.06 sec)
+```
 
 ## 如何创建 Doris Load 节点
 
 ### SQL API 用法
-
+##### 1.doris单表写入
 ```sql
 [root@tasknode001 flink-1.13.5]# ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
+Flink SQL> SET 'execution.checkpointing.interval' = '3s';
+[INFO] Session property has been set.
+
+Flink SQL> SET 'table.dynamic-table-options.enabled' = 'true';
+[INFO] Session property has been set.
+
+Flink SQL> CREATE TABLE cdc_mysql_source (
+    >   id int
+    >   ,name VARCHAR
+    >   ,dr TINYINT
+    >   ,PRIMARY KEY (id) NOT ENFORCED
+    > ) WITH (
+    >  'connector' = 'mysql-cdc-inlong',
+    >  'hostname' = 'localhost',
+    >  'port' = '3306',
+    >  'username' = 'root',
+    >  'password' = '123456',
+    >  'database-name' = 'cdc',
+    >  'table-name' = 'cdc_mysql_source'
+    > );
+[INFO] Execute statement succeed.
+
+Flink SQL> CREATE TABLE cdc_doris_sink (
+    > id INT,
+    > name STRING,
+    > dr TINYINT
+    > ) WITH (
+    >  'connector' = 'doris-inlong',
+    >  'fenodes' = 'localhost:8030',
+    >  'table.identifier' = 'cdc.cdc_doris_sink',
+    >  'username' = 'root',
+    >  'password' = '000000',
+    >  'sink.properties.format' = 'json',
+    >  'sink.properties.strip_outer_array' = 'true',
+    > );
+[INFO] Execute statement succeed.
+
+-- 支持删除事件同步(sink.enable-delete='true'), 需要 Doris 表开启批量删除功能
+Flink SQL> insert into cdc_doris_sink select * from cdc_mysql_source /*+ OPTIONS('server-id'='5402') */;
+[INFO] Submitting SQL update statement to the cluster...
+[INFO] SQL update statement has been successfully submitted to the cluster:
+Job ID: 5f89691571d7b3f3ca446589e3d0c3d3
+```
+
+##### 2.doris多表写入
+```sql
+./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
 [INFO] Session property has been set.
 
@@ -116,14 +244,15 @@ Flink SQL> CREATE TABLE cdc_doris_sink (
     > name STRING,
     > dr TINYINT
     > ) WITH (
-    >  'connector' = 'doris',
+    >  'connector' = 'doris-inlong',
     >  'fenodes' = 'localhost:8030',
-    >  'table.identifier' = 'test.cdc_doris_sink',
     >  'username' = 'root',
     >  'password' = '000000',
-    >  'sink.properties.format' = 'json',
-    >  'sink.properties.strip_outer_array' = 'true',
-    >  'sink.enable-delete' = 'true'
+    >  'sink.enable-delete' = 'true',
+    >  'sink.multiple.enable' = 'true',
+    >  'sink.multiple.format' = 'canal-json',
+    >  'sink.multiple.database-pattern' = '${database}',
+    >  'sink.multiple.table-pattern' = 'doris_${table}'
     > );
 [INFO] Execute statement succeed.
 
@@ -131,8 +260,7 @@ Flink SQL> CREATE TABLE cdc_doris_sink (
 Flink SQL> insert into cdc_doris_sink select * from cdc_mysql_source /*+ OPTIONS('server-id'='5402') */;
 [INFO] Submitting SQL update statement to the cluster...
 [INFO] SQL update statement has been successfully submitted to the cluster:
-Job ID: 5f89691571d7b3f3ca446589e3d0c3d3
-
+Job ID: 30feaa0ede92h6b6e25ea0cfda26df5e
 ```
 
 ### InLong Dashboard 用法
@@ -168,6 +296,13 @@ TODO: 将在未来支持此功能。
 | sink.batch.interval               | 可选   | 10s               | string   | Flush 间隔时间，超过该时间后异步线程将缓存中数据写入 BE。 默认值为10秒，支持时间单位 ms、s、min、h和d。设置为0表示关闭定期写入。                                                                                                                                                                                                                            |
 | sink.properties.*                 | 可选   | (none)            | string   | Stream load 的导入参数<br /><br />例如:<br />'sink.properties.column_separator' = ', '<br />定义列分隔符<br /><br />'sink.properties.escape_delimiters' = 'true'<br />特殊字符作为分隔符,'\\x01'会被转换为二进制的0x01<br /><br /> 'sink.properties.format' = 'json'<br />'sink.properties.strip_outer_array' = 'true' <br />JSON格式导入 |
 | sink.enable-delete                | 可选   | true              | boolean  | 是否启用删除。此选项需要 Doris 表开启批量删除功能(0.15+版本默认开启)，只支持 Uniq 模型。                                                                                                                                                                                                                                                 |
+| sink.enable-delete                | 可选   | true              | boolean  | 是否启用删除。此选项需要 Doris 表开启批量删除功能(0.15+版本默认开启)，只支持 Uniq 模型。                                                                                                                                                                                                                                                 |
+| sink.multiple.enable              | 可选   | false             | boolean  | 是否支持Doris多表写入。`sink.multiple.enable`为`true`时，需要`sink.multiple.format`、`sink.multiple.database-pattern`、`sink.multiple.table-pattern` 分别设置正确的值。        |
+| sink.multiple.format              | 可选   | (none)            | string   | 多表写入时，表示源端二进制数据的真实格式，支持 `canal-json` 和 `debezium-json` 两种格式。|
+| sink.multiple.database-pattern    | 可选   | (none)            | string   | 多表写入时，从源端二进制数据中按照`sink.multiple.database-pattern`指定名称提取写入的数据库名称。`sink.multiple.enable`为true时有效。                 | 
+| sink.multiple.table-pattern       | 可选   | (none)            | string   | 多表写入时，从源端二进制数据中按照`sink.multiple.table-pattern`指定名称提取写入的表名。`sink.multiple.enable`为true时有效。                         |
+| sink.multiple.ignore-single-table-errors | 可选 | true         | boolean  | 多表写入时，是否忽略某个表写入失败。为`true`时，如果某个表写入异常，则不写入该表数据，其他表的数据正常写入。为`false`时，如果某个表写入异常，则所有表均停止写入。     |
+
 ## 数据类型映射
 
 | Doris Type  | Flink Type           |
