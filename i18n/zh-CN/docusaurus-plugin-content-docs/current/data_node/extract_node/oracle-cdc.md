@@ -404,6 +404,7 @@ restart-strategy.fixed-delay.attempts: 2147483647
       <td>meta.op_ts</td>
       <td>TIMESTAMP_LTZ(3) NOT NULL</td>
       <td>它指示在数据库中进行更改的时间。<br/>如果记录从表的快照而不是change流中读取，则该值始终为0。</td>
+    </tr>
     <tr>
       <td>meta.op_type</td>
       <td>STRING</td>
