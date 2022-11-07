@@ -333,7 +333,7 @@ TODO: It will be supported in the future.
        <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>false</td>
        <td>Boolean</td>
-       <td>Whether to enable multiple schema and table migration. If it is' true ', Oracle Extract Node will compress the physical field of the table into a special meta field' data 'in the format of 'canal json'.</td> 
+       <td>Whether to enable multiple schema and table migration. If it is' true ', Oracle Extract Node will compress the physical field of the table into a special meta field 'data_canal' in the format of 'canal json'.</td> 
      </tr>
     </tbody>
 </table>    

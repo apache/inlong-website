@@ -334,7 +334,7 @@ Oracle CDC 消费者的可选启动模式，有效枚举为"initial"
        <td>可选</td>
        <td style={{wordWrap: 'break-word'}}>false</td>
        <td>Boolean</td>
-       <td>是否开启多模式、表同步功能，如果为 'true'，Oracle Extract Node 则将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data'。</td> 
+       <td>是否开启多模式、表同步功能，如果为 'true'，Oracle Extract Node 则将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'。</td> 
      </tr>
     </tbody>
 </table>    
