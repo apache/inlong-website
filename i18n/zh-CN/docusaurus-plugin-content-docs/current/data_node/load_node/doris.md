@@ -33,8 +33,8 @@ import {siteVariables} from '../../version';
 </code></pre>
 
 ## 准备
-### 创建 MySql Extract 表
-##### 1.在 MySql `cdc` 数据库中创建表 `cdc_mysql_source`，用于单表读取。 命令如下:
+### 创建 MySQL Extract 表
+- 单表写入：在 MySQL `cdc` 数据库中创建表 `cdc_mysql_source`。 命令如下:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
 mysql> use cdc;
@@ -61,7 +61,7 @@ mysql> select * from cdc_mysql_source;
 +----+----------+----+
 3 rows in set (0.07 sec)
 ```
-##### 2.在 MySql `user_db` 数据库中创建表 `user_id_name`、`user_id_score`,用于多表读取。 命令如下:
+- 多表写入：在 MySQL `user_db` 数据库中创建表 `user_id_name`、`user_id_score`。 命令如下:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
 mysql> use user_db;
@@ -110,7 +110,7 @@ mysql> select * from user_id_score;
 ```
 
 ### 创建 Doris Load 表
-##### 1.在 Doris `cdc`数据库中创建表`cdc_doris_sink`, 用于单表写入。命令如下:
+- 单表写入：在 Doris `cdc`数据库中创建表`cdc_doris_sink`。命令如下:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
 mysql> use cdc;
@@ -131,7 +131,7 @@ mysql> CREATE TABLE `cdc_doris_sink` (
        );
 Query OK, 0 rows affected (0.06 sec)
 ```
-##### 2.在 Doris `user_db`数据库中创建表`doris_user_id_name`、`doris_user_id_score`,用于多表写入。命令如下:
+- 多表写入：在 Doris `user_db`数据库中创建表`doris_user_id_name`、`doris_user_id_score`。命令如下:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
 mysql> use user_db;
@@ -167,7 +167,7 @@ Query OK, 0 rows affected (0.06 sec)
 ## 如何创建 Doris Load 节点
 
 ### SQL API 用法
-##### 1.doris单表写入
+- 单表写入：doris单表写入
 ```sql
 [root@tasknode001 flink-1.13.5]# ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
@@ -214,7 +214,7 @@ Flink SQL> insert into cdc_doris_sink select * from cdc_mysql_source /*+ OPTIONS
 Job ID: 5f89691571d7b3f3ca446589e3d0c3d3
 ```
 
-##### 2.doris多表写入
+- 多表写入：doris多表写入
 ```sql
 ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';

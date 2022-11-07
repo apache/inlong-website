@@ -36,7 +36,7 @@ such as Maven or SBT is provided below.
 
 ## Prepare
 ### Create MySql Extract table
-##### 1.create a table `cdc.cdc_mysql_source` in the MySql database for single-sink extract. the command is as follows:
+- For Single-sink: Create a table `cdc.cdc_mysql_source` in the MySQL database. The command is as follows:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
 mysql> use cdc;
@@ -63,7 +63,7 @@ mysql> select * from cdc_mysql_source;
 +----+----------+----+
 3 rows in set (0.07 sec)
 ```
-##### 2.create tables `user_db.user_id_name`、`user_db.user_id_name` in the MySql database for multi-sink extract. the command is as follows:
+- For Multi-sink: Create tables `user_db.user_id_name`、`user_db.user_id_name` in the MySQL database. The command is as follows:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
 mysql> use user_db;
@@ -112,7 +112,7 @@ mysql> select * from user_id_score;
 ```
 
 ### Create Doris Load table
-##### 1.Create a table `cdc.cdc_doris_sink` in the Doris database for single-sink mode, the command is as follows:
+- For Single-sink: Create a table `cdc.cdc_doris_sink` in the Doris database. The command is as follows:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
 mysql> use cdc;
@@ -133,7 +133,7 @@ mysql> CREATE TABLE `cdc_doris_sink` (
        );
 Query OK, 0 rows affected (0.06 sec)
 ```
-##### 2.Create tables `user_db.doris_user_id_name`、`user_db.doris_user_id_score` in the Doris database for multi-sink mode, the command is as follows:
+- For Multi-sink: Create tables `user_db.doris_user_id_name`、`user_db.doris_user_id_score` in the Doris database. The command is as follows:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
 mysql> use user_db;
@@ -169,7 +169,7 @@ Query OK, 0 rows affected (0.06 sec)
 ## How to create a Doris Load Node
 
 ### Usage for SQL API
-##### 1.doris single-sink load
+- For Single-sink: Doris load
 ```sql
 [root@tasknode001 flink-1.13.5]# ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
@@ -216,7 +216,7 @@ Flink SQL> insert into cdc_doris_sink select * from cdc_mysql_source /*+ OPTIONS
 [INFO] SQL update statement has been successfully submitted to the cluster:
 Job ID: 5f89691571d7b3f3ca446589e3d0c3d3
 ```
-##### 2.doris multi-sink load
+- For Single-sink: Doris load
 ```sql
 ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
@@ -258,7 +258,7 @@ Flink SQL> CREATE TABLE cdc_doris_sink (
     > );
 [INFO] Execute statement succeed.
 
--- 支持删除事件同步(sink.enable-delete='true'), 需要 Doris 表开启批量删除功能
+-- Support delete event synchronization (sink.enable-delete='true'), requires Doris table to enable batch delete function
 Flink SQL> insert into cdc_doris_sink select * from cdc_mysql_source /*+ OPTIONS('server-id'='5402') */;
 [INFO] Submitting SQL update statement to the cluster...
 [INFO] SQL update statement has been successfully submitted to the cluster:
