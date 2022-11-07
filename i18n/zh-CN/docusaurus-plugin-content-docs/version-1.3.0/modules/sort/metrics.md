@@ -5,7 +5,7 @@ sidebar_position: 4
 
 ## 概览
 
-我们为节点增加了指标计算。 用户添加 with 选项 `inlong.metric` 后 Sort 会计算指标，`inlong.metric` 选项的值由三部分构成：`groupId&streamId&nodeId`。
+我们为节点增加了指标计算。 用户添加 with 选项 `inlong.metric.labels` 后 Sort 会计算指标，`inlong.metric.labels` 选项的值由三部分构成：`groupId=xxgroup&streamId=xxstream&nodeId=xxnode`。
 用户可以使用 [metric reporter](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/deployment/metric_reporters/) 去上报数据。
 
 ## 指标
@@ -49,7 +49,7 @@ sidebar_position: 4
         'scan.incremental.snapshot.enabled' = 'true',
         'server-time-zone' = 'GMT+8',
         'table-name' = 'user',
-        'inlong.metric' = 'mysqlGroup&mysqlStream&mysqlNode1'
+        'inlong.metric.labels' = 'groupId=mysqlGroup&steamId=mysqlStream&nodeId=mysqlNode1'
 );
 
  CREATE TABLE `table_groupId_streamId_nodeId2`(
@@ -63,7 +63,7 @@ sidebar_position: 4
          'username' = 'postgres',
          'password' = 'inlong',
          'table-name' = 'public.user',
-         'inlong.metric' = 'pggroup&pgStream&pgNode'
+         'inlong.metric.labels' = 'groupId=pggroup&streamId=pgStream&nodeId=pgNode'
          );
 
  INSERT INTO `table_groupId_streamId_nodeId2`

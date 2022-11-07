@@ -322,11 +322,11 @@ TODO: It will be supported in the future.
           See more about the <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium's Oracle Connector properties</a></td> 
      </tr>
      <tr>
-      <td>inlong.metric</td>
+      <td>inlong.metric.labels</td>
       <td>optional</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>Inlong metric label, format of value is groupId&streamId&nodeId.</td> 
+      <td>Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode.</td> 
     </tr>
     </tbody>
 </table>    

@@ -134,7 +134,7 @@ TODO: 未来会支持
 | poll.max.batch.size       | 可选         | 1000       | Integer  | 轮询新数据时，单个批次中包含的最大更改流文档数。             |
 | poll.await.time.ms        | 可选         | 1500       | Integer  | 在更改流上检查新结果之前等待的时间量。                       |
 | heartbeat.interval.ms     | 可选         | 0          | Integer  | 发送心跳消息之间的时间长度（以毫秒为单位）。使用 0 禁用。    |
-| inlong.metric             | 可选         | (none)     | String   | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
+| inlong.metric.labels             | 可选         | (none)     | String   | inlong metric 的标签值，该值的构成为groupId=xxgroup&streamId=xxstream&nodeId=xxnode。|
 
 ## 可用元数据
 

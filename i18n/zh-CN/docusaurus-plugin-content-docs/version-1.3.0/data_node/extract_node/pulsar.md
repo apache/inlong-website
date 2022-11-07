@@ -106,7 +106,7 @@ TODO
 | key.fields-prefix             | 可选     | (none)        | String | 为 key 格式的所有字段定义自定义前缀，以避免与 value 格式的字段名称冲突。默认情况下，前缀为空。如果定义了自定义前缀，`key.fields`则使用表架构和。 |
 | format or value.format        | 必需     | (none)        | String | 使用前缀设置名称。当以键格式构造数据类型时，前缀被移除，并且在键格式中使用非前缀名称。Pulsar 消息值序列化格式，支持 JSON、Avro 等。更多信息请参见 Flink 格式。 |
 | value.fields-include          | 可选     | ALL           | Enum   | Pulsar 消息值包含字段策略、可选的 ALL 和 EXCEPT_KEY。        |
-| inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
+| inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=xxgroup&streamId=xxstream&nodeId=xxnode。|
 
 ## 可用元数据
 

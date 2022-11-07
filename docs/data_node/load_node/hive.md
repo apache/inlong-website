@@ -130,11 +130,11 @@ TODO: It will be supported in the future.
       Support to configure multiple policies: 'metastore,success-file'.</td>
     </tr>
     <tr>
-      <td>inlong.metric</td>
+      <td>inlong.metric.labels</td>
       <td>optional</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>Inlong metric label, format of value is groupId&streamId&nodeId.</td> 
+      <td>Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode.</td> 
     </tr>
     </tbody>
 </table>

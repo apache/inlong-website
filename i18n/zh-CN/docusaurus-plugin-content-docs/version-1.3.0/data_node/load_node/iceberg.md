@@ -163,7 +163,7 @@ TODO
 | clients          | hive catalog可选                 | 2      | Integer | Hive Metastore 客户端池大小，默认值为 2                      |
 | warehouse        | hive catalog或hadoop catalog可选 | (none) | String  | 对于 Hive 目录，是 Hive 仓库位置，如果既不设置`hive-conf-dir`指定包含`hive-site.xml`配置文件的位置也不添加正确`hive-site.xml`的类路径，用户应指定此路径。对于hadoop目录，HDFS目录存放元数据文件和数据文件 |
 | hive-conf-dir    | hive catalog可选                 | (none) | String  | `hive-site.xml`包含将用于提供自定义 Hive 配置值的配置文件的目录的路径。如果同时设置和创建Iceberg目录时，`hive.metastore.warehouse.dir`from `<hive-conf-dir>/hive-site.xml`（或来自类路径的 hive 配置文件）的值将被该值覆盖。`warehouse``hive-conf-dir``warehouse` |
-| inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
+| inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=xxgroup&streamId=xxstream&nodeId=xxnode。|
 
 ## 数据类型映射
 
