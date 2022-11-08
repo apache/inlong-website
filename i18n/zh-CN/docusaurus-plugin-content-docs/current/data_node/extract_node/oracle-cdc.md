@@ -294,7 +294,7 @@ TODO: 将在未来支持此功能。
       <td>required</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>要监视的 Oracle 数据库的表名。格式为<i><xmp><schema_name>.<table_name></xmp></i></td>
+      <td>要监视的 Oracle 数据库的表名。格式为<i><schema_name>.<table_name></i></td>
     </tr>
     <tr>
       <td>port</td>
