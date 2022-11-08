@@ -289,7 +289,18 @@ TODO: 将在未来支持此功能。
           <td>optional</td>
           <td style={{wordWrap: 'break-word'}}>false</td>
           <td>Boolean</td>
-          <td>是否是全库迁移场景，如果为 'true'，MySQL Extract Node 则将表的物理字段和其他元字段压缩成 'canal-json' 格式的特殊元字段 'data'。</td>
+          <td>是否是全库迁移场景，如果为 'true'，MySQL Extract Node 则将表的物理字段和其他元字段压缩成 'json' 
+              格式的特殊 'data' 元字段, 目前支持两种 data 格式, 如果需要 'canal json' 格式的数据，
+              则使用 'data_canal' 元数据字段，如果需要使用 'debezium json' 格式的数据则使用 'data_debezium' 元数据字段。</td>
+    </tr>
+    <tr>
+          <td>row-kinds-filtered</td>
+          <td>optional</td>
+          <td style={{wordWrap: 'break-word'}}>false</td>
+          <td>Boolean</td>
+          <td>需要保留的特定的操作类型，其中 +U 对应更新前的数据，-U 对应更新后的数据，+I 对应
+              插入的数据（存量数据为插入类型的数据），-D 代表删除的数据， 如需保留多个操作类型则使用 & 连接。
+              举例 +I&-D，connector 只会输出插入以及删除的数据，更新的数据则不会输出。</td>
     </tr>
     <tr>
       <td>debezium.*</td>
@@ -345,9 +356,14 @@ TODO: 将在未来支持此功能。
       <td>数据库操作的类型，如 INSERT/DELETE 等。</td>
     </tr>
     <tr>
-      <td>meta.data</td>
-      <td>STRING</td>
+      <td>meta.data_canal</td>
+      <td>STRING/BYTES</td>
       <td>`canal-json` 格式化的行的数据只有在 `migrate-all` 选项为 'true' 时才存在。</td>
+    </tr>
+    <tr>
+      <td>meta.data_debezium</td>
+      <td>STRING/BYTES</td>
+      <td>`debezium-json` 格式化的行的数据只有在 `migrate-all` 选项为 'true' 时才存在。</td>
     </tr>
     <tr>
       <td>meta.is_ddl</td>
@@ -402,7 +418,7 @@ CREATE TABLE `mysql_extract_node` (
       `update_before` ARRAY<MAP<STRING, STRING>> METADATA FROM 'meta.update_before',
       `mysql_type` MAP<STRING, STRING> METADATA FROM 'meta.mysql_type',
       `pk_names` ARRAY<STRING> METADATA FROM 'meta.pk_names',
-      `data` STRING METADATA FROM 'meta.data',
+      `data` STRING METADATA FROM 'meta.data_canal',
       `sql_type` MAP<STRING, INT> METADATA FROM 'meta.sql_type',
       `ingestion_ts` TIMESTAMP(3) METADATA FROM 'meta.ts',
       PRIMARY KEY (`id`) NOT ENFORCED 
@@ -414,8 +430,9 @@ CREATE TABLE `mysql_extract_node` (
       'username' = 'YourUsername',
       'password' = 'YourPassword',
       'database-name' = 'YourDatabase',
-      'table-name' = 'YourTable' 
-      );
+      'table-name' = 'YourTable',
+      'row-kinds-filtered' = '+I'
+ );
 ```
 
 ## 数据类型映射
@@ -612,3 +629,34 @@ CREATE TABLE `mysql_extract_node` (
 </table>
 </div>
 
+
+## 特性
+
+### 多库多表同步
+
+Mysql Extract 节点支持整库、多表同步。开启该功能后，Mysql Extract 节点会将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'，也可配置为 'debezium-json' 格式的元数据字段 'data_debezium'。
+
+配置参数：
+
+| 参数            | 是否必须 | 默认值 | 数据类型 | 描述                                                          |
+|---------------| ---| ---| ---|-------------------------------------------------------------|
+| migrate-all   |optional| false|String| 开启整库迁移模式，所有的物理字段通过 data_canal 字段获取                          | 
+| table-name    |optional| false|String| 需要读取的表的正则表达式，database 和 table 之间使用 "\." 分隔，多个正则表达式使用 "," 分隔 | 
+| database-name |optional| false|String| 需要读取的库的表达式，多个正则表达式使用 "," 分隔                                        | 
+
+CREATE TABLE 示例演示该功能语法：
+
+```sql
+CREATE TABLE `table_1`(
+`data` STRING METADATA FROM 'meta.data_canal' VIRTUAL)
+WITH (
+'inlong.metric.labels' = 'groupId=1&streamId=1&nodeId=1',
+'migrate-all' = 'true',
+'connector' = 'mysql-cdc-inlong',
+'hostname' = 'localhost',
+'database-name' = 'test,test01',
+'username' = 'root',
+'password' = 'inlong',
+'table-name' = 'test01\.a{2}[0-9]$, test\.[\s\S]*'
+)
+```
