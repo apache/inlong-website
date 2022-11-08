@@ -629,3 +629,34 @@ CREATE TABLE `mysql_extract_node` (
 </table>
 </div>
 
+
+## 特性
+
+### 多库多表同步
+
+Mysql Extract 节点支持整库、多表同步。开启该功能后，Mysql Extract 节点会将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'，也可配置为 'debezium-json' 格式的元数据字段 'data_debezium'。
+
+配置参数：
+
+| 参数            | 是否必须 | 默认值 | 数据类型 | 描述                                                          |
+|---------------| ---| ---| ---|-------------------------------------------------------------|
+| migrate-all   |optional| false|String| 开启整库迁移模式，所有的物理字段通过 data_canal 字段获取                          | 
+| table-name    |optional| false|String| 需要读取的表的正则表达式，database 和 table 之间使用 "\." 分隔，多个正则表达式使用 "," 分隔 | 
+| database-name |optional| false|String| 需要读取的库的表达式，多个正则表达式使用 "," 分隔                                        | 
+
+CREATE TABLE 示例演示该功能语法：
+
+```sql
+CREATE TABLE `table_1`(
+`data` STRING METADATA FROM 'meta.data_canal' VIRTUAL)
+WITH (
+'inlong.metric.labels' = 'groupId=1&streamId=1&nodeId=1',
+'migrate-all' = 'true',
+'connector' = 'mysql-cdc-inlong',
+'hostname' = 'localhost',
+'database-name' = 'test,test01',
+'username' = 'root',
+'password' = 'inlong',
+'table-name' = 'test01\.a{2}[0-9]$, test\.[\s\S]*'
+)
+```

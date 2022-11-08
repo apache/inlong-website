@@ -632,3 +632,33 @@ CREATE TABLE `mysql_extract_node` (
 </table>
 </div>
 
+## Features
+
+### Multi-database multi-table synchronization
+
+Mysql Extract node supports whole database and multi-table synchronization. After this function is enabled, the Mysql Extract node will compress the physical fields of the table into a special meta field 'data_canal' in the 'canal-json' format, and can also be configured as a metadata field 'data_debezium' in the 'debezium-json' format.
+
+Configuration parameters:
+
+| Parameter | Required | Default Value | Data Type | Description |
+|---------------| ---| ---| ---|--------------------- ----------------------------------------|
+| migrate-all |optional| false|String| Enable the entire database migration mode, all physical fields are obtained through the data_canal field |
+| table-name |optional| false|String| The regular expression of the table to be read, use "\." to separate between database and table, and use "," to separate multiple regular expressions |
+| database-name |optional| false|String| The expression of the library to be read, multiple regular expressions are separated by "," |
+
+The CREATE TABLE example demonstrates the function syntax:
+
+```sql
+CREATE TABLE `table_1`(
+`data` STRING METADATA FROM 'meta.data_canal' VIRTUAL)
+WITH (
+'inlong.metric.labels' = 'groupId=1&streamId=1&nodeId=1',
+'migrate-all' = 'true',
+'connector' = 'mysql-cdc-inlong',
+'hostname' = 'localhost',
+'database-name' = 'test,test01',
+'username' = 'root',
+'password' = 'inlong',
+'table-name' = 'test01\.a{2}[0-9]$, test\.[\s\S]*'
+)
+````
