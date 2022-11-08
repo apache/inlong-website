@@ -294,7 +294,7 @@ TODO: It will be supported in the future.
       <td>required</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>Table name of the Oracle database to monitor.</td>
+      <td>Table name of the Oracle database to monitor. The value is of the form <i><xmp><schema_name>.<table_name></xmp></i></td>
     </tr>
     <tr>
       <td>port</td>
@@ -499,6 +499,36 @@ _Note: the mechanism of `scan.startup.mode` option relying on Debezium's `snapsh
 ### Single Thread Reading
 
 The Oracle Extract Node can't work in parallel reading, because there is only one task can receive change events.
+
+### Whole Database, Multiple Schemas, Multiple Tables Migration
+
+Oracle Extract Node supports the whole database, multiple schemas, multiple tables migration function. When you enable this function, Oracle Extract Node will compress the physical field of the table into a special meta field 'data_canal' in the format of 'canal json'.
+
+config options:
+
+| Option | Required | Default | Type | Description |
+| ---| ---| ---| ---| ---|
+|source.multiple.enable|optional| false|String|Specify `'source.multiple.enable' = 'true'` to enable the whole database, multiple schemas, multiple tables migration function | 
+|schema-name|required|(none)|String| Schema name of the Oracle database to monitor. If you want to capture multiple schemas, you can use commas to separate them. For example: `'schema-name' = 'SCHEMA1,SCHEMA2'` |
+|table-name| required | (none) |String| Table name of the Oracle database to monitor. If you want to capture multiple tables, you can use commas to separate them. For example: `'table-name' = 'SCHEMA1.TB.*, SCHEMA2.TB1'`|
+
+The CREATE TABLE example demonstrates the syntax of this function:
+
+```sql
+CREATE TABLE node(
+    data STRING METADATA FROM 'meta.data_canal' VIRTUAL)
+    WITH (
+    'connector' = 'oracle-cdc-inlong',
+    'hostname' = 'localhost',
+    'port' = '1521',
+    'username' = 'flinkuser',
+    'password' = 'flinkpw',
+    'database-name' = 'XE',
+    'schema-name' = 'inventory',
+    'table-name' = 'inventory..*',
+    'source.multiple.enable' = 'true'
+)
+```
 
 ## Data Type Mapping
 

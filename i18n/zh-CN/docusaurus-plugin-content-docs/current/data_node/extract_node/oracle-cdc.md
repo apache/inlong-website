@@ -294,7 +294,7 @@ TODO: 将在未来支持此功能。
       <td>required</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>要监视的 Oracle 数据库的表名。</td>
+      <td>要监视的 Oracle 数据库的表名。格式为<i><xmp><schema_name>.<table_name></xmp></i></td>
     </tr>
     <tr>
       <td>port</td>
@@ -501,6 +501,36 @@ _注意: `scan.startup.mode` 选项的机制依赖于 Debezium 的`snapshot.mode
 ### 单线程读取
 
 Oracle Extract 节点不能并行读取，因为只有一个任务可以接收更改事件。
+
+### 整库、多模式、表同步
+
+Oracle Extract 节点支持整库、多模式、多表同步。开启该功能后，Oracel Extract 节点会将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'。
+
+配置参数：
+
+| 参数 | 是否必须 | 默认值 | 数据类型 | 描述 |
+| ---| ---| ---| ---| ---|
+|source.multiple.enable|optional| false|String| 指定`'source.multiple.enable' = 'true'`参数开启整库、多模式、多表同步功能 | 
+|schema-name|required|(none)|String| 要监视的 Oracle 数据库的 Schema 名称。如果要捕获多个模式，可以使用逗号分割它们。例如：`'schema-name' = 'SCHEMA1,SCHEMA2'` |
+|table-name| required | (none) |String| 要监视的 Oracle 数据库的表名。如果要捕获多个表，可以使用逗号分割它们。例如：`'table-name' = 'SCHEMA1.TB.*, SCHEMA2.TB1'`|
+
+CREATE TABLE 示例演示该功能语法：
+
+```sql
+CREATE TABLE node(
+    data STRING METADATA FROM 'meta.data_canal' VIRTUAL)
+    WITH (
+    'connector' = 'oracle-cdc-inlong',
+    'hostname' = 'localhost',
+    'port' = '1521',
+    'username' = 'flinkuser',
+    'password' = 'flinkpw',
+    'database-name' = 'XE',
+    'schema-name' = 'inventory',
+    'table-name' = 'inventory..*',
+    'source.multiple.enable' = 'true'
+)
+```
 
 ## 数据类型映射
 
