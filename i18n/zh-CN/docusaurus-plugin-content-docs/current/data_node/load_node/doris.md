@@ -167,7 +167,7 @@ Query OK, 0 rows affected (0.06 sec)
 ## 如何创建 Doris Load 节点
 
 ### SQL API 用法
-- 单表写入：doris单表写入
+- 单表写入： Doris 单表写入
 ```sql
 [root@tasknode001 flink-1.13.5]# ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
@@ -214,7 +214,7 @@ Flink SQL> insert into cdc_doris_sink select * from cdc_mysql_source /*+ OPTIONS
 Job ID: 5f89691571d7b3f3ca446589e3d0c3d3
 ```
 
-- 多表写入：doris多表写入
+- 多表写入： Doris 多表写入
 ```sql
 ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
@@ -297,11 +297,11 @@ TODO: 将在未来支持此功能。
 | sink.properties.*                 | 可选   | (none)            | string   | Stream load 的导入参数<br /><br />例如:<br />'sink.properties.column_separator' = ', '<br />定义列分隔符<br /><br />'sink.properties.escape_delimiters' = 'true'<br />特殊字符作为分隔符,'\\x01'会被转换为二进制的0x01<br /><br /> 'sink.properties.format' = 'json'<br />'sink.properties.strip_outer_array' = 'true' <br />JSON格式导入 |
 | sink.enable-delete                | 可选   | true              | boolean  | 是否启用删除。此选项需要 Doris 表开启批量删除功能(0.15+版本默认开启)，只支持 Uniq 模型。                                                                                                                                                                                                                                                 |
 | sink.enable-delete                | 可选   | true              | boolean  | 是否启用删除。此选项需要 Doris 表开启批量删除功能(0.15+版本默认开启)，只支持 Uniq 模型。                                                                                                                                                                                                                                                 |
-| sink.multiple.enable              | 可选   | false             | boolean  | 是否支持Doris多表写入。`sink.multiple.enable`为`true`时，需要`sink.multiple.format`、`sink.multiple.database-pattern`、`sink.multiple.table-pattern` 分别设置正确的值。        |
+| sink.multiple.enable              | 可选   | false             | boolean  | 是否支持 Doris 多表写入。 `sink.multiple.enable` 为 `true` 时，需要 `sink.multiple.format` 、 `sink.multiple.database-pattern` 、 `sink.multiple.table-pattern` 分别设置正确的值。        |
 | sink.multiple.format              | 可选   | (none)            | string   | 多表写入时，表示源端二进制数据的真实格式，支持 `canal-json` 和 `debezium-json` 两种格式。|
-| sink.multiple.database-pattern    | 可选   | (none)            | string   | 多表写入时，从源端二进制数据中按照`sink.multiple.database-pattern`指定名称提取写入的数据库名称。`sink.multiple.enable`为true时有效。                 | 
-| sink.multiple.table-pattern       | 可选   | (none)            | string   | 多表写入时，从源端二进制数据中按照`sink.multiple.table-pattern`指定名称提取写入的表名。`sink.multiple.enable`为true时有效。                         |
-| sink.multiple.ignore-single-table-errors | 可选 | true         | boolean  | 多表写入时，是否忽略某个表写入失败。为`true`时，如果某个表写入异常，则不写入该表数据，其他表的数据正常写入。为`false`时，如果某个表写入异常，则所有表均停止写入。     |
+| sink.multiple.database-pattern    | 可选   | (none)            | string   | 多表写入时，从源端二进制数据中按照 `sink.multiple.database-pattern` 指定名称提取写入的数据库名称。 `sink.multiple.enable` 为true时有效。                 | 
+| sink.multiple.table-pattern       | 可选   | (none)            | string   | 多表写入时，从源端二进制数据中按照 `sink.multiple.table-pattern` 指定名称提取写入的表名。 `sink.multiple.enable` 为true时有效。                         |
+| sink.multiple.ignore-single-table-errors | 可选 | true         | boolean  | 多表写入时，是否忽略某个表写入失败。为 `true` 时，如果某个表写入异常，则不写入该表数据，其他表的数据正常写入。为 `false` 时，如果某个表写入异常，则所有表均停止写入。     |
 
 ## 数据类型映射
 
