@@ -294,7 +294,7 @@ TODO: 将在未来支持此功能。
       <td>required</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>要监视的 Oracle 数据库的表名。</td>
+      <td>要监视的 Oracle 数据库的表名。格式为<i>&lt;schema_name&gt;.&lt;table_name&gt;</i></td>
     </tr>
     <tr>
       <td>port</td>
@@ -329,6 +329,13 @@ Oracle CDC 消费者的可选启动模式，有效枚举为"initial"
        <td>String</td>
        <td>inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。</td> 
      </tr>
+     <tr>
+       <td>source.multiple.enable</td>
+       <td>可选</td>
+       <td style={{wordWrap: 'break-word'}}>false</td>
+       <td>Boolean</td>
+       <td>是否开启多模式、表同步功能，如果为 'true'，Oracle Extract Node 则将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'。</td> 
+     </tr>
     </tbody>
 </table>    
 </div>
@@ -361,22 +368,77 @@ restart-strategy.fixed-delay.attempts: 2147483647
     <tr>
       <td>table_name</td>
       <td>STRING NOT NULL</td>
-      <td>Name of the table that contain the row.</td>
+      <td>该行所属的表名。</td>
     </tr>
     <tr>
       <td>schema_name</td>
       <td>STRING NOT NULL</td>
-      <td>Name of the schema that contain the row.</td>
+      <td>该行所属的模式名称。</td>
     </tr>
     <tr>
       <td>database_name</td>
       <td>STRING NOT NULL</td>
-      <td>Name of the database that contain the row.</td>
+      <td>该行所属的数据库名称。</td>
     </tr>
     <tr>
       <td>op_ts</td>
       <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the change stream, the value is always 0.</td>
+      <td>它指示在数据库中进行更改的时间。<br/>如果记录从表的快照而不是change流中读取，则该值始终为0。</td>
+    </tr>
+    <tr>
+      <td>meta.table_name</td>
+      <td>STRING NOT NULL</td>
+      <td>该行所属的表名。</td>
+    </tr>
+    <tr>
+      <td>meta.schema_name</td>
+      <td>STRING NOT NULL</td>
+      <td>该行所属的模式名称。</td>
+    </tr>
+    <tr>
+      <td>meta.database_name</td>
+      <td>STRING NOT NULL</td>
+      <td>该行所属的数据库名称。</td>
+    </tr>
+    <tr>
+      <td>meta.op_ts</td>
+      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
+      <td>它指示在数据库中进行更改的时间。<br/>如果记录从表的快照而不是change流中读取，则该值始终为0。</td>
+    </tr>
+    <tr>
+      <td>meta.op_type</td>
+      <td>STRING</td>
+      <td>数据库操作的类型，如 INSERT/DELETE 等。</td>
+    </tr>
+    <tr>
+      <td>meta.data_canal</td>
+      <td>STRING/BYTES</td>
+      <td>`canal-json` 格式化的行的数据只有在 `source.multiple.enable` 选项为 'true' 时才存在。</td>
+    </tr>
+    <tr>
+      <td>meta.is_ddl</td>
+      <td>BOOLEAN</td>
+      <td>是否是 DDL 语句。</td>
+    </tr>
+    <tr>
+      <td>meta.ts</td>
+      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
+      <td>接收和处理行的当前时间。</td>
+    </tr>
+    <tr>
+      <td>meta.sql_type</td>
+      <td>MAP</td>
+      <td>将 Sql_type 表字段映射到 Java 数据类型 Id。</td>
+    </tr>
+    <tr>
+      <td>meta.oracle_type</td>
+      <td>MAP</td>
+      <td>表的结构。</td>
+    </tr>
+    <tr>
+      <td>meta.pk_names</td>
+      <td>ARRAY</td>
+      <td>表的主键名称。</td>
     </tr>
   </tbody>
 </table>
@@ -388,7 +450,18 @@ CREATE TABLE products (
     db_name STRING METADATA FROM 'database_name' VIRTUAL,
     schema_name STRING METADATA FROM 'schema_name' VIRTUAL, 
     table_name STRING METADATA  FROM 'table_name' VIRTUAL,
-    operation_ts TIMESTAMP_LTZ(3) METADATA FROM 'op_ts' VIRTUAL,
+    op_ts TIMESTAMP_LTZ(3) METADATA FROM 'op_ts' VIRTUAL,
+    meta_db_name STRING METADATA FROM 'meta.database_name' VIRTUAL,
+    meta_schema_name STRING METADATA FROM 'meta.schema_name' VIRTUAL, 
+    meta_table_name STRING METADATA  FROM 'meta.table_name' VIRTUAL,
+    meat_op_ts TIMESTAMP_LTZ(3) METADATA FROM 'meta.op_ts' VIRTUAL,
+    meta_op_type STRING METADATA  FROM 'meta.op_type' VIRTUAL,
+    meta_data_canal STRING METADATA  FROM 'meta.data_canal' VIRTUAL,
+    meta_is_ddl BOOLEAN METADATA FROM 'meta.is_ddl' VIRTUAL,
+    meta_ts TIMESTAMP_LTZ(3) METADATA FROM 'meta.ts' VIRTUAL,
+    meta_sql_type MAP<STRING, INT> METADATA FROM 'meta.sql_type' VIRTUAL,
+    meat_oracle_type MAP<STRING, STRING> METADATA FROM 'meta.oracle_type' VIRTUAL,
+    meta_pk_names ARRAY<STRING> METADATA FROM 'meta.pk_names' VIRTUAL
     ID INT NOT NULL,
     NAME STRING,
     DESCRIPTION STRING,
@@ -402,7 +475,7 @@ CREATE TABLE products (
     'password' = 'flinkpw',
     'database-name' = 'XE',
     'schema-name' = 'inventory',
-    'table-name' = 'products'
+    'table-name' = 'inventory.products'
 );
 ```
 
@@ -428,6 +501,36 @@ _注意: `scan.startup.mode` 选项的机制依赖于 Debezium 的`snapshot.mode
 ### 单线程读取
 
 Oracle Extract 节点不能并行读取，因为只有一个任务可以接收更改事件。
+
+### 整库、多模式、表同步
+
+Oracle Extract 节点支持整库、多模式、多表同步。开启该功能后，Oracel Extract 节点会将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'。
+
+配置参数：
+
+| 参数 | 是否必须 | 默认值 | 数据类型 | 描述 |
+| ---| ---| ---| ---| ---|
+|source.multiple.enable|optional| false|String| 指定`'source.multiple.enable' = 'true'`参数开启整库、多模式、多表同步功能 | 
+|schema-name|required|(none)|String| 要监视的 Oracle 数据库的 Schema 名称。如果要捕获多个模式，可以使用逗号分割它们。例如：`'schema-name' = 'SCHEMA1,SCHEMA2'` |
+|table-name| required | (none) |String| 要监视的 Oracle 数据库的表名。如果要捕获多个表，可以使用逗号分割它们。例如：`'table-name' = 'SCHEMA1.TB.*, SCHEMA2.TB1'`|
+
+CREATE TABLE 示例演示该功能语法：
+
+```sql
+CREATE TABLE node(
+    data STRING METADATA FROM 'meta.data_canal' VIRTUAL)
+    WITH (
+    'connector' = 'oracle-cdc-inlong',
+    'hostname' = 'localhost',
+    'port' = '1521',
+    'username' = 'flinkuser',
+    'password' = 'flinkpw',
+    'database-name' = 'XE',
+    'schema-name' = 'inventory',
+    'table-name' = 'inventory..*',
+    'source.multiple.enable' = 'true'
+)
+```
 
 ## 数据类型映射
 
