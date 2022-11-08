@@ -294,7 +294,7 @@ TODO: It will be supported in the future.
       <td>required</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>Table name of the Oracle database to monitor. The value is of the form <i><schema_name>.<table_name></i></td>
+      <td>Table name of the Oracle database to monitor. The value is of the form <i>&lt;schema_name&gt;.&lt;table_name&gt;</i></td>
     </tr>
     <tr>
       <td>port</td>
