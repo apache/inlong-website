@@ -166,9 +166,9 @@ The upstream data is:
   "type": "UPDATE"
 } 
 ```
-'topic-pattern' is '{database}_${table}', and the extracted topic is 'inventory_products' ('database', 'table' are metadata fields, and 'id' are physical fields)
+'topic-pattern' is '{database}_${table}', and the extracted topic is 'inventory_products' ('database', 'table' are metadata fields)
 
-'topic-pattern' is '{database}_${table}_${id}', and the extracted topic is 'inventory_products_4' ('database', 'table' are metadata fields, and 'id' are physical fields)
+'topic-pattern' is '{database}_${table}_${id}', and the extracted topic is 'inventory_products_111' ('database', 'table' are metadata fields, and 'id' are physical fields)
 
 - 'sink.multiple.format' is 'debezium-json':
 
@@ -196,7 +196,7 @@ The upstream data is:
   "transaction": null
 }
 ```
-'topic-pattern' is '{source.db}_${source.table}', and the extracted topic is 'inventory_products' ('source.db', 'source.table' are metadata fields, and 'id' are physical fields)
+'topic-pattern' is '{source.db}_${source.table}', and the extracted topic is 'inventory_products' ('source.db', 'source.table' are metadata fields)
 
 'topic-pattern' is '{source.db}_${source.table}_${id}', and the extracted topic is 'inventory_products_4' ('source.db', 'source.table' are metadata fields, and 'id' are physical fields)
 

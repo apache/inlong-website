@@ -164,9 +164,9 @@ TODO: 将在未来支持此功能。
   "type": "UPDATE"
 } 
 ```
-'topic-pattern' 为 '{database}_${table}', 提取后的 Topic 为 'inventory_products' ('database', 'table' 为元数据字段, 'id' 为物理字段)
+'topic-pattern' 为 '{database}_${table}', 提取后的 Topic 为 'inventory_products' ('database', 'table' 为元数据字段)
 
-'topic-pattern' 为 '{database}_${table}_${id}', 提取后的 Topic 为 'inventory_products_4' ('database', 'table' 为元数据字段, 'id' 为物理字段)
+'topic-pattern' 为 '{database}_${table}_${id}', 提取后的 Topic 为 'inventory_products_111' ('database', 'table' 为元数据字段, 'id' 为物理字段)
 
 - 'sink.multiple.format' 为 'debezium-json':
 
@@ -194,7 +194,7 @@ TODO: 将在未来支持此功能。
   "transaction": null
 }
 ```
-'topic-pattern' 为 '{database}_${table}', 提取后的 Topic 为 'inventory_products' ('source.db', 'source.table' 为元数据字段, 'id' 为物理字段)
+'topic-pattern' 为 '{database}_${table}', 提取后的 Topic 为 'inventory_products' ('source.db', 'source.table' 为元数据字段)
 
 'topic-pattern' 为 '{database}_${table}_${id}', 提取后的 Topic 为 'inventory_products_4' ('source.db', 'source.table' 为元数据字段, 'id' 为物理字段)
 
