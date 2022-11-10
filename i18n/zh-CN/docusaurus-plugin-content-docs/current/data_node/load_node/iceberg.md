@@ -148,6 +148,98 @@ TODO
 ### InLong Manager Client 用法
 TODO
 
+## 特征
+### 多表写入
+目前 Iceberg 支持多表同时写入，需要在 FLINK SQL 的建表参数上添加 `'sink.multiple.enable' = 'true'` 并且目标表的schema
+只能定义成 `BINARY` 或者 `STRING` ，以下是一个建表语句举例：
+```
+CREATE TABLE `table_2`(
+    `data` STRING)
+WITH (
+    'connector'='iceberg-inlong',
+    'catalog-name'='hive_prod',
+    'uri'='thrift://localhost:9083',
+    'warehouse'='hdfs://localhost:8020/hive/warehouse',
+    'sink.multiple.enable' = 'true',
+    'sink.multiple.format' = 'canal-json',
+    'sink.multiple.add-column.policy' = 'TRY_IT_BEST',
+    'sink.multiple.database-pattern' = '${database}',
+    'sink.multiple.table-pattern' = 'test_${table}'
+);
+```
+要支持多表写入同时需要设置上游数据的序列化格式(通过选项 'sink.multiple.format'
+来设置, 目前仅支持 [canal-json|debezium-json])。
+
+### 动态表名映射
+Iceberg 在多表写入的时可以自定义映射的数据库名和表名的规则，可以填充占位符然后添加前后缀来修改映射的目标表名称。
+Iceberg Load Node 会解析 `'sink.multiple.database-pattern'` 作为目的端的 数据库名, 解析 `'sink.multiple.table-pattern'`
+作为目的端的表名，占位符是从数据中解析出来的，变量是严格通过 '${VARIABLE_NAME}' 来表示, 变量的取值来自于数据本身, 
+即可以是通过 `'sink.multiple.format'` 指定的某种 Format 的元数据字段, 也可以是数据中的物理字段。
+关于 'topic-parttern' 的例子如下:
+- 'sink.multiple.format' 为 'canal-json':
+
+上游数据为:
+```
+{
+  "data": [
+    {
+      "id": "111",
+      "name": "scooter",
+      "description": "Big 2-wheel scooter",
+      "weight": "5.18"
+    }
+  ],
+  "database": "inventory",
+  "es": 1589373560000,
+  "id": 9,
+  "isDdl": false,
+  "mysqlType": {
+    "id": "INTEGER",
+    "name": "VARCHAR(255)",
+    "description": "VARCHAR(512)",
+    "weight": "FLOAT"
+  },
+  "old": [
+    {
+      "weight": "5.15"
+    }
+  ],
+  "pkNames": [
+    "id"
+  ],
+  "sql": "",
+  "sqlType": {
+    "id": 4,
+    "name": 12,
+    "description": 12,
+    "weight": 7
+  },
+  "table": "products",
+  "ts": 1589373560798,
+  "type": "UPDATE"
+} 
+```
+'topic-pattern' 为 '{database}_${table}', 提取后的 Topic 为 'inventory_products' ('database', 'table' 为元数据字段,
+'id' 为物理字段)
+
+'topic-pattern' 为 '{database}_${table}_${id}', 提取后的 Topic 为 'inventory_products_4' ('database', 'table' 
+为元数据字段, 'id' 为物理字段)
+
+### 动态建库、建表
+Iceberg在多表写入时遇到不存在的表和不存在的库时会自动创建数据库和数据表，并且支持在运行过程中新增捕获额外的表入库。
+默认的Iceberg表参数为：`'format-version' = '2'`、`'write.upsert.enabled' = 'true''`、`'engine.hive.enabled' = 'true'`
+
+### 动态schema变更
+Iceberg在多表写入时支持同步源表结构变更到目标表（DDL同步），支持的schema变更如下：
+
+| schema变更类型  |   是否支持  |
+| -------------- | ----------- |
+| 列增加          |   是       |
+| 列减少          |   否       |
+| 列位置变更      |    否      |
+| 列重命名        |   否       |
+| 列类型变更      |   否       |
+
 ## Iceberg Load 节点参数
 
 | 选项             | 是否必须                         | 默认值 | 类型    | 描述                                                         |
@@ -164,6 +256,11 @@ TODO
 | warehouse        | hive catalog或hadoop catalog可选 | (none) | String  | 对于 Hive 目录，是 Hive 仓库位置，如果既不设置`hive-conf-dir`指定包含`hive-site.xml`配置文件的位置也不添加正确`hive-site.xml`的类路径，用户应指定此路径。对于hadoop目录，HDFS目录存放元数据文件和数据文件 |
 | hive-conf-dir    | hive catalog可选                 | (none) | String  | `hive-site.xml`包含将用于提供自定义 Hive 配置值的配置文件的目录的路径。如果同时设置和创建Iceberg目录时，`hive.metastore.warehouse.dir`from `<hive-conf-dir>/hive-site.xml`（或来自类路径的 hive 配置文件）的值将被该值覆盖。`warehouse``hive-conf-dir``warehouse` |
 | inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
+| sink.multiple.enable | 可选                         | false  | Boolean | 是否开启多路写入            |
+| sink.multiple.schema-update.policy | 可选           | TRY_IT_BEST | Enum | 遇到数据中schema和目标表不一致时的处理策略<br>TRY_IT_BEST：尽力而为，尽可能处理，处理不了的则忽略<br>  IGNORE_WITH_LOG：忽略并且记录日志，后续该表数据不再处理<br> THROW_WITH_STOP：抛异常并且停止任务，直到用户手动处理schema不一致的情况
+| sink.multiple.pk-auto-generated | 可选              | false  | Boolean  | 是否自动生成主键，对于多路写入自动建表时当源表无主键时是否将所有字段当作主键  |
+| sink.multiple.typemap-compatible-with-spark | 可选  | false  | Boolean  | 是否适配spark的类型系统，对于多路写入自动建表时是否需要适配spark的类型系统 |
+
 
 ## 数据类型映射
 
