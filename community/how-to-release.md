@@ -210,9 +210,11 @@ $ cd /tmp/apache-inlong-${release_version}-${rc_version}
 # uncompress the tar file
 $ tar xzvf apache-inlong-${release_version}-src.tar.gz 
 # go to the source code directory
-$ cd apache-inlong-${release_version} 
-$ cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/  # for signature convenient, copy the binary package to the source code directory
-$ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connectors.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/ # for signature convenient, copy the connectors binary package to the source code directory
+$ cd apache-inlong-${release_version}
+# for signature convenient, copy the binary package to the source code directory
+$ cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
+# for signature convenient, copy the connectors binary package to the source code directory
+$ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connectors.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
 ```
 
 ### Sign the source package/binary package/sha512
