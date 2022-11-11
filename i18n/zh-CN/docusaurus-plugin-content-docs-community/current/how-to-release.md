@@ -282,6 +282,13 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 请注意点击 Close 可能会出现失败，请检查失败原因并处理
 :::
 
+### 清理本地临时文件
+若以上步骤操作成功，说明版本发布顺利，可以清理本地临时文件，进行社区投票。
+```shell
+$ rm -rf /tmp/apache-inlong-${release_version}-${rc_version}/
+$ rm -rf /tmp/inlong-dist-dev/
+```
+
 ## Apache InLong 社区投票
 ### 投票模板
 
@@ -373,6 +380,7 @@ $ svn mv https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_v
 - 确认 [dev](https://dist.apache.org/repos/dist/dev/inlong/) 下的 `${release_version}-${rc_version}` 已被删除
 - 删除 [release](https://dist.apache.org/repos/dist/release/inlong/) 目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/inlong/)
 ```shell
+# last_release_version 为上一个版本号，可以访问 https://dist.apache.org/repos/dist/release/inlong/ 查看，比如 1.3.0
 $ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_version} -m "Delete ${last_release_version}"
 ```
 

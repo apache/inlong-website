@@ -283,6 +283,13 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 Close operation may fail, you should check the causes and fix them.
 :::
 
+### Clean up temporary files
+If the above steps are successful, the version release is booming, and you can clean up local temporary files and conduct community voting.
+```shell
+$ rm -rf /tmp/apache-inlong-${release_version}-${rc_version}/
+$ rm -rf /tmp/inlong-dist-dev/
+```
+
 ## Apache InLong community vote
 ### Vote template
 ```html
@@ -373,6 +380,7 @@ $ svn mv https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_v
 - Make sure `${release_version}-${rc_version}` is deleted in [dev](https://dist.apache.org/repos/dist/dev/inlong/).
 - Delete release package of pre versions [release](https://dist.apache.org/repos/dist/release/inlong/)，these packages will be saved [here](https://archive.apache.org/dist/inlong/)
 ```shell
+# last_release_version is the last version number, you can check is by accessing https://dist.apache.org/repos/dist/release/inlong/ ,e.g 1.3.0
 $ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_version} -m "Delete ${last_release_version}"
 ```
 
