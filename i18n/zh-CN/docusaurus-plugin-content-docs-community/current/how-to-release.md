@@ -243,6 +243,7 @@ $ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true
 
 ### 上传 tag 到 git 仓库
 ```shell
+# 在创建 tag 的源码目录执行
 $ git push origin ${release_version}-${rc_version}
 ```
 
