@@ -290,8 +290,8 @@ $ rm -rf /tmp/inlong-dist-dev/
 ```
 
 ## Apache InLong 社区投票
-### 投票模板
-
+### 发起投票
+发送邮件到 `dev@inlong.apache.org`，投票模板为：
 ```html
 标题：[VOTE] Release Apache InLong ${release_version} ${rc_version}
 
@@ -313,11 +313,11 @@ Hello Apache InLong PMC and Community,
 
     https://repository.apache.org/content/repositories/orgapacheinlong-{staging-id}
 
-    Artifacts were signed with the {YOUR_PUB_KEY} key which can be found in:
+    Artifacts were signed with the {YOUR_GPG_KEY_ID} key, which can be found in:
 
     https://downloads.apache.org/inlong/KEYS
 
-    ${release_version} includes ~ ${issue_count} bug fixes and improvements done since last versions which can be found at:
+    ${release_version} includes ~ ${issue_count} bug fixes and improvements done since the last versions, which can be found at:
 
     https://github.com/apache/inlong/blob/${release_version}-${rc_version}/CHANGES.md
 
@@ -342,14 +342,15 @@ Hello Apache InLong PMC and Community,
       [ ] Can compile from source
       [ ] All Tests Passed
 
-      More detailed checklist  please refer to:
+      More detailed checklist, please refer to the following:
       https://inlong.apache.org/community/how-to-verify
 
 Thanks,
 Your InLong Release Manager
 ```
 
-### 宣布投票结果模板
+### 统计投票结果
+发送邮件到 `dev@inlong.apache.org`，投票模板为：
 ```html
 标题：[RESULT][VOTE] Release Apache InLong ${release_version} ${rc_version}
 
@@ -357,12 +358,12 @@ Your InLong Release Manager
 
 Hello Apache InLong PMC and Community,
 
-    The vote closes now as 72hr have passed. The vote PASSES with
+    The vote closes now as 72hr have passed. The vote passed with
     xx (+1 binding) votes from the PMC,
     xx (+1 non-binding) vote from the rest of the developer community,
     and no further 0 or -1 votes.
 
-    The vote thread: {vote_mail_address}
+    The voting thread: {vote_mail_address}
 
     The release is accepted and will be published.
 
