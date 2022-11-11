@@ -219,6 +219,8 @@ $ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connecto
 
 ### Sign the source package/binary package/sha512
 ```shell
+# 进入源码包目录
+$ cd /tmp/apache-inlong-${release_version}-${rc_version}
 # calculate SHA512
 $ for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i > $i.sha512 ; done 
 # calculate signature

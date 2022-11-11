@@ -218,6 +218,8 @@ $ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connecto
 
 ### 对源码包/二进制包进行签名/sha512
 ```shell
+# 进入源码包目录
+$ cd /tmp/apache-inlong-${release_version}-${rc_version}
 # 计算 SHA512
 $ for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i > $i.sha512 ; done
 # 计算签名
