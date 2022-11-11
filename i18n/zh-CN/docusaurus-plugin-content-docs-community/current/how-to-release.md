@@ -275,8 +275,7 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 - 点击左侧的 Staging repositories
 - 搜索 InLong 关键字，选择你最近上传的仓库
 - 点击上方的 Close 按钮，这个过程会进行一系列检查
-- 检查通过以后, 在下方的 Summary 标签页上出现一个连接，请保存好这个链接，需要放在接下来的投票邮件当中。
-链接应该是类似 `https://repository.apache.org/content/repositories/orgapacheinlong-xxxx`
+- 检查通过以后, 在下方的 Summary 标签页上出现一个连接，请保存好这个链接，需要放在接下来的投票邮件当中，链接类似 `https://repository.apache.org/content/repositories/orgapacheinlong-{staging-id}` 。
 
 :::caution
 请注意点击 Close 可能会出现失败，请检查失败原因并处理

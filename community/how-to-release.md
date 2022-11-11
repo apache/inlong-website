@@ -276,7 +276,7 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 - Click the Staging repositories on the left 
 - Search `InLong` and select the latest unloaded repository
 - Click the close button which will trigger a serials of checks
-- You will get a link like `https://repository.apache.org/content/repositories/orgapacheinlong-xxxx` on the Summary page if all checks passed. This link will be posted in the vote email, so, keep it safe.
+- You will get a link like `https://repository.apache.org/content/repositories/orgapacheinlong-{staging-id}` on the Summary page if all checks passed. This link will be posted in the vote email, so, keep it safe.
 
 :::caution
 Close operation may fail, you should check the causes and fix them.
