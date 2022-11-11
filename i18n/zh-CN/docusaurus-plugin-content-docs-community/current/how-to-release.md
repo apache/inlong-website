@@ -27,7 +27,7 @@ $ gpg --version
 ### 生成 GPG Key
 :::caution
 - 输入名字时最好与 Apache 中登记的 Full name 保持一致
-- 使用的邮箱必须是 Apache 邮箱，建议先 gpg -k 查看所有 key, 如果列表中第一个不是 apache 邮箱的 key ，需要在后续步骤中指定 key 来进行加密解密操作，参数为 -u
+- 使用的邮箱必须是 Apache 邮箱，建议先 gpg -k 查看所有 Key ID, 如果列表中第一个不是 apache 邮箱的 Key ID ，需要在后续步骤中指定 Key ID 来进行加密解密操作，参数为 -u
 - 名字最好使用拼音或者英文，否则会出现乱码
 :::
 
@@ -160,16 +160,16 @@ $ svn ci -m "add gpg key for YOUR_NAME"
     <profile>
       <id>apache-release</id>
       <properties>
-        <gpg.keyname>{你的 KEY ID}</gpg.keyname>
+        <gpg.keyname>{你的 GPG Key ID}</gpg.keyname>
         <gpg.useagent>true</gpg.useagent>
-        <gpg.passphrase>{你的私钥的密码}</gpg.passphrase>
+        <gpg.passphrase>{你的 GPG Key 密码}</gpg.passphrase>
       </properties>
     </profile>
 </profiles>
 ```
 
 ## 编译打包
-以下 `release_version` 为即将发布的版本号，比如 1.4.0；`rc_version` 为 Releae Candidate，比如 RC0，RC1...。
+以下 `release_version` 为即将发布的版本号，比如 1.4.0；`rc_version` 为 Releae Candidate，比如 RC0，RC1...;`KEY_ID` 是你创建的 GPG Key ID.
 
 ### 准备分支
 - 从版本主分支创建待发布分支，并修改 POM 版本号和 CHANGES.md。比如从 `branch-1.4` 创建 `release-1.4.0`
@@ -221,27 +221,24 @@ $ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connecto
 # 进入源码包目录
 $ cd /tmp/apache-inlong-${release_version}-${rc_version}
 # 计算 SHA512
-$ for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i > $i.sha512 ; done
+$ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --print-md SHA512 $i > $i.sha512 ; done
 # 计算签名
-$ for i in *.tar.gz; do echo $i; gpg --armor --output $i.asc --detach-sig $i ; done
+$ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --armor --output $i.asc --detach-sig $i ; done
 ```
 
 ### 检查生成的签名/sha512是否正确
 具体可以参考：[验证候选版本](how-to-verify.md)，比如验证签名是否正确如下：
 ```shell
-$ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
+$ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --verify $i.asc $i ; done
 ```
 
 ## 准备 Apache 发布
 ### 发布 jar 包到 Apache Nexus 仓库
 ```shell
 # 进入源码包目录
-$ cd /tmp/apache-inlong-${release_version}-${rc_version}
-# 解压源码包
-$ tar xzvf apache-inlong-${release_version}-src.tar.gz
-$ cd apache-inlong-${release_version}
-# 开始上传
-$ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true  
+$ cd /tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}
+# 开始上传，确保 settings.xml 为上面步骤已更新的文件
+$ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true
 ```
 
 ### 上传 tag 到 git 仓库

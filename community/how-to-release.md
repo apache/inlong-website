@@ -27,7 +27,7 @@ $ gpg --version
 ### Generate GPG Key
 :::caution
 - Name is best to keep consistent with your full name of Apache ID
-- The mailbox used is apache. It is recommended that pg -k view all the keys. If the first one is not the key of the apache mailbox, if you need to specify the key in the step for encryption operation, the parameter is -u
+- The mailbox used is apache. It is recommended that pg -k view all the Key ID. If the first one is not the Key ID of the apache mailbox, if you need to specify the Key ID in the step for encryption operation, the parameter is -u
 - Make sure that there is only one key, and delete the keys of other spare mailboxes first
 - Name is best to only use English to avoid garbled
 :::
@@ -161,16 +161,16 @@ Adding `<servers>/<profiles>` configurations in your maven `settings.xml` with c
     <profile>
       <id>apache-release</id>
       <properties>
-        <gpg.keyname>{Your KEY ID}</gpg.keyname>
+        <gpg.keyname>{Your GPG Key ID}</gpg.keyname>
         <gpg.useagent>true</gpg.useagent>
-        <gpg.passphrase>{Password for you private key}</gpg.passphrase>
+        <gpg.passphrase>{Password for you GPG key}</gpg.passphrase>
       </properties>
     </profile>
 </profiles>
 ```
 
 ## Build
-The following `release_version` is the upcoming release number, such as 1.0.0; `rc_version` is Release Candidate, such as RC0, RC1... .
+The following `release_version` is the upcoming release number, such as 1.0.0; `rc_version` is Release Candidate, such as RC0, RC1...; `KEY_ID` is your GPG Key ID.
 
 ### Prepare branch
 - Create the release branch from the main version branch and modify the POM version number and CHANGES.md. For example, create `release-1.4.0` from `branch-1.4`
@@ -222,27 +222,24 @@ $ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connecto
 # 进入源码包目录
 $ cd /tmp/apache-inlong-${release_version}-${rc_version}
 # calculate SHA512
-$ for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i > $i.sha512 ; done 
+$ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --print-md SHA512 $i > $i.sha512 ; done 
 # calculate signature
-$ for i in *.tar.gz; do echo $i; gpg --armor --output $i.asc --detach-sig $i ; done 
+$ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --armor --output $i.asc --detach-sig $i ; done 
 ```
 
 ### Check the signature/sha512
 Ref：[check the candidate version](how-to-verify.md), e.g. check the signature:
 ```shell
-$ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
+$ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --verify $i.asc $i ; done
 ```
 
 ## Prepare for Apache release
 ### Deploy jar to Apache Nexus repository
 ```shell
 # go to the source code directory
-$ cd /tmp/apache-inlong-${release_version}-${rc_version} 
-# uncompress source code package
-$ tar xzvf apache-inlong-${release_version}-src.tar.gz 
-$ cd apache-inlong-${release_version}
-# uploading
-$ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true  
+$ cd /tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}
+# start to upload, and make sure the settings.xml is the file updated before.
+$ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true
 ```
 
 ### Upload tag to git repository
