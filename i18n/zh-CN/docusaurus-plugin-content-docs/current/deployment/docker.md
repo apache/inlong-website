@@ -42,8 +42,8 @@ Password: inlong
 
 :::note
 集群标签选择刚创建的 'default_cluster'，docker 部署的 Pulsar 集群：
-Service URL 为 `pulsar://pulsar:6650`
-Admin URL 为 `http://pulsar:8080`
+
+Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 
 ### 创建数据流
 创建数据流可以参考 [Pulsar Example](quick_start/pulsar_example.md).
