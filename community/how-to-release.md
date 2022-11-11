@@ -238,7 +238,7 @@ $ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --verify $i.asc $i ; done
 ```shell
 # go to the source code directory
 $ cd /tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}
-# start to upload, and make sure the settings.xml is the file updated before.
+# start to upload, and make sure the settings.xml is the file updated before
 $ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true
 ```
 

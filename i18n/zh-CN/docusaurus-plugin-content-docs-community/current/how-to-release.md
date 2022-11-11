@@ -271,8 +271,8 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 ```
 
 ### 关闭 Apache Staging 仓库
-- 使用 Apache 账号登录 http://repository.apache.org , 
-- 点击左侧的 Staging repositories，
+- 使用 Apache 账号登录 http://repository.apache.org
+- 点击左侧的 Staging repositories
 - 搜索 InLong 关键字，选择你最近上传的仓库
 - 点击上方的 Close 按钮，这个过程会进行一系列检查
 - 检查通过以后, 在下方的 Summary 标签页上出现一个连接，请保存好这个链接，需要放在接下来的投票邮件当中。
