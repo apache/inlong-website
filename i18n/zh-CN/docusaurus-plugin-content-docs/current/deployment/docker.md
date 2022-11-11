@@ -7,6 +7,7 @@ sidebar_position: 2
 
 :::note
 Docker 部署默认使用 [Apache Pulsar](https://pulsar.apache.org/docs/concepts-overview) 作为消息队列服务。
+:::
 
 ## 环境要求
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
@@ -34,16 +35,18 @@ Password: inlong
 ![](img/create_cluster_tag.png)
 
 :::caution
-由于各个组件默认上报集群标签为 'default_cluster'，请勿使用其它名称。
+由于各个组件默认上报集群标签为 `default_cluster`，请勿使用其它名称。
+:::
 
 ### 注册 Pulsar 集群
 页面点击 [集群管理]->[集群管理]->[新建集群]，注册 Pulsar 集群：
 ![](img/create_pulsar_cluster.png)
 
 :::note
-集群标签选择刚创建的 'default_cluster'，docker 部署的 Pulsar 集群：
+集群标签选择刚创建的 `default_cluster`，docker 部署的 Pulsar 集群：
 
 Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
+:::
 
 ### 创建数据流
 创建数据流可以参考 [Pulsar Example](quick_start/pulsar_example.md).
