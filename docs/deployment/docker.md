@@ -5,67 +5,42 @@ sidebar_position: 2
 
 Deploy all InLong module by Docker Compose, it's only available for development. 
 
-*Notice: The default message queue is Apache Pulsar for Docker.*
+:::note
+The default message queue is [Apache Pulsar](https://pulsar.apache.org/docs/concepts-overview) for Docker.
 
 ## Environment Requirements
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 - Docker Compose 1.29.2+
-- Flink 1.13.5
 
 ## Download
 You can get `apache-inlong-[version]-bin.tar.gz` from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).
 
-## Configure
-Replace the `FLINK_HOST` and `FLINK_PORT` environment variables in `docker/docker-compose/docker-compose.yml` refer to the Flink cluster address.
-
 ## Deploy
-
 Start all components.
-
 ```shell
 cd docker/docker-compose
 docker-compose up -d
 ```
+### Create Cluster Tag
+Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge:
+![](img/create_cluster_tag.png)
 
-## Register Cluster
+:::caution
+Since each component reports the ClusterTags as 'default_cluster' by default, do not use other names.
 
-### DataProxy Cluster
+### Register Pulsar Cluster
+Click [Clusters]->[ClusterTags]->[Create] on the page to register Pulsar Cluster:
+![](img/create_pulsar_cluster.png)
 
-Open the Inlong-Dashboard page (the default is <http://127.0.0.1>), and select to add a DataProxy cluster on the [Clusters] tab:
+:::note
+The ClusterTags selects the newly created 'default_cluster', the Pulsar cluster deployed by docker:
 
-![](img/dp_cluster.png)
+Service URL is `pulsar://pulsar:6650`, Admin URL is `http://pulsar:8080`.
 
-Click the [Create] button, and fill in the cluster name, cluster label, and responsible person in the pop-up box to save.
-
-> Note: [Cluster Tag] is a logical concept. Tags with the same name will be regarded as the same cluster.
->
-> For example, the DataProxy cluster and the Pulsar cluster with the same cluster tag belong to the same cluster.
-
-Then add nodes to this DataProxy cluster - a DataProxy cluster can support adding multiple nodes:
-
-![](img/dp_cluster_node.png)
-
-Just fill in the IP and port of the DataProxy node.
-
-![](img/dp_cluster_node_save.png)
-
-### Pulsar Cluster
-
-Similar to the above entry for adding a DataProxy cluster, the filling example is as follows:
-
-![](img/pulsar_cluster_save.png)
-
-## Usage
-
-After all containers run successfully, you can access `http://localhost` with default account:
-
-```shell
-User: admin
-Password: inlong
-```
+### Create Data Stream
+You can refer [Pulsar Example](quick_start/pulsar_example.md) to create Data Stream.
 
 ## Destroy
-
 ```shell
 docker-compose down
 ```
