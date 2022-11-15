@@ -1,5 +1,5 @@
 ---
-title: InLong 简介
+title: 简介
 sidebar_position: 1
 ---
 
@@ -39,13 +39,13 @@ Apache InLong 依托 10 万亿级别的数据接入和处理能力，整合了�
 <Tabs
 defaultValue="standard"
 values={[
-{label: 'Standard', value: 'standard'},
-{label: 'Lightweight', value: 'lightweight'},
+{label: '标准', value: 'standard'},
+{label: '轻量化', value: 'lightweight'},
 ]}>
-<TabItem value="standard">
+<TabItem value="standard"> 标准架构：包含 InLong Agent、Manager、MQ、Sort、Dashboard 等所有 InLong 组件，适合海量数据、大规模生产环境。
 <img src="/img/inlong-structure-zh.png" align="center" alt="Apache InLong"/>
 </TabItem>
-<TabItem value="lightweight">
+<TabItem value="lightweight"> 轻量化架构：只包含 InLong Sort 一个组件，也可以搭配 Manager，Dashboard 一起使用。轻量化架构简单、灵活，适合小规模数据。
 <img src="/img/inlong-structure-light.png" align="center" style={{objectFit: 'cover', height: '460px', width: '860px'}} alt="Apache InLong"/>
 </TabItem>
 </Tabs>
@@ -53,7 +53,7 @@ values={[
 ## 模块
 Apache InLong 服务于数据采集到落地的整个生命周期，按数据的不同阶段提供不同的处理模块，主要包括：
 
-- **inlong-agent**，数据采集服务，包括文件采集、DB采集等。
+- **inlong-agent**，数据采集服务，包括文件采集、DB 采集等。
 - **inlong-dataproxy**，一个基于 Flume-ng 的 Proxy 组件，支持数据发送阻塞和落盘重发，拥有将接收到的数据转发到不同 MQ（消息队列）的能力。
 - **inlong-tubemq**，腾讯自研的消息队列服务，专注于大数据场景下海量数据的高性能存储和传输，在海量实践和低成本方面有着良好的核心优势。
 - **inlong-sort**，对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、Hbase、Iceberg 等存储系统。
