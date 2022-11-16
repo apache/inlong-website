@@ -150,7 +150,7 @@ TODO
 ## Feature
 ### Multiple table sink
 Currently Iceberg support multiple table sinking, it require FLINK SQL create table parameters add  
-`'sink.multiple.enable' = 'true'` and target table schema can only be defined as `BINARY` or `STRING`
+`'sink.multiple.enable' = 'true'` and target table schema can only be defined as `BYTES` or `STRING`
 Examples as follows:
 ```
 CREATE TABLE `table_2`(
@@ -178,7 +178,7 @@ The placeholder is parsed from the data, the variable is strictly represented by
 the value of the variable comes from the data itself, it can be a metadata field of a Format specified by 
 `'sink.multiple.format'`, or it can be a physical field in the data.
 Examples of 'topic-parttern' are as follows:
-- 'sink.multiple.format' 为 'canal-json':
+- 'sink.multiple.format' is 'canal-json':
 
 The upstream data is:
 ```
@@ -224,7 +224,7 @@ The upstream data is:
 'topic-pattern' is '{database}_${table}', and the extracted topic is 'inventory_products'
 ('source.db', 'source.table' are metadata fields, and 'id' are physical fields)
 
-'topic-pattern' is '{database}_${table}_${id}', and the extracted topic is 'inventory_products_4' 
+'topic-pattern' is '{database}_${table}_${id}', and the extracted topic is 'inventory_products_111' 
 ('source.db', 'source.table' are metadata fields, and 'id' are physical fields)
 
 
@@ -261,7 +261,7 @@ Iceberg support schema evolution from source table to target table in multiple s
 | hive-conf-dir    | optional for hive catalog                   | (none)  | String  | Path to a directory containing a `hive-site.xml` configuration file which will be used to provide custom Hive configuration values. The value of `hive.metastore.warehouse.dir` from `<hive-conf-dir>/hive-site.xml` (or hive configure file from classpath) will be overwrote with the `warehouse` value if setting both `hive-conf-dir` and `warehouse` when creating iceberg catalog. |
 | inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode. |
 | sink.multiple.enable | optional                         | false  | Boolean | Whether to enable multiple sink            |
-| sink.multiple.schema-update.policy | optional           | TRY_IT_BEST | Enum | The policy to handle the inconsistency between the schema in the data and the schema of the target table <br>TRY_IT_BEST: try best, deal with as much as possible, ignore it if can't handled.<br>  IGNORE_WITH_LOG:ignore it and log it,ignore this table later.<br> THROW_WITH_STOP:throw exception and stop the job, until user deal with schema conflict and job restore.
+| sink.multiple.schema-update.policy | optional           | TRY_IT_BEST | Enum | The policy to handle the inconsistency between the schema in the data and the schema of the target table <br/>TRY_IT_BEST: try best, deal with as much as possible, ignore it if can't handled.<br/>  IGNORE_WITH_LOG:ignore it and log it,ignore this table later.<br/> THROW_WITH_STOP:throw exception and stop the job, until user deal with schema conflict and job restore.
 | sink.multiple.pk-auto-generated | optional              | false  | Boolean  | Whether auto generate primary key, regard all field combined as primary key in multiple sink scenes. |
 | sink.multiple.typemap-compatible-with-spark | optional  | false  | Boolean  | Whether to adapt spark type system in auto generate table. |
 

@@ -151,7 +151,7 @@ TODO
 ## 特征
 ### 多表写入
 目前 Iceberg 支持多表同时写入，需要在 FLINK SQL 的建表参数上添加 `'sink.multiple.enable' = 'true'` 并且目标表的schema
-只能定义成 `BINARY` 或者 `STRING` ，以下是一个建表语句举例：
+只能定义成 `BYTES` 或者 `STRING` ，以下是一个建表语句举例：
 ```
 CREATE TABLE `table_2`(
     `data` STRING)
@@ -222,7 +222,7 @@ Iceberg Load Node 会解析 `'sink.multiple.database-pattern'` 作为目的端�
 'topic-pattern' 为 '{database}_${table}', 提取后的 Topic 为 'inventory_products' ('database', 'table' 为元数据字段,
 'id' 为物理字段)
 
-'topic-pattern' 为 '{database}_${table}_${id}', 提取后的 Topic 为 'inventory_products_4' ('database', 'table' 
+'topic-pattern' 为 '{database}_${table}_${id}', 提取后的 Topic 为 'inventory_products_111' ('database', 'table' 
 为元数据字段, 'id' 为物理字段)
 
 ### 动态建库、建表
@@ -257,7 +257,7 @@ Iceberg在多表写入时支持同步源表结构变更到目标表（DDL同步�
 | hive-conf-dir    | hive catalog可选                 | (none) | String  | `hive-site.xml`包含将用于提供自定义 Hive 配置值的配置文件的目录的路径。如果同时设置和创建Iceberg目录时，`hive.metastore.warehouse.dir`from `<hive-conf-dir>/hive-site.xml`（或来自类路径的 hive 配置文件）的值将被该值覆盖。`warehouse``hive-conf-dir``warehouse` |
 | inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 | sink.multiple.enable | 可选                         | false  | Boolean | 是否开启多路写入            |
-| sink.multiple.schema-update.policy | 可选           | TRY_IT_BEST | Enum | 遇到数据中schema和目标表不一致时的处理策略<br>TRY_IT_BEST：尽力而为，尽可能处理，处理不了的则忽略<br>  IGNORE_WITH_LOG：忽略并且记录日志，后续该表数据不再处理<br> THROW_WITH_STOP：抛异常并且停止任务，直到用户手动处理schema不一致的情况
+| sink.multiple.schema-update.policy | 可选           | TRY_IT_BEST | Enum | 遇到数据中schema和目标表不一致时的处理策略<br/>TRY_IT_BEST：尽力而为，尽可能处理，处理不了的则忽略<br/>IGNORE_WITH_LOG：忽略并且记录日志，后续该表数据不再处理<br/> THROW_WITH_STOP：抛异常并且停止任务，直到用户手动处理schema不一致的情况
 | sink.multiple.pk-auto-generated | 可选              | false  | Boolean  | 是否自动生成主键，对于多路写入自动建表时当源表无主键时是否将所有字段当作主键  |
 | sink.multiple.typemap-compatible-with-spark | 可选  | false  | Boolean  | 是否适配spark的类型系统，对于多路写入自动建表时是否需要适配spark的类型系统 |
 
