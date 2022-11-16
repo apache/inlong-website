@@ -5,6 +5,7 @@ import config from "../team/config.json";
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
 import './index.less';
+import styles from './team.module.scss';
 
 export default function() {
     const isBrowser = useIsBrowser();
@@ -29,28 +30,28 @@ export default function() {
                 </div>
                 <h2>Members</h2>
                 <p>{dataSource.members}</p>
-                <div className="card">
+                <div className={styles.card}>
                     {
                         team.members.map((member, i) => (
                             <div>
-                                <a className="member-a" target="_blank" href={`https://github.com/${member.githubName}`}>
-                                    <img src={member.avatarUrl} className="member-Avatar-img"/>
-                                    <div className="memberName-div">{member.apacheID}</div>
-                                    <div className="username-div">{member.githubName}</div>
+                                <a className={styles.memberLink} target="_blank" href={`https://github.com/${member.githubName}`}>
+                                    <img src={member.avatarUrl} className={styles.memberAvatarImg}/>
+                                    <div className={styles.memberNameDiv}>{member.apacheID}</div>
+                                    <div className={styles.usernameDiv}>{member.githubName}</div>
                                 </a>
                             </div>
                         ))
                     }
                 </div>
                 <h2>Committer</h2>
-                <div className="card">
+                <div className={styles.card}>
                     {
                         team.committers.map((committer, i) => (
                             <div>
-                                <a className="member-a" target="_blank" href={committer.githubName === "" ? `` : `https://github.com/${committer.githubName}`}>
-                                    <img src={committer.avatarUrl} className="member-Avatar-img"/>
-                                    <div className="memberName-div">{committer.apacheID}</div>
-                                    <div className="username-div">{committer.githubName}</div>
+                                <a className={styles.memberLink} target="_blank" href={committer.githubName === "" ? `` : `https://github.com/${committer.githubName}`}>
+                                    <img className={styles.memberAvatarImg} src={committer.avatarUrl !== "" ? committer.avatarUrl : useBaseUrl('/img/default.png')}/>
+                                    <div className={styles.memberNameDiv}>{committer.apacheID}</div>
+                                    <div className={styles.usernameDiv}>{committer.githubName}</div>
                                 </a>
                             </div>
                         ))
@@ -58,8 +59,8 @@ export default function() {
                 </div>
                 <h2>Contributors</h2>
                 <p>{dataSource.code_contributors}</p>
-                <div className="committer-div">
-                    <a href="https://github.com/apache/inlong/graphs/contributors" className="committer-a" target="_blank">
+                <div className={styles.committerDiv}>
+                    <a href="https://github.com/apache/inlong/graphs/contributors" className={styles.committerLink} target="_blank">
                         <svg t="1668397861887" className="icon" viewBox="0 0 1024 1024" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" p-id="2713" width="32" height="32">
                             <path
@@ -68,7 +69,7 @@ export default function() {
                         </svg>
                         apache/inlong
                     </a>
-                    <a href="https://github.com/apache/inlong-website/graphs/contributors" className="committer-a" target="_blank">
+                    <a href="https://github.com/apache/inlong-website/graphs/contributors" className={styles.committerLink} target="_blank">
                         <svg t="1668397861887" className="icon" viewBox="0 0 1024 1024" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" p-id="2713" width="32" height="32">
                             <path
@@ -79,7 +80,7 @@ export default function() {
                     </a>
                 </div>
                 <h2>Contributor Over Time</h2>
-                <div className="div-img">
+                <div className={styles.divImg}>
                     <img src="https://contributor-graph-api.apiseven.com/contributors-svg?repo=apache/inlong&merge=true" alt="apache inlong"/>
                 </div>
             </div>
