@@ -385,7 +385,7 @@ Wait the repository sync to other repositories which generally takes 24 hours
 ### Update Documents and download links on official website
 - Update [download](https://inlong.apache.org/download/) resource links
 
-- Create a ${release-version} pair for the version document
+- Create ${release-version} related version document
 
 ### Send email to `dev@inlong.apache.org` and CC `announce@apache.org`
 - Please make sure deployment in Apache Staging is successfully

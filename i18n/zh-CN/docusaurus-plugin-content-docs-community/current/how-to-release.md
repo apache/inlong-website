@@ -384,7 +384,7 @@ $ svn mv https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_v
 ### 更新官网文档和下载链接
 - 更新[下载页面](https://inlong.apache.org/download/)的资源链接
 
-- 创建 ${release-version} 对应对版本文档
+- 创建 ${release-version} 对应版本的文档
 
 ### 发 ANNOUNCE 邮件，主送 `dev@inlong.apache.org`，抄送 `announce@apache.org`
 - 请确保 Apache Staging 仓库已发布成功
