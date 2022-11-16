@@ -426,7 +426,7 @@ InLong Resources:
 - Mailing list: dev@inlong.apache.org
 
 Thanks
-On behalf of Apache InLong community
+On behalf of the Apache InLong community
 ```
 
 ### GitHub 官网新增 release 包
