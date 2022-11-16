@@ -1,5 +1,5 @@
 ---
-title: InLong Introduction
+title: Introduction
 sidebar_position: 1
 ---
 
@@ -45,10 +45,10 @@ values={[
 {label: 'Standard', value: 'standard'},
 {label: 'Lightweight', value: 'lightweight'},
 ]}>
-<TabItem value="standard">
+<TabItem value="standard"> Standard Architecture: contains all InLong components such as InLong Agent, Manager, MQ, Sort, Dashboard, which is suitable for massive data and large-scale production environments.
 <img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>
 </TabItem>
-<TabItem value="lightweight">
+<TabItem value="lightweight"> Lightweight Architecture: contains only one component of InLong Sort, which also can be used with Manager, Dashboard, and it is simple and flexible, suitable for small-scale data.
 <img src="/img/inlong-structure-light.png" align="center" style={{objectFit: 'cover', height: '460px', width: '860px'}} alt="Apache InLong"/>
 </TabItem>
 </Tabs>
