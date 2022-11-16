@@ -414,6 +414,7 @@ The notable changes since ${release_version} include:
 1. Feature-1
 2. Feature-2
 3. Feature-3
+...
 
 ${release_version} since the last versions, which can be found at:
 

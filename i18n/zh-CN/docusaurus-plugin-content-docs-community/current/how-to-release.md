@@ -413,6 +413,7 @@ The notable changes since ${release_version} include:
 1. Feature-1
 2. Feature-2
 3. Feature-3
+...
 
 Please refer to the change log for the complete list of changes:
 https://github.com/apache/inlong/blob/release-${release_version}/CHANGES.md
