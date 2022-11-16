@@ -282,13 +282,6 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 请注意点击 Close 可能会出现失败，请检查失败原因并处理
 :::
 
-### 清理本地临时文件
-若以上步骤操作成功，说明版本发布顺利，可以清理本地临时文件，进行社区投票。
-```shell
-$ rm -rf /tmp/apache-inlong-${release_version}-${rc_version}/
-$ rm -rf /tmp/inlong-dist-dev/
-```
-
 ## Apache InLong 社区投票
 ### 发起投票
 发送邮件到 `dev@inlong.apache.org`，投票模板为：
@@ -376,14 +369,7 @@ Your InLong Release Manager
 ```shell
 $ svn mv https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/inlong/${release_version} -m "Release ${release_version}"
 ```
-
-### 确认 dev 和 release 下的包是否正确
-- 确认 [dev](https://dist.apache.org/repos/dist/dev/inlong/) 下的 `${release_version}-${rc_version}` 已被删除
-- 删除 [release](https://dist.apache.org/repos/dist/release/inlong/) 目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/inlong/)
-```shell
-# last_release_version 为上一个版本号，可以访问 https://dist.apache.org/repos/dist/release/inlong/ 查看，比如 1.3.0
-$ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_version} -m "Delete ${last_release_version}"
-```
+然后确认 [dev](https://dist.apache.org/repos/dist/dev/inlong/) 下的 `${release_version}-${rc_version}` 目录是否已被删除。
 
 ### 在 Apache Staging 仓库发布版本
 - 使用 Apache 账号登录 http://repository.apache.org
@@ -396,6 +382,9 @@ $ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_ve
 :::
 
 ### 更新官网文档和下载链接
+- 更新[下载页面](https://inlong.apache.org/download/)的资源链接
+
+- 创建 ${release-version} 对应对版本文档
 
 ### 发 ANNOUNCE 邮件，主送 `dev@inlong.apache.org`，抄送 `announce@apache.org`
 - 请确保 Apache Staging 仓库已发布成功
@@ -405,10 +394,12 @@ $ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_ve
 - 宣布 release 邮件，模板为：
 ```html
 标题： [ANNOUNCE] Release Apache InLong ${release_version}
+
 内容：
+
 Hi all,
 
-The Apache InLong community is pleased to announce 
+The Apache InLong community is pleased to announce
 that Apache InLong ${release_version} has been released!
 
 Apache InLong is a one-stop integration framework for massive data that provides automatic, secure,
@@ -418,13 +409,13 @@ This platform helps you easily build stream-based data applications.
 This release contains a number of new features, bug fixes and
 improvements compared to the last version released before.
 The notable changes since ${release_version} include:
-1. Features:
-2. Bug Fixed:
-3. Improvements:
 
+1. Feature-1
+2. Feature-2
+3. Feature-3
 
 Please refer to the change log for the complete list of changes:
-https://github.com/apache/inlong/blob/${release_version}-${rc_version}/CHANGES.md
+https://github.com/apache/inlong/blob/release-${release_version}/CHANGES.md
 
 Apache InLong website: https://inlong.apache.org/
 
@@ -441,3 +432,18 @@ On behalf of Apache InLong community
 ### GitHub 官网新增 release 包
 - 进入 https://github.com/apache/inlong ，点击右侧 Releases 下 + 号， 然后点击 Draft a new release
 - release title 为 ${release_version}，上传 https://downloads.apache.org/inlong/${release-version} 下的所有文件到上传栏中再发布
+
+## 发布后
+### 清理本地临时文件
+若以上步骤操作成功，说明版本发布顺利，可以清理本地临时文件，进行社区投票。
+```shell
+$ rm -rf /tmp/apache-inlong-${release_version}-${rc_version}/
+$ rm -rf /tmp/inlong-dist-dev/
+```
+
+### 归档上一个版本的发布包
+删除 [release](https://dist.apache.org/repos/dist/release/inlong/) 目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/inlong/)
+```shell
+# last_release_version 为上一个版本号，可以访问 https://dist.apache.org/repos/dist/release/inlong/ 查看，比如 1.3.0
+$ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_version} -m "Delete ${last_release_version}"
+```

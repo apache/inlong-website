@@ -283,13 +283,6 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 Close operation may fail, you should check the causes and fix them.
 :::
 
-### Clean up temporary files
-If the above steps are successful, the version release is booming, and you can clean up local temporary files and conduct community voting.
-```shell
-$ rm -rf /tmp/apache-inlong-${release_version}-${rc_version}/
-$ rm -rf /tmp/inlong-dist-dev/
-```
-
 ## Apache InLong community vote
 ### Start Vote
 Send email to `dev@inlong.apache.org`, the vote template is:
@@ -377,14 +370,7 @@ Your InLong Release Manager
 ```shell
 $ svn mv https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_version} https://dist.apache.org/repos/dist/release/inlong/${release_version} -m "Release ${release_version}"
 ```
-
-### Check whether the dev and release is correct
-- Make sure `${release_version}-${rc_version}` is deleted in [dev](https://dist.apache.org/repos/dist/dev/inlong/).
-- Delete release package of pre versions [release](https://dist.apache.org/repos/dist/release/inlong/)，these packages will be saved [here](https://archive.apache.org/dist/inlong/)
-```shell
-# last_release_version is the last version number, you can check is by accessing https://dist.apache.org/repos/dist/release/inlong/ ,e.g 1.3.0
-$ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_version} -m "Delete ${last_release_version}"
-```
+Then make sure `${release_version}-${rc_version}` directory is deleted in [dev](https://dist.apache.org/repos/dist/dev/inlong/).
 
 ### Release version in Apache Staging
 - Log in http://repository.apache.org with your Apache account
@@ -397,6 +383,9 @@ Wait the repository sync to other repositories which generally takes 24 hours
 :::
 
 ### Update Documents and download links on official website
+- Update [download](https://inlong.apache.org/download/) resource links
+
+- Create a ${release-version} pair for the version document
 
 ### Send email to `dev@inlong.apache.org` and CC `announce@apache.org`
 - Please make sure deployment in Apache Staging is successfully
@@ -406,7 +395,9 @@ Wait the repository sync to other repositories which generally takes 24 hours
 - Release announce email, the template is：
 ```html
 Title： [ANNOUNCE] Release Apache InLong ${release_version}
+
 Content：
+
 Hi all,
 
 The Apache InLong community is pleased to announce 
@@ -419,12 +410,15 @@ This platform helps you easily build stream-based data applications.
 This release contains a number of new features, bug fixes and
 improvements compared to the last version released before.
 The notable changes since ${release_version} include:
-1. Features:
-2. Bug Fixed:
-3. Improvements:
+
+1. Feature-1
+2. Feature-2
+3. Feature-3
+
+${release_version} since the last versions, which can be found at:
 
 Please refer to the change log for the complete list of changes:
-https://github.com/apache/inlong/blob/${release_version}-${rc_version}/CHANGES.md
+https://github.com/apache/inlong/blob/release-${release_version}/CHANGES.md
 
 Apache InLong website: https://inlong.apache.org/
 
@@ -441,3 +435,19 @@ On behalf of Apache InLong community
 ### GitHub release package
 - Go to https://github.com/apache/inlong, click the + sign under Releases on the right, then click Draft a new release
 - The release title is ${release_version}, upload all files under https://downloads.apache.org/inlong/${release-version}
+
+## After the release
+### Clean up temporary files
+If the above steps are successful, the version release is booming, and you can clean up local temporary files and conduct community voting.
+```shell
+$ rm -rf /tmp/apache-inlong-${release_version}-${rc_version}/
+$ rm -rf /tmp/inlong-dist-dev/
+```
+
+### Archive the previous version packages
+Delete release package of previous versions [release](https://dist.apache.org/repos/dist/release/inlong/)，these packages will be saved [here](https://archive.apache.org/dist/inlong/)
+```shell
+# last_release_version is the last version number, you can check is by accessing https://dist.apache.org/repos/dist/release/inlong/ ,e.g 1.3.0
+$ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_version} -m "Delete ${last_release_version}"
+```
+
