@@ -6,7 +6,7 @@ sidebar_position: 2
 通过 Docker Compose 部署 InLong，这种部署方式只适用于开发与调试，不适用于生产环境。
 
 :::note
-Docker 部署默认使用 [Apache Pulsar](https://pulsar.apache.org/docs/concepts-overview) 作为消息队列服务。
+Docker Compose 部署了`标准架构`所需要的所有组件，使用 [Apache Pulsar](https://pulsar.apache.org/docs/concepts-overview) 作为消息队列服务。
 :::
 
 ## 环境要求
