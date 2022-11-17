@@ -1,0 +1,94 @@
+.teamDiv {
+  width: 50%;
+  margin: 0 auto;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  box-shadow: none;
+  gap: 18px;
+  margin: 20px 0px 20px 0px;
+  @media (max-width: 812px) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+html[data-theme='dark'] .memberLink {
+  color: white;
+}
+
+.memberLink {
+  border-radius: 0.75rem;
+  border: 1px solid #eee;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1rem;
+  min-width: calc(108px + 2rem);
+  cursor: pointer;
+  height: 100%;
+  color: black;
+  &:hover {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+.memberAvatarImg {
+  height: 108px;
+  width: 108px;
+  border-radius: 50%;
+
+}
+
+.memberNameDiv {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-top: 12px;
+  margin-bottom: -4px;
+  line-height: 1rem;
+}
+
+.usernameDiv {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.committerDiv {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px 0px 20px 0px;
+
+  .committerLink {
+    border-radius: 0.75rem;
+    border: 1px solid #eee;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    padding: 1rem;
+    margin: 8px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &:hover {
+      opacity: 0.98;
+      text-decoration: none;
+    }
+
+    svg {
+      margin-right: 8px;
+      transition: all 0.3s;
+    }
+  }
+
+}
+
+.divImg {
+  margin: 20px 0px 20px 0px;
+}
