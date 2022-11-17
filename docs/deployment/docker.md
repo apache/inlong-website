@@ -6,7 +6,7 @@ sidebar_position: 2
 Deploy all InLong module by Docker Compose, it's only available for development. 
 
 :::note
-The default message queue is [Apache Pulsar](https://pulsar.apache.org/docs/concepts-overview) for Docker.
+Docker Compose deploys all components for Standard Architecture, and choose [Apache Pulsar](https://pulsar.apache.org/docs/concepts-overview) as the default message queue.
 :::
 
 ## Environment Requirements
