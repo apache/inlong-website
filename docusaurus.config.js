@@ -224,7 +224,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
     }),
   plugins: [
     'docusaurus-plugin-less',
-    'docusaurus-plugin-sass',
     [
       '@docusaurus/plugin-content-docs',
       {

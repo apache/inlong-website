@@ -4,8 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import config from "../team/config.json";
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import Layout from '@theme/Layout';
-import './index.less';
-import styles from './team.module.scss';
+import styles from './team.module.less';
 
 export default function() {
     const isBrowser = useIsBrowser();
@@ -21,7 +20,7 @@ export default function() {
 
     return (
         <Layout>
-            <div className="team-div"><br/>
+            <div className={styles.teamDiv}><br/>
                 <h1>InLong Team</h1>
                 <div>
                     <p>{dataSource.synopsis[0]}</p>
