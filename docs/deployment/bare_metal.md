@@ -15,7 +15,10 @@ InLong Support the following Message Queue services now, you can choose one of t
 ## Download the Binary Package
 You can get binary package from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).。
 
-## Deploy
+## Standard Architecture
+You need deploy all InLong components for Standard Architecture.
+
+### Deploy
 | order | component              | dependencies           | deploy guide                                                                                                                                                 | description |
 |-------|------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
 | 1     | inlong-audit           | MySQL or Elasticsearch | [InLong Audit](modules/audit/quick_start.md)                                                                                                                 |             |
@@ -25,5 +28,10 @@ You can get binary package from [Download Page](https://inlong.apache.org/downlo
 | 5     | inlong-dashboard       | Nginx or Docker        | [InLong Dashboard](modules/dashboard/quick_start.md)                                                                                                         |             |
 | 6     | inlong-sort-connectors | Apache Flink           | Extract [apache-inlong-[version]-sort-connectors.tar.gz](https://inlong.apache.org/download/) and move connectors jar to `inlong-sort/connectors` directory. |             |
 
-## Create Data Stream
+### Create Data Stream
 After the InLong cluster deployed successfully, you can create a data stream refer to the [Dashboard Usage Guide](user_guide/dashboard_usage.md) to start using.
+
+## Lightweight Architecture
+### Deploy
+Lightweight Architecture only needs InLong Sort component, it is simple and flexible, suitable for small-scale data.
+You can deploy and use it refer [the deployment guide](modules/sort/quick_start.md).
