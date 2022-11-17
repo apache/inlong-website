@@ -3,18 +3,15 @@ title: Example
 sidebar_position: 3
 ---
 
-## Overview
-
 To make it easier for you to create InLong Sort jobs, here we list some data stream configuration examples.
 The following will introduce SQL, Dashboard, Manager Client Tools methods to use Inlong Sort.
 
 ## Environment Requirements
-- JDK 1.8.x
-- Flink 1.13.5
+- Apache Flink 1.13.5
 - MySQL
-- Kafka
-- Hadoop
-- Hive 3.x
+- Apache Kafka
+- Apache Hadoop
+- Apache Hive 3.x
 
 ## Prepare InLong Sort And Connectors
 You can prepare InLong Sort and Data Node Connectors by referring to [Deployment Guide](quick_start.md).
@@ -28,11 +25,11 @@ This example defines the data flow for a single table(mysql-->kafka-->hive).
 Single table sync example:
 
 ```shell
-./bin/flink run -c org.apache.inlong.sort.Entrance FLINK_HOME/lib/sort-dist-[version].jar \
---sql.script.file /YOUR_SQL_SCRIPT_DIR/mysql-to-kafka.sql
+./bin/flink run -c org.apache.inlong.sort.Entrance apache-inlong-[version]-bin/inlong-sort/sort-dist-[version].jar \
+--sql.script.file mysql-to-kafka.sql
 ```
 
-* mysql-to-kafka.sql
+- mysql-to-kafka.sql
 
 ```sql
 CREATE TABLE `table_1`(
@@ -84,14 +81,16 @@ INSERT INTO `table_2`
 ```
 
 ### Kafka to Hive
-
-**Note:**  First you need to create user table in Hive.
+:::caution
+First you need to create `user` table in Hive.
+:::
 
 ```shell
-./bin/flink run -c org.apache.inlong.sort.Entrance FLINK_HOME/lib/sort-dist-[version].jar \
---sql.script.file /YOUR_SQL_SCRIPT_DIR/kafka-to-hive.sql
+./bin/flink run -c org.apache.inlong.sort.Entrance apache-inlong-[version]-bin/inlong-sort/sort-dist-[version].jar \
+--sql.script.file kafka-to-hive.sql
 ```
-* kafka-to-hive.sql
+
+- kafka-to-hive.sql
 
 ```sql
 CREATE TABLE `table_1`(
@@ -138,12 +137,6 @@ INSERT INTO `user`
     FROM `table_1`;
 
 ```
-Note: Of course you can also put all the SQL in one file.
 
-## Usage for Dashboard
-
-The underlying capabilities are already available and will complement the Dashboard capabilities in the future.
-
-## Usage for Manager Client Tools
-
-TODO: It will be supported in the future.
+## Other Connectors
+there are lots of supported [Extract Node](data_node/extract_node/overview.md) and [Load Node](data_node/load_node/overview.md) , you can use them directly.

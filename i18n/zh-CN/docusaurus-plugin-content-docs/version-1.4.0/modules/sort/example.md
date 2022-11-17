@@ -1,19 +1,16 @@
 ---
-title: 例子
+title: 使用示例
 sidebar_position: 3
 ---
-
-## 示例
 
 为了更容易创建 InLong Sort 作业，这里我们列出了一些数据流配置示例。下面将介绍 InLong Sort 的 SQL、Dashboard、Manager 客户端工具的使用。
 
 ## 环境要求
-- JDK 1.8.x
-- Flink 1.13.5
+- Apache Flink 1.13.5
 - MySQL
-- Kafka
-- Hadoop
-- Hive 3.x
+- Apache Kafka
+- Apache Hadoop
+- Apache Hive 3.x
 
 ## 准备 InLong Sort 和 Connectors
 你可以通过参考[部署指引](quick_start.md)准备 InLong Sort 和数据节点 Connectors。
@@ -27,11 +24,11 @@ sidebar_position: 3
 单表同步配置示例如下：
 
 ```shell
-./bin/flink run -c org.apache.inlong.sort.Entrance FLINK_HOME/lib/sort-dist-[version].jar \
---sql.script.file /YOUR_SQL_SCRIPT_DIR/mysql-to-kafka.sql
+./bin/flink run -c org.apache.inlong.sort.Entrance apache-inlong-[version]-bin/inlong-sort/sort-dist-[version].jar \
+--sql.script.file mysql-to-kafka.sql
 ```
 
-* mysql-to-kafka.sql
+- mysql-to-kafka.sql
 
 ```sql
 CREATE TABLE `table_1`(
@@ -83,14 +80,16 @@ INSERT INTO `table_2`
 ```
 
 ### 读 Kafka 写 Hive
-
-**注意:**  首先需要在 hive 中创建 user 表。
+:::caution
+需要在 hive 中先创建 `user` 表。
+:::
 
 ```shell
-./bin/flink run -c org.apache.inlong.sort.Entrance FLINK_HOME/lib/sort-dist-[version].jar \
---sql.script.file /YOUR_SQL_SCRIPT_DIR/kafka-to-hive.sql
+./bin/flink run -c org.apache.inlong.sort.Entrance apache-inlong-[version]-bin/inlong-sort/sort-dist-[version].jar \
+--sql.script.file kafka-to-hive.sql
 ```
-* kafka-to-hive.sql
+
+- kafka-to-hive.sql
 
 ```sql
 CREATE TABLE `table_1`(
@@ -137,12 +136,6 @@ INSERT INTO `user`
     FROM `table_1`;
 
 ```
-备注：以上过程所有的 SQL 可以放在一个文件中提交执行。
 
-## 使用 Inlong Dashboard 方式
-
-目前 Dashboard 支持文件采集同步的方式，以上数据源可视化配置方式正在开发中。
-
-## 使用 Manager Client Tools 方式
-
-TODO: 未来发布的版本将会支持。
+## 其它 Connectors
+在 [Extract Node](data_node/extract_node/overview.md) 和 [Load Node](data_node/load_node/overview.md) 部分，有更丰富的 connector 可以使用，可根据使用场景参考配置。

@@ -26,13 +26,8 @@ The following table shows the version mapping between InLong<sup>®</sup> Extrac
 |          <font color="DarkCyan">1.2.0</font>           | <font color="MediumVioletRed">1.13.5</font> |
 
 ## Usage for SQL API
-
-We need several steps to setup a Flink cluster with the provided connector.
-
-1. Setup a Flink cluster with version 1.13.5 and Java 8+ installed.
-2. Download and the Sort Connectors jars from the [Downloads](/download) page (or [build yourself](../../quick_start/how_to_build.md)).
-3. Put the Sort Connectors jars under `FLINK_HOME/lib/`.
-4. Restart the Flink cluster.
+- [Deploy InLong Sort](modules/sort/quick_start.md)
+- Create Data Node
 
 The example shows how to create a MySQL Extract Node in [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-release-1.13/dev/table/sqlClient.html) and execute queries on it.
 
