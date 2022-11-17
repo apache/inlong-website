@@ -147,6 +147,103 @@ TODO
 ### Usage for InLong Manager Client
 TODO
 
+## Feature
+### Multiple table sink
+Currently Iceberg support multiple table sinking, it require FLINK SQL create table parameters add  
+`'sink.multiple.enable' = 'true'` and target table schema can only be defined as `BYTES` or `STRING`
+Examples as follows:
+```
+CREATE TABLE `table_2`(
+    `data` STRING)
+WITH (
+    'connector'='iceberg-inlong',
+    'catalog-name'='hive_prod',
+    'uri'='thrift://localhost:9083',
+    'warehouse'='hdfs://localhost:8020/hive/warehouse',
+    'sink.multiple.enable' = 'true',
+    'sink.multiple.format' = 'canal-json',
+    'sink.multiple.add-column.policy' = 'TRY_IT_BEST',
+    'sink.multiple.database-pattern' = '${database}',
+    'sink.multiple.table-pattern' = 'test_${table}'
+);
+```
+To support multiple sink, it is necessary to set the serialization format of upstream data
+(Via option 'sink.multiple.format' to set, currently only supports [canal-json|debezium-json]).
+
+### dynamic dababase/table Extraction
+Iceberg can customize mapping rules for database names and table names, it can fill in placeholders and add prefixes 
+and suffixes to modify the mapped target table name. Iceberg Load Node will extract `'sink.multiple.database-pattern'` 
+as target database name, extract `'sink.multiple.table-pattern'` as target table name,
+The placeholder is parsed from the data, the variable is strictly represented by '${VARIABLE_NAME}', 
+the value of the variable comes from the data itself, it can be a metadata field of a Format specified by 
+`'sink.multiple.format'`, or it can be a physical field in the data.
+Examples of 'topic-parttern' are as follows:
+- 'sink.multiple.format' is 'canal-json':
+
+The upstream data is:
+```
+{
+  "data": [
+    {
+      "id": "111",
+      "name": "scooter",
+      "description": "Big 2-wheel scooter",
+      "weight": "5.18"
+    }
+  ],
+  "database": "inventory",
+  "es": 1589373560000,
+  "id": 9,
+  "isDdl": false,
+  "mysqlType": {
+    "id": "INTEGER",
+    "name": "VARCHAR(255)",
+    "description": "VARCHAR(512)",
+    "weight": "FLOAT"
+  },
+  "old": [
+    {
+      "weight": "5.15"
+    }
+  ],
+  "pkNames": [
+    "id"
+  ],
+  "sql": "",
+  "sqlType": {
+    "id": 4,
+    "name": 12,
+    "description": 12,
+    "weight": 7
+  },
+  "table": "products",
+  "ts": 1589373560798,
+  "type": "UPDATE"
+} 
+```
+'topic-pattern' is '{database}_${table}', and the extracted topic is 'inventory_products'
+('source.db', 'source.table' are metadata fields, and 'id' are physical fields)
+
+'topic-pattern' is '{database}_${table}_${id}', and the extracted topic is 'inventory_products_111' 
+('source.db', 'source.table' are metadata fields, and 'id' are physical fields)
+
+
+### Auto create database/table
+Iceberg can auto create database and auto create table in multiple sink scenes if database and table not exists, and it supports capture new table at runtime。
+default Iceberg table parameters: `'format-version' = '2'`、`'write.upsert.enabled' = 'true''`、`'engine.hive.enabled' = 'true'`
+
+### Dynamic schema evolution
+Iceberg support schema evolution from source table to target table in multiple sink scenes(DDL synchronize), supported schema evolution：
+
+| schema evolution type  |   supported  |
+| -------------- | ----------- |
+| Column add          |   true       |
+| Column delete       |   false       |
+| Column reorder      |    false      |
+| Column rename        |   false       |
+| Column type update      |   false       |
+
+
 ## Iceberg Load Node Options
 
 | Option           | Required                                    | Default | Type    | Description                                                  |
@@ -163,6 +260,10 @@ TODO
 | warehouse        | optional for hadoop catalog or hive catalog | (none)  | String  | For Hive catalog，is the Hive warehouse location, users should specify this path if neither set the `hive-conf-dir` to specify a location containing a `hive-site.xml` configuration file nor add a correct `hive-site.xml` to classpath. For hadoop catalog，The HDFS directory to store metadata files and data files. |
 | hive-conf-dir    | optional for hive catalog                   | (none)  | String  | Path to a directory containing a `hive-site.xml` configuration file which will be used to provide custom Hive configuration values. The value of `hive.metastore.warehouse.dir` from `<hive-conf-dir>/hive-site.xml` (or hive configure file from classpath) will be overwrote with the `warehouse` value if setting both `hive-conf-dir` and `warehouse` when creating iceberg catalog. |
 | inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode. |
+| sink.multiple.enable | optional                         | false  | Boolean | Whether to enable multiple sink            |
+| sink.multiple.schema-update.policy | optional           | TRY_IT_BEST | Enum | The policy to handle the inconsistency between the schema in the data and the schema of the target table <br/>TRY_IT_BEST: try best, deal with as much as possible, ignore it if can't handled.<br/>  IGNORE_WITH_LOG:ignore it and log it,ignore this table later.<br/> THROW_WITH_STOP:throw exception and stop the job, until user deal with schema conflict and job restore.
+| sink.multiple.pk-auto-generated | optional              | false  | Boolean  | Whether auto generate primary key, regard all field combined as primary key in multiple sink scenes. |
+| sink.multiple.typemap-compatible-with-spark | optional  | false  | Boolean  | Whether to adapt spark type system in auto generate table. |
 
 ## Data Type Mapping
 
