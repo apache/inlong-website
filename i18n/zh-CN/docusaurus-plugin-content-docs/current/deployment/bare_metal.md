@@ -4,8 +4,8 @@ sidebar_position: 4
 ---
 
 ## 环境要求
-- MySQL 5.7+
-- Flink 1.13.5
+- MySQL 5.7+ or PostgreSQL
+- [Apache Flink 1.13.5](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/overview/)
 
 ## 准备消息队列
 InLong 当前支持以下消息队列，根据使用情况**选择其一**即可。

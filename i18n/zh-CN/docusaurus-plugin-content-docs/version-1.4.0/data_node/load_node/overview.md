@@ -34,13 +34,8 @@ Load 节点列表是一组基于 <a href="https://flink.apache.org/">Apache Flin
 | <font color="DarkCyan">1.2.0</font> | <font color="MediumVioletRed">1.13.5</font> |
 
 ## SQL API 的用法
-
-我们需要几个步骤来使用提供的连接器设置 Flink 集群。
-
-- 设置一个安装了 1.13.5 版本和 Java 8+ 的 Flink 集群。 
-- 从 [下载](/zh-CN/download) 页面下载并解压 Sort Connectors jars (或者参考 [如何编译](../../quick_start/how_to_build.md) 编译需要的版本)。
-- 将下载并解压后的 Sort Connectors jars 放到 `FLINK_HOME/lib/`。
-- 重启 Flink 集群。
+- [部署 InLong Sort](modules/sort/quick_start.md)
+- 创建数据节点
 
 下面例子展示了如何在 [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-release-1.13/dev/table/sqlClient.html) 创建一个 MySQL Load 节点并加载数据进去：
 
