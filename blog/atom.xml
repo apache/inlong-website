@@ -2,13 +2,28 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://inlong.apache.org/blog</id>
     <title>Apache Inlong Blog</title>
-    <updated>2022-09-05T00:00:00.000Z</updated>
+    <updated>2022-11-16T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://inlong.apache.org/blog"/>
     <subtitle>Apache Inlong Blog</subtitle>
     <icon>https://inlong.apache.org/img/logo.svg</icon>
     <entry>
-        <title type="html"><![CDATA[Release InLong 1.3.0]]></title>
+        <title type="html"><![CDATA[Release 1.4.0]]></title>
+        <id>/2022/11/16/release-1.4.0</id>
+        <link href="https://inlong.apache.org/blog/2022/11/16/release-1.4.0"/>
+        <updated>2022-11-16T00:00:00.000Z</updated>
+        <summary type="html"><![CDATA[Apache InLong is a one-stop integration framework for massive data that provides automatic, secure and reliable data transmission capabilities.]]></summary>
+        <content type="html"><![CDATA[<p>Apache InLong is a one-stop integration framework for massive data that provides automatic, secure and reliable data transmission capabilities.
+InLong offers great power to build data analysis, modeling and other real-time applications based on streaming data.</p><h2 class="anchor anchorWithStickyNavbar_LWe7" id="140-version-overview">1.4.0 version overview<a class="hash-link" href="#140-version-overview" title="Direct link to heading">​</a></h2><p>Apache InLong recently released version 1.4.0, which closed about 364+ issues with 16+ features and 120+ optimizations. It mainly completes the real-time synchronization of the entire database to Apache Doris and the real-time synchronization of the entire database to Apache Iceberg, the standard architecture supports HTTP reporting, and the standard architecture adds MongoDB and other collection nodes. This release also completes a number of other features, including:</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="agent-module">Agent Module<a class="hash-link" href="#agent-module" title="Direct link to heading">​</a></h3><ul><li>Refactored sink-sending metrics</li><li>Audit report increases data size</li><li>Support Redis, MQTT, SQLServer, Oracle, and MongoDB data sources</li><li>Enhanced Kubernetes environment file collection capability</li></ul><h3 class="anchor anchorWithStickyNavbar_LWe7" id="dataproxy-module">DataProxy module<a class="hash-link" href="#dataproxy-module" title="Direct link to heading">​</a></h3><ul><li>Heartbeat reporting adds service status and supports authentication</li><li>Added proxy-send mode to send data</li><li>Optimized data link buried point indicators</li></ul><h3 class="anchor anchorWithStickyNavbar_LWe7" id="tubemq-module">TubeMQ module<a class="hash-link" href="#tubemq-module" title="Direct link to heading">​</a></h3><ul><li>Added client load balancing consumer group control API</li><li>C++ SDK fixes multiple bugs</li></ul><h3 class="anchor anchorWithStickyNavbar_LWe7" id="manager-module">Manager module<a class="hash-link" href="#manager-module" title="Direct link to heading">​</a></h3><ul><li>Data stream Group and Stream support extended parameters</li><li>Client supports updating and deleting data flow through Key</li><li>Refactored the way to obtain Sort cluster configuration information</li><li>Optimized state management</li><li>Client supports cluster addition, deletion, modification, and query</li><li>Cluster nodes report new protocol types</li><li>Cache layer usage supports using Kafka</li></ul><h3 class="anchor anchorWithStickyNavbar_LWe7" id="sort-module">Sort module<a class="hash-link" href="#sort-module" title="Direct link to heading">​</a></h3><ul><li>Support debezium-json format</li><li>Kafka data nodes support topic dynamic awareness</li><li>Connectors such as Hive/Hbase/Iceberg support indicator status recovery</li><li>Elasticsearch 6/7, JDBC connector added indicator status</li><li>Iceberg sink supports schema revolution, can automatically build tables, and perceive the increase of fields</li></ul><h3 class="anchor anchorWithStickyNavbar_LWe7" id="dashboard-module">Dashboard module<a class="hash-link" href="#dashboard-module" title="Direct link to heading">​</a></h3><ul><li>Unified data source, data flow type definition</li><li>Added Agent type for cluster management</li><li>Add data node management</li><li>Support selection of Kafka message type</li></ul><h3 class="anchor anchorWithStickyNavbar_LWe7" id="other">Other<a class="hash-link" href="#other" title="Direct link to heading">​</a></h3><ul><li>docker-compose deploys the built-in Flink environment</li><li>Fix multiple aarch64 mirror bugs</li><li>Fix multiple dependency security bugs</li></ul><h2 class="anchor anchorWithStickyNavbar_LWe7" id="140-version-feature-introduction">1.4.0 version feature introduction<a class="hash-link" href="#140-version-feature-introduction" title="Direct link to heading">​</a></h2><h3 class="anchor anchorWithStickyNavbar_LWe7" id="agent-adds-a-variety-of-data-sources">Agent adds a variety of data sources<a class="hash-link" href="#agent-adds-a-variety-of-data-sources" title="Direct link to heading">​</a></h3><p>In version 1.4.0, Agent supports data sources such as Redis, MQTT, SQLServer, Oracle, MongoDB, etc., so that the collection capabilities of standard architecture and lightweight architecture are basically aligned and users have more choices in massive scenarios. The support of this part of the back-end capabilities is mainly completed by @iamsee123 and @haibo-duan, and the front-end part is completed by @bluewang.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="improve-component-metrics">Improve component metrics<a class="hash-link" href="#improve-component-metrics" title="Direct link to heading">​</a></h3><p>In version 1.4.0, the Agent, DataProxy, and Sort modules all have indicators optimized and improved, including the reconstruction of the indicators sent by the Agent, increasing the dimension of the data Group/Stream indicators, and fixing the inaccuracy of the Prometheus Listener indicators. Thanks to @Keylchen, @pocozh, and others for their contributions.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="optimize-docker-compose-deployment">Optimize Docker-compose deployment<a class="hash-link" href="#optimize-docker-compose-deployment" title="Direct link to heading">​</a></h3><p>There are many InLong service components, and there has always been a problem with high deployment thresholds. In version 1.4.0, the compatibility of docker-compose deployment is optimized, and an Apache Flink environment is built-in to help developers quickly start creating tasks. Thanks to @dockerzhang for optimizing this part.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="optimize-heartbeat-management">Optimize heartbeat management<a class="hash-link" href="#optimize-heartbeat-management" title="Direct link to heading">​</a></h3><p>In version 1.4.0, a lot of optimizations have been made for the heartbeat of service components, including adding data protocol when reporting, automatic registration of Agent/DataProxy component reporting, adding heartbeat management API to Manager, and optimizing multiple heartbeat status bugs. Thanks to @gosonzhang, @GanfengTan, @pocozh, @lucaspeng12138 and @haifxu for their contributions.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="support-real-time-synchronization-of-the-entire-database">Support real-time synchronization of the entire database<a class="hash-link" href="#support-real-time-synchronization-of-the-entire-database" title="Direct link to heading">​</a></h3><p>In version 1.4.0, InLong began to support real-time synchronization of the entire database to follow up on the needs of community users. Currently, it is the first to achieve real-time synchronization of the entire database to Doris and real-time synchronization of the entire database to Iceberg/Kafka/Doris. In the near future, the community will also realize the synchronization of the entire database. Share the details. Thanks to @thesumery, @EMsnap, @yunqingmoswu for their contributions.</p><p>For more details on the 1.4.0 release, please refer to the release notes, which detail the features, enhancements, and bug fixes for this release.</p><h3 class="anchor anchorWithStickyNavbar_LWe7" id="follow-up-planning">Follow-up planning<a class="hash-link" href="#follow-up-planning" title="Direct link to heading">​</a></h3><p>In the next version, the community will continue to add synchronization scenarios for the entire database, improve task indicators, increase system stability, and conduct stress tests on standard architectures and lightweight architectures.</p>]]></content>
+        <author>
+            <name>Charles Zhang</name>
+            <uri>https://github.com/dockerzhang</uri>
+        </author>
+        <category label="Apache InLong" term="Apache InLong"/>
+        <category label="Version" term="Version"/>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Release 1.3.0]]></title>
         <id>/2022/09/05/release-1.3.0</id>
         <link href="https://inlong.apache.org/blog/2022/09/05/release-1.3.0"/>
         <updated>2022-09-05T00:00:00.000Z</updated>
@@ -29,7 +44,7 @@ In addition, the new version also supports InLong Audit Audit data reporting, wh
         <category label="Version" term="Version"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Release InLong 1.2.0]]></title>
+        <title type="html"><![CDATA[Release 1.2.0]]></title>
         <id>/2022/06/22/release-1.2.0</id>
         <link href="https://inlong.apache.org/blog/2022/06/22/release-1.2.0"/>
         <updated>2022-06-22T00:00:00.000Z</updated>
@@ -63,7 +78,7 @@ By introducing Flink-CDC, it supports a variety of Extract and Load nodes, and a
         <category label="Sort" term="Sort"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Release InLong 1.1.0]]></title>
+        <title type="html"><![CDATA[Release 1.1.0]]></title>
         <id>/2022/04/25/release-1.1.0</id>
         <link href="https://inlong.apache.org/blog/2022/04/25/release-1.1.0"/>
         <updated>2022-04-25T00:00:00.000Z</updated>
@@ -79,7 +94,7 @@ In version 1.1.0, we save data stream metadata in DB by default, and ZooKeeper i
         <category label="Version" term="Version"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Release InLong 0.12.0]]></title>
+        <title type="html"><![CDATA[Release 0.12.0]]></title>
         <id>/2022/01/04/release-0.12.0</id>
         <link href="https://inlong.apache.org/blog/2022/01/04/release-0.12.0"/>
         <updated>2022-01-04T00:00:00.000Z</updated>
@@ -95,7 +110,7 @@ The 0.12.0-incubating just released mainly includes the following:</p><ul><li>Pr
         <category label="Version" term="Version"/>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Release InLong 0.11.0]]></title>
+        <title type="html"><![CDATA[Release 0.11.0]]></title>
         <id>/2021/11/10/release-0.11.0</id>
         <link href="https://inlong.apache.org/blog/2021/11/10/release-0.11.0"/>
         <updated>2021-11-10T00:00:00.000Z</updated>
