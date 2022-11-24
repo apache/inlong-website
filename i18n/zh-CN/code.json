@@ -179,6 +179,18 @@
     "message": "Tags",
     "description": "The title of the tag list page"
   },
+  "page.download.title": {
+    "message": "立即下载"
+  },
+  "page.download.describe": {
+    "message": "你可以在这里下载到最新的版本。"
+  },
+  "page.download.release": {
+    "message": "发布完整性"
+  },
+  "page.download.version": {
+    "message": "历史版本。"
+  },
   "page.download.version.step1": {
     "message": "如果你想要预览 Apache InLong 已发布的所有版本，请查看"
   },

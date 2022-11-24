@@ -1,15 +1,9 @@
 import React   from 'react';
-import useIsBrowser from '@docusaurus/useIsBrowser';
 import Layout from '@theme/Layout';
 import styles from './download.module.less';
-import config from './config.json';
 import Translate, { translate } from '@docusaurus/Translate';
 
 export default function() {
-    const isBrowser = useIsBrowser();
-
-    const language = isBrowser && location.pathname.indexOf('/zh-CN/') === 0 ? 'zh-CN' : 'en';
-    const dataSource = config?.[language];
 
     const version = "1.4.0";
     const date = "Nov. 16, 2022";
@@ -17,9 +11,12 @@ export default function() {
     return (
         <Layout title={translate({ message: 'Downloads' })}>
             <div className={styles.divOne}>
-                <h1>{dataSource.title}</h1>
-                <Translate id={dataSource.title}>Download</Translate>
-                <p>{dataSource.describe}</p>
+                <h1>
+                    <Translate id="page.download.title">DOWNLOADS</Translate>
+                </h1>
+                <p>
+                    <Translate id="page.download.describe">You can download the latest version here.</Translate>
+                </p>
                 <div className={styles.cardDiv}>
                     <div className={styles.card}>
                         <div className={styles.leftSide}>
@@ -99,7 +96,9 @@ export default function() {
                         </div>
                     </div>
                 </div>
-                <h2>{dataSource.version}</h2>
+                <h2>
+                    <Translate id="page.download.version">Older releases</Translate>
+                </h2>
                 <div className={styles.release}>
                     <p>
                         <Translate id="page.download.version.step1">Find all Apache InLong releases in the </Translate>
@@ -111,7 +110,9 @@ export default function() {
                     </p>
                 </div>
                 <br/>
-                <h2>{dataSource.release}</h2>
+                <h2>
+                    <Translate id="page.download.release">Release Integrity</Translate>
+                </h2>
                 <div >
                     <Translate id="page.download.release.step1">You must</Translate>
                     <a href="https://www.apache.org/info/verification.html" target="_blank"> verify </a>
