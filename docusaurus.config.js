@@ -94,7 +94,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             ],
           },
           {
-            to: '/download',
+            to: '/downloads',
             position: 'right',
             label: 'Download',
           },
