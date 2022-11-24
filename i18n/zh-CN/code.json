@@ -178,5 +178,38 @@
   "theme.tags.tagsPageTitle": {
     "message": "Tags",
     "description": "The title of the tag list page"
+  },
+  "page.download.title": {
+    "message": "立即下载"
+  },
+  "page.download.describe": {
+    "message": "你可以在这里下载到最新的版本。"
+  },
+  "page.download.release": {
+    "message": "发布完整性"
+  },
+  "page.download.version": {
+    "message": "历史版本。"
+  },
+  "page.download.version.step1": {
+    "message": "如果你想要预览 Apache InLong 已发布的所有版本，请查看"
+  },
+  "page.download.version.step2": {
+    "message": "存储着 Apache InLong 旧版孵化器项目的备份归档，你也可以随时查阅它们。"
+  },
+  "page.download.release.step1": {
+    "message": "您必须"
+  },
+  "page.download.release.step2": {
+    "message": "下载文件的完整性。"
+  },
+  "page.download.release.step3": {
+    "message": "我们为每个发布文件提供 OpenPGP 签名。此签名应与包含 InLong 发布经理的 OpenPGP 密钥的"
+  },
+  "page.download.release.step4": {
+    "message": "文件匹配。"
+  },
+  "page.download.release.step5": {
+    "message": "我们还为每个发布文件提供 SHA-512 校验和。下载文件后，您应该计算下载的校验和，并确保它与我们提供的相同。"
   }
 }
