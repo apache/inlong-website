@@ -1,20 +1,36 @@
-.button {
-  box-sizing: border-box;
+.inlong-button {
   display: inline-block;
   height: 48px;
   line-height: 48px;
   min-width: 140px;
-  font-family: Avenir-Heavy;
   font-size: 16px;
-  color: #FFF;
   text-align: center;
   border-radius: 4px;
   text-decoration: none;
-  &-primary {
-    background: #4190FF;
+  border: 1px solid;
+  transition: all .3s;
+
+  &:hover {
+    text-decoration: none;
   }
-  &-normal {
+
+  &-primary {
+    color: #FFF;
+    background: var(--ifm-color-primary);
+    border-color: var(--ifm-color-primary);
+    &:hover {
+      color: #fff;
+      background: var(--ifm-color-primary-lighter);
+    }
+  }
+
+  &-ghost {
+    color: var(--ifm-color-primary);
     background: transparent;
-    border: 1px solid #fff;
+    border-color: var(--ifm-color-primary);
+    &:hover {
+      color: var(--ifm-color-primary-lighter);
+      border-color: var(--ifm-color-primary-lighter);
+    }
   }
 }

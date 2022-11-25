@@ -1,32 +1,24 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import Link from '@docusaurus/Link';
 import './index.less';
 
-const propTypes = {
-  type: PropTypes.oneOf(['primary', 'normal']),
-  link: PropTypes.string,
-  target: PropTypes.string,
-};
-const defaultProps = {
-  type: 'primary',
-  link: '',
-  target: '_self',
-};
-const Button = (props) => {
+const Button = ({
+  type = 'primary',
+  link = '',
+  target = '_self',
+  children,
+  ...rest
+}) => {
   return (
     <Link
-      className={`button button-${props.type}`}
-      target={props.target || '_self'}
-      style={{marginRight: '50px'}}
-      to={props.link}
+      className={`inlong-button inlong-button-${type}`}
+      target={target || '_self'}
+      to={link}
+      {...rest}
     >
-      {props.children}
+      {children}
     </Link>
   );
 };
-
-Button.propTypes = propTypes;
-Button.defaultProps = defaultProps;
 
 export default Button;
