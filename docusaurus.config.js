@@ -1,24 +1,30 @@
-const lightCodeTheme = require('prism-react-renderer/themes/github');
+// const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 // With JSDoc @type annotations, IDEs can provide config autocompletion
 /** @type {import('@docusaurus/types').DocusaurusConfig} */
 (module.exports = {
   // omit unrelated docusaurus options
-  title: 'Apache Inlong',
-  tagline: 'Apache Inlong',
+  title: 'Apache InLong',
+  tagline: 'Apache InLong is a one-stop integration framework for massive data that provides automatic, secure and reliable data transmission capabilities.',
   url: 'https://inlong.apache.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/logo.svg',
-  organizationName: 'Apache Inlong', // Usually your GitHub org/user name.
-  projectName: 'Apache Inlong', // Usually your repo name.
+  organizationName: 'Apache', // Usually your GitHub org/user name.
+  projectName: 'inlong', // Usually your repo name.
   customFields: {
     team: require('./config/team.json'),
     contributors: require('./config/contributors.json'),
     docContributors: require('./config/doc-contributors.json')
   },
+  scripts: [
+    {
+      src: 'https://www.apachecon.com/event-images/snippet.js',
+      async: true,
+    },
+  ],
   i18n: {
     defaultLocale: "en",
     locales: ["en", "zh-CN"],
@@ -160,59 +166,57 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         ],
       },
       footer: {
-        // style: 'dark',
-        // links: [
-        //   {
-        //     title: 'Docs',
-        //     items: [
-        //       {
-        //         label: 'Tutorial',
-        //         to: '/docs/quick_start',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'Community',
-        //     items: [
-        //       {
-        //         label: 'Stack Overflow',
-        //         href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-        //       },
-        //       {
-        //         label: 'Discord',
-        //         href: 'https://discordapp.com/invite/docusaurus',
-        //       },
-        //       {
-        //         label: 'Twitter',
-        //         href: 'https://twitter.com/docusaurus',
-        //       },
-        //     ],
-        //   },
-        //   {
-        //     title: 'More',
-        //     items: [
-        //       {
-        //         label: 'Blog',
-        //         to: '/blog',
-        //       },
-        //       {
-        //         label: 'GitHub',
-        //         href: 'https://github.com/apache/inlong',
-        //       },
-        //     ],
-        //   },
-        // ],
-        // logo: {
-        //   alt: 'Apache Inlong',
-        //   src: 'img/logo.svg',
-        //   href: 'https://inlong.apache.org',
-        // },
-        copyright: `<div style="text-align: left;">
-          <div style="display: flex; align-items: flex-end;">
-            <p style="font-family: Avenir-Medium;font-size: 14px;color: #999; flex: 1;">Copyright © 2020-2022 The Apache Software Foundation. Licensed under the Apache License, Version 2.0.</p>
-            <a class="acevent" data-format="square" data-mode="dark" data-event="random"></a>
-          </div>
-          <div style="border-top: 1px solid #ccc;min-height: 60px;line-height: 20px;font-family: Avenir-Medium;font-size: 14px;color: #999;display: flex;align-items: center;"><span>The Apache Software Foundation Apache InLong, InLong, Apache, the Apache feather, and the Apache InLong project logo are either registered trademarks or trademarks of the Apache Software Foundation.</span></div>
+        links: [
+          {
+            title: 'Events',
+            items: [
+              {
+                label: 'ApacheCon',
+                href: 'https://www.apachecon.com/',
+              },
+              {
+                html: '<a class="acevent" data-format="square" data-mode="dark" data-event="random"></a>',
+              },
+            ],
+          },
+          {
+            title: 'Community',
+            items: [
+              {
+                label: 'Twitter',
+                href: 'https://twitter.com/ApacheInlong',
+              },
+              {
+                label: 'WeChat',
+                href: 'https://inlong.apache.org/img/apache-inlong-wechat.jpg',
+              },
+              {
+                label: 'Email',
+                to: 'mailto:dev@inlong.apache.org',
+              },
+            ],
+          },
+          {
+            title: 'More',
+            items: [
+              {
+                label: 'Blog',
+                to: '/blog',
+              },
+              {
+                label: 'GitHub',
+                href: 'https://github.com/apache/inlong',
+              },
+            ],
+          },
+        ],
+        logo: {
+          alt: 'Apache InLong',
+          src: 'img/asf_logo.svg',
+        },
+        copyright: `<div style="font-family: Avenir-Medium;font-size: 14px;color: #999;">
+          <div>Copyright © 2020-2022 The Apache Software Foundation. Licensed under the Apache License, Version 2.0.</div>
+          <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #666;line-height: 20px;">The Apache Software Foundation Apache InLong, InLong, Apache, the Apache feather, and the Apache InLong project logo are either registered trademarks or trademarks of the Apache Software Foundation.</div>
         </div>`,
       },
       prism: {
@@ -224,6 +228,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
         apiKey: 'fcc3191e7a0fb95834381a6c9faecde9',
         indexName: 'inlong',
         contextualSearch: true,
+      },
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: false,
+        respectPrefersColorScheme: true,
       },
     }),
   plugins: [

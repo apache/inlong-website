@@ -1,0 +1,325 @@
+<svg width="1202" viewBox="0 0 1202 646"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink">
+    <defs>
+        <path id="e" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="d">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="g" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="f">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="i" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="h">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="k" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="j">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="m" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="l">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="o" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="n">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="q" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="p">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="a" d="M38 0h221v382H38z"/>
+        <mask id="r" x="0" y="0" width="221" height="382" fill="#fff">
+            <use xlink:href="#a"/>
+        </mask>
+        <path id="t" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="s">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="v" d="M77 0h144v48H77z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="u">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="x" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="w">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="b" d="M0 0h221v382H0z"/>
+        <mask id="y" x="0" y="0" width="221" height="382" fill="#fff">
+            <use xlink:href="#b"/>
+        </mask>
+        <path id="A" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="z">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="C" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="B">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="E" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="D">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="G" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="F">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="c" d="M0 0h221v382H0z"/>
+        <mask id="H" x="0" y="0" width="221" height="382" fill="#fff">
+            <use xlink:href="#c"/>
+        </mask>
+        <path id="J" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="I">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="L" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="K">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="N" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="M">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="P" d="M0 0h144v48H0z"/>
+        <filter x="-38.2%" y="-72.9%" width="176.4%" height="329.2%" filterUnits="objectBoundingBox" id="O">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+        <path id="R" d="M0 0h200v64H0z"/>
+        <filter x="-27.5%" y="-54.7%" width="155%" height="271.9%" filterUnits="objectBoundingBox" id="Q">
+            <feOffset dy="20" in="SourceAlpha" result="shadowOffsetOuter1"/>
+            <feGaussianBlur stdDeviation="15" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+            <feColorMatrix values="0 0 0 0 0.254423549 0 0 0 0 0.322753253 0 0 0 0 0.546591938 0 0 0 0.05 0" in="shadowBlurOuter1"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <path class="arch-m-line" stroke="#7C99F8" stroke-width="4" d="M601 147v27H111.5v71"/>
+        <path class="arch-m-line" d="M601 147v27h495v69" stroke="#7C99F8" stroke-width="4" stroke-dasharray="4,6"/>
+        <path d="M601.844 244.674l5.178-8.137a1 1 0 0 0-.844-1.537h-10.356a1 1 0 0 0-.844 1.537l5.178 8.137a1 1 0 0 0 1.688 0zM855.844 244.674l5.178-8.137a1 1 0 0 0-.844-1.537h-10.356a1 1 0 0 0-.844 1.537l5.178 8.137a1 1 0 0 0 1.688 0zM1096.844 244.674l5.178-8.137a1 1 0 0 0-.844-1.537h-10.356a1 1 0 0 0-.844 1.537l5.178 8.137a1 1 0 0 0 1.688 0zM366.844 244.674l5.178-8.137a1 1 0 0 0-.844-1.537h-10.356a1 1 0 0 0-.844 1.537l5.178 8.137a1 1 0 0 0 1.688 0zM112.844 244.674l5.178-8.137a1 1 0 0 0-.844-1.537h-10.356a1 1 0 0 0-.844 1.537l5.178 8.137a1 1 0 0 0 1.688 0z" fill="#7C99F8"/>
+        <path fill="#7C99F8" d="M364 174h4v64h-4zM599 174h4v64h-4zM853 174h4v64h-4zM601.832 143.248l4.132 6.197a1 1 0 0 1-.833 1.555h-8.262a1 1 0 0 1-.833-1.555l4.132-6.197a1 1 0 0 1 1.664 0z"/>
+        <path d="M222 412.441V254H1v382h221V412.441z" stroke="#7C99F8" stroke-dasharray="4,8"/>
+        <text font-family=".AppleSystemUIFont" font-size="24" fill="#FFF" transform="translate(1 254)">
+            <tspan x="78.599" y="55">Ingest</tspan>
+        </text>
+        <g transform="translate(40 332)">
+            <use fill="#000" filter="url(#d)" xlink:href="#e"/>
+            <use fill="#5494FF" xlink:href="#e"/>
+        </g>
+        <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(40 332)">
+            <tspan x="56.289" y="29">SDK</tspan>
+        </text>
+        <g transform="translate(40 404)">
+            <use fill="#000" filter="url(#f)" xlink:href="#g"/>
+            <use fill="#5494FF" xlink:href="#g"/>
+        </g>
+        <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(40 404)">
+            <tspan x="59.477" y="29">File</tspan>
+        </text>
+        <g transform="translate(40 476)">
+            <use fill="#000" filter="url(#h)" xlink:href="#i"/>
+            <use fill="#5494FF" xlink:href="#i"/>
+        </g>
+        <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(40 476)">
+            <tspan x="53.391" y="26">HTTP</tspan>
+        </text>
+        <g transform="translate(40 548)">
+            <use fill="#000" filter="url(#j)" xlink:href="#k"/>
+            <use fill="#5494FF" xlink:href="#k"/>
+        </g>
+        <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(40 548)">
+            <tspan x="61.242" y="29">DB</tspan>
+        </text>
+        <g fill="#7C99F8">
+            <path d="M259.801 451.176l-13.234-9.099a1 1 0 0 0-1.567.824v18.198a1 1 0 0 0 1.567.824l13.234-9.099a1 1 0 0 0 0-1.648z"/>
+            <path d="M208 449h37v5h-37z"/>
+        </g>
+        <path d="M757.801 355.176l-13.234-9.099a1 1 0 0 0-1.567.824v18.198a1 1 0 0 0 1.567.824l13.234-9.099a1 1 0 0 0 0-1.648zM757.801 499.176l-13.234-9.099a1 1 0 0 0-1.567.824v18.198a1 1 0 0 0 1.567.824l13.234-9.099a1 1 0 0 0 0-1.648z" fill="#7C99F8"/>
+        <path d="M246 412.441V254h221v382H246V412.441z" stroke="#7C99F8" stroke-dasharray="4,8"/>
+        <text font-family=".AppleSystemUIFont" font-size="24" fill="#FFF" transform="translate(246 254)">
+            <tspan x="59.927" y="55">Converge</tspan>
+        </text>
+        <g transform="translate(285 332)">
+            <use fill="#000" filter="url(#l)" xlink:href="#m"/>
+            <use fill="#5494FF" xlink:href="#m"/>
+        </g>
+        <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(285 332)">
+            <tspan x="34.465" y="29">DataProxy</tspan>
+        </text>
+        <g transform="translate(285 404)">
+            <use fill="#000" filter="url(#n)" xlink:href="#o"/>
+            <use fill="#5494FF" xlink:href="#o"/>
+        </g>
+        <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(285 404)">
+            <tspan x="34.465" y="29">DataProxy</tspan>
+        </text>
+        <g>
+            <g transform="translate(285 476)">
+                <use fill="#000" filter="url(#p)" xlink:href="#q"/>
+                <use fill="#5494FF" xlink:href="#q"/>
+            </g>
+            <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(285 476)">
+                <tspan x="34.465" y="29">DataProxy</tspan>
+            </text>
+        </g>
+        <g transform="translate(453 254)">
+            <use stroke="#7C99F8" mask="url(#r)" stroke-width="2" stroke-dasharray="4,8" xlink:href="#a"/>
+            <text font-family=".AppleSystemUIFont" font-size="24" fill="#FFF">
+                <tspan x="114.903" y="55">Cache</tspan>
+            </text>
+            <g transform="translate(77 78)">
+                <use fill="#000" filter="url(#s)" xlink:href="#t"/>
+                <use fill="#5494FF" xlink:href="#t"/>
+            </g>
+            <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(77 78)">
+                <tspan x="40.551" y="29">TubeMQ</tspan>
+            </text>
+            <g transform="translate(0 150)">
+                <use fill="#000" filter="url(#u)" xlink:href="#v"/>
+                <use fill="#5494FF" xlink:href="#v"/>
+            </g>
+            <g fill="#7C99F8">
+                <path d="M51.801 197.176l-13.234-9.099a1 1 0 0 0-1.567.824v18.198a1 1 0 0 0 1.567.824l13.234-9.099a1 1 0 0 0 0-1.648z"/>
+                <path d="M0 195h37v5H0z"/>
+            </g>
+            <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(0 150)">
+                <tspan x="126.516" y="29">Pulsar</tspan>
+            </text>
+            <g>
+                <g transform="translate(77 222)">
+                    <use fill="#000" filter="url(#w)" xlink:href="#x"/>
+                    <use fill="#5494FF" xlink:href="#x"/>
+                </g>
+                <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(77 222)">
+                    <tspan x="51.445" y="29">Kafka</tspan>
+                </text>
+            </g>
+        </g>
+        <g transform="translate(736 254)">
+            <use stroke="#7C99F8" mask="url(#y)" stroke-width="2" stroke-dasharray="4,8" xlink:href="#b"/>
+            <path fill-opacity=".3" fill="#5494FF" d="M27 138h168v216H27z"/>
+            <text font-family=".AppleSystemUIFont" font-size="24" fill="#FFF">
+                <tspan x="89.038" y="55">Sort</tspan>
+            </text>
+            <g transform="translate(39 78)">
+                <use fill="#000" filter="url(#z)" xlink:href="#A"/>
+                <use fill="#5494FF" xlink:href="#A"/>
+            </g>
+            <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(39 78)">
+                <tspan x="56.848" y="29">Sort</tspan>
+            </text>
+            <g transform="translate(39 150)">
+                <use fill="#000" filter="url(#B)" xlink:href="#C"/>
+                <use fill="#5494FF" xlink:href="#C"/>
+            </g>
+            <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(39 150)">
+                <tspan x="36.984" y="29">Real-time</tspan>
+            </text>
+            <g>
+                <g transform="translate(39 222)">
+                    <use fill="#000" filter="url(#D)" xlink:href="#E"/>
+                    <use fill="#5494FF" xlink:href="#E"/>
+                </g>
+                <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(39 222)">
+                    <tspan x="45.375" y="29">OffLine</tspan>
+                </text>
+            </g>
+            <g>
+                <g transform="translate(39 294)">
+                    <use fill="#000" filter="url(#F)" xlink:href="#G"/>
+                    <use fill="#5494FF" xlink:href="#G"/>
+                </g>
+                <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(39 294)">
+                    <tspan x="56.289" y="29">SDK</tspan>
+                </text>
+            </g>
+        </g>
+        <path d="M685 428h27.734a9 9 0 0 1 9 9v54a9 9 0 0 0 9 9H744" stroke="#7C99F8" stroke-width="4"/>
+        <path d="M685 428h27.734a9 9 0 0 1 9 9v54a9 9 0 0 0 9 9H744" stroke="#7C99F8" stroke-width="4"/>
+        <g transform="translate(981 254)">
+            <use stroke="#7C99F8" mask="url(#H)" stroke-width="2" stroke-dasharray="4,8" xlink:href="#c"/>
+            <text font-family=".AppleSystemUIFont" font-size="24" fill="#FFF">
+                <tspan x="69.807" y="55">Storage</tspan>
+            </text>
+            <g transform="translate(39 78)">
+                <use fill="#000" filter="url(#I)" xlink:href="#J"/>
+                <use fill="#5494FF" xlink:href="#J"/>
+            </g>
+            <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(39 78)">
+                <tspan x="55.805" y="29">Hive</tspan>
+            </text>
+            <g transform="translate(39 150)">
+                <use fill="#000" filter="url(#K)" xlink:href="#L"/>
+                <use fill="#5494FF" xlink:href="#L"/>
+            </g>
+            <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(39 150)">
+                <tspan x="44.5" y="29">Iceberg</tspan>
+            </text>
+            <g>
+                <g transform="translate(39 222)">
+                    <use fill="#000" filter="url(#M)" xlink:href="#N"/>
+                    <use fill="#5494FF" xlink:href="#N"/>
+                </g>
+                <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(39 222)">
+                    <tspan x="48.414" y="29">HBase</tspan>
+                </text>
+            </g>
+            <g>
+                <g transform="translate(39 294)">
+                    <use fill="#000" filter="url(#O)" xlink:href="#P"/>
+                    <use fill="#5494FF" xlink:href="#P"/>
+                </g>
+                <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(39 294)">
+                    <tspan x="30.926" y="29">ClickHouse</tspan>
+                </text>
+            </g>
+        </g>
+        <g>
+            <g transform="translate(501 70)">
+                <use fill="#000" filter="url(#Q)" xlink:href="#R"/>
+                <use fill="#5494FF" xlink:href="#R"/>
+            </g>
+            <text font-family=".AppleSystemUIFont" font-size="24" fill="#FFF" transform="translate(501 70)">
+                <tspan x="46" y="40">Manager</tspan>
+            </text>
+        </g>
+        <path d="M685 428h27.734a9 9 0 0 0 9-9v-54a9 9 0 0 1 9-9H744M935 356h22.734a9 9 0 0 1 9 9v91a9 9 0 0 0 9 9H993" stroke="#7C99F8" stroke-width="4"/>
+        <path d="M1002.801 464.176l-13.234-9.099a1 1 0 0 0-1.567.824v18.198a1 1 0 0 0 1.567.824l13.234-9.099a1 1 0 0 0 0-1.648z" fill="#7C99F8"/>
+    </g>
+</svg>
