@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://inlong.apache.org/zh-CN/blog</id>
-    <title>Apache Inlong Blog</title>
+    <title>Apache InLong Blog</title>
     <updated>2022-11-16T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://inlong.apache.org/zh-CN/blog"/>
-    <subtitle>Apache Inlong Blog</subtitle>
+    <subtitle>Apache InLong Blog</subtitle>
     <icon>https://inlong.apache.org/zh-CN/img/logo.svg</icon>
     <entry>
         <title type="html"><![CDATA[1.4.0 版本发布]]></title>
