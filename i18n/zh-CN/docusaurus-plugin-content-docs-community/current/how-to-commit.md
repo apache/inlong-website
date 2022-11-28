@@ -46,10 +46,10 @@ git pull upstream master
 ### 新建分支
 一般以`INLONG-[Issue ID]`作为分支名，比如：INLONG-XYZ
 ```shell
-git checkout -b  INLONG-XYZ
+git checkout -b INLONG-XYZ
 ```
 :::caution
-如果是处理新的 issue，需确保分支` INLONG-XYZ`是基于官方 master 分支的最新代码
+如果是处理新的 issue，需确保分支`INLONG-XYZ`是基于官方 master 分支的最新代码
 :::
 
 ### 修改代码并格式化
@@ -73,7 +73,7 @@ https://github.com/<your_github_name>/inlong
 ```
 
 ### 切换分支
-切换到提交的分支 ` INLONG-XYZ`
+切换到提交的分支 `INLONG-XYZ`
 
 ### 创建新的 pull request(即 PR)
 点击 `New pull request`或者`Compare & pull request`

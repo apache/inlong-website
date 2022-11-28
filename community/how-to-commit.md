@@ -44,7 +44,7 @@ git pull upstream master
 ```
 
 ### Create a new branch
-Generally, issue id is used as the branch name, such as: INLONG-xyz.
+Generally, issue id is used as the branch name, such as: INLONG-XYZ.
 ```shell
 git checkout -b  INLONG-XYZ
 ```
@@ -73,7 +73,7 @@ https://github.com/<your_github_name>/inlong
 ```
 
 ### Switch branch
-Switch to committed branch `INLONG-xyz`
+Switch to committed branch `INLONG-XYZ`
 
 ### New pull request(PR)
 Click `New pull request` or `Compare & pull request`
