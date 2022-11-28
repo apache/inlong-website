@@ -65,6 +65,9 @@ commit 信息的格式必须与Issue标题保持一致且以`[INLONG-XYZ][Compon
 git commit -a -m "[INLONG-XYZ][Component] commit msg"
 git push origin INLONG-XYZ
 ```
+:::note
+`Component` 使用 InLong 组件名称进行替换，比如Manager、Sort、DataProxy...
+:::
 
 ## 创建 PR
 ### 打开自己的 GitHub 仓库页面

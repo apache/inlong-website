@@ -65,6 +65,9 @@ The format of the commit message must be consistent with the issue title and sta
 git commit -a -m "[INLONG-XYZ][Component] commit msg"
 git push origin INLONG-XYZ
 ```
+:::note
+`Component` should be replaced by the InLong component name, like Manager, Sort, DataProxy...
+:::
 
 ## Open a Pull Request
 ### Open your GitHub repository page
