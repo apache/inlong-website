@@ -8,7 +8,7 @@ Apache InLong uses GitHub's Pull Request (PR) to receive contributed code. This 
 - InLong website base：https://github.com/apache/inlong-website
 
 ## Confirm the issue to fix
-Can be an [existing issue](https://github.com/apache/inlong/issues) or your [newly created issue](https://github.com/apache/inlong/issues/new/ choose), and record the `Issue ID`.
+Can be an [existing issue](https://github.com/apache/inlong/issues) or your [newly created issue](https://github.com/apache/inlong/issues/new/choose), and record the `Issue ID`.
 
 ## Fork the repository
 Open [apache/inlong](https://github.com/apache/inlong) 's GitHub page, clicking on the `fork` button at the top right to fork.
