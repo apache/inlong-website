@@ -170,7 +170,7 @@ Adding `<servers>/<profiles>` configurations in your maven `settings.xml` with c
 ```
 
 ## Build
-The following `release_version` is the upcoming release number, such as 1.0.0; `rc_version` is Release Candidate, such as RC0, RC1...; `KEY_ID` is your GPG Key ID.
+The following `release_version` is the upcoming release number, such as 1.4.0; `rc_version` is Release Candidate, such as RC0, RC1...; `KEY_ID` is your GPG Key ID.
 
 ### Prepare branch
 - Create the release branch from the main version branch and modify the POM version number and CHANGES.md. For example, create `release-1.4.0` from `branch-1.4`
