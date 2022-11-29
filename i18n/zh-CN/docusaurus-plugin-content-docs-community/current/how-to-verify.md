@@ -1,135 +1,73 @@
 ---
-title: 如何验证版本
+title: 如何验证发布版本
 sidebar_position: 7
 ---
 
-## 下载要发布的候选版本到本地环境
+## 下载候选版本
+`release_version` 为即将发布的版本号，比如 1.4.0；`rc_version` 为 Releae Candidate，比如 RC0，RC1...;KEY_ID 是你创建的 GPG Key ID.
 ```shell
 svn co https://dist.apache.org/repos/dist/dev/inlong/${release_version}-${rc_version}/
 ```
-## 验证上传的版本是否合规
-> 开始验证环节，验证包含但不局限于以下内容和形式
 
+## 验证版本
 ### 查看发布包是否完整
-> 上传到 dist 的包必须包含源码包，二进制包可选
+- 是否包含源码包
+- 是否包含源码包的签名和 sha512
+- 如果上传了二进制包，则同样检查的签名和 sha512
 
-1. 是否包含源码包
-2. 是否包含源码包的签名
-3. 是否包含源码包的 sha512
-4. 如果上传了二进制包，则同样检查(2)-(4)所列的内容
-
-### 检查 gpg 签名
-  - 导入公钥
-  ```shell
-  curl https://downloads.apache.org/inlong/KEYS > KEYS # 下载KEYS
-  gpg --import KEYS # 导入KEYS到本地
-  ```
-  - 信任公钥
-  > 信任此次版本所使用的KEY
-  ```shell
-    gpg --edit-key xxxxxxxxxx #此次版本所使用的KEY
-    gpg (GnuPG) 2.2.21; Copyright (C) 2020 Free Software Foundation, Inc.
-    This is free software: you are free to change and redistribute it.
-    There is NO WARRANTY, to the extent permitted by law.
-    
-    Secret key is available.
-    
-    sec  rsa4096/5EF3A66D57EC647A
-         created: 2020-05-19  expires: never       usage: SC  
-         trust: ultimate      validity: ultimate
-    ssb  rsa4096/17628566FEED6AF7
-         created: 2020-05-19  expires: never       usage: E   
-    [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
-    
-    gpg> trust #信任
-    sec  rsa4096/5EF3A66D57EC647A
-         created: 2020-05-19  expires: never       usage: SC  
-         trust: ultimate      validity: ultimate
-    ssb  rsa4096/17628566FEED6AF7
-         created: 2020-05-19  expires: never       usage: E   
-    [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
-    
-    Please decide how far you trust this user to correctly verify other users' keys
-    (by looking at passports, checking fingerprints from different sources, etc.)
-    
-      1 = I don't know or won't say
-      2 = I do NOT trust
-      3 = I trust marginally
-      4 = I trust fully
-      5 = I trust ultimately
-      m = back to the main menu
-    
-    Your decision? 5 #选择5
-    Do you really want to set this key to ultimate trust? (y/N) y #选择y
-                                                                 
-    sec  rsa4096/5EF3A66D57EC647A
-         created: 2020-05-19  expires: never       usage: SC  
-         trust: ultimate      validity: ultimate
-    ssb  rsa4096/17628566FEED6AF7
-         created: 2020-05-19  expires: never       usage: E   
-    [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
-    
-    gpg> 
-         
-    sec  rsa4096/5EF3A66D57EC647A
-         created: 2020-05-19  expires: never       usage: SC  
-         trust: ultimate      validity: ultimate
-    ssb  rsa4096/17628566FEED6AF7
-         created: 2020-05-19  expires: never       usage: E   
-    [ultimate] (1). Guangxu Cheng <gxcheng@apache.org>
-  ```
-  - 使用如下命令检查签名
-  ```shell
-  for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
-  #或者
-  gpg --verify apache-inlong-${release_version}-src.tar.gz.asc apache-inlong-${release_version}-src.tar.gz
-  # 如果上传二进制包，则同样需要检查二进制包的签名是否正确
-  gpg --verify apache-inlong-server-${release_version}-bin.tar.gz.asc apache-inlong-server-${release_version}-bin.tar.gz
-  gpg --verify apache-inlong-client-${release_version}-bin.tar.gz.asc apache-inlong-client-${release_version}-bin.tar.gz
-```
-  - 检查结果
-  > 出现类似以下内容则说明签名正确，关键字：**`Good signature`**
+### 检查 GPG 签名
+- 导入公钥
 ```shell
-apache-inlong-1.3.0-src.tar.gz
-gpg: Signature made Sat May 30 11:45:01 2020 CST
-gpg:                using RSA key 9B12C2228BDFF4F4CFE849445EF3A66D57EC647A
-gpg: Good signature from "Guangxu Cheng <gxcheng@apache.org>" [ultimate]gular2
+# 下载KEYS
+curl https://downloads.apache.org/inlong/KEYS > KEYS
+# 导入KEYS到本地
+gpg --import KEYS
 ```
 
-### 检查 sha512 哈希
-> 本地计算 sha512 哈希后，验证是否与 dist 上的一致
+- 信任公钥
+替换 `THE_KEY_USED` 为此次版本所使用的 KEY。
 ```shell
-for i in *.tar.gz; do echo $i; gpg --print-md SHA512 $i; done
-#或者
-gpg --print-md SHA512 apache-inlong-${release_version}-src.tar.gz
-# 如果上传二进制包，则同样需要检查二进制包的sha512哈希
-gpg --print-md SHA512 apache-inlong-server-${release_version}-bin.tar.gz
-gpg --print-md SHA512 apache-inlong-client-${release_version}-bin.tar.gz
-# 或者
-for i in *.tar.gz.sha512; do echo $i; sha512sum -c $i; done
+# 执行后依次输入 trust -> 5(I trust ultimately) -> Y(Yes) -> quit
+gpg --edit-key THE_KEY_USED
 ```
+
+- 使用如下命令检查签名
+```shell
+cd ${release_version}-${rc_version}
+for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
+```
+
+:::note
+如果出现 **`Good signature`** 关键字，则说明签名正确。
+:::
 
 ### 检查源码包的文件内容
+解压缩 `apache-inlong-${release_version}-src.tar.gz`，进行如下检查:
+- LICENSE and NOTICE 文件是否存在及内容是否正确
+- 所有文件是否带有 ASF License 头
+- 源码是否能够正常编译
+- 单测是否能够跑通
 
-  解压缩 `apache-inlong-${release_version}-src.tar.gz`，进行如下检查:
-
-  - LICENSE and NOTICE 文件是否存在及内容是否正确
-  - 所有文件是否带有 ASF License 头
-  - 源码是否能够正常编译
-  - 单测是否能够跑通
-  - ....
-  
-  注意事项：
-  在实践过程中，发现比较多的困扰问题影响到我们的版本验证，如下处理供参考：
-  - 校验版本前先清理掉本地仓库；
-  - 编译方法不限制，但由于项目里的模块做了 docker 化处理，首次编译建议先 “mvn clean package install”，其他推荐的操作还有 “mvn compile”，“mvn clean package”；
-  - 执行单元测试时，大家要用 “mvn clean test” 单独运行，确保没有隐藏问题。
+:::note
+可以通过 `mvn clean package install` 检查编译和单测，如果编译失败，先清理掉本地仓库。
+:::
 
 ### 检查二进制包
-  解压缩 `apache-inlong-client-${release_version}-src.tar.gz` 和 `
-  apache-inlong-server-${release_version}-src.tar.gz`，进行如下检查:
-  - LICENSE and NOTICE 文件是否存在及内容是否正确
-  - 能否正常部署成功
-  - 部署测试环境、验证生产消费能否正常运行
-  - 验证你认为可能会出问题的地方
-  - ....
+解压缩 `apache-inlong-${release_version}-bin.tar.gz` 和 `apache-inlong-${release_version}-sort-connectors.tar.gz`，进行如下检查:
+- LICENSE and NOTICE 文件是否存在及内容是否正确
+- 能否正常部署成功
+- 部署测试环境、验证生产消费能否正常运行
+- 验证你认为可能会出问题的地方
+
+## 回复邮件
+如果验证通过，可参考以下模板进行邮件回复。
+```shell
++1 from me, and I checked the following items:
+- [X] Download links are valid.
+- [X] Checksums and PGP signatures are valid.
+- [X] Source code artifacts have correct names matching the current release.
+- [X] LICENSE and NOTICE files are correct for the repository.
+- [X] All files have license headers if necessary.
+- [X] No compiled archives bundled in the source archive.
+- [X] Building is OK.
+```
