@@ -69,6 +69,28 @@ shared_preload_libraries = 'decoderbufs'
 wal_level = logical 
 ```
 
+### replica identity
+
+`REPLICA IDENTITY` is a PostgreSQL-specific table-level setting that determines the amount of information that is available to the logical decoding plug-in for UPDATE and DELETE events. See [more](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-replica-identity).
+
+Please keep the `replica indentity` level of source tables to `FULL`. You can check and change this value by SQL:
+
+```aidl
+-- show replica identity
+SELECT CASE relreplident
+  WHEN 'd' THEN 'default'
+  WHEN 'n' THEN 'nothing'
+  WHEN 'f' THEN 'full'
+  WHEN 'i' THEN 'index'
+  END AS replica_identity
+FROM pg_class
+WHERE oid = 'mytablename'::regclass;
+
+-- change replica identity
+ALTER TABLE mytablename REPLICA IDENTITY FULL;
+```
+
+
 ## How to create a PostgreSQL Extract Node
 
 ### Usage for SQL API
