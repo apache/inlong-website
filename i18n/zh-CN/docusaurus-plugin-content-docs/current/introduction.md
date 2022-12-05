@@ -69,9 +69,11 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 |              | Kafka             | 2.x                          | Lightweight, Standard |
 |              | MySQL             | 5.6, 5.7, 8.0.x              | Lightweight, Standard |
 |              | MongoDB           | >= 3.6                       | Lightweight, Standard |
+|              | MQTT              | >= 3.1                       | Standard              |
 |              | Oracle            | 11,12,19                     | Lightweight           |
 |              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight, Standard |
 |              | Pulsar            | 2.8.x                        | Lightweight           |
+|              | Redis             | 2.6.x                        | Standard              |
 |              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
 | Load Node    | Auto Consumption  | None                         | Standard              |
 |              | Hive              | 1.x, 2.x, 3.x                | Lightweight, Standard |
