@@ -11,7 +11,7 @@ Docker Compose deploys all components for Standard Architecture, and choose [Apa
 
 ## Environment Requirements
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
-- Docker Compose 1.29.2+
+- Docker Compose 2.4+
 
 ## Download
 You can get `apache-inlong-[version]-bin.tar.gz` from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).
