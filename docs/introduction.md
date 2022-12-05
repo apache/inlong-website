@@ -77,7 +77,7 @@ Apache InLong serves the entire life cycle from data collection to landing,  and
 |              | Pulsar            | 2.8.x                        | Lightweight           |
 |              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
 |              | Redis             | 2.6.x                        | Lightweight           |
-|              | Mqtt              | >= 3.1                       | Lightweight           |
+|              | MQTT              | >= 3.1                       | Lightweight           |
 | Load Node    | Auto Consumption  | None                         | Standard              |
 |              | Hive              | 1.x, 2.x, 3.x                | Lightweight, Standard |
 |              | Iceberg           | 0.12.x                       | Lightweight, Standard |
