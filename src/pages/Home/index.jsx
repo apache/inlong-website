@@ -4,7 +4,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import IndexArch from '../../../static/img/index-arch.svg';
 import Button from '../../components/Button';
 import config from './config';
-import './index.less';
+import styles from './home.module.less';
 
 export default function() {
   const isBrowser = useIsBrowser();
@@ -13,24 +13,24 @@ export default function() {
   const dataSource = config?.[language];
 
   return (
-    <div className="home-page">
-      <section className="top-section" style={{backgroundImage: `url("${useBaseUrl('/img/first-page-bg.png')}"`}}>
-        <div className="vertical-middle">
-          <div className="product-name">
-            <div className="brandname">{dataSource.brand.brandName}</div>
-            <div className="projectname" style={{backgroundImage: `url("${useBaseUrl('/img/inlong-en.svg')}"`}}>
+    <div className={styles.homePage}>
+      <section className={styles.topSection} style={{backgroundImage: `url("${useBaseUrl('/img/first-page-bg.png')}"`}}>
+        <div className={styles.verticalMiddle}>
+          <div className={styles.productName}>
+            <div className={styles.brandName}>{dataSource.brand.brandName}</div>
+            <div className={styles.projectName} style={{backgroundImage: `url("${useBaseUrl('/img/inlong-en.svg')}"`}}>
             </div>
           </div>
-          <div className="product-desc2">
+          <div className={styles.productDesc2}>
           {
             dataSource.brand.features.map((item, index, arr) => [
                 <div key={`text-${index}`}>{item}</div>,
-                index !== arr.length - 1 && <div key={`split-${index}`} className="split"></div>
+                index !== arr.length - 1 && <div key={`split-${index}`} className={styles.split}></div>
             ])
           }
           </div>
-          <p className="product-desc">{dataSource.brand.briefIntroduction}</p>
-          <div className="button-area">
+          <p className={styles.productDesc}>{dataSource.brand.briefIntroduction}</p>
+          <div className={styles.buttonArea}>
             {
               dataSource.brand.buttons.map((b, index, arr) => (
                 <Button
@@ -47,25 +47,25 @@ export default function() {
           </div>
         </div>
       </section>
-      <section className="feature-section" style={{backgroundImage: `url("${useBaseUrl('/img/sec-page-bg.png')}")`}}>
-        <div className="title-index">01</div>
+      <section className={styles.featureSection} style={{backgroundImage: `url("${useBaseUrl('/img/sec-page-bg.png')}")`}}>
+        <div className={styles.titleIndex}>01</div>
         {
-          language === 'zh-CN' && <div className="page-title-wrap">
-            <div className="page1-title-l1">{dataSource.features.title}</div>
-            <div className="page1-title-l2">PRODUCT ADVANTAGES</div>
+          language === 'zh-CN' && <div className={styles.pageTitleWrap}>
+            <div className={styles.page1TitleL1}>{dataSource.features.title}</div>
+            <div className={styles.page1TitleL2}>PRODUCT ADVANTAGES</div>
           </div>
         }
         {
-          language === 'en' && <div className="page-title-wrap">
-            <div className="page1-title-l2">PRODUCT</div>
-            <div className="page1-title-l1">ADVANTAGES</div>
+          language === 'en' && <div className={styles.pageTitleWrap}>
+            <div className={styles.page1TitleL2}>PRODUCT</div>
+            <div className={styles.page1TitleL1}>ADVANTAGES</div>
           </div>
         }
         <ul>
         {
           dataSource.features.list.map((feature, i) => (
             <li key={i} index={i}>
-              <div className="feature-icon" style={{backgroundImage: `url("${useBaseUrl(feature.img)}")`}} />
+              <div className={styles.featureIcon} style={{backgroundImage: `url("${useBaseUrl(feature.img)}")`}} />
               <div>
                 <h4>{feature.title}</h4>
                 <p>{feature.content}</p>
@@ -75,21 +75,21 @@ export default function() {
         }
         </ul>
       </section>
-      <section className="feature-section" style={{backgroundColor: '#000'}}>
-        <div className="title-index">02</div>
+      <section className={styles.featureSection} style={{backgroundColor: '#000'}}>
+        <div className={styles.titleIndex}>02</div>
         {
-          language === 'zh-CN' && <div className="page-title-wrap">
-            <div className="page1-title-l1">{dataSource.architecture.title}</div>
-            <div className="page1-title-l2">PRODUCT STRUCTURE</div>
+          language === 'zh-CN' && <div className={styles.pageTitleWrap}>
+            <div className={styles.page1TitleL1}>{dataSource.architecture.title}</div>
+            <div className={styles.page1TitleL2}>PRODUCT STRUCTURE</div>
           </div>
         }
         {
-          language === 'en' && <div className="page-title-wrap">
-            <div className="page1-title-l2">PRODUCT</div>
-            <div className="page1-title-l1">STRUCTURE</div>
+          language === 'en' && <div className={styles.pageTitleWrap}>
+            <div className={styles.page1TitleL2}>PRODUCT</div>
+            <div className={styles.page1TitleL1}>STRUCTURE</div>
           </div>
         }
-        <div className="architecture-img-wrap">
+        <div className={styles.architectureImgWrap}>
           <IndexArch style={{ width: '100%' }} />
         </div>
       </section>

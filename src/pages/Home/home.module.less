@@ -1,0 +1,225 @@
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translate3d(0,50%,0);
+  }
+  100% {
+    opacity: 1;
+    transform: translateZ(0);
+  }
+}
+
+.fadeInAnimation {
+  animation-name: fadeIn;
+  animation-delay: 0s;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+}
+
+.homePage {
+  .topSection {
+    position: relative;
+    height: 100vh;
+    min-height: 800px;
+    background-size: cover;
+    background-position: bottom;
+  }
+
+  .verticalMiddle {
+    position: absolute;
+    left: 15%;
+    top: 13%;
+    box-sizing: border-box;
+    padding: 0 20px;
+  }
+
+
+  .productName {
+    position: relative;
+    display: inline-block;
+    max-width: 500px;
+
+    img {
+      position: absolute;
+      right: -7rem;
+      bottom: 9rem;
+    }
+
+    .brandName {
+      font-family: PingFangSC-Thin;
+      font-size: 7.5rem;
+      width: 25rem;
+      color: #C4C4C4;
+      letter-spacing: 2px;
+      white-space: nowrap;
+    }
+    .projectName {
+      font-family: HelveticaNeue-Bold;
+      width: 25rem;
+      height: 10rem;
+      background-size: contain;
+      position: relative;
+      background-repeat: no-repeat;
+    }
+  }
+
+  .productDesc {
+    .fadeInAnimation;
+    width: 550px;
+    font-family: HelveticaNeue-Medium;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 1rem;
+    font-size: 18px;
+    line-height: 27px;
+  }
+
+  .buttonArea {
+    margin-top: 40px;
+  }
+
+  .productDesc2 {
+    .fadeInAnimation;
+    font-family: Helvetica;
+    font-size: 1.5rem;
+    color: var(--ifm-color-primary);
+    text-align: justify;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .split {
+      width: 1px;
+      background: var(--ifm-color-primary);
+      height: 20px;
+      margin: 0 5px;
+    }
+  }
+
+  .featureSection {
+    box-sizing: border-box;
+    position: relative;
+    padding: 80px 15%;
+    background-size: cover;
+  }
+
+  .index {
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 36px;
+    width: 60%;
+    margin: 0 20%;
+    font-family: Helvetica;
+    font-size: 30px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+
+    span {
+      display: inline-block;
+      margin-bottom: 24px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid #ccc;
+    }
+  }
+
+  .pageTitleWrap {
+    display: inline-block;
+    padding-left: 1.5rem;
+    border-left: 2px solid #4982E0;
+
+    .page1TitleL1 {
+      font-family: PingFangSC-Regular;
+      font-size: 30px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+    }
+
+    .page1TitleL2 {
+      opacity: 0.5;
+      font-family: PingFangSC-Regular;
+      font-size: 16px;
+      color: #FFFFFF;
+      letter-spacing: 0;
+    }
+  }
+
+  .titleIndex {
+    font-family: Helvetica;
+    font-size: 5rem;
+    color: var(--ifm-color-primary);
+    letter-spacing: 0;
+    line-height: 5rem;
+    display: inline;
+    padding-right: 1.5rem;
+  }
+
+  h3 {
+    margin: 0 0 40px 0;
+    font-family: Helvetica;
+    font-size: 2.5rem;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    display: inline;
+  }
+
+  ul {
+    margin-top: 2rem;
+    list-style: none;
+    padding: 0;
+    background: #000;
+
+    li {
+      vertical-align: top;
+      display: inline-block;
+      margin-bottom: 40px;
+      width: 20%;
+      text-align: center;
+      min-height: 26rem;
+      padding-top: 4rem;
+      position: relative;
+
+      .featureIcon {
+        width: 56px;
+        height: 56px;
+        background-size: contain!important;
+      }
+
+      div {
+        margin: auto;
+        width: 80%;
+
+        h4 {
+          font-family: Helvetica;
+          font-size: 1.5rem;
+          color: #FFFFFF;
+          letter-spacing: 0;
+          margin-top: 2rem;
+          min-height: 4rem;
+        }
+        p {
+          margin-top: 2rem;
+          text-align: left;
+          font-family: Helvetica;
+          font-size: 14px;
+          color: #FFFFFF;
+          letter-spacing: 0;
+          line-height: 21px;
+        }
+      }
+    }
+    @media screen and (max-width: 768px){
+      li {
+        width: 100%;
+      }
+    }
+  }
+
+  .architectureImgWrap {
+    width: 100%;
+  }
+
+  .architectureImg {
+    .fadeInAnimation;
+    width: 100%;
+  }
+
+}
