@@ -5,91 +5,91 @@ sidebar_position: 1
 
 import {siteVariables} from '../../version';
 
-## 新建实时同步任务
-在 Dashboard 或者通过命令行工具创建任务，数据源类型使用 `Auto Push` (自主推送)。
+## Create real-time synchronization task
+Create a task on the Dashboard or through the command line, and use `Auto Push` (autonomous push) as the data source type.
 
-## 引入 C++ SDK
-需要在项目中包含SDK的头文件和库，进行 SDK 的使用。头文件和库提供可以从源码自行编译，见 [SDK 编译使用](https://github.com/apache/inlong/tree/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-cpp)。
+## Import C++ SDK
+The header files and libraries of the SDK need to be introduced into the project before using the SDK. Header files and libraries can be self-compiled from source, see [SDK Compile&Use](https://github.com/apache/inlong/tree/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-cpp)。
 
-## 数据上报流程
-引入 SDK 后，可以通过调用 SDK 的`send`相关接口进行单条（批量）数据的上报，发送 demo 可参考 [send_demo.cc](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-cpp/release/demo/send_demo.cc)。整体流程包括以下三个步骤：
+## Data report process
+After import the SDK, you can report single or batch data by calling the `send` related interface of the SDK [send_demo.cc](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-cpp/release/demo/send_demo.cc)。The overall process includes the following three steps：
 
-### 初始化 SDK
-SDK 支持对象实例化和配置文件初始化两种方式（二选一即可）：
-- 对象实例初始化
-首先初始化客户端配置，然后调用初始化接口：
+### Initialize SDK
+SDK supports object instance and configuration file initialization
+- object instance initialization
+  Initialize the client configuration firstly, and then call the initialization interface:
 ``` 
-// 初始化客户端配置
+// Initialize client configuration
 ClientConfig client;
-// 设置client相关配置参数，其中proxy_URL_为必选参数（格式如下），其他参数详见client_config.h文件
+// Set client-related configuration parameters, proxy_URL_ is a mandatory parameter (the format is as follows), and other parameters are detailed in the client_config.h file
 client.proxy_cluster_URL_="http://{Manager url}/inlong/manager/openapi/dataproxy/getIpList";
-// 初始化SDK, 返回值为零表示初始化成功，非零表示失败
+// Initialize the SDK, a return value of zero means initialization is successful, non-zero means failure
 int32_t result = tc_api_init(client);
 ```
 
-- 配置文件初始化
-配置文件采用 json 格式，见[配置文件说明](#附录：配置文件说明)，通过配置文件初始化 SDK：
+- Config file initialization
+  Configuration files are in json format, see [Config file description](#Appendix：Config File Description), initialize the SDK through the configuration file:
 ```
-// 初始化SDK，参数为配置文件的路径名；返回值为零表示初始化成功
+// Initialize the SDK, the parameter is the path name of the configuration file; a return value of zero means the initialization is successful
 int32_t result = tc_api_init("/home/conf/config.json");
 ```
 
-### 调用发送接口进行数据上报
-SDK 支持单条（推荐）和批量发送，二者发送过程均为异步模式，数据上报接口是线程安全的。在进行数据上报前，可设置回调函数在数据发送失败时进行回调处理，回调函数签名如下：
+### Call the send interface to report data
+The SDK supports single (recommended) and batch sending, both of which are sent in asynchronous mode, and the data reporting interface is thread-safe. Before data reporting, the callback function can be set to perform callback processing when the data transmission fails. The callback function signature is as follows:
 ```
 int32_t callBackFunc(const char* inlong_group_id, const char* inlong_stream_id, const char* msg, int32_t msg_len, const int64_t report_time, const char* client_ip);
 ```
 
-- 单条数据数据上报接口
+- Single data reporting interface
 ```
-// 返回值：零表示发送成功，非零表示失败，具体异常返回值详见tc_api.h中的SDKInvalidReuslt
+// Return value: zero means sending is successful, non-zero means failure, see SDKInvalidReuslt in tc_api.h for specific exception return value
 int32_t tc_api_send(const char* inlong_group_id, const char* inlong_stream_id, const char* msg, int32_t msg_len, UserCallBack call_back = NULL);
 ```
 
-- 批量数据上报接口
+- Batch data reporting interface
 ```
 int32_t tc_api_send_batch(const char* inlong_group_id, const char* inlong_stream_id, const char** msg_list, int32_t msg_cnt, UserCallBack call_back = NULL);
 ```
 
-### 关闭 SDK
-调用 close 接口关闭 SDK：
+### Close SDK
+Call the close interface to close the SDK:
 ```
-// 返回值为零表示关闭成功，后续无法再进行数据上报
-// max_waitms：关闭SDK前的等待最大毫秒数，等待SDK内部数据发送完成
+// A return value of zero means that the shutdown is successful, and subsequent data reporting cannot be performed
+// max_waitms：The maximum number of milliseconds to wait before closing the SDK, waiting for the completion of the SDK internal data sending
 int32_t tc_api_close(int32_t max_waitms);
 ```
 
-## 注意事项
-- SDK 的初始化和关闭都是进程级别的，只需初始化一次，fork 的子进程中需调用初始化接口后再进行数据上报；
-- 建议采用将 SDK 作为常驻服务来进行数据上报，避免同个进程中途频繁地初始化和关闭，重复初始化和关闭会带来更多开销；
-- SDK 发送是异步进行的，返回值为 0 表示数据成功存入了 SDK 内部缓冲区，等待网络发送。如果`inlong_group_id`本身配置有误或者网络异常，也会导致数据发送失败，所以建议用户在调用该接口时设置回调，数据多次重试发送仍失败时执行回调。
+## Warning
+- The initialization and shutdown of the SDK are at the process level, and only need to be initialized once, and the initialization interface needs to be called in the subprocess of the fork before the data is reported;
+- It is recommended to use the SDK as a resident service for data reporting to avoid frequent initialization and shutdown of the same process midway, as repeated initialization and shutdown will bring more overhead;
+- SDK sending is asynchronous, and a return value of 0 indicates that the data has been successfully stored in the SDK's internal buffer and is waiting for network sending. If `inlong_group_id` itself is misconfigured or the network is abnormal, it will also cause the data to fail to send, so it is recommended that the user set a callback when calling this interface, and execute the callback when the data fails to be sent after multiple retries.
 
-## 附录：配置文件说明
-配置文件格式和重要参数如下：
+## Appendix：Config File Description
+The configuration file format and important parameters are as follows:
 ```json
 {
 "init-param": {
-"thread_num": 5, // 网络收发线程的数量
-"enable_pack": true, // 是否多条打包发送
-"pack_size": 409600, // 数据达到pack_size大小，进行打包发送，单位字节
-"ext_pack_size": 409600, // 单条数据最大长度，单位字节
-"enable_zip": true, // 是否进行数据压缩
-"min_ziplen": 4096, // 最小压缩长度，单位字节
-"enable_retry": true, // 发送失败是否进行重试
-"retry_ms": 10000, // 重试间隔时间，单位毫秒
-"retry_num": 3, // 发送失败最大重试次数
-"max_active_proxy": 4, // tcp最大连接数，用于网络数据收发
-"max_buf_pool": 548576000, // 单个数据缓存区大小，单位字节
-"buffer_num_per_groupId": 3, // 每个groupid的数据缓存区个数
-"log_num": 10, // 最大日志文件数
-"log_size": 10, // 单个日志大小限制，单位MB
-"log_level": 3, // 日志级别，trace(4)>debug(3)>info(2)>warn(1)>error(0)
-"log_file_type": 2, // 日志输出，2->文件, 1->控制台
-"log_path": "./", // 日志路径
-"proxy_cfg_preurl": "http://127.0.0.1:8099/inlong/manager/openapi/dataproxy/getIpList", // 访问manager的url
-"need_auth": false, // 是否需要认证
-"auth_id": "admin", // 认证id
-"auth_key": "adminKey" // 认证key
+"thread_num": 5, // The number of network sending and receiving threads
+"enable_pack": true, // Whether to send multiple packages
+"pack_size": 409600, // When the data reaches the pack_size size, it will be packaged and sent, unit byte
+"ext_pack_size": 409600, // The maximum length of a single piece of data, unit byte
+"enable_zip": true, // Whether to perform data compression
+"min_ziplen": 4096, // Minimum compression length, unit byte
+"enable_retry": true, // Whether to retry if sending fails
+"retry_ms": 10000, // retry interval, unit: ms
+"retry_num": 3, // Maximum number of retries for sending failures
+"max_active_proxy": 4, // The maximum number of tcp connections, used for sending and receiving network data
+"max_buf_pool": 548576000, // Single data buffer size, unit byte
+"buffer_num_per_groupId": 3, // Number of data buffers for each groupid
+"log_num": 10, // Maximum number of log files
+"log_size": 10, // The size limit of a single log, unit MB
+"log_level": 3, // Log level, trace(4)>debug(3)>info(2)>warn(1)>error(0)
+"log_file_type": 2, // Log output type, 2->file, 1->console
+"log_path": "./", // log path
+"proxy_cfg_preurl": "http://127.0.0.1:8099/inlong/manager/openapi/dataproxy/getIpList", // Visit the URL of the manager
+"need_auth": false, // Is authentication required?
+"auth_id": "admin", // authentication id
+"auth_key": "adminKey" // authentication key
 }
 }
 ```
