@@ -6,7 +6,7 @@ sidebar_position: 3
 ## Create real-time synchronization task
 Create a task on the Dashboard or through the command line, and use `Auto Push` (autonomous push) as the data source type.
 
-## Method 1: Call the interface to report
+## Method 1: Call the interface to report (CURL)
 ```bash
 curl -X POST -d 'groupId=give_your_group_id&streamId=give_your_stream_id&dt=data_time&body=give_your_data_body&cnt=1' http://dataproxy_url:46802/dataproxy/message
 ```
@@ -14,18 +14,18 @@ curl -X POST -d 'groupId=give_your_group_id&streamId=give_your_stream_id&dt=data
 
 | parameter | meaning                               | Remark  |
 |-----------|---------------------------------------|---------|
-| groupId   | data stream group id                  |         |
-| streamId  | data stream ID                        |         |
+| groupId   | Data stream group id                  |         |
+| streamId  | Data stream ID                        |         |
 | body      | Data content to be pushed             |         |
 | dt        | Data time to be pushed                |         |
 | cnt       | The count of data pieces to be pushed |         |
 
-- return value：
+- Return Value：
 
-| return value | meaning   |
-|--------------|-----------|
-| 1            | success   |
-| !=1          | failure   |
+| return value | meaning |
+|--------------|---------|
+| 1            | Success |
+| !=1          | Failure |
 
 ## Method 2：Encapsulate the HTTP client（Java)
 The following packages need to be imported first `httpclient`、`commons-lang3`、`jackson-databind` code example:
