@@ -8,26 +8,60 @@ title: Client RPC
 Implements of this part can be found in `org.apache.tubemq.corerpc`. Each node in Apache TubeMQ Cluster Communicates by TCP Keep-Alive. Mseeages are definded using binary and protobuf combined.
 ![](img/client_rpc/rpc_bytes_def.png)
 
-All we can see in TCP are binary streams. We defind a 4-byte msgToken message `RPC\_PROTOCOL\_BEGIN\_TOKEN` in header, which are used to distinguish each message and identify the legitimacy of the counterpart. When message client received is not started with these header field, client needs to close the connection and prompt the error and quit or reconnect because the protocal is not supported by TubeMQ or something wrong may happended. Follows is a 4-byte serialNo, this field is sent by client to server and returned by server exactly the same when after handling the request. It is mainly used to associate the context of the client request and response. And a 4-byte `listSize` field shows the number of data blocks in pb next, precisely the number of following `\&lt;len\&gt;\&lt;data\&gt;` blocks. This field would not be 0 in current definition. `\&lt;len\&gt;\&lt;data\&gt;` field is a combination of 2 filelds. That is, a length number and data, which mainly represents the length of this data block and the specific data.
+All we can see in TCP are binary streams. We defined:
+- msgToken: 4-bytes, `RPC_PROTOCOL_BEGIN_TOKEN` in header, which are used to distinguish each message and identify the legitimacy of the counterpart. When message client received is not started with this header field, client needs to close the connection and prompt the error and quit or reconnect because the protocal is not supported by TubeMQ or something wrong may happended. 
+- serialNo: 4-bytes, this field is sent by client to server and returned by server exactly the same when after handling the request. It is mainly used to associate the context of the client request and response. 
+- listSize: 4-bytes, the length of the following PB blocks, this field would not be 0 in current definition.
+- `[<len><data>]`: field is a combination of 2 fields
+  - len: the length of data
+  - data: the content of data
 
-We defined `listSize` as `\&lt;len\&gt;\&lt;data\&gt;` because serialized PB data is saved as a ByteBuffer object in TubeMQ, and in Java, there a maximum(8196) length of ByteBuffer block, an overlength PB message needs to be saved in several ByteBuffer. No total length was counted, and the ByteBuffer is directly written when Serializing in to TCP message.
+> Why the format of `listSize [<len><data>]` ?
+> 
+> This is because the serialized PB data is saved as a ByteBuffer object in TubeMQ, and in Java, there a maximum(8196) length of ByteBuffer block, an over length PB message needs to be saved in several ByteBuffer. No total length was counted now, and the ByteBuffer is directly written when Serializing in to TCP message.
+> 
+> **Please pay attention when implementing multiple languages and SDKs.** Need to serialize PB data content into arrays of blocks(supported in PB codecs).
 
-**Pay more attention when implementing multiple languages and SDKs.** Need to serialize PB data content into arrays of blocks(supported in PB codecs).
 
 
 ## 2 PB format code:
 
-PB format encoding is divided into RPC framework definition, to the Master message encoding and to the Broker message encoding of three parts, you can use protobuf directly compiled to get different language codecs, it is very convenient to use.
-![](img/client_rpc/rpc_proto_def.png)
+There mainly has three kinds of PB messages in TubeMQ:
+- RPC related messages : `RPC.proto`
+- Master related messages : `MasterService.proto`
+- Broker related messages : `BrokerService.proto`
 
 `RPC.proto` defines 6 struct, which divided into 2 class: Request message and Response message. Response message is divided into Successful Response and Exception Response.
-![](img/client_rpc/rpc_pbmsg_structure.png)
 
 The request message encoding and response message decoding can be implemented in the `NettyClient.java` class. There is some room for improvement in this part of the definition and can be found in [TUBEMQ-109](https://issues.apache.org/jira/browse/TUBEMQ-109). However, due to compatibility concerns, it will be gradually replaced. We have implemented the current protobuf version, which is not a problem until at least 1.0.0. With the new protocol, the protocol implementation module requires each SDK to allow room for improvement. Take request message as an example, `RpcConnHeader` and other related structures are as follows：
-![](img/client_rpc/rpc_conn_detail.png)
+```protobuf
+message RpcConnHeader {
+    required int32 flag = 1;
+    optional int64 traceId = 2;
+    optional int64 spanId = 3;
+    optional int64 parentId = 4;
+}
+
+message RequestHeader {
+    optional int32 serviceType = 1;
+    optional int32 protocolVer = 2;
+}
+
+message RequestBody {
+    required int32 method = 1;
+    optional int64 timeout = 2;
+    optional bytes request = 3;
+}
+```
 
 Flag marks whether the message is requested or not, and the next three marks represent the content of the message trace, which is not currently used; the related is a fixed mapping of the service type, protocol version, service type, etc., the more critical parameter RequestBody.timeout is the maximum allowable time from when a request is received by the server to when it is actually processed. Long wait time, discarded if exceeded, current default is 10 seconds, request filled as follows.
-![](img/client_rpc/rpc_header_fill.png)
+```java
+RequestWrapper requestWrapper =
+                new RequestWrapper(PbEnDecoder.getServiceIdByServiceName(targetInterface),
+                        RpcProtocol.RPC_PROTOCOL_VERSION,
+                        RpcConstants.RPC_FLAG_MSG_TYPE_REQUEST,
+                        requestTimeout); // request timeout
+```
 
 
 ## 3 Interactive diagram of the client's PB request & response：
@@ -101,11 +135,40 @@ As shown above, the client has to maintain local preservation of the sent reques
 
 ----------
 
-![](img/client_rpc/rpc_producer_register2M.png)
+```protobuf
+message RegisterRequestP2M {
+    required string clientId = 1;
+    repeated string topicList = 2;
+    required int64 brokerCheckSum = 3;
+    required string hostName = 4;
+    optional MasterCertificateInfo authInfo = 5;
+    optional string jdkVersion = 6;
+    optional ApprovedClientConfig appdConfig = 7;
+}
+
+message RegisterResponseM2P {
+    required bool success = 1;
+    required int32 errCode = 2;
+    required string errMsg = 3;
+    required int64 brokerCheckSum = 4;
+    repeated string brokerInfos = 5;
+    optional MasterAuthorizedInfo authorizedInfo = 6;
+    optional ApprovedClientConfig appdConfig = 7;
+}
+```
 
 **ClientId**：Producer needs to construct a ClientId at startup, and the current construction rule is: 
 
-Java: ClientId = IPV4 + `&quot;-&quot;` + Thread ID + `&quot;-&quot;` + createTime + `&quot;-&quot;` + Instance ID + `&quot;-&quot;` + Client Version ID [+ `&quot;-&quot;` + SDK]. it is recommended that other languages add the above markup for easier access to the issue Exclusion. The ID value is valid for the lifetime of the Producer.
+```java
+ClientId = consumerGroup + "_"
+        + AddressUtils.getLocalAddress() + "_" // local ip (IPV4)
+        + pid + "_" // processId
+        + timestamp + "_" // timestamp
+        + counter + "_" // increament counter
+        + consumerType + "_" // type of consumer，including Pull and Push 
+        + clientVersion; // version for client
+```
+it is recommended that other languages add the above markup for easier access to the issue Exclusion. The ID value is valid for the lifetime of the Producer.
 
 **TopicList**: The list of topics published by the user, Producer provides the initial list of topics for the data to be published at initialization, and also allows the business to defer adding new topics via the publish function in runtime, but does not support reducing topics in runtime.
 
@@ -123,11 +186,28 @@ Java: ClientId = IPV4 + `&quot;-&quot;` + Thread ID + `&quot;-&quot;` + createTi
 
 **brokerInfos**: Broker metadata information, which is primarily a list of Broker information for the entire cluster that the Master feeds back to the Producer in this field; the format is as follows.
 
-![](img/client_rpc/rpc_broker_info.png)
+```java
+public BrokerInfo(String strBrokerInfo, int brokerPort) {
+        String[] strBrokers =
+                strBrokerInfo.split(TokenConstants.ATTR_SEP);
+        this.brokerId = Integer.parseInt(strBrokers[0]);
+        this.host = strBrokers[1];
+        this.port = brokerPort;
+        if (!TStringUtils.isBlank(strBrokers[2])) {
+            this.port = Integer.parseInt(strBrokers[2]);
+        }
+        this.buildStrInfo();
+    }
+```
 
 **authorizedInfo**: Master provides authorization information in the following format.
 
-![](img/client_rpc/rpc_master_authorizedinfo.png)
+```protobuf
+message MasterAuthorizedInfo {
+    required int64 visitAuthorizedToken = 1;
+    optional string authAuthorizedToken = 2;
+}
+```
 
 **visitAuthorizedToken**: To prevent clients from bypassing the Master's access authorization token, if that data is available, the SDK should save it locally and carry that information on subsequent visits to the Broker; if the field is changed on subsequent heartbeats, the locally cached data for that field needs to be updated.
 
@@ -138,11 +218,72 @@ Java: ClientId = IPV4 + `&quot;-&quot;` + Thread ID + `&quot;-&quot;` + createTi
 
 ----------
 
-![](img/client_rpc/rpc_producer_heartbeat2M.png)
+```protobuf
+message HeartRequestP2M {
+    required string clientId = 1;
+    required int64 brokerCheckSum = 2;
+    required string hostName = 3;
+    repeated string topicList = 4;
+    optional MasterCertificateInfo authInfo = 5;
+    optional ApprovedClientConfig appdConfig = 6;
+}
+
+message HeartResponseM2P {
+    required bool success = 1;
+    required int32 errCode = 2;
+    required string errMsg = 3;
+    required int64 brokerCheckSum = 4;
+    /* brokerId:host:port-topic:partitionNum */
+    repeated string topicInfos = 5;
+    repeated string brokerInfos = 6;
+    optional bool requireAuth = 7;
+    optional MasterAuthorizedInfo authorizedInfo = 8;
+    optional ApprovedClientConfig appdConfig = 9;
+}
+```
 
 **topicInfos**: The metadata information corresponding to the Topic published by the SDK, including partition information and the Broker where it is located, is decoded. Since there is a lot of metadata, the outflow generated by passing the object data through as is would be very large, so we made Improvements.
 
-![](img/client_rpc/rpc_convert_topicinfo.png)
+```java
+public static Tuple2<Map<String, Integer>, List<TopicInfo>> convertTopicInfo(
+            Map<Integer, BrokerInfo> brokerInfoMap, List<String> strTopicInfos) {
+        List<TopicInfo> topicList = new ArrayList<>();
+        Map<String, Integer> topicMaxSizeInBMap = new ConcurrentHashMap<>();
+        if (strTopicInfos == null || strTopicInfos.isEmpty()) {
+            return new Tuple2<>(topicMaxSizeInBMap, topicList);
+        }
+        String[] strInfo;
+        String[] strTopicInfoSet;
+        String[] strTopicInfo;
+        BrokerInfo brokerInfo;
+        for (String info : strTopicInfos) {
+            if (info == null || info.isEmpty()) {
+                continue;
+            }
+            info = info.trim();
+            strInfo = info.split(TokenConstants.SEGMENT_SEP, -1);
+            strTopicInfoSet = strInfo[1].split(TokenConstants.ARRAY_SEP);
+            for (String s : strTopicInfoSet) {
+                strTopicInfo = s.split(TokenConstants.ATTR_SEP);
+                brokerInfo = brokerInfoMap.get(Integer.parseInt(strTopicInfo[0]));
+                if (brokerInfo != null) {
+                    topicList.add(new TopicInfo(brokerInfo,
+                            strInfo[0], Integer.parseInt(strTopicInfo[1]),
+                            Integer.parseInt(strTopicInfo[2]), true, true));
+                }
+            }
+            if (strInfo.length == 2 || TStringUtils.isEmpty(strInfo[2])) {
+                continue;
+            }
+            try {
+                topicMaxSizeInBMap.put(strInfo[0], Integer.parseInt(strInfo[2]));
+            } catch (Throwable e) {
+                //
+            }
+        }
+        return new Tuple2<>(topicMaxSizeInBMap, topicList);
+    }
+```
 
 **requireAuth**: Code to indicates the expiration of the previous authAuthorizedToken of the Master, requiring the SDK to report the username and password signatures on the next request.
 
@@ -150,7 +291,18 @@ Java: ClientId = IPV4 + `&quot;-&quot;` + Thread ID + `&quot;-&quot;` + createTi
 
 ----------
 
-![](img/client_rpc/rpc_producer_close2M.png)
+```pro
+message CloseRequestP2M{
+	required string clientId = 1;
+	optional MasterCertificateInfo authInfo = 2;
+}
+
+message CloseResponseM2P{
+    required bool success = 1;
+    required int32 errCode = 2;
+    required string errMsg = 3;
+}
+```
 
 Note that if authentication is enable, closing operation will do the authentication to avoid external interference with the operation.
 
@@ -160,11 +312,48 @@ Note that if authentication is enable, closing operation will do the authenticat
 
 This part is related to the definition of RPC Message.
 
-![](img/client_rpc/rpc_producer_sendmsg2B.png)
+```protobuf
+message SendMessageRequestP2B {
+    required string clientId = 1;
+    required string topicName = 2;
+    required int32 partitionId = 3;
+    required bytes data = 4;
+    required int32 flag = 5;
+    required int32 checkSum = 6;
+    required int32 sentAddr = 7;
+    optional string msgType = 8;
+    optional string msgTime = 9;
+    optional AuthorizedInfo authInfo = 10;
+}
 
+message SendMessageResponseB2P {
+    required bool success = 1;
+    required int32 errCode = 2;
+    required string errMsg = 3;
+    optional bool requireAuth = 4;
+    optional int64 messageId = 5;
+    optional int64 appendTime = 6;
+    optional int64 appendOffset = 7;
+}
+```
 **Data** is the binary byte stream of Message.
 
-![](img/client_rpc/rpc_message_data.png)
+```protobuf
+private byte[] encodePayload(final Message message) {
+        final byte[] payload = message.getData();
+        final String attribute = message.getAttribute();
+        if (TStringUtils.isBlank(attribute)) {
+            return payload;
+        }
+        byte[] attrData = StringUtils.getBytesUtf8(attribute);
+        final ByteBuffer buffer =
+                ByteBuffer.allocate(4 + attrData.length + payload.length);
+        buffer.putInt(attrData.length);
+        buffer.put(attrData);
+        buffer.put(payload);
+        return buffer.array();
+    }
+```
 
 **sentAddr** is the local IPv4 address of the machine where the SDK is located converted to a 32-bit numeric ID.
 
@@ -184,17 +373,71 @@ Apache TubeMQ currently uses a server-side load balancing mode, where the balanc
 
 Translated with www.DeepL.com/Translator (free version)
 
-![](img/client_rpc/rpc_event_proto.png)
+```protobuf
+message EventProto{
+    optional int64 rebalanceId = 1;
+    optional int32 opType = 2;
+    optional int32 status = 3;
+    /* consumerId@group-brokerId:host:port-topic:partitionId */
+    repeated string subscribeInfo = 4;
+}
+```
 
 **rebalanceId**：A long-type auto-increment number that indicates the round of load balance.
 
 **opType**：Operation code, and its value defined in EventType. There are only four parts of the opcode that have been implemented, as follows: `DISCONNECT`, `CONNECT`, `REPORT` and `ONLY_`. Opcode started with `ONLY` is not detailed developed.
 
-![](img/client_rpc/rpc_event_proto_optype.png)
+```java
+switch (event.getType()) {
+       case DISCONNECT:
+       case ONLY_DISCONNECT:
+           disconnectFromBroker(event);
+           rebalanceResults.put(event);
+           break;
+       case CONNECT:
+       case ONLY_CONNECT:
+           connect2Broker(event);
+           rebalanceResults.put(event);
+           break;
+       case REPORT:
+           reportSubscribeInfo();
+           break;
+       case STOPREBALANCE:
+           break;
+       default:
+           throw new TubeClientException(strBuffer
+                   .append("Invalid rebalance opCode:")
+                   .append(event.getType()).toString());
+}
+```
 
 **status**：Defined in `EventStatus`, indicates the status of the event. When Master constructs a load balancing task, it sets the status to `TODO`. When receiving the client heartbeat request, master writes the task to the response message and sets the status to `PROCESSING`. The client receives a load balancing command from the heartbeat response, and then it can perform the actual connection or disconnection operation, after the operation is finished, set the command status to `DONE` until sending next heartbeat to master.
 
-![](img/client_rpc/rpc_event_proto_status.png)
+```java
+public enum EventStatus {
+    /**
+     * To be processed state.
+     * */
+    TODO(0, "To be processed"),
+    /**
+     * On processing state.
+     * */
+    PROCESSING(1, "Being processed"),
+    /**
+     * Processed state.
+     * */
+    DONE(2, "Process Done"),
+
+    /**
+     * Unknown state.
+     * */
+    UNKNOWN(-1, "Unknown event status"),
+    /**
+     * Failed state.
+     * */
+    FAILED(-2, "Process failed");
+}
+```
 
 **subscribeInfo** indicates assigned partition information, in the format suggested by the comment.
 
