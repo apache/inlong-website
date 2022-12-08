@@ -17,7 +17,7 @@ If no primary key is defined on the DDL, the Load Node can only operate in appen
 
 | Load Node                           | Version                                            | 
 |-------------------------------------|----------------------------------------------------|
-| [elasticsearch](./elasticsearch.md) | [Elasticsearch](https://www.elastic.co/): 6.x, 7.x |
+| [elasticsearch](./elasticsearch.md) | [Elasticsearch](https://www.elastic.co/): 5.x, 6.x, 7.x |
 
 ### Dependencies
 
@@ -92,7 +92,7 @@ TODO: It will be supported in the future.
       <td>String</td>
       <td>Specify what connector to use, valid values are:
       <ul>
-      <li><code>elasticsearch-6-inlong</code>: connect to Elasticsearch 6.x cluster.</li>
+      <li><code>elasticsearch-6-inlong</code>: connect to Elasticsearch 5.x and 6.x cluster.</li>
       <li><code>elasticsearch-7-inlong</code>: connect to Elasticsearch 7.x and later versions cluster.</li>
       </ul></td>
     </tr>
@@ -114,7 +114,7 @@ TODO: It will be supported in the future.
     </tr>
     <tr>
       <td><h5>document-type</h5></td>
-      <td>required in 6.x</td>
+      <td>required in 5.x and 6.x</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
       <td>Elasticsearch document type. Not necessary anymore in <code>elasticsearch-7</code>.</td>

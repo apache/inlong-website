@@ -17,7 +17,7 @@ Elasticsearch Load 节点允许将数据写入到 Elasticsearch 引擎的索引�
 
 | Load 节点                             | 版本                                                 | 
 |-------------------------------------|----------------------------------------------------|
-| [elasticsearch](./elasticsearch.md) | [Elasticsearch](https://www.elastic.co/): 6.x, 7.x |
+| [elasticsearch](./elasticsearch.md) | [Elasticsearch](https://www.elastic.co/): 5.x, 6.x, 7.x |
 
 ### 依赖
 
@@ -92,7 +92,7 @@ TODO: 将在未来支持这个特性。
       <td>String</td>
       <td>指定要使用的连接器，有效值为：
       <ul>
-      <li><code>elasticsearch-6</code>：连接到 Elasticsearch 6.x 的集群。</li>
+      <li><code>elasticsearch-6</code>：连接到 Elasticsearch 5.x and 6.x 的集群。</li>
       <li><code>elasticsearch-7</code>：连接到 Elasticsearch 7.x 及更高版本的集群。</li>
       </ul></td>
     </tr>
