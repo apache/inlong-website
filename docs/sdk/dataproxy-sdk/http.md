@@ -1,34 +1,34 @@
 ---
-title: HTTP 上报
+title: HTTP Report
 sidebar_position: 3
 ---
 
-## 新建实时同步任务
-在 Dashboard 或者通过命令行工具创建任务，数据源类型使用 `Auto Push` (自主推送)。
+## Create real-time synchronization task
+Create a task on the Dashboard or through the command line, and use `Auto Push` (autonomous push) as the data source type.
 
-## 方式一：调用 URL 上报
+## Method 1: Call the interface to report
 ```bash
 curl -X POST -d 'groupId=give_your_group_id&streamId=give_your_stream_id&dt=data_time&body=give_your_data_body&cnt=1' http://dataproxy_url:46802/dataproxy/message
 ```
-- 参数说明：
+- Parameter Description：
 
-| 参数       | 含义       | 备注  |
-|----------|----------|-----|
-| groupId  | 数据流组 id  |     |
-| streamId | 数据流 ID   |     |
-| body     | 推送的数据内容  |     |
-| dt       | 推送的数据时间  |     |
-| cnt      | 推送条数     |     |
+| parameter | meaning                               | Remark  |
+|-----------|---------------------------------------|---------|
+| groupId   | data stream group id                  |         |
+| streamId  | data stream ID                        |         |
+| body      | Data content to be pushed             |         |
+| dt        | Data time to be pushed                |         |
+| cnt       | The count of data pieces to be pushed |         |
 
-- 返回值：
+- return value：
 
-| 返回码 | 含义  |
-|-----|-----|
-| 1   | 成功  |
-| 非1  | 失败  |
+| return value | meaning   |
+|--------------|-----------|
+| 1            | success   |
+| !=1          | failure   |
 
-## 方式二：封装 HTTP Client（Java)
-需要 `httpclient`、`commons-lang3`、`jackson-databind`，代码示例：
+## Method 2：Encapsulate the HTTP client（Java)
+The following packages need to be imported first `httpclient`、`commons-lang3`、`jackson-databind` code example:
 ```java
 public class DataPush {
 
