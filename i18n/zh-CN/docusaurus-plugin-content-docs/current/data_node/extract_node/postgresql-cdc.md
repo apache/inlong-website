@@ -90,7 +90,6 @@ WHERE oid = 'mytablename'::regclass;
 ALTER TABLE mytablename REPLICA IDENTITY FULL;
 ```
 
-
 ## 如何创建 PostgreSQL Extract 节点
 
 ### SQL API 用法

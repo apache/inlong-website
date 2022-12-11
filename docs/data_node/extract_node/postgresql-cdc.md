@@ -90,7 +90,6 @@ WHERE oid = 'mytablename'::regclass;
 ALTER TABLE mytablename REPLICA IDENTITY FULL;
 ```
 
-
 ## How to create a PostgreSQL Extract Node
 
 ### Usage for SQL API
