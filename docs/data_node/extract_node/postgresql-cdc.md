@@ -75,7 +75,7 @@ wal_level = logical
 
 Please keep the `replica indentity` level of source tables to `FULL`. You can check and change this value by SQL:
 
-```aidl
+```sql
 -- show replica identity
 SELECT CASE relreplident
   WHEN 'd' THEN 'default'
@@ -138,10 +138,11 @@ TODO: It will be supported in the future.
 | debezium.* | optional | (none) | String | Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Postgres server. For example: 'debezium.snapshot.mode' = 'never'. See more about the [Debezium's Postgres Connector properties](https://debezium.io/documentation/reference/1.5/connectors/postgresql.html#postgresql-connector-properties). |
 | inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode. |
 
-**Note**: `slot.name` is recommended to set for different tables to avoid the potential PSQLException: ERROR: replication slot "flink" is active for PID 974 error.  
-**Note**: PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. We can delete slot by the following statement.
+**Note**: `slot.name` is recommended to set for different tables to avoid the potential `PSQLException: ERROR: replication slot "flink" is active for PID 974` error.  
+**Note**: `PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots`. We can delete slot by the following statement.
 ```sql
-SELECT*FROM pg_replication_slots;
+SELECT * FROM pg_replication_slots;
+
 -- get slot name is flink. delete it
 SELECT pg_drop_replication_slot('flink');
 ```

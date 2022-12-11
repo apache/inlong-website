@@ -69,6 +69,28 @@ shared_preload_libraries = 'decoderbufs'
 wal_level = logical 
 ```
 
+### replica identity
+
+`REPLICA IDENTITY`是PostgreSQL表级别的一个设置参数，它决定了逻辑解码插件在捕获更新和删除事件时获取足够的信息。可以从[这里](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-replica-identity)查看更多信息。
+
+请确保需要同步的表的`replica identity`的级别为`FULL`。您可以通过以下SQL代码查看并修改相应参数。
+
+```sql
+-- 查看 replica identity
+SELECT CASE relreplident
+  WHEN 'd' THEN 'default'
+  WHEN 'n' THEN 'nothing'
+  WHEN 'f' THEN 'full'
+  WHEN 'i' THEN 'index'
+  END AS replica_identity
+FROM pg_class
+WHERE oid = 'mytablename'::regclass;
+
+-- 修改 replica identity
+ALTER TABLE mytablename REPLICA IDENTITY FULL;
+```
+
+
 ## 如何创建 PostgreSQL Extract 节点
 
 ### SQL API 用法
@@ -116,10 +138,11 @@ TODO: 将在未来支持此功能。
 | debezium.* | 可选 | (none) | String | 将 Debezium 的属性传递给用于从 Postgres 服务器捕获数据更改的 Debezium Embedded Engine。 例如：“debezium.snapshot.mode”=“never”。 查看更多关于 [Debezium 的 Postgres 连接器属性](https://debezium.io/documentation/reference/1.5/connectors/postgresql.html#postgresql-connector-properties)。 |
 | inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 
-**Note**: `slot.name` 建议为不同的表设置以避免潜在的 PSQLException: ERROR: replication slot "flink" is active for PID 974 error。  
-**Note**: PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. 我们可以通过以下语句删除槽。  
+**Note**: 建议为每张表设置不同的 `slot.name` ，以避免潜在的 `PSQLException: ERROR: replication slot "flink" is active for PID 974` 错误。  
+**Note**: 遇到 `PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots` 错误时，我们可以通过以下语句删除槽。  
 ```sql
-SELECT*FROM pg_replication_slots;
+SELECT * FROM pg_replication_slots;
+
 -- 获取插槽名称为 flink。 删除它
 SELECT pg_drop_replication_slot('flink');
 ```
