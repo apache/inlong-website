@@ -137,8 +137,15 @@ TODO: 将在未来支持此功能。
 | debezium.* | 可选 | (none) | String | 将 Debezium 的属性传递给用于从 Postgres 服务器捕获数据更改的 Debezium Embedded Engine。 例如：“debezium.snapshot.mode”=“never”。 查看更多关于 [Debezium 的 Postgres 连接器属性](https://debezium.io/documentation/reference/1.5/connectors/postgresql.html#postgresql-connector-properties)。 |
 | inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 
+<<<<<<< Updated upstream
 **Note**: 建议为每张表设置不同的 `slot.name` ，以避免潜在的 `PSQLException: ERROR: replication slot "flink" is active for PID 974` 错误。  
 **Note**: 遇到 `PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots` 错误时，我们可以通过以下语句删除槽。  
+=======
+:::提示
+- `slot.name` 建议为不同的表设置以避免潜在的 PSQLException: ERROR: replication slot "flink" is active for PID 974 error。  
+- PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. 我们可以通过以下语句删除槽。  
+:::
+>>>>>>> Stashed changes
 ```sql
 SELECT * FROM pg_replication_slots;
 
