@@ -22,14 +22,14 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-postgres-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
+
 ## Setup PostgreSQL server
 
 Change Data Capture (CDC) allows you to track and propagate changes in a PostgreSQL database to downstream consumers based on its Write-Ahead Log (WAL).
@@ -137,15 +137,10 @@ TODO: It will be supported in the future.
 | debezium.* | optional | (none) | String | Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Postgres server. For example: 'debezium.snapshot.mode' = 'never'. See more about the [Debezium's Postgres Connector properties](https://debezium.io/documentation/reference/1.5/connectors/postgresql.html#postgresql-connector-properties). |
 | inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode. |
 
-<<<<<<< Updated upstream
-**Note**: `slot.name` is recommended to set for different tables to avoid the potential `PSQLException: ERROR: replication slot "flink" is active for PID 974` error.  
-**Note**: `PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots`. We can delete slot by the following statement.
-=======
 :::caution
 - `slot.name` is recommended to set for different tables to avoid the potential PSQLException: ERROR: replication slot "flink" is active for PID 974 error.  
 - PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. We can delete slot by the following statement.
 :::
->>>>>>> Stashed changes
 ```sql
 SELECT * FROM pg_replication_slots;
 
