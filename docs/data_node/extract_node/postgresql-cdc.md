@@ -22,13 +22,14 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-postgres-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## Setup PostgreSQL server
 

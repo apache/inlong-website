@@ -21,13 +21,14 @@ import {siteVariables} from '../../version';
 
 ### Maven 依赖
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-postgres-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 设置 PostgreSQL 服务
 
@@ -137,7 +138,7 @@ TODO: 将在未来支持此功能。
 | debezium.* | 可选 | (none) | String | 将 Debezium 的属性传递给用于从 Postgres 服务器捕获数据更改的 Debezium Embedded Engine。 例如：“debezium.snapshot.mode”=“never”。 查看更多关于 [Debezium 的 Postgres 连接器属性](https://debezium.io/documentation/reference/1.5/connectors/postgresql.html#postgresql-connector-properties)。 |
 | inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
 
-:::提示
+:::caution
 - `slot.name` 建议为不同的表设置以避免潜在的 PSQLException: ERROR: replication slot "flink" is active for PID 974 error。  
 - PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. 我们可以通过以下语句删除槽。  
 :::
