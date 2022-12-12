@@ -313,8 +313,8 @@ TODO: It will be supported in the future.
 | DATE       | DATE           |
 | TIMESTAMP_WITHOUT_TIME_ZONE(N) | DATETIME |
 | TIMESTAMP_WITH_LOCAL_TIME_ZONE(N) | DATETIME |
-| ARRAY<T>   | ARRAY<T>       |
-| MAP<KT,VT> | JSON / JSON STRING |
-| ROW<arg T...> | JSON / JSON STRING |
+| ARRAY&lt;T&gt;   | ARRAY&lt;T&gt;       |
+| MAP&lt;KT,VT&gt; | JSON / JSON STRING |
+| ROW&lt;arg T...&gt; | JSON / JSON STRING |
 
 See [flink-connector-starrocks](https://github.com/StarRocks/starrocks-connector-for-apache-flink/blob/main/README.md) for more details.
