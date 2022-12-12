@@ -15,7 +15,7 @@ import {siteVariables} from '../../version';
 
 | Load 节点             | StarRocks 版本 |                                                                                                                                                                                                                                                                                                                                                                                           
 |---------------------|----------|
-| [StarRocks](./StarRocks.md) | 2.0+    |  
+| [StarRocks](./starrocks.md) | 2.0+    |  
 
 ## 依赖
 
@@ -23,13 +23,14 @@ import {siteVariables} from '../../version';
 
 ### Maven 依赖
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-starrocks</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 ## 准备
 ### 创建 MySQL Extract 表

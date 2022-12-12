@@ -88,6 +88,8 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 |              | Greenplum         | 4.x, 5.x, 6.x                | Lightweight, Standard |
 |              | Elasticsearch     | 6.x, 7.x                     | Lightweight, Standard |
 |              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
+|              | Doris             | >= 0.13                      | Lightweight, Standard |
+|              | StarRocks         | >= 2.0                       | Lightweight, Standard |
 |              | HDFS              | 2.x, 3.x                     | Lightweight, Standard |
 
 

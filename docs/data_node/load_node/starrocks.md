@@ -25,12 +25,14 @@ such as Maven or SBT is provided below.
 
 ### Maven dependency
 
-```
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-starrocks</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
+`}
+</code></pre>
 ```
 
 ## Prepare
