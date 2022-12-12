@@ -30,6 +30,7 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 </dependency>
 `}
 </code></pre>
+
 ## Setup PostgreSQL server
 
 Change Data Capture (CDC) allows you to track and propagate changes in a PostgreSQL database to downstream consumers based on its Write-Ahead Log (WAL).
@@ -67,6 +68,27 @@ shared_preload_libraries = 'decoderbufs'
 
 ```properties
 wal_level = logical 
+```
+
+### replica identity
+
+`REPLICA IDENTITY` is a PostgreSQL-specific table-level setting that determines the amount of information that is available to the logical decoding plug-in for UPDATE and DELETE events. See [more](https://debezium.io/documentation/reference/stable/connectors/postgresql.html#postgresql-replica-identity).
+
+Please keep the `replica indentity` level of source tables to `FULL`. You can check and change this value by SQL:
+
+```sql
+-- show replica identity
+SELECT CASE relreplident
+  WHEN 'd' THEN 'default'
+  WHEN 'n' THEN 'nothing'
+  WHEN 'f' THEN 'full'
+  WHEN 'i' THEN 'index'
+  END AS replica_identity
+FROM pg_class
+WHERE oid = 'mytablename'::regclass;
+
+-- change replica identity
+ALTER TABLE mytablename REPLICA IDENTITY FULL;
 ```
 
 ## How to create a PostgreSQL Extract Node
@@ -116,10 +138,13 @@ TODO: It will be supported in the future.
 | debezium.* | optional | (none) | String | Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Postgres server. For example: 'debezium.snapshot.mode' = 'never'. See more about the [Debezium's Postgres Connector properties](https://debezium.io/documentation/reference/1.5/connectors/postgresql.html#postgresql-connector-properties). |
 | inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode. |
 
-**Note**: `slot.name` is recommended to set for different tables to avoid the potential PSQLException: ERROR: replication slot "flink" is active for PID 974 error.  
-**Note**: PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. We can delete slot by the following statement.
+:::caution
+- `slot.name` is recommended to set for different tables to avoid the potential PSQLException: ERROR: replication slot "flink" is active for PID 974 error.  
+- PSQLException: ERROR: all replication slots are in use Hint: Free one or increase max_replication_slots. We can delete slot by the following statement.
+:::
 ```sql
-SELECT*FROM pg_replication_slots;
+SELECT * FROM pg_replication_slots;
+
 -- get slot name is flink. delete it
 SELECT pg_drop_replication_slot('flink');
 ```
