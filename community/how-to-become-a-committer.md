@@ -3,10 +3,12 @@ title: How to Become a Committer or PMC
 sidebar_position: 4
 ---
 
-> [Apache InLong](https://inlong.apache.org) is to build a community in full accordance with Apache’s rules. 
-> Apache Committer is a term used in ASF (Apache Software Foundation) to refer to people who submit specific projects.
-> Apache InLong Committer has the permission to write the InLong code base and can merge PR. 
-> Anyone who has made enough contributions to the community and gained enough trust can become an Apache InLong Committer.
+:::note
+[Apache InLong](https://inlong.apache.org) is to build a community in full accordance with Apache’s rules. 
+Apache Committer is a term used in ASF (Apache Software Foundation) to refer to people who submit specific projects.
+Apache InLong Committer has the permission to write the InLong code base and can merge PR. 
+Anyone who has made enough contributions to the community and gained enough trust can become an Apache InLong Committer.
+:::
 
 As long as anyone contributes to the InLong project, you are the officially recognized Contributor of the InLong project. 
 There is no exact standard for growing from Contributor to Committer. There is also no expected timetable, but Committer candidates are generally long-term active contributors. 
@@ -18,7 +20,7 @@ List of potential contributions (in no particular order):
 - Update the official documentation so that the project documentation is the most recent, the best practices for writing InLong, and various valuable documents for feature analysis.
 - Perform test and report test results, performance test and performance comparison test of any modules, etc.
 - Actively participate in voting when the version is released.
-- Participate in the discussion on the mailing list. Usually, there will be mails starting with [DISCUSS].
+- Participate in the discussion on the mailing list. Usually, there will be mails starting with `[DISCUSS]`.
 - Answer questions from users or developers on the mailing list.
 - Review the work of others (both code and non-code) and publish your suggestions.
 - Review issues on GitHub and maintain the latest status of issues, such as outdated closing issues, changing issue error information, etc.

@@ -1,5 +1,5 @@
 ---
-title: How to verify release candidate
+title: How to Verify Release Candidate
 sidebar_position: 7
 ---
 

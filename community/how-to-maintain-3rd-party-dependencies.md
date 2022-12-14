@@ -1,5 +1,5 @@
 ---
-title: How to maintain third-party dependencies in a project
+title: How to Maintain Third-party Dependencies
 sidebar_position: 9
 ---
 
