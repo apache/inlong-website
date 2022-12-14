@@ -1,5 +1,5 @@
 ---
-title: 订阅邮件列表
+title: 如何订阅邮件列表
 sidebar_position: 3
 ---
 
