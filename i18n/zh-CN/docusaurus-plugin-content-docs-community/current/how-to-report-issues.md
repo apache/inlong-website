@@ -32,16 +32,16 @@ Apache InLong 项目使用 GitHub Issues 来跟踪所有问题。 这些包括�
 
 对于摘要，请提供详细的标题，例如 `[Bug][Dataproxy] Repeated registration jmx metric bean` 而不是 `Dataproxy registration error`。
 
-|        组件        |                                  描述                                   |
-|:----------------:|:---------------------------------------------------------------------:|
-|   InLong Agent   |           数据采集 Agent，支持从指定目录或文件读取常规日志、逐条上报。后续也将扩展 DB 采集等能力。           |
-| InLong Dataproxy |  一个基于 Flume-ng 的 Proxy 组件，支持数据发送阻塞和落盘重发，拥有将接收到的数据转发到不同 MQ（消息队列）的能力。   |
-|  InLong TubeMQ   |       腾讯自研的消息队列服务，专注于大数据场景下海量数据的高性能存储和传输，在海量实践和低成本方面有着良好的核心优势。        |
-|   InLong Sort    | 对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、Hbase、Iceberg 等存储系统。 |
-|  InLong Manager  |                 提供完整的数据服务管控能力，包括元数据、任务流、权限，OpenAPI等。                  |
-| InLong Dashboard |                  用于管理数据接入的前端页面，简化整个 InLong 管控平台的使用。                   |
-|   InLong Audit   |         对 InLong 系统的 Agent、DataProxy、Sort 模块的入流量、出流量进行实时审计对账。         |
-|    InLong SDK    |                     包括 DataProxy SDK, Sort SDK 等                      |
+|       组件        | 描述                                                                    |
+|:---------------:|:----------------------------------------------------------------------|
+|      Agent      | 数据采集 Agent，支持从指定目录或文件读取常规日志、逐条上报。后续也将扩展 DB 采集等能力。                     |
+|    DataProxy    | 一个基于 Flume-ng 的 Proxy 组件，支持数据发送阻塞和落盘重发，拥有将接收到的数据转发到不同 MQ（消息队列）的能力。    |
+|     TubeMQ      | 腾讯自研的消息队列服务，专注于大数据场景下海量数据的高性能存储和传输，在海量实践和低成本方面有着良好的核心优势。              |
+|      Sort       | 对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、Hbase、Iceberg 等存储系统。 |
+|     Manage      | 提供完整的数据服务管控能力，包括元数据、任务流、权限，OpenAPI 等。                                 |
+|    Dashboard    | 用于管理数据接入的前端页面，简化整个 InLong 管控平台的使用。                                    |
+|      Audit      | 对 InLong 系统的 Agent、DataProxy、Sort 模块的入流量、出流量进行实时审计对账。                 |
+|       SDK       | 包括 DataProxy SDK, Sort SDK 等                                          |
 
 影响版本字段可以设置为您发现错误的 InLong 的最早版本。 如果您不确定，则将其留空。
 
