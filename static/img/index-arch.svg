@@ -289,7 +289,7 @@
                 <use fill="#5494FF" xlink:href="#L"/>
             </g>
             <text font-family=".AppleSystemUIFont" font-size="16" fill="#FFF" transform="translate(39 150)">
-                <tspan x="44.5" y="29">Iceberg</tspan>
+                <tspan x="20" y="29">Iceberg / Hudi</tspan>
             </text>
             <g>
                 <g transform="translate(39 222)">

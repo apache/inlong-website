@@ -56,7 +56,7 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 - **inlong-agent**，数据采集服务，包括文件采集、DB 采集等。
 - **inlong-dataproxy**，一个基于 Flume-ng 的 Proxy 组件，支持数据发送阻塞和落盘重发，拥有将接收到的数据转发到不同 MQ（消息队列）的能力。
 - **inlong-tubemq**，腾讯自研的消息队列服务，专注于大数据场景下海量数据的高性能存储和传输，在海量实践和低成本方面有着良好的核心优势。
-- **inlong-sort**，对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、Hbase、Iceberg 等存储系统。
+- **inlong-sort**，对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、Hbase、Iceberg、Hudi 等存储系统。
 - **inlong-manager**，提供完整的数据服务管控能力，包括元数据、任务流、权限，OpenAPI 等。
 - **inlong-dashboard**，用于管理数据接入的前端页面，简化整个 InLong 管控平台的使用。
 - **inlong-audit**，对 InLong 系统的 Agent、DataProxy、Sort 模块的入流量、出流量进行实时审计对账。
@@ -78,6 +78,7 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 | Load Node    | Auto Consumption  | None                         | Standard              |
 |              | Hive              | 1.x, 2.x, 3.x                | Lightweight, Standard |
 |              | Iceberg           | 0.12.x                       | Lightweight, Standard |
+|              | Hudi              | 0.12.x                       | Lightweight, Standard |
 |              | ClickHouse        | 20.7+                        | Lightweight, Standard |
 |              | Kafka             | 2.x                          | Lightweight, Standard |
 |              | HBase             | 2.2.x                        | Lightweight, Standard |

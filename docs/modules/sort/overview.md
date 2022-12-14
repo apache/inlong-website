@@ -32,3 +32,4 @@ InLong Sort can be used together with the Manager to manage metadata, or it can 
 |              | PostgreSQL                                 | 
 |              | HDFS                                       | 
 |              | TDSQL Postgres                             | 
+|              | Hudi                                       | 

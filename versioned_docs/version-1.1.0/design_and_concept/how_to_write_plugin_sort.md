@@ -4,7 +4,7 @@ sidebar_position: 3
 ---
 
 # Overview
-InLong-Sort is known as a real-time ETL system. Currently, supported sinks are hive, kafka, clickhouse and iceberg.
+InLong-Sort is known as a real-time ETL system. Currently, supported sinks are hive, kafka, clickhouse, hudi and iceberg.
 This article introduces how to extend a new type of sink in InLong-Sort.
 
 # Extend a new sink function
