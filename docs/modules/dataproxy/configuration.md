@@ -157,30 +157,33 @@ The time interval between data flush from memory to disk, in seconds
 - Sink configuration example:
 
 ```shell
-agent1.sinks.meta-sink-more1.channel = ch-msg1
+agent1.sinks.mq-sink-msg1.channel = ch-msg1
 The upstream channel name of the sink
 
-agent1.sinks.meta-sink-more1.type = org.apache.flume.sink.MetaSink
-The sink class is implemented, where the message is implemented to push data to the tube cluster
+agent1.sinks.mq-sink-msg1.type = org.apache.inlong.dataproxy.sink.mq.MessageQueueZoneSink
+The sink class is implemented, where the message is implemented to push data to some mq cluster
 
-agent1.sinks.meta-sink-more1.master-host-port-list =
-Tube cluster master node list
+agent1.sinks.mq-sink-msg1.maxThreads = 2
+The maximum threads for sending message
 
-agent1.sinks.meta-sink-more1.send_timeout = 30000
-Timeout limit when sending to tube
+agent1.sinks.mq-sink-msg1.dispatchTimeout = 2000
+Timeout when dispatching message
 
-agent1.sinks.meta-sink-more1.stat-interval-sec = 60
-Sink indicator statistics interval time, in seconds
+agent1.sinks.mq-sink-msg1.dispatchMaxPackCount = 256
+Dispatch queue max pack count
 
-agent1.sinks.meta-sink-more1.thread-num = 8
-Sink class sends messages to the worker thread, 8 means to start 8 concurrent threads
+agent1.sinks.mq-sink-msg1.dispatchMaxPackSize = 3276800
+Dispatch queue max pack size
 
-agent1.sinks.meta-sink-more1.client-id-cache = true
-agent id cache, used to check the data reported by the agent to remove duplicates
+agent1.sinks.mq-sink-msg1.maxBufferQueueSize=131072
+Dispatch max buffer queue size 
 
-agent1.sinks.meta-sink-more1.max-survived-time = 300000
-Maximum cache time
+agent1.sinks.mq-sink-msg1.processInterval=100
+Interval to retry
 
-agent1.sinks.meta-sink-more1.max-survived-size = 3000000
-Maximum number of caches
+agent1.sinks.mq-sink-msg1.reloadInterval=60000
+Interval to reload remote configuration
+
+agent1.sinks.mq-sink-msg1.producer.compressionType=SNAPPY
+Data compression type
 ```
