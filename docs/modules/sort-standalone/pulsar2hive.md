@@ -140,7 +140,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 	"sortClusterName": "hivev3-sz-sz1",
 	"sortTaskId": "sid_hive_inlong6th_v3",
 	"cacheZones": {
-		"pc_atta6th_sz1": {
+		"pc_inlong6th_sz1": {
 			"zoneName": "${PULSAR_CLUSTER_NAME}",
 			"serviceUrl": "http://${PULSAR_IP}:${PULSAR_PORT}",
 			"authentication": "${PULSAR_AUTH}",

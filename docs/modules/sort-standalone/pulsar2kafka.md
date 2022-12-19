@@ -66,7 +66,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 	"sortClusterName": "kafkav3-gz-gz1",
 	"sortTaskId": "sid_kafka_v3",
 	"cacheZones": {
-		"pc_atta6th_sz1": {
+		"pc_inlong6th_sz1": {
 			"zoneName": "${PULSAR_CLUSTER_NAME}",
 			"serviceUrl": "http://${PULSAR_IP}:${PULSAR_PORT}",
 			"authentication": "${PULSAR_AUTH}",
