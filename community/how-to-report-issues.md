@@ -31,16 +31,16 @@ Make sure the Project is set to InLong. Set the issue type field appropriately b
 
 For Summary, please provide a detailed title e.g. `[Bug][DataProxy] Repeated registration jmx metric bean` instead of `Dataproxy registration error`.
 
-|    Component     |                                                                                                      Description                                                                                                      |
-|:----------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------:|
-|   InLong Agent   |              data collection agent, supports reading regular logs from specified directories or files and reporting data one by one.  In the future,  DB collection capabilities will also be expanded.               |
-| InLong Dataproxy |                  a Proxy component based on Flume-ng,  supports data transmission blocking,  placing retransmission, and has the ability to forward received data to different MQ (message queues).                   |
-|  InLong TubeMQ   | Tencent's self-developed message queuing service,  focuses on high-performance storage and transmission of massive data in big data scenarios and has a relatively good core advantage in mass practice and low cost. |
-|   InLong Sort    |                        after consuming data from different MQ services,  perform ETL processing,  and then aggregate and write the data into Apache Hive, ClickHouse,  Hbase,  IceBerg,  Hudi,  etc.                  |
-|  InLong Manager  |                                           provides complete data service management and control capabilities,  including metadata,  OpenAPI,  task flow,  authority,  etc.                                            |
-| InLong Dashboard |                                                        a front-end page for managing data access,  simplifying the use of the entire InLong control platform.                                                         |
-|   InLong Audit   |                                   performs real-time audit and reconciliation on the incoming and outgoing traffic of the Agent, DataProxy, and Sort modules of the InLong system.                                    |
-|    InLong SDK    |                                                                                         include DataProxy SDK, Sort SDK etc.                                                                                          |
+|    Component    | Description                                                                                                                                                                                                           |
+|:---------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|      Agent      | data collection agent, supports reading regular logs from specified directories or files and reporting data one by one.  In the future,  DB collection capabilities will also be expanded.                            |
+|    DataProxy    | a Proxy component based on Flume-ng,  supports data transmission blocking,  placing retransmission, and has the ability to forward received data to different MQ (message queues).                                    |
+|     TubeMQ      | Tencent's self-developed message queuing service,  focuses on high-performance storage and transmission of massive data in big data scenarios and has a relatively good core advantage in mass practice and low cost. |
+|      Sort       | after consuming data from different MQ services,  perform ETL processing,  and then aggregate and write the data into Apache Hive, ClickHouse,  Hbase,  IceBerg,  Hudi, etc.                                          |
+|     Manager     | provides complete data service management and control capabilities,  including metadata,  OpenAPI,  task flow,  authority,  etc.                                                                                      |
+|    Dashboard    | a front-end page for managing data access,  simplifying the use of the entire InLong control platform.                                                                                                                |
+|      Audit      | performs real-time audit and reconciliation on the incoming and outgoing traffic of the Agent, DataProxy, and Sort modules of the InLong system.                                                                      |
+|       SDK       | include DataProxy SDK, Sort SDK etc.                                                                                                                                                                                  |
 
 The Affects Versions/s field can be set to the earliest version of InLong where you have seen the bug. If you are not sure then just leave it empty.
 
