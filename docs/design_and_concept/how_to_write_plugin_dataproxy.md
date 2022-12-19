@@ -5,7 +5,7 @@ sidebar_position: 6
 
 ## Overview
 
-DataProxy implements an abstract unified MQ (Message Queue) sink model, so that developers and easily extend mq sink types under standard MessageQueueZoneSink. By default, Apache Pulsar, Apache Kafka and TubeMQ are already integrated. This article guides developers to extend new mq types accordingly.
+DataProxy implements an abstract unified MQ (Message Queue) sink model, so that developers and easily extend mq sink types under standard MessageQueueZoneSink. By default, Apache Pulsar, Apache Kafka and InLong TubeMQ are already integrated. This article guides developers to extend new MQ types accordingly.
 
 ## Concepts and Models
 
