@@ -5,7 +5,7 @@ sidebar_position: 6
 
 ## Overview
 
-DataProxy implements an abstract unified MQ (Message Queue) sink model, so that developers and easily extend mq sink types under standard MessageQueueZoneSink. By default, Pulsar Kafka and TubeMQ are already integrated. This article guides developers to extend new mq types accordingly。
+DataProxy implements an abstract unified MQ (Message Queue) sink model, so that developers and easily extend mq sink types under standard MessageQueueZoneSink. By default, Apache Pulsar, Apache Kafka and TubeMQ are already integrated. This article guides developers to extend new mq types accordingly.
 
 ## Concepts and Models
 
@@ -82,18 +82,3 @@ public class ProtoBufferEventHandler implements EventHandler {
 ### dataproxy.conf
 
 The sink configuration please refer to [Sink Configuration Exampnle](modules/dataproxy/configuration.md)
-
-### inlong manager configuration registry
-
-Specify the plugin class when registering cache cluster to inlong manager, such as：
-```shell
-{
-  "clusterTags": "default_cluster",
-  "name": "kafka-1",
-  "type": "KAFKA",
-  "inCharges": "admin",
-  "url": "127.0.0.1:9092",
-  "extParams": "{\"messageQueueHandler\":\"org.apache.inlong.dataproxy.sink.mq.kafka.KafkaHandler\",\"bootstrap.servers\":\"127.0.0.1:9092\"}
-}
-```
-

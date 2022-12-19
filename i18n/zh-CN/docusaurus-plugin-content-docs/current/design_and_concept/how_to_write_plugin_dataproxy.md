@@ -5,7 +5,7 @@ sidebar_position: 6
 
 ## 总览
 
-DataProxy 实现了统一抽象 MQ Sink 模型，支持在标准 MessageQueueZoneSink 下方便灵活添加不同类型的 MQ 流向，默认支持 Pulsar Kafka 和 TubeMQ。本文将指导开发者如何扩展支持新的 MQ 类型。
+DataProxy 实现了统一抽象 MQ (Message Queue) Sink 模型，支持在标准 MessageQueueZoneSink 下方便灵活添加不同类型的 MQ 流向，默认支持 Apache Pulsar、Apache Kafka 和 TubeMQ。本文将指导开发者如何扩展支持新的 MQ 类型。
 
 ## 概念和模型
 
@@ -83,18 +83,3 @@ public class ProtoBufferEventHandler implements EventHandler {
 ### dataproxy.conf
 
 Sink 部分配置参考 [Sink 配置示例](modules/dataproxy/configuration.md)
-
-### inlong manager 注册 MQ 配置
-
-在注册 MQ 集群的时候选择 MQ 对应的 MessageQueueHandler 实现插件，例如：
-```shell
-{
-  "clusterTags": "default_cluster",
-  "name": "kafka-1",
-  "type": "KAFKA",
-  "inCharges": "admin",
-  "url": "127.0.0.1:9092",
-  "extParams": "{\"messageQueueHandler\":\"org.apache.inlong.dataproxy.sink.mq.kafka.KafkaHandler\",\"bootstrap.servers\":\"127.0.0.1:9092\"}
-}
-```
-
