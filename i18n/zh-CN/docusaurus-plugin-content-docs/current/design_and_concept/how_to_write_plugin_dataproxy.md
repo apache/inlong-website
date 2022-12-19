@@ -5,7 +5,7 @@ sidebar_position: 6
 
 ## 总览
 
-DataProxy 实现了统一抽象 MQ (Message Queue) Sink 模型，支持在标准 MessageQueueZoneSink 下方便灵活添加不同类型的 MQ 流向，默认支持 Apache Pulsar、Apache Kafka 和 TubeMQ。本文将指导开发者如何扩展支持新的 MQ 类型。
+DataProxy 实现了统一抽象 MQ (Message Queue) Sink 模型，支持在标准 MessageQueueZoneSink 下方便灵活添加不同类型的 MQ 流向，默认支持 Apache Pulsar、Apache Kafka 和 InLong TubeMQ。本文将指导开发者如何扩展支持新的 MQ 类型。
 
 ## 概念和模型
 
