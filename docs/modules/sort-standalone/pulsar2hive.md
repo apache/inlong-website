@@ -141,11 +141,11 @@ sortSourceConfig.QueryConsumeConfigType=file
 	"sortTaskId": "sid_hive_inlong6th_v3",
 	"cacheZones": {
 		"pc_atta6th_sz1": {
-			"zoneName": "pc_atta6th_sz1",
-			"serviceUrl": "http://9.139.53.86:8080",
-			"authentication": "eyJrZXlJZCI6InB1bHNhci04MnhhN24zZWs1ZHciLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwdWxzYXItODJ4YTduM2VrNWR3X2FkbWluIn0.D5H_j8UQk8KYWHw_mzq2HmR393SnbL5Gz7JYCANBPnI",
+			"zoneName": "${PULSAR_CLUSTER_NAME}",
+			"serviceUrl": "http://${PULSAR_IP}:${PULSAR_PORT}",
+			"authentication": "${PULSAR_AUTH}",
 			"topics": [{
-				"topic": "pulsar-82xa7n3ek5dw/atta/atta_topic_1",
+				"topic": "${TENANT/NAMESPACE/TOPIC}",
 				"partitionCnt": 10,
 				"topicProperties": {}
 			}],

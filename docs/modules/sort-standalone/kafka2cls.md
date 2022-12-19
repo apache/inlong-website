@@ -48,7 +48,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 					{
 						"inlongGroupId":"0fc00000046",
 						"inlongStreamId":"",
-						"endpoint":"ap-guangzhou.com",
+						"endpoint":"edp.com",
 						"secretId":"id-abcd",
 						"secretKey":"key-abcd",
 						"topicId":"topic_of_0fc00000046",
@@ -59,7 +59,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 					{
 						"inlongGroupId":"03600000045",
 						"inlongStreamId":"",
-						"endpoint":"ap-guangzhou.com",
+						"endpoint":"edp.com",
 						"secretId":"id-abcd",
 						"secretKey":"key-abcd",
 						"topicId":"topic_of_03600000045",
@@ -70,7 +70,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 					{
 						"inlongGroupId":"05100054990",
 						"inlongStreamId":"",
-						"endpoint":"ap-guangzhou.com",
+						"endpoint":"edp.com",
 						"secretId":"id-abcd",
 						"secretKey":"key-abcd",
 						"topicId":"topic_of_05100054990",
@@ -81,7 +81,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 					{
 						"inlongGroupId":"09c00014434",
 						"inlongStreamId":"",
-						"endpoint":"ap-guangzhou.com",
+						"endpoint":"edp.com",
 						"secretId":"id-abcd",
 						"secretKey":"key-abcd",
 						"topicId":"topic_of_09c00014434",
@@ -92,7 +92,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 					{
 						"inlongGroupId":"0c900035509",
 						"inlongStreamId":"",
-						"endpoint":"ap-guangzhou.com",
+						"endpoint":"edp.com",
 						"secretId":"id-abcd",
 						"secretKey":"key-abcd",
 						"topicId":"topic_of_0c900035509",
@@ -130,16 +130,16 @@ sortSourceConfig.QueryConsumeConfigType=file
 	"sortTaskId": "sid_cls_inlong6th_v3",
 	"cacheZones": {
 		"pc_atta6th_sz1": {
-			"zoneName": "pc_atta6th_sz1",
-			"serviceUrl": "your kafka bootstrap",
-			"authentication": "your auth",
+			"zoneName": "${PULSAR_CLUSTER_NAME}",
+			"serviceUrl": "http://${PULSAR_IP}:${PULSAR_PORT}",
+			"authentication": "${PULSAR_AUTH}",
 			"topics": [{
-				"topic": "topic_of_0c900035509",
-				"partitionCnt": 20,
+				"topic": "${TENANT/NAMESPACE/TOPIC}",
+				"partitionCnt": 10,
 				"topicProperties": {}
 			}],
 			"cacheZoneProperties": {},
-			"zoneType": "kafka"
+			"zoneType": "pulsar"
 		}
 	}
 }
