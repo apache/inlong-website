@@ -86,7 +86,7 @@ CREATE TABLE `hudi_table_name` (
 
 在创建数据流时，选择数据落地为 'Hive' 然后点击 'Add' 来配置 Hive 的相关信息。
 
-![Hudi Configuration](img/hudi_sink_conf.png)
+![Hudi Configuration](img/hudi.png)
 
 | 配置项            | 对应SQL DDL中的属性                                 | 备注                                                      |
 | -------------- | --------------------------------------------- | ------------------------------------------------------- |

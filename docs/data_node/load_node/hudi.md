@@ -87,7 +87,7 @@ CREATE TABLE `hudi_table_name` (
 
 When creating a data stream, select `Hudi` for the data stream direction, and click "Add" to configure it.
 
-![Hudi Configuration](img/hudi_sink_conf.png)
+![Hudi Configuration](img/hudi.png)
 
 | Config Item                          | prop in DDL statement                         | remark                                                                                                                                                                               |
 | ------------------------------------ | --------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
