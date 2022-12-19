@@ -30,4 +30,5 @@ InLong Sort 既支持和 Manager 一起配合使用，通过 Manager 进行系�
 |              | PostgreSQL                                 | 
 |              | HDFS                                       | 
 |              | TDSQL Postgres                             | 
+|              | Hudi                                       | 
 
