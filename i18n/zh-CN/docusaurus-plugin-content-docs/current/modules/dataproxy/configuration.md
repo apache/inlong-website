@@ -157,31 +157,34 @@ agent1.channels.ch-msg5.fsyncInterval = 5
 - Sink 配置示例：
 
 ```shell
-agent1.sinks.meta-sink-more1.channel = ch-msg1
+agent1.sinks.mq-sink-msg1.channel = ch-msg1
 sink的上游channel名称
 
-agent1.sinks.meta-sink-more1.type = org.apache.flume.sink.MetaSink
-sink类实现，此处实现消息向tube集群推送数据
+agent1.sinks.mq-sink-msg1.type = org.apache.inlong.dataproxy.sink.mq.MessageQueueZoneSink
+sink类实现，此处为统一MQ模型Sink
 
-agent1.sinks.meta-sink-more1.master-host-port-list = 
-tube集群master节点列表
+agent1.sinks.mq-sink-msg1.maxThreads = 2
+最大发送线程数
 
-agent1.sinks.meta-sink-more1.send_timeout = 30000
-发送到tube时超时时间限制
+agent1.sinks.mq-sink-msg1.dispatchTimeout = 2000
+Dispatch队列超时时间
 
-agent1.sinks.meta-sink-more1.stat-interval-sec = 60
-sink指标统计间隔时间，单位秒
+agent1.sinks.mq-sink-msg1.dispatchMaxPackCount = 256
+Dispatch队列最大包数量
 
-agent1.sinks.meta-sink-more1.thread-num = 8
-Sink类发送消息的工作线程，8表示启动8个并发线程
+agent1.sinks.mq-sink-msg1.dispatchMaxPackSize = 3276800
+Dispatch队列最大包Size
 
-agent1.sinks.meta-sink-more1.client-id-cache = true
-agent id缓存，用于检查agent上报数据去重
+agent1.sinks.mq-sink-msg1.maxBufferQueueSize=131072
+Dispatch队列最大长度
 
-agent1.sinks.meta-sink-more1.max-survived-time = 300000
-缓存最大时间
+agent1.sinks.mq-sink-msg1.processInterval=100
+重试发送间隔
 
-agent1.sinks.meta-sink-more1.max-survived-size = 3000000
-缓存最大个数
+agent1.sinks.mq-sink-msg1.reloadInterval=60000
+配置重新加载时间间隔
+
+agent1.sinks.mq-sink-msg1.producer.compressionType=SNAPPY
+数据压缩算法
 ```
     

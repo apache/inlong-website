@@ -27,8 +27,12 @@ audit.proxys=127.0.0.1:10081
 bash +x bin/dataproxy-start.sh
 # 或者
 bash +x bin/dataproxy-start.sh pulsar
+
 # 如果使用 Inlong TubeMQ 来缓存数据
-# bash +x bin/dataproxy-start.sh tube
+# bash +x bin/dataproxy-start.sh tubemq
+
+# 如果使用 Kafka 来缓存数据
+# bash +x bin/dataproxy-start.sh kafka
 ```
 
 ## 检查
