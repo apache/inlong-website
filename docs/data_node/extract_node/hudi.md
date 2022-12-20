@@ -85,7 +85,7 @@ CREATE TABLE `hudi_table_name` (
 );
 ```
 
-### Usage for InLong Dashboard
+### Usage for Dashboard
 
 #### Configuration
 
