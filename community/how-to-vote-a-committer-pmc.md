@@ -142,11 +142,11 @@ The voting initiator needs to add project team members, open a permission accoun
 ## ANNOUNCE to the community
 After the above steps are completed, the vote initiator must send a notification email to the dev@inlong.apache.org mail group. The following is a template  notification email:
 ```shell
-[ANNOUNCE] New a ${Committer or PMC Member}: ${Candidate_Full_Name}
+[ANNOUNCE] New ${Committer or PMC Member}: ${Candidate_Full_Name}
 
 Hi everyone,
 
-The Project Management Committee(PMC) for Apache InLong has invited ${Candidate_Full_Name} to become a a ${Committer or PMC Member} and we are pleased to announce that he has accepted.
+The Project Management Committee(PMC) for Apache InLong has invited ${Candidate_Full_Name} to become a ${Committer or PMC Member} and we are pleased to announce that he has accepted.
 
 ${Candidate_Full_Name} is being active in the InLong community, and we are glad to see his more interactions with the community in the future.
 
