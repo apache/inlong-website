@@ -84,7 +84,7 @@ CREATE TABLE `hudi_table_name` (
 );
 ```
 
-### InLong Dashboard 方式
+### Dashboard 方式
 
 #### 配置
 
