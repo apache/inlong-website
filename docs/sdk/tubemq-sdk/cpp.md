@@ -3,10 +3,7 @@ title: C++ SDK
 sidebar_position: 1
 ---
 
-import {siteVariables} from '../../version';
-
 ## Build TubeMQ C++ SDK
-
 C++ SDK is based on the non-boost asio, and the CMake is used for building, the commands are：
 ```bash
 # enter the root directory of c++ sdk source
@@ -35,10 +32,7 @@ cmake ..
 make -j8 
 ```
 
-
-
 ## C++ SDK API
-
 Similar with other MQ systems，C++ SDK is diveded into **Producer** and **Consumer**. The API of Producer and Consumer are introduced respectively below.
 
 First of all, regardless of role, start the background global TubeMQ SDK service (support the default C++ `namespace` is `tubemq`)。
@@ -50,7 +44,6 @@ bool StartTubeMQService(string& err_info, const TubeMQServiceConfig& serviceConf
 Look up the return boolean value and the `err_info` to check the start process is successful。
 
 ### Producer
-
 The user-level api class is `TubeMQProducer`，the first thing is initializing the class.
 
 ```cpp
@@ -112,7 +105,6 @@ producer.ShutDown();
 ```
 
 ### Consumer
-
 Similar with producer，initialize the consumer object and set the config.
 
 ```cpp
@@ -148,6 +140,4 @@ consumer.ShutDown();
 ```
 
 ### Example
-
 There are more detailed examples about C++ SDK in  [C++ SDK Example](https://github.com/apache/inlong/tree/master/inlong-tubemq/tubemq-client-twins/tubemq-client-cpp/example)，the compiled executable is located in `build/example/producer` and `build/example/consumer`
-

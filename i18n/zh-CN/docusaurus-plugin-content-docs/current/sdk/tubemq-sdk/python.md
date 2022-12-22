@@ -3,14 +3,10 @@ title: Python SDK
 sidebar_position: 2
 ---
 
-import {siteVariables} from '../../version';
-
 ## 构建 TubeMQ Python SDK
+Python SDK 主要基于 [pybind11](https://pybind11.readthedocs.io/en/stable/)，对 C++ SDK 进行封装，因此在构建 Python SDK 之前，需要先构建好 C++ SDK，C++ SDK 的构建过程参考 [构建TubeMQ C++ SDK](./cpp.md)
 
-Python SDK 主要基于[pybind11](https://pybind11.readthedocs.io/en/stable/)，对C++ SDK进行封装，因此在构建Python SDK之前，需要先构建好 C++ SDK，C++ SDK
-的构建过程参考 [构建TubeMQ C++ SDK](./cpp.md)
-
-之后将C++ SDK的库文件和源文件安装到对应的位置
+之后将 C++ SDK 的库文件和源文件安装到对应的位置
 
 ```bash
 # 拷贝头文件
@@ -24,7 +20,7 @@ cp /tubemq-cpp/build/src/libtubemq.a \
 
 ```
 
-之后安装python3，以及相应的依赖，最后安装 python sdk
+之后安装 Python3，以及相应的依赖，最后安装 Python SDK
 
 ```bash
 # 安装依赖
@@ -34,14 +30,12 @@ pip3 install -r requirements.txt
 python3 setup.py install
 ```
 
-安装后，在 `build/lib` 中可以发现编译好的so以及python库，直接添加到python的 `site-packages` 或者环境变量 `PYTHONPATH` 中均可。
+安装后，在 `build/lib` 中可以发现编译好的 so 文件以及 Python 库，直接添加到 Python的 `site-packages` 或者环境变量 `PYTHONPATH` 中均可。
 
 ## Python SDK API
-
-与C++ SDK 类似，Python SDK 也分为 Producer 和 Consumer 两部分，下面对其进行介绍。
+与 C++ SDK 类似，Python SDK 也分为 Producer 和 Consumer 两部分，下面对其进行介绍。
 
 ### Producer
-
 首先初始化 `tubemq.Producer` 实例
 
 ```python
@@ -79,7 +73,6 @@ producer.stop()
 ```
 
 ### Consumer
-
 Python SDK 的 Consumer API 与 Producer 基本相似，下面为一个简单的例子
 
 ```python
@@ -97,11 +90,5 @@ if msgs:
 consumer.stop()
 ```
 
-
-
 ### Example
-
 关于 Python SDK 的更加详细的用例，可以参考 [Python SDK Example](https://github.com/apache/inlong/tree/master/inlong-tubemq/tubemq-client-twins/tubemq-client-python/src/python/example)。
-
-
-
