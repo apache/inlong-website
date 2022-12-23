@@ -7,7 +7,8 @@ sidebar_position: 1
 C++ SDK 主要基于非 Boost 版本的 Asio 进行通信，构建时使用 CMake，具体操作步骤如下：
 ```bash
 # 进入到 cpp sdk 的根路径
-cd `pwd`/inlong/inlong-tubemq/tubemq-client-twins/tubemq-client-cpp
+git clone https://github.com/apache/inlong.git
+cd inlong/inlong-tubemq/tubemq-client-twins/tubemq-client-cpp
 
 mkdir build && cd build
 
