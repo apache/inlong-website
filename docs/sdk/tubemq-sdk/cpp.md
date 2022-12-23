@@ -7,7 +7,8 @@ sidebar_position: 1
 C++ SDK is based on the non-boost asio, and the CMake is used for building, the commands are：
 ```bash
 # enter the root directory of c++ sdk source
-cd `pwd`/inlong/inlong-tubemq/tubemq-client-twins/tubemq-client-cpp
+git clone https://github.com/apache/inlong.git
+cd inlong/inlong-tubemq/tubemq-client-twins/tubemq-client-cpp
 
 mkdir build && cd build
 
