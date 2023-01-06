@@ -34,7 +34,7 @@ Of course, you can also directly use the `jar` package provided by `INLONG`.
 `}
 </code></pre>
 
-## How to create a Hive Load Node
+## How to create a Hudi Load Node
 
 ### Usage for SQL API
 
@@ -105,7 +105,7 @@ When creating a data stream, select `Hudi` for the data stream direction, and cl
 
 TODO: It will be supported in the future.
 
-## Hive Load Node Options
+## Hudi Load Node Options
 
 | Option                                      | Required | Default | Type   | Description                                                                                                                                                                                                                   |
 | ------------------------------------------- | -------- | ------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
