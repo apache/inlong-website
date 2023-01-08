@@ -215,7 +215,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
           src: 'img/asf_logo.svg',
         },
         copyright: `<div style="font-family: Avenir-Medium;font-size: 14px;color: #999;">
-          <div>Copyright © 2020-2022 The Apache Software Foundation. Licensed under the Apache License, Version 2.0.</div>
+          <div>Copyright © 2020-2023 The Apache Software Foundation. Licensed under the Apache License, Version 2.0.</div>
           <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #666;line-height: 20px;">The Apache Software Foundation Apache InLong, InLong, Apache, the Apache feather, and the Apache InLong project logo are either registered trademarks or trademarks of the Apache Software Foundation.</div>
         </div>`,
       },
