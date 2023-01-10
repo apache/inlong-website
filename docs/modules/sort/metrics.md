@@ -12,6 +12,8 @@ Sort will export metric by flink metric group, So user can use [metric reporter]
 
 ### supporting extract node
 
+#### node level metric
+
 | metric name | extract node | description |
 |-------------|--------------|-------------|
 | groupId_streamId_nodeId_numRecordsIn | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | input records number |
@@ -19,7 +21,27 @@ Sort will export metric by flink metric group, So user can use [metric reporter]
 | groupId_streamId_nodeId_numRecordsInPerSecond | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | input records per second |
 | groupId_streamId_nodeId_numBytesInPerSecond | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | input bytes number per second |
 
+#### table level metric
+ It is used for all database sync.
+
+| metric name | extract node | description |
+|-------------|--------------|-------------|
+| groupId_streamId_nodeId_database_table_numRecordsIn | mysql-cdc | input records number |
+| groupId_streamId_nodeId_database_schema_table_numRecordsIn | oracle-cdc,postgresql-cdc | input records number |
+| groupId_streamId_nodeId_database_collection_numRecordsIn | mongodb-cdc | input records number |
+| groupId_streamId_nodeId_database_table_numBytesIn | mysql-cdc | input records number |
+| groupId_streamId_nodeId_database_schema_table_numBytesIn | oracle-cdc,postgresql-cdc | input records number |
+| groupId_streamId_nodeId_database_collection_numBytesIn | mongodb-cdc | input bytes number |
+| groupId_streamId_nodeId_database_table_numRecordsInPerSecond | mysql-cdc | input records number per second |
+| groupId_streamId_nodeId_database_schema_table_numRecordsInPerSecond | oracle-cdc,postgresql-cdc | input records number per second |
+| groupId_streamId_nodeId_database_collection_numRecordsInPerSecond | mongodb-cdc | input records number per second |
+| groupId_streamId_nodeId_database_table_numBytesInPerSecond | mysql-cdc | input bytes number per second |
+| groupId_streamId_nodeId_database_schema_table_numBytesInPerSecond | oracle-cdc,postgresql-cdc | input bytes number per second |
+| groupId_streamId_nodeId_database_collection_numBytesInPerSecond | mongodb-cdc | input bytes number per second |
+
 ### supporting load node
+
+#### node level metric
 
 | metric name | load node | description |
 |-------------|-----------|-------------|
@@ -27,6 +49,31 @@ Sort will export metric by flink metric group, So user can use [metric reporter]
 | groupId_streamId_nodeId_numBytesOut |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | output byte number |
 | groupId_streamId_nodeId_numRecordsOutPerSecond |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | output records per second |
 | groupId_streamId_nodeId_numBytesOutPerSecond |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | output bytes  per second |
+| groupId_streamId_nodeId_dirtyRecordsOut |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | output records |
+| groupId_streamId_nodeId_dirtyBytesOut |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | output bytes |
+
+#### table level metric
+
+| metric name | load node | description |
+|-------------|-----------|-------------|
+| groupId_streamId_nodeId_database_table_numRecordsOut | doris,iceberg,starRocks | out records number |
+| groupId_streamId_nodeId_database_schema_table_numRecordsOut | postgresql | out records number |
+| groupId_streamId_nodeId_topic_numRecordsOut | kafka | out records number |
+| groupId_streamId_nodeId_database_table_numBytesOut | doris,iceberg,starRocks | out byte number |
+| groupId_streamId_nodeId_database_schema_table_numBytesOut | postgresql | out byte number |
+| groupId_streamId_nodeId_topic_numBytesOut | kafka | out byte number |
+| groupId_streamId_nodeId_database_table_numRecordsOutPerSecond | doris,iceberg,starRocks | out records number per second |
+| groupId_streamId_nodeId_database_schema_table_numRecordsOutPerSecond | postgresql | out records number per second |
+| groupId_streamId_nodeId_topic_numRecordsOutPerSecond | kafka | out records number per second |
+| groupId_streamId_nodeId_database_table_numBytesOutPerSecond | doris,iceberg,starRocks | out bytes number per second |
+| groupId_streamId_nodeId_database_schema_table_numBytesOutPerSecond | postgresql | out bytes number per second |
+| groupId_streamId_nodeId_topic_numBytesOutPerSecond | kafka | out bytes number per second |
+| groupId_streamId_nodeId_database_table_dirtyRecordsOut | doris,iceberg,starRocks | out records number |
+| groupId_streamId_nodeId_database_schema_table_dirtyRecordsOut | postgresql | out records number |
+| groupId_streamId_nodeId_topic_dirtyRecordsOut | kafka | out records number |
+| groupId_streamId_nodeId_database_table_dirtyBytesOut | doris,iceberg,starRocks | out byte number |
+| groupId_streamId_nodeId_database_schema_table_dirtyBytesOut | postgresql | out byte number |
+| groupId_streamId_nodeId_topic_dirtyBytesOut | kafka | out byte number |
 
 ## Usage
 

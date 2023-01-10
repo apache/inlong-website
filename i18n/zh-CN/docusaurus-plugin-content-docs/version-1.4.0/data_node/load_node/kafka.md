@@ -94,8 +94,7 @@ TODO: 将在未来支持此功能。
 | sink.multiple.partition-pattern | 可选 | (none) | String |  动态 Partition 提取模式, 形如 '${VARIABLE_NAME}'仅用于 Kafka 多 Sink 场景且当 'format' 为 'raw'、'sink.partitioner' 为 'raw-hash' 时有效。 |
 | sink.semantic | 可选 | at-least-once | String | 定义 Kafka sink 的语义。有效值为 'at-least-once'，'exactly-once' 和 'none'。请参阅 [一致性保证](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/connectors/table/kafka/#%E4%B8%80%E8%87%B4%E6%80%A7%E4%BF%9D%E8%AF%81) 以获取更多细节。 |
 | sink.parallelism | 可选 | (none) | Integer | 定义 Kafka sink 算子的并行度。默认情况下，并行度由框架定义为与上游串联的算子相同。 |
-| inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
-
+| inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=xxgroup&streamId=xxstream&nodeId=xxnode。|
 
 ## 可用的元数据字段
 
