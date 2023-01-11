@@ -320,7 +320,7 @@ TODO: It will be supported in the future.
       <td>optional</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>Inlong metric label, format of value is groupId=${groupId}&streamId=${streamId}&nodeId=${nodeId}.</td> 
+      <td>Inlong metric label, format of value is groupId={groupId}&streamId={streamId}&nodeId={nodeId}.</td> 
     </tr>
     </tbody>
 </table>

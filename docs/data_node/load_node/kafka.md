@@ -97,7 +97,7 @@ TODO: It will be supported in the future.
 | sink.multiple.partition-pattern | optional | (none) | String |  Dynamic partition extraction pattern, like '${VARIABLE_NAME}' which is only used in kafka multiple sink scenarios and is valid when 'format' is 'raw'. |
 | sink.semantic | optional | at-least-once | String | Defines the delivery semantic for the Kafka sink. Valid enumerationns are 'at-least-once', 'exactly-once' and 'none'. See [Consistency guarantees](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/connectors/table/kafka/#consistency-guarantees) for more details. |
 | sink.parallelism | optional | (none) | Integer | Defines the parallelism of the Kafka sink operator. By default, the parallelism is determined by the framework using the same parallelism of the upstream chained operator. |
-| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=${groupId}&streamId=${streamId}&nodeId=${nodeId}. |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId={groupId}&streamId={streamId}&nodeId={nodeId}. |
 
 ## Available Metadata
 

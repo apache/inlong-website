@@ -303,7 +303,7 @@ TODO: It will be supported in the future.
 | sink.multiple.database-pattern    | optional   | (none)            | string   | Extract database name from the raw binary data, this is only used in the multiple sink writing scenario.                 | 
 | sink.multiple.table-pattern       | optional   | (none)            | string   | Extract table name from the raw binary data, this is only used in the multiple sink writing scenario.                           |
 | sink.multiple.ignore-single-table-errors | optional | true         | boolean  | Whether ignore the single table erros when multiple sink writing scenario. When it is `true`，sink continue when one table occur exception, only stop the exception table sink. When it is `false`, stop the whole sink when one table occur exception.     |
-| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=${groupId}&streamId=${streamId}&nodeId=${nodeId}. |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId={groupId}&streamId={streamId}&nodeId={nodeId}. |
 
 ## Data Type Mapping
 

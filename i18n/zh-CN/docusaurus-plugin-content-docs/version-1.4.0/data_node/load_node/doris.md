@@ -302,7 +302,7 @@ TODO: 将在未来支持此功能。
 | sink.multiple.database-pattern    | 可选   | (none)            | string   | 多表写入时，从源端二进制数据中按照 `sink.multiple.database-pattern` 指定名称提取写入的数据库名称。 `sink.multiple.enable` 为true时有效。                 | 
 | sink.multiple.table-pattern       | 可选   | (none)            | string   | 多表写入时，从源端二进制数据中按照 `sink.multiple.table-pattern` 指定名称提取写入的表名。 `sink.multiple.enable` 为true时有效。                         |
 | sink.multiple.ignore-single-table-errors | 可选 | true         | boolean  | 多表写入时，是否忽略某个表写入失败。为 `true` 时，如果某个表写入异常，则不写入该表数据，其他表的数据正常写入。为 `false` 时，如果某个表写入异常，则所有表均停止写入。     |
-| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=${groupId}&streamId=${streamId}&nodeId=${nodeId}. |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId={groupId}&streamId={streamId}&nodeId={nodeId}. |
 ## 数据类型映射
 
 | Doris Type  | Flink Type           |

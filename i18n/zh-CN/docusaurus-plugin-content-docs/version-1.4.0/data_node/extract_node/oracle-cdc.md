@@ -327,7 +327,7 @@ Oracle CDC 消费者的可选启动模式，有效枚举为"initial"
        <td>可选</td>
        <td style={{wordWrap: 'break-word'}}>(none)</td>
        <td>String</td>
-       <td>inlong metric 的标签值，该值的构成为groupId=${groupId}&streamId=${streamId}&nodeId=${nodeId}。</td> 
+       <td>inlong metric 的标签值，该值的构成为groupId={groupId}&streamId={streamId}&nodeId={nodeId}。</td> 
      </tr>
      <tr>
        <td>source.multiple.enable</td>

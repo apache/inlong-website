@@ -295,7 +295,7 @@ TODO: It will be supported in the future.
 | sink.multiple.format              | optional   | (none)            | string   | The format of multiple sink, it represents the real format of the raw binary data. can be `canal-json` or `debezium-json` at present. See [kafka -- Dynamic Topic Extraction](https://github.com/apache/inlong-website/blob/master/docs/data_node/load_node/kafka.md) for more details.  |
 | sink.multiple.database-pattern    | optional   | (none)            | string   | Extract database name from the raw binary data, this is only used in the multiple sink writing scenario.                 | 
 | sink.multiple.table-pattern       | optional   | (none)            | string   | Extract table name from the raw binary data, this is only used in the multiple sink writing scenario. |
-| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=${groupId}&streamId=${streamId}&nodeId=${nodeId}. |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId={groupId}&streamId={streamId}&nodeId={nodeId}. |
 
 ## Data Type Mapping
 
