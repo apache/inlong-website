@@ -64,7 +64,7 @@ CREATE TABLE `clickhouse_load_table`(
   'url' = 'jdbc:clickhouse://localhost:8123/demo',
   'username' = 'inlong',
   'password' = 'inlong',
-  'table-name' = 'user'
+  'table-name' = 'demo.user'
 )
 
 -- write data into ClickHouse
@@ -90,7 +90,7 @@ TODO: It will be supported in the future.
 | connector | required | (none) | String | Specify what connector to use, here should be 'jdbc-inlong'. |
 | url | required | (none) | String | The JDBC database url. |
 | dialect-impl | required | (none) |  String | `org.apache.inlong.sort.jdbc.dialect.ClickHouseDialect` |
-| table-name | required | (none) | String | The name of JDBC table to connect. |
+| table-name | required | (none) | String | The name of JDBC table to connect, for example `database.tableName`  |
 | driver | optional | (none) | String | The class name of the JDBC driver to use to connect to this URL, if not set, it will automatically be derived from the URL. |
 | username | optional | (none) | String | The JDBC user name. 'username' and 'password' must both be specified if any of them is specified. |
 | password | optional | (none) | String | The JDBC password. |
