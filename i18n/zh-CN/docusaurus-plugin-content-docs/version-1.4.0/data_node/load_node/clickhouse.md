@@ -98,8 +98,7 @@ TODO: 将在未来支持此功能。
 | sink.max-retries | 可选 | 3 | Integer | 写入记录到数据库失败后的最大重试次数。 |
 | sink.parallelism | 可选 | (none) | Integer | 用于定义 JDBC sink 算子的并行度。默认情况下，并行度是由框架决定：使用与上游链式算子相同的并行度。 |
 | sink.ignore.changelog | 可选 | false | Boolean |  忽略所有 RowKind 类型的变更日志，将它们当作 INSERT 的数据来采集。 |
-| inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=xxgroup&streamId=xxstream&nodeId=xxnode。|
-
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=${groupId}&streamId=${streamId}&nodeId=${nodeId}. |
 ## 数据类型映射
 
 | ClickHouse type | Flink SQL type |
