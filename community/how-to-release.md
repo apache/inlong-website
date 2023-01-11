@@ -211,6 +211,8 @@ $ cd /tmp/apache-inlong-${release_version}-${rc_version}
 $ tar xzvf apache-inlong-${release_version}-src.tar.gz 
 # go to the source code directory
 $ cd apache-inlong-${release_version}
+# build binary package
+$ mvn compile clean install package -DskipTests
 # for signature convenient, copy the binary package to the source code directory
 $ cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
 # for signature convenient, copy the connectors binary package to the source code directory
