@@ -9,7 +9,7 @@ InLong Sort is used to extract data from different source systems, then transfor
 InLong Sort can be used together with the Manager to manage metadata, or it can run independently in the Flink environment.
 
 ## Features
-### Suport a variety of data nodes
+### Supports a variety of data nodes
 
 | Type         | Service                                    |
 |--------------|--------------------------------------------|

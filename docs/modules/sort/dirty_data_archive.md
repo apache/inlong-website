@@ -1,0 +1,190 @@
+---
+title: Dirty Data Archive
+sidebar_position: 5
+---
+
+## Overview
+
+We added dirty data archive for nodes. First of all, we need to clarify what is dirty data. Here we define dirty data as data that cannot be extracted, transformed, and loaded correctly due to the quality of the data itself during the process of data extract, transform, and load. Common
+dirty data may have mismatching field types, lengths, and numbers, data serialization and deserialization exceptions, target database and tables that does not exists, etc. Sort currently supports dirty data archive for S3 and Log target system, and also supports dirty data archive for Kafka, Doris, Iceberg, Hbase, Hive, Elasticsearch, JDBC
+, etc.
+
+## Supported Nodes
+
+| Type          | Name                                        | Archive Target System |
+|--------------|--------------------------------------------|-----------|
+| Extract Node  | Kafka                                      | Log, S3   |
+| Load Node     | Hive                                       | Log, S3   |
+|              | Kafka                                      | Log, S3   |
+|              | HBase                                      | Log, S3   |
+|              | ClickHouse                                 | Log, S3   | 
+|              | Iceberg                                    | Log, S3   |
+|              | Elasticsearch                              | Log, S3   |
+|              | PostgreSQL                                 | Log, S3   | 
+|              | HDFS                                       | Log, S3   |
+|              | TDSQL Postgres                             | Log, S3   |
+|              | Doris                                      | Log, S3   |
+|              | SQL Server                                 | Log, S3   |
+|              | Greenplum                                  | Log, S3   |
+
+## Dirty Data Format
+
+During the processing of dirty data archive, we define the following system variables for formatting dirty data:
+* SYSTEM_TIME: System time, the format is 'yyyy-MM-dd HH:mm:ss'
+* DIRTY_TYPE：Dirty type, common dirty types are SerializeError, DeserializeError, DataTypeMappingError, etc
+* DIRTY_MESSAGE: Dirty data message, that is the cause of dirty data, abnormal information, etc
+
+The format for archiving to Log：
+* [${dirty.side-output.log-tag}] ${value}, Among them, ${value} is the merged value of ${dirty.side-output.labels} and ${dirty data}, and formatted by 'csv' or 'json'
+
+The format for archiving to S3：
+* The filename generation format of S3: ${dirty.side-output.s3.key}/${dirty.identifier}-${randome-sequence}.${suffix}
+* The format of the data in the file of S3: it merge the ${dirty.side-output.labels} and ${dirty data} and formatted by 'csv' or 'json'
+
+**Notes**：For ${dirty.side-output.log-tag}, ${dirty.side-output.labels}, ${dirty.identifier}, ${dirty.side-output.s3.key} see the configuration details below.
+
+## Configuration
+
+### Common Configuration
+
+| Option | Required | Default | Type | Description |
+|---------|----------|---------|------|------------|
+| dirty.ignore | optional | false | Boolean | Whether to ignore dirty data, the default is 'false' |
+| dirty.side-output.enable | optional | false | Boolean | Whether to support dirty data archive, the default is 'false'|
+| dirty.side-output.connector | required | (none) | String | The connector of dirty data archive, it must be set when 'dirty.side-output.enable' is 'true', currently only 'log' and 's3' are supported. |
+| dirty.side-output.format | optional | csv | String | The format of dirty data archive, currently only supports 'csv' and 'json', defaults is 'csv'. |
+| dirty.side-output.log.enable | optional | true | Boolean |Whether to support log printing when dirty data is archived, the default is 'true'. |
+| dirty.side-output.ignore-errors | optional | true | Boolean | Whether to ignore errors in dirty data archives, defaults is 'true'. |
+| dirty.identifier | required | (none) | String | The identifier of dirty data, it will be used for filename generation of file dirty archive, topic generation of mq dirty archive, tablename generation of database, etc, and it supports variable replace like '${variable}'. There are several system variables(SYSTEM_TIME,DIRTY_TYPE,DIRTY_MESSAGE) are currently supported,  and the support of other variables is determined by the connector. |
+| dirty.side-output.log-tag | optional | (none) | String | The log tag of dirty data, it will be used for log printing, and it supports variable replace like '${variable}'. There are several system variables(SYSTEM_TIME,DIRTY_TYPE,DIRTY_MESSAGE) are currently supported,  and the support of other variables is determined by the connector. |
+| dirty.side-output.labels | optional | (none) | String |  The labels of dirty data, it will be used for log printing and will be archived with dirty data, and it supports variable replace like '${variable}'. There are several system variables(SYSTEM_TIME,DIRTY_TYPE,DIRTY_MESSAGE) are currently supported,  and the support of other variables is determined by the connector. |
+| dirty.side-output.field-delimiter | optional | , | String | The column separator of dirty data archive, it is used for 'csv' format, the default is ','. |
+| dirty.side-output.line-delimiter | optional | \n | String | The row separator of dirty data archive, it is used for 'csv' and 'json' format, the default is '\n'. |
+| dirty.side-output.batch.size | optional | 100 | Integer | The cache batch size of dirty data archive, the default is '100'.|
+| dirty.side-output.batch.bytes | optional | 10240 | Integer | The cache batch byte of dirty data archive, the unit is byte and the default is '10240'(10KB).|
+| dirty.side-output.retries | optional | 3 | Integer |  The retris of dirty data archive，the default is '3'.|
+| dirty.side-output.batch.interval | optional | 60000 | Integer | The interval time of irty data archive, the unit is millisecond, the default is '60000'(60s).|
+
+### S3 Archive Configuration
+
+| Option | Required | Default | Type | Description |
+|---------|----------|---------|------|------------|
+| dirty.side-output.s3.endpoint | required | (none) | String | The endpoint of s3 archive |
+| dirty.side-output.s3.region | required | (none) | String | The region of s3 archive|
+| dirty.side-output.s3.bucket | required | (none) | String | The bucket of s3 archive|
+| dirty.side-output.s3.key | required | (none) | String | The key of s3 archive|
+| dirty.side-output.s3.access-key-id | optional | (none) | String | The access key id of s3 archive, it needs to be configured in the environment if this item is not configured. |
+| dirty.side-output.s3.secret-key-id | optional | (none) | String | The secret key id of s3 archive, it needs to be configured in the environment if this item is not configured.  |
+
+## Usage
+
+One example about sync mysql data to kafka data and we will introduce usage of dirty data archive(it is similar to other nodes).
+
+* The useage for archive to log
+```sql
+
+ create table `table_groupId_streamId_nodeId1`(
+     `id` INT,
+    `name` INT,
+    `age` STRING,
+    PRIMARY KEY(`id`) NOT ENFORCED)
+    WITH (
+        'connector' = 'mysql-cdc-inlong',
+        'hostname' = 'xxxx',
+        'username' = 'xxx',
+        'password' = 'xxx',
+        'database-name' = 'test',
+        'scan.incremental.snapshot.enabled' = 'true',
+        'server-time-zone' = 'GMT+8',
+        'table-name' = 'user'
+);
+
+ CREATE TABLE `table_groupId_streamId_nodeId2`(
+     `id` INT,
+     `name` STRING,
+     `age` INT)
+     WITH (
+         'topic' = 'test_user',
+         'properties.bootstrap.servers' = 'localhost:9092',
+         'connector' = 'kafka-inlong',
+         'sink.ignore.changelog' = 'true',
+         'json.timestamp-format.standard' = 'SQL',
+         'json.encode.decimal-as-plain-number' = 'true',
+         'json.map-null-key.literal' = 'null',
+         'json.ignore-parse-errors' = 'true',
+         'json.map-null-key.mode' = 'DROP',
+         'format' = 'json',
+         'json.fail-on-missing-field' = 'true',
+         'dirty.ignore' = 'true',
+         'dirty.side-output.connector' = 'log',
+         'dirty.side-output.enable' = 'true',
+         'dirty.side-output.format' = 'csv',
+         'dirty.side-output.log.enable' = 'true',
+         'dirty.side-output.log-tag' = 'DirtyData',
+         'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=test&table=user'
+         );
+
+ INSERT INTO `table_groupId_streamId_nodeId2`
+ SELECT
+     `id`,
+     `name`,
+     `age`
+ FROM `table_groupId_streamId_nodeId1`;
+```
+
+* The useage for archive to s3
+```sql
+
+ create table `table_groupId_streamId_nodeId1`(
+     `id` INT,
+    `name` INT,
+    `age` STRING,
+    PRIMARY KEY(`id`) NOT ENFORCED)
+    WITH (
+        'connector' = 'mysql-cdc-inlong',
+        'hostname' = 'xxxx',
+        'username' = 'xxx',
+        'password' = 'xxx',
+        'database-name' = 'test',
+        'scan.incremental.snapshot.enabled' = 'true',
+        'server-time-zone' = 'GMT+8',
+        'table-name' = 'user'
+);
+
+ CREATE TABLE `table_groupId_streamId_nodeId2`(
+     `id` INT,
+     `name` STRING,
+     `age` INT)
+     WITH (
+        'topic' = 'test_user',
+        'properties.bootstrap.servers' = 'localhost:9092',
+        'connector' = 'kafka-inlong',
+        'sink.ignore.changelog' = 'true',
+        'json.timestamp-format.standard' = 'SQL',
+        'json.encode.decimal-as-plain-number' = 'true',
+        'json.map-null-key.literal' = 'null',
+        'json.ignore-parse-errors' = 'true',
+        'json.map-null-key.mode' = 'DROP',
+        'format' = 'json',
+        'json.fail-on-missing-field' = 'true',
+         'dirty.side-output.connector' = 's3',
+         'dirty.ignore' = 'true',
+         'dirty.side-output.enable' = 'true',
+         'dirty.side-output.format' = 'csv',
+         'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=student',
+         'dirty.side-output.s3.bucket' = 's3-test-bucket',
+         'dirty.side-output.s3.endpoint' = 's3.test.endpoint',
+         'dirty.side-output.s3.key' = 'dirty/test',
+         'dirty.side-output.s3.region' = 'region',
+         'dirty.side-output.s3.access-key-id' = 'access_key_id',
+         'dirty.side-output.s3.secret-key-id' = 'secret_key_id',
+         'dirty.identifier' = 'inlong-student-${SYSTEM_TIME}'
+         );
+
+ INSERT INTO `table_groupId_streamId_nodeId2`
+ SELECT
+     `id`,
+     `name`,
+     `age`
+ FROM `table_groupId_streamId_nodeId1`;
+```
