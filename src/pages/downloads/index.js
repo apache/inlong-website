@@ -45,7 +45,7 @@ export default function() {
                         </div>
                     </div>
 
-                    <div className={styles.card}>
+                    <div className={styles.card} style={{ marginLeft: 30}}>
                         <div className={styles.leftSide}>
                             <div className={styles.title}>InLong Binary file</div>
                             <div className={styles.description}>The InLong binary can be downloaded here</div>
@@ -71,7 +71,7 @@ export default function() {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.card}>
+                    <div className={styles.card} style={{ marginLeft: 30}}>
                         <div className={styles.leftSide}>
                             <div className={styles.title}>Connector Binary file</div>
                             <div className={styles.description}>Here you can download files to InLong connector binaries</div>
