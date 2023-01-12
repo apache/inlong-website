@@ -100,7 +100,7 @@ TODO: It will be supported in the future.
 | sink.max-retries | optional | 3 | Integer | The max retry times if writing records to database failed. |
 | sink.parallelism | optional | (none) | Integer | Defines the parallelism of the JDBC sink operator. By default, the parallelism is determined by the framework using the same parallelism of the upstream chained operator. |
 | sink.ignore.changelog | optional | false | Boolean |  Ignore all `RowKind`, ingest them as `INSERT`. |
-| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode. |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`. |
 
 ## Data Type Mapping
 

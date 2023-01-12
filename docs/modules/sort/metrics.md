@@ -5,14 +5,14 @@ sidebar_position: 4
 
 ## Overview
 
-We add metric computing for node. Sort will compute metric when user just need add with option `inlong.metric.labels` that includes `groupId=xxgroup&streamId=xxstream&nodeId=xxnode`.
+We add metric computing for node. Sort will compute metric when user just need add with option `inlong.metric.labels` that includes groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`.
 Sort will export metric by flink metric group, So user can use [metric reporter](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/deployment/metric_reporters/) to get metric data.
 
 ## Metric
 
-### supporting extract node
+### Supporting extract node
 
-#### node level metric
+#### Node level metric
 
 | metric name | extract node | description |
 |-------------|--------------|-------------|
@@ -21,10 +21,10 @@ Sort will export metric by flink metric group, So user can use [metric reporter]
 | groupId_streamId_nodeId_numRecordsInPerSecond | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | input records per second |
 | groupId_streamId_nodeId_numBytesInPerSecond | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | input bytes number per second |
 
-#### table level metric
+#### Table level metric
  It is used for all database sync.
 
-| metric name | extract node | description |
+| Metric name | Extract node | Description |
 |-------------|--------------|-------------|
 | groupId_streamId_nodeId_database_table_numRecordsIn | mysql-cdc | input records number |
 | groupId_streamId_nodeId_database_schema_table_numRecordsIn | oracle-cdc,postgresql-cdc | input records number |
@@ -41,9 +41,9 @@ Sort will export metric by flink metric group, So user can use [metric reporter]
 
 ### supporting load node
 
-#### node level metric
+#### Node level metric
 
-| metric name | load node | description |
+| Metric name | Load node | Description |
 |-------------|-----------|-------------|
 | groupId_streamId_nodeId_numRecordsOut | clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | out records number |
 | groupId_streamId_nodeId_numBytesOut |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | output byte number |
@@ -52,9 +52,9 @@ Sort will export metric by flink metric group, So user can use [metric reporter]
 | groupId_streamId_nodeId_dirtyRecordsOut |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | output records |
 | groupId_streamId_nodeId_dirtyBytesOut |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | output bytes |
 
-#### table level metric
+#### Table level metric
 
-| metric name | load node | description |
+| Metric name | Load node | Description |
 |-------------|-----------|-------------|
 | groupId_streamId_nodeId_database_table_numRecordsOut | doris,iceberg,starRocks | out records number |
 | groupId_streamId_nodeId_database_schema_table_numRecordsOut | postgresql | out records number |

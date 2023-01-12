@@ -108,7 +108,7 @@ TODO: 将在未来支持此功能。
 | scan.startup.specific-offsets | 可选 | (none) | String | 在使用 'specific-offsets' 启动模式时为每个 partition 指定 offset，例如 'partition:0,offset:42;partition:1,offset:300'。 |
 | scan.startup.timestamp-millis | 可选 | (none) | Long | 在使用 'timestamp' 启动模式时指定启动的时间戳（单位毫秒）。 |
 | scan.topic-partition-discovery.interval | 可选 | (none) | Duration | Consumer 定期探测动态创建的 Kafka topic 和 partition 的时间间隔。 |
-| inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId={groupId}&streamId={streamId}&nodeId={nodeId}。|
+| inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`。|
 | sink.ignore.changelog | 可选 | false | 布尔型 | 支持所有类型的 changelog 流 ingest 到 Kafka。 |
 
 ## 可用的元数据字段

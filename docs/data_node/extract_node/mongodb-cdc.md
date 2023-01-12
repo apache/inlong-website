@@ -134,7 +134,7 @@ TODO: It will be supported in the future.
 | poll.max.batch.size       | optional     | 1000             | Integer  | Maximum number of change stream documents to include in a single batch when polling for new data. |
 | poll.await.time.ms        | optional     | 1500             | Integer  | The amount of time to wait before checking for new results on the change stream. |
 | heartbeat.interval.ms     | optional     | 0                | Integer  | The length of time in milliseconds between sending heartbeat messages. Use 0 to disa |
-| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId={groupId}&streamId={streamId}&nodeId={nodeId}. |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`. |
 ## Available Metadata
 
 The following format metadata can be exposed as read-only (VIRTUAL) columns in a table definition.

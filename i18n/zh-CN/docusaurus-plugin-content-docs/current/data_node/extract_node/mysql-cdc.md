@@ -312,11 +312,11 @@ TODO: 将在未来支持此功能。
           详细了解 <a href="https://debezium.io/documentation/reference/1.5/connectors/mysql.html#mysql-connector-properties">Debezium 的 MySQL 连接器属性。</a></td> 
     </tr>
     <tr>
-      <td>inlong.metric</td>
+      <td>inlong.metric.labels</td>
       <td>可选</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。</td> 
+      <td>inlong metric 的标签值，该值的构成为groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`。</td> 
     </tr>
     </tbody>
 </table>
