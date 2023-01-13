@@ -62,7 +62,7 @@ CREATE TABLE `clickhouse_load_table`(
   'url' = 'jdbc:clickhouse://localhost:8123/demo',
   'username' = 'inlong',
   'password' = 'inlong',
-  'table-name' = 'user'
+  'table-name' = 'demo.user'
 )
 
 -- 写数据到 ClickHouse
@@ -88,7 +88,7 @@ TODO: 将在未来支持此功能。
 | connector | 必选 | (none) | String | 指定使用什么类型的连接器，这里应该是 'jdbc-inlong'。 |
 | url | 必选 | (none) | String | JDBC 数据库 url。 |
 | dialect-impl | 必选 | (none) |  String | `org.apache.inlong.sort.jdbc.dialect.ClickHouseDialect` |
-| table-name | 必选 | (none) | String | 连接到 JDBC 表的名称。 |
+| table-name | 必选 | (none) | String | 连接到 JDBC 表的名称。例子：database.tableName |
 | driver | 可选 | (none) | String | 用于连接到此 URL 的 JDBC 驱动类名，如果不设置，将自动从 URL 中推导。 |
 | username | 可选 | (none) | String | JDBC 用户名。如果指定了 'username' 和 'password' 中的任一参数，则两者必须都被指定。 |
 | password | 可选 | (none) | String | JDBC 密码。 |
@@ -98,7 +98,7 @@ TODO: 将在未来支持此功能。
 | sink.max-retries | 可选 | 3 | Integer | 写入记录到数据库失败后的最大重试次数。 |
 | sink.parallelism | 可选 | (none) | Integer | 用于定义 JDBC sink 算子的并行度。默认情况下，并行度是由框架决定：使用与上游链式算子相同的并行度。 |
 | sink.ignore.changelog | 可选 | false | Boolean |  忽略所有 RowKind 类型的变更日志，将它们当作 INSERT 的数据来采集。 |
-| inlong.metric | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。|
+| inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`。|
 
 ## 数据类型映射
 

@@ -186,11 +186,11 @@ TODO
       <td>SQLServer 数据库连接配置时区。 例如： "Asia/Shanghai"。</td>
     </tr>
     <tr>
-      <td>inlong.metric</td>
+      <td>inlong.metric.labels</td>
       <td>可选</td>
       <td style={{wordWrap: 'break-word'}}>(none)</td>
       <td>String</td>
-      <td>inlong metric 的标签值，该值的构成为groupId&streamId&nodeId。</td> 
+      <td>inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。</td> 
      </tr>
     </tbody>
 </table>

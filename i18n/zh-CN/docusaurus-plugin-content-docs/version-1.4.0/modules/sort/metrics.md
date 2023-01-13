@@ -5,14 +5,16 @@ sidebar_position: 4
 
 ## 概览
 
-我们为节点增加了指标计算。 用户添加 with 选项 `inlong.metric` 后 Sort 会计算指标，`inlong.metric` 选项的值由三部分构成：`groupId&streamId&nodeId`。
+我们为节点增加了指标计算。 用户添加 with 选项 `inlong.metric.lables` 后 Sort 会计算指标，`inlong.metric.labels` 选项的值由三部分构成：groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`。
 用户可以使用 [metric reporter](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/deployment/metric_reporters/) 去上报数据。
 
 ## 指标
 
 ### 支持的 extract 节点
 
-| 指标名 | extract 节点 | 描述 |
+#### 支持节点级别指标
+
+| 指标名 | Extract 节点 | 描述 |
 |-------------|--------------|-------------|
 | groupId_streamId_nodeId_numRecordsIn | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | 输入记录数 |
 | groupId_streamId_nodeId_numBytesIn | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | 输入字节数 |
@@ -21,7 +23,9 @@ sidebar_position: 4
 
 ### 支持的 load 节点
 
-| 指标名 | load 节点 | 描述 |
+#### 支持节点级别指标
+
+| 指标名 | Load 节点 | 描述 |
 |-------------|-----------|-------------|
 | groupId_streamId_nodeId_numRecordsOut | clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,<br/>mysql,oracle,postgresql,sqlserver,tdsql-postgresql | 输出记录数 |
 | groupId_streamId_nodeId_numBytesOut |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,<br/>mysql,oracle,postgresql,sqlserver,tdsql-postgresql | 输出字节数 |

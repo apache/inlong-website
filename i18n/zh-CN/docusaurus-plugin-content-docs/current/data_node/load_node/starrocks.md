@@ -292,6 +292,7 @@ TODO: 将在未来支持此功能。
 | sink.multiple.format              | 可选     | 无               | string   | 多表(整库)写入的数据格式，它表示connector之间流转的原始二进制数据的实际格式，目前支持`canal-json` 和 `debezium-json`。可以查看[kafka -- Dynamic Topic Extraction](https://github.com/apache/inlong-website/blob/master/docs/data_node/load_node/kafka.md)获取更多信息。  |
 | sink.multiple.database-pattern    | 可选     | 无               | string   | 从原始二进制数据中提取数据库名，仅在多表(整库)同步场景中使用。 | 
 | sink.multiple.table-pattern       | 可选     | 无               | string   | 从原始二进制数据中提取表名，仅在多表(整库)同步场景中使用。 |
+| inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`。|
 
 ## 数据类型映射
 

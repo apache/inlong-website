@@ -5,23 +5,23 @@ sidebar_position: 4
 
 ## Overview
 
-We add metric computing for node. Sort will compute metric when user just need add with option `inlong.metric.labels` that includes `groupId=xxgroup&streamId=xxstream&nodeId=xxnode`.
+We add metric computing for node. Sort will compute metric when user just need add with option `inlong.metric.labels` that includes groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`.
 Sort will export metric by flink metric group, So user can use [metric reporter](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/deployment/metric_reporters/) to get metric data.
 
 ## Metric
 
-### supporting extract node
+### Supporting extract node
 
-| metric name | extract node | description |
+| Metric name | Extract node | Description |
 |-------------|--------------|-------------|
 | groupId_streamId_nodeId_numRecordsIn | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | input records number |
 | groupId_streamId_nodeId_numBytesIn | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | input bytes number |
 | groupId_streamId_nodeId_numRecordsInPerSecond | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | input records per second |
 | groupId_streamId_nodeId_numBytesInPerSecond | kafka,mongodb-cdc,mysql-cdc,oracle-cdc,postgresql-cdc,pulsar,sqlserver-cdc | input bytes number per second |
 
-### supporting load node
+### Supporting load node
 
-| metric name | load node | description |
+| Metric name | Load node | Description |
 |-------------|-----------|-------------|
 | groupId_streamId_nodeId_numRecordsOut | clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | out records number |
 | groupId_streamId_nodeId_numBytesOut |  clickhouse,elasticsearch,greenplum,hbase,<br/>hdfs,hive,iceberg,kafka,mysql,<br/>oracle,postgresql,sqlserver,tdsql-postgresql | output byte number |
