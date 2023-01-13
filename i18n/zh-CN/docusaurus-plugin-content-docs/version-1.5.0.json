@@ -13,7 +13,7 @@
   },
   "sidebar.tutorialSidebar.category.Deployment": {
     "message": "安装部署",
-    "description": "The label for category Deployment in sidebar tutorialSidebar"s
+    "description": "The label for category Deployment in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Components": {
     "message": "组件介绍",
