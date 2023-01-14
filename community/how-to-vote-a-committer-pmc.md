@@ -137,7 +137,7 @@ When signing the ICLA, the candidate needs to write the project name of “Apach
 ## Processing after accepting the invitation
 Create an Apache account and add the candidate account to the project.
 After the candidate accepts the invitation, if the candidate does not have an apache email account, the voting initiator needs to assist the candidate to create an apache account according to the guidelines.
-The voting initiator needs to add project team members, open a permission account for the apache project, and confirm that the candidate’s Apache account has been added to [the Apache InLong](http://people.apache.org/phonebook.html?project=inlong) project.
+The voting initiator needs to add project team members, open a permission account for the apache project, and confirm that the candidate’s Apache account has been added to the [Apache InLong](http://people.apache.org/phonebook.html?project=inlong) project.
 
 ## ANNOUNCE to the community
 After the above steps are completed, the vote initiator must send a notification email to the dev@inlong.apache.org mail group. The following is a template  notification email:
