@@ -245,6 +245,7 @@ $ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true
 ```shell
 # 在创建 tag 的源码目录执行
 $ git push origin ${release_version}-${rc_version}
+$ git push origin release-${release_version}
 ```
 
 ### 上传编译好的文件到 dist

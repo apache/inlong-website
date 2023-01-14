@@ -248,6 +248,7 @@ $ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true
 ```shell
 # under the directory where you create the tag
 $ git push origin ${release_version}-${rc_version}
+$ git push origin release-${release_version}
 ```
 
 ### Upload tar file to dist repo
