@@ -34,7 +34,7 @@ The following is a template  poll email:
 [VOTE] ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
  
 Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2],[3] to the project and improved the management module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
-I think making him a a ${Committer or PMC Member} will be a recognition of his outstanding work for InLong. So, I am happy to call VOTE to accept ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}.
+I think making him a ${Committer or PMC Member} will be a recognition of his outstanding work for InLong. So, I am happy to call VOTE to accept ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}.
  
 Voting will continue for at least 72 hours or until the required number of votes is reached.
 
@@ -99,12 +99,12 @@ After the result summary email is sent, the poll initiator must send an invitati
 The invitation email is sent to the invitee with a CC to private@inlong.apache.org; the invited candidate must reply to accept or decline the invitation through the specified email address.
 The following is an example of an email inviting candidates:
 ```shell
-[Invitation] Invitation to join Apache InLong as a a ${Committer or PMC Member}
+[Invitation] Invitation to join Apache InLong as a ${Committer or PMC Member}
 
 Hi ${Candidate_Full_Name},
 
 In recognition of your contributions to Apache InLong, the InLong PMC
-has recently voted to add you as a a ${Committer or PMC Member}. The a ${Committer or PMC Member} role gives
+has recently voted to add you as a ${Committer or PMC Member}. The a ${Committer or PMC Member} role gives
 you access to merge patches into Apache InLong and is also a
 stepping-stone towards membership in the
 Project Management Committee (PMC). We hope that you accept
@@ -137,7 +137,7 @@ When signing the ICLA, the candidate needs to write the project name of “Apach
 ## Processing after accepting the invitation
 Create an Apache account and add the candidate account to the project.
 After the candidate accepts the invitation, if the candidate does not have an apache email account, the voting initiator needs to assist the candidate to create an apache account according to the guidelines.
-The voting initiator needs to add project team members, open a permission account for the apache project, and confirm that the candidate’s Apache account has been added to the project address: http://people.apache.org/phonebook.html?project=inlong.
+The voting initiator needs to add project team members, open a permission account for the apache project, and confirm that the candidate’s Apache account has been added to the [Apache InLong](http://people.apache.org/phonebook.html?project=inlong) project.
 
 ## ANNOUNCE to the community
 After the above steps are completed, the vote initiator must send a notification email to the dev@inlong.apache.org mail group. The following is a template  notification email:

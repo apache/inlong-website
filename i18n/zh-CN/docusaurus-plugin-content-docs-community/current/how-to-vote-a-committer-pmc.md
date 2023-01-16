@@ -33,7 +33,7 @@ So I nominated ${Candidate_Full_Name} as a ${Committer or PMC Member} of the InL
 [VOTE] ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
  
 Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2],[3] to the project and improved the management module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
-I think making him a a ${Committer or PMC Member} will be a recognition of his outstanding work for InLong. So, I am happy to call VOTE to accept ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}.
+I think making him a ${Committer or PMC Member} will be a recognition of his outstanding work for InLong. So, I am happy to call VOTE to accept ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}.
  
 Voting will continue for at least 72 hours or until the required number of votes is reached.
 
@@ -98,12 +98,12 @@ Thanks!
 邀请邮件主送被邀请人，抄送 private@inlong.apache.org；被邀请的候选人必须通过指定的邮箱地址回复接受或者拒绝该邀请。
 如下是邀请候选人邮件模板：
 ```shell
-[Invitation] Invitation to join Apache InLong as a a ${Committer or PMC Member}
+[Invitation] Invitation to join Apache InLong as a ${Committer or PMC Member}
 
 Hi ${Candidate_Full_Name},
 
 In recognition of your contributions to Apache InLong, the InLong PMC
-has recently voted to add you as a a ${Committer or PMC Member}. The a ${Committer or PMC Member} role gives
+has recently voted to add you as a ${Committer or PMC Member}. The a ${Committer or PMC Member} role gives
 you access to merge patches into Apache InLong and is also a
 stepping-stone towards membership in the
 Project Management Committee (PMC). We hope that you accept
@@ -135,7 +135,7 @@ The Apache InLong PMC
 
 ## 接受邀请后处理
 创建 Apache 帐号并将候选人帐号加入项目。
-候选人接受邀请后，如果候选人没有 Apache 邮箱帐号，投票发起人需要协助候选人按照指引创建好 Apache 帐号，确认候选人的 Apache 帐号已加入项目的地址：http://people.apache.org/phonebook.html?project=inlong。
+候选人接受邀请后，如果候选人没有 Apache 邮箱帐号，投票发起人需要协助候选人按照指引创建好 Apache 帐号，确认候选人的 Apache 帐号已加入 [Apache InLong](http://people.apache.org/phonebook.html?project=inlong) 项目。
 
 ## 向社区发布申明邮件
 如上步骤都完成后，投票发起人向 dev@inlong.apache.org 邮件组发通知邮件。
@@ -145,7 +145,7 @@ The Apache InLong PMC
 
 Hi everyone,
 
-The Project Management Committee(PMC) for Apache InLong has invited ${Candidate_Full_Name} to become a a ${Committer or PMC Member} and we are pleased to announce that he has accepted.
+The Project Management Committee(PMC) for Apache InLong has invited ${Candidate_Full_Name} to become a ${Committer or PMC Member} and we are pleased to announce that he has accepted.
 
 ${Candidate_Full_Name} is being active in the InLong community, and we are glad to see his more interactions with the community in the future.
 
