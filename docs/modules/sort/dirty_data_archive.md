@@ -78,85 +78,40 @@ The format for archiving to S3：
 
 ## Usage
 
-One example about sync mysql data to kafka data and we will introduce usage of dirty data archive(it is similar to other nodes).
+One example about sync Kafka data to Kafka data and we will introduce usage of dirty data archive(it is similar to other nodes).
 
 * The useage for archive to log
 ```sql
-
- create table `table_groupId_streamId_nodeId1`(
-     `id` INT,
-    `name` INT,
-    `age` STRING,
-    PRIMARY KEY(`id`) NOT ENFORCED)
+create table `table_user_input`(
+         `id` INT,
+         `name` INT,
+         `age` STRING)
     WITH (
-        'connector' = 'mysql-cdc-inlong',
-        'hostname' = 'xxxx',
-        'username' = 'xxx',
-        'password' = 'xxx',
-        'database-name' = 'test',
-        'scan.incremental.snapshot.enabled' = 'true',
-        'server-time-zone' = 'GMT+8',
-        'table-name' = 'user'
-);
+        'dirty.side-output.connector' = 'log',
+        'dirty.ignore' = 'true',
+        'dirty.side-output.enable' = 'true',
+        'dirty.side-output.format' = 'csv',
+        'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user',
+        'inlong.metric.labels' = 'groupId=1&streamId=1&nodeId=1',
+        'topic' = 'user_input',
+        'properties.bootstrap.servers' = 'localhost:9092',
+        'connector' = 'kafka-inlong',
+        'scan.startup.mode' = 'earliest-offset',
+        'json.timestamp-format.standard' = 'SQL',
+        'json.encode.decimal-as-plain-number' = 'true',
+        'json.map-null-key.literal' = 'null',
+        'json.ignore-parse-errors' = 'false',
+        'json.map-null-key.mode' = 'DROP',
+        'format' = 'json',
+        'json.fail-on-missing-field' = 'false',
+        'properties.group.id' = 'test_group');
 
- CREATE TABLE `table_groupId_streamId_nodeId2`(
-     `id` INT,
-     `name` STRING,
-     `age` INT)
-     WITH (
-         'topic' = 'test_user',
-         'properties.bootstrap.servers' = 'localhost:9092',
-         'connector' = 'kafka-inlong',
-         'sink.ignore.changelog' = 'true',
-         'json.timestamp-format.standard' = 'SQL',
-         'json.encode.decimal-as-plain-number' = 'true',
-         'json.map-null-key.literal' = 'null',
-         'json.ignore-parse-errors' = 'true',
-         'json.map-null-key.mode' = 'DROP',
-         'format' = 'json',
-         'json.fail-on-missing-field' = 'true',
-         'dirty.ignore' = 'true',
-         'dirty.side-output.connector' = 'log',
-         'dirty.side-output.enable' = 'true',
-         'dirty.side-output.format' = 'csv',
-         'dirty.side-output.log.enable' = 'true',
-         'dirty.side-output.log-tag' = 'DirtyData',
-         'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=test&table=user'
-         );
-
- INSERT INTO `table_groupId_streamId_nodeId2`
- SELECT
-     `id`,
-     `name`,
-     `age`
- FROM `table_groupId_streamId_nodeId1`;
-```
-
-* The useage for archive to s3
-```sql
-
- create table `table_groupId_streamId_nodeId1`(
-     `id` INT,
-    `name` INT,
-    `age` STRING,
-    PRIMARY KEY(`id`) NOT ENFORCED)
+CREATE TABLE `table_user_output`(
+         `id` INT,
+         `name` STRING,
+         `age` INT)
     WITH (
-        'connector' = 'mysql-cdc-inlong',
-        'hostname' = 'xxxx',
-        'username' = 'xxx',
-        'password' = 'xxx',
-        'database-name' = 'test',
-        'scan.incremental.snapshot.enabled' = 'true',
-        'server-time-zone' = 'GMT+8',
-        'table-name' = 'user'
-);
-
- CREATE TABLE `table_groupId_streamId_nodeId2`(
-     `id` INT,
-     `name` STRING,
-     `age` INT)
-     WITH (
-        'topic' = 'test_user',
+        'topic' = 'user_output',
         'properties.bootstrap.servers' = 'localhost:9092',
         'connector' = 'kafka-inlong',
         'sink.ignore.changelog' = 'true',
@@ -167,24 +122,92 @@ One example about sync mysql data to kafka data and we will introduce usage of d
         'json.map-null-key.mode' = 'DROP',
         'format' = 'json',
         'json.fail-on-missing-field' = 'true',
-         'dirty.side-output.connector' = 's3',
-         'dirty.ignore' = 'true',
-         'dirty.side-output.enable' = 'true',
-         'dirty.side-output.format' = 'csv',
-         'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=student',
-         'dirty.side-output.s3.bucket' = 's3-test-bucket',
-         'dirty.side-output.s3.endpoint' = 's3.test.endpoint',
-         'dirty.side-output.s3.key' = 'dirty/test',
-         'dirty.side-output.s3.region' = 'region',
-         'dirty.side-output.s3.access-key-id' = 'access_key_id',
-         'dirty.side-output.s3.secret-key-id' = 'secret_key_id',
-         'dirty.identifier' = 'inlong-student-${SYSTEM_TIME}'
-         );
+        'dirty.ignore' = 'true',
+        'dirty.side-output.connector' = 'log',
+        'dirty.side-output.enable' = 'true',
+        'dirty.side-output.format' = 'csv',
+        'dirty.side-output.log.enable' = 'true',
+        'dirty.side-output.log-tag' = 'DirtyData',
+        'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user');
 
- INSERT INTO `table_groupId_streamId_nodeId2`
- SELECT
-     `id`,
-     `name`,
-     `age`
- FROM `table_groupId_streamId_nodeId1`;
+INSERT INTO `table_user_output`
+SELECT
+    `id`,
+    `name`,
+    `age`
+FROM `table_user_input`;
+-- In this example, we deliberately input a piece of data in non-json format, such as: 1,zhangsan,18, then the following dirty data will be printed in the log according to the configuration：
+[DirtyData] 2023-01-30 13:01:01 ValueDeserializeError,inlong,user,1,zhangsan,18
+```
+
+* The useage for archive to s3
+```sql
+create table `table_user_input`(
+        `id` INT,
+        `name` INT,
+        `age` STRING)
+    WITH (
+        'dirty.side-output.connector' = 's3',
+        'dirty.ignore' = 'true',
+        'dirty.side-output.enable' = 'true',
+        'dirty.side-output.format' = 'csv',
+        'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user',
+        'dirty.side-output.s3.bucket' = 's3-test-bucket',
+        'dirty.side-output.s3.endpoint' = 's3.test.endpoint',
+        'dirty.side-output.s3.key' = 'dirty/test',
+        'dirty.side-output.s3.region' = 'region',
+        'dirty.side-output.s3.access-key-id' = 'access_key_id',
+        'dirty.side-output.s3.secret-key-id' = 'secret_key_id',
+        'dirty.identifier' = 'inlong-user-${SYSTEM_TIME}',
+        'inlong.metric.labels' = 'groupId=1&streamId=1&nodeId=1',
+        'topic' = 'user_input',
+        'properties.bootstrap.servers' = 'localhost:9092',
+        'connector' = 'kafka-inlong',
+        'scan.startup.mode' = 'earliest-offset',
+        'json.timestamp-format.standard' = 'SQL',
+        'json.encode.decimal-as-plain-number' = 'true',
+        'json.map-null-key.literal' = 'null',
+        'json.ignore-parse-errors' = 'false',
+        'json.map-null-key.mode' = 'DROP',
+        'format' = 'json',
+        'json.fail-on-missing-field' = 'false',
+        'properties.group.id' = 'test_group');
+
+CREATE TABLE `table_user_output`(
+         `id` INT,
+         `name` STRING,
+         `age` INT)
+    WITH (
+        'topic' = 'user_output',
+        'properties.bootstrap.servers' = 'localhost:9092',
+        'connector' = 'kafka-inlong',
+        'sink.ignore.changelog' = 'true',
+        'json.timestamp-format.standard' = 'SQL',
+        'json.encode.decimal-as-plain-number' = 'true',
+        'json.map-null-key.literal' = 'null',
+        'json.ignore-parse-errors' = 'true',
+        'json.map-null-key.mode' = 'DROP',
+        'format' = 'json',
+        'json.fail-on-missing-field' = 'true',
+        'dirty.side-output.connector' = 's3',
+        'dirty.ignore' = 'true',
+        'dirty.side-output.enable' = 'true',
+        'dirty.side-output.format' = 'csv',
+        'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user',
+        'dirty.side-output.s3.bucket' = 's3-test-bucket',
+        'dirty.side-output.s3.endpoint' = 's3.test.endpoint',
+        'dirty.side-output.s3.key' = 'dirty/test',
+        'dirty.side-output.s3.region' = 'region',
+        'dirty.side-output.s3.access-key-id' = 'access_key_id',
+        'dirty.side-output.s3.secret-key-id' = 'secret_key_id',
+        'dirty.identifier' = 'inlong-user-${SYSTEM_TIME}');
+
+INSERT INTO `table_user_output`
+SELECT
+    `id`,
+    `name`,
+    `age`
+FROM `table_user_input`;
+-- In this example, we deliberately input a piece of data in non-json format, such as: 1,zhangsan,18, then the following dirty data will be written to s3 according to the configuration(the file path is: dirty/test/inlong-user-2023-01-01130101xxxx.txt, where xxxx is a 4-digit random sequence):
+[DirtyData] 2023-01-30 13:01:01 ValueDeserializeError,inlong,user,1,zhangsan,18
 ```
