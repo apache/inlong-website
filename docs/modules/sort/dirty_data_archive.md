@@ -5,9 +5,10 @@ sidebar_position: 5
 
 ## Overview
 
-We added dirty data archive for nodes. First of all, we need to clarify what is dirty data. Here we define dirty data as data that cannot be extracted, transformed, and loaded correctly due to the quality of the data itself during the process of data extract, transform, and load. Common
-dirty data may have mismatching field types, lengths, and numbers, data serialization and deserialization exceptions, target database and tables that does not exists, etc. Sort currently supports dirty data archive for S3 and Log target system, and also supports dirty data archive for Kafka, Doris, Iceberg, Hbase, Hive, Elasticsearch, JDBC
-, etc.
+Dirty data refers to data that cannot be extracted, transformed, and loaded correctly due to the quality of the data itself during the process of data extraction, transform, and loading. 
+Common dirty data may have field types, lengths, and numbers that do not match. Data serialization, deserialization exception, target library, the table does not exist, etc.
+Dirty data archives can dump the dirty data during InLong data flow operation to third-party storage, which is convenient for businesses to find problems. 
+Sort currently supports dirty data archiving for S3 and Log targets, as well as dirty data archiving for common data sources such as Kafka, Doris, Iceberg, HBase, Hive, Elasticsearch, and JDBC.
 
 ## Supported Nodes
 
