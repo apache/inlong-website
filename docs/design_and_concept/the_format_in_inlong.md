@@ -9,17 +9,11 @@ sidebar_position: 7
 
 As shown in FIG:
 
-When Flink SQL reads and writes data, it adopts the form of Row, and its interior is an Object
-array `Object[]`, and each element in the number represents a field of a Flink table.
-The type, name, precision and other information of the field are marked by `Schema`.
+In Flink SQL, when reading and writing data, both adopt the form of Row, whose internal is an Object array `Object[]`, and each element in the array represents a field of the Flink table. The information about field type, name and precision is marked by `Schema`.
 
-Format provides two interfaces: SerializationSchema and DeserializationSchema:
-
-- When Flink writes data to MQ, it needs to serialize `Flink Row` into formats such
-  as `key-value`/`csv`/`Json`, and call the `SerializationSchema#serialize` method.
-  The data will be serialized into `Byte[]` and written to `MQ`
-- When Flink reads MQ data, the process is reversed. Read data from MQ, the data format is `byte[]`.
-  Deserialize to `Format`, and then convert to `Flink row`
+Format provides two interfaces: SerializationSchema and DeserializationSchema: 
+- When Flink writes data to MQ, it needs to serialize `Flink Row` into `key-value`/`csv`/`Json` format. Then call the method of `SerializationSchema#serialize`. Data will be serialized into Byte[], which can be written to MQ.
+- When Flink reads data from MQ, it works vice versa. It reads data from MQ with format Byte[]. Then deserializes them into Format and finally converts them into Flink row.
 
 > See
 > details: [`inlong-sort/sort-formats`](https://github.com/apache/inlong/tree/release-1.5.0/inlong-sort/sort-formats)
@@ -28,14 +22,7 @@ Format provides two interfaces: SerializationSchema and DeserializationSchema:
 
 ![](img/the_format_in_inlong.png)
 
-InLong is a one-stop data integration platform, and MQ (the Cache part in the figure) is used as a
-transmission channel. At the same time, it realizes the decoupling of DataProxy and Sort, and has
-stronger scalability.
-
-1. When DataProxy reports data, it needs to serialize the data into the corresponding
-   format (`SerializationSchema#serialize`).
-2. Sort receives the data, deserializes the MQ data (`DeserializationSchema#deserialize`)
-   into `Flink Row`, and writes it to the corresponding storage through Flink SQL.
+InLong serves as a one-stop data integration platform, with MQ (the Cache part in the picture) as the transmission channel, which decouples DataProxy and Sort and provides better scalability. When DataProxy is reporting data, it needs to serialize the data into corresponding format (`SerializationSchema#serialize`). When Sort receives data, it will deserialize the MQ's data (`DeserializationSchema#deserialize`) into `Flink Row`, and then write to the corresponding storage using Flink SQL.
 
 ## What are the formats?
 
