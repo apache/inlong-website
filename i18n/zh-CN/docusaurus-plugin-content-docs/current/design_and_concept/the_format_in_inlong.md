@@ -15,7 +15,7 @@ Flink SQL 在读写数据是，均采用 Row 的形式，其内部为 Object 数
 Format 提供了两种接口：SerializationSchema 和 DeserializationSchema。
 
 - 当 Flink 往 MQ 写数据时，需要把 `Flink Row` 序列化为 `key-value` / `csv` / `Json` 等 Format,
-  调用了 `SerializationSchema#serialize` 方法，数据会序列化为 `Byte[]`，写入到 `MQ`。
+  这时调用了 `SerializationSchema#serialize` 方法，数据会序列化成 `Byte[]`，写入到 `MQ`。
 - 当 Flink 读取 MQ 的数据时，过程是相反的。从 MQ 读取数据，数据格式为 `byte[]`，反序列化为`Format`，再转换为 `Flink row`。
 
 > 详情请查看代码 [`inlong-sort/sort-formats`](https://github.com/apache/inlong/tree/release-1.5.0/inlong-sort/sort-formats)
