@@ -7,9 +7,7 @@ sidebar_position: 7
 
 ![](img/format_and_flink.png)
 
-As shown in FIG :
-
-In Flink SQL , when reading and writing data , both adopt the form of Row , whose internal is an Object array `Object[]` , and each element in the array represents a field of the Flink table . The information about field type , name and precision is marked by `Schema` .
+As shown in the figure, in Flink SQL, when reading and writing data, it adopts the form of Row. Inside it is an Object array `Object[]`, and each element in the array represents a field of the Flink table. The information about field type , name and precision is marked by `Schema` .
 
 Format provides two interfaces : SerializationSchema and DeserializationSchema :
 - When Flink writes data to MQ , it needs to serialize `Flink Row` into `key-value` / `csv` / `Json` format . Then call the method of `SerializationSchema#serialize` . Data will be serialized into Byte[] , which can be written to MQ .
