@@ -9,7 +9,7 @@ sidebar_position: 7
 
 如上图所示：
 
-Flink SQL 在读写数据是，均采用Row的形式，其内部为 Object 数组 `Object[]`，数字中每个元素代表了一个 Flink 表的字段。
+Flink SQL 在读写数据是，均采用 Row 的形式，其内部为 Object 数组 `Object[]`，数组中每个元素代表了一个 Flink 表的字段。
 字段的类型、名称、精度等信息，通过 `Schema` 来标示。
 
 Format 提供了两种接口：SerializationSchema 和 DeserializationSchema。
