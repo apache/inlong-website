@@ -12,7 +12,7 @@ sidebar_position: 7
 Flink SQL 在读写数据是，均采用 Row 的形式，其内部为 Object 数组 `Object[]`，数组中每个元素代表了一个 Flink 表的字段。
 字段的类型、名称、精度等信息，通过 `Schema` 来标示。
 
-Format 提供了两种接口：SerializationSchema 和 DeserializationSchema。
+Flink 的 Format 提供了两种接口：SerializationSchema 和 DeserializationSchema。
 
 - 当 Flink 往 MQ 写数据时，需要把 `Flink Row` 序列化为 `key-value` / `csv` / `Json` 等 Format,
   这时调用了 `SerializationSchema#serialize` 方法，数据会序列化成 `Byte[]`，写入到 `MQ`。
