@@ -27,7 +27,7 @@ Format 提供了两种接口：SerializationSchema 和 DeserializationSchema。
 InLong 作为一站式的数据集成平台，将 MQ（图中 Cache 部分）作为传输通道，同时实现 DataProxy 与 Sort 的解耦，扩展性会更强：
 
 1. DataProxy 上报数据时，需要将数据序列化成对应的格式（`SerializationSchema#serialize`）。
-2. Sort 接收到数据，将 MQ 的数据反序列化（`DeserializationSchema#deserialize`）成 `Flink Row` ，通过 Flink SQL 写入到对应的存储。
+- Sort 接收到数据，将 MQ 的数据反序列化（`DeserializationSchema#deserialize`）成 `Flink Row` ，通过 Flink SQL 写入到对应的存储。
 
 ## 有哪些 Format?
 
