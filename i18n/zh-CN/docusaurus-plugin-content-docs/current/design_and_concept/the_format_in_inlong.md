@@ -3,39 +3,35 @@ title: Format
 sidebar_position: 7
 ---
 
-## 什么是 format?
+## 什么是 Format?
 
 ![](img/format_and_flink.png)
 
 如上图所示：
 
-Flink SQL 在读写数据是，均采用Row的形式，其内部为 Object 数组 `Object[]`, 数字中每个元素代表了一个 Flink 表的字段。
+Flink SQL 在读写数据是，均采用Row的形式，其内部为 Object 数组 `Object[]`，数字中每个元素代表了一个 Flink 表的字段。
 字段的类型、名称、精度等信息，通过 `Schema` 来标示。
 
-Format提供了两种接口: SerializationSchema 和 DeserializationSchema：
+Format 提供了两种接口：SerializationSchema 和 DeserializationSchema。
 
 - 当 Flink 往 MQ 写数据时，需要把 `Flink Row` 序列化为 `key-value` / `csv` / `Json` 等 Format,
-  调用了 `SerializationSchema#serialize` 方法。
-  数据会序列化为 `Byte[]` , 写入到 `MQ`
-- 当 Flink 读取 MQ 的数据时，过程是相反的。从MQ读取数据，数据格式为 `byte[]`. 反序列化为`Format`,
-  再转换为 `Flink row`
+  调用了 `SerializationSchema#serialize` 方法，数据会序列化为 `Byte[]`，写入到 `MQ`。
+- 当 Flink 读取 MQ 的数据时，过程是相反的。从 MQ 读取数据，数据格式为 `byte[]`，反序列化为`Format`，再转换为 `Flink row`。
 
->
-详情请查看代码 [`inlong-sort/sort-formats`](https://github.com/apache/inlong/tree/release-1.5.0/inlong-sort/sort-formats)
+> 详情请查看代码 [`inlong-sort/sort-formats`](https://github.com/apache/inlong/tree/release-1.5.0/inlong-sort/sort-formats)
 
 ## InLong 中的 Format
 
 ![](img/the_format_in_inlong.png)
 
-InLong 作为一站式的数据集成平台，MQ (图中 Cache 部分)作为传输通道，同时实现 DataProxy 与 Sort的解耦，扩展性更强。
+InLong 作为一站式的数据集成平台，MQ（图中 Cache 部分）作为传输通道，同时实现 DataProxy 与 Sort 的解耦，扩展性更强。
 
-1. DataProxy 上报数据时，需要将数据序列化成对应的格式( `SerializationSchema#serialize` )。
-2. Sort 接收到数据，将 MQ 的数据反序列化( `DeserializationSchema#deserialize` )成 `Flink Row` ，通过 Flink
-   SQL 写入到对应的存储。
+1. DataProxy 上报数据时，需要将数据序列化成对应的格式（`SerializationSchema#serialize`）。
+2. Sort 接收到数据，将 MQ 的数据反序列化（`DeserializationSchema#deserialize`）成 `Flink Row` ，通过 Flink SQL 写入到对应的存储。
 
 ## 有哪些 Format?
 
-目前，InLong-sort 提供了 CSV/KeyValue/JSON ，以及对应的 InLongMsg 包装的格式。
+目前，InLong-Sort 提供了 CSV/KeyValue/JSON，以及通过 InLongMsg 封装的格式。
 
 ### CSV
 
