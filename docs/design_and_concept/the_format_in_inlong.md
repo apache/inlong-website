@@ -3,11 +3,11 @@ title: Format
 sidebar_position: 7
 ---
 
-## What is format?
+## What is format ?
 
 ![](img/format_and_flink.png)
 
-As shown in FIG:
+As shown in FIG :
 
 In Flink SQL , when reading and writing data , both adopt the form of Row , whose internal is an Object array `Object[]` , and each element in the array represents a field of the Flink table . The information about field type , name and precision is marked by `Schema` .
 
@@ -89,7 +89,7 @@ Currently , InLong-sort provides CSV / KeyValue / JSON , and the corresponding I
 
 | Option                           | Type    | Required | Default value | Advanced | Remark                                                                                                                                                                                                                                                                                                                            |
 |----------------------------------|---------|----------|---------------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `ignore-parse-errors`            | Boolean | N        | false         | N        | Optional flag to skip fields and rows with parse errors instead of failing; <br/>fields are set to null in case of errors , false by default .                                                                                                                                                                                      |
+| `ignore-parse-errors`            | Boolean | N        | false         | N        | Optional flag to skip fields and rows with parse errors instead of failing ; <br/> fields are set to null in case of errors , false by default .                                                                                                                                                                                      |
 | `map-null-key.mode`              | String  | N        | "FAIL"        | Y        | Optional flag to control the handling mode when serializing null key for map data ." <br/> Option DROP will drop null key entries for map data ." <br/> Option LITERAL will use 'map-null-key.literal' as key literal .                                                                                                                  |
 | `map-null-key.literal`           | String  | N        | "null"        | Y        | Optional flag to specify string literal for null keys when 'map-null-key.mode' is LITERAL .                                                                                                                                                                                                                                        |
 | `encode.decimal-as-plain-number` | Boolean | N        | false         | Y        | Optional flag to specify whether to encode all decimals as plain numbers instead of possible scientific notations , false by default .                                                                                                                                                                                              |
