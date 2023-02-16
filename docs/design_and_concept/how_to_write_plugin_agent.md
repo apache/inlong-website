@@ -1,6 +1,6 @@
 ---
 title: Agent Plugin
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 ## Overview
@@ -27,7 +27,11 @@ When extending an Agent plugin, you need to develop specific Source, Reader and 
 ## Demonstration
 
 The Job/Task/Reader/Sink/Channel concept introduced above can be represented by the following figure:
+
+<div align="center">
+
 ![](img/Agent_Flow.png)
+</div>
 
 - The user submits a Job (via the manager), and the Job defines the Source, Channel, and Sink that need to be used (defined by the fully qualified name of the class)
 - The framework starts the Job and creates the Source through the reflection mechanism
@@ -134,6 +138,33 @@ public interface Source {
 The `Source` interface functions as follows:
 - `split`: Called by a single job to generate multiple Readers, for example: a read file task, matching multiple files in a folder, when the job starts, it will specify TextFileSource as the Source entry,
   After calling the split function, TextFileSource will detect how many paths match the path matching expression in the folder set by the user, and generate TextFileReader to read
+
+### Job
+
+```java
+public class xxJob {
+    
+  private String username;
+  private String password;
+  private String hostname;
+  private String port;
+  private String database;
+  // ...
+  
+  public static class xxJobConfig {
+
+    private String username;
+    private String password;
+    private String hostname;
+    private String port;
+    private String database;
+    // ...
+  }
+}
+
+```
+
+- The fields in `config` come from the manager and need to be consistent with the manager fields. When submitting the task, convert it into the corresponding job
 
 
 ## Job Definition

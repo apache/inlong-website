@@ -1,6 +1,6 @@
 ---
 title: Format 
-sidebar_position: 7
+sidebar_position: 2
 ---
 
 ## What is format ?

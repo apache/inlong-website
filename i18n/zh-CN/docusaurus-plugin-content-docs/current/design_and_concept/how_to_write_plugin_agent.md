@@ -1,6 +1,6 @@
 ---
 title: Agent 插件
-sidebar_position: 2
+sidebar_position: 3
 ---
 
 ## 总览
@@ -25,7 +25,11 @@ InLong Agent 是一个数据采集框架，采用 `Job` + `Task` 架构模型，
 ## 流程图示
 
 上述介绍的 Job/Task/Reader/Sink/Channel 概念可以用下图表示：
+
+<div align="center">
+
 ![](img/Agent_Flow.png)
+</div>
 
 - 用户提交 Job（通过 manager），Job 中定义了需要使用的 Source, Channel, Sink（通过类的全限定名定义）
 - 框架启动 Job，通过反射机制创建出 Source
@@ -134,6 +138,34 @@ public interface Source {
 - `split`: 被单个 Job 调用，产生多个 Reader，举例：一个读取文件任务，匹配文件夹内的多个文件，在 job 启动时，会指定 TextFileSource 作为 Source 入口，
   调用 split 函数后，TextFileSource 会检测用户设置的文件夹内有多少符合路径匹配表达式的路径，并生成 TextFileReader 读取
   
+
+### Job
+
+```java
+public class xxJob {
+    
+  private String username;
+  private String password;
+  private String hostname;
+  private String port;
+  private String database;
+  // ...
+  
+  public static class xxJobConfig {
+
+    private String username;
+    private String password;
+    private String hostname;
+    private String port;
+    private String database;
+    // ...
+  }
+}
+
+```
+
+- `config` 中的字段来自 manager，需要与 manager 字段保持一致，在任务配置时，将其转换成对应的 job
+
 
 ## 任务配置
 
