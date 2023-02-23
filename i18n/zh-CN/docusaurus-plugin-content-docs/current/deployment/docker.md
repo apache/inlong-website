@@ -23,7 +23,7 @@ cd docker/docker-compose
 docker-compose up -d
 ```
 
-## 注册集群
+## 集群初始化
 当所有容器都成功启动后，可以访问 InLong Dashboard 地址`http://localhost`，并使用以下默认账号登录:
 ```
 User: admin
@@ -48,7 +48,7 @@ Password: inlong
 Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 :::
 
-### 创建数据流
+## 使用
 创建数据流可以参考 [Pulsar Example](quick_start/pulsar_example.md).
 
 ## 销毁

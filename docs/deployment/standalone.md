@@ -16,7 +16,9 @@ InLong Support the following Message Queue services now, you can choose one of t
 ## Download the Binary Package
 You can get binary package from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).
 
+:::note
 Extract `apache-inlong-[version]-bin.tar.gz` and `apache-inlong-[version]-sort-connectors.tar.gz`, and make sure the `inlong-sort/connectors/` directory contains `sort-connector-[type]-[version].jar`.
+:::
 
 ## DB Dependencies
 - If the backend database is MySQL, please download [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar) and put it into the following directories:
@@ -33,12 +35,14 @@ In `conf/inlong.conf`, configure the parameters according to the actual situatio
 ```shell
 # local IP
 local_ip=
-# Configure MySQL
+# Configure Database, MySQL or PostgreSQL
 spring_datasource_hostname=
 spring_datasource_port=3306
 spring_datasource_username=root
 spring_datasource_password=inlong
-# Configure Pulsar or TubeMQ Address
+# Configure Pulsar Address if use Pulsar for Audit
+pulsar_service_url=pulsar://172.17.0.2:6650
+pulsar_admin_url=http://172.17.0.2:8080
 # the REST server address for Flink
 flink_rest_address=
 # the REST server Port for Flink
@@ -50,12 +54,28 @@ flink_rest_port=8081
 bin/inlong-daemon start standalone
 ```
 
-## Register Message Queue
-You can register message queue for Manger according to [Register MQ Cluster](https://inlong.apache.org/docs/next/modules/manager/quick_start/#register-mq-cluster).
-
-## Check
-After all component run successfully, you can access `http://localhost` with default account:
-```shell
-user: admin
-password: inlong
+## Cluster Initialize
+When all containers are successfully started, you can access the Inlong dashboard address `http: // localhost`, and use the following default account to log in:
 ```
+User: admin
+Password: inlong
+```
+
+### Create Cluster Tag
+Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge:
+![](img/create_cluster_tag.png)
+
+:::caution
+Since each component reports the ClusterTags as `default_cluster` by default, do not use other names.
+:::
+
+### Register Pulsar Cluster
+Click [Clusters]->[ClusterTags]->[Create] on the page to register Pulsar Cluster:
+![](img/create_pulsar_cluster.png)
+
+:::note
+The ClusterTags selects the newly created `default_cluster`, and then configuring the Pulsar cluster info.
+:::
+
+## Use
+You can refer [Pulsar Example](quick_start/pulsar_example.md) to create Data Stream.

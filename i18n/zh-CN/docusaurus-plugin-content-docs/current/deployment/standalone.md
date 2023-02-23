@@ -15,7 +15,9 @@ InLong 当前支持以下消息队列，根据使用情况**选择其一**即可
 ## 下载安装包
 可以从 [下载页面](https://inlong.apache.org/download) 获取二进制包，或参考 [如何编译](quick_start/how_to_build.md) 编译需要的版本。
 
+:::note
 解压 `apache-inlong-[version]-bin.tar.gz` 和 `apache-inlong-[version]-sort-connectors.tar.gz`，并确保 `inlong-sort/connectors/` 目录包含 `sort-connector-[type]-[version].jar`。
+:::
 
 ## DB 依赖
 - 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar), 并将其放入以下目录：
@@ -33,12 +35,14 @@ inlong-tubemq-manager/lib/
 ```shell
 # 本地机器 IP
 local_ip=
-# MySQL 配置
+# 数据库配置，MySQL 或者 PostgreSQL
 spring_datasource_hostname=
 spring_datasource_port=3306
 spring_datasource_username=root
 spring_datasource_password=inlong
-# 配置 Pulsar 或者 TubeMQ 地址
+# 配置 Pulsar 集群地址，如果 Audit 使用 Pulsar
+pulsar_service_url=pulsar://172.17.0.2:6650
+pulsar_admin_url=http://172.17.0.2:8080
 # Flink REST server 地址
 flink_rest_address=
 # Flink REST server 端口
@@ -50,14 +54,30 @@ flink_rest_port=8081
 bin/inlong-daemon start standalone
 ```
 
-## 注册消息队列
-可参考 [注册 MQ 集群](https://inlong.apache.org/zh-CN/docs/next/modules/manager/quick_start/#%E6%B3%A8%E5%86%8C-mq-%E9%9B%86%E7%BE%A4) 向 Manger 注册消息队列服务。
-
-## 检查
-当所有组件都成功启动后，可以访问`http://localhost`，并使用以下默认账号登录:
-```shell
-user: admin
-password: inlong
+## 集群初始化
+当所有容器都成功启动后，可以访问 InLong Dashboard 地址`http://localhost`，并使用以下默认账号登录:
 ```
+User: admin
+Password: inlong
+```
+
+### 创建集群标签
+页面点击 [集群管理]->[标签管理]->[新建]，指定集群标签名称和负责人：
+![](img/create_cluster_tag.png)
+
+:::caution
+由于各个组件默认上报集群标签为 `default_cluster`，请勿使用其它名称。
+:::
+
+### 注册 Pulsar 集群
+页面点击 [集群管理]->[集群管理]->[新建集群]，注册 Pulsar 集群：
+![](img/create_pulsar_cluster.png)
+
+:::note
+集群标签选择刚创建的 `default_cluster`，然后配置 Pulsar 集群信息。
+:::
+
+## 使用
+创建数据流可以参考 [Pulsar Example](quick_start/pulsar_example.md).
 
 
