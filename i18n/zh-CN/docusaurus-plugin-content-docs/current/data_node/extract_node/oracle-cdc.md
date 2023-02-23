@@ -332,70 +332,70 @@ Oracle CDC 消费者的可选启动模式，有效枚举为"initial"
      </tr>
      <tr>
        <td>source.multiple.enable</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>false</td>
        <td>Boolean</td>
        <td>是否开启多模式、表同步功能，如果为 'true'，Oracle Extract Node 则将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'。</td> 
      </tr>
     <tr>
        <td>scan.incremental.snapshot.enabled</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>true</td>
        <td>Boolean</td>
        <td>增量快照是一种读取表快照的新机制。与旧的快照机制相比，增量快照具有许多优点，包括：（1）在快照读取期间 Source 可以是并行的，（2）Source 可以在快照读取过程中执行 Chunk 粒度中的检查点，（3）Source 不需要在快照读取之前获取ROW SHARE MODE锁。</td> 
      </tr>
     <tr>
        <td>scan.incremental.snapshot.chunk.size</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>8096</td>
        <td>Integer</td>
        <td>表快照的块大小（行数），读取表的快照时，表的快照被分成多个块。</td> 
      </tr>
     <tr>
        <td>scan.snapshot.fetch.size</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>1024</td>
        <td>Integer</td>
        <td>读取表快照时每次轮询的最大获取大小。</td> 
      </tr>
     <tr>
        <td>connect.max-retries</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>3</td>
        <td>Integer</td>
        <td>连接器应重试以建立 Oracle 数据库服务器连接的最大重试次数。</td> 
      </tr>
     <tr>
        <td>chunk-meta.group.size</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>1000</td>
        <td>Integer</td>
        <td>Chunk meta 组大小，如果 meta 大小超过组大小，则 meta 将被分成多个组。</td> 
      </tr>
     <tr>
        <td>connect.timeout</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>30s</td>
        <td>Duration</td>
        <td>连接器在尝试连接到 Oracle 数据库服务器后在超时之前应等待的最长时间。</td> 
      </tr>
     <tr>
        <td>chunk-key.even-distribution.factor.lower-bound</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>0.05d</td>
        <td>Double</td>
        <td>Chunk Key 分布因子的下限。分布系数用于确定表格是否均匀分布。当数据分布均匀时，表块将均匀地使用计算优化，当数据分布不均匀时，将进行拆分查询。分布因子可以通过（MAX（id）-MIN（id）+1）/rowCount计算。</td> 
      </tr>
     <tr>
        <td>chunk-key.even-distribution.factor.upper-bound</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>1000.0d</td>
        <td>Double</td>
        <td>Chunk Key 分布因子的上限。分布系数用于确定表格是否均匀分布。当数据分布均匀时，表块将均匀地使用计算优化，当数据分布不均匀时，将进行拆分查询。分布因子可以通过（MAX（id）-MIN（id）+1）/rowCount计算。</td> 
      </tr>
     <tr>
        <td>connection.pool.size</td>
-       <td>可选</td>
+       <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>20</td>
        <td>Integer</td>
        <td>连接池大小。</td> 
