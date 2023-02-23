@@ -176,6 +176,7 @@ Oracle Extract 节点允许从 Oracle 数据库中读取快照数据和增量数
      GRANT SELECT ANY TRANSACTION TO flinkuser CONTAINER=ALL;
      GRANT LOGMINING TO flinkuser CONTAINER=ALL;
      GRANT CREATE TABLE TO flinkuser CONTAINER=ALL;
+     -- 如果设置scan.increative.snapshot.enabled=true（默认值），则不需要执行
      GRANT LOCK ANY TABLE TO flinkuser CONTAINER=ALL;
      GRANT CREATE SEQUENCE TO flinkuser CONTAINER=ALL;
 
