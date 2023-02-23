@@ -176,6 +176,7 @@ Overall, the steps for configuring CDB database is quite similar to non-CDB data
      GRANT SELECT ANY TRANSACTION TO flinkuser CONTAINER=ALL;
      GRANT LOGMINING TO flinkuser CONTAINER=ALL;
      GRANT CREATE TABLE TO flinkuser CONTAINER=ALL;
+     -- need not to execute if set scan.incremental.snapshot.enabled=true(default)
      GRANT LOCK ANY TABLE TO flinkuser CONTAINER=ALL;
      GRANT CREATE SEQUENCE TO flinkuser CONTAINER=ALL;
 
@@ -334,6 +335,69 @@ TODO: It will be supported in the future.
        <td style={{wordWrap: 'break-word'}}>false</td>
        <td>Boolean</td>
        <td>Whether to enable multiple schema and table migration. If it is' true ', Oracle Extract Node will compress the physical field of the table into a special meta field 'data_canal' in the format of 'canal json'.</td> 
+     </tr>
+    <tr>
+       <td>scan.incremental.snapshot.enabled</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>true</td>
+       <td>Boolean</td>
+       <td>Incremental snapshot is a new mechanism to read snapshot of a table. Compared to the old snapshot mechanism, the incremental snapshot has many advantages, including: (1) source can be parallel during snapshot reading, (2) source can perform checkpoints in the chunk granularity during snapshot reading, (3) source doesn't need to acquire ROW SHARE MODE lock before snapshot reading.</td> 
+     </tr>
+    <tr>
+       <td>scan.incremental.snapshot.chunk.size</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>8096</td>
+       <td>Integer</td>
+       <td>The chunk size (number of rows) of table snapshot, captured tables are split into multiple chunks when read the snapshot of table.</td> 
+     </tr>
+    <tr>
+       <td>scan.snapshot.fetch.size</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>1024</td>
+       <td>Integer</td>
+       <td>The maximum fetch size for per poll when read table snapshot.</td> 
+     </tr>
+    <tr>
+       <td>connect.max-retries</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>3</td>
+       <td>Integer</td>
+       <td>The max retry times that the connector should retry to build MySQL database server connection.</td> 
+     </tr>
+    <tr>
+       <td>chunk-meta.group.size</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>1000</td>
+       <td>Integer</td>
+       <td>The group size of chunk meta, if the meta size exceeds the group size, the meta will be divided into multiple groups.</td> 
+     </tr>
+    <tr>
+       <td>connect.timeout</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>30s</td>
+       <td>Duration</td>
+       <td>The maximum time that the connector should wait after trying to connect to the Oracle database server before timing out.</td> 
+     </tr>
+    <tr>
+       <td>chunk-key.even-distribution.factor.lower-bound</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>0.05d</td>
+       <td>Double</td>
+       <td>The lower bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.</td> 
+     </tr>
+    <tr>
+       <td>chunk-key.even-distribution.factor.upper-bound</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>1000.0d</td>
+       <td>Double</td>
+       <td>The upper bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.</td> 
+     </tr>
+    <tr>
+       <td>connection.pool.size</td>
+       <td>optional</td>
+       <td style={{wordWrap: 'break-word'}}>20</td>
+       <td>Integer</td>
+       <td>The connection pool size.</td> 
      </tr>
     </tbody>
 </table>    
