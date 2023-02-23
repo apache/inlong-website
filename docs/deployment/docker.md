@@ -23,6 +23,13 @@ cd docker/docker-compose
 docker-compose up -d
 ```
 
+## Cluster Initialize
+When all containers are successfully started, you can access the Inlong dashboard address `http: // localhost`, and use the following default account to log in:
+```
+User: admin
+Password: inlong
+```
+
 ### Create Cluster Tag
 Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge:
 ![](img/create_cluster_tag.png)
@@ -41,7 +48,7 @@ The ClusterTags selects the newly created `default_cluster`, the Pulsar cluster 
 Service URL is `pulsar://pulsar:6650`, Admin URL is `http://pulsar:8080`.
 :::
 
-### Create Data Stream
+## Use
 You can refer [Pulsar Example](quick_start/pulsar_example.md) to create Data Stream.
 
 ## Destroy
