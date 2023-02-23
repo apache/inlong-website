@@ -62,33 +62,39 @@ metrics.audit.proxy.hosts=127.0.0.1:10081
 bash +x bin/startup.sh
 ```
 
-## Register MQ Cluster
+## Cluster Initialize
+When all containers are successfully started, you can access the Inlong dashboard address `http: // localhost`, and use the following default account to log in:
+```
+User: admin
+Password: inlong
+```
 
-### Pulsar Cluster
+### Create Cluster Tag
+Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge:
+![](img/create_cluster_tag.png)
 
-If you use Pulsar as the message queue for data cache, you need to add its configuration to InLong-Manager:
+:::caution
+Since each component reports the ClusterTags as `default_cluster` by default, do not use other names.
+:::
 
-Open the Inlong-Dashboard page (the default is <http://127.0.0.1>), and select to add a Pulsar cluster on the [Clusters] tab:
+### Register MQ Cluster
+You could only Register the MQ type you chose.
 
-![](img/pulsar_cluster.png)
-
-Click the [Create] button, and fill in the required information such as cluster name, cluster tag, responsible person, AdminUrl, ServiceUrl and default tenant in the pop-up box to save.
-
-> Note: [Cluster Tag] is a logical concept. Tags with the same name will be regarded as the same cluster.
->
-> For example, the DataProxy cluster and the Pulsar cluster with the same cluster tag belong to the same cluster.
-
-Fill in the example:
-
+- Option 1: Register Pulsar Cluster
+Click [Clusters]->[ClusterTags]->[Create] on the page to register Pulsar Cluster:
 ![](img/pulsar_cluster_save.png)
 
-### TubeMQ Cluster
+:::note
+The ClusterTags selects the newly created `default_cluster`, and then configuring the Pulsar cluster info.
+:::
 
-If you use InLong TubeMQ as the message queue for data cache, you need to add its configuration to InLong-Manager:
-
-Similar to the above entry for adding a Pulsar cluster, the filling example is as follows:
-
+- Option 2: Register TubeMQ Cluster
+Click [Clusters]->[ClusterTags]->[Create] on the page to register TubeMQ Cluster:
 ![](img/tube_cluster_save.png)
+
+:::note
+The ClusterTags selects the newly created `default_cluster`, and then configuring the TubeMQ cluster info.
+:::
 
 ## (Optional) Enable OpenAPI Authentication
 

@@ -41,8 +41,8 @@ spring_datasource_port=3306
 spring_datasource_username=root
 spring_datasource_password=inlong
 # 配置 Pulsar 集群地址，如果 Audit 使用 Pulsar
-pulsar_service_url=pulsar://172.17.0.2:6650
-pulsar_admin_url=http://172.17.0.2:8080
+pulsar_service_url=
+pulsar_admin_url=
 # Flink REST server 地址
 flink_rest_address=
 # Flink REST server 端口

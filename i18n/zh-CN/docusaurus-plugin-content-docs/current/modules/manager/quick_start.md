@@ -61,31 +61,39 @@ metrics.audit.proxy.hosts=127.0.0.1:10081
 bash +x bin/startup.sh
 ```
 
-## 注册 MQ 集群
+## 集群初始化
+当所有容器都成功启动后，可以访问 InLong Dashboard 地址`http://localhost`，并使用以下默认账号登录:
+```
+User: admin
+Password: inlong
+```
 
-### Pulsar 集群
+### 创建集群标签
+页面点击 [集群管理]->[标签管理]->[新建]，指定集群标签名称和负责人：
+![](img/create_cluster_tag.png)
 
-若使用 Pulsar 作为数据缓存的消息队列，则需要添加其配置到 InLong-Manager 中：
+:::caution
+由于各个组件默认上报集群标签为 `default_cluster`，请勿使用其它名称。
+:::
 
-打开 Inlong-Dashboard 页面（默认是 <http://127.0.0.1>），在 [集群管理] 页签中选择添加 Pulsar 集群：
+### 注册 MQ 集群
+只用注册你选择的 MQ 类型集群。
 
-![](img/pulsar_cluster_cn.png)
+- 选择 1：注册 Pulsar 集群
+页面点击 [集群管理]->[集群管理]->[新建集群]，注册 Pulsar 集群：
+![](img/pulsar_cluster_save.png)
 
-点击 [新建集群] 按钮，在弹出的框中填写 集群名称、集群标签、责任人、AdminUrl、ServiceUrl 及默认租户等必填信息即可保存。
+:::note
+集群标签选择刚创建的 `default_cluster`，然后配置 Pulsar 集群信息。
+:::
 
-> 说明：[集群标签] 是一个逻辑概念，同名的标签将被视为同一套集群，比如相同集群标签的 DataProxy 集群和 Pulsar 集群，属于同一套集群。
+- 选择 2：注册 TubeMQ 集群
+页面点击 [集群管理]->[集群管理]->[新建集群]，注册 TubeMQ 集群：
+![](img/tube_cluster_save.png)
 
-填写示例：
-
-![](img/pulsar_cluster_save_cn.png)
-
-### TubeMQ 集群
-
-若使用 InLong TubeMQ 作为数据缓存的消息队列，则需要添加其配置到 InLong-Manager 中：
-
-与上述 Pulsar 集群的添加入口相似，填写示例如下：
-
-![](img/tube_cluster_save_cn.png)
+:::note
+集群标签选择刚创建的 `default_cluster`，然后配置 TubeMQ 集群信息。
+:::
 
 ## (可选) 开启OpenAPI认证
 
