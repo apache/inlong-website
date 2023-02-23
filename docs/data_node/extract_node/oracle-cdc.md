@@ -362,7 +362,7 @@ TODO: It will be supported in the future.
        <td>optional</td>
        <td style={{wordWrap: 'break-word'}}>3</td>
        <td>Integer</td>
-       <td>The max retry times that the connector should retry to build MySQL database server connection.</td> 
+       <td>The max retry times that the connector should retry to build Oracle database server connection.</td> 
      </tr>
     <tr>
        <td>chunk-meta.group.size</td>
