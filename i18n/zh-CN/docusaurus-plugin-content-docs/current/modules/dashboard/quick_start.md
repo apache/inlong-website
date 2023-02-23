@@ -2,6 +2,7 @@
 title: 安装部署
 sidebar_position: 2
 ---
+
 ## 选择 1：Docker 部署
 ### 准备镜像
 从仓库拉起最新镜像：
