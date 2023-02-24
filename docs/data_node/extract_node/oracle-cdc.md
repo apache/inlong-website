@@ -176,7 +176,7 @@ Overall, the steps for configuring CDB database is quite similar to non-CDB data
      GRANT SELECT ANY TRANSACTION TO flinkuser CONTAINER=ALL;
      GRANT LOGMINING TO flinkuser CONTAINER=ALL;
      GRANT CREATE TABLE TO flinkuser CONTAINER=ALL;
-     -- need not to execute if set scan.incremental.snapshot.enabled=true(default)
+     -- Don’t need to execute this statement, If you set 'scan.incremental.snapshot.enabled=true' (default).
      GRANT LOCK ANY TABLE TO flinkuser CONTAINER=ALL;
      GRANT CREATE SEQUENCE TO flinkuser CONTAINER=ALL;
 
