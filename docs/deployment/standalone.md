@@ -41,8 +41,8 @@ spring_datasource_port=3306
 spring_datasource_username=root
 spring_datasource_password=inlong
 # Configure Pulsar Address if use Pulsar for Audit
-pulsar_service_url=pulsar://172.17.0.2:6650
-pulsar_admin_url=http://172.17.0.2:8080
+pulsar_service_url=
+pulsar_admin_url=
 # the REST server address for Flink
 flink_rest_address=
 # the REST server Port for Flink
