@@ -55,7 +55,7 @@ bin/inlong-daemon start standalone
 ```
 
 ## Cluster Initialize
-When all containers are successfully started, you can access the Inlong dashboard address `http: // localhost`, and use the following default account to log in:
+When all containers are successfully started, you can access the Inlong dashboard address `http://localhost`, and use the following default account to log in:
 ```
 User: admin
 Password: inlong
