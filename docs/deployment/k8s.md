@@ -33,9 +33,9 @@ If `ingress.enabled` in [values.yaml](https://github.com/apache/inlong/blob/mast
 Otherwise, when `dashboard.service.type` is set to `ClusterIP`, you need to execute the port-forward command like:
 
 ```shell
-export DASHBOARD_POD_NAME=$(kubectl get pods -l "app.kubernetes.io/name=inlong-dashboard,app.kubernetes.io/instance=inlong" -o jsonpath="{.items[0].metadata.name}" -n inlong)
+export DASHBOARD_POD_NAME=$(kubectl get pods -l "component=dashboard" -o jsonpath="{.items[0].metadata.name}" -n inlong)
 export DASHBOARD_CONTAINER_PORT=$(kubectl get pod $DASHBOARD_POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}" -n inlong)
-kubectl port-forward $DASHBOARD_POD_NAME 8181:$DASHBOARD_CONTAINER_PORT -n inlong
+kubectl port-forward $DASHBOARD_POD_NAME 80:$DASHBOARD_CONTAINER_PORT --address='0.0.0.0' -n inlong
 ```
 
 And then access [http://127.0.0.1:8181](http://127.0.0.1:8181)

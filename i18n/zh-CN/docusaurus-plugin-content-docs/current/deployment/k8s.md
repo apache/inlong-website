@@ -34,9 +34,9 @@ helm upgrade inlong --install -n inlong ./
 否则，如果 `dashboard.service.type` 字段值设置为 `ClusterIP`，则需要执行以下命令进行端口转发：
 
 ```shell
-export DASHBOARD_POD_NAME=$(kubectl get pods -l "app.kubernetes.io/name=inlong-dashboard,app.kubernetes.io/instance=inlong" -o jsonpath="{.items[0].metadata.name}" -n inlong)
+export DASHBOARD_POD_NAME=$(kubectl get pods -l "component=dashboard" -o jsonpath="{.items[0].metadata.name}" -n inlong)
 export DASHBOARD_CONTAINER_PORT=$(kubectl get pod $DASHBOARD_POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}" -n inlong)
-kubectl port-forward $DASHBOARD_POD_NAME 8181:$DASHBOARD_CONTAINER_PORT -n inlong
+kubectl port-forward $DASHBOARD_POD_NAME 80:$DASHBOARD_CONTAINER_PORT --address='0.0.0.0' -n inlong
 ```
 
 之后就可以访问 [http://127.0.0.1:8181](http://127.0.0.1:8181) 进入 InLong Dashboard 了。
