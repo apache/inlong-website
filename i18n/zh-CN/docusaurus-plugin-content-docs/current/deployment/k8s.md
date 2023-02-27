@@ -14,14 +14,12 @@ sidebar_position: 3
 
 ### 安装
 
-如果不存在名为 `inlong` 的命名空间，则可通过以下命令创建：
-
+如果不存在名为 `inlong` 的命名空间，可通过以下命令创建：
 ```shell
 kubectl create namespace inlong
 ```
 
 在 [docker/kubernetes](https://github.com/apache/inlong/tree/master/docker/kubernetes) 目录下安装 chart：
-
 ```shell
 helm upgrade inlong --install -n inlong ./
 ```
@@ -29,22 +27,24 @@ helm upgrade inlong --install -n inlong ./
 ### 进入 InLong Dashboard
 
 如果 [values.yaml](https://github.com/apache/inlong/blob/master/docker/kubernetes/values.yaml) 中的 `ingress.enabled` 字段值是 `true`，
-则直接在浏览器中访问 `http://${ingress.host}/dashboard` 即可
-
-否则，如果 `dashboard.service.type` 字段值设置为 `ClusterIP`，则需要执行以下命令进行端口转发：
-
+则直接在浏览器中访问 `http://${ingress.host}/dashboard` 即可，否则，如果 `dashboard.service.type` 字段值设置为 `ClusterIP`，则需要执行以下命令进行端口转发：
 ```shell
-export DASHBOARD_POD_NAME=$(kubectl get pods -l "app.kubernetes.io/name=inlong-dashboard,app.kubernetes.io/instance=inlong" -o jsonpath="{.items[0].metadata.name}" -n inlong)
+export DASHBOARD_POD_NAME=$(kubectl get pods -l "component=dashboard" -o jsonpath="{.items[0].metadata.name}" -n inlong)
 export DASHBOARD_CONTAINER_PORT=$(kubectl get pod $DASHBOARD_POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}" -n inlong)
-kubectl port-forward $DASHBOARD_POD_NAME 8181:$DASHBOARD_CONTAINER_PORT -n inlong
+kubectl port-forward $DASHBOARD_POD_NAME 80:$DASHBOARD_CONTAINER_PORT --address='0.0.0.0' -n inlong
 ```
 
-之后就可以访问 [http://127.0.0.1:8181](http://127.0.0.1:8181) 进入 InLong Dashboard 了。
+之后就可以访问 [http://127.0.0.1:80](http://127.0.0.1:80) 进入 InLong Dashboard 了，默认登录账号为：
+```
+User: admin
+Password: inlong
+```
 
-> 提示：如果出现 `unable to do port forwarding: socat not found` 的错误，则首先需要安装 `socat`
+:::note
+如果出现 `unable to do port forwarding: socat not found` 的错误，则首先需要安装 `socat`
+:::
 
 如果 `dashboard.service.type` 字段值设置为 `NodePort`，则需要执行以下命令：
-
 ```shell
 export DASHBOARD_NODE_IP=$(kubectl get nodes -o jsonpath="{.items[0].status.addresses[0].address}" -n inlong)
 export DASHBOARD_NODE_PORT=$(kubectl get svc inlong-dashboard -o jsonpath="{.spec.ports[0].nodePort}" -n inlong)
@@ -53,19 +53,19 @@ export DASHBOARD_NODE_PORT=$(kubectl get svc inlong-dashboard -o jsonpath="{.spe
 之后就可以访问 `http://$DASHBOARD_NODE_IP:$DASHBOARD_NODE_PORT` 进入 InLong Dashboard 了。
 
 如果 `dashboard.service.type` 字段值设置为 `LoadBalancer`，则需要执行以下命令：
-
 ```shell
 export DASHBOARD_SERVICE_IP=$(kubectl get svc inlong-dashboard --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}"  -n inlong)
 ```
 
 之后就可以访问 `http://$DASHBOARD_SERVICE_IP:30080` 进入 InLong Dashboard 了。
 
-> 注意：这将花费一些时间，可以运行 `kubectl get svc inlong-dashboard -n inlong -w` 命令来查看其状态
+:::note
+这将花费一些时间，可以运行 `kubectl get svc inlong-dashboard -n inlong -w` 命令来查看其状态
+:::
 
 默认的用户名是 `admin`，默认密码是 `inlong`，你可以通过它们进入 InLong Dashboard。
 
 ### 配置
-
 配置项在 [values.yaml](https://github.com/apache/inlong/blob/master/docker/kubernetes/values.yaml) 文件中，下表展示了所有可配置项及其默认值：
 
 |                                    Parameter                                     |     Default      |                                                                         Description                                                                          | 
