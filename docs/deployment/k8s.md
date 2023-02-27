@@ -38,9 +38,15 @@ export DASHBOARD_CONTAINER_PORT=$(kubectl get pod $DASHBOARD_POD_NAME -o jsonpat
 kubectl port-forward $DASHBOARD_POD_NAME 80:$DASHBOARD_CONTAINER_PORT --address='0.0.0.0' -n inlong
 ```
 
-And then access [http://127.0.0.1:80](http://127.0.0.1:80)
+And then access [http://127.0.0.1:80](http://127.0.0.1:80), and use the following default account to log in:
+```
+User: admin
+Password: inlong
+```
 
-> Tip: If the error of `unable to do port forwarding: socat not found` appears, you need to install `socat` at first.
+:::note
+If the error of `unable to do port forwarding: socat not found` appears, you need to install `socat` at first.
+:::
 
 Or when `dashboard.service.type` is set to `NodePort`, you need to execute the following commands:
 
@@ -59,7 +65,9 @@ export DASHBOARD_SERVICE_IP=$(kubectl get svc inlong-dashboard --template "{{"{{
 
 And then access `http://$DASHBOARD_SERVICE_IP:30080`
 
-> NOTE: It may take a few minutes for the `LoadBalancer` IP to be available. You can check the status by running `kubectl get svc inlong-dashboard -n inlong -w`
+:::note
+It may take a few minutes for the `LoadBalancer` IP to be available. You can check the status by running `kubectl get svc inlong-dashboard -n inlong -w`
+:::
 
 The default username is `admin` and the default password is `inlong`. You can access the InLong Dashboard through them.
 
