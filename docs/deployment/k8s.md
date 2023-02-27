@@ -38,7 +38,7 @@ export DASHBOARD_CONTAINER_PORT=$(kubectl get pod $DASHBOARD_POD_NAME -o jsonpat
 kubectl port-forward $DASHBOARD_POD_NAME 80:$DASHBOARD_CONTAINER_PORT --address='0.0.0.0' -n inlong
 ```
 
-And then access [http://127.0.0.1:8181](http://127.0.0.1:8181)
+And then access [http://127.0.0.1:80](http://127.0.0.1:80)
 
 > Tip: If the error of `unable to do port forwarding: socat not found` appears, you need to install `socat` at first.
 

@@ -39,7 +39,7 @@ export DASHBOARD_CONTAINER_PORT=$(kubectl get pod $DASHBOARD_POD_NAME -o jsonpat
 kubectl port-forward $DASHBOARD_POD_NAME 80:$DASHBOARD_CONTAINER_PORT --address='0.0.0.0' -n inlong
 ```
 
-之后就可以访问 [http://127.0.0.1:8181](http://127.0.0.1:8181) 进入 InLong Dashboard 了。
+之后就可以访问 [http://127.0.0.1:80](http://127.0.0.1:80) 进入 InLong Dashboard 了。
 
 > 提示：如果出现 `unable to do port forwarding: socat not found` 的错误，则首先需要安装 `socat`
 
