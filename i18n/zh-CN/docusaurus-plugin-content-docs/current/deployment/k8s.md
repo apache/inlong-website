@@ -15,8 +15,8 @@ sidebar_position: 3
 ## 使用
 
 ### 配置
-- configure the `external.pulsar` for Apache Pulsar info in `values.yaml`
-- configure the `external.flink` for Apache Flink info in `values.yaml`
+- 配置 `values.yaml` 中 `external.pulsar` 关于 Apache Pulsar 集群信息
+- 配置 `values.yaml` 中 `external.flink` 关于 Apache Flink 集群信息
 
 ### 安装
 
