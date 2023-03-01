@@ -6,7 +6,7 @@ sidebar_position: 2
 All deploying files at `inlong-dataproxy` directory.
 
 ## Configuration
-### Configure InLong-Manager URL
+### Configure Manager and Audit URL
 configuration file: `conf/common.properties`:
 ```
 # local IP
@@ -17,17 +17,15 @@ manager.hosts=127.0.0.1:8083
 audit.proxys=127.0.0.1:10081
 ```
 
-## run
+## Start
 ```
-# Default using Pulsar to cache data, and the dataproxy-pulsar.conf configuration file is loaded.
+# If using Pulsar or Kafka to cache data
 bash +x bin/dataproxy-start.sh
-# or
-bash +x bin/dataproxy-start.sh pulsar
 # If using Inlong TubeMQ to cache data
-# bash +x bin/dataproxy-start.sh tube
+# bash +x bin/dataproxy-start.sh tubemq
 ```
 	
-## check
+## Check
 ```
 telnet 127.0.0.1 46801
 ```
