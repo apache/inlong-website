@@ -125,11 +125,7 @@ TODO: It will be supported in the future.
 | database                  | required     | (none)           | String   | Name of the database to watch for changes.                   |
 | collection                | required     | (none)           | String   | Name of the collection in the database to watch for changes. |
 | connection.options        | optional     | (none)           | String   | The ampersand-separated [connection options](https://docs.mongodb.com/manual/reference/connection-string/#std-label-connections-connection-options) of MongoDB. eg. `replicaSet=test&connectTimeoutMS=300000` |
-| errors.tolerance          | optional     | none             | String   | Whether to continue processing messages if an error is encountered. Accept `none` or `all`. When set to `none`, the connector reports an error and blocks further processing of the rest of the records when it encounters an error. When set to `all`, the connector silently ignores any bad messages. |
-| errors.log.enable         | optional     | true             | Boolean  | Whether details of failed operations should be written to the log file. |
 | copy.existing             | optional     | true             | Boolean  | Whether copy existing data from source collections.          |
-| copy.existing.pipeline    | optional     | (none)           | String   | An array of JSON objects describing the pipeline operations to run when copying existing data. This can improve the use of indexes by the copying manager and make copying more efficient. eg. `[{"$match": {"closed": "false"}}]` ensures that only documents in which the closed field is set to false are copied. |
-| copy.existing.max.threads | optional     | Processors Count | Integer  | The number of threads to use when performing the data copy.  |
 | copy.existing.queue.size  | optional     | 16000            | Integer  | The max size of the queue to use when copying data.          |
 | poll.max.batch.size       | optional     | 1000             | Integer  | Maximum number of change stream documents to include in a single batch when polling for new data. |
 | poll.await.time.ms        | optional     | 1500             | Integer  | The amount of time to wait before checking for new results on the change stream. |
