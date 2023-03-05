@@ -126,9 +126,9 @@ TODO: It will be supported in the future.
 | collection                | required     | (none)           | String   | Name of the collection in the database to watch for changes. |
 | connection.options        | optional     | (none)           | String   | The ampersand-separated [connection options](https://docs.mongodb.com/manual/reference/connection-string/#std-label-connections-connection-options) of MongoDB. eg. `replicaSet=test&connectTimeoutMS=300000` |
 | copy.existing             | optional     | true             | Boolean  | Whether copy existing data from source collections.          |
-| copy.existing.queue.size  | optional     | 16000            | Integer  | The max size of the queue to use when copying data.          |
-| poll.max.batch.size       | optional     | 1000             | Integer  | Maximum number of change stream documents to include in a single batch when polling for new data. |
-| poll.await.time.ms        | optional     | 1500             | Integer  | The amount of time to wait before checking for new results on the change stream. |
+| copy.existing.queue.size  | optional     | 10240            | Integer  | The max size of the queue to use when copying data.          |
+| poll.max.batch.size       | optional     | 1024             | Integer  | Maximum number of change stream documents to include in a single batch when polling for new data. |
+| poll.await.time.ms        | optional     | 1000             | Integer  | The amount of time to wait before checking for new results on the change stream. |
 | heartbeat.interval.ms     | optional     | 0                | Integer  | The length of time in milliseconds between sending heartbeat messages. Use 0 to disa |
 | inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`. |
 ## Available Metadata
