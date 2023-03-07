@@ -19,7 +19,7 @@ title: 安装部署
 
 ## Audit Proxy
 ### 配置消息队列
-消息队列服务目前可以使用Apache Pulsar或者InLong TubeMQ：
+消息队列服务目前可以使用Apache Pulsar、Apache Kafka或者InLong TubeMQ：
 
 - 若使用Pulsar，配置文件 `conf/audit-proxy-pulsar.conf`，修改下列配置中的 Pulsar service 地址。
 
@@ -40,10 +40,20 @@ agent1.sinks.tube-sink-msg2.master-host-port-list = localhost:8715
 agent1.sinks.tube-sink-msg2.topic = inlong-audit
 ```
 
+- 若使用Kafka，配置文件 `conf/audit-proxy-kafka.conf`，修改下列配置中的 Kafka service 地址。
+
+```Shell
+agent1.sources.tcp-source.port = 10081
+agent1.sinks.kafka-sink-msg1.bootstrap_servers = localhost:9092
+agent1.sinks.kafka-sink-msg1.topic = inlong-audit
+agent1.sinks.kafka-sink-msg2.bootstrap_servers = localhost:9092
+agent1.sinks.kafka-sink-msg2.topic = inlong-audit
+```
+
 ### 启动
 ```Shell
 # 默认使用 pulsar 作为消息队列，加载 audit-proxy-pulsar.conf 配置文件
-bash +x ./bin/proxy-start.sh [pulsar｜tube]
+bash +x ./bin/proxy-start.sh [pulsar｜tube｜kafka]
 ```
 
 ## Audit Store
@@ -51,7 +61,7 @@ bash +x ./bin/proxy-start.sh [pulsar｜tube]
 配置文件 `conf/application.properties`
 
 ```Shell
-# proxy.type: pulsar / tube
+# proxy.type: pulsar / tube / kafka
 audit.config.proxy.type=pulsar
 
 # store.server: mysql / elasticsearch 
@@ -66,6 +76,12 @@ audit.pulsar.consumer.sub.name=sub-audit
 audit.tube.masterlist=TUBE_LIST
 audit.tube.topic=inlong-audit
 audit.tube.consumer.group.name=inlong-audit-consumer
+
+# kafka config (optional), 将KAFKA_LIST替换为Kafka集群的服务地址
+audit.kafka.server.url=KAFKA_LIST
+audit.kafka.topic=inlong-audit
+audit.kafka.consumer.name=inlong-audit-consumer
+audit.kafka.group.id=audit-consumer-group
 
 # mysql config
 spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL

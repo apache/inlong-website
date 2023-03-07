@@ -5,9 +5,9 @@ sidebar_position: 3
 
 ## 概览
 
-审计代理服务audit-proxy `audit-proxy-pulsar.conf` 或者`audit-proxy-tube.conf`中设置。 审计存储服务audit-store `application.properties`中设置。
+审计代理服务audit-proxy在 `audit-proxy-{tube|pulsar|kafka}.conf`中设置。 审计存储服务audit-store在 `application.properties`中设置。
 
-## 审计代理层audit-proxy source-channel-sink 管道配置（dataproxy-{tube|pulsar}.conf）
+## 审计代理层audit-proxy source-channel-sink 管道配置（audit-proxy-{tube|pulsar|kafka}.conf）
 
 ### 通用设置
 

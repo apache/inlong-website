@@ -15,7 +15,7 @@ If you use ClickHouse to store audit data, you need to first create the database
   
 ## Audit Proxy
 ### Configure MessageQueue
-You can choose Apache Pulsar or InLong TubeMQ as your MessageQueue service:
+You can choose Apache Pulsar, Apache Kafka or InLong TubeMQ as your MessageQueue service:
 
 - If using Pulsar, the configuration file is `conf/audit-proxy-pulsar.conf`. Change the Pulsar service url for next configuration.
 
@@ -37,10 +37,20 @@ agent1.sinks.tube-sink-msg2.master-host-port-list = localhost:8715
 agent1.sinks.tube-sink-msg2.topic = inlong-audit
 ```
 
+- If using Kafka, the configuration file is `conf/audit-proxy-kafka.conf`. Change the Kafka service address for next configuration.
+
+```Shell
+agent1.sources.tcp-source.port = 10081
+agent1.sinks.kafka-sink-msg1.bootstrap_servers = localhost:9092
+agent1.sinks.kafka-sink-msg1.topic = inlong-audit
+agent1.sinks.kafka-sink-msg2.bootstrap_servers = localhost:9092
+agent1.sinks.kafka-sink-msg2.topic = inlong-audit
+```
+
 ### Start
 ```Shell
 # By default, pulsar is used as the MessageQueue, and the audit-proxy-pulsar.conf configuration file is loaded.
-bash +x ./bin/proxy-start.sh [pulsar｜tube]
+bash +x ./bin/proxy-start.sh [pulsar｜tube｜kafka]
 ```
 
 ## Audit Store
@@ -48,7 +58,7 @@ bash +x ./bin/proxy-start.sh [pulsar｜tube]
 The configuration file  is `conf/application.properties`. 
 
 ```Shell
-# proxy.type: pulsar / tube
+# proxy.type: pulsar / tube / kafka
 audit.config.proxy.type=pulsar
 
 # store.server: mysql / elasticsearch / clickhouse 
@@ -63,6 +73,12 @@ audit.pulsar.consumer.sub.name=sub-audit
 audit.tube.masterlist=TUBE_LIST
 audit.tube.topic=inlong-audit
 audit.tube.consumer.group.name=inlong-audit-consumer
+
+# kafka config (optional), replace KAFKA_LIST with your Kafka service url
+audit.kafka.server.url=KAFKA_LIST
+audit.kafka.topic=inlong-audit
+audit.kafka.consumer.name=inlong-audit-consumer
+audit.kafka.group.id=audit-consumer-group
 
 # mysql config
 spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL

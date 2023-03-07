@@ -12,7 +12,7 @@ The transmission status of each module, and whether the data stream is lost or r
 ## Architecture
 ![](img/audit_architecture.png)
 1. The audit SDK is nested in the service that needs to be audited, audits the service, and sends the audit result to the audit access layer
-2. The audit proxy writes audit data to MQ (Pulsar or TubeMQ)
+2. The audit proxy writes audit data to MQ (Pulsar, Kafka or TubeMQ)
 3. The distribution service consumes the audit data of MQ, and writes the audit data to MySQL, Elasticsearch and ClickHouse.
 4. The interface layer encapsulates the data of MySQL, Elasticsearch and ClickHouse.
 5. Application scenarios mainly include report display, audit reconciliation, etc.

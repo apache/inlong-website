@@ -5,10 +5,10 @@ sidebar_position: 3
 
 ## Overview
 
-Audit-proxy source-channel-sink pipeline configuration (dataproxy-{tube|pulsar}.conf).Audit-store storage service
+Audit-proxy source-channel-sink pipeline configuration (audit-proxy-{tube|pulsar|kafka}.conf).Audit-store storage service
 configuration (application.properties)
 
-## Audit-proxy source-channel-sink pipeline configuration (`dataproxy-{tube|pulsar}.conf`)
+## Audit-proxy source-channel-sink pipeline configuration (`audit-proxy-{tube|pulsar|kafka}.conf`)
 
 ### Basic Configuration
 

@@ -12,7 +12,7 @@ InLong审计是独立于InLong的一个子系统，对InLong系统的Agent、Dat
 ## 架构
 ![](img/audit_architecture.png)
 1. 审计SDK嵌套在需要审计的服务，对服务进行审计，将审计结果发送到审计接入层。
-2. 审计接入层将审计数据写到MQ(Pulsar或者TubeMQ)。
+2. 审计接入层将审计数据写到MQ(Pulsar、Kafka或者TubeMQ)。
 3. 分发服务消费MQ的审计数据，将审计数据写到MySQL、Elasticsearch、ClickHouse。
 4. 接口层将MySQL、Elasticsearch、ClickHouse的数据进行封装。
 5. 应用场景主要包括报表展示、审计对账等等。
