@@ -5,9 +5,9 @@ sidebar_position: 3
 
 ## 概览
 
-审计代理服务audit-proxy `audit-proxy-pulsar.conf` 或者`audit-proxy-tube.conf`中设置。 审计存储服务audit-store `application.properties`中设置。
+审计代理服务 audit-proxy 在 `audit-proxy-{tube|pulsar|kafka}.conf`中设置。 审计存储服务 audit-store 在 `application.properties`中设置。
 
-## 审计代理层audit-proxy source-channel-sink 管道配置（dataproxy-{tube|pulsar}.conf）
+## 审计代理层 audit-proxy source-channel-sink 管道配置（audit-proxy-{tube|pulsar|kafka}.conf）
 
 ### 通用设置
 
@@ -44,7 +44,7 @@ sidebar_position: 3
 | agent1.sinks.pulsar-sink-msg1.enable_token_auth    | 是否需要安全认证 | false     |     |
 | agent1.sinks.pulsar-sink-msg1.auth_token    | pulsar认证token | 空     |     |
 
-## 审计存储服务audit-store 配置 `application.properties`
+## 审计存储服务 audit-store 配置 `application.properties`
 
 ### MQ配置
 
@@ -66,7 +66,7 @@ sidebar_position: 3
 | spring.datasource.druid.username         | 账号名  | root   | |
 | spring.datasource.druid.password         | 密码  | inlong   | |
 
-### ElasticSearch配置
+### ElasticSearch 配置
 
 | 参数                       | 描述                      | 默认值 | 备注 |
 |--------------------------|----------------------------|------|-----|
