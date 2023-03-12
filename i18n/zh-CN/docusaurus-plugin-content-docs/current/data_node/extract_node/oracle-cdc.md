@@ -392,7 +392,7 @@ CREATE TABLE node(
 |      NUMBER(p, s &lt;= 0), p - s &lt; 5      |      SMALLINT|
 |      NUMBER(p, s &lt;= 0), p - s &lt; 10      |      INT|
 |      NUMBER(p, s &lt;= 0), p - s &lt; 19      |      BIGINT|
-|      NUMBER(p, s &lt;= 0), 19 &lt;= p - s &lt;= 38 <br/>      DECIMAL(p - s, 0)|
+|      NUMBER(p, s &lt;= 0), 19 &lt;= p - s &lt;= 38 <br/>     |     DECIMAL(p - s, 0)|
 |      NUMBER(p, s &gt; 0)      |      DECIMAL(p, s)|
 |      NUMBER(p, s &lt;= 0), p - s &gt; 38      |      STRING|
 |        FLOAT<br/>        BINARY_FLOAT      |      FLOAT|

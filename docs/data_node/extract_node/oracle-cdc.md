@@ -256,7 +256,8 @@ TODO: It will be supported in the future.
 |		connect.max-retries|		optional|		3|		Integer|		The max retry times that the connector should retry to build Oracle database server connection.|		 
 |		chunk-meta.group.size|		optional|		1000|		Integer|		The group size of chunk meta, if the meta size exceeds the group size, the meta will be divided into multiple groups.|		 
 |		connect.timeout|		optional|		30s|		Duration|		The maximum time that the connector should wait after trying to connect to the Oracle database server before timing out.|		 
-|		chunk-key.even-distribution.factor.lower-bound|		optional|		0.05d|		Double|		The lower bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.|		 |		chunk-key.even-distribution.factor.upper-bound|		optional|		1000.0d|		Double|		The upper bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.|		 
+|		chunk-key.even-distribution.factor.lower-bound|		optional|		0.05d|		Double|		The lower bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.|		 
+|		chunk-key.even-distribution.factor.upper-bound|		optional|		1000.0d|		Double|		The upper bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.|		 
 |		connection.pool.size|		optional|		20|		Integer|		The connection pool size.|		 
 
 ## Limitation
@@ -389,7 +390,7 @@ CREATE TABLE node(
 |      NUMBER(p, s &lt;= 0), p - s &lt; 5      |      SMALLINT|
 |      NUMBER(p, s &lt;= 0), p - s &lt; 10      |      INT|
 |      NUMBER(p, s &lt;= 0), p - s &lt; 19      |      BIGINT|
-|      NUMBER(p, s &lt;= 0), 19 &lt;= p - s &lt;= 38 <br/>      DECIMAL(p - s, 0)|
+|      NUMBER(p, s &lt;= 0), 19 &lt;= p - s &lt;= 38 <br/>      |     DECIMAL(p - s, 0)|
 |      NUMBER(p, s &gt; 0)      |      DECIMAL(p, s)|
 |      NUMBER(p, s &lt;= 0), p - s &gt; 38      |      STRING|
 |        FLOAT<br/>        BINARY_FLOAT      |      FLOAT|
