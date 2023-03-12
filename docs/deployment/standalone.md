@@ -11,7 +11,8 @@ sidebar_position: 1
 ## Prepare Message Queue
 InLong Support the following Message Queue services now, you can choose one of them.
 - [InLong TubeMQ](modules/tubemq/quick_start.md)
-- [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/en/2.8.1/standalone/)
+- [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/2.8.x/getting-started-home/)
+- [Apache Kafka 2.x](https://kafka.apache.org/quickstart)
 
 ## Download the Binary Package
 You can get binary package from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).
@@ -40,13 +41,23 @@ spring_datasource_hostname=
 spring_datasource_port=3306
 spring_datasource_username=root
 spring_datasource_password=inlong
-# Configure Pulsar Address if use Pulsar for Audit
-pulsar_service_url=
-pulsar_admin_url=
 # the REST server address for Flink
 flink_rest_address=
 # the REST server Port for Flink
 flink_rest_port=8081
+```
+
+- Configure Pulsar Address if using Pulsar for Audit
+```shell
+mq_type=pulsar
+pulsar_service_url=
+pulsar_admin_url=
+```
+
+- Configure Kafka Address if using Kafka for Audit
+```shell
+mq_type=kafka
+bootstrap_server_url=
 ```
 
 ## Start
