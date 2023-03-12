@@ -127,10 +127,14 @@ TODO: It will be supported in the future.
 | connection.options        | optional     | (none)           | String   | The ampersand-separated [connection options](https://docs.mongodb.com/manual/reference/connection-string/#std-label-connections-connection-options) of MongoDB. eg. `replicaSet=test&connectTimeoutMS=300000` |
 | copy.existing             | optional     | true             | Boolean  | Whether copy existing data from source collections.          |
 | copy.existing.queue.size  | optional     | 10240            | Integer  | The max size of the queue to use when copying data.          |
+| batch.size | optional     | 1024            | Integer  | The cursor batch size.          |
 | poll.max.batch.size       | optional     | 1024             | Integer  | Maximum number of change stream documents to include in a single batch when polling for new data. |
 | poll.await.time.ms        | optional     | 1000             | Integer  | The amount of time to wait before checking for new results on the change stream. |
 | heartbeat.interval.ms     | optional     | 0                | Integer  | The length of time in milliseconds between sending heartbeat messages. Use 0 to disa |
 | inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`. |
+| scan.incremental.snapshot.enabled | optional | false | Boolean | Whether enable incremental snapshot. The incremental snapshot feature only supports after MongoDB 4.0. |
+| scan.incremental.snapshot.chunk.size.mb | optional | 64 | Integer | The chunk size mb of incremental snapshot. |
+| chunk-meta.group.size | optional | 1000 | Integer | The group size of chunk meta, if the meta size exceeds the group size, the meta will be divided into multiple groups. |
 ## Available Metadata
 
 The following format metadata can be exposed as read-only (VIRTUAL) columns in a table definition.

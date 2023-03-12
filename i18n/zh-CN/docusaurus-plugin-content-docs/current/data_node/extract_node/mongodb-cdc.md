@@ -126,11 +126,15 @@ TODO: 未来会支持
 | collection                | 必须         | (none)     | String   | 数据库中要监视更改的集合的名称。                             |
 | connection.options        | 可选         | (none)     | String   | MongoDB的 & 分隔[连接选项](https://docs.mongodb.com/manual/reference/connection-string/#std-label-connections-connection-options)。例如。`replicaSet=test&connectTimeoutMS=300000` |
 | copy.existing             | 可选         | true       | Boolean  | 是否从源集合中复制现有数据。                                 |
-| copy.existing.queue.size  | 可选         | 10240      | Integer  | 执行数据复制时使用的线程数。                                 |
+| copy.existing.queue.size  | 可选         | 10240      | Integer  | 执行数据复制时使用的线程。数。                                 |
+| batch.size | 可选         | 1024      | Integer  | Cursor 批次大小。 |
 | poll.max.batch.size       | 可选         | 1024       | Integer  | 轮询新数据时，单个批次中包含的最大更改流文档数。             |
 | poll.await.time.ms        | 可选         | 1000       | Integer  | 在更改流上检查新结果之前等待的时间量。                       |
 | heartbeat.interval.ms     | 可选         | 0          | Integer  | 发送心跳消息之间的时间长度（以毫秒为单位）。使用 0 禁用。    |
 | inlong.metric.labels             | 可选         | (none)     | String   | inlong metric 的标签值，该值的构成为groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`。|
+| scan.incremental.snapshot.enabled | 可选         | false     | Boolean   | 是否启用增量快照。增量快照功能仅支持MongoDB 4.0之后的版本。 |
+| scan.incremental.snapshot.chunk.size.mb             | 可选         | 64     | Integer   | 增量快照的块大小 mb。 |
+| chunk-meta.group.size | 可选         | 1000     | Integer   |  chunk meta 的组大小，如果 meta 大小超过组大小，则 meta 将被分成多个组。 |
 
 ## 可用元数据
 
