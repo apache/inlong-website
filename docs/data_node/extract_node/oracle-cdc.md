@@ -236,173 +236,29 @@ TODO: It will be supported in the future.
 
 ## Oracle Extact Node Options
 
-<div class="highlight">
-<table class="colwidths-auto docutils">
-   <thead>
-      <tr>
-        <th class="text-left" style={{width: '25%'}}>Option</th>
-        <th class="text-left" style={{width: '8%'}}>Required</th>
-        <th class="text-left" style={{width: '7%'}}>Default</th>
-        <th class="text-left" style={{width: '10%'}}>Type</th>
-        <th class="text-left" style={{width: '50%'}}>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>connector</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Specify what connector to use, here should be <code>'oracle-cdc-inlong'</code>.</td>
-    </tr>
-    <tr>
-      <td>hostname</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>IP address or hostname of the Oracle database server.</td>
-    </tr>
-    <tr>
-      <td>username</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Name of the Oracle database to use when connecting to the Oracle database server.</td>
-    </tr>
-    <tr>
-      <td>password</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Password to use when connecting to the Oracle database server.</td>
-    </tr>
-    <tr>
-      <td>database-name</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Database name of the Oracle server to monitor.</td>
-    </tr>
-    <tr>
-      <td>schema-name</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Schema name of the Oracle database to monitor.</td>
-    </tr>
-    <tr>
-      <td>table-name</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Table name of the Oracle database to monitor. The value is of the form <i>&lt;schema_name&gt;.&lt;table_name&gt;</i></td>
-    </tr>
-    <tr>
-      <td>port</td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>1521</td>
-      <td>Integer</td>
-      <td>Integer port number of the Oracle database server.</td>
-    </tr>
-    <tr>
-      <td>scan.startup.mode</td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>initial</td>
-      <td>String</td>
-      <td>Optional startup mode for Oracle CDC consumer, valid enumerations are "initial"
-           and "latest-offset". 
-           Please see <a href="#startup-reading-position">Startup Reading Position</a>section for more detailed information.</td>
-    </tr>  
-    <tr>
-      <td>debezium.*</td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Oracle server.
-          For example: <code>'debezium.snapshot.mode' = 'never'</code>.
-          See more about the <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium's Oracle Connector properties</a></td> 
-     </tr>
-     <tr>
-      <td>inlong.metric.labels</td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId].</td> 
-    </tr>
-    <tr>
-       <td>source.multiple.enable</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>false</td>
-       <td>Boolean</td>
-       <td>Whether to enable multiple schema and table migration. If it is' true ', Oracle Extract Node will compress the physical field of the table into a special meta field 'data_canal' in the format of 'canal json'.</td> 
-     </tr>
-    <tr>
-       <td>scan.incremental.snapshot.enabled</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>true</td>
-       <td>Boolean</td>
-       <td>Incremental snapshot is a new mechanism to read snapshot of a table. Compared to the old snapshot mechanism, the incremental snapshot has many advantages, including: (1) source can be parallel during snapshot reading, (2) source can perform checkpoints in the chunk granularity during snapshot reading, (3) source doesn't need to acquire ROW SHARE MODE lock before snapshot reading.</td> 
-     </tr>
-    <tr>
-       <td>scan.incremental.snapshot.chunk.size</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>8096</td>
-       <td>Integer</td>
-       <td>The chunk size (number of rows) of table snapshot, captured tables are split into multiple chunks when read the snapshot of table.</td> 
-     </tr>
-    <tr>
-       <td>scan.snapshot.fetch.size</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>1024</td>
-       <td>Integer</td>
-       <td>The maximum fetch size for per poll when read table snapshot.</td> 
-     </tr>
-    <tr>
-       <td>connect.max-retries</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>3</td>
-       <td>Integer</td>
-       <td>The max retry times that the connector should retry to build Oracle database server connection.</td> 
-     </tr>
-    <tr>
-       <td>chunk-meta.group.size</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>1000</td>
-       <td>Integer</td>
-       <td>The group size of chunk meta, if the meta size exceeds the group size, the meta will be divided into multiple groups.</td> 
-     </tr>
-    <tr>
-       <td>connect.timeout</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>30s</td>
-       <td>Duration</td>
-       <td>The maximum time that the connector should wait after trying to connect to the Oracle database server before timing out.</td> 
-     </tr>
-    <tr>
-       <td>chunk-key.even-distribution.factor.lower-bound</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>0.05d</td>
-       <td>Double</td>
-       <td>The lower bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.</td> 
-     </tr>
-    <tr>
-       <td>chunk-key.even-distribution.factor.upper-bound</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>1000.0d</td>
-       <td>Double</td>
-       <td>The upper bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.</td> 
-     </tr>
-    <tr>
-       <td>connection.pool.size</td>
-       <td>optional</td>
-       <td style={{wordWrap: 'break-word'}}>20</td>
-       <td>Integer</td>
-       <td>The connection pool size.</td> 
-     </tr>
-    </tbody>
-</table>    
-</div>
-
+| **Option**                | **Required** | **Default**      | **Type** | **Description**                                              |
+| ------------------------- | ------------ | ---------- | -------- | ------------------------------------------------------------ |
+|connector|required|(none)|String|Specify what connector to use, here should be `oracle-cdc-inlong`.|
+|hostname|required|(none)|String|IP address or hostname of the Oracle database server.|
+|username|required|(none)|String|Name of the Oracle database to use when connecting to the Oracle database server.|
+|password|required|(none)|String|Password to use when connecting to the Oracle database server.|
+|database-name|required|(none)|String|Database name of the Oracle server to monitor.|
+|schema-name|required|(none)|String|Schema name of the Oracle database to monitor.|
+|table-name|required|(none)|String|Table name of the Oracle database to monitor. The value is of the form <i>&lt;schema_name&gt;.&lt;table_name&gt;</i>|
+|port|optional|1521|Integer|Integer port number of the Oracle database server.|
+|scan.startup.mode|optional|initial|String|Optional startup mode for Oracle CDC consumer, valid enumerations are "initial" and "latest-offset". Please see <a href="#startup-reading-position">Startup Reading Position</a>section for more detailed information.|
+|debezium.*|optional|(none)|String|Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Oracle server. For example: <code>'debezium.snapshot.mode' = 'never'</code>. See more about the <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium's Oracle Connector properties</a>| 
+|inlong.metric.labels|optional|(none)|String|Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId].| 
+|source.multiple.enable|optional|false|Boolean|Whether to enable multiple schema and table migration. If it is' true ', Oracle Extract Node will compress the physical field of the table into a special meta field 'data_canal' in the format of 'canal json'.| 
+|scan.incremental.snapshot.enabled|optional|true|Boolean|Incremental snapshot is a new mechanism to read snapshot of a table. Compared to the old snapshot mechanism, the incremental snapshot has many advantages, including: (1) source can be parallel during snapshot reading, (2) source can perform checkpoints in the chunk granularity during snapshot reading, (3) source doesn't need to acquire ROW SHARE MODE lock before snapshot reading.| 
+|scan.incremental.snapshot.chunk.size|optional|8096|Integer|The chunk size (number of rows) of table snapshot, captured tables are split into multiple chunks when read the snapshot of table.| 
+|scan.snapshot.fetch.size|optional|1024|Integer|The maximum fetch size for per poll when read table snapshot.| 
+|connect.max-retries|optional|3|Integer|The max retry times that the connector should retry to build Oracle database server connection.| 
+|chunk-meta.group.size|optional|1000|Integer|The group size of chunk meta, if the meta size exceeds the group size, the meta will be divided into multiple groups.| 
+|connect.timeout|optional|30s|Duration|The maximum time that the connector should wait after trying to connect to the Oracle database server before timing out.| 
+|chunk-key.even-distribution.factor.lower-bound|optional|0.05d|Double|The lower bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.| |chunk-key.even-distribution.factor.upper-bound|optional|1000.0d|Double|The upper bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.| 
+|connection.pool.size|optional|20|Integer|The connection pool size.| 
+     
 ## Limitation
 
 ### Can't perform checkpoint during scanning snapshot of tables
@@ -420,92 +276,23 @@ restart-strategy.fixed-delay.attempts: 2147483647
 
 The following format metadata can be exposed as read-only (VIRTUAL) columns in a table definition.
 
-<table class="colwidths-auto docutils">
-  <thead>
-     <tr>
-       <th class="text-left" style={{width: '15%'}}>Key</th>
-       <th class="text-left" style={{width: '30%'}}>DataType</th>
-       <th class="text-left" style={{width: '55%'}}>Description</th>
-     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>table_name</td>
-      <td>STRING NOT NULL</td>
-      <td>Name of the table that contain the row.</td>
-    </tr>
-    <tr>
-      <td>schema_name</td>
-      <td>STRING NOT NULL</td>
-      <td>Name of the schema that contain the row.</td>
-    </tr>
-    <tr>
-      <td>database_name</td>
-      <td>STRING NOT NULL</td>
-      <td>Name of the database that contain the row.</td>
-    </tr>
-    <tr>
-      <td>op_ts</td>
-      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the change stream, the value is always 0.</td>
-    </tr>
-    <tr>
-      <td>meta.table_name</td>
-      <td>STRING NOT NULL</td>
-      <td>Name of the table that contain the row.</td>
-    </tr>
-    <tr>
-      <td>meta.schema_name</td>
-      <td>STRING NOT NULL</td>
-      <td>Name of the schema that contain the row.</td>
-    </tr>
-    <tr>
-      <td>meta.database_name</td>
-      <td>STRING NOT NULL</td>
-      <td>Name of the database that contain the row.</td>
-    </tr>
-    <tr>
-      <td>meta.op_ts</td>
-      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the change stream, the value is always 0.</td>
-    </tr>
-    <tr>
-      <td>meta.op_type</td>
-      <td>STRING</td>
-      <td>Type of database operation, such as INSERT/DELETE, etc.</td>
-    </tr>
-    <tr>
-      <td>meta.data_canal</td>
-      <td>STRING/BYTES</td>
-      <td>Data for rows in `canal-json` format only exists when the `source.multiple.enable` option is 'true'.</td>
-    </tr>
-    <tr>
-      <td>meta.is_ddl</td>
-      <td>BOOLEAN</td>
-      <td>Whether the DDL statement.</td>
-    </tr>
-    <tr>
-      <td>meta.ts</td>
-      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>The current time when the row was received and processed.</td>
-    </tr>
-    <tr>
-      <td>meta.sql_type</td>
-      <td>MAP</td>
-      <td>Mapping of sql_type table fields to java data type IDs.</td>
-    </tr>
-    <tr>
-      <td>meta.oracle_type</td>
-      <td>MAP</td>
-      <td>Structure of the table.</td>
-    </tr>
-    <tr>
-      <td>meta.pk_names</td>
-      <td>ARRAY</td>
-      <td>Primay key name of the table.</td>
-    </tr>
-  </tbody>
-</table>
+| **Key**                  | **DataType** | **Description**   | 
+| ------------------------- | ------------ | ---------- |
+|      table_name|      STRING NOT NULL|      Name of the table that contain the row.|
+|      schema_name|      STRING NOT NULL|      Name of the schema that contain the row.|
+|      database_name|      STRING NOT NULL|      Name of the database that contain the row.|
+|      op_ts|      TIMESTAMP_LTZ(3) NOT NULL|      It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the change stream, the value is always 0.|
+|      meta.table_name|      STRING NOT NULL|      Name of the table that contain the row.|
+|      meta.schema_name|      STRING NOT NULL|      Name of the schema that contain the row.|
+|      meta.database_name|      STRING NOT NULL|      Name of the database that contain the row.|
+|      meta.op_ts|      TIMESTAMP_LTZ(3) NOT NULL|      It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the change stream, the value is always 0.|
+|      meta.op_type|      STRING|      Type of database operation, such as INSERT/DELETE, etc.|
+|      meta.data_canal|      STRING/BYTES|      Data for rows in `canal-json` format only exists when the `source.multiple.enable` option is 'true'.|
+|      meta.is_ddl|      BOOLEAN|      Whether the DDL statement.|
+|      meta.ts|      TIMESTAMP_LTZ(3) NOT NULL|      The current time when the row was received and processed.|
+|      meta.sql_type|      MAP|      Mapping of sql_type table fields to java data type IDs.|
+|      meta.oracle_type|      MAP|      Structure of the table.|
+|      meta.pk_names|      ARRAY|      Primay key name of the table.|
 
 The extended CREATE TABLE example demonstrates the syntax for exposing these metadata fields:
 ```sql
@@ -570,7 +357,7 @@ Oracle Extract Node supports the whole database, multiple schemas, multiple tabl
 
 config options:
 
-| Option | Required | Default | Type | Description |
+| **Option** | **Required** | **Default** | **Type** | **Description** |
 | ---| ---| ---| ---| ---|
 |source.multiple.enable|optional| false|String|Specify `'source.multiple.enable' = 'true'` to enable the whole database, multiple schemas, multiple tables migration function | 
 |schema-name|required|(none)|String| Schema name of the Oracle database to monitor. If you want to capture multiple schemas, you can use commas to separate them. For example: `'schema-name' = 'SCHEMA1,SCHEMA2'` |
@@ -596,109 +383,21 @@ CREATE TABLE node(
 
 ## Data Type Mapping
 
-<div class="wy-table-responsive">
-<table class="colwidths-auto docutils">
-    <thead>
-      <tr>
-        <th class="text-left">Oracle type<a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Data-Types.html"></a></th>
-        <th class="text-left">Flink SQL type</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &lt; 3
-      </td>
-      <td>TINYINT</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &lt; 5
-      </td>
-      <td>SMALLINT</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &lt; 10
-      </td>
-      <td>INT</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &lt; 19
-      </td>
-      <td>BIGINT</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), 19 &lt;= p - s &lt;= 38 <br/>
-      </td>
-      <td>DECIMAL(p - s, 0)</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &gt; 0)
-      </td>
-      <td>DECIMAL(p, s)</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &gt; 38
-      </td>
-      <td>STRING</td>
-    </tr>
-    <tr>
-      <td> 
-        FLOAT<br/>
-        BINARY_FLOAT
-      </td>
-      <td>FLOAT</td>
-    </tr>
-    <tr>
-      <td>
-        DOUBLE PRECISION<br/>
-        BINARY_DOUBLE
-      </td>
-      <td>DOUBLE</td>
-    </tr>
-    <tr>
-      <td>NUMBER(1)</td>
-      <td>BOOLEAN</td>
-    </tr>
-    <tr>
-      <td>
-        DATE<br/>
-        TIMESTAMP [(p)]
-      </td>
-      <td>TIMESTAMP [(p)] [WITHOUT TIMEZONE]</td>
-    </tr>
-    <tr>
-      <td>TIMESTAMP [(p)] WITH TIME ZONE</td>
-      <td>TIMESTAMP [(p)] WITH TIME ZONE</td>
-    </tr>
-    <tr>
-      <td>TIMESTAMP [(p)] WITH LOCAL TIME ZONE</td>
-      <td>TIMESTAMP_LTZ [(p)]</td>
-    </tr>
-    <tr>
-      <td>
-        CHAR(n)<br/>
-        NCHAR(n)<br/>
-        NVARCHAR2(n)<br/>
-        VARCHAR(n)<br/>
-        VARCHAR2(n)<br/>
-        CLOB<br/>
-        NCLOB<br/>
-        XMLType
-      </td>
-      <td>STRING</td>
-    </tr>
-    <tr>
-      <td>BLOB<br/>
-      ROWID
-      </td>
-      <td>BYTES</td>
-    </tr>
-    <tr>
-      <td>
-      INTERVAL DAY TO SECOND<br/>
-      INTERVAL YEAR TO MONTH
-      </td>
-      <td>BIGINT</td>
-    </tr>
-    </tbody>
-</table>
-</div>
+| **[Oracle type](https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Data-Types.html)** | **Flink SQL type**| 
+| ---| ---|
+|      NUMBER(p, s &lt;= 0), p - s &lt; 3      |      TINYINT|
+|      NUMBER(p, s &lt;= 0), p - s &lt; 5      |      SMALLINT|
+|      NUMBER(p, s &lt;= 0), p - s &lt; 10      |      INT|
+|      NUMBER(p, s &lt;= 0), p - s &lt; 19      |      BIGINT|
+|      NUMBER(p, s &lt;= 0), 19 &lt;= p - s &lt;= 38 <br/>      DECIMAL(p - s, 0)|
+|      NUMBER(p, s &gt; 0)      |      DECIMAL(p, s)|
+|      NUMBER(p, s &lt;= 0), p - s &gt; 38      |      STRING|
+|        FLOAT<br/>        BINARY_FLOAT      |      FLOAT|
+|        DOUBLE PRECISION<br/>        BINARY_DOUBLE      |      DOUBLE|
+|      NUMBER(1)|      BOOLEAN|    
+|        DATE<br/>        TIMESTAMP [(p)]      |      TIMESTAMP [(p)] [WITHOUT TIMEZONE]|
+|      TIMESTAMP [(p)] WITH TIME ZONE|      TIMESTAMP [(p)] WITH TIME ZONE|
+|      TIMESTAMP [(p)] WITH LOCAL TIME ZONE|      TIMESTAMP_LTZ [(p)]|    
+|        CHAR(n)<br/>        NCHAR(n)<br/>        NVARCHAR2(n)<br/>        VARCHAR(n)<br/>        VARCHAR2(n)<br/>        CLOB<br/>        NCLOB<br/>        XMLType      |      STRING|
+|      BLOB<br/>      ROWID      |      BYTES|
+|      INTERVAL DAY TO SECOND<br/>      INTERVAL YEAR TO MONTH      |      BIGINT|

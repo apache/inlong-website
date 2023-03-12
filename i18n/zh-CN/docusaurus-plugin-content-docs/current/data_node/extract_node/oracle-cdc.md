@@ -236,173 +236,29 @@ TODO: 将在未来支持此功能。
 
 ## Oracle Extact 节点参数
 
-<div class="highlight">
-<table class="colwidths-auto docutils">
-   <thead>
-      <tr>
-        <th class="text-left" style={{width: '25%'}}>参数</th>
-        <th class="text-left" style={{width: '8%'}}>是否必须</th>
-        <th class="text-left" style={{width: '7%'}}>默认值</th>
-        <th class="text-left" style={{width: '10%'}}>数据类型</th>
-        <th class="text-left" style={{width: '50%'}}>描述</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>connector</td>
-      <td>必选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>指定要使用的连接器，这里应该是 <code>'oracle-cdc-inlong'</code>。</td>
-    </tr>
-    <tr>
-      <td>hostname</td>
-      <td>必选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Oracle 数据库服务器的 IP 地址或主机名。</td>
-    </tr>
-    <tr>
-      <td>username</td>
-      <td>必选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>连接到 Oracle 数据库服务器时要使用的 Oracle 数据库的名称。</td>
-    </tr>
-    <tr>
-      <td>password</td>
-      <td>必选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>连接到 Oracle 数据库服务器时使用的密码。</td>
-    </tr>
-    <tr>
-      <td>database-name</td>
-      <td>必选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>要监视的 Oracle 服务器的数据库名称。</td>
-    </tr>
-    <tr>
-      <td>schema-name</td>
-      <td>必选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>要监视的 Oracle 数据库的 Schema 名称。</td>
-    </tr>
-    <tr>
-      <td>table-name</td>
-      <td>必选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>要监视的 Oracle 数据库的表名。格式为<i>&lt;schema_name&gt;.&lt;table_name&gt;</i></td>
-    </tr>
-    <tr>
-      <td>port</td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>1521</td>
-      <td>Integer</td>
-      <td>Oracle 数据库服务器的整数端口号。</td>
-    </tr>
-    <tr>
-      <td>scan.startup.mode</td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>initial</td>
-      <td>String</td>
-      <td>
-Oracle CDC 消费者的可选启动模式，有效枚举为"initial"
-           和"latest-offset"。
-           请参阅<a href="#startup-reading-position">启动阅读位置</a>部分了解更多详细信息。</td>
-    </tr>  
-    <tr>
-      <td>debezium.*</td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>将 Debezium 的属性整合到用于从 Oracle 服务器捕获数据更改的 Debezium Embedded Engine。
-          例如：<code>'debezium.snapshot.mode' = 'never'</code>。
-          详细了解 <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium 的 Oracle 连接器属性</a></td> 
-     </tr>
-     <tr>
-       <td>inlong.metric.labels</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>(none)</td>
-       <td>String</td>
-       <td>inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。</td> 
-     </tr>
-     <tr>
-       <td>source.multiple.enable</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>false</td>
-       <td>Boolean</td>
-       <td>是否开启多模式、表同步功能，如果为 'true'，Oracle Extract Node 则将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'。</td> 
-     </tr>
-    <tr>
-       <td>scan.incremental.snapshot.enabled</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>true</td>
-       <td>Boolean</td>
-       <td>增量快照是一种读取表快照的新机制。与旧的快照机制相比，增量快照具有许多优点，包括：（1）在快照读取期间 Source 可以是并行的，（2）Source 可以在快照读取过程中执行 Chunk 粒度中的检查点，（3）Source 不需要在快照读取之前获取 ROW SHARE MODE 锁。</td> 
-     </tr>
-    <tr>
-       <td>scan.incremental.snapshot.chunk.size</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>8096</td>
-       <td>Integer</td>
-       <td>表快照的块大小（行数），读取表的快照时，表的快照被分成多个块。</td> 
-     </tr>
-    <tr>
-       <td>scan.snapshot.fetch.size</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>1024</td>
-       <td>Integer</td>
-       <td>读取表快照时每次轮询的最大获取大小。</td> 
-     </tr>
-    <tr>
-       <td>connect.max-retries</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>3</td>
-       <td>Integer</td>
-       <td>连接器应重试以建立 Oracle 数据库服务器连接的最大重试次数。</td> 
-     </tr>
-    <tr>
-       <td>chunk-meta.group.size</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>1000</td>
-       <td>Integer</td>
-       <td>Chunk meta 组大小，如果 meta 大小超过组大小，则 meta 将被分成多个组。</td> 
-     </tr>
-    <tr>
-       <td>connect.timeout</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>30s</td>
-       <td>Duration</td>
-       <td>连接器在尝试连接到 Oracle 数据库服务器后在超时之前应等待的最长时间。</td> 
-     </tr>
-    <tr>
-       <td>chunk-key.even-distribution.factor.lower-bound</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>0.05d</td>
-       <td>Double</td>
-       <td>Chunk Key 分布因子的下限。分布系数用于确定表格是否均匀分布。当数据分布均匀时，表块将均匀地使用计算优化，当数据分布不均匀时，将进行拆分查询。分布因子可以通过（MAX（id）-MIN（id）+1）/rowCount计算。</td> 
-     </tr>
-    <tr>
-       <td>chunk-key.even-distribution.factor.upper-bound</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>1000.0d</td>
-       <td>Double</td>
-       <td>Chunk Key 分布因子的上限。分布系数用于确定表格是否均匀分布。当数据分布均匀时，表块将均匀地使用计算优化，当数据分布不均匀时，将进行拆分查询。分布因子可以通过（MAX（id）-MIN（id）+1）/rowCount计算。</td> 
-     </tr>
-    <tr>
-       <td>connection.pool.size</td>
-       <td>可选</td>
-       <td style={{wordWrap: 'break-word'}}>20</td>
-       <td>Integer</td>
-       <td>连接池大小。</td> 
-     </tr>
-    </tbody>
-</table>    
-</div>
+| **选项**                  | **是否必须** | **默认**   | **类型** | **描述**                                                     |
+| ------------------------- | ------------ | ---------- | -------- | ------------------------------------------------------------ |
+|      connector|      必选|      (none)|      String|      指定要使用的连接器，这里应该是 <code>'oracle-cdc-inlong'</code>。|
+|      hostname|      必选|      (none)|      String|      Oracle 数据库服务器的 IP 地址或主机名。|
+|      username|      必选|      (none)|      String|      连接到 Oracle 数据库服务器时要使用的 Oracle 数据库的名称。|
+|      password|      必选|      (none)|      String|      连接到 Oracle 数据库服务器时使用的密码。|
+|      database-name|      必选|      (none)|      String|      要监视的 Oracle 服务器的数据库名称。|
+|      schema-name|      必选|      (none)|      String|      要监视的 Oracle 数据库的 Schema 名称。|
+|      table-name|      必选|      (none)|      String|      要监视的 Oracle 数据库的表名。格式为<i>&lt;schema_name&gt;.&lt;table_name&gt;</i>|
+|      port|      可选|      1521|      Integer|      Oracle 数据库服务器的整数端口号。|
+|      scan.startup.mode|      可选|      initial|      String|Oracle CDC 消费者的可选启动模式，有效枚举为"initial"和"latest-offset"。 请参阅<a href="#startup-reading-position">启动阅读位置</a>部分了解更多详细信息。|
+|      debezium.*|      可选|      (none)|      String|      将 Debezium 的属性整合到用于从 Oracle 服务器捕获数据更改的 Debezium Embedded Engine。 例如：<code>'debezium.snapshot.mode' = 'never'</code>。 详细了解 <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium 的 Oracle 连接器属性</a>| 
+|       inlong.metric.labels|       可选|       (none)|       String|       inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。| 
+|       source.multiple.enable|       可选|       false|       Boolean|       是否开启多模式、表同步功能，如果为 'true'，Oracle Extract Node 则将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'。| 
+|       scan.incremental.snapshot.enabled|       可选|       true|       Boolean|       增量快照是一种读取表快照的新机制。与旧的快照机制相比，增量快照具有许多优点，包括：（1）在快照读取期间 Source 可以是并行的，（2）Source 可以在快照读取过程中执行 Chunk 粒度中的检查点，（3）Source 不需要在快照读取之前获取 ROW SHARE MODE 锁。| 
+|       scan.incremental.snapshot.chunk.size|       可选|       8096|       Integer|       表快照的块大小（行数），读取表的快照时，表的快照被分成多个块。| 
+|       scan.snapshot.fetch.size|       可选|       1024|       Integer|       读取表快照时每次轮询的最大获取大小。| 
+|       connect.max-retries|       可选|       3|       Integer|       连接器应重试以建立 Oracle 数据库服务器连接的最大重试次数。| 
+|       chunk-meta.group.size|       可选|       1000|       Integer|       Chunk meta 组大小，如果 meta 大小超过组大小，则 meta 将被分成多个组。| 
+|       connect.timeout|       可选|       30s|       Duration|       连接器在尝试连接到 Oracle 数据库服务器后在超时之前应等待的最长时间。| 
+|       chunk-key.even-distribution.factor.lower-bound|       可选|       0.05d|       Double|       Chunk Key 分布因子的下限。分布系数用于确定表格是否均匀分布。当数据分布均匀时，表块将均匀地使用计算优化，当数据分布不均匀时，将进行拆分查询。分布因子可以通过（MAX（id）-MIN（id）+1）/rowCount计算。| 
+|       chunk-key.even-distribution.factor.upper-bound|       可选|       1000.0d|       Double|       Chunk Key 分布因子的上限。分布系数用于确定表格是否均匀分布。当数据分布均匀时，表块将均匀地使用计算优化，当数据分布不均匀时，将进行拆分查询。分布因子可以通过（MAX（id）-MIN（id）+1）/rowCount计算。| 
+|       connection.pool.size|       可选|       20|       Integer|       连接池大小。| 
 
 ## 局限性
 
@@ -420,92 +276,24 @@ restart-strategy.fixed-delay.attempts: 2147483647
 
 以下格式元数据可以作为表定义中的只读 (VIRTUAL) 列公开。
 
-<table class="colwidths-auto docutils">
-  <thead>
-     <tr>
-       <th class="text-left" style={{width: '15%'}}>字段名称</th>
-       <th class="text-left" style={{width: '30%'}}>数据类型</th>
-       <th class="text-left" style={{width: '55%'}}>描述</th>
-     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>table_name</td>
-      <td>STRING NOT NULL</td>
-      <td>该行所属的表名。</td>
-    </tr>
-    <tr>
-      <td>schema_name</td>
-      <td>STRING NOT NULL</td>
-      <td>该行所属的模式名称。</td>
-    </tr>
-    <tr>
-      <td>database_name</td>
-      <td>STRING NOT NULL</td>
-      <td>该行所属的数据库名称。</td>
-    </tr>
-    <tr>
-      <td>op_ts</td>
-      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>它指示在数据库中进行更改的时间。<br/>如果记录从表的快照而不是change流中读取，则该值始终为0。</td>
-    </tr>
-    <tr>
-      <td>meta.table_name</td>
-      <td>STRING NOT NULL</td>
-      <td>该行所属的表名。</td>
-    </tr>
-    <tr>
-      <td>meta.schema_name</td>
-      <td>STRING NOT NULL</td>
-      <td>该行所属的模式名称。</td>
-    </tr>
-    <tr>
-      <td>meta.database_name</td>
-      <td>STRING NOT NULL</td>
-      <td>该行所属的数据库名称。</td>
-    </tr>
-    <tr>
-      <td>meta.op_ts</td>
-      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>它指示在数据库中进行更改的时间。<br/>如果记录从表的快照而不是change流中读取，则该值始终为0。</td>
-    </tr>
-    <tr>
-      <td>meta.op_type</td>
-      <td>STRING</td>
-      <td>数据库操作的类型，如 INSERT/DELETE 等。</td>
-    </tr>
-    <tr>
-      <td>meta.data_canal</td>
-      <td>STRING/BYTES</td>
-      <td>`canal-json` 格式化的行的数据只有在 `source.multiple.enable` 选项为 'true' 时才存在。</td>
-    </tr>
-    <tr>
-      <td>meta.is_ddl</td>
-      <td>BOOLEAN</td>
-      <td>是否是 DDL 语句。</td>
-    </tr>
-    <tr>
-      <td>meta.ts</td>
-      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>接收和处理行的当前时间。</td>
-    </tr>
-    <tr>
-      <td>meta.sql_type</td>
-      <td>MAP</td>
-      <td>将 Sql_type 表字段映射到 Java 数据类型 Id。</td>
-    </tr>
-    <tr>
-      <td>meta.oracle_type</td>
-      <td>MAP</td>
-      <td>表的结构。</td>
-    </tr>
-    <tr>
-      <td>meta.pk_names</td>
-      <td>ARRAY</td>
-      <td>表的主键名称。</td>
-    </tr>
-  </tbody>
-</table>
+
+| **字段名称**                  | **数据类型** | **描述**   | 
+| ------------------------- | ------------ | ---------- |
+|      table_name|      STRING NOT NULL|      该行所属的表名。|
+|      schema_name|      STRING NOT NULL|      该行所属的模式名称。|
+|      database_name|      STRING NOT NULL|      该行所属的数据库名称。|
+|      op_ts|      TIMESTAMP_LTZ(3) NOT NULL|      它指示在数据库中进行更改的时间。<br/>如果记录从表的快照而不是change流中读取，则该值始终为0。|
+|      meta.table_name|      STRING NOT NULL|      该行所属的表名。|
+|      meta.schema_name|      STRING NOT NULL|      该行所属的模式名称。|
+|      meta.database_name|      STRING NOT NULL|      该行所属的数据库名称。|
+|      meta.op_ts|      TIMESTAMP_LTZ(3) NOT NULL|      它指示在数据库中进行更改的时间。<br/>如果记录从表的快照而不是change流中读取，则该值始终为0。|
+|      meta.op_type|      STRING|      数据库操作的类型，如 INSERT/DELETE 等。|
+|      meta.data_canal|      STRING/BYTES|      `canal-json` 格式化的行的数据只有在 `source.multiple.enable` 选项为 'true' 时才存在。|
+|      meta.is_ddl|      BOOLEAN|      是否是 DDL 语句。|
+|      meta.ts|      TIMESTAMP_LTZ(3) NOT NULL|      接收和处理行的当前时间。|
+|      meta.sql_type|      MAP|      将 Sql_type 表字段映射到 Java 数据类型 Id。|
+|      meta.oracle_type|      MAP|      表的结构。|
+|      meta.pk_names|      ARRAY|      表的主键名称。|
 
 扩展的 CREATE TABLE 示例演示了公开这些元数据字段的语法：
 
@@ -572,7 +360,7 @@ Oracle Extract 节点支持整库、多模式、多表同步。开启该功能�
 
 配置参数：
 
-| 参数 | 是否必须 | 默认值 | 数据类型 | 描述 |
+| **参数** | **是否必须** | **默认值** | **数据类型** | **描述** |
 | ---| ---| ---| ---| ---|
 |source.multiple.enable|optional| false|String| 指定`'source.multiple.enable' = 'true'`参数开启整库、多模式、多表同步功能 | 
 |schema-name|required|(none)|String| 要监视的 Oracle 数据库的 Schema 名称。如果要捕获多个模式，可以使用逗号分割它们。例如：`'schema-name' = 'SCHEMA1,SCHEMA2'` |
@@ -598,109 +386,21 @@ CREATE TABLE node(
 
 ## 数据类型映射
 
-<div class="wy-table-responsive">
-<table class="colwidths-auto docutils">
-    <thead>
-      <tr>
-        <th class="text-left">Oracle type<a href="https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Data-Types.html"></a></th>
-        <th class="text-left">Flink SQL type</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &lt; 3
-      </td>
-      <td>TINYINT</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &lt; 5
-      </td>
-      <td>SMALLINT</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &lt; 10
-      </td>
-      <td>INT</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &lt; 19
-      </td>
-      <td>BIGINT</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), 19 &lt;= p - s &lt;= 38 <br/>
-      </td>
-      <td>DECIMAL(p - s, 0)</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &gt; 0)
-      </td>
-      <td>DECIMAL(p, s)</td>
-    </tr>
-    <tr>
-      <td>NUMBER(p, s &lt;= 0), p - s &gt; 38
-      </td>
-      <td>STRING</td>
-    </tr>
-    <tr>
-      <td> 
-        FLOAT<br/>
-        BINARY_FLOAT
-      </td>
-      <td>FLOAT</td>
-    </tr>
-    <tr>
-      <td>
-        DOUBLE PRECISION<br/>
-        BINARY_DOUBLE
-      </td>
-      <td>DOUBLE</td>
-    </tr>
-    <tr>
-      <td>NUMBER(1)</td>
-      <td>BOOLEAN</td>
-    </tr>
-    <tr>
-      <td>
-        DATE<br/>
-        TIMESTAMP [(p)]
-      </td>
-      <td>TIMESTAMP [(p)] [WITHOUT TIMEZONE]</td>
-    </tr>
-    <tr>
-      <td>TIMESTAMP [(p)] WITH TIME ZONE</td>
-      <td>TIMESTAMP [(p)] WITH TIME ZONE</td>
-    </tr>
-    <tr>
-      <td>TIMESTAMP [(p)] WITH LOCAL TIME ZONE</td>
-      <td>TIMESTAMP_LTZ [(p)]</td>
-    </tr>
-    <tr>
-      <td>
-        CHAR(n)<br/>
-        NCHAR(n)<br/>
-        NVARCHAR2(n)<br/>
-        VARCHAR(n)<br/>
-        VARCHAR2(n)<br/>
-        CLOB<br/>
-        NCLOB<br/>
-        XMLType
-      </td>
-      <td>STRING</td>
-    </tr>
-    <tr>
-      <td>BLOB<br/>
-      ROWID
-      </td>
-      <td>BYTES</td>
-    </tr>
-    <tr>
-      <td>
-      INTERVAL DAY TO SECOND<br/>
-      INTERVAL YEAR TO MONTH
-      </td>
-      <td>BIGINT</td>
-    </tr>
-    </tbody>
-</table>
-</div>
+| **[Oracle type](https://docs.oracle.com/en/database/oracle/oracle-database/21/sqlrf/Data-Types.html)** | **Flink SQL type**| 
+| ---| ---|
+|      NUMBER(p, s &lt;= 0), p - s &lt; 3      |      TINYINT|
+|      NUMBER(p, s &lt;= 0), p - s &lt; 5      |      SMALLINT|
+|      NUMBER(p, s &lt;= 0), p - s &lt; 10      |      INT|
+|      NUMBER(p, s &lt;= 0), p - s &lt; 19      |      BIGINT|
+|      NUMBER(p, s &lt;= 0), 19 &lt;= p - s &lt;= 38 <br/>      DECIMAL(p - s, 0)|
+|      NUMBER(p, s &gt; 0)      |      DECIMAL(p, s)|
+|      NUMBER(p, s &lt;= 0), p - s &gt; 38      |      STRING|
+|        FLOAT<br/>        BINARY_FLOAT      |      FLOAT|
+|        DOUBLE PRECISION<br/>        BINARY_DOUBLE      |      DOUBLE|
+|      NUMBER(1)|      BOOLEAN|    
+|        DATE<br/>        TIMESTAMP [(p)]      |      TIMESTAMP [(p)] [WITHOUT TIMEZONE]|
+|      TIMESTAMP [(p)] WITH TIME ZONE|      TIMESTAMP [(p)] WITH TIME ZONE|
+|      TIMESTAMP [(p)] WITH LOCAL TIME ZONE|      TIMESTAMP_LTZ [(p)]|    
+|        CHAR(n)<br/>        NCHAR(n)<br/>        NVARCHAR2(n)<br/>        VARCHAR(n)<br/>        VARCHAR2(n)<br/>        CLOB<br/>        NCLOB<br/>        XMLType      |      STRING|
+|      BLOB<br/>      ROWID      |      BYTES|
+|      INTERVAL DAY TO SECOND<br/>      INTERVAL YEAR TO MONTH      |      BIGINT|
