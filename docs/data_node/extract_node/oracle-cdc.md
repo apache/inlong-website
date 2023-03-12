@@ -238,27 +238,27 @@ TODO: It will be supported in the future.
 
 | **Option**                | **Required** | **Default**      | **Type** | **Description**                                              |
 | ------------------------- | ------------ | ---------- | -------- | ------------------------------------------------------------ |
-|connector|required|(none)|String|Specify what connector to use, here should be `oracle-cdc-inlong`.|
-|hostname|required|(none)|String|IP address or hostname of the Oracle database server.|
-|username|required|(none)|String|Name of the Oracle database to use when connecting to the Oracle database server.|
-|password|required|(none)|String|Password to use when connecting to the Oracle database server.|
-|database-name|required|(none)|String|Database name of the Oracle server to monitor.|
-|schema-name|required|(none)|String|Schema name of the Oracle database to monitor.|
-|table-name|required|(none)|String|Table name of the Oracle database to monitor. The value is of the form <i>&lt;schema_name&gt;.&lt;table_name&gt;</i>|
-|port|optional|1521|Integer|Integer port number of the Oracle database server.|
-|scan.startup.mode|optional|initial|String|Optional startup mode for Oracle CDC consumer, valid enumerations are "initial" and "latest-offset". Please see <a href="#startup-reading-position">Startup Reading Position</a>section for more detailed information.|
-|debezium.*|optional|(none)|String|Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Oracle server. For example: <code>'debezium.snapshot.mode' = 'never'</code>. See more about the <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium's Oracle Connector properties</a>| 
-|inlong.metric.labels|optional|(none)|String|Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId].| 
-|source.multiple.enable|optional|false|Boolean|Whether to enable multiple schema and table migration. If it is' true ', Oracle Extract Node will compress the physical field of the table into a special meta field 'data_canal' in the format of 'canal json'.| 
-|scan.incremental.snapshot.enabled|optional|true|Boolean|Incremental snapshot is a new mechanism to read snapshot of a table. Compared to the old snapshot mechanism, the incremental snapshot has many advantages, including: (1) source can be parallel during snapshot reading, (2) source can perform checkpoints in the chunk granularity during snapshot reading, (3) source doesn't need to acquire ROW SHARE MODE lock before snapshot reading.| 
-|scan.incremental.snapshot.chunk.size|optional|8096|Integer|The chunk size (number of rows) of table snapshot, captured tables are split into multiple chunks when read the snapshot of table.| 
-|scan.snapshot.fetch.size|optional|1024|Integer|The maximum fetch size for per poll when read table snapshot.| 
-|connect.max-retries|optional|3|Integer|The max retry times that the connector should retry to build Oracle database server connection.| 
-|chunk-meta.group.size|optional|1000|Integer|The group size of chunk meta, if the meta size exceeds the group size, the meta will be divided into multiple groups.| 
-|connect.timeout|optional|30s|Duration|The maximum time that the connector should wait after trying to connect to the Oracle database server before timing out.| 
-|chunk-key.even-distribution.factor.lower-bound|optional|0.05d|Double|The lower bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.| |chunk-key.even-distribution.factor.upper-bound|optional|1000.0d|Double|The upper bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.| 
-|connection.pool.size|optional|20|Integer|The connection pool size.| 
-     
+|		connector|		required|		(none)|		String|		Specify what connector to use, here should be `oracle-cdc-inlong`.|		
+|		hostname|		required|		(none)|		String|		IP address or hostname of the Oracle database server.|		
+|		username|		required|		(none)|		String|		Name of the Oracle database to use when connecting to the Oracle database server.|		
+|		password|		required|		(none)|		String|		Password to use when connecting to the Oracle database server.|		
+|		database-name|		required|		(none)|		String|		Database name of the Oracle server to monitor.|		
+|		schema-name|		required|		(none)|		String|		Schema name of the Oracle database to monitor.|		
+|		table-name|		required|		(none)|		String|		Table name of the Oracle database to monitor. The value is of the form <i>&lt;schema_name&gt;.&lt;table_name&gt;</i>|		
+|		port|		optional|		1521|		Integer|		Integer port number of the Oracle database server.|		
+|		scan.startup.mode|		optional|		initial|		String|		Optional startup mode for Oracle CDC consumer, valid enumerations are "initial" and "latest-offset". Please see <a href="#startup-reading-position">Startup Reading Position</a>section for more detailed information.|		
+|		debezium.*|		optional|		(none)|		String|		Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Oracle server. For example: <code>'debezium.snapshot.mode' = 'never'</code>. See more about the <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium's Oracle Connector properties</a>|		 
+|		inlong.metric.labels|		optional|		(none)|		String|		Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId].|		 
+|		source.multiple.enable|		optional|		false|		Boolean|		Whether to enable multiple schema and table migration. If it is' true ', Oracle Extract Node will compress the physical field of the table into a special meta field 'data_canal' in the format of 'canal json'.|		 
+|		scan.incremental.snapshot.enabled|		optional|		true|		Boolean|		Incremental snapshot is a new mechanism to read snapshot of a table. Compared to the old snapshot mechanism, the incremental snapshot has many advantages, including: (1) source can be parallel during snapshot reading, (2) source can perform checkpoints in the chunk granularity during snapshot reading, (3) source doesn't need to acquire ROW SHARE MODE lock before snapshot reading.|		 
+|		scan.incremental.snapshot.chunk.size|		optional|		8096|		Integer|		The chunk size (number of rows) of table snapshot, captured tables are split into multiple chunks when read the snapshot of table.|		 
+|		scan.snapshot.fetch.size|		optional|		1024|		Integer|		The maximum fetch size for per poll when read table snapshot.|		 
+|		connect.max-retries|		optional|		3|		Integer|		The max retry times that the connector should retry to build Oracle database server connection.|		 
+|		chunk-meta.group.size|		optional|		1000|		Integer|		The group size of chunk meta, if the meta size exceeds the group size, the meta will be divided into multiple groups.|		 
+|		connect.timeout|		optional|		30s|		Duration|		The maximum time that the connector should wait after trying to connect to the Oracle database server before timing out.|		 
+|		chunk-key.even-distribution.factor.lower-bound|		optional|		0.05d|		Double|		The lower bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.|		 |		chunk-key.even-distribution.factor.upper-bound|		optional|		1000.0d|		Double|		The upper bound of chunk key distribution factor. The distribution factor is used to determine whether the table is evenly distribution or not. The table chunks would use evenly calculation optimization when the data distribution is even, and the query for splitting would happen when it is uneven. The distribution factor could be calculated by (MAX(id) - MIN(id) + 1) / rowCount.|		 
+|		connection.pool.size|		optional|		20|		Integer|		The connection pool size.|		 
+
 ## Limitation
 
 ### Can't perform checkpoint during scanning snapshot of tables
