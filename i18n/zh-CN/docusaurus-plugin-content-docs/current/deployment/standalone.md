@@ -10,7 +10,8 @@ sidebar_position: 1
 ## 准备消息队列
 InLong 当前支持以下消息队列，根据使用情况**选择其一**即可。
 - [InLong TubeMQ](modules/tubemq/quick_start.md)
-- [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/en/2.8.1/standalone/)
+- [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/2.8.x/getting-started-home/)
+- [Apache Kafka 2.x](https://kafka.apache.org/quickstart)
 
 ## 下载安装包
 可以从 [下载页面](https://inlong.apache.org/download) 获取二进制包，或参考 [如何编译](quick_start/how_to_build.md) 编译需要的版本。
@@ -40,13 +41,23 @@ spring_datasource_hostname=
 spring_datasource_port=3306
 spring_datasource_username=root
 spring_datasource_password=inlong
-# 配置 Pulsar 集群地址，如果 Audit 使用 Pulsar
-pulsar_service_url=
-pulsar_admin_url=
 # Flink REST server 地址
 flink_rest_address=
 # Flink REST server 端口
 flink_rest_port=8081
+```
+
+- 配置 Pulsar 集群地址，如果 Audit 使用 Pulsar
+```shell
+mq_type=pulsar
+pulsar_service_url=
+pulsar_admin_url=
+```
+
+- 配置 Kafka 集群地址，如果 Audit 使用 Kafka
+```shell
+mq_type=kafka
+bootstrap_server_url=
 ```
 
 ## 启动
