@@ -14,14 +14,14 @@ If `node_modules` is not installed, you should first run `npm install` or `yarn 
 
 Use `npm run dev` or `yarn dev` to run the application in development mode.
 
-If the server runs successfully, the browser will open [http://localhost:8080](http://localhost:8080) to view in the browser.
+If the server runs successfully, the browser will open [http://localhost:5173](http://localhost:5173) to view in the browser.
 
 If you edit, the page will reload.
 You will also see any lint errors in the console.
 
 The start of the web server depends on the back-end server `manger api` interface.
 
-You should start the backend server first, and then set the variable `target` in `/inlong-dashboard/src/setupProxy.js` to the address of the api service.
+You should start the backend server first, and then set the variable `target` in `/inlong-dashboard/vite.config.ts` to the address of the api service.
 
 ### Test
 
