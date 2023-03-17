@@ -15,14 +15,14 @@ Dashboard 是 [Apache InLong](https://github.com/apache/inlong)的管控端。
 
 使用 `npm run dev` 或 `yarn dev` 在开发模式下运行应用程序。
 
-如果服务器运行成功，浏览器将打开 [http://localhost:8080](http://localhost:8080) 在浏览器中查看。
+如果服务器运行成功，浏览器将打开 [http://localhost:5173](http://localhost:5173) 在浏览器中查看。
 
 如果您进行编辑，页面将重新加载。
 您还将在控制台中看到任何 lint 错误。
 
 web服务器的启动依赖于后端服务 `manger api` 接口。
 
-您应该先启动后端服务器，然后将 `/inlong-dashboard/src/setupProxy.js` 中的变量`target` 设置为api服务的地址。
+您应该先启动后端服务器，然后将 `/inlong-dashboard/vite.config.ts` 中的变量`target` 设置为api服务的地址。
 
 ### 测试
 
