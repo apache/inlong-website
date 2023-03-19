@@ -9,8 +9,9 @@ sidebar_position: 4
 
 ## Prepare Message Queue
 InLong Support the following Message Queue services now, you can choose one of them.
-- [InLong TubeMQ](modules/tubemq/quick_start.md)
-- [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/en/2.8.1/standalone/)
+- [Apache InLong TubeMQ](modules/tubemq/quick_start.md)
+- [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/2.8.x/getting-started-home/)
+- [Apache Kafka 2.x](https://kafka.apache.org/quickstart)
 
 ## Download the Binary Package
 You can get binary package from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).。
