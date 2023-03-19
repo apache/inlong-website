@@ -9,8 +9,8 @@ sidebar_position: 1
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 
 ## Prepare Message Queue
-InLong Support the following Message Queue services now, you can choose one of them.
-- [InLong TubeMQ](modules/tubemq/quick_start.md)
+InLong Support the following Message Queue services now, **you can choose one of them**.
+- [Apache InLong TubeMQ](modules/tubemq/quick_start.md)
 - [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/2.8.x/getting-started-home/)
 - [Apache Kafka 2.x](https://kafka.apache.org/quickstart)
 
@@ -36,6 +36,8 @@ In `conf/inlong.conf`, configure the parameters according to the actual situatio
 ```shell
 # local IP
 local_ip=
+# message queue: pulsar or kafka
+mq_type=pulsar
 # Configure Database, MySQL or PostgreSQL
 spring_datasource_hostname=
 spring_datasource_port=3306
@@ -45,19 +47,6 @@ spring_datasource_password=inlong
 flink_rest_address=
 # the REST server Port for Flink
 flink_rest_port=8081
-```
-
-- Configure Pulsar Address if using Pulsar for Audit
-```shell
-mq_type=pulsar
-pulsar_service_url=
-pulsar_admin_url=
-```
-
-- Configure Kafka Address if using Kafka for Audit
-```shell
-mq_type=kafka
-bootstrap_server_url=
 ```
 
 ## Start
@@ -80,12 +69,18 @@ Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster lab
 Since each component reports the ClusterTags as `default_cluster` by default, do not use other names.
 :::
 
-### Register Pulsar Cluster
-Click [Clusters]->[ClusterTags]->[Create] on the page to register Pulsar Cluster:
+### Register Message Queue Cluster
+
+- Option 1 : Apache Pulsar
+Click [Clusters]->[Clusters]->[Create] on the page to register Pulsar Cluster:
 ![](img/create_pulsar_cluster.png)
 
+- Option 2 : Apache Kafka
+Click [Clusters]->[Clusters]->[Create] on the page to register Kafka Cluster:
+![](img/create_kafka_cluster.png)
+
 :::note
-The ClusterTags selects the newly created `default_cluster`, and then configuring the Pulsar cluster info.
+The ClusterTags selects the newly created `default_cluster`, and then configuring the Message Queue cluster info.
 :::
 
 ## Use

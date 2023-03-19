@@ -83,16 +83,16 @@ Password: inlong
 页面点击 [集群管理]->[集群管理]->[新建集群]，注册 Pulsar 集群：
 ![](img/pulsar_cluster_save.png)
 
-:::note
-集群标签选择刚创建的 `default_cluster`，然后配置 Pulsar 集群信息。
-:::
-
 - 选择 2：注册 TubeMQ 集群
 页面点击 [集群管理]->[集群管理]->[新建集群]，注册 TubeMQ 集群：
 ![](img/tube_cluster_save.png)
 
+- 选择 3：注册 Kafka 集群
+页面点击 [集群管理]->[集群管理]->[新建集群]，注册 Kafka 集群：
+![](img/kafka_cluster_save.png)
+
 :::note
-集群标签选择刚创建的 `default_cluster`，然后配置 TubeMQ 集群信息。
+集群标签选择刚创建的 `default_cluster`，然后配置 MQ 集群信息。
 :::
 
 ## (可选) 开启OpenAPI认证
@@ -101,7 +101,7 @@ Password: inlong
 Manager 提供 OpenAPI 安全访问认证，默认关闭。如需开启，在 `conf/application.properties` 打开：
 
 ```properties
-# Manager OpenAPI安全认证开关
+# Manager OpenAPI 安全认证开关
 openapi.auth.enabled=true
 ```
 

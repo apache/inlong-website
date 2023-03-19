@@ -81,19 +81,19 @@ Since each component reports the ClusterTags as `default_cluster` by default, do
 You could only Register the MQ type you chose.
 
 - Option 1: Register Pulsar Cluster
-Click [Clusters]->[ClusterTags]->[Create] on the page to register Pulsar Cluster:
+Click [Clusters]->[Clusters]->[Create] on the page to register Pulsar Cluster:
 ![](img/pulsar_cluster_save.png)
 
-:::note
-The ClusterTags selects the newly created `default_cluster`, and then configuring the Pulsar cluster info.
-:::
-
 - Option 2: Register TubeMQ Cluster
-Click [Clusters]->[ClusterTags]->[Create] on the page to register TubeMQ Cluster:
+Click [Clusters]->[Clusters]->[Create] on the page to register TubeMQ Cluster:
 ![](img/tube_cluster_save.png)
 
+- Option 3: Register Kafka Cluster
+Click [Clusters]->[Clusters]->[Create] on the page to register TubeMQ Cluster:
+![](img/kafka_cluster_save.png)
+
 :::note
-The ClusterTags selects the newly created `default_cluster`, and then configuring the TubeMQ cluster info.
+The ClusterTags selects the newly created `default_cluster`, and then configuring the MQ cluster info.
 :::
 
 ## (Optional) Enable OpenAPI Authentication
