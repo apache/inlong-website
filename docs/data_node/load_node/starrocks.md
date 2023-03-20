@@ -64,7 +64,7 @@ mysql> select * from cdc_mysql_source;
 +----+----------+----+
 3 rows in set (0.07 sec)
 ```
-- For Multi-sink: Create tables `user_db.user_id_name`、`user_db.user_id_name` in the MySQL database. The command is as follows:
+- For Multi-sink: Create tables `user_db.user_id_name`、`user_db.user_id_score` in the MySQL database. The command is as follows:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
 mysql> use user_db;
