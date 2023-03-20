@@ -36,6 +36,8 @@ inlong-tubemq-manager/lib/
 ```shell
 # 本地机器 IP
 local_ip=
+# 消息队列服务： pulsar 或者 kafka
+mq_type=pulsar
 # 数据库配置，MySQL 或者 PostgreSQL
 spring_datasource_hostname=
 spring_datasource_port=3306
@@ -45,19 +47,6 @@ spring_datasource_password=inlong
 flink_rest_address=
 # Flink REST server 端口
 flink_rest_port=8081
-```
-
-- 配置 Pulsar 集群地址，如果 Audit 使用 Pulsar
-```shell
-mq_type=pulsar
-pulsar_service_url=
-pulsar_admin_url=
-```
-
-- 配置 Kafka 集群地址，如果 Audit 使用 Kafka
-```shell
-mq_type=kafka
-bootstrap_server_url=
 ```
 
 ## 启动
@@ -80,12 +69,18 @@ Password: inlong
 由于各个组件默认上报集群标签为 `default_cluster`，请勿使用其它名称。
 :::
 
-### 注册 Pulsar 集群
+### 注册 MQ 集群
+
+- 选择 1 : Apache Pulsar
 页面点击 [集群管理]->[集群管理]->[新建集群]，注册 Pulsar 集群：
 ![](img/create_pulsar_cluster.png)
 
+- 选择 2 : Apache Kafka
+页面点击 [集群管理]->[集群管理]->[新建集群]，注册 Kafka 集群：
+![](img/create_kafka_cluster.png)
+
 :::note
-集群标签选择刚创建的 `default_cluster`，然后配置 Pulsar 集群信息。
+集群标签选择刚创建的 `default_cluster`，然后配置 MQ 集群信息。
 :::
 
 ## 使用

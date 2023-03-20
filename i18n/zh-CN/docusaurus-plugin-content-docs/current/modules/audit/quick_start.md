@@ -3,15 +3,16 @@ title: 安装部署
 ---
 
 所有的安装文件都在 `inlong-audit` 目录下，如果使用 MySQL 存储审计数据，需要先通过`sql/apache_inlong_audit.sql`初始化数据库。
-  ```shell
-  # 初始化 database
-  mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit.sql
-  ```
+```shell
+# 初始化 database
+mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit.sql
+```
+
 如果使用 ClickHouse 存储审计数据，需要先通过`sql/apache_inlong_audit_clickhouse.sql`初始化数据库。
-  ```shell
-  # 初始化 database
-  clickhouse client -u DB_USER --password DB_PASSWD < sql/apache_inlong_audit_clickhouse.sql
-  ```
+```shell
+# 初始化 database
+clickhouse client -u DB_USER --password DB_PASSWD < sql/apache_inlong_audit_clickhouse.sql
+```
   
 ## 依赖
 - 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar), 并将其放入 `lib/` 目录。
@@ -21,32 +22,23 @@ title: 安装部署
 ### 配置消息队列
 消息队列服务目前可以使用 Apache Pulsar、Apache Kafka 或者 InLong TubeMQ：
 
-- 若使用 Pulsar，配置文件 `conf/audit-proxy-pulsar.conf`，修改下列配置中的 Pulsar service 地址。
+- 若使用 Pulsar，配置文件 `conf/audit-proxy-pulsar.conf`，修改下列配置中的 Pulsar Topic 信息。
 
 ```Shell
-agent1.sources.tcp-source.port = 10081
-agent1.sinks.pulsar-sink-msg1.pulsar_server_url= pulsar://localhost:6650
 agent1.sinks.pulsar-sink-msg1.topic = persistent://public/default/inlong-audit
-agent1.sinks.pulsar-sink-msg2.pulsar_server_url = pulsar://localhost:6650
 agent1.sinks.pulsar-sink-msg2.topic = persistent://public/default/inlong-audit
 ```
 
-- 若使用 TubeMQ，配置文件 `conf/audit-proxy-tube.conf`，修改下列配置中的 TubeMQ master 地址。
+- 若使用 TubeMQ，配置文件 `conf/audit-proxy-tube.conf`，修改下列配置中的 TubeMQ Topic 信息。
 ```Shell
-agent1.sources.tcp-source.port = 10081
-agent1.sinks.tube-sink-msg1.master-host-port-list = localhost:8715
 agent1.sinks.tube-sink-msg1.topic = inlong-audit
-agent1.sinks.tube-sink-msg2.master-host-port-list = localhost:8715
 agent1.sinks.tube-sink-msg2.topic = inlong-audit
 ```
 
-- 若使用 Kafka，配置文件 `conf/audit-proxy-kafka.conf`，修改下列配置中的 Kafka service 地址。
+- 若使用 Kafka，配置文件 `conf/audit-proxy-kafka.conf`，修改下列配置中的 Kafka Topic 信息。
 
 ```Shell
-agent1.sources.tcp-source.port = 10081
-agent1.sinks.kafka-sink-msg1.bootstrap_servers = localhost:9092
 agent1.sinks.kafka-sink-msg1.topic = inlong-audit
-agent1.sinks.kafka-sink-msg2.bootstrap_servers = localhost:9092
 agent1.sinks.kafka-sink-msg2.topic = inlong-audit
 ```
 
@@ -67,18 +59,19 @@ audit.config.proxy.type=pulsar
 # store.server: mysql / elasticsearch 
 audit.config.store.mode=mysql
 
-# audit pulsar config (optional)，将 PULSAR_BROKER_LIST 替换为 Pulsar 集群的服务地址
-audit.pulsar.server.url=pulsar://PULSAR_BROKER_LIST
+# manger config
+manager.hosts=127.0.0.1:8083
+proxy.cluster.tag=default_cluster
+
+# audit pulsar config (optional)
 audit.pulsar.topic=persistent://public/default/inlong-audit
 audit.pulsar.consumer.sub.name=sub-audit
 
-# audit tube config (optional)，将 TUBE_LIST 替换为 TubeMQ 集群的 master 地址
-audit.tube.masterlist=TUBE_LIST
+# audit tube config (optional)
 audit.tube.topic=inlong-audit
 audit.tube.consumer.group.name=inlong-audit-consumer
 
-# kafka config (optional), 将 KAFKA_LIST 替换为 Kafka 集群的服务地址
-audit.kafka.server.url=KAFKA_LIST
+# kafka config (optional)
 audit.kafka.topic=inlong-audit
 audit.kafka.consumer.name=inlong-audit-consumer
 audit.kafka.group.id=audit-consumer-group
@@ -88,29 +81,14 @@ spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?char
 spring.datasource.druid.username=root
 spring.datasource.druid.password=inlong
 
-# es config
+# es config (optional)
 elasticsearch.host=127.0.0.1
 elasticsearch.port=9200
-elasticsearch.authEnable=false
-elasticsearch.username=elastic
-elasticsearch.password=inlong
-elasticsearch.shardsNum=5
-elasticsearch.replicaNum=1
-elasticsearch.indexDeleteDay=5
-elasticsearch.enableDocId=true
-elasticsearch.bulkInterval=10
-elasticsearch.bulkThreshold=5000
-elasticsearch.auditIdSet=1,2
 
-# clickhouse config
-clickhouse.driver=ru.yandex.clickhouse.ClickHouseDriver
+# clickhouse config (optional)
 clickhouse.url=jdbc:clickhouse://127.0.0.1:8123/default
 clickhouse.username=default
 clickhouse.password=default
-clickhouse.batchIntervalMs=1000
-clickhouse.batchThreshold=500
-clickhouse.processIntervalMs=100
-
 ```
 
 ### 依赖
