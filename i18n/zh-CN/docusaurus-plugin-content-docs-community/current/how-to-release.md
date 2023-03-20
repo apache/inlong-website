@@ -172,10 +172,12 @@ $ svn ci -m "add gpg key for YOUR_NAME"
 以下 `release_version` 为即将发布的版本号，比如 1.4.0；`rc_version` 为 Releae Candidate，比如 RC0，RC1...;`KEY_ID` 是你创建的 GPG Key ID.
 
 ### 准备分支
-- 从版本主分支创建待发布分支，并修改 POM 版本号和 CHANGES.md。比如从 `branch-1.4` 创建 `release-1.4.0`
+- 从版本主分支创建待发布分支，并修改 POM 版本号和 CHANGES.md。比如从 `branch-1.4` 创建 `release-1.4.0`。
 
-- 检查代码是否正常，包括编译成功、单元测试全部成功、RAT 检查、Docker 镜像等
+- 检查 release 分支代码是否正常，包括编译成功、单元测试全部成功、RAT 检查、Docker 镜像等
 ```shell
+# 切换放到 release 分支
+$ git checkout release-${release_version}
 # build 检查
 $ mvn clean package -Dmaven.javadoc.skip=true
 # RAT 检查
@@ -195,10 +197,18 @@ $ git_tag=${release_version}-${rc_version}
 $ export GPG_TTY=`tty` && git config user.signingkey ${KEY_ID}
 $ git tag -s $git_tag -m "Tagging the ${release_version} first Releae Candidate (Candidates start at zero)"
 ```
+
 ### 打包源码
 ```shell
 $ mkdir /tmp/apache-inlong-${release_version}-${rc_version}
 $ git archive --format=tar.gz --output="/tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}-src.tar.gz" --prefix="apache-inlong-${release_version}/" $git_tag
+```
+
+### 上传 tag 到 git 仓库
+```shell
+# 在创建 tag 的源码目录执行
+$ git push origin ${release_version}-${rc_version}
+$ git push origin release-${release_version}
 ```
 
 ### 打包二进制包
@@ -239,13 +249,6 @@ $ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --verify $i.asc $i ; done
 $ cd /tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}
 # 开始上传，确保 settings.xml 为上面步骤已更新的文件
 $ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true
-```
-
-### 上传 tag 到 git 仓库
-```shell
-# 在创建 tag 的源码目录执行
-$ git push origin ${release_version}-${rc_version}
-$ git push origin release-${release_version}
 ```
 
 ### 上传编译好的文件到 dist
@@ -444,7 +447,7 @@ $ rm -rf /tmp/inlong-dist-dev/
 ```
 
 ### 归档上一个版本的发布包
-删除 [release](https://dist.apache.org/repos/dist/release/inlong/) 目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/inlong/)
+删除 [release](https://dist.apache.org/repos/dist/release/inlong/) 目录下上一个版本的发布包，这些包会被自动保存在[这里](https://archive.apache.org/dist/inlong/)。
 ```shell
 # last_release_version 为上一个版本号，可以访问 https://dist.apache.org/repos/dist/release/inlong/ 查看，比如 1.3.0
 $ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_version} -m "Delete ${last_release_version}"
