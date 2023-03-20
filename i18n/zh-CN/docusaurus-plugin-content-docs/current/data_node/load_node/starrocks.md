@@ -293,6 +293,21 @@ TODO: 将在未来支持此功能。
 | sink.multiple.database-pattern    | 可选     | 无               | string   | 从原始二进制数据中提取数据库名，仅在多表(整库)同步场景中使用。 | 
 | sink.multiple.table-pattern       | 可选     | 无               | string   | 从原始二进制数据中提取表名，仅在多表(整库)同步场景中使用。 |
 | inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`。|
+| sink.multiple.schema-update.policy | 可选 | (none) | string | 往StarRocks表同步数据时，如果StarRocks表不存在或字段长度超过限制，StarRocks服务器会抛出异常。<br /><br /> 当该属性设置为`THROW_WITH_STOP`，异常会向上抛给Flink框架。Flink框架会自动重启任务，尝试恢复。<br /><br /> 当该属性设置为`STOP_PARTIAL`时，StarRocks connector会忽略该表的写入，新数据不再往该表写入，其它表则正常同步。<br /><br /> 当该属性设置为`LOG_WITH_IGNORE`时，异常会打印到日志中，不会向上抛出。后续新数据到来时，继续尝试往该表写入。 |
+| dirty.ignore | 可选 | (none)| boolean | 往StarRocks表同步数据时，如果遇到错误和异常，通过该变量可以控制是否忽略脏数据。如果设置为`false`，则忽略脏数据，不归档。如果为`true`，则根据其它的`dirty.side-output.*`的配置决定如何归档数据。 |
+| dirty.side-output.connector | 可选 | (none)| string | 支持`s3`和`log`两种配置。当配置为`log`时，仅打印日志，不归档数据。当配置为`s3`时，可以将数据归档到亚马逊S3或腾讯云COS存储。 |
+| dirty.side-output.s3.bucket | 可选 | (none)| string | S3或COS的桶名称 |
+| dirty.side-output.s3.endpoint | 可选 | (none)| string | S3或COS的endpoint地址 |
+| dirty.side-output.s3.key | 可选 | (none)| string | S3或COS的key  |
+| dirty.side-output.s3.region | 可选 | (none)| string | S3或COS的区域 |
+| dirty.side-output.line-delimiter | 可选 | (none)| string | 脏数据的行分隔符 |
+| dirty.side-output.field-delimiter | 可选 | (none)| string | 脏数据的字段分隔符 |
+| dirty.side-output.s3.secret-key-id | 可选 | (none)| string | S3或COS的secret key |
+| dirty.side-output.s3.access-key-id | 可选 | (none)| string | S3或COS的access key |
+| dirty.side-output.format | 可选 | (none)| string | 脏数据归档的格式，支持 `json` 和 `csv` |
+| dirty.side-output.log-tag | 可选 | (none)| string | 脏数据的tag。通过该变量区分每条脏数据归属于StarRocks的哪个库表。 |
+| dirty.identifier | 可选 | (none)| string | 归档后的文件名 |
+| dirty.side-output.labels | 可选 | (none)| string | 归档后的每条数据包括标签和业务数据两部分。标签在前面，业务数据在后面。 |
 
 ## 数据类型映射
 
