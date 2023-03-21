@@ -173,10 +173,12 @@ Adding `<servers>/<profiles>` configurations in your maven `settings.xml` with c
 The following `release_version` is the upcoming release number, such as 1.4.0; `rc_version` is Release Candidate, such as RC0, RC1...; `KEY_ID` is your GPG Key ID.
 
 ### Prepare branch
-- Create the release branch from the main version branch and modify the POM version number and CHANGES.md. For example, create `release-1.4.0` from `branch-1.4`
+- Create the release branch from the main version branch and modify the POM version number and CHANGES.md. For example, create `release-1.4.0` from `branch-1.4`.
 
-- check the code, including whether compile, unit test, RAT check, Docker images etc.
+- check the code for release branch, including whether compile, unit test, RAT check, Docker images etc.
 ```shell
+# switch to release branch
+$ git checkout release-${release_version}
 # build check
 $ mvn clean package -Dmaven.javadoc.skip=true
 # RAT check
@@ -201,6 +203,13 @@ $ git tag -s $git_tag -m "Tagging the ${release_version} first Releae Candidate 
 ```shell
 $ mkdir /tmp/apache-inlong-${release_version}-${rc_version}
 $ git archive --format=tar.gz --output="/tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}-src.tar.gz" --prefix="apache-inlong-${release_version}/" $git_tag
+```
+
+### Upload tag to git repository
+```shell
+# under the directory where you create the tag
+$ git push origin ${release_version}-${rc_version}
+$ git push origin release-${release_version}
 ```
 
 ### Building binary package
@@ -242,13 +251,6 @@ $ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --verify $i.asc $i ; done
 $ cd /tmp/apache-inlong-${release_version}-${rc_version}/apache-inlong-${release_version}
 # start to upload, and make sure the settings.xml is the file updated before
 $ mvn -DskipTests deploy -Papache-release -Dmaven.javadoc.skip=true
-```
-
-### Upload tag to git repository
-```shell
-# under the directory where you create the tag
-$ git push origin ${release_version}-${rc_version}
-$ git push origin release-${release_version}
 ```
 
 ### Upload tar file to dist repo
@@ -449,7 +451,7 @@ $ rm -rf /tmp/inlong-dist-dev/
 ```
 
 ### Archive the previous version packages
-Delete release package of previous versions [release](https://dist.apache.org/repos/dist/release/inlong/)，these packages will be saved [here](https://archive.apache.org/dist/inlong/)
+Delete release package of previous versions [release](https://dist.apache.org/repos/dist/release/inlong/)，these packages will be saved [here](https://archive.apache.org/dist/inlong/).
 ```shell
 # last_release_version is the last version number, you can check is by accessing https://dist.apache.org/repos/dist/release/inlong/ ,e.g 1.3.0
 $ svn delete https://dist.apache.org/repos/dist/release/inlong/${last_release_version} -m "Delete ${last_release_version}"
