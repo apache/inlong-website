@@ -294,7 +294,7 @@ TODO: 将在未来支持此功能。
 | sink.batch.size                   | 可选   | 10000             | int      | 单次写 BE 的最大行数                                                                                                                                                                                                                                                                                           |
 | sink.max-retries                  | 可选   | 1                 | int      | 写 BE 失败之后的重试次数                                                                                                                                                                                                                                                                                         |
 | sink.batch.interval               | 可选   | 10s               | string   | Flush 间隔时间，超过该时间后异步线程将缓存中数据写入 BE。 默认值为10秒，支持时间单位 ms、s、min、h和d。设置为0表示关闭定期写入。                                                                                                                                                                                                                            |
-| sink.properties.*                 | 可选   | (none)            | string   | Stream load 的导入参数<br /><br />例如:<br />'sink.properties.column_separator' = ', '<br />定义列分隔符<br /><br />'sink.properties.escape_delimiters' = 'true'<br />特殊字符作为分隔符,'\\x01'会被转换为二进制的0x01<br /><br /> 'sink.properties.format' = 'json'<br />'sink.properties.strip_outer_array' = 'true' <br />JSON格式导入<br /><br /> 'sink.properties.format' = 'csv'<br />CSV格式导入 |
+| sink.properties.*                 | 可选   | (none)            | string   | Stream load 的导入参数<br /><br />例如:<br />'sink.properties.column_separator' = ', '<br />定义列分隔符<br /><br />'sink.properties.escape_delimiters' = 'true'<br />特殊字符作为分隔符,'\\x01' 会被转换为二进制的 0x01 <br /><br /> 'sink.properties.format' = 'json'<br />'sink.properties.strip_outer_array' = 'true' <br />JSON 格式导入<br /><br /> 'sink.properties.format' = 'csv'<br />CSV 格式导入 |
 | sink.enable-delete                | 可选   | true              | boolean  | 是否启用删除。此选项需要 Doris 表开启批量删除功能(0.15+版本默认开启)，只支持 Uniq 模型。                                                                                                                                                                                                                                                 |
 | sink.enable-delete                | 可选   | true              | boolean  | 是否启用删除。此选项需要 Doris 表开启批量删除功能(0.15+版本默认开启)，只支持 Uniq 模型。                                                                                                                                                                                                                                                 |
 | sink.multiple.enable              | 可选   | false             | boolean  | 是否支持 Doris 多表写入。 `sink.multiple.enable` 为 `true` 时，需要 `sink.multiple.format` 、 `sink.multiple.database-pattern` 、 `sink.multiple.table-pattern` 分别设置正确的值。        |
@@ -303,19 +303,19 @@ TODO: 将在未来支持此功能。
 | sink.multiple.table-pattern       | 可选   | (none)            | string   | 多表写入时，从源端二进制数据中按照 `sink.multiple.table-pattern` 指定名称提取写入的表名。 `sink.multiple.enable` 为true时有效。                         |
 | sink.multiple.ignore-single-table-errors | 可选 | true         | boolean  | 多表写入时，是否忽略某个表写入失败。为 `true` 时，如果某个表写入异常，则不写入该表数据，其他表的数据正常写入。为 `false` 时，如果某个表写入异常，则所有表均停止写入。     |
 | inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`。|
-| sink.multiple.schema-update.policy | 可选 | (none) | string | 往doris表同步数据时，如果doris表不存在或字段长度超过限制，doris服务器会抛出异常。<br /><br /> 当该属性设置为`THROW_WITH_STOP`，异常会向上抛给Flink框架。Flink框架会自动重启任务，尝试恢复。<br /><br /> 当该属性设置为`STOP_PARTIAL`时，doris connector会忽略该表的写入，新数据不再往该表写入，其它表则正常同步。<br /><br /> 当该属性设置为`LOG_WITH_IGNORE`时，异常会打印到日志中，不会向上抛出。后续新数据到来时，继续尝试往该表写入。 |
-| dirty.ignore | 可选 | (none)| boolean | 往doris表同步数据时，如果遇到错误和异常，通过该变量可以控制是否忽略脏数据。如果设置为`false`，则忽略脏数据，不归档。如果为`true`，则根据其它的`dirty.side-output.*`的配置决定如何归档数据。 |
-| dirty.side-output.connector | 可选 | (none)| string | 支持`s3`和`log`两种配置。当配置为`log`时，仅打印日志，不归档数据。当配置为`s3`时，可以将数据归档到亚马逊S3或腾讯云COS存储。 |
-| dirty.side-output.s3.bucket | 可选 | (none)| string | S3或COS的桶名称 |
-| dirty.side-output.s3.endpoint | 可选 | (none)| string | S3或COS的endpoint地址 |
-| dirty.side-output.s3.key | 可选 | (none)| string | S3或COS的key  |
-| dirty.side-output.s3.region | 可选 | (none)| string | S3或COS的区域 |
+| sink.multiple.schema-update.policy | 可选 | (none) | string | 往 Doris 表同步数据时，如果 Doris 表不存在或字段长度超过限制，Doris 服务器会抛出异常。<br /><br /> 当该属性设置为 `THROW_WITH_STOP` ，异常会向上抛给 Flink 框架。Flink 框架会自动重启任务，尝试恢复。<br /><br /> 当该属性设置为 `STOP_PARTIAL` 时，Doris connector 会忽略该表的写入，新数据不再往该表写入，其它表则正常同步。<br /><br /> 当该属性设置为 `LOG_WITH_IGNORE` 时，异常会打印到日志中，不会向上抛出。后续新数据到来时，继续尝试往该表写入。 |
+| dirty.ignore | 可选 | (none)| boolean | 往 Doris 表同步数据时，如果遇到错误和异常，通过该变量可以控制是否忽略脏数据。如果设置为 `false` ，则忽略脏数据，不归档。如果为 `true` ，则根据其它的 `dirty.side-output.*` 的配置决定如何归档数据。 |
+| dirty.side-output.connector | 可选 | (none)| string | 支持 `s3` 和 `log` 两种配置。当配置为 `log` 时，仅打印日志，不归档数据。当配置为 `s3` 时，可以将数据归档到亚马逊S3或腾讯云COS存储。 |
+| dirty.side-output.s3.bucket | 可选 | (none)| string | S3 或 COS 的桶名称 |
+| dirty.side-output.s3.endpoint | 可选 | (none)| string | S3 或 COS 的 endpoint 地址 |
+| dirty.side-output.s3.key | 可选 | (none)| string | S3 或 COS 的 key  |
+| dirty.side-output.s3.region | 可选 | (none)| string | S3 或 COS 的区域 |
 | dirty.side-output.line-delimiter | 可选 | (none)| string | 脏数据的行分隔符 |
 | dirty.side-output.field-delimiter | 可选 | (none)| string | 脏数据的字段分隔符 |
-| dirty.side-output.s3.secret-key-id | 可选 | (none)| string | S3或COS的secret key |
-| dirty.side-output.s3.access-key-id | 可选 | (none)| string | S3或COS的access key |
+| dirty.side-output.s3.secret-key-id | 可选 | (none)| string | S3 或 COS 的 secret key |
+| dirty.side-output.s3.access-key-id | 可选 | (none)| string | S3 或 COS 的 access key |
 | dirty.side-output.format | 可选 | (none)| string | 脏数据归档的格式，支持 `json` 和 `csv` |
-| dirty.side-output.log-tag | 可选 | (none)| string | 脏数据的tag。通过该变量区分每条脏数据归属于Doris的哪个库表。 |
+| dirty.side-output.log-tag | 可选 | (none)| string | 脏数据的 tag 。通过该变量区分每条脏数据归属于 Doris 的哪个库表。 |
 | dirty.identifier | 可选 | (none)| string | 归档后的文件名 |
 | dirty.side-output.labels | 可选 | (none)| string | 归档后的每条数据包括标签和业务数据两部分。标签在前面，业务数据在后面。 |
 
