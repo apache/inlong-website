@@ -64,7 +64,7 @@ mysql> select * from cdc_mysql_source;
 +----+----------+----+
 3 rows in set (0.07 sec)
 ```
-- For Multi-sink: Create tables `user_db.user_id_name`、`user_db.user_id_name` in the MySQL database. The command is as follows:
+- For Multi-sink: Create tables `user_db.user_id_name`、`user_db.user_id_score` in the MySQL database. The command is as follows:
 ```sql
 [root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
 mysql> use user_db;
@@ -296,6 +296,22 @@ TODO: It will be supported in the future.
 | sink.multiple.database-pattern    | optional   | (none)            | string   | Extract database name from the raw binary data, this is only used in the multiple sink writing scenario.                 | 
 | sink.multiple.table-pattern       | optional   | (none)            | string   | Extract table name from the raw binary data, this is only used in the multiple sink writing scenario. |
 | inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`. |
+| sink.multiple.schema-update.policy | optional | (none) | string | If sink data fields do not match starrocks table, such as table does not exsit or string data is over length, starrocks server will throw an exception.<br /><br /> When this option is `THROW_WITH_STOP`, the exception will be thrown up to flink framework, flink will restart task automatically, trying to resume the task.<br /><br /> When this option is `STOP_PARTIAL`, starrocks connector will stop writing into this table, other tables are written normally. The exception will be logging but not thrown up.<br /><br /> When this option is `LOG_WITH_IGNORE`, starrocks connector only log the error, not throw up. StarRocks connector will try to write to starrocks server again when receiving new source data. |
+| dirty.ignore | optinal | (none)| boolean | When writing data into starrocks table, errors may be thrown by starrocks server as table does not exist or data is over length. <br /><br /> When this option is `true`, and `dirty.side-output.*` properties are configed correctly, dirty data can be written to Amazon S3 or Tencent Colud COS storage. Dirty data metrics will also be collected automatically. <br /><br /> When this option is `false`, only dirty data metrics will be collected, but dirty data will not be archived. |
+| dirty.side-output.enable | optinal | (none)| boolean | When this option is `ture` and other options about S3 or COS is configed correctly, dirty data archiving will works. When `false`, dirty data archiving will not work. |
+| dirty.side-output.connector | optinal | (none)| string | `s3` or `log` are supported now.<br /><br /> When `log`, starrocks connector only log the dirty data, not archive data.<br /><br /> When `s3`, starrocks connector can write dirty data to S3 or COS. |
+| dirty.side-output.s3.bucket | optinal | (none)| string | The bucket name of S3 or COS |
+| dirty.side-output.s3.endpoint | optinal | (none)| string | The endpoint of S3 or COS |
+| dirty.side-output.s3.key | optinal | (none)| string | The key of S3 or COS  |
+| dirty.side-output.s3.region | optinal | (none)| string | The region of S3 or COS |
+| dirty.side-output.line-delimiter | optinal | (none)| string | The line delimiter of dirty data |
+| dirty.side-output.field-delimiter | optinal | (none)| string | The field delimiter of dirty data |
+| dirty.side-output.s3.secret-key-id | optinal | (none)| string | The secret key of S3 or COS |
+| dirty.side-output.s3.access-key-id | optinal | (none)| string | The access key of S3 or COS |
+| dirty.side-output.format | optinal | (none)| string | The format of dirty data archiving, supports `json` or `csv` |
+| dirty.side-output.log-tag | optinal | (none)| string | The log tag of dirty data. StarRocks connector uses lags to distinguish which starrocks database and table the dirty data will be written to. |
+| dirty.identifier | optinal | (none)| string | The file name of drity data which written to S3 or COS. |
+| dirty.side-output.labels | optinal | (none)| string | Every dirty data line contains label and business data fields. Label is in front, and business data is at end. |
 
 ## Data Type Mapping
 
