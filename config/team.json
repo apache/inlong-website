@@ -121,6 +121,12 @@
       "avatarUrl": "https://avatars.githubusercontent.com/u/49934421?v=4"
     },
     {
+      "apacheID": "yunqing",
+      "githubName": "yunqingmoswu",
+      "publicName": "Yunqing Mo",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/44659300?v=4"
+    },
+    {
       "apacheID": "zakwu",
       "githubName": "wf123537200",
       "publicName": "Zak Wu",
@@ -165,10 +171,10 @@
       "avatarUrl": "https://avatars.githubusercontent.com/u/222407?v=4"
     },
     {
-      "apacheID": "zeus",
-      "githubName": "",
-      "publicName": "Jie Jiang",
-      "avatarUrl": ""
+      "apacheID": "vernedeng",
+      "githubName": "vernedeng",
+      "publicName": "Fan Deng",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/45282474?v=4"
     },
     {
       "apacheID": "luchunliang",
@@ -189,6 +195,12 @@
       "avatarUrl": "https://avatars.githubusercontent.com/u/1217863?v=4"
     },
     {
+      "apacheID": "thexia",
+      "githubName": "thexiay",
+      "publicName": "The Xia",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/37214832?v=4"
+    },
+    {
       "apacheID": "xiangli",
       "githubName": "waterlx",
       "publicName": "Xiang Li",
@@ -201,22 +213,16 @@
       "avatarUrl": "https://avatars.githubusercontent.com/u/9883232?v=4"
     },
     {
+      "apacheID": "pocozhang",
+      "githubName": "pocozh",
+      "publicName": "Xueying Zhang",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/86780714?v=4"
+    },
+    {
       "apacheID": "yihengw",
       "githubName": "yiheng",
       "publicName": "Yiheng Wang",
       "avatarUrl": "https://avatars.githubusercontent.com/u/1297418?v=4"
-    },
-    {
-      "apacheID": "ehomeliu",
-      "githubName": "",
-      "publicName": "Yuhong Liu",
-      "avatarUrl": ""
-    },
-    {
-      "apacheID": "yunqing",
-      "githubName": "yunqingmoswu",
-      "publicName": "Yunqing Mo",
-      "avatarUrl": "https://avatars.githubusercontent.com/u/44659300?v=4"
     },
     {
       "apacheID": "kipshi",
@@ -229,6 +235,12 @@
       "githubName": "zjshen14",
       "publicName": "Zhijie Shen",
       "avatarUrl": "https://avatars.githubusercontent.com/u/35021395?v=4"
+    },
+    {
+      "apacheID": "woofyzhao",
+      "githubName": "woofyzhao",
+      "publicName": "Zixuan Zhao",
+      "avatarUrl": "https://avatars.githubusercontent.com/u/941634?v=4"
     }
   ]
 }
