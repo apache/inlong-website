@@ -546,6 +546,46 @@ $ bin/inlongctl update user
 | `-p`, `--password` | 新密码  |     |
 | `-d`, `--day`      | 新有效期 |     |
 
+## Suspend
+
+`suspend` 用于暂停 inlong 任务
+
+命令：
+
+- `group`
+
+### `group`
+
+```
+$ bin/inlongctl suspend group
+```
+
+选项：
+
+| 参数              | 描述              | 默认值 |
+|-----------------|-----------------|-----|
+| `-g`, `--group` | inlong group id |     |
+
+## Restart
+
+`restart` 用于重启 inlong 任务
+
+命令：
+
+- `group`
+
+### `group`
+
+```
+$ bin/inlongctl restart group
+```
+
+选项：
+
+| 参数              | 描述              | 默认值 |
+|-----------------|-----------------|-----|
+| `-g`, `--group` | inlong group id |     |
+
 ## Delete
 
 `delete` 用于删除相关资源。
