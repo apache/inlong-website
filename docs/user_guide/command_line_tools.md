@@ -547,6 +547,46 @@ options:
 | `-p`, `--password` | new password   |         |
 | `-d`, `--day`      | new valid days |         |
 
+## Suspend
+
+`suspend` is used to suspend inlong group task.
+
+command:
+
+- `group`
+
+### `group`
+
+```
+$ bin/inlongctl suspend group
+```
+
+options:
+
+| parameter       | description     | default |
+|-----------------|-----------------|---------|
+| `-g`, `--group` | inlong group id |         |
+
+## Restart
+
+`restart` is used to restart inlong group task.
+
+command:
+
+- `group`
+
+### `group`
+
+```
+$ bin/inlongctl restart group
+```
+
+options:
+
+| parameter       | description     | default |
+|-----------------|-----------------|---------|
+| `-g`, `--group` | inlong group id |         |
+
 ## Delete
 
 `delete` is used to delete resources.
