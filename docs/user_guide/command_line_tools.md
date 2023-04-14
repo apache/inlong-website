@@ -3,6 +3,9 @@ title: Command-line Tools
 sidebar_position: 2
 ---
 
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
 ## Overview
 
 In addition to [InLong Dashboard](user_guide/dashboard_usage.md), you can view and create data resources through
@@ -384,10 +387,388 @@ options:
 
 command:
 
+- `group`
 - `cluster`
 - `cluster-tag`
 - `cluster-node`
 - `user`
+
+### `group`
+
+```
+$ bin/inlongctl create group
+```
+
+options:
+
+| parameter      | description    | default |
+|----------------|----------------|---------|
+| `-f`, `--file` | json file name |         |
+
+json:
+
+```json
+{
+    "groupInfo": {
+        "inlongGroupId": "test_group_ctl",
+        "inlongClusterTag": "default_cluster",
+        "mqType": "PULSAR"
+    },
+    "streamInfo": {
+        "inlongStreamId": "test_stream_ctl",
+        "fieldList": [
+            {
+                "fieldName": "name",
+                "fieldType": "string"
+            }
+        ],
+        "sourceList": [
+            {
+                "sourceType": "FILE",
+                "sourceName": "test_source_ctl",
+                "agentIp": "127.0.0.1",
+                "pattern": "/data/test.txt"
+            }
+        ],
+        "sinkList": [
+            {
+                "sinkType": "CLICKHOUSE",
+                "sinkName": "test_sink_ctl",
+                "dataNodeName": "test_clickhouse",
+                "dbName": "db_test",
+                "tableName": "table_test",
+                "flushInterval": 1,
+                "flushRecord": 1000,
+                "retryTimes": 3,
+                "engine": "Log",
+                "isDistributed": 1,
+                "sinkFieldList": [
+                    {
+                        "sourceFieldName": "name",
+                        "sourceFieldType": "string",
+                        "fieldName": "name",
+                        "fieldType": "string"
+                    }
+                ]
+            }
+        ]
+    }
+}
+```
+
+- This is an example of `file` → `pulsar` → `clickhouse`, if you want to use other data flow, just replace the corresponding part.
+
+**Source:**
+
+<Tabs
+defaultValue="file"
+values={[
+{label: 'File', value: 'file'},
+{label: 'PostgreSQL', value: 'postgresql'},
+{label: 'MySQL', value: 'mysql'},
+{label: 'SQLServer', value: 'sqlserver'},
+{label: 'MongoDB', value: 'mongodb'},
+{label: 'Redis', value: 'redis'},
+{label: 'Oracle', value: 'oracle'},
+{label: 'MQTT', value: 'mqtt'},
+]}>
+
+<TabItem value="file">
+<code>
+{`{ 
+    "sourceType": "FILE",
+    "sourceName": "test_source_ctl",
+    "agentIp": "127.0.0.1",
+    "pattern": "/data/test.txt"
+}`}
+</code>
+</TabItem>
+<TabItem value="mysql">
+<code>
+{`{ 
+    "sourceType": "MYSQL_BINLOG",
+    "sourceName": "test_source_ctl",
+    "agentIp": "127.0.0.1",
+    "user": "username",
+    "password": "password",
+    "hostname": "127.0.0.1",
+    "port": 3306,
+    "tableWhiteList": "db_test.table_test",
+    "serverTimezone": "UTC",
+    "intervalMs": "1000",
+    "historyFilename": "/data/inlong-agent/.history",
+    "allMigration": false
+}`}
+</code>
+</TabItem>
+<TabItem value="mongodb">
+<code>
+{`{ 
+    "sourceType": "MONGODB",
+    "sourceName": "test_source_ctl",
+    "agentIp": "127.0.0.1",
+    "hosts": "127.0.0.1:27017",
+    "username": "username",
+    "password": "password",
+    "database": "database_test",
+    "collection": "collection_test",
+    "primaryKey": "_id"
+}`}
+</code>
+</TabItem>
+<TabItem value="sqlserver">
+<code>
+{`{ 
+    "sourceType": "SQLSERVER",
+    "sourceName": "test_source_ctl",
+    "agentIp": "127.0.0.1",
+    "username": "username",
+    "password": "password",
+    "hostname": "127.0.0.1",
+    "port": 1433,
+    "database": "database_test",
+    "schemaName": "schema_test",
+    "tableName": "table_test",
+    "serverTimezone": "UTC",
+    "allMigration": false,
+    "primaryKey": "id"
+}`}
+</code>
+</TabItem>
+<TabItem value="redis">
+<code>
+{`{ 
+    "sourceType": "REDIS",
+    "sourceName": "test_source_ctl",
+    "agentIp": "127.0.0.1",
+    "host": "127.0.0.1",
+    "port": 6379,
+    "username": "username",
+    "password": "password",
+    "database": 0,
+    "redisMode": "cluster",
+    "timeout": 1000,
+    "soTimeout": 1000
+}`}
+</code>
+</TabItem>
+<TabItem value="postgresql">
+<code>
+{`{ 
+    "sourceType": "POSTGRESQL",
+    "sourceName": "test_source_ctl",
+    "agentIp": "127.0.0.1",
+    "username": "username",
+    "password": "password",
+    "hostname": "127.0.0.1",
+    "port": 5432,
+    "database": "database_test",
+    "schema": "public",
+    "decodingPluginName": "pgoutput",
+    "tableNameList": [
+        "table_test"
+    ],
+    "primaryKey": "id"
+}`}
+</code>
+</TabItem>
+<TabItem value="oracle">
+<code>
+{`{ 
+    "sourceType": "ORACLE",
+    "sourceName": "test_source_ctl",
+    "agentIp": "127.0.0.1",
+    "hostname": "127.0.0.1",
+    "port": 1521,
+    "username": "username",
+    "password": "password",
+    "database": "database_test",
+    "schemaName": "schema_test",
+    "tableName": "table_test",
+    "scanStartupMode": "initial",
+    "allMigration": false
+}`}
+</code>
+</TabItem>
+<TabItem value="mqtt">
+<code>
+{`{ 
+    "sourceType": "MQTT",
+    "sourceName": "test_source_ctl",
+    "agentIp": "127.0.0.1",
+    "serverURI": "tcp://127.0.0.1:1883",
+    "username": "username",
+    "password": "password",
+    "topic": "topic_test",
+    "qos": 1,
+    "clientId": "client_test",
+    "mqttVersion": "4"
+}`}
+</code>
+</TabItem>
+</Tabs>
+
+**Sink:**
+
+<Tabs
+defaultValue="clickhouse"
+values={[
+{label: 'Clickhouse', value: 'clickhouse'},
+{label: 'Hive', value: 'hive'},
+{label: 'Elasticsearch', value: 'elasticsearch'},
+{label: 'Kafka', value: 'kafka'},
+{label: 'MySQL', value: 'mysql'},
+{label: 'Oracle', value: 'oracle'},
+{label: 'PostgreSQL', value: 'postgresql'},
+{label: 'SQLServer', value: 'sqlserver'},
+{label: 'Iceberg', value: 'iceberg'},
+]}>
+
+<TabItem value="clickhouse">
+<code>
+{`{
+    "sinkType": "CLICKHOUSE",
+    "sinkName": "test_sink_ctl",
+    "dataNodeName": "test_clickhouse",
+    "dbName": "db_test",
+    "tableName": "table_test",
+    "flushInterval": 1,
+    "flushRecord": 1000,
+    "retryTimes": 3,
+    "engine": "Log",
+    "isDistributed": 1,
+    "enableCreateResource": 1,
+    "sinkFieldList": []
+}`}
+</code>
+</TabItem>
+<TabItem value="hive">
+<code>
+{`{ 
+    "sinkType": "HIVE",
+    "sinkName": "test_sink_ctl",
+    "dataNodeName": "hive_test",
+    "dbName": "db_test",
+    "tableName": "table_test",
+    "enableCreateResource": 1,
+    "dataEncoding": "UTF-8",
+    "fileFormat": "TextFile",
+    "dataSeparator": "124",
+    "enableCreateResource": 1,
+    "sinkFieldList": []
+}`}
+</code>
+</TabItem>
+<TabItem value="elasticsearch">
+<code>
+{`{ 
+    "sinkType": "ELASTICSEARCH",
+    "sinkName": "test_sink_ctl",
+    "dataNodeName": "test_es",
+    "indexName": "index_test",
+    "documentType": "doc_test",
+    "flushRecord": 1000,
+    "primaryKey": "_id",
+    "esVersion": 5,
+    "enableCreateResource": 1,
+    "sinkFieldList": []
+}`}
+</code>
+</TabItem>
+<TabItem value="kafka">
+<code>
+{`{ 
+    "sinkType": "KAFKA",
+    "sinkName": "test_sink_ctl",
+    "bootstrapServers": "127.0.0.1:9092",
+    "topicName": "topic_test",
+    "partitionNum": 3,
+    "serializationType": "JSON",
+    "autoOffsetReset": "earliest",
+    "enableCreateResource": 1,
+    "sinkFieldList": []
+}`}
+</code>
+</TabItem>
+<TabItem value="mysql">
+<code>
+{`{ 
+    "sinkType": "MYSQL",
+    "sinkName": "test_sink_ctl",
+    "dataNodeName": "test_mysql",
+    "databaseName": "database_test",
+    "tableName": "table_test",
+    "primaryKey": "id",
+    "enableCreateResource": 1,
+    "sinkFieldList": []
+}`}
+</code>
+</TabItem>
+<TabItem value="oracle">
+<code>
+{`{ 
+    "sinkType": "ORACLE",
+    "sinkName": "test_sink_ctl",
+    "jdbcUrl": "jdbc:oracle:thin://127.0.0.1:1521/db_name",
+    "username": "username",
+    "password": "password",
+    "tableName": "test_table",
+    "primaryKey": "id",
+    "enableCreateResource": 1,
+    "sinkFieldList": []
+}`}
+</code>
+</TabItem>
+<TabItem value="postgresql">
+<code>
+{`{ 
+    "sinkType": "POSTGRESQL",
+    "sinkName": "test_sink_ctl",
+    "jdbcUrl": "jdbc:postgresql://127.0.0.1:5432/db_name",
+    "username": "username",
+    "password": "password",
+    "dbName": "db_test",
+    "tableName": "table_test",
+    "primaryKey": "id",
+    "enableCreateResource": 1,
+    "sinkFieldList": []
+}`}
+</code>
+</TabItem>
+<TabItem value="sqlserver">
+<code>
+{`{ 
+    "sinkType": "SQLSERVER",
+    "sinkName": "test_sink_ctl",
+    "jdbcUrl": "jdbc:sqlserver://127.0.0.1:1433;database=db_test",
+    "tableName": "table_test",
+    "schemaName": "schema_test",
+    "username": "username",
+    "password": "password",
+    "serverTimezone": "UTC",
+    "allMigration": false,
+    "primaryKey": "id",
+    "enableCreateResource": 1,
+    "sinkFieldList": []
+}`}
+</code>
+</TabItem>
+<TabItem value="iceberg">
+<code>
+{`{
+    "sinkType": "ICEBERG",
+    "sinkName": "test_sink_ctl",
+    "dataNodeName": "test_iceberg",
+    "dbName": "db_test",
+    "tableName": "table_test",
+    "fileFormat": "Parquet",
+    "primaryKey": "id",
+    "enableCreateResource": 1,
+    "sinkFieldList": []
+}`}
+</code>
+</TabItem>
+</Tabs>
 
 ### `cluster`
 
