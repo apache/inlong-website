@@ -209,8 +209,8 @@ $ git archive --format=tar.gz --output="/tmp/apache-inlong-${release_version}-${
 ### Upload tag to git repository
 ```shell
 # under the directory where you create the tag
-$ git push origin ${release_version}-${rc_version}
 $ git push origin release-${release_version}
+$ git push origin ${release_version}-${rc_version}
 ```
 
 ### Building binary package

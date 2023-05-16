@@ -208,8 +208,8 @@ $ git archive --format=tar.gz --output="/tmp/apache-inlong-${release_version}-${
 ### 上传 tag 到 git 仓库
 ```shell
 # 在创建 tag 的源码目录执行
-$ git push origin ${release_version}-${rc_version}
 $ git push origin release-${release_version}
+$ git push origin ${release_version}-${rc_version}
 ```
 
 ### 打包二进制包
