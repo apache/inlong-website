@@ -170,10 +170,11 @@ Adding `<servers>/<profiles>` configurations in your maven `settings.xml` with c
 ```
 
 ## Build
-The following `release_version` is the upcoming release number, such as 1.4.0; `rc_version` is Release Candidate, such as RC0, RC1...; `KEY_ID` is your GPG Key ID.
+The following `release_version` is the upcoming release number, such as 1.6.0; `rc_version` is Release Candidate, such as RC0, RC1...; `KEY_ID` is your GPG Key ID.
 
 ### Prepare branch
-- Create the release branch from the main version branch and modify the POM version number and CHANGES.md. For example, create `release-1.4.0` from `branch-1.4`.
+- Modify the POM version number and CHANGES.md, and create the **release branch** from the **main version branch** and . For example, create `release-1.6.0` from `branch-1.6`.
+  ![](images/branch.png)
 
 - check the code for release branch, including whether compile, unit test, RAT check, Docker images etc.
 ```shell
@@ -230,7 +231,7 @@ $ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connecto
 
 ### Sign the source package/binary package/sha512
 ```shell
-# 进入源码包目录
+# source directory
 $ cd /tmp/apache-inlong-${release_version}-${rc_version}
 # calculate SHA512
 $ for i in *.tar.gz; do echo $i; gpg -u ${KEY_ID} --print-md SHA512 $i > $i.sha512 ; done 
