@@ -169,10 +169,11 @@ $ svn ci -m "add gpg key for YOUR_NAME"
 ```
 
 ## 编译打包
-以下 `release_version` 为即将发布的版本号，比如 1.4.0；`rc_version` 为 Releae Candidate，比如 RC0，RC1...;`KEY_ID` 是你创建的 GPG Key ID.
+以下 `release_version` 为即将发布的版本号，比如 1.6.0；`rc_version` 为 Releae Candidate，比如 RC0，RC1...;`KEY_ID` 是你创建的 GPG Key ID.
 
 ### 准备分支
-- 从版本主分支创建待发布分支，并修改 POM 版本号和 CHANGES.md。比如从 `branch-1.4` 创建 `release-1.4.0`。
+- 修改 POM 版本号和 CHANGES.md，从**版本主分支**创建待**发布分支**。比如从 `branch-1.6` 创建 `release-1.6.0`。
+  ![](images/branch.png)
 
 - 检查 release 分支代码是否正常，包括编译成功、单元测试全部成功、RAT 检查、Docker 镜像等
 ```shell
@@ -207,8 +208,8 @@ $ git archive --format=tar.gz --output="/tmp/apache-inlong-${release_version}-${
 ### 上传 tag 到 git 仓库
 ```shell
 # 在创建 tag 的源码目录执行
-$ git push origin ${release_version}-${rc_version}
 $ git push origin release-${release_version}
+$ git push origin ${release_version}-${rc_version}
 ```
 
 ### 打包二进制包
