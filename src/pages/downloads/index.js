@@ -102,7 +102,7 @@ export default function() {
                 <div className={styles.release}>
                     <p>
                         <Translate id="page.download.version.step1">Find all Apache InLong releases in the </Translate>
-                        <a href="https://archive.apache.org/dist/inlong/" target="_blank"> Archive repository</a> 。
+                        <a href="https://archive.apache.org/dist/inlong/" target="_blank"> Archive repository</a> .
                     </p>
                     <p>
                         <a href="https://archive.apache.org/dist/incubator/inlong/">Incubating Archive repository </a>
