@@ -14,8 +14,13 @@
       "nextLink": "/zh-CN/docs/next/introduction",
       "version": [
         {
-          "title": "1.6.0",
+          "title": "1.7.0",
           "link": "/zh-CN/docs/introduction",
+          "releaseUrl": "/zh-CN/download/release-1.7.0"
+        },
+        {
+          "title": "1.6.0",
+          "link": "/zh-CN/docs/1.6.0/introduction",
           "releaseUrl": "/zh-CN/download/release-1.6.0"
         },
         {
@@ -77,8 +82,13 @@
       "nextLink": "/docs/next/introduction",
       "version": [
         {
-          "title": "1.6.0",
+          "title": "1.7.0",
           "link": "/docs/introduction",
+          "releaseUrl": "/download/release-1.7.0"
+        },
+        {
+          "title": "1.6.0",
+          "link": "/docs/1.6.0/introduction",
           "releaseUrl": "/download/release-1.6.0"
         },
         {
