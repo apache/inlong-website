@@ -67,8 +67,7 @@ export default function() {
                                 fill="#000000" p-id="2714"></path>
                         </svg>
                         apache/inlong
-                    </a>
-                    <img src="https://contrib.rocks/image?repo=apache/inlong"/>
+                    </a>                    
                     <a href="https://github.com/apache/inlong-website/graphs/contributors" className={styles.committerLink} target="_blank">
                         <svg t="1668397861887" className="icon" viewBox="0 0 1024 1024" version="1.1"
                              xmlns="http://www.w3.org/2000/svg" p-id="2713" width="32" height="32">
@@ -77,10 +76,10 @@ export default function() {
                                 fill="#000000" p-id="2714"></path>
                         </svg>
                         apache/inlong-website
-                    </a>
-
-                    <img src="https://contrib.rocks/image?repo=apache/inlong-website"/>
+                    </a>                    
                 </div>
+                <img src="https://contrib.rocks/image?repo=apache/inlong"/>
+                
                 <h2>Contributor Over Time</h2>
                 <div className={styles.divImg}>
                     <img src="https://contributor-graph-api.apiseven.com/contributors-svg?repo=apache/inlong&merge=true" alt="apache inlong"/>
