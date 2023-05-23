@@ -7,7 +7,7 @@ https://inlong.apache.org/
 
 InLong website is powered by [Docusaurus](https://docusaurus.io/).
 If your version of Docusaurus is less than `2.0.0`,please upgrade to `2.0.0`.
-Please also make sure your node version is 14.x, versions higher than 14.x is not supported by Docusaurus yet.
+Please also make sure your node version is 16.14.x, versions higher than 16.14.x is not supported by Docusaurus yet.
 
 ## Build instruction 
 
@@ -15,11 +15,13 @@ Please also make sure your node version is 14.x, versions higher than 14.x is no
 2. Run `npm start` in the root directory to start a local server, you will see the website in 'http://127.0.0.1:3000'.
 3. Run `npm run build` to build source code.
 
+If you need to see the documentation in simplified Chinese, first `npm run build`, then use `npm run start-zh`.
+
 If you have higher version of node installed, you may consider `nvm` to allow different versions of `node` coexisting on your machine.
 
 1. Follow the [instructions](http://nvm.sh) to install nvm
-2. Run `nvm install v14.13.0` to install node v14
-3. Run `nvm use v14.13.0` to switch the working environment to node v14
+2. Run `nvm install v16.14.0` to install node v16
+3. Run `nvm use v16.14.0` to switch the working environment to node v16
 
 Then you are all set to run and build the website. Follow the build instruction above for the details.
 
