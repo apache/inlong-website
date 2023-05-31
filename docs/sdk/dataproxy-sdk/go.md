@@ -1,21 +1,17 @@
 ---
-title: Go SDK
+title: Golang SDK
 sidebar_position: 4
 ---
-
-import {siteVariables} from '../../version';
 
 ## Create real-time synchronization task
 Create a task on the Dashboard or with the command line tool, and set `Auto Push` (autonomous push) as the data source type.
 
-## Import Go SDK
-To use the Go SDK, you need to import it into your projects. Import the Go SDK:
+## Import Golang SDK
+To use the Golang SDK, you need to import it into your projects. Import the Golang SDK:
 
 ```go
 import "github.com/apache/inlong/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-golang/dataproxy"
 ```
-
-
 
 
 ## Data report process
@@ -36,7 +32,14 @@ if err != nil {
 }
 ```
 
+where:
+
+- dataproxy.WithGroupID("test") sets the GroupID;
+- dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList") sets the service registry URL;
+- dataproxy.WithMetricsName("test") sets the value of the metrics label: "name" of the `Client`.
+
 ### Call the Send/SendAsync method to send
+
 The send methods of the SDK are goroutine safe, you can send a message synchronously or asynchronously, there are both synchronous and asynchronous examples in the demo.
 
 Send synchronously :
@@ -90,9 +93,7 @@ Closing the SDK can be done simply by calling the  `Close()` method of the `Clie
 client.Close()
 ```
 
-
-
-# Notes
+## Notes
 - `GroupID` and `URL` are mandatory options when you initialize the SDK, you can call `dataproxy.WithGroupID()` and 
   `dataproxy.WithURL()` to set them;
 -  When you initialize more the one instance of `Client`, the `MetricsName` must be set to different values, or it will be failed when pulling metrics, you can call `dataproxy.WithMetricsName()` to set it;
@@ -101,7 +102,7 @@ client.Close()
 - The SDK will retry 2 times each message, if it still failed finally, it is up to you to decide what to do next.
 
 ## Errors
-Some common errors
+Some common errors:
 
 | Error                                                       | Desc                                       |
 | ------------------------------------------------------------ | ------------------------------------------- |
