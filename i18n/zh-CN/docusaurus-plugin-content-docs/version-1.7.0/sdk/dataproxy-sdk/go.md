@@ -35,7 +35,7 @@ if err != nil {
 参数说明：
 
 - `dataproxy.WithGroupID("test")` 设置了 GroupID ；
-- `dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList")` 设置了服务注册中心的 URL ；
+- `dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList")` 设置了 Manager 的 URL ；
 - `dataproxy.WithMetricsName("test")` 设置了这个 `Client` 的指标中标签 "name" 的值；
 
 ### 调用发送接口进行数据上报
@@ -106,9 +106,9 @@ client.Close()
 
 | 错误                                                         | 描述                               |
 | ------------------------------------------------------------ | ---------------------------------- |
-| errors.New("URL is not given")                               | 服务发现 URL  未设置。             |
+| errors.New("URL is not given")                               | Manager URL  未设置。             |
 | errors.New("group ID is not given")                          | GroupID未设置。                    |
-| errors.New("invalid URL")                                    | 服务发现 URL 非法，可能为空。      |
+| errors.New("invalid URL")                                    | Manager URL 非法，可能为空。      |
 | errors.New("invalid group ID")                               | GroupID 非法，可能为空。           |
 | errors.New("service has no endpoints")                       | 服务无端点，服务发现失败           |
 | errors.New("no available worker")                            | 没有可用工作者，工作者忙。         |
@@ -125,7 +125,7 @@ client.Close()
 | --------------------------- | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | WithSet()                   | ""                           | 设置集群名                                                   | 是，无用途                                                   |
 | WithGroupID()               | ""                           | 设置GroupID                                                  | 否                                                           |
-| WithURL()                   | ""                           | 设置服务发现的URL                                            | 否                                                           |
+| WithURL()                   | ""                           | 设置 Manager 的URL                                            | 否                                                           |
 | WithUpdateInterval()        | 5m                           | 设置服务发现的更新时间                                       | 是                                                           |
 | WithConnTimeout()           | 3000ms                       | 设置连接超时                                                 | 是                                                           |
 | WriteBufferSize             | 16M                          | 设置写缓冲区大小                                             | 是                                                           |

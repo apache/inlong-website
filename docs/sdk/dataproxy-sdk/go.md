@@ -35,7 +35,7 @@ if err != nil {
 where:
 
 - `dataproxy.WithGroupID("test")` sets the GroupID;
-- `dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList")` sets the service registry URL;
+- `dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList")` sets the Manager URL;
 - `dataproxy.WithMetricsName("test")` sets the value of the metrics label: "name" of the `Client`.
 
 ### Call the Send/SendAsync method to send
@@ -106,9 +106,9 @@ Some common errors:
 
 | Error                                                       | Desc                                       |
 | ------------------------------------------------------------ | ------------------------------------------- |
-| errors.New("URL is not given")                               | Service registry URL is not set.                                |
+| errors.New("URL is not given")                               | Manager URL is not set.                                |
 | errors.New("group ID is not given")                          | Group ID is not set.                                |
-| errors.New("invalid URL")                                    | Service registry URL is invalid.                            |
+| errors.New("invalid URL")                                    | Manager URL is invalid.                            |
 | errors.New("invalid group ID")                               | Group ID is invalid.                                |
 | errors.New("service has no endpoints")                       | Service has no endpoints, service discoery failed.                        |
 | errors.New("no available worker")                            | No available workers, workers are busy.                              |
@@ -125,7 +125,7 @@ Some common errors:
 | --------------------------- | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | WithSet()                   | ""                           | Sets the cluster name.                                        | Yes, no use now.                                                   |
 | WithGroupID()               | ""                           | Sets the Group ID.                                            | No                                                           |
-| WithURL()                   | ""                           | Sets the service registry URL.                                | No                                                           |
+| WithURL()                   | ""                           | Sets the Manager URL.                                | No                                                           |
 | WithUpdateInterval()        | 5m                           | Sets the update interval of service discoery.                 | Yes                                                           |
 | WithConnTimeout()           | 3000ms                       | Sets the connection timeout.                                  | Yes                                                           |
 | WriteBufferSize             | 16M                          | Sets the write buffer size.                                   | Yes                                                           |
