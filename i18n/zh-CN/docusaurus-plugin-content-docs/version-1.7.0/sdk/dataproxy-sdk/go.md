@@ -34,9 +34,9 @@ if err != nil {
 
 参数说明：
 
-- dataproxy.WithGroupID("test") 设置了 GroupID ；
-- dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList") 设置了服务注册中心的 URL ；
-- dataproxy.WithMetricsName("test") 设置了这个 `Client` 的指标中标签 "name" 的值；
+- `dataproxy.WithGroupID("test")` 设置了 GroupID ；
+- `dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList")` 设置了服务注册中心的 URL ；
+- `dataproxy.WithMetricsName("test")` 设置了这个 `Client` 的指标中标签 "name" 的值；
 
 ### 调用发送接口进行数据上报
 

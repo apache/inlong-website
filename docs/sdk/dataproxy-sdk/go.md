@@ -34,9 +34,9 @@ if err != nil {
 
 where:
 
-- dataproxy.WithGroupID("test") sets the GroupID;
-- dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList") sets the service registry URL;
-- dataproxy.WithMetricsName("test") sets the value of the metrics label: "name" of the `Client`.
+- `dataproxy.WithGroupID("test")` sets the GroupID;
+- `dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList")` sets the service registry URL;
+- `dataproxy.WithMetricsName("test")` sets the value of the metrics label: "name" of the `Client`.
 
 ### Call the Send/SendAsync method to send
 
