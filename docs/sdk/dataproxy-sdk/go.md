@@ -32,7 +32,7 @@ if err != nil {
 }
 ```
 
-where:
+Parameters:
 
 - `dataproxy.WithGroupID("test")` sets the GroupID;
 - `dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList")` sets the Manager URL;
