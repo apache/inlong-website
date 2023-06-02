@@ -123,7 +123,6 @@ Some common errors:
 
 | Option                      | Default value                | Desc                                                         | Optional                                                     |
 | --------------------------- | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| WithSet()                   | ""                           | Sets the cluster name.                                        | Yes, no use now.                                                   |
 | WithGroupID()               | ""                           | Sets the Group ID.                                            | No                                                           |
 | WithURL()                   | ""                           | Sets the Manager URL.                                | No                                                           |
 | WithUpdateInterval()        | 5m                           | Sets the update interval of service discoery.                 | Yes                                                           |
