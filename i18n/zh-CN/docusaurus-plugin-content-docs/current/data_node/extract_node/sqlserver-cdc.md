@@ -210,22 +210,22 @@ TODO
   </thead>
   <tbody>
     <tr>
-      <td>meta.table_name</td>
+      <td>table_name</td>
       <td>STRING NOT NULL</td>
       <td>包含该行的表的名称。</td>
     </tr>   
      <tr>
-      <td>meta.schema_name</td>
+      <td>schema_name</td>
       <td>STRING NOT NULL</td>
       <td>包含该行 schema 的名称。</td>
     </tr>
     <tr>
-      <td>meta.database_name</td>
+      <td>database_name</td>
       <td>STRING NOT NULL</td>
       <td>包含该行数据库的名称。</td>
     </tr>
     <tr>
-      <td>meta.op_ts</td>
+      <td>op_ts</td>
       <td>TIMESTAMP_LTZ(3) NOT NULL</td>
       <td>它表示在数据库中进行更改的时间。如果记录是从表的快照而不是 binlog 中读取的，则该值始终为 0。</td>
     </tr>

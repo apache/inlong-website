@@ -209,22 +209,22 @@ The following format metadata can be exposed as read-only (VIRTUAL) columns in a
   </thead>
   <tbody>
     <tr>
-      <td>meta.table_name</td>
+      <td>table_name</td>
       <td>STRING NOT NULL</td>
       <td>Name of the table that contain the row.</td>
     </tr>   
      <tr>
-      <td>meta.schema_name</td>
+      <td>schema_name</td>
       <td>STRING NOT NULL</td>
       <td>Name of the schema that contain the row.</td>
     </tr>
     <tr>
-      <td>meta.database_name</td>
+      <td>database_name</td>
       <td>STRING NOT NULL</td>
       <td>Name of the database that contain the row.</td>
     </tr>
     <tr>
-      <td>meta.op_ts</td>
+      <td>op_ts</td>
       <td>TIMESTAMP_LTZ(3) NOT NULL</td>
       <td>It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the binlog, the value is always 0.</td>
     </tr>
