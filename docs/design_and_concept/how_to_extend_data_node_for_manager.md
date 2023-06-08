@@ -16,7 +16,7 @@ This article describes how to extend a new data node through the Manager to prov
 - Add **SourceType** in `org.apache.inlong.manager.common.consts.SourceType`
 - Create new package under package path: `org.apache.inlong.manager.common.pojo.source`, develop every entity class needed.
 - Create Operation class for new data source under package path: `org.apache.inlong.manager.service.source`.
-- Transfer data source to **ExtractNode** supported in **Sort**, refer to `org.apache.inlong.manager.pojo.sort.util.ExtractNodeUtils`
+- Transfer data source to **ExtractNode** supported in **Sort**, create the implementation class Provider for the `org.apache.inlong.manager.pojo.sort.node.provider.ExtractNodeProvider` interface under the `org.apache.inlong.manager.pojo.sort.node.provider` path, and register it with the `org.apache.inlong.manager.pojo.sort.node.ExtractNodeProviderFactory`
 
 ## Extend Load Node
 
@@ -24,4 +24,4 @@ This article describes how to extend a new data node through the Manager to prov
 - Add **SinkType** in `org.apache.inlong.manager.common.consts.SinkType`
 - Create new package under package path: `org.apache.inlong.manager.common.pojo.sink`, develop every entity class needed.
 - Create Operation class for new data source under package path: `org.apache.inlong.manager.service.sink`.
-- Transfer data sink to **LoadNode** supported in **Sort**, refer to `org.apache.inlong.manager.pojo.sort.util.LoadNodeUtils`
+- Transfer data sink to **LoadNode** supported in **Sort**, create the implementation class Provider for the `org.apache.inlong.manager.pojo.sort.node.provider.LoadNodeProvider` interface under the `org.apache.inlong.manager.pojo.sort.node.provider` path, and register it with the `org.apache.inlong.manager.pojo.sort.node.LoadNodeProviderFactory`
