@@ -16,7 +16,7 @@ Inlong 设计初衷即是为了在不同数据源之间创建数据流，截止�
 - 在常量类`org.apache.inlong.manager.common.consts.SourceType`中同样增加对应常量
 - 在`org.apache.inlong.manager.common.pojo.source`路径下创建文件夹，创建对应实体类
 - 在`org.apache.inlong.manager.service.source`路径下，创建对应工具类
-- 支持数据源到**ExtractNode**的转换函数，参考 `org.apache.inlong.manager.pojo.sort.util.ExtractNodeUtils`
+- 支持数据源到**ExtractNode**的转换函数，在`org.apache.inlong.manager.pojo.sort.node.provider`路径下创建对应实现`org.apache.inlong.manager.pojo.sort.node.provider.ExtractNodeProvider`接口的实体类Provider，并注册到`org.apache.inlong.manager.pojo.sort.node.ExtractNodeProviderFactory`
 
 ## 扩展 Load Node
 
@@ -24,4 +24,4 @@ Inlong 设计初衷即是为了在不同数据源之间创建数据流，截止�
 - 在常量类`org.apache.inlong.manager.common.consts.SinkType`中增加对应常量
 - 在`org.apache.inlong.manager.common.pojo.sink`路径下创建文件夹, 创建对应实体类
 - 在`org.apache.inlong.manager.service.sink`路径下创建对应工具类
-- 支持数据源到**LoadNode**的转换函数，参考代码 `org.apache.inlong.manager.pojo.sort.util.LoadNodeUtils`
+- 支持数据源到**LoadNode**的转换函数，在`org.apache.inlong.manager.pojo.sort.node.provider`路径下创建对应实现`org.apache.inlong.manager.pojo.sort.node.provider.LoadNodeProvider`接口的实体类Provider，并注册到`org.apache.inlong.manager.pojo.sort.node.LoadNodeProviderFactory`
