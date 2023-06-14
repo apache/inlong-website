@@ -17,7 +17,7 @@ curl -X POST -d 'groupId=give_your_group_id&streamId=give_your_stream_id&dt=data
 | groupId   | Data stream group id                  |         |
 | streamId  | Data stream ID                        |         |
 | body      | Data content to be pushed             |         |
-| dt        | Data time to be pushed                |         |
+| dt        | Data time to be pushed                |timestamp millisecond     |
 | cnt       | The count of data pieces to be pushed |         |
 
 - Return Value：
