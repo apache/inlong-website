@@ -17,7 +17,7 @@ curl -X POST -d 'groupId=give_your_group_id&streamId=give_your_stream_id&dt=data
 | groupId  | 数据流组 id  |     |
 | streamId | 数据流 ID   |     |
 | body     | 推送的数据内容  |     |
-| dt       | 推送的数据时间  |     |
+| dt       | 推送的数据时间  |毫秒为单位的时间戳 |
 | cnt      | 推送条数     |     |
 
 - 返回值：
