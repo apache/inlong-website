@@ -220,15 +220,49 @@ TODO: It will be supported in the future.
           <td>Integer</td>
           <td>The maximum fetch size for per poll when read table snapshot.</td>
     </tr>
-    <tr>
+   <tr>
       <td>scan.startup.mode</td>
       <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>initial</td>
+      <td style="word-wrap: break-word;">initial</td>
       <td>String</td>
-      <td>Optional startup mode for MySQL CDC consumer, valid enumerations are "initial"
-           and "latest-offset". 
-           Please see <a href="https://ververica.github.io/flink-cdc-connectors/release-2.2/content/connectors/mysql-cdc.html#startup-reading-position">Startup Reading Position</a>section for more detailed information.</td>
-    </tr> 
+      <td>Optional startup mode for MySQL CDC consumer, valid enumerations are "initial", "earliest-offset", "latest-offset", "specific-offset" and "timestamp".
+           Please see <a href="#startup-reading-position">Startup Reading Position</a> section for more detailed information.</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.file</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>String</td>
+      <td>Optional binlog file name used in case of "specific-offset" startup mode</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.pos</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>Long</td>
+      <td>Optional binlog file position used in case of "specific-offset" startup mode</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.gtid-set</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>String</td>
+      <td>Optional GTID set used in case of "specific-offset" startup mode</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.skip-events</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>Long</td>
+      <td>Optional number of events to skip after the specific starting offset</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.skip-rows</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>Long</td>
+      <td>Optional number of rows to skip after the specific starting offset</td>
+    </tr>
     <tr>
       <td>server-time-zone</td>
       <td>optional</td>
@@ -662,3 +696,50 @@ WITH (
 'table-name' = 'test01\.a{2}[0-9]$, test\.[\s\S]*'
 )
 ````
+
+### Startup Reading Position
+
+The config option `scan.startup.mode` specifies the startup mode for MySQL CDC consumer. The valid enumerations are:
+
+- `initial` (default): Performs an initial snapshot on the monitored database tables upon first startup, and continue to read the latest binlog.
+- `earliest-offset`: Skip snapshot phase and start reading binlog events from the earliest accessible binlog offset.
+- `latest-offset`: Never to perform snapshot on the monitored database tables upon first startup, just read from
+  the end of the binlog which means only have the changes since the connector was started.
+- `specific-offset`: Skip snapshot phase and start reading binlog events from a specific offset. The offset could be
+  specified with binlog filename and position, or a GTID set if GTID is enabled on server.
+- `timestamp`: Skip snapshot phase and start reading binlog events from a specific timestamp.
+
+For example in DataStream API:
+```java
+MySQLSource.builder()
+    .startupOptions(StartupOptions.earliest()) // Start from earliest offset
+    .startupOptions(StartupOptions.latest()) // Start from latest offset
+    .startupOptions(StartupOptions.specificOffset("mysql-bin.000003", 4L) // Start from binlog file and offset
+    .startupOptions(StartupOptions.specificOffset("24DA167-0C0C-11E8-8442-00059A3C7B00:1-19")) // Start from GTID set
+    .startupOptions(StartupOptions.timestamp(1667232000000L) // Start from timestamp
+    ...
+    .build()
+```
+
+and with SQL:
+
+```SQL
+CREATE TABLE mysql_source (...) WITH (
+    'connector' = 'mysql-cdc',
+    'scan.startup.mode' = 'earliest-offset', -- Start from earliest offset
+    'scan.startup.mode' = 'latest-offset', -- Start from latest offset
+    'scan.startup.mode' = 'specific-offset', -- Start from specific offset
+    'scan.startup.mode' = 'timestamp', -- Start from timestamp
+    'scan.startup.specific-offset.file' = 'mysql-bin.000003', -- Binlog filename under specific offset startup mode
+    'scan.startup.specific-offset.pos' = '4', -- Binlog position under specific offset mode
+    'scan.startup.specific-offset.gtid-set' = '24DA167-0C0C-11E8-8442-00059A3C7B00:1-19', -- GTID set under specific offset startup mode
+    'scan.startup.timestamp-millis' = '1667232000000' -- Timestamp under timestamp startup mode
+    ...
+)
+```
+
+**Notes:**
+1. MySQL source will print the current binlog position into logs with INFO level on checkpoint, with the prefix
+   "Binlog offset on checkpoint {checkpoint-id}". It could be useful if you want to restart the job from a specific checkpointed position.
+2. If schema of capturing tables was changed previously, starting with earliest offset, specific offset or timestamp
+   could fail as the Debezium reader keeps the current latest table schema internally and earlier records with unmatched schema cannot be correctly parsed.

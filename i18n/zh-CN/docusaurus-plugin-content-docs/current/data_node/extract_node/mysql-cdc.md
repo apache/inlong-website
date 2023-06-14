@@ -216,15 +216,50 @@ TODO: 将在未来支持此功能。
           <td>Integer</td>
           <td>读取表快照时每次轮询的最大获取大小。</td>
     </tr>
-    <tr>
+   <tr>
       <td>scan.startup.mode</td>
       <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>initial</td>
+      <td style="word-wrap: break-word;">initial</td>
       <td>String</td>
-      <td>MySQL CDC 消费者的可选启动模式，有效枚举为"initial"
-           和"latest-offset"。
-           请参阅<a href="https://ververica.github.io/flink-cdc-connectors/release-2.2/content/connectors/mysql-cdc.html#startup-reading-position">启动阅读位置</a>部分了解更多详细信息。</td>
-    </tr> 
+      <td> MySQL CDC 消费者可选的启动模式，
+         合法的模式为 "initial"，"earliest-offset"，"latest-offset"，"specific-offset" 和 "timestamp"。
+           请查阅 <a href="#a-name-id-002-a">启动模式</a> 章节了解更多详细信息。</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.file</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>String</td>
+      <td>在 "specific-offset" 启动模式下，启动位点的 binlog 文件名。</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.pos</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>Long</td>
+      <td>在 "specific-offset" 启动模式下，启动位点的 binlog 文件位置。</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.gtid-set</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>String</td>
+      <td>在 "specific-offset" 启动模式下，启动位点的 GTID 集合。</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.skip-events</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>Long</td>
+      <td>在指定的启动位点后需要跳过的事件数量。</td>
+    </tr>
+    <tr>
+      <td>scan.startup.specific-offset.skip-rows</td>
+      <td>optional</td>
+      <td style="word-wrap: break-word;">(none)</td>
+      <td>Long</td>
+      <td>在指定的启动位点后需要跳过的数据行数量。</td>
+    </tr>
     <tr>
       <td>server-time-zone</td>
       <td>optional</td>
@@ -660,3 +695,47 @@ WITH (
 'table-name' = 'test01\.a{2}[0-9]$, test\.[\s\S]*'
 )
 ```
+
+### 启动模式<a name="启动模式" id="002" ></a>
+
+配置选项```scan.startup.mode```指定 MySQL CDC 使用者的启动模式。有效枚举包括：
+
+- `initial` （默认）：在第一次启动时对受监视的数据库表执行初始快照，并继续读取最新的 binlog。
+- `earliest-offset`：跳过快照阶段，从可读取的最早 binlog 位点开始读取
+- `latest-offset`：首次启动时，从不对受监视的数据库表执行快照， 连接器仅从 binlog 的结尾处开始读取，这意味着连接器只能读取在连接器启动之后的数据更改。
+- `specific-offset`：跳过快照阶段，从指定的 binlog 位点开始读取。位点可通过 binlog 文件名和位置指定，或者在 GTID 在集群上启用时通过 GTID 集合指定。
+- `timestamp`：跳过快照阶段，从指定的时间戳开始读取 binlog 事件。
+
+例如使用 DataStream API:
+```java
+MySQLSource.builder()
+    .startupOptions(StartupOptions.earliest()) // 从最早位点启动
+    .startupOptions(StartupOptions.latest()) // 从最晚位点启动
+    .startupOptions(StartupOptions.specificOffset("mysql-bin.000003", 4L) // 从指定 binlog 文件名和位置启动
+    .startupOptions(StartupOptions.specificOffset("24DA167-0C0C-11E8-8442-00059A3C7B00:1-19")) // 从 GTID 集合启动
+    .startupOptions(StartupOptions.timestamp(1667232000000L) // 从时间戳启动
+    ...
+    .build()
+```
+
+使用 SQL:
+
+```SQL
+CREATE TABLE mysql_source (...) WITH (
+    'connector' = 'mysql-cdc',
+    'scan.startup.mode' = 'earliest-offset', -- 从最早位点启动
+    'scan.startup.mode' = 'latest-offset', -- 从最晚位点启动
+    'scan.startup.mode' = 'specific-offset', -- 从特定位点启动
+    'scan.startup.mode' = 'timestamp', -- 从特定位点启动
+    'scan.startup.specific-offset.file' = 'mysql-bin.000003', -- 在特定位点启动模式下指定 binlog 文件名
+    'scan.startup.specific-offset.pos' = '4', -- 在特定位点启动模式下指定 binlog 位置
+    'scan.startup.specific-offset.gtid-set' = '24DA167-0C0C-11E8-8442-00059A3C7B00:1-19', -- 在特定位点启动模式下指定 GTID 集合
+    'scan.startup.timestamp-millis' = '1667232000000' -- 在时间戳启动模式下指定启动时间戳
+    ...
+)
+```
+
+**注意**：
+1. MySQL source 会在 checkpoint 时将当前位点以 INFO 级别打印到日志中，日志前缀为 "Binlog offset on checkpoint {checkpoint-id}"。
+   该日志可以帮助将作业从某个 checkpoint 的位点开始启动的场景。
+2. 如果捕获变更的表曾经发生过表结构变化，从最早位点、特定位点或时间戳启动可能会发生错误，因为 Debezium 读取器会在内部保存当前的最新表结构，结构不匹配的早期数据无法被正确解析。
