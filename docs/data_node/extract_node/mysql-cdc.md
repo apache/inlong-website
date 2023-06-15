@@ -120,7 +120,7 @@ TODO: It will be supported in the future.
 
 |Option| Required| Default| Type| Description|
 | - | - | - | - | - |
-| connector | required | (none) | String | 	Specify what connector to use, here should be `'mysql-cdc-inlong'`.|
+| connector | required | (none) | String | 	Specify what connector to use, here should be `'mysql-cdc-inlong'` .|
 | hostname | required | (none) | String | 	IP address or hostname of the MySQL database server|
 | username | required | (none) | String | 	Name of the MySQL database to use when connecting to the MySQL database server.|
 | password | required | (none) | String | 	Password to use when connecting to the MySQL database server.|
