@@ -120,8 +120,8 @@ TODO: It will be supported in the future.
 
 |Option| Required| Default| Type| Description|
 | - | - | - | - | - |
-| connector | required | (none) | String | 	Specify what connector to use, here should be `'mysql-cdc-inlong'` .|
-| hostname | required | (none) | String | 	IP address or hostname of the MySQL database server|
+| connector | required | (none) | String | 	Specify what connector to use, here should be `'mysql-cdc-inlong'`.|
+| hostname | required | (none) | String | 	IP address or hostname of the MySQL database server. |
 | username | required | (none) | String | 	Name of the MySQL database to use when connecting to the MySQL database server.|
 | password | required | (none) | String | 	Password to use when connecting to the MySQL database server.|
 | database-name | required | (none) | String | Database name of the MySQL server to monitor. The database-name also supports regular expressions to monitor multiple tables matches the regular expression.|
