@@ -207,25 +207,25 @@ CREATE TABLE `mysql_extract_node` (
 | MySQL type | Flink SQL type | NOTE |
 | --- | --- | --- |
 | TINYINT | TINYINT |     |
-| SMALLINT<br>TINYINT UNSIGNED | SMALLINT |     |
-| INT<br>MEDIUMINT<br>SMALLINT UNSIGNED | INT |     |
-| BIGINT<br>INT UNSIGNED | BIGINT |     |
+| SMALLINT<br/>TINYINT UNSIGNED | SMALLINT |     |
+| INT<br/>MEDIUMINT<br/>SMALLINT UNSIGNED | INT |     |
+| BIGINT<br/>INT UNSIGNED | BIGINT |     |
 | BIGINT UNSIGNED | DECIMAL(20, 0) |     |
-| REAL<br>FLOAT | FLOAT |     |
+| REAL<br/>FLOAT | FLOAT |     |
 | DOUBLE | DOUBLE |     |
-| NUMERIC(p, s)<br>DECIMAL(p, s)<br>where p <= 38 | DECIMAL(p, s) |     |
-| NUMERIC(p, s)<br>DECIMAL(p, s)<br>where 38 < p <= 65 | STRING | The precision for DECIMAL data type is up to 65 in MySQL, but the precision for DECIMAL is limited to 38 in Flink. So if you define a decimal column whose precision is greater than 38, you should map it to STRING to avoid precision loss. |
-| BOOLEAN<br>TINYINT(1)<br>BIT(1) | BOOLEAN |     |
+| NUMERIC(p, s)<br/>DECIMAL(p, s)<br/>where p <= 38 | DECIMAL(p, s) |     |
+| NUMERIC(p, s)<br/>DECIMAL(p, s)<br/>where 38 < p <= 65 | STRING | The precision for DECIMAL data type is up to 65 in MySQL, but the precision for DECIMAL is limited to 38 in Flink. So if you define a decimal column whose precision is greater than 38, you should map it to STRING to avoid precision loss. |
+| BOOLEAN<br/>TINYINT(1)<br/>BIT(1) | BOOLEAN |     |
 | DATE | DATE |     |
 | TIME [(p)] | TIME [(p)] |     |
-| TIMESTAMP [(p)]<br>DATETIME [(p)] | TIMESTAMP [(p)] |     |
+| TIMESTAMP [(p)]<br/>DATETIME [(p)] | TIMESTAMP [(p)] |     |
 | CHAR(n) | CHAR(n) |     |
 | VARCHAR(n) | VARCHAR(n) |     |
 | BIT(n) | BINARY(⌈n/8⌉) |     |
 | BINARY(n) | BINARY(n) |     |
 | VARBINARY(N) | VARBINARY(N) |     |
-| TINYTEXT<br>TEXT<br>MEDIUMTEXT<br>LONGTEXT | STRING |     |
-| TINYBLOB<br>BLOB<br>MEDIUMBLOB<br>LONGBLOB | BYTES | Currently, for BLOB data type in MySQL, only the blob whose length isn't greater than 2,147,483,647(2 ** 31 - 1) is supported. |
+| TINYTEXT<br/>TEXT<br/>MEDIUMTEXT<br/>LONGTEXT | STRING |     |
+| TINYBLOB<br/>BLOB<br/>MEDIUMBLOB<br/>LONGBLOB | BYTES | Currently, for BLOB data type in MySQL, only the blob whose length isn't greater than 2,147,483,647(2 ** 31 - 1) is supported. |
 | YEAR | INT |     |
 | ENUM | STRING |     |
 | JSON | STRING | The JSON data type will be converted into STRING with JSON format in Flink. |
