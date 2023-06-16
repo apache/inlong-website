@@ -213,8 +213,8 @@ CREATE TABLE `mysql_extract_node` (
 | NUMERIC(p, s)<br>DECIMAL(p, s)<br>where 38 < p <= 65 | STRING | The precision for DECIMAL data type is up to 65 in MySQL, but the precision for DECIMAL is limited to 38 in Flink. So if you define a decimal column whose precision is greater than 38, you should map it to STRING to avoid precision loss. |
 | BOOLEAN<br>TINYINT(1)<br>BIT(1) | BOOLEAN |     |
 | DATE | DATE |     |
-| TIME \[(p)\] | TIME \[(p)\] |     |
-| TIMESTAMP \[(p)\]<br>DATETIME \[(p)\] | TIMESTAMP \[(p)\] |     |
+| TIME [(p)] | TIME [(p)] |     |
+| TIMESTAMP [(p)]<br>DATETIME [(p)] | TIMESTAMP [(p)] |     |
 | CHAR(n) | CHAR(n) |     |
 | VARCHAR(n) | VARCHAR(n) |     |
 | BIT(n) | BINARY(⌈n/8⌉) |     |

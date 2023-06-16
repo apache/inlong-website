@@ -119,7 +119,7 @@ TODO: It will be supported in the future.
 ## MySQL Extract Node Options
 
 |Option| Required| Default| Type| Description|
-| - | - | - | - | - |
+| --- | --- | --- | --- | --- |
 | connector | required | (none) | String | 	Specify what connector to use, here should be `'mysql-cdc-inlong'`.|
 | hostname | required | (none) | String | 	IP address or hostname of the MySQL database server. |
 | username | required | (none) | String | 	Name of the MySQL database to use when connecting to the MySQL database server.|
@@ -155,7 +155,7 @@ TODO: It will be supported in the future.
 The following format metadata can be exposed as read-only (VIRTUAL) columns in a table definition.
 
 | Key | DataType | Description| 
-| -  | - | - | 
+| ---  | --- | --- | 
 | meta.table_name | STRING NOT NULL | Name of the table that contain the row.|
 | meta.database_name | STRING NOT NULL | Name of the database that contain the row.|
 | meta.op_ts | TIMESTAMP_LTZ(3) NOT NULL | It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the binlog, the value is always 0.|
@@ -171,6 +171,7 @@ The following format metadata can be exposed as read-only (VIRTUAL) columns in a
 | meta.update_before | ARRAY | Data of the row before update.|
 
 The extended CREATE TABLE example demonstrates the syntax for exposing these metadata fields:
+
 ```sql
 CREATE TABLE `mysql_extract_node` (
      `id` INT,
@@ -216,8 +217,8 @@ CREATE TABLE `mysql_extract_node` (
 | NUMERIC(p, s)<br>DECIMAL(p, s)<br>where 38 < p <= 65 | STRING | The precision for DECIMAL data type is up to 65 in MySQL, but the precision for DECIMAL is limited to 38 in Flink. So if you define a decimal column whose precision is greater than 38, you should map it to STRING to avoid precision loss. |
 | BOOLEAN<br>TINYINT(1)<br>BIT(1) | BOOLEAN |     |
 | DATE | DATE |     |
-| TIME \[(p)\] | TIME \[(p)\] |     |
-| TIMESTAMP \[(p)\]<br>DATETIME \[(p)\] | TIMESTAMP \[(p)\] |     |
+| TIME [(p)] | TIME [(p)] |     |
+| TIMESTAMP [(p)]<br>DATETIME [(p)] | TIMESTAMP [(p)] |     |
 | CHAR(n) | CHAR(n) |     |
 | VARCHAR(n) | VARCHAR(n) |     |
 | BIT(n) | BINARY(⌈n/8⌉) |     |
