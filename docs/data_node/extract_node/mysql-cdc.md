@@ -147,7 +147,7 @@ TODO: It will be supported in the future.
 | append-mode | optional | false | Boolean | Whether to support append only, if true the MySQL Extract Node will Convert all upsert streams to append streams to support downstream scenarios where upsert streams are not supported.|
 | migrate-all | optional | false | Boolean | Whether it is a full database migration scenario, if it is 'true', MySQL Extract Node will compress the physical fields and other meta fields of the table into 'json'. The special 'data' meta field of the format, currently supports two data formats, if you need data in 'canal json' format, then use the 'data_canal' metadata field, or use the 'data_debezium' metadata field if data in 'debezium json' format is required.|
 | row-kinds-filtered| optional| false| Boolean | The specific operation type that needs to be retained, where +U corresponds to the data before the update, -U corresponds to the updated data, and +I corresponds to the data before the update. Inserted data (the existing data is the data of the insert type), -D represents the deleted data, if you want to keep multiple operation types, use & connection. For example +I&-D, the connector will only output the inserted and deleted data, and the updated data will not be output. |
-| debezium.* | optional | (none) | String | Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from MySQL server. For example: `'debezium.snapshot.mode' = 'never'`. See more about the [Debezium's MySQL Connector properties](href="https://debezium.io/documentation/reference/1.5/connectors/mysql.html#mysql-connector-properties")| 
+| debezium.* | optional | (none) | String | Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from MySQL server. For example: `'debezium.snapshot.mode' = 'never'`. See more about the [Debezium's MySQL Connector properties](https://debezium.io/documentation/reference/1.5/connectors/mysql.html#mysql-connector-properties)| 
 | inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]. |
 
 ## Available Metadata
@@ -303,8 +303,11 @@ CREATE TABLE mysql_source (...) WITH (
 )
 ```
 
-**Notes:**
+:::Notes
+
 1. MySQL source will print the current binlog position into logs with INFO level on checkpoint, with the prefix
    "Binlog offset on checkpoint {checkpoint-id}". It could be useful if you want to restart the job from a specific checkpointed position.
 2. If schema of capturing tables was changed previously, starting with earliest offset, specific offset or timestamp
    could fail as the Debezium reader keeps the current latest table schema internally and earlier records with unmatched schema cannot be correctly parsed.
+
+:::

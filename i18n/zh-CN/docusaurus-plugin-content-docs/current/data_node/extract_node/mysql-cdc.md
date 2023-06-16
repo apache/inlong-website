@@ -210,7 +210,7 @@ CREATE TABLE `mysql_extract_node` (
 | REAL<br/>FLOAT | FLOAT |     |
 | DOUBLE | DOUBLE |     |
 | NUMERIC(p, s)<br/>DECIMAL(p, s)<br/>where p <= 38 | DECIMAL(p, s) |     |
-| NUMERIC(p, s)<br/>DECIMAL(p, s)<br/>where 38 < p <= 65 | STRING | The precision for DECIMAL data type is up to 65 in MySQL, but the precision for DECIMAL is limited to 38 in Flink. So if you define a decimal column whose precision is greater than 38, you should map it to STRING to avoid precision loss. |
+| NUMERIC(p, s)<br/>DECIMAL(p, s)<br/>where 38 < p <= 65 | STRING | 在 MySQL 中，十进制数据类型的精度高达 65，但在 Flink 中，十进制数据类型的精度仅限于 38。所以，如果定义精度大于 38 的十进制列，则应将其映射到字符串以避免精度损失。在 MySQL 中，十进制数据类型的精度高达65，但在Flink中，十进制数据类型的精度仅限于38。所以，如果定义精度大于 38 的十进制列，则应将其映射到字符串以避免精度损失。 |
 | BOOLEAN<br/>TINYINT(1)<br/>BIT(1) | BOOLEAN |     |
 | DATE | DATE |     |
 | TIME [(p)] | TIME [(p)] |     |
@@ -221,11 +221,11 @@ CREATE TABLE `mysql_extract_node` (
 | BINARY(n) | BINARY(n) |     |
 | VARBINARY(N) | VARBINARY(N) |     |
 | TINYTEXT<br/>TEXT<br/>MEDIUMTEXT<br/>LONGTEXT | STRING |     |
-| TINYBLOB<br/>BLOB<br/>MEDIUMBLOB<br/>LONGBLOB | BYTES | Currently, for BLOB data type in MySQL, only the blob whose length isn't greater than 2,147,483,647(2 ** 31 - 1) is supported. |
+| TINYBLOB<br/>BLOB<br/>MEDIUMBLOB<br/>LONGBLOB | BYTES | 目前，对于 MySQL 中的 BLOB 数据类型，仅支持长度不大于 2147483647（2**31-1）的 blob。 |
 | YEAR | INT |     |
 | ENUM | STRING |     |
-| JSON | STRING | The JSON data type will be converted into STRING with JSON format in Flink. |
-| SET | ARRAY&lt;STRING&gt; | As the SET data type in MySQL is a string object that can have zero or more values, it should always be mapped to an array of string |
+| JSON | STRING | JSON 数据类型将在 Flink 中转换为 JSON 格式的字符串。 |
+| SET | ARRAY&lt;STRING&gt; | 因为 MySQL 中的 SET 数据类型是一个字符串对象，可以有零个或多个值 它应该始终映射到字符串数组。|
 
 ## 特性
 
@@ -297,7 +297,10 @@ CREATE TABLE mysql_source (...) WITH (
 )
 ```
 
-**注意**：
+:::注意
+
 1. MySQL source 会在 checkpoint 时将当前位点以 INFO 级别打印到日志中，日志前缀为 "Binlog offset on checkpoint {checkpoint-id}"。
    该日志可以帮助将作业从某个 checkpoint 的位点开始启动的场景。
 2. 如果捕获变更的表曾经发生过表结构变化，从最早位点、特定位点或时间戳启动可能会发生错误，因为 Debezium 读取器会在内部保存当前的最新表结构，结构不匹配的早期数据无法被正确解析。
+
+:::
