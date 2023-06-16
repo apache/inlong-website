@@ -20,13 +20,15 @@ In order to set up the MySQL Extract Node, the following table provides dependen
 
 ### Maven dependency
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mongodb-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
+
 
 The MySQL driver dependency is also required to connect to MySQL database. Please download [mysql-connector-java-8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar) and put it into `FLINK_HOME/lib/`.
 

@@ -21,13 +21,14 @@ MySQL Extract 节点允许从 MySQL 数据库中读取快照数据和增量数�
 
 ### Maven 依赖
 
-```xml
-<dependency>
+<pre><code parentName="pre">
+{`<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mysql-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-```
+`}
+</code></pre>
 
 连接 MySQL 数据库还需要 MySQL 驱动程序依赖项。请下载[mysql-connector-java-8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar) 并将其放入 `FLINK_HOME/lib/`。
 
