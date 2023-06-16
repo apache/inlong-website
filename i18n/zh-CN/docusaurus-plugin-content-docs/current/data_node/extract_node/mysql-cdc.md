@@ -21,14 +21,13 @@ MySQL Extract 节点允许从 MySQL 数据库中读取快照数据和增量数�
 
 ### Maven 依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mysql-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 连接 MySQL 数据库还需要 MySQL 驱动程序依赖项。请下载[mysql-connector-java-8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar) 并将其放入 `FLINK_HOME/lib/`。
 
@@ -123,17 +122,17 @@ TODO: 将在未来支持此功能。
 | database-name | required | (none) | String | 要监控的 MySQL 服务器的数据库名称。 database-name 还支持正则表达式来监控多个表是否匹配正则表达式。 |
 | table-name | required | (none) | String | 要监控的 MySQL 数据库的表名。 table-name 还支持正则表达式来监控多个表是否匹配正则表达式。 |
 | port | optional | 3306 | Integer | MySQL 数据库服务器的整数端口号。 |
-| server-id | optional | (none) | Integer | 此数据库客户端的数字 Id 或数字 Id 范围，数字 Id 语法类似于 '5400'， 数字 Id 范围语法类似于“5400-5408”，启用“scan.incremental.snapshot.enabled”时建议使用数字 Id 范围语法。 在 MySQL 集群中所有当前运行的数据库进程中，每个 Id 都必须是唯一的。此连接器加入 MySQL 集群 作为另一台服务器（具有此唯一 Id），因此它可以读取 Binlog。默认情况下，会生成一个介于 5400 和 6400 之间的随机数， 尽管我们建议设置一个明确的值。 |
+| server-id | optional | (none) | Integer | 此数据库客户端的数字 Id 或数字 Id 范围，数字 Id 语法类似于 '5400'， 数字 Id 范围语法类似于 '5400-5408'，启用 'scan.incremental.snapshot.enabled' 时建议使用数字 Id 范围语法。 在 MySQL 集群中所有当前运行的数据库进程中，每个 Id 都必须是唯一的。此连接器加入 MySQL 集群 作为另一台服务器（具有此唯一 Id），因此它可以读取 Binlog。默认情况下，会生成一个介于 5400 和 6400 之间的随机数， 尽管我们建议设置一个明确的值。 |
 | scan.incremental.snapshot.enabled | optional | true | Boolean | 增量快照是一种读取表快照的新机制。与旧的快照机制相比， 增量快照有很多优点，包括： (1) 快照读取时 Source 可以并行， (2) Source 可以在快照读取时在 Chunk 粒度上进行检查点， (3) Source 在读快照前不需要获取全局读锁（FLUSH TABLES WITH READ LOCK）。 如果您希望源代码并行运行，每个并行阅读器都应该有一个唯一的服务器 ID，所以 'server-id' 必须是 '5400-6400' 这样的范围，并且范围必须大于并行度。 请参阅[增量快照阅读](https://ververica.github.io/flink-cdc-connectors/release-2.2/content/connectors/mysql-cdc.html#incremental-snapshot-reading)部分了解更多详细信息。 |
 | scan.incremental.snapshot.chunk.size | optional | 8096 | Integer | 表快照的块大小（行数），读取表的快照时，表的快照被分成多个块。 |
 | scan.snapshot.fetch.size | optional | 1024 | Integer | 读取表快照时每次轮询的最大获取大小。 |
-| scan.startup.mode | optional | initial | String | MySQL CDC 消费者的可选启动模式，有效枚举为"initial" 和"latest-offset"。 请参阅[启动阅读位置](#启动模式)部分了解更多详细信息。 |
-| scan.startup.specific-offset.file | optional | (none) | String | 在 "specific-offset" 启动模式下，启动位点的 binlog 文件名。|
-| scan.startup.specific-offset.pos| optional | (none) | Long | 在 "specific-offset" 启动模式下，启动位点的 binlog 文件位置。|
-| scan.startup.specific-offset.gtid-set | optional | (none) | String | 在 "specific-offset" 启动模式下，启动位点的 GTID 集合。|
+| scan.startup.mode | optional | initial | String | MySQL CDC 消费者的可选启动模式，有效枚举为 'initial' 和 'latest-offset'。 请参阅[启动阅读位置](#启动模式)部分了解更多详细信息。 |
+| scan.startup.specific-offset.file | optional | (none) | String | 在 'specific-offset' 启动模式下，启动位点的 binlog 文件名。|
+| scan.startup.specific-offset.pos| optional | (none) | Long | 在 'specific-offset' 启动模式下，启动位点的 binlog 文件位置。|
+| scan.startup.specific-offset.gtid-set | optional | (none) | String | 在 'specific-offset' 启动模式下，启动位点的 GTID 集合。|
 | scan.startup.specific-offset.skip-events | optional | (none) | Long | 在指定的启动位点后需要跳过的事件数量。|
 | scan.startup.specific-offset.skip-rows | optional | (none) | Long | 在指定的启动位点后需要跳过的数据行数量。|
-| server-time-zone | optional | UTC | String | 数据库服务器中的会话时区，例如"Asia/Shanghai"。 它控制 MYSQL 中的 TIMESTAMP 类型如何转换为 STRING。 查看更多[这里](https://debezium.io/documentation/reference/1.5/connectors/mysql.html#mysql-temporal-types)。 |
+| server-time-zone | optional | UTC | String | 数据库服务器中的会话时区，例如 'Asia/Shanghai'。 它控制 MYSQL 中的 TIMESTAMP 类型如何转换为 STRING。 查看更多[这里](https://debezium.io/documentation/reference/1.5/connectors/mysql.html#mysql-temporal-types)。 |
 | debezium.min.row. count.to.stream.result | optional | 1000 | Integer | 在快照操作期间，连接器将查询每个包含的表，以便为该表中的所有行生成读取事件。此参数确定 MySQL 连接是否会将表的所有结果拉入内存（速度很快但需要大量内存），或者是否将结果改为流式传输（可能较慢，但适用于非常大的表）。该值指定在连接器流式传输结果之前表必须包含的最小行数，默认为 1,000。将此参数设置为'0'以跳过所有表大小检查并始终在快照期间流式传输所有结果。 |
 | connect.timeout | optional | 30s | Duration | 连接器在尝试连接到 MySQL 数据库服务器后在超时之前应等待的最长时间。 |
 | connect.max-retries | optional | 3   | Integer | 连接器应重试以建立 MySQL 数据库服务器连接的最大重试次数。 |
