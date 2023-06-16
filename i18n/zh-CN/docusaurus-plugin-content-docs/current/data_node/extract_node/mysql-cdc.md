@@ -154,7 +154,7 @@ TODO: 将在未来支持此功能。
 | --- | --- | --- |
 | meta.table_name | STRING NOT NULL | 该行所属的表名。 |
 | meta.database_name | STRING NOT NULL | 该行所属的数据库名称。 |
-| meta.op_ts | TIMESTAMP_LTZ(3) NOT NULL | 它指示在数据库中进行更改的时间。<br>如果记录是从表的快照而不是binlog中读取的，则该值始终为0。 |
+| meta.op_ts | TIMESTAMP_LTZ(3) NOT NULL | 它指示在数据库中进行更改的时间。<br/>如果记录是从表的快照而不是binlog中读取的，则该值始终为0。 |
 | meta.op_type | STRING | 数据库操作的类型，如 INSERT/DELETE 等。 |
 | meta.data_canal | STRING/BYTES | \`canal-json\` 格式化的行的数据只有在 \`migrate-all\` 选项为 'true' 时才存在。 |
 | meta.data_debezium | STRING/BYTES | \`debezium-json\` 格式化的行的数据只有在 \`migrate-all\` 选项为 'true' 时才存在。 |
