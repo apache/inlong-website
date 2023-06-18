@@ -64,7 +64,7 @@ public class DataPush {
                 JsonNode jsonNode = OBJECT_MAPPER.readTree(returnStr);
                 if (jsonNode.has("code")) {
                     int code = jsonNode.get("code").asInt();
-                    if (code == 1) {
+                    if (code == 0) {
                         return "success";
                     } else {
                         return "fail";
