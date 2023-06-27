@@ -60,7 +60,7 @@ CREATE TABLE hdfs_load_node (
 支持文件能力，允许在较小的 checkpoint 下不产生大量的小文件。
 
 | 参数  | 默认值 | 数据类型 | 描述  |
-| --- | --- | --- | --- | --- |
+| --- | --- | --- | --- | 
 |  auto-compaction | false | Boolean | 在流式 sink 中是否开启自动合并功能，数据首先会被写入临时文件。 当 checkpoint 完成后，该检查点产生的临时文件会被合并，这些临时文件在合并前不可见。 |
 |  compaction.file-size | (none) | String | 合并目标文件大小，默认值为滚动文件大小。 |
 | inlong.metric.labels | (none) | String | inlong metric 的标签值，该值的构成为groupId=g[groupId]&streamId=[streamId]&nodeId=[nodeId]。 |
