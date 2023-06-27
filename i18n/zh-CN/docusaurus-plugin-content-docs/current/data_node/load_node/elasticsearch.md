@@ -129,21 +129,21 @@ Elasticsearch Load 节点同时支持静态索引和动态索引。
 ## 数据类型映射
 | JSON type | Flink SQL type |
 | --- | --- |
-| `string` | `CHAR / VARCHAR / STRING` |
-| `boolean` | `BOOLEAN` |
-| `string with encoding: base64` | `BINARY / VARBINARY` |
-| `number` | `DECIMAL` |
-| `number` | `TINYINT` |
-| `number` | `SMALLINT` |
-| `number` | `INT` |
-| `number` | `BIGINT` |
-| `number` | `FLOAT` |
-| `number` | `DOUBLE` |
-| `string with format: date` | `DATE` |
-| `string with format: time` | `TIME` |
-| `string with format: date-time` | `TIMESTAMP` |
-| `string with format: date-time (with UTC time zone)` | `TIMESTAMP_WITH_LOCAL_TIME_ZONE` |
-| `number` | `INTERVAL` |
-| `array` | `ARRAY` |
-| `object` | `MAP / MULTISET` |
-| `object` | `ROW` |
+| string | CHAR / VARCHAR / STRING |
+| boolean | BOOLEAN |
+| string with encoding: base64 | BINARY / VARBINARY |
+| number | DECIMAL |
+| number | TINYINT |
+| number | SMALLINT |
+| number | INT |
+| number | BIGINT |
+| number | FLOAT |
+| number | DOUBLE |
+| string with format: date | DATE |
+| string with format: time | TIME |
+| string with format: date-time | TIMESTAMP |
+| string with format: date-time (with UTC time zone) | TIMESTAMP_WITH_LOCAL_TIME_ZONE |
+| number | INTERVAL |
+| array | ARRAY |
+| object | MAP / MULTISET |
+| object | ROW |
