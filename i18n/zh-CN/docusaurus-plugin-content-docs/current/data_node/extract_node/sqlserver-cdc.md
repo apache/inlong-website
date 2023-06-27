@@ -110,127 +110,29 @@ TODO
 
 ## SQLServer 抽取节点参数信息
 
-<div class="highlight">
-<table class="colwidths-auto docutils">
-    <thead>
-      <tr>
-       <th class="text-left" style={{width: '10%'}}>参数</th>
-       <th class="text-left" style={{width: '8%'}}>是否必须</th>
-       <th class="text-left" style={{width: '7%'}}>默认值</th>
-       <th class="text-left" style={{width: '10%'}}>数据类型</th>
-              <th class="text-left" style={{width: '65%'}}>描述</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>connector</td>
-      <td>必须</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>指定使用什么连接器，这里应该是 'sqlserver-cdc-inlong'。</td>
-    </tr>
-    <tr>
-      <td>hostname</td>
-      <td>必须</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>SQLServer 数据库 IP 地址或者 hostname。</td>
-    </tr>
-    <tr>
-      <td>username</td>
-      <td>必须</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>SQLServer 数据库用户名。</td>
-    </tr>
-    <tr>
-      <td>password</td>
-      <td>必须</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>SQLServer 数据库用户密码。</td>
-    </tr>
-    <tr>
-      <td>database-name</td>
-      <td>必须</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>SQLServer 数据库监控的数据库名称。</td>
-    </tr> 
-    <tr>
-      <td>schema-name</td>
-      <td>必须</td>
-      <td style={{wordWrap: 'break-word'}}>dbo</td>
-      <td>String</td>
-      <td>SQLServer 数据库监控的 schema 名称。</td>
-    </tr>
-    <tr>
-      <td>table-name</td>
-      <td>必须</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>SQLServer 数据库监控的表名称。</td>
-    </tr>
-    <tr>
-      <td>port</td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>1433</td>
-      <td>Integer</td>
-      <td>SQLServer 数据库端口。</td>
-    </tr>
-    <tr>
-      <td>server-time-zone</td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>UTC</td>
-      <td>String</td>
-      <td>SQLServer 数据库连接配置时区。 例如： "Asia/Shanghai"。</td>
-    </tr>
-    <tr>
-      <td>inlong.metric.labels</td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。</td> 
-     </tr>
-    </tbody>
-</table>
-</div>
+| 参数  | 是否必须 | 默认值 | 数据类型 | 描述  |
+| --- | --- | --- | --- | --- |
+| connector | 必须  | (none) | String | 指定使用什么连接器，这里应该是 'sqlserver-cdc-inlong'。 |
+| hostname | 必须  | (none) | String | SQLServer 数据库 IP 地址或者 hostname。 |
+| username | 必须  | (none) | String | SQLServer 数据库用户名。 |
+| password | 必须  | (none) | String | SQLServer 数据库用户密码。 |
+| database-name | 必须  | (none) | String | SQLServer 数据库监控的数据库名称。 |
+| schema-name | 必须  | dbo | String | SQLServer 数据库监控的 schema 名称。 |
+| table-name | 必须  | (none) | String | SQLServer 数据库监控的表名称。 |
+| port | 可选  | 1433 | Integer | SQLServer 数据库端口。 |
+| server-time-zone | 可选  | UTC | String | SQLServer 数据库连接配置时区。 例如： "Asia/Shanghai"。 |
+| inlong.metric.labels | 可选  | (none) | String | inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。 |
 
 ## 可用的元数据字段
 
 以下格式元数据可以作为表定义中的只读 (VIRTUAL) 列公开。
 
-<table class="colwidths-auto docutils">
-  <thead>
-     <tr>
-        <th class="text-left" style={{width: '15%'}}>字段名称</th>
-        <th class="text-left" style={{width: '30%'}}>数据类型</th>
-        <th class="text-left" style={{width: '55%'}}>描述</th>
-     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>table_name</td>
-      <td>STRING NOT NULL</td>
-      <td>包含该行的表的名称。</td>
-    </tr>   
-     <tr>
-      <td>schema_name</td>
-      <td>STRING NOT NULL</td>
-      <td>包含该行 schema 的名称。</td>
-    </tr>
-    <tr>
-      <td>database_name</td>
-      <td>STRING NOT NULL</td>
-      <td>包含该行数据库的名称。</td>
-    </tr>
-    <tr>
-      <td>op_ts</td>
-      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>它表示在数据库中进行更改的时间。如果记录是从表的快照而不是 binlog 中读取的，则该值始终为 0。</td>
-    </tr>
-  </tbody>
-</table>
+| 字段名称 | 数据类型 | 描述  |
+| --- | --- | --- |
+| table_name | STRING NOT NULL | 包含该行的表的名称。 |
+| schema_name | STRING NOT NULL | 包含该行 schema 的名称。 |
+| database_name | STRING NOT NULL | 包含该行数据库的名称。 |
+| op_ts | TIMESTAMP_LTZ(3) NOT NULL | 它表示在数据库中进行更改的时间。如果记录是从表的快照而不是 binlog 中读取的，则该值始终为 0。 |
 
 使用元数据字段的例子：
 ```sql
