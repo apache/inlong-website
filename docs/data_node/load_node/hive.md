@@ -61,162 +61,37 @@ When creating a data stream, select `Hive` for the data stream direction, and cl
 TODO: It will be supported in the future.
 
 ## Hive Load Node Options
-<table class="table table-bordered">
-    <thead>
-      <tr>
-        <th class="text-left" style={{width: '25%'}}>Option</th>
-        <th class="text-center" style={{width: '8%'}}>Required</th>
-        <th class="text-center" style={{width: '7%'}}>Default</th>
-        <th class="text-center" style={{width: '10%'}}>Type</th>
-        <th class="text-center" style={{width: '50%'}}>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><h5>connector</h5></td>
-        <td>required</td>
-        <td style={{wordWrap: 'break-word'}}>(none)</td>
-        <td>String</td>
-        <td>Specify what connector to use, here should be 'hive'.</td>
-    </tr>
-    <tr>
-      <td><h5>default-database</h5></td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td><h5>hive-conf-dir</h5></td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>If you don't want to upload hive-site.xml to HDFS, 
-      you can put this configuration into the classpath of the project,
-      and then this place only needs to be not empty, 
-      otherwise you must fill in the complete HDFS URL.</td>
-    </tr>
-    <tr>
-      <td><h5>sink.partition-commit.trigger</h5></td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>If hive exists partition you can set trigger mode.(process-time)</td>
-    </tr>
-    <tr>
-      <td><h5>partition.time-extractor.timestamp-pattern</h5></td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>If hive exists partition you can set timestamp-pattern mode.(yyyy-MM-dd...)</td>
-    </tr>
-    <tr>
-      <td><h5>sink.partition-commit.delay</h5></td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>If hive exists partition you can set delay  mode.(10s,20s,1m...)</td>
-    </tr>
-    <tr>
-      <td><h5>sink.partition-commit.policy.kind</h5></td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Policy to commit a partition is to notify the downstream application that the partition has finished writing, 
-      the partition is ready to be read. metastore: add partition to metastore. 
-      Only hive table supports metastore policy, file system manages partitions through directory structure.
-      success-file: add '_success' file to directory. Both can be configured at the same time: 'metastore,success-file'.
-      custom: use policy class to create a commit policy.
-      Support to configure multiple policies: 'metastore,success-file'.</td>
-    </tr>
-    <tr>
-      <td>inlong.metric.labels</td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId].</td> 
-    </tr>
-    </tbody>
-</table>
+
+| Option | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+|  connector | required | (none) | String | Specify what connector to use, here should be 'hive'. |
+|  default-database | required | (none) | String |     |
+|  hive-conf-dir | required | (none) | String | If you don't want to upload hive-site.xml to HDFS, you can put this configuration into the classpath of the project, and then this place only needs to be not empty, otherwise you must fill in the complete HDFS URL. |
+|  sink.partition-commit.trigger | optional | (none) | String | If hive exists partition you can set trigger mode.(process-time) |
+|  partition.time-extractor.timestamp-pattern | optional | (none) | String | If hive exists partition you can set timestamp-pattern mode.(yyyy-MM-dd...) |
+|  sink.partition-commit.delay | optional | (none) | String | If hive exists partition you can set delay mode.(10s,20s,1m...) |
+|  sink.partition-commit.policy.kind | optional | (none) | String | Policy to commit a partition is to notify the downstream application that the partition has finished writing, the partition is ready to be read. metastore: add partition to metastore. Only hive table supports metastore policy, file system manages partitions through directory structure. success-file: add '_success' file to directory. Both can be configured at the same time: 'metastore,success-file'. custom: use policy class to create a commit policy. Support to configure multiple policies: 'metastore,success-file'. |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]. |
+
 
 ## Data Type Mapping
-<div class="wy-table-responsive">
-<table class="colwidths-auto docutils">
-    <thead>
-      <tr>
-        <th class="text-left">Hive type</th>
-        <th class="text-left">Flink SQL type</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>char(p)</td>
-      <td>CHAR(p)</td>
-    </tr>
-    <tr>
-      <td>varchar(p)</td>
-      <td>VARCHAR(p)</td>
-    </tr>
-    <tr>
-      <td>string</td>
-      <td>STRING</td>
-    </tr>
-    <tr>
-      <td>boolean</td>
-      <td>BOOLEAN</td>
-    </tr>
-    <tr>
-      <td>tinyint</td>
-      <td>TINYINT</td>
-    </tr>     
-    <tr>
-      <td>smallint</td>
-      <td>SMALLINT</td>
-    </tr>    
-   <tr>
-      <td>int</td>
-      <td>INT</td>
-    </tr>
-    <tr>
-      <td>bigint</td>
-      <td>BIGINT</td>
-    </tr>
-    <tr>
-      <td>float</td>
-      <td>FLOAT</td>
-    </tr>
-    <tr>
-      <td>double</td>
-      <td>DOUBLE</td>
-    </tr>
-    <tr>
-      <td>decimal(p, s)</td>
-      <td>DECIMAL(p, s)</td>
-    </tr>
-    <tr>
-      <td>date</td>
-      <td>DATE</td>
-    </tr>
-    <tr>
-      <td>timestamp(9)</td>
-      <td>TIMESTAMP</td>
-    </tr>
-    <tr>
-      <td>bytes</td>
-      <td>BINARY</td>
-    </tr>   
-    <tr>
-      <td>array</td>
-      <td>LIST</td>
-    </tr>
-    <tr>
-      <td>map</td>
-      <td>MAP</td>
-    </tr>
-    <tr>
-      <td>row</td>
-      <td>STRUCT</td>
-    </tr>       
-    </tbody>
-</table>
-</div>
+
+| Hive type | Flink SQL type |
+| --- | --- |
+| char(p) | CHAR(p) |
+| varchar(p) | VARCHAR(p) |
+| string | STRING |
+| boolean | BOOLEAN |
+| tinyint | TINYINT |
+| smallint | SMALLINT |
+| int | INT |
+| bigint | BIGINT |
+| float | FLOAT |
+| double | DOUBLE |
+| decimal(p, s) | DECIMAL(p, s) |
+| date | DATE |
+| timestamp(9) | TIMESTAMP |
+| bytes | BINARY |
+| array | LIST |
+| map | MAP |
+| row | STRUCT |

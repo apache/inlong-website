@@ -61,160 +61,35 @@ CREATE TABLE hiveTableName (
 TODO: 未来版本支持
 
 ## Hive 加载节点参数信息
-<table class="table table-bordered">
-    <thead>
-      <tr>
-              <th class="text-left" style={{width: '10%'}}>参数</th>
-              <th class="text-left" style={{width: '8%'}}>是否必须</th>
-              <th class="text-left" style={{width: '7%'}}>默认值</th>
-              <th class="text-left" style={{width: '10%'}}>数据类型</th>
-              <th class="text-left" style={{width: '65%'}}>描述</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><h5>connector</h5></td>
-        <td>必须</td>
-        <td style={{wordWrap: 'break-word'}}>(none)</td>
-        <td>String</td>
-        <td>指定使用什么连接器，这里应该是  'hive'。</td>
-    </tr>
-    <tr>
-      <td><h5>default-database</h5></td>
-      <td>必须</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>指定数据库名称。</td>
-    </tr>
-    <tr>
-      <td><h5>hive-conf-dir</h5></td>
-      <td>必须</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>本地构建项目可以将hive-site.xml构建到 classpath 中，未来 Dashboard 将支持本地上传能力。
-      目前通用方式只支持配置已经上传文件后的 HDFS 路径。</td>
-    </tr>
-    <tr>
-      <td><h5>sink.partition-commit.trigger</h5></td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>如果表是分区表，可以配置触发模式。如：(process-time)</td>
-    </tr>
-    <tr>
-      <td><h5>partition.time-extractor.timestamp-pattern</h5></td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>如果表是分区表，可以配置时间戳。如：(yyyy-MM-dd)</td>
-    </tr>
-    <tr>
-      <td><h5>sink.partition-commit.delay</h5></td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>如果表是分区表，可以配置延迟时间。如：(10s,20s,1m...)</td>
-    </tr>
-    <tr>
-      <td><h5>sink.partition-commit.policy.kind</h5></td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>分区提交策略通知下游某个分区已经写完毕可以被读取了。 
-      metastore：向 metadata 增加分区。仅 hive 支持 metastore 策略，文件系统通过目录结构管理分区； 
-      success-file：在目录中增加 '_success' 文件； 
-      上述两个策略可以同时指定：'metastore,success-file'。 
-      custom：通过指定的类来创建提交策略， 
-      支持同时指定多个提交策略：'metastore,success-file'。</td>
-    </tr>
-    <tr>
-      <td>inlong.metric.labels</td>
-      <td>可选</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。</td> 
-     </tr>
-    </tbody>
-</table>
+
+| 参数  | 是否必须 | 默认值 | 数据类型 | 描述  |
+| --- | --- | --- | --- | --- |
+|  connector | 必须  | (none) | String | 指定使用什么连接器，这里应该是 'hive'。 |
+|  default-database | 必须  | (none) | String | 指定数据库名称。 |
+|  hive-conf-dir | 必须  | (none) | String | 本地构建项目可以将hive-site.xml构建到 classpath 中，未来 Dashboard 将支持本地上传能力。 目前通用方式只支持配置已经上传文件后的 HDFS 路径。 |
+|  sink.partition-commit.trigger | 可选  | (none) | String | 如果表是分区表，可以配置触发模式。如：(process-time) |
+|  partition.time-extractor.timestamp-pattern | 可选  | (none) | String | 如果表是分区表，可以配置时间戳。如：(yyyy-MM-dd) |
+|  sink.partition-commit.delay | 可选  | (none) | String | 如果表是分区表，可以配置延迟时间。如：(10s,20s,1m...) |
+|  sink.partition-commit.policy.kind | 可选  | (none) | String | 分区提交策略通知下游某个分区已经写完毕可以被读取了。 metastore：向 metadata 增加分区。仅 hive 支持 metastore 策略，文件系统通过目录结构管理分区； success-file：在目录中增加 '_success' 文件； 上述两个策略可以同时指定：'metastore,success-file'。 custom：通过指定的类来创建提交策略， 支持同时指定多个提交策略：'metastore,success-file'。 |
+| inlong.metric.labels | 可选  | (none) | String | inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。 |
 
 ## 数据类型映射
-<div class="wy-table-responsive">
-<table class="colwidths-auto docutils">
-    <thead>
-      <tr>
-        <th class="text-left">Hive type</th>
-        <th class="text-left">Flink SQL type</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>char(p)</td>
-      <td>CHAR(p)</td>
-    </tr>
-    <tr>
-      <td>varchar(p)</td>
-      <td>VARCHAR(p)</td>
-    </tr>
-    <tr>
-      <td>string</td>
-      <td>STRING</td>
-    </tr>
-    <tr>
-      <td>boolean</td>
-      <td>BOOLEAN</td>
-    </tr>
-    <tr>
-      <td>tinyint</td>
-      <td>TINYINT</td>
-    </tr>     
-    <tr>
-      <td>smallint</td>
-      <td>SMALLINT</td>
-    </tr>    
-   <tr>
-      <td>int</td>
-      <td>INT</td>
-    </tr>
-    <tr>
-      <td>bigint</td>
-      <td>BIGINT</td>
-    </tr>
-    <tr>
-      <td>float</td>
-      <td>FLOAT</td>
-    </tr>
-    <tr>
-      <td>double</td>
-      <td>DOUBLE</td>
-    </tr>
-    <tr>
-      <td>decimal(p, s)</td>
-      <td>DECIMAL(p, s)</td>
-    </tr>
-    <tr>
-      <td>date</td>
-      <td>DATE</td>
-    </tr>
-    <tr>
-      <td>timestamp(9)</td>
-      <td>TIMESTAMP</td>
-    </tr>
-    <tr>
-      <td>bytes</td>
-      <td>BINARY</td>
-    </tr>   
-    <tr>
-      <td>array</td>
-      <td>LIST</td>
-    </tr>
-    <tr>
-      <td>map</td>
-      <td>MAP</td>
-    </tr>
-    <tr>
-      <td>row</td>
-      <td>STRUCT</td>
-    </tr>       
-    </tbody>
-</table>
-</div>
+| Hive type | Flink SQL type |
+| --- | --- |
+| char(p) | CHAR(p) |
+| varchar(p) | VARCHAR(p) |
+| string | STRING |
+| boolean | BOOLEAN |
+| tinyint | TINYINT |
+| smallint | SMALLINT |
+| int | INT |
+| bigint | BIGINT |
+| float | FLOAT |
+| double | DOUBLE |
+| decimal(p, s) | DECIMAL(p, s) |
+| date | DATE |
+| timestamp(9) | TIMESTAMP |
+| bytes | BINARY |
+| array | LIST |
+| map | MAP |
+| row | STRUCT |
