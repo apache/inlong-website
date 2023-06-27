@@ -17,7 +17,7 @@ sidebar_position: 1
 
 ![Create Group](img/create-group.png)
 
-### 数据流Group 信息
+### 数据流 Group 信息
 
 ![Group information](img/group-information.png)
 
@@ -30,7 +30,7 @@ sidebar_position: 1
 
 #### Group 信息
 
-需要用户对接入任务填写基础数据流Group 信息。
+需要用户对接入任务填写基础数据流 Group 信息。
 
 - Group 英文名称：统一小写英文名称，请尽量包含产品名和简洁规范，如pay_base
 - Group 中文名称：Group 的中文描述，便于使用与检索，最多128个字
@@ -114,7 +114,7 @@ HIVE流向：
 
 ### 消费信息
 
-申请人需在该信息填写模块中逐步填写数据消费申请相关基础消费数据流Group 信息：
+申请人需在该信息填写模块中逐步填写数据消费申请相关基础消费数据流 Group 信息：
 
 ![Consumer info](img/consumer-info.png)
 

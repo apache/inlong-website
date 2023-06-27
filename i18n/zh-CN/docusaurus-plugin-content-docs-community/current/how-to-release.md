@@ -224,7 +224,8 @@ $ mvn compile clean install package -DskipTests
 # 拷贝二进制包拷到源码包目录下，方便下一步对包进行签名
 $ cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
 # 拷贝 connectors 二进制包拷到源码包目录下，方便下一步对包进行签名
-$ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connectors.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
+$ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connectors-flink-v1.13.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
+$ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connectors-flink-v1.15.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
 ```
 
 ### 对源码包/二进制包进行签名/sha512
