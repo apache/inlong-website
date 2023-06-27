@@ -155,93 +155,21 @@ CREATE TABLE sqlserver_extract_node (
 ```
 
 ## 数据类型映射
-<div class="wy-table-responsive">
-<table class="colwidths-auto docutils">
-    <thead>
-      <tr>
-        <th class="text-left">SQLServer type</th>
-        <th class="text-left">Flink SQL type</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>char(n)</td>
-      <td>CHAR(n)</td>
-    </tr>
-    <tr>
-      <td>
-        varchar(n)<br/>
-        nvarchar(n)<br/>
-        nchar(n)</td>
-      <td>VARCHAR(n)</td>
-    </tr>
-    <tr>
-      <td>
-        text<br/>
-        ntext<br/>
-        xml</td>
-      <td>STRING</td>
-    </tr>
-    <tr>
-      <td>
-        decimal(p, s)<br/>
-        money<br/>
-        smallmoney</td>
-      <td>DECIMAL(p, s)</td>
-    </tr>
-   <tr>
-      <td>numeric</td>
-      <td>NUMERIC</td>
-    </tr>
-    <tr>
-      <td>
-          REAL<br/>
-          FLOAT<br/>
-       </td>
-       <td>FLOAT</td>
-    </tr>
-    <tr>
-      <td>bit</td>
-      <td>BOOLEAN</td>
-    </tr>
-    <tr>
-      <td>int</td>
-      <td>INT</td>
-    </tr>
-    <tr>
-      <td>tinyint</td>
-      <td>TINYINT</td>
-    </tr>
-    <tr>
-      <td>smallint</td>
-      <td>SMALLINT</td>
-    </tr>
-    <tr>
-      <td>time (n)</td>
-      <td>TIME (n)</td>
-    </tr>
-    <tr>
-      <td>bigint</td>
-      <td>BIGINT</td>
-    </tr>
-    <tr>
-      <td>date</td>
-      <td>DATE</td>
-    </tr>
-    <tr>
-      <td>
-        datetime2<br/>
-        datetime<br/>
-        smalldatetime
-      </td>
-      <td>TIMESTAMP(n)</td>
-    </tr>
-    <tr>
-      <td>
-       datetimeoffset
-      </td>
-      <td>TIMESTAMP_LTZ(3)</td>
-    </tr>
-    </tbody>
-</table>
-</div>
+
+| SQLServer type | Flink SQL type |
+| --- | --- |
+| char(n) | CHAR(n) |
+| varchar(n)<br/>nvarchar(n)<br/>nchar(n) | VARCHAR(n) |
+| text<br/>ntext<br/>xml | STRING |
+| decimal(p, s)<br/>money<br/>smallmoney | DECIMAL(p, s) |
+| numeric | NUMERIC |
+| REAL<br/>FLOAT | FLOAT |
+| bit | BOOLEAN |
+| int | INT |
+| tinyint | TINYINT |
+| smallint | SMALLINT |
+| time (n) | TIME (n) |
+| bigint | BIGINT |
+| date | DATE |
+| datetime2<br/>datetime<br/>smalldatetime | TIMESTAMP(n) |
+| datetimeoffset | TIMESTAMP_LTZ(3) |
