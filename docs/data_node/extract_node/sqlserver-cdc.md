@@ -110,126 +110,29 @@ TODO
 
 ## SQLServer Extract Node Options
 
-<div class="highlight">
-<table class="colwidths-auto docutils">
-    <thead>
-      <tr>
-        <th class="text-left" style={{width: '10%'}}>Option</th>
-        <th class="text-left" style={{width: '8%'}}>Required</th>
-        <th class="text-left" style={{width: '7%'}}>Default</th>
-        <th class="text-left" style={{width: '10%'}}>Type</th>
-        <th class="text-left" style={{width: '65%'}}>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>connector</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Specify what connector to use, here should be 'sqlserver-cdc-inlong'.</td>
-    </tr>
-    <tr>
-      <td>hostname</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>IP address or hostname of the SQLServer database.</td>
-    </tr>
-    <tr>
-      <td>username</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Username to use when connecting to the SQLServer database.</td>
-    </tr>
-    <tr>
-      <td>password</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Password to use when connecting to the SQLServer database.</td>
-    </tr>
-    <tr>
-      <td>database-name</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Database name of the SQLServer database to monitor.</td>
-    </tr> 
-    <tr>
-      <td>schema-name</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>dbo</td>
-      <td>String</td>
-      <td>Schema name of the SQLServer database to monitor.</td>
-    </tr>
-    <tr>
-      <td>table-name</td>
-      <td>required</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Table name of the SQLServer database to monitor.</td>
-    </tr>
-    <tr>
-      <td>port</td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>1433</td>
-      <td>Integer</td>
-      <td>Integer port number of the SQLServer database.</td>
-    </tr>
-    <tr>
-      <td>server-time-zone</td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>UTC</td>
-      <td>String</td>
-      <td>The session time zone in database server, e.g. "Asia/Shanghai".</td>
-    </tr>
-    <tr>
-      <td>inlong.metric.labels</td>
-      <td>optional</td>
-      <td style={{wordWrap: 'break-word'}}>(none)</td>
-      <td>String</td>
-      <td>Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId].</td> 
-    </tr>
-    </tbody>
-</table>
-</div>
+| Option | Required | Default | Type | Description |
+| --- | --- | --- | --- | --- |
+| connector | required | (none) | String | Specify what connector to use, here should be 'sqlserver-cdc-inlong'. |
+| hostname | required | (none) | String | IP address or hostname of the SQLServer database. |
+| username | required | (none) | String | Username to use when connecting to the SQLServer database. |
+| password | required | (none) | String | Password to use when connecting to the SQLServer database. |
+| database-name | required | (none) | String | Database name of the SQLServer database to monitor. |
+| schema-name | required | dbo | String | Schema name of the SQLServer database to monitor. |
+| table-name | required | (none) | String | Table name of the SQLServer database to monitor. |
+| port | optional | 1433 | Integer | Integer port number of the SQLServer database. |
+| server-time-zone | optional | UTC | String | The session time zone in database server, e.g. "Asia/Shanghai". |
+| inlong.metric.labels | optional | (none) | String | Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]. |
 
 ## Available Metadata
+
 The following format metadata can be exposed as read-only (VIRTUAL) columns in a table definition.
 
-<table class="colwidths-auto docutils">
-  <thead>
-     <tr>
-       <th class="text-left" style={{width: '15%'}}>Key</th>
-       <th class="text-left" style={{width: '30%'}}>DataType</th>
-       <th class="text-left" style={{width: '55%'}}>Description</th>
-     </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>table_name</td>
-      <td>STRING NOT NULL</td>
-      <td>Name of the table that contain the row.</td>
-    </tr>   
-     <tr>
-      <td>schema_name</td>
-      <td>STRING NOT NULL</td>
-      <td>Name of the schema that contain the row.</td>
-    </tr>
-    <tr>
-      <td>database_name</td>
-      <td>STRING NOT NULL</td>
-      <td>Name of the database that contain the row.</td>
-    </tr>
-    <tr>
-      <td>op_ts</td>
-      <td>TIMESTAMP_LTZ(3) NOT NULL</td>
-      <td>It indicates the time that the change was made in the database. <br/>If the record is read from snapshot of the table instead of the binlog, the value is always 0.</td>
-    </tr>
-  </tbody>
-</table>
+| Key | DataType | Description |
+| --- | --- | --- |
+| table_name | STRING NOT NULL | Name of the table that contain the row. |
+| schema_name | STRING NOT NULL | Name of the schema that contain the row. |
+| database_name | STRING NOT NULL | Name of the database that contain the row. |
+| op_ts | TIMESTAMP_LTZ(3) NOT NULL | It indicates the time that the change was made in the database.<br/>If the record is read from snapshot of the table instead of the binlog, the value is always 0. |
 
 The extended CREATE TABLE example demonstrates the syntax for exposing these metadata fields:
 ```sql
@@ -252,96 +155,21 @@ CREATE TABLE sqlserver_extract_node (
 ```
 
 ## Data Type Mapping
-<div class="wy-table-responsive">
-<table class="colwidths-auto docutils">
-    <thead>
-      <tr>
-        <th class="text-left">SQLServer type</th>
-        <th class="text-left">Flink SQL type</th>
-      </tr>
-    </thead>
-    <tbody>
-    <tr>
-      <td>char(n)</td>
-      <td>CHAR(n)</td>
-    </tr>
-    <tr>
-      <td>
-        varchar(n)<br/>
-        nvarchar(n)<br/>
-        nchar(n)</td>
-      <td>VARCHAR(n)</td>
-    </tr>
-    <tr>
-      <td>
-        text<br/>
-        ntext<br/>
-        xml</td>
-      <td>STRING</td>
-    </tr>
-    <tr>
-      <td>
-        decimal(p, s)<br/>
-        money<br/>
-        smallmoney</td>
-      <td>DECIMAL(p, s)</td>
-    </tr>
-   <tr>
-      <td>numeric</td>
-      <td>NUMERIC</td>
-    </tr>
-    <tr>
-      <td>
-          REAL<br/>
-          FLOAT<br/>
-       </td>
-       <td>FLOAT</td>
-    </tr>
-    <tr>
-      <td>bit</td>
-      <td>BOOLEAN</td>
-    </tr>
-    <tr>
-      <td>int</td>
-      <td>INT</td>
-    </tr>
-    <tr>
-      <td>tinyint</td>
-      <td>TINYINT</td>
-    </tr>
-    <tr>
-      <td>smallint</td>
-      <td>SMALLINT</td>
-    </tr>
-    <tr>
-      <td>time (n)</td>
-      <td>TIME (n)</td>
-    </tr>
-    <tr>
-      <td>bigint</td>
-      <td>BIGINT</td>
-    </tr>
-    <tr>
-      <td>date</td>
-      <td>DATE</td>
-    </tr>
-    <tr>
-      <td>
-        datetime2<br/>
-        datetime<br/>
-        smalldatetime
-      </td>
-      <td>TIMESTAMP(n)</td>
-    </tr>
-    <tr>
-      <td>
-       datetimeoffset
-      </td>
-      <td>TIMESTAMP_LTZ(3)</td>
-    </tr>
-    </tbody>
-</table>
-</div>
 
-
-
+| SQLServer type | Flink SQL type |
+| --- | --- |
+| char(n) | CHAR(n) |
+| varchar(n) <br/>nvarchar(n) <br/>nchar(n) | VARCHAR(n) |
+| text <br/>ntext <br/>xml | STRING |
+| decimal(p, s) <br/>money <br/>smallmoney | DECIMAL(p, s) |
+| numeric | NUMERIC |
+| REAL <br/>FLOAT | FLOAT |
+| bit | BOOLEAN |
+| int | INT |
+| tinyint | TINYINT |
+| smallint | SMALLINT |
+| time (n) | TIME (n) |
+| bigint | BIGINT |
+| date | DATE |
+| datetime2 <br/>datetime <br/>smalldatetime | TIMESTAMP(n) |
+| datetimeoffset | TIMESTAMP_LTZ(3) |
