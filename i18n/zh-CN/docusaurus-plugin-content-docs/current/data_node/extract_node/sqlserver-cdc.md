@@ -110,18 +110,18 @@ TODO
 
 ## SQLServer 抽取节点参数信息
 
-| 参数  | 是否必须 | 默认值 | 数据类型 | 描述  |
-| --- | --- | --- | --- | --- |
-| connector | 必须  | (none) | String | 指定使用什么连接器，这里应该是 'sqlserver-cdc-inlong'。 |
-| hostname | 必须  | (none) | String | SQLServer 数据库 IP 地址或者 hostname。 |
-| username | 必须  | (none) | String | SQLServer 数据库用户名。 |
-| password | 必须  | (none) | String | SQLServer 数据库用户密码。 |
-| database-name | 必须  | (none) | String | SQLServer 数据库监控的数据库名称。 |
-| schema-name | 必须  | dbo | String | SQLServer 数据库监控的 schema 名称。 |
-| table-name | 必须  | (none) | String | SQLServer 数据库监控的表名称。 |
-| port | 可选  | 1433 | Integer | SQLServer 数据库端口。 |
-| server-time-zone | 可选  | UTC | String | SQLServer 数据库连接配置时区。 例如： "Asia/Shanghai"。 |
-| inlong.metric.labels | 可选  | (none) | String | inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。 |
+| 参数  | 是否必须 | 默认值 | 数据类型 | 描述                                                                               |
+| --- | --- | --- | --- |----------------------------------------------------------------------------------|
+| connector | 必须  | (none) | String | 指定使用什么连接器，这里应该是 'sqlserver-cdc-inlong'。                                          |
+| hostname | 必须  | (none) | String | SQLServer 数据库 IP 地址或者 hostname。                                                  |
+| username | 必须  | (none) | String | SQLServer 数据库用户名。                                                                |
+| password | 必须  | (none) | String | SQLServer 数据库用户密码。                                                               |
+| database-name | 必须  | (none) | String | SQLServer 数据库监控的数据库名称。                                                           |
+| schema-name | 必须  | dbo | String | SQLServer 数据库监控的 schema 名称。                                                      |
+| table-name | 必须  | (none) | String | SQLServer 数据库监控的表名称。                                                             |
+| port | 可选  | 1433 | Integer | SQLServer 数据库端口。                                                                 |
+| server-time-zone | 可选  | UTC | String | SQLServer 数据库连接配置时区。 例如： "Asia/Shanghai"。                                        |
+| inlong.metric.labels | 可选  | (none) | String | inlong metric 的标签值，该值的构成为 groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。 |
 
 ## 可用的元数据字段
 
