@@ -74,28 +74,28 @@ TODO: 将在未来支持这个特性。
 
 ## Elasticsearch Load 节点参数
 
-| 参数  | 是否必选 | 默认值 | 数据类型 | 描述  |
-| --- | --- | --- | --- | --- |
-|  connector | 必选  | (none) | String | 指定要使用的连接器，有效值为：<br/><br/>- `elasticsearch-6`：连接到 Elasticsearch 5.x and 6.x 的集群。<br/>- `elasticsearch-7`：连接到 Elasticsearch 7.x 及更高版本的集群。 |
-|  hosts | 必选  | (none) | String | 要连接到的一台或多台 Elasticsearch 主机，例如 `'http://host_name:9092;http://host_name:9093'`。 |
-|  index | 必选  | (none) | String | Elasticsearch 中每条记录的索引。可以是一个静态索引（例如 `'myIndex'`）或一个动态索引（例如 `'index-{log_ts\|yyyy-MM-dd}'`）。 更多详细信息，请参见下面的[动态索引](#动态索引)部分。 |
-|  document-type | 6.x 版本中必选 | (none) | String | Elasticsearch 文档类型。在 `elasticsearch-7` 中不再需要。 |
-|  document-id.key-delimiter | 可选  | _   | String | 复合键的分隔符（默认为"_"），例如，指定为"$"将导致文档 ID 为"KEY1\$KEY2\$KEY3"。 |
-|  username | 可选  | (none) | String | 用于连接 Elasticsearch 实例的用户名。请注意，Elasticsearch 没有预绑定安全特性，但你可以通过如下[指南](https://www.elastic.co/guide/en/elasticsearch/reference/master/configuring-security.html)启用它来保护 Elasticsearch 集群。 |
-|  password | 可选  | (none) | String | 用于连接 Elasticsearch 实例的密码。如果配置了`username`，则此选项也必须配置为非空字符串。 |
+| 参数  | 是否必选 | 默认值 | 数据类型 | 描述                                                                                                                                                                                                         |
+| --- | --- | --- | --- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  connector | 必选  | (none) | String | 指定要使用的连接器，有效值为：<br/><br/>- `elasticsearch-6`：连接到 Elasticsearch 5.x and 6.x 的集群。<br/>- `elasticsearch-7`：连接到 Elasticsearch 7.x 及更高版本的集群。                                                                    |
+|  hosts | 必选  | (none) | String | 要连接到的一台或多台 Elasticsearch 主机，例如 `'http://host_name:9092;http://host_name:9093'`。                                                                                                                            |
+|  index | 必选  | (none) | String | Elasticsearch 中每条记录的索引。可以是一个静态索引（例如 `'myIndex'`）或一个动态索引（例如 `'index-{log_ts\|yyyy-MM-dd}'`）。 更多详细信息，请参见下面的[动态索引](#动态索引)部分。                                                                                  |
+|  document-type | 6.x 版本中必选 | (none) | String | Elasticsearch 文档类型。在 `elasticsearch-7` 中不再需要。                                                                                                                                                              |
+|  document-id.key-delimiter | 可选  | _   | String | 复合键的分隔符（默认为"_"），例如，指定为"$"将导致文档 ID 为"KEY1\$KEY2\$KEY3"。                                                                                                                                                     |
+|  username | 可选  | (none) | String | 用于连接 Elasticsearch 实例的用户名。请注意，Elasticsearch 没有预绑定安全特性，但你可以通过如下[指南](https://www.elastic.co/guide/en/elasticsearch/reference/master/configuring-security.html)启用它来保护 Elasticsearch 集群。                       |
+|  password | 可选  | (none) | String | 用于连接 Elasticsearch 实例的密码。如果配置了`username`，则此选项也必须配置为非空字符串。                                                                                                                                                  |
 |  failure-handler | 可选  | fail | String | 对 Elasticsearch 请求失败情况下的失败处理策略。有效策略为：<br/><br/>- `fail`：如果请求失败并因此导致作业失败，则抛出异常。<br/>- `ignore`：忽略失败并放弃请求。<br/>- `retry-rejected`：重新添加由于队列容量饱和而失败的请求。<br/>- 自定义类名称：使用 ActionRequestFailureHandler 的子类进行失败处理。 |
-|  sink.flush-on-checkpoint | 可选  | true | Boolean | 是否在 checkpoint 时执行 flush。禁用后，在 checkpoint 时 sink 将不会等待所有的 pending 请求被 Elasticsearch 确认。因此，sink 不会为请求的 at-least-once 交付提供任何有力保证。 |
-|  sink.bulk-flush.max-actions | 可选  | 1000 | Integer | 每个批量请求的最大缓冲操作数。 可以设置为`'0'`来禁用它。 |
-|  sink.bulk-flush.max-size | 可选  | 2mb | MemorySize | 每个批量请求的缓冲操作在内存中的最大值。单位必须为 MB。 可以设置为`'0'`来禁用它。 |
-|  sink.bulk-flush.interval | 可选  | 1s  | Duration | flush 缓冲操作的间隔。 可以设置为`'0'`来禁用它。注意，`'sink.bulk-flush.max-size'`和`'sink.bulk-flush.max-actions'`都设置为`'0'`的这种 flush 间隔设置允许对缓冲操作进行完全异步处理。 |
-|  sink.bulk-flush.backoff.strategy | 可选  | DISABLED | String | 指定在由于临时请求错误导致任何 flush 操作失败时如何执行重试。有效策略为：<br/><br/>- `DISABLED`：不执行重试，即第一次请求错误后失败。<br/>- `CONSTANT`：等待重试之间的回退延迟。<br/>- `EXPONENTIAL`：先等待回退延迟，然后在重试之间指数递增。 |
-|  sink.bulk-flush.backoff.max-retries | 可选  | 8   | Integer | 最大回退重试次数。 |
-|  sink.bulk-flush.backoff.delay | 可选  | 50ms | Duration | 每次回退尝试之间的延迟。对于 `CONSTANT` 回退策略，该值是每次重试之间的延迟。对于 `EXPONENTIAL` 回退策略，该值是初始的延迟。 |
-|  connection.max-retry-timeout | 可选  | (none) | Duration | 最大重试超时时间。 |
-|  connection.path-prefix | 可选  | (none) | String | 添加到每个 REST 通信中的前缀字符串，例如，`'/v1'`。 |
-|  routing.filed-name | 可选  | (none) | String | 使用 field 值来生成该 field 的动态路由 |
-|  format | 可选  | json | String | Elasticsearch 连接器支持指定格式。该格式必须生成一个有效的 json 文档。 默认使用内置的 `'json'` 格式。更多详细信息，请参阅 [JSON Format](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/connectors/table/formats/overview/) 页面。 |
-| inlong.metric.labels | 可选  | (none) | String | inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。 |
+|  sink.flush-on-checkpoint | 可选  | true | Boolean | 是否在 checkpoint 时执行 flush。禁用后，在 checkpoint 时 sink 将不会等待所有的 pending 请求被 Elasticsearch 确认。因此，sink 不会为请求的 at-least-once 交付提供任何有力保证。                                                                            |
+|  sink.bulk-flush.max-actions | 可选  | 1000 | Integer | 每个批量请求的最大缓冲操作数。 可以设置为`'0'`来禁用它。                                                                                                                                                                            |
+|  sink.bulk-flush.max-size | 可选  | 2mb | MemorySize | 每个批量请求的缓冲操作在内存中的最大值。单位必须为 MB。 可以设置为`'0'`来禁用它。                                                                                                                                                              |
+|  sink.bulk-flush.interval | 可选  | 1s  | Duration | flush 缓冲操作的间隔。 可以设置为`'0'`来禁用它。注意，`'sink.bulk-flush.max-size'`和`'sink.bulk-flush.max-actions'`都设置为`'0'`的这种 flush 间隔设置允许对缓冲操作进行完全异步处理。                                                                       |
+|  sink.bulk-flush.backoff.strategy | 可选  | DISABLED | String | 指定在由于临时请求错误导致任何 flush 操作失败时如何执行重试。有效策略为：<br/><br/>- `DISABLED`：不执行重试，即第一次请求错误后失败。<br/>- `CONSTANT`：等待重试之间的回退延迟。<br/>- `EXPONENTIAL`：先等待回退延迟，然后在重试之间指数递增。                                                   |
+|  sink.bulk-flush.backoff.max-retries | 可选  | 8   | Integer | 最大回退重试次数。                                                                                                                                                                                                  |
+|  sink.bulk-flush.backoff.delay | 可选  | 50ms | Duration | 每次回退尝试之间的延迟。对于 `CONSTANT` 回退策略，该值是每次重试之间的延迟。对于 `EXPONENTIAL` 回退策略，该值是初始的延迟。                                                                                                                                |
+|  connection.max-retry-timeout | 可选  | (none) | Duration | 最大重试超时时间。                                                                                                                                                                                                  |
+|  connection.path-prefix | 可选  | (none) | String | 添加到每个 REST 通信中的前缀字符串，例如，`'/v1'`。                                                                                                                                                                           |
+|  routing.filed-name | 可选  | (none) | String | 使用 field 值来生成该 field 的动态路由                                                                                                                                                                                 |
+|  format | 可选  | json | String | Elasticsearch 连接器支持指定格式。该格式必须生成一个有效的 json 文档。 默认使用内置的 `'json'` 格式。更多详细信息，请参阅 [JSON Format](https://nightlies.apache.org/flink/flink-docs-release-1.13/zh/docs/connectors/table/formats/overview/) 页面。      |
+| inlong.metric.labels | 可选  | (none) | String | inlong metric 的标签值，该值的构成为 groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。                                                                                                                           |
 
 特性
 ----------------
