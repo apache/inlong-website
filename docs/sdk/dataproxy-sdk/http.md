@@ -24,8 +24,8 @@ curl -X POST -d 'groupId=give_your_group_id&streamId=give_your_stream_id&dt=data
 
 | return value | meaning |
 |--------------|---------|
-| 1            | Success |
-| !=1          | Failure |
+| 0            | Success |
+| !=0          | Failure |
 
 ## Method 2：Encapsulate the HTTP client（Java)
 The following packages need to be imported first `httpclient`、`commons-lang3`、`jackson-databind` code example:
