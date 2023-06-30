@@ -68,18 +68,3 @@ _, err = c.Confirm(cr.ConfirmContext, true) // Confirm to TubeMQ after getting t
 ### Example
 
 The above content is a demo and ignores some details. For a complete and runnable example, please refer to [GO SDK Example](https://github.com/apache/inlong/tree/master/inlong-tubemq/tubemq-client-twins/tubemq-client-go/example).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
