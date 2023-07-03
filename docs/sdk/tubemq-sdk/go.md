@@ -1,13 +1,13 @@
 ---
-title: GO SDK
+title: Golang SDK
 sidebar_position: 3
 ---
 
-Similar to the C++/Python SDK, the GO SDK is also divided into two parts: Producer and Consumer. Here is an introduction to both.
+Similar to the C++/Python SDK, the Golang SDK is also divided into two parts: `Producer` and `Consumer`. Here is an introduction to both.
 
 ### Producer
 
-First, import some packages:
+First, import necessary packages:
 
 ```go
 import (
@@ -67,4 +67,4 @@ _, err = c.Confirm(cr.ConfirmContext, true) // Confirm to TubeMQ after getting t
 
 ### Example
 
-The above content is a demo and ignores some details. For a complete and runnable example, please refer to [GO SDK Example](https://github.com/apache/inlong/tree/master/inlong-tubemq/tubemq-client-twins/tubemq-client-go/example).
+The above content is a demo and ignores some details. For a complete and runnable example, please refer to [Golang SDK Example](https://github.com/apache/inlong/tree/master/inlong-tubemq/tubemq-client-twins/tubemq-client-go/example).

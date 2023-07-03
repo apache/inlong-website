@@ -1,13 +1,13 @@
 ---
-title: GO SDK
+title: Golang SDK
 sidebar_position: 3
 ---
 
-与 C++/Python SDK 类似，GO SDK 也分为 Producer 和 Consumer 两部分，下面对其进行介绍。
+与 C++/Python SDK 类似，Golang SDK 也分为 `Producer` 和 `Consumer` 两部分，下面对其进行介绍。
 
 ### Producer
 
-首先 import 一些 package
+首先 import 必要的 package
 
 ```go
 import (
@@ -67,4 +67,4 @@ _, err = c.Confirm(cr.ConfirmContext, true) // 获取后向 tubemq 进行 confir
 
 ### Example
 
-上述文档内容为示例，省去了一些细节，完整可以运行的例子请参考 [GO SDK Example](https://github.com/apache/inlong/tree/master/inlong-tubemq/tubemq-client-twins/tubemq-client-go/example)
+上述文档内容为示例，省去了一些细节，完整可以运行的例子请参考 [Golang SDK Example](https://github.com/apache/inlong/tree/master/inlong-tubemq/tubemq-client-twins/tubemq-client-go/example)
