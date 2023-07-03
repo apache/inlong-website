@@ -31,9 +31,9 @@ sidebar_position: 1
 ## Data Model
 ![](img/data_model.png)
 Currently, the manager mainly consists of the following components:
-- InlongGroup:Data Streams Group, it contains multiple data streams, and one Group represents one data business unit.
+- InlongGroup: Data Streams Group, it contains multiple data streams, and one InlongGroup represents one data business unit.
 - InlongStream: Data Stream, a stream has a specific data source, data format and data sink.
 - StreamSource: Data sources, including File collection, MySQL collection, etc.
-- StreamSink: Data targets, including Hive, Clickhouse, and other locations where data ultimately flows into.
+- StreamSink: Data targets, including Hive, ClickHouse, and other locations where data ultimately flows into.
 - DataNode: Data nodes, including information such as data collection address, username, password, etc.
 - InlongCluster: Clusters, including cluster information such as Pulsar, TubeMQ, Kafka, etc.
