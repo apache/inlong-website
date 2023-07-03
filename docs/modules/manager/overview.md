@@ -30,7 +30,7 @@ sidebar_position: 1
 
 ## Data Model
 ![](img/data_model.png)
-Currently, the InlongManager mainly consists of the following data models:
+Currently, the InLong Manager mainly consists of the following data models:
 - InlongGroup: Data Streams Group, it contains multiple data streams, and one InlongGroup represents one data business unit.
 - InlongStream: Data Stream, a stream has a specific data source, data format and data sink.
 - StreamSource: Data sources, including File collection, MySQL collection, etc.
