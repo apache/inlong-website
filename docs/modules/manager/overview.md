@@ -3,7 +3,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-## 1 Introduction to Apache InLong Manager
+## Introduction
 
 - Target positioning: Apache InLong is positioned as a one-stop mass data integration framework, providing technical capabilities for big data from collection -> transmission -> sorting -> landing.
 
@@ -11,14 +11,9 @@ sidebar_position: 1
 
 - InLong Manager is a unified management platform for the Apache InLong project. The platform provides maintenance portals for various basic configurations (such as data flow configuration, consumption configuration, cluster management, etc.). Users can create data collection tasks and view indicator data.
 
-## 2 Architecture
+## Module
 
-![](img/inlong-manager.png)
-
-
-## 3 Module division of labor
-
-| Modules   | Responsibilities |
+| Modules   | Description |
 | :---------| :--------------- |
 | manager-common | Module common code, such as exception definition, tool class, enumeration, etc. |
 | manager-dao   | database operations |
@@ -30,8 +25,15 @@ sidebar_position: 1
 | manager-client-examples | Client usage examples |
 | manager-client-tools | Client command line tools |
 
-## 4 use process 
-![](img/interactive.jpg)
+## Interaction Flow
+![](img/interaction.png)
 
-## 5 data model
-![](img/datamodel.jpg)
+## Data Model
+![](img/data_model.png)
+Currently, the InLong Manager mainly consists of the following data models:
+- InlongGroup: Data Streams Group, it contains multiple data streams, and one InlongGroup represents one data business unit.
+- InlongStream: Data Stream, a stream has a specific data source, data format and data sink.
+- StreamSource: Data sources, including File collection, MySQL collection, etc.
+- StreamSink: Data targets, including Hive, ClickHouse, and other locations where data ultimately flows into.
+- DataNode: Data nodes, including information such as data collection address, username, password, etc.
+- InlongCluster: Clusters, including cluster information such as Pulsar, TubeMQ, Kafka, etc.
