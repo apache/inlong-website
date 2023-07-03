@@ -26,9 +26,8 @@ sidebar_position: 1
 | manager-client-examples | 客户端使用示例              |
 | manager-client-tools | 客户端命令行工具             |
 
-## 使用流程
-
-![](img/interactive.png)
+## 交互流程
+![](img/interaction.png)
 
 ## 数据模型
 ![](img/data_model.png)

@@ -25,8 +25,8 @@ sidebar_position: 1
 | manager-client-examples | Client usage examples |
 | manager-client-tools | Client command line tools |
 
-## User Guide 
-![](img/interactive.png)
+## Interaction Flow
+![](img/interaction.png)
 
 ## Data Model
 ![](img/data_model.png)
