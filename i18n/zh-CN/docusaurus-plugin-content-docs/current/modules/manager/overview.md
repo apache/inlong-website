@@ -14,19 +14,19 @@ sidebar_position: 1
 
 ## 模块
 
-| 模块 | 职责 |
-| :-----| :---- |
+| 模块 | 描述                   |
+| :-----|:---------------------|
 | manager-common | 模块公共代码，如异常定义、工具类、枚举等 |
-| manager-dao | 数据库操作 |
-| manager-service | 业务逻辑层 |
-| manager-workflow | 工作流服务 |
-| manager-plugins | Sort 插件服务 |
-| manager-web | 前端交互接口层 |
-| manager-client | 客户端服务 |
-| manager-client-examples | 客户端使用示例 |
-| manager-client-tools | 客户端命令行工具 |
+| manager-dao | 数据库操作                |
+| manager-service | 业务逻辑层                |
+| manager-workflow | 工作流服务                |
+| manager-plugins | Sort 插件服务            |
+| manager-web | 前端交互接口层              |
+| manager-client | 客户端服务                |
+| manager-client-examples | 客户端使用示例              |
+| manager-client-tools | 客户端命令行工具             |
 
-## 系统使用流程
+## 使用流程
 
 ![](img/interactive.png)
 

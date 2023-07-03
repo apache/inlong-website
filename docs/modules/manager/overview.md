@@ -3,7 +3,7 @@ title: Overview
 sidebar_position: 1
 ---
 
-## Introduction to
+## Introduction
 
 - Target positioning: Apache InLong is positioned as a one-stop mass data integration framework, providing technical capabilities for big data from collection -> transmission -> sorting -> landing.
 
@@ -13,7 +13,7 @@ sidebar_position: 1
 
 ## Module
 
-| Modules   | Responsibilities |
+| Modules   | Description |
 | :---------| :--------------- |
 | manager-common | Module common code, such as exception definition, tool class, enumeration, etc. |
 | manager-dao   | database operations |
