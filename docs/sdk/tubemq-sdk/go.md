@@ -18,7 +18,7 @@ import (
 )
 ```
 
-Then, set the producer's configuration. In the following example, we access the local master and subscribe to the topic `demo_0`:
+Then, set the producer's configuration. In the following example, we access the local `Master` and subscribe to the topic `demo_0`:
 
 ```go
 cfg, err := config.ParseAddress("127.0.0.1:8715?topic=demo_0")
@@ -30,7 +30,7 @@ If there are multiple topics, you can directly modify the `Topics` in the `confi
 cfg.Producer.Topics = []string{"demo", "demo_0", "demo_1"}
 ```
 
-After the configuration is completed, create a new instance of Producer. During this process, the SDK will register to the TubeMQ Master and send a heartbeat to get the metadata of the topic:
+After the configuration is completed, create a new instance of `Producer`. During this process, the `SDK` will register to the `TubeMQ Master` and send a heartbeat to get the metadata of the topic:
 
 ```go
 p, err := client.NewProducer(cfg)
@@ -51,13 +51,13 @@ success, errCode, errMsg := p.SendMessage(&msg) // Send a message to TubeMQ, ret
 
 ### Consumer
 
-The Consumer is roughly the same as the Producer, except that there is the concept of a consumer group when setting the `config`:
+The `Consumer` is roughly the same as the `Producer`, except that there is the concept of a consumer group when setting the `config`:
 
 ```go
 cfg, err := config.ParseAddress("127.0.0.1:8715?topic=demo_0&group=test_group")
 ```
 
-Then, refer to the usage of the Producer to consume:
+Then, refer to the usage of the `Producer` to consume:
 
 ```go
 c, err := client.NewConsumer(cfg) // Create a new Consumer instance

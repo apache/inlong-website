@@ -18,7 +18,7 @@ import (
 )
 ```
 
-之后设置 producer 的配置，下面例子中访问本地 master，订阅 topic 为 demo_0
+之后设置 `Producer` 的配置，下面例子中访问本地 `Master`，订阅 topic 为 demo_0
 
 ```go
 cfg, err := config.ParseAddress("127.0.0.1:8715?topic=demo_0")
@@ -30,7 +30,7 @@ cfg, err := config.ParseAddress("127.0.0.1:8715?topic=demo_0")
 cfg.Producer.Topics = []string{"demo", "demo_0", "demo_1"}
 ```
 
-配置完成后，新建 Producer 的实例，在这个过程中，SDK 会向 TubeMQ Master 申请注册，并发送心跳拿到 topic 的元数据
+配置完成后，新建 `Producer` 的实例，在这个过程中，`SDK` 会向 `TubeMQ Master` 申请注册，并发送心跳拿到 topic 的元数据
 
 ```go
 p, err := client.NewProducer(cfg)
@@ -51,13 +51,13 @@ success, errCode, errMsg := p.SendMessage(&msg) // 向 tubemq 发送 message，�
 
 ### Consumer
 
-Consumer 与 Producer 的大致相同，除了在设置 config 时，有消费 group 的概念
+`Consumer` 与 `Producer` 的大致相同，除了在设置 config 时，有消费 group 的概念
 
 ```go
 cfg, err := config.ParseAddress("127.0.0.1:8715?topic=demo_0&group=test_group")
 ```
 
-之后参考 Producer 的用法进行消费即可
+之后参考 `Producer` 的用法进行消费即可
 
 ```go
 c, err := client.NewConsumer(cfg) // 新建 Consumer 实例
