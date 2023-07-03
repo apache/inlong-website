@@ -30,7 +30,7 @@ sidebar_position: 1
 
 ## Data Model
 ![](img/data_model.png)
-Currently, the manager mainly consists of the following components:
+Currently, the InlongManager mainly consists of the following components:
 - InlongGroup: Data Streams Group, it contains multiple data streams, and one InlongGroup represents one data business unit.
 - InlongStream: Data Stream, a stream has a specific data source, data format and data sink.
 - StreamSource: Data sources, including File collection, MySQL collection, etc.

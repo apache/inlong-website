@@ -32,7 +32,7 @@ sidebar_position: 1
 
 ## 数据模型
 ![](img/data_model.png)
-目前 manager 主要由以下几个组件构成:
+目前 InlongManager 主要由以下几个组件构成:
 - InlongGroup: 数据流组，包含多个数据流，一个 InlongGroup 代表一个数据业务单元。
 - InlongStream: 数据流，一个数据流有具体的数据源、数据格式和数据流向。
 - StreamSource: 数据来源，包括文件采集、MySQL 采集等。
