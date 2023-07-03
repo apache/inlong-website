@@ -3,7 +3,7 @@ title: 总览
 sidebar_position: 1
 ---
 
-## InLong Manager 介绍
+## 介绍
 
 - 目标定位：Apache InLong 定位为一站式海量数据集成框架，提供大数据从采集 -> 传输 -> 分拣 -> 落地的技术能力。
 
@@ -12,7 +12,7 @@ sidebar_position: 1
 - InLong Manager 是 Apache InLong 项目的统一管理平台，平台提供各基础配置（如数据流配置、消费配置、集群管理等）的维护入口，用户可创建数据采集任务、查看指标数据等。 
 
 
-## 模块职责
+## 模块
 
 | 模块 | 职责 |
 | :-----| :---- |
@@ -35,7 +35,7 @@ sidebar_position: 1
 目前 manager 主要由以下几个组件构成:
 - InlongGroup: 数据流组，包含多个数据流，一个 Group 代表一个数据业务单元。
 - InlongStream: 数据流，一个数据流有具体的数据源、数据格式和数据流向。
-- StreamSource: 数据来源，包括文件采集、MYSQLBinlog 采集等。
+- StreamSource: 数据来源，包括文件采集、MySQL 采集等。
 - StreamSink: 数据目标，数据最后流入的地点，包括 Hive、Clickhouse 等。
 - DataNode: 数据节点，包括数据采集地址、用户名、密码等信息。
-- InlongCluster: 集群，包括 pulsar、tube、kafka 等集群信息。
+- InlongCluster: 集群，包括 Pulsar、TubeMQ、Kafka 等集群信息。
