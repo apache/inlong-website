@@ -5,8 +5,11 @@ sidebar_position: 1
 
 | Name        | Description                                                  | Other                                         |
 |-------------|--------------------------------------------------------------|-----------------------------------------------|
-| Standard    | 标准架构，包含 InLong Agent、Manager、MQ、Sort、Dashboard 等所有 InLong 组件 | 适合海量数据、大规模生产环境                                |
-| Lightweight | 轻量化架构，只包含 InLong Sort 一个组件，也可以搭配 Manager，Dashboard 一起使用      | 轻量化架构简单、灵活，适合小规模数据                            |
+| Standard    | 标准架构，包含 InLong Agent、Manager、MQ、Sort、Dashboard 等所有 InLong 组件 | 同时支持`数据接入`、`数据同步`和`数据订阅`                      |
+| Lightweight | 轻量化架构，只包含 InLong Sort 一个组件，也可以搭配 Manager，Dashboard 一起使用      | 轻量化架构简单、灵活，只支持`数据同步`                          |
+| 数据接入        | 数据接入是将数据从数据源汇聚到同一个存储服务的过程，可用于进一步数据查询和分析                      |                                               |
+| 数据同步        | 数据同步是建立数据源和目标数据存储之间一致性的过程，可随着时间持续协调数据                        |                                               |
+| 数据订阅        | 数据订阅为订阅者提供他们有权访问的数据                                          |                                               |
 | Group       | 数据流组，包含多个数据流，一个 Group 代表一个数据业务单元                             | Group 有 ID、Name 等属性                           |
 | Stream      | 数据流，一个数据流有具体的数据源、数据格式和数据流向                                   | Stream 有 ID、Name、数据字段等属性                      |
 | Node        | 数据节点，包括 `Extract Node` 和 `Load Node`，分别代表数据源类型和数据流向目标类型      |                                               |
