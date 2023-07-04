@@ -20,7 +20,7 @@ Format provides two interfaces : SerializationSchema and DeserializationSchema :
 
 ![](img/the_format_in_inlong.png)
 
-InLong serves as a one-stop data integration platform , with MQ (the Cache part in the picture) as the transmission channel , which decouples DataProxy and Sort and provides better scalability . When DataProxy is reporting data , it needs to serialize the data into corresponding format ( `SerializationSchema#serialize` ) . When Sort receives data, it will deserialize the MQ's data ( `DeserializationSchema#deserialize` ) into `Flink Row` , and then write to the corresponding storage using Flink SQL .
+InLong serves as a one-stop, full-scenario data integration platform , with MQ (the Cache part in the picture) as the transmission channel , which decouples DataProxy and Sort and provides better scalability . When DataProxy is reporting data , it needs to serialize the data into corresponding format ( `SerializationSchema#serialize` ) . When Sort receives data, it will deserialize the MQ's data ( `DeserializationSchema#deserialize` ) into `Flink Row` , and then write to the corresponding storage using Flink SQL .
 
 ## What are the formats?
 

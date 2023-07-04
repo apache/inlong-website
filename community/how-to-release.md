@@ -410,7 +410,7 @@ Hi all,
 The Apache InLong community is pleased to announce 
 that Apache InLong ${release_version} has been released!
 
-Apache InLong is a one-stop integration framework for massive data that provides automatic, secure,
+Apache InLong is a one-stop, full-scenario integration framework for massive data that supports `Data Ingestion`, `Data Synchronization` and `Data Subscription`, and it provides automatic, secure,
 distributed, and efficient data publishing and subscription capabilities.
 This platform helps you easily build stream-based data applications.
 
