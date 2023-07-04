@@ -1,5 +1,5 @@
 github:
-  description: "Apache InLong - a one-stop integration framework for massive data"
+  description: "Apache InLong - a one-stop, full-scenario integration framework for massive data"
   homepage: https://inlong.apache.org/
   features:
     # Enable issues management
