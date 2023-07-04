@@ -17,7 +17,7 @@ InLong Support the following Message Queue services now, you can choose one of t
 You can get binary package from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).。
 
 ## Standard Architecture
-You need deploy all InLong components for Standard Architecture, which support `Data Ingestion`, `Data Synchronization` and `Data Subscription` at the same time.
+You need deploy all InLong components for Standard Architecture, which supports `Data Ingestion`, `Data Synchronization` and `Data Subscription` at the same time.
 
 ### Deploy
 | order | component              | dependencies           | deploy guide                                                                                                                                                 | description |
