@@ -45,10 +45,10 @@ values={[
 {label: 'Standard', value: 'standard'},
 {label: 'Lightweight', value: 'lightweight'},
 ]}>
-<TabItem value="standard"> Standard Architecture: contains all InLong components such as InLong Agent, Manager, MQ, Sort, Dashboard, which is suitable for massive data and large-scale production environments.
+<TabItem value="standard"> Standard Architecture: contains all InLong components such as InLong Agent, Manager, MQ, Sort, Dashboard, which supports `Data Ingestion`, `Data Synchronization` and `Data Subscription` at the same time.
 <img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>
 </TabItem>
-<TabItem value="lightweight"> Lightweight Architecture: contains only one component of InLong Sort, which also can be used with Manager, Dashboard, and it is simple and flexible, suitable for small-scale data.
+<TabItem value="lightweight"> Lightweight Architecture: contains only one component of InLong Sort, which also can be used with Manager, Dashboard, and it is simple and flexible, only support `Data Synchronization`.
 <img src="/img/inlong-structure-light.png" align="center" style={{objectFit: 'cover', height: '460px', width: '860px'}} alt="Apache InLong"/>
 </TabItem>
 </Tabs>
@@ -65,32 +65,32 @@ Apache InLong serves the entire life cycle from data collection to landing,  and
 - **inlong-audit**, performs real-time audit and reconciliation on the incoming and outgoing traffic of the Agent, DataProxy, and Sort modules of the InLong system.
 
 ## Supported Data Nodes (Updating)
-| Type         | Name              | Version                      | Architecture          |
-|--------------|-------------------|------------------------------|-----------------------|
-| Extract Node | Auto Push         | None                         | Standard              |
-|              | File              | None                         | Standard              |
-|              | Kafka             | 2.x                          | Lightweight, Standard |
-|              | MySQL             | 5.6, 5.7, 8.0.x              | Lightweight, Standard |
-|              | MongoDB           | >= 3.6                       | Lightweight, Standard |
-|              | MQTT              | >= 3.1                       | Standard              |
-|              | Oracle            | 11,12,19                     | Lightweight           |
-|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight, Standard |
-|              | Pulsar            | 2.8.x                        | Lightweight           |
-|              | Redis             | 2.6.x                        | Standard              |
-|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
-| Load Node    | Auto Consumption  | None                         | Standard              |
-|              | Hive              | 1.x, 2.x, 3.x                | Lightweight, Standard |
-|              | Iceberg           | 0.12.x                       | Lightweight, Standard |
-|              | ClickHouse        | 20.7+                        | Lightweight, Standard |
-|              | Kafka             | 2.x                          | Lightweight, Standard |
-|              | HBase             | 2.2.x                        | Lightweight, Standard |
-|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight, Standard |
-|              | Oracle            | 11, 12, 19                   | Lightweight, Standard |
-|              | MySQL             | 5.6, 5.7, 8.0.x              | Lightweight, Standard |
-|              | TDSQL-PostgreSQL  | 10.17                        | Lightweight, Standard |
-|              | Greenplum         | 4.x, 5.x, 6.x                | Lightweight, Standard |
-|              | Elasticsearch     | 6.x, 7.x                     | Lightweight, Standard |
-|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
-|              | Doris             | >= 0.13                      | Lightweight, Standard |
-|              | StarRocks         | >= 2.0                       | Lightweight, Standard |
-|              | HDFS              | 2.x, 3.x                     | Lightweight, Standard |
+| Type         | Name              | Version                      |
+|--------------|-------------------|------------------------------|
+| Extract Node | Auto Push         | None                         |
+|              | File              | None                         |
+|              | Kafka             | 2.x                          |
+|              | MySQL             | 5.6, 5.7, 8.0.x              |
+|              | MongoDB           | >= 3.6                       |
+|              | MQTT              | >= 3.1                       |
+|              | Oracle            | 11,12,19                     |
+|              | PostgreSQL        | 9.6, 10, 11, 12              |
+|              | Pulsar            | 2.8.x                        |
+|              | Redis             | 2.6.x                        |
+|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 |
+| Load Node    | Auto Consumption  | None                         |
+|              | Hive              | 1.x, 2.x, 3.x                |
+|              | Iceberg           | 0.12.x                       |
+|              | ClickHouse        | 20.7+                        |
+|              | Kafka             | 2.x                          |
+|              | HBase             | 2.2.x                        |
+|              | PostgreSQL        | 9.6, 10, 11, 12              |
+|              | Oracle            | 11, 12, 19                   |
+|              | MySQL             | 5.6, 5.7, 8.0.x              |
+|              | TDSQL-PostgreSQL  | 10.17                        |
+|              | Greenplum         | 4.x, 5.x, 6.x                |
+|              | Elasticsearch     | 6.x, 7.x                     |
+|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 |
+|              | Doris             | >= 0.13                      |
+|              | StarRocks         | >= 2.0                       |
+|              | HDFS              | 2.x, 3.x                     |

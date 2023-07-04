@@ -17,7 +17,7 @@ InLong Support the following Message Queue services now, you can choose one of t
 You can get binary package from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).。
 
 ## Standard Architecture
-You need deploy all InLong components for Standard Architecture.
+You need deploy all InLong components for Standard Architecture, which support `Data Ingestion`, `Data Synchronization` and `Data Subscription` at the same time.
 
 ### Deploy
 | order | component              | dependencies           | deploy guide                                                                                                                                                 | description |
@@ -34,5 +34,5 @@ After the InLong cluster deployed successfully, you can create a data stream ref
 
 ## Lightweight Architecture
 ### Deploy
-Lightweight Architecture only needs InLong Sort component, it is simple and flexible, suitable for small-scale data.
+Lightweight Architecture only support `Data Synchronization`, you need to deploy InLong Sort component, it is simple and flexible, suitable for small-scale data.
 You can deploy and use it refer [the deployment guide](modules/sort/quick_start.md).

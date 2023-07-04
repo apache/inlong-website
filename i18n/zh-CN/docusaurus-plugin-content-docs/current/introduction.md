@@ -42,10 +42,10 @@ values={[
 {label: '标准', value: 'standard'},
 {label: '轻量化', value: 'lightweight'},
 ]}>
-<TabItem value="standard"> 标准架构：包含 InLong Agent、Manager、MQ、Sort、Dashboard 等所有 InLong 组件，适合海量数据、大规模生产环境。
+<TabItem value="standard"> 标准架构：包含 InLong Agent、Manager、MQ、Sort、Dashboard 等所有 InLong 组件，同时支持`数据接入`、`数据同步`和`数据订阅`。
 <img src="/img/inlong-structure-zh.png" align="center" alt="Apache InLong"/>
 </TabItem>
-<TabItem value="lightweight"> 轻量化架构：只包含 InLong Sort 一个组件，也可以搭配 Manager，Dashboard 一起使用。轻量化架构简单、灵活，适合小规模数据。
+<TabItem value="lightweight"> 轻量化架构：只包含 InLong Sort 一个组件，也可以搭配 Manager，Dashboard 一起使用。轻量化架构简单、灵活，只支持`数据同步`。
 <img src="/img/inlong-structure-light.png" align="center" style={{objectFit: 'cover', height: '460px', width: '860px'}} alt="Apache InLong"/>
 </TabItem>
 </Tabs>
@@ -62,35 +62,35 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 - **inlong-audit**，对 InLong 系统的 Agent、DataProxy、Sort 模块的入流量、出流量进行实时审计对账。
 
 ## 已支持数据节点（更新中）
-| Type         | Name              | Version                      | Architecture          |
-|--------------|-------------------|------------------------------|-----------------------|
-| Extract Node | Auto Push         | None                         | Standard              |
-|              | File              | None                         | Standard              |
-|              | Kafka             | 2.x                          | Lightweight, Standard |
-|              | MySQL             | 5.6, 5.7, 8.0.x              | Lightweight, Standard |
-|              | MongoDB           | >= 3.6                       | Lightweight, Standard |
-|              | MQTT              | >= 3.1                       | Standard              |
-|              | Oracle            | 11,12,19                     | Lightweight           |
-|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight, Standard |
-|              | Pulsar            | 2.8.x                        | Lightweight           |
-|              | Redis             | 2.6.x                        | Standard              |
-|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
-| Load Node    | Auto Consumption  | None                         | Standard              |
-|              | Hive              | 1.x, 2.x, 3.x                | Lightweight, Standard |
-|              | Iceberg           | 0.12.x                       | Lightweight, Standard |
-|              | Hudi              | 0.12.x                       | Lightweight, Standard |
-|              | ClickHouse        | 20.7+                        | Lightweight, Standard |
-|              | Kafka             | 2.x                          | Lightweight, Standard |
-|              | HBase             | 2.2.x                        | Lightweight, Standard |
-|              | PostgreSQL        | 9.6, 10, 11, 12              | Lightweight, Standard |
-|              | Oracle            | 11, 12, 19                   | Lightweight, Standard |
-|              | MySQL             | 5.6, 5.7, 8.0.x              | Lightweight, Standard |
-|              | TDSQL-PostgreSQL  | 10.17                        | Lightweight, Standard |
-|              | Greenplum         | 4.x, 5.x, 6.x                | Lightweight, Standard |
-|              | Elasticsearch     | 6.x, 7.x                     | Lightweight, Standard |
-|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 | Lightweight, Standard |
-|              | Doris             | >= 0.13                      | Lightweight, Standard |
-|              | StarRocks         | >= 2.0                       | Lightweight, Standard |
-|              | HDFS              | 2.x, 3.x                     | Lightweight, Standard |
+| Type         | Name              | Version                      |
+|--------------|-------------------|------------------------------|
+| Extract Node | Auto Push         | None                         |
+|              | File              | None                         |
+|              | Kafka             | 2.x                          |
+|              | MySQL             | 5.6, 5.7, 8.0.x              |
+|              | MongoDB           | >= 3.6                       |
+|              | MQTT              | >= 3.1                       |
+|              | Oracle            | 11,12,19                     |
+|              | PostgreSQL        | 9.6, 10, 11, 12              |
+|              | Pulsar            | 2.8.x                        |
+|              | Redis             | 2.6.x                        |
+|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 |
+| Load Node    | Auto Consumption  | None                         |
+|              | Hive              | 1.x, 2.x, 3.x                |
+|              | Iceberg           | 0.12.x                       |
+|              | Hudi              | 0.12.x                       |
+|              | ClickHouse        | 20.7+                        |
+|              | Kafka             | 2.x                          |
+|              | HBase             | 2.2.x                        |
+|              | PostgreSQL        | 9.6, 10, 11, 12              |
+|              | Oracle            | 11, 12, 19                   |
+|              | MySQL             | 5.6, 5.7, 8.0.x              |
+|              | TDSQL-PostgreSQL  | 10.17                        |
+|              | Greenplum         | 4.x, 5.x, 6.x                |
+|              | Elasticsearch     | 6.x, 7.x                     |
+|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 |
+|              | Doris             | >= 0.13                      |
+|              | StarRocks         | >= 2.0                       |
+|              | HDFS              | 2.x, 3.x                     |
 
 
