@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 (module.exports = {
   // omit unrelated docusaurus options
   title: 'Apache InLong',
-  tagline: 'Apache InLong is a one-stop integration framework for massive data that provides automatic, secure and reliable data transmission capabilities.',
+  tagline: 'Apache InLong is a one-stop, full-scenario integration framework for massive data that supports Data Ingestion, Data Synchronization and Data Subscription, and it provides automatic, secure and reliable data transmission capabilities.',
   url: 'https://inlong.apache.org',
   baseUrl: '/',
   onBrokenLinks: 'throw',
