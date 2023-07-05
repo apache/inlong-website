@@ -10,9 +10,9 @@ In the discussion email, the proposer should clearly state the candidate's contr
 The discussion email is sent to private@inlong.apache.org. The discussion will last at least 72 hours. PMC members will fully express their views on the proposed email.
 The following is a template  discussion email:
 ```shell
-[DISCUSS] ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
+[DISCUSS] ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
  
-I nominate ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
+I nominate ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
 
 Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2] to the project and improved the management module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
  
@@ -31,10 +31,10 @@ If the discussion email does not receive the disagreement information within the
 The voting email is sent to private@inlong.apache.org for at least 72 hours, and at least 3 votes +1 passed; if 0 votes or 1 vote -1 vote, the vote will fail; if a -1 vote is initiated, the voter needs to EXPLAIN the reason for the -1 score clearly so that everyone can understand and know.
 The following is a template  poll email: 
 ```shell
-[VOTE] ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
+[VOTE] ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
  
 Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2],[3] to the project and improved the management module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
-I think making him a ${Committer or PMC Member} will be a recognition of his outstanding work for InLong. So, I am happy to call VOTE to accept ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}.
+I think making him a ${Committer or PMC Member} will be a recognition of his outstanding work for InLong. So, I am happy to call VOTE to accept ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}.
  
 Voting will continue for at least 72 hours or until the required number of votes is reached.
 
@@ -53,11 +53,11 @@ Here are three links to his contributions to InLong:
 After the voting email is over, the initiator of the vote needs to `remind the voting end` in the second [VOTE] email; at the same time, the initiator of the vote needs to initiate a vote summary email, and the summary email is sent to private@inlong.apache.org.
 The following is a template  vote summary email:
 ```shell
-[RESULTS][VOTE] ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
+[RESULTS][VOTE] ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
 
 Hi everyone,
 
-The vote for "${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}" has PASSED and closed now.
+The vote for "${Candidate_Full_Name} as an InLong ${Committer or PMC Member}" has PASSED and closed now.
 
 The result is as follows:
 
@@ -75,7 +75,7 @@ Thanks for everyone's support!
 ```
 
 :::caution
-If it is not passed, the result is "The vote for "${Candidate_GitHub_ID} as an InLong a ${Committer or PMC Member}" has FAILED and closed now."
+If it is not passed, the result is "The vote for "${Candidate_GitHub_ID} as an InLong ${Committer or PMC Member}" has FAILED and closed now."
 :::
 
 ## Newly added PMC Member notification email
