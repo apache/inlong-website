@@ -9,9 +9,9 @@ sidebar_position: 5
 讨论邮件主送 private@inlong.apache.org 邮箱，讨论将持续至少 72 个小时，项目 PMC 成员会针对提议邮件充分发表自己的看法。
 如下是讨论邮件模板：
 ```shell
-[DISCUSS] ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
+[DISCUSS] ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
  
-I nominate ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
+I nominate ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
 
 Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2] to the project and improved the management module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
  
@@ -30,10 +30,10 @@ So I nominated ${Candidate_Full_Name} as a ${Committer or PMC Member} of the InL
 投票邮件主送 private@inlong.apache.org，至少持续 72 小时，至少要 3 票 +1 通过；如果 0 票或者有 1 票 -1 投票票则整个投票失败；如果发起 -1 投票，投票人需要把打分 -1 的原因说清楚，便于大家理解和知晓。
 如下是投票邮件模板：
 ```shell
-[VOTE] ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
+[VOTE] ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
  
 Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2],[3] to the project and improved the management module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
-I think making him a ${Committer or PMC Member} will be a recognition of his outstanding work for InLong. So, I am happy to call VOTE to accept ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}.
+I think making him a ${Committer or PMC Member} will be a recognition of his outstanding work for InLong. So, I am happy to call VOTE to accept ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}.
  
 Voting will continue for at least 72 hours or until the required number of votes is reached.
 
@@ -52,11 +52,11 @@ Here are three links to his contributions to InLong:
 投票邮件结束后，投票发起者需要在上一封 [VOTE] 邮件里`提醒投票结束`；同时，投票发起者需要发起邮票总结邮件，总结邮件主送 private@inlong.apache.org。
 如下是投票总结邮件模板：
 ```shell
-[RESULTS][VOTE] ${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}
+[RESULTS][VOTE] ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
 
 Hi everyone,
 
-The vote for "${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}" has PASSED and closed now.
+The vote for "${Candidate_Full_Name} as an InLong ${Committer or PMC Member}" has PASSED and closed now.
 
 The result is as follows:
 
@@ -74,7 +74,7 @@ Thanks for everyone's support!
 ```
 
 :::caution
-如果是未通过，结果是 "The vote for "${Candidate_Full_Name} as an InLong a ${Committer or PMC Member}" has FAILED and closed now."
+如果是未通过，结果是 "The vote for "${Candidate_Full_Name} as an InLong ${Committer or PMC Member}" has FAILED and closed now."
 :::
 
 ## 新增 PMC 成员通知邮件
