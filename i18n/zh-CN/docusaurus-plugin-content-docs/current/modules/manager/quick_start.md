@@ -44,8 +44,6 @@ spring.datasource.druid.password=inlong
 
 InLong Manager 可启动 Sort 任务进行数据的消费和落地，需要先配置 Flink 环境信息。配置文件为 `plugins/flink-sort-plugin.properties`。
 
-- flink version 支持 1.13 和 1.15，更换版本需要重新启动 manager
-
 ```properties
 # Flink version, support [1.13|1.15]
 flink.version=1.13
