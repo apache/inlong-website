@@ -46,6 +46,8 @@ spring.datasource.druid.password=inlong
 The InLong Manager can start the Sort task, you need to configure the Flink environment first. The configuration file is `plugins/flink-sort-plugin.properties`.
 
 ```properties
+# Flink version, support [1.13|1.15]
+flink.version=1.13
 # Flink host split by coma if more than one host, such as 'host1,host2'
 flink.rest.address=127.0.0.1
 # Flink port
