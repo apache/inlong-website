@@ -32,9 +32,6 @@ export default function() {
                             </div>
                             <div className={styles.buttonRow}>
                                 <div className={styles.buttonCard}>
-                                    <button className={styles.buttonDown}>
-                                        Download
-                                    </button>
                                     <div className={styles.styledDropdown}>
                                         <a className={styles.dropdownItem} href={`https://downloads.apache.org/inlong/${version}/apache-inlong-${version}-src.tar.gz`}>SRC</a>
                                         <a target="_blank" className={styles.dropdownItem} href={`https://downloads.apache.org/inlong/${version}/apache-inlong-${version}-src.tar.gz.asc`}>ASC</a>
@@ -59,9 +56,6 @@ export default function() {
                             </div>
                             <div className={styles.buttonRow}>
                                 <div className={styles.buttonCard}>
-                                    <button className={styles.buttonDown}>
-                                        Download
-                                    </button>
                                     <div className={styles.styledDropdown}>
                                         <a className={styles.dropdownItem} href={`https://downloads.apache.org/inlong/${version}/apache-inlong-${version}-bin.tar.gz`}>BIN</a>
                                         <a target="_blank" className={styles.dropdownItem} href={`https://downloads.apache.org/inlong/${version}/apache-inlong-${version}-bin.tar.gz.asc`}>ASC</a>
@@ -85,7 +79,6 @@ export default function() {
                             </div>
                             <div className={styles.buttonRow}>
                                 <div className={styles.buttonCard}>
-                                    <button className={styles.buttonDown}>Download</button>
                                     <div className={styles.styledDropdown}>
                                         <a className={styles.dropdownItem} href={`https://downloads.apache.org/inlong/${version}/apache-inlong-${version}-sort-connectors.tar.gz`}>BIN</a>
                                         <a target="_blank" className={styles.dropdownItem} href={`https://downloads.apache.org/inlong/${version}/apache-inlong-${version}-sort-connectors.tar.gz.asc`}>ASC</a>
