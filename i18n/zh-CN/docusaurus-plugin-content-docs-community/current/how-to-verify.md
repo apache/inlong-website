@@ -53,7 +53,7 @@ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
 :::
 
 ### 检查二进制包
-解压缩 `apache-inlong-${release_version}-bin.tar.gz` 和 `apache-inlong-${release_version}-sort-connectors.tar.gz`，进行如下检查:
+解压缩 `apache-inlong-${release_version}-bin.tar.gz`, `apache-inlong-${release_version}-sort-connectors-flink-v1.13.tar.gz` and `apache-inlong-${release_version}-sort-connectors-flink-v1.15.tar.gz`，进行如下检查:
 - LICENSE and NOTICE 文件是否存在及内容是否正确
 - 能否正常部署成功
 - 部署测试环境、验证生产消费能否正常运行

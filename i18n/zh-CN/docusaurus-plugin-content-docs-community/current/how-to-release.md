@@ -116,6 +116,8 @@ $ gpg --keyserver pgpkeys.mit.edu --send-key <key id>
 dev 分支的 svn 仓库：https://dist.apache.org/repos/dist/dev/inlong
 
 release 分支的 SVN 仓库：https://dist.apache.org/repos/dist/release/inlong
+
+请确认dev和release中增加的公钥相同
 :::
 
 - 在 dev 分支中添加公钥到 KEYS，用于发布 RC 版本
@@ -124,7 +126,7 @@ release 分支的 SVN 仓库：https://dist.apache.org/repos/dist/release/inlong
 $ svn co https://dist.apache.org/repos/dist/dev/inlong /tmp/inlong-dist-dev
 $ cd inlong-dist-dev
 # 追加你生成的 KEY 到文件 KEYS 中, 追加后最好检查一下是否正确
-$ gpg --export --armor YOUR_NAME@apache.org >> KEYS 
+$ (gpg --list-sigs <key id> && gpg --armor --export <key id>) >> KEYS 
 # 接下来会要求输入用户名和密码，就用你的 apache 的用户名和密码
 $ svn ci -m "add gpg key for YOUR_NAME" 
 ```
@@ -133,7 +135,7 @@ $ svn ci -m "add gpg key for YOUR_NAME"
 ```shell
 $ svn co https://dist.apache.org/repos/dist/release/inlong /tmp/inlong-dist-release
 $ cd inlong-dist-release
-$ gpg --export --armor YOUR_NAME@apache.org >> KEYS 
+$ (gpg --list-sigs <key id> && gpg --armor --export <key id>) >> KEYS 
 $ svn ci -m "add gpg key for YOUR_NAME" 
 ```
 
@@ -285,7 +287,8 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 - 检查通过以后, 在下方的 Summary 标签页上出现一个连接，请保存好这个链接，需要放在接下来的投票邮件当中，链接类似 `https://repository.apache.org/content/repositories/orgapacheinlong-{staging-id}` 。
 
 :::caution
-请注意点击 Close 可能会出现失败，请检查失败原因并处理
+- 请注意点击 Close 可能会出现失败，请检查失败原因并处理
+- keyserver之间有可能没有同步key，需要重新上传key到keyserver.ubuntu.com或keys.openpgp.org![img.png](images/staging-error.png)
 :::
 
 ## Apache InLong 社区投票

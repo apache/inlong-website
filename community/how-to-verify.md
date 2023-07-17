@@ -53,7 +53,7 @@ You can check the compilation and unit test through `mvn clean package install`.
 :::
 
 ### Check binary packages
-Unzip `apache-inlong-${release_version}-bin.tar.gz` and `apache-inlong-${release_version}-sort-connectors.tar.gz` and check the following:
+Unzip `apache-inlong-${release_version}-bin.tar.gz`, `apache-inlong-${release_version}-sort-connectors-flink-v1.13.tar.gz` and `apache-inlong-${release_version}-sort-connectors-flink-v1.15.tar.gz` and check the following:
 - Whether the LICENSE and NOTICE file exists and whether the content is correct
 - Whether the normal deployment is successful
 - Deploy the test environment and verify whether the production and consumption can run normally

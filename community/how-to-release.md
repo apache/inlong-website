@@ -118,6 +118,8 @@ Uploading takes about one minute, after that, you can check it by your email at 
 The svn repository of the DEV branch is: https://dist.apache.org/repos/dist/dev/inlong
 
 The svn repository of the Release branch is: https://dist.apache.org/repos/dist/release/inlong
+
+Please ensure that the key you add to dev and release branch are the same.
 :::
 
 - Add the public key to KEYS in the dev branch to release the RC version
@@ -126,7 +128,7 @@ The svn repository of the Release branch is: https://dist.apache.org/repos/dist/
 $ svn co https://dist.apache.org/repos/dist/dev/inlong /tmp/inlong-dist-dev
 $ cd inlong-dist-dev
 # # Append your key to the KEYS file
-$ gpg --export --armor YOUR_NAME@apache.org >> KEYS 
+$ (gpg --list-sigs <key id> && gpg --armor --export <key id>) >> KEYS 
 # Later on, if you are asked to enter a username and password, just use your apache username and password.
 $ svn ci -m "add gpg key for YOUR_NAME" 
 ```
@@ -135,7 +137,7 @@ $ svn ci -m "add gpg key for YOUR_NAME"
 ```shell
 $ svn co https://dist.apache.org/repos/dist/release/inlong /tmp/inlong-dist-release
 $ cd inlong-dist-release
-$ gpg --export --armor YOUR_NAME@apache.org >> KEYS 
+$ (gpg --list-sigs <key id> && gpg --armor --export <key id>) >> KEYS 
 $ svn ci -m "add gpg key for YOUR_NAME" 
 ```
 
@@ -287,7 +289,8 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 - You will get a link like `https://repository.apache.org/content/repositories/orgapacheinlong-{staging-id}` on the Summary page if all checks passed. This link will be posted in the vote email, so, keep it safe.
 
 :::caution
-Close operation may fail, you should check the causes and fix them.
+- Close operation may fail, you should check the causes and fix them.
+- The key you upload before may not be synchronized among keyserver, please upload it to keyserver.ubuntu.com or keys.openpgp.org if staging fail by error ![img.png](images/staging-error.png) 
 :::
 
 ## Apache InLong community vote
