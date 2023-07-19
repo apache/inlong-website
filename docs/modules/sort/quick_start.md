@@ -6,7 +6,7 @@ sidebar_position: 2
 ## Set up Flink Environment
 InLong Sort is based on Apache Flink, you need to set up an [Apache Flink Environment](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/overview/).
 
-InLong Sort relies on Apache Flink 1.13.5. Chose `flink-1.13.5-bin-scala_2.11.tgz` when downloading package.
+InLong Sort relies on Apache Flink 1.13.5 or 1.15.4. Chose `flink-1.13.5-bin-scala_2.11.tgz` or `flink-1.15.4-bin-scala_2.12.tgz` when downloading package.
 
 ## Prepare installation files
 - InLong Sort file, [Download](https://inlong.apache.org/download/) `apache-inlong-[version]-bin.tar.gz`
@@ -15,6 +15,7 @@ InLong Sort relies on Apache Flink 1.13.5. Chose `flink-1.13.5-bin-scala_2.11.tg
 :::caution
 Please put required Connectors jars into under `FLINK_HOME/lib/` after download.  
 Put [mysql-connector-java:8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar) to `FLINK_HOME/lib/` when you use `mysql-cdc-inlong` connector.
+If you change the flink version, you also need to change the Connectors jars of the corresponding version.
 :::
 
 ## Start an InLong Sort Job

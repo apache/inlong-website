@@ -6,7 +6,7 @@ sidebar_position: 2
 ## 配置 Flink 运行环境
 InLong Sort 是基于 Flink 的一个应用，需要准备好 [Apache Flink 环境](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/overview/)。
 
-当前 InLong Sort 依赖的是 Apache Flink 1.13.5 版本，因此在下载部署包时，请选择 `flink-1.13.5-bin-scala_2.11.tgz`
+当前 InLong Sort 依赖的是 Apache Flink 1.13.5 或 1.15.4 版本，因此在下载部署包时，请选择 `flink-1.13.5-bin-scala_2.11.tgz` 或 `flink-1.15.4-bin-scala_2.12.tgz`
 
 ## 准备安装文件
 - InLong Sort 运行文件，[下载](https://inlong.apache.org/zh-CN/download/) `apache-inlong-[version]-bin.tar.gz`
@@ -15,6 +15,7 @@ InLong Sort 是基于 Flink 的一个应用，需要准备好 [Apache Flink 环�
 :::caution
 Connectors 下载后可以将需要的 jars 放到`FLINK_HOME/lib/`下。  
 如果使用`mysql-cdc-inlong` 连接器，请将 [mysql-connector-java:8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar)  包放到 `FLINK_HOME/lib/`下。
+如果更换 flink 版本，同样需要更换对应版本的 connectors.
 :::
 
 ## 启动 InLong Sort 任务
