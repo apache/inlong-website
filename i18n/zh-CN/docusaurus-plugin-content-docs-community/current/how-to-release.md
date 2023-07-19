@@ -288,7 +288,7 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 
 :::caution
 - 请注意点击 Close 可能会出现失败，请检查失败原因并处理
-- keyserver之间有可能没有同步key，需要重新上传key到keyserver.ubuntu.com或keys.openpgp.org![img.png](images/staging-error.png)
+- 请注意keyserver之间如果没有同步key，需要重新上传key到keyserver.ubuntu.com或keys.openpgp.org![img.png](images/staging-error.png)
 :::
 
 ## Apache InLong 社区投票
