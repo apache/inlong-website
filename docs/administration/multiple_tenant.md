@@ -2,6 +2,7 @@
 title: Tenant Management
 sidebar_position: 3
 ---
+
 ## Overview
 
 Multi-tenancy is a software architecture pattern that allows a single application to serve multiple independent users or organizations (called "tenants") simultaneously. 
@@ -13,11 +14,11 @@ https://github.com/apache/inlong/issues/7914
 
 :::caution
 - Resources and permissions are isolated between different tenants, and users can only see resources under their tenant.
-
-- After upgrading from a lower version to version 1.8, all resources will be migrated to the `public` tenant.
+- After upgrading from a lower version to version 1.8.0, all resources will be migrated to the `public` tenant.
 :::
 
 ## Create a tenant
+
 Currently, only **InLong Admins** are allowed to create and modify tenants.
 - Select `Tenant Management`, and click `Create`.
   ![img.png](img/create_tenant_1.png)
@@ -28,6 +29,7 @@ Currently, only **InLong Admins** are allowed to create and modify tenants.
   The tenant has been created at this point.
 
 ## Create tenant role
+
 - Select `Tenant Management`, and click `Create`.
   ![img.png](img/create_tenant_1.png)
 - Choose the target `Tenant Name`, `User Name`, and the `Tenant Role` you want to grant (if the tenant does not exist, please refer to [Create a tenant](#create-a-tenant)).
@@ -36,5 +38,6 @@ Currently, only **InLong Admins** are allowed to create and modify tenants.
   ![img.png](img/create_tenant_role_2.png)
 
 ## Tenant switching
+
 - Click the `Tenant` field in the upper right corner and choose the tenant you switch to.
   ![img.png](img/create_tenant_role_3.png)

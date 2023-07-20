@@ -2,6 +2,7 @@
 title: 租户管理
 sidebar_position: 3
 ---
+
 ## 总览
 
 多租户（Multi-tenancy）是一种软件架构模式，允许一个应用程序同时为多个独立的用户或组织（称为“租户”）提供服务。
@@ -17,6 +18,7 @@ https://github.com/apache/inlong/issues/7914
 :::
 
 ## 创建租户
+
 :::caution
 目前只允许 `InLong 管理员`来进行租户的创建和修改操作。
 :::
@@ -29,6 +31,7 @@ https://github.com/apache/inlong/issues/7914
 至此完成了租户的创建
 
 ## 创建租户角色
+
 - 选择`租户管理`，点击`新建角色`
 ![img.png](img/create_tenant_1.png)
 - 选则`目标租户`，`用户名称`，和想要授予的`租户角色`(如果租户不存在，请参考 [创建租户](#创建租户))
@@ -37,6 +40,7 @@ https://github.com/apache/inlong/issues/7914
 ![img.png](img/create_tenant_role_2.png)
 
 ## 租户切换
+
 - 点击右上角`租户`字段，可以选择切换到名下拥有的租户
 ![img.png](img/create_tenant_role_3.png)
 
