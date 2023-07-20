@@ -117,7 +117,7 @@ dev 分支的 svn 仓库：https://dist.apache.org/repos/dist/dev/inlong
 
 release 分支的 SVN 仓库：https://dist.apache.org/repos/dist/release/inlong
 
-请确认dev和release中增加的公钥相同
+请确认`dev`和`release`分支中增加的`key`相同
 :::
 
 - 在 dev 分支中添加公钥到 KEYS，用于发布 RC 版本
@@ -287,8 +287,8 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 - 检查通过以后, 在下方的 Summary 标签页上出现一个连接，请保存好这个链接，需要放在接下来的投票邮件当中，链接类似 `https://repository.apache.org/content/repositories/orgapacheinlong-{staging-id}` 。
 
 :::caution
-- 请注意点击 Close 可能会出现失败，请检查失败原因并处理
-- 请注意keyserver之间如果没有同步key，需要重新上传key到keyserver.ubuntu.com或keys.openpgp.org![img.png](images/staging-error.png)
+- 如果Close操作失败，请检查失败原因并处理
+- 如果出现 `Signature Validation` 错误事件，可能是 keyserver 之间没有同步 key，可以重新上传 key 到 `keyserver.ubuntu.com`  或 `keys.openpgp.org`
 :::
 
 ## Apache InLong 社区投票

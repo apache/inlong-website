@@ -119,7 +119,7 @@ The svn repository of the DEV branch is: https://dist.apache.org/repos/dist/dev/
 
 The svn repository of the Release branch is: https://dist.apache.org/repos/dist/release/inlong
 
-Please ensure that the key you add to dev and release branch are the same.
+Please ensure that the `key` you added to `dev` and `release` branches is the same.
 :::
 
 - Add the public key to KEYS in the dev branch to release the RC version
@@ -289,8 +289,8 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 - You will get a link like `https://repository.apache.org/content/repositories/orgapacheinlong-{staging-id}` on the Summary page if all checks passed. This link will be posted in the vote email, so, keep it safe.
 
 :::caution
-- Close operation may fail, you should check the causes and fix them.
-- The key you upload before may not be synchronized among keyserver, please upload it to keyserver.ubuntu.com or keys.openpgp.org if staging fail by error ![img.png](images/staging-error.png) 
+- Close operation may not work, it's better to check and fix the causes.
+- The key you uploaded before may not be synchronized among the keyserver, please upload it to `keyserver.ubuntu.com` or `keys.openpgp.org` if there is a `Signature Validation` event.
 :::
 
 ## Apache InLong community vote
