@@ -117,7 +117,7 @@ dev 分支的 svn 仓库：https://dist.apache.org/repos/dist/dev/inlong
 
 release 分支的 SVN 仓库：https://dist.apache.org/repos/dist/release/inlong
 
-请确认`dev`和`release`分支中增加的`key`相同
+请确认 `dev` 和 `release` 分支中增加的 `key` 相同
 :::
 
 - 在 dev 分支中添加公钥到 KEYS，用于发布 RC 版本
