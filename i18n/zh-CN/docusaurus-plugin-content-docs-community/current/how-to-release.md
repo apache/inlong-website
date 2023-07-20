@@ -288,7 +288,7 @@ $ svn commit -m "prepare for ${release_version} ${rc_version}"
 
 :::caution
 - 如果 Close 操作失败，请检查失败原因并处理
-- 如果出现 `Signature Validation` 错误事件，可能是 keyserver 之间没有同步 key，可以重新上传 key 到 `keyserver.ubuntu.com`  或 `keys.openpgp.org`
+- 如果出现 `Signature Validation` 错误事件，可能是 `keyserver` 之间没有同步 `key`，可以重新上传 `key` 到 `keyserver.ubuntu.com`  或  `keys.openpgp.org`
 :::
 
 ## Apache InLong 社区投票
