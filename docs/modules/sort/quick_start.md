@@ -14,8 +14,8 @@ InLong Sort relies on Apache Flink 1.13.5 or 1.15.4. Chose `flink-1.13.5-bin-sca
 
 :::caution
 Please put required Connectors jars into under `FLINK_HOME/lib/` after download.  
-Put [mysql-connector-java:8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar) to `FLINK_HOME/lib/` when you use `mysql-cdc-inlong` connector.
-If you change the flink version, you also need to change the Connectors jars of the corresponding version.
+Put [mysql-connector-java:8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar) to `FLINK_HOME/lib/` when you use `mysql-cdc-inlong` connector.  
+If you change the Apache Flink version, you also need to change the `connectors` of the corresponding version.
 :::
 
 ## Start an InLong Sort Job

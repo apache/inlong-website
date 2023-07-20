@@ -14,8 +14,8 @@ InLong Sort 是基于 Flink 的一个应用，需要准备好 [Apache Flink 环�
 
 :::caution
 Connectors 下载后可以将需要的 jars 放到`FLINK_HOME/lib/`下。  
-如果使用`mysql-cdc-inlong` 连接器，请将 [mysql-connector-java:8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar)  包放到 `FLINK_HOME/lib/`下。
-如果更换 flink 版本，同样需要更换对应版本的 connectors.
+如果使用`mysql-cdc-inlong` 连接器，请将 [mysql-connector-java:8.0.21.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.21/mysql-connector-java-8.0.21.jar)  包放到 `FLINK_HOME/lib/`下。  
+如果更换 Apache Flink 版本，同样需要更换对应版本的 `connectors`.
 :::
 
 ## 启动 InLong Sort 任务
