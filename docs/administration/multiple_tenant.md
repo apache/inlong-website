@@ -8,6 +8,7 @@ sidebar_position: 3
 Multi-tenancy is a software architecture pattern that allows a single application to serve multiple independent users or organizations (called "tenants") simultaneously. 
 In this model, each tenant is logically isolated from one another but shares the same underlying software infrastructure and resources.
 This means that a single application instance can serve multiple tenants without the need to deploy and maintain the application separately for each tenant.
+In order to address the requirements for permissions and resource isolation in multi-user scenarios, InLong introduced a multi-tenant architecture in version 1.8.0.
 
 For the implementation of InLong multi-tenancy, please refer to:
 https://github.com/apache/inlong/issues/7914
@@ -27,6 +28,10 @@ Currently, only **InLong Admins** are allowed to create and modify tenants.
 - Complete the `Tenant Name` and description, click `OK` to finish creating the tenant.
   ![img.png](img/create_tenant_3.png)
   The tenant has been created at this point.
+
+:::caution
+Currently only `InLong administrators` are allowed to create and modify tenants.
+:::
 
 ## Create tenant role
 
