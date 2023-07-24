@@ -1,6 +1,5 @@
 import React, { useState }  from 'react';
 import useIsBrowser from '@docusaurus/useIsBrowser';
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import config from "../versions/config.json";
 import Layout from '@theme/Layout';
 import './index.less';
