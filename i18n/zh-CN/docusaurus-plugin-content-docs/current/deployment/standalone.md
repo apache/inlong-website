@@ -6,6 +6,7 @@ sidebar_position: 1
 - MySQL 5.7+
 - [Flink 1.13.5](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/try-flink/local_installation/)
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
+- Linux或Mac环境
 
 ## 准备消息队列
 InLong 当前支持以下消息队列，根据使用情况**选择其一**即可。
@@ -36,7 +37,7 @@ inlong-tubemq-manager/lib/
 ```shell
 # 本地机器 IP
 local_ip=
-# 消息队列服务： pulsar 或者 kafka
+# 消息队列服务： pulsar 或者 kafka 或者 tubemq
 mq_type=pulsar
 # 数据库配置，MySQL 或者 PostgreSQL
 spring_datasource_hostname=
@@ -85,5 +86,4 @@ Password: inlong
 
 ## 使用
 创建数据流可以参考 [Pulsar Example](quick_start/pulsar_example.md).
-
 
