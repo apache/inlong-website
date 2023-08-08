@@ -37,7 +37,7 @@ In `conf/inlong.conf`, configure the parameters according to the actual situatio
 ```shell
 # local IP
 local_ip=
-# message queue: pulsar or kafka or tubemq
+# message queue: pulsar or kafka
 mq_type=pulsar
 # Configure Database, MySQL or PostgreSQL
 spring_datasource_hostname=
