@@ -7,6 +7,7 @@ sidebar_position: 1
 - MySQL 5.7+
 - [Flink 1.13.5](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/try-flink/local_installation/)
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
+- On Linux or Mac
 
 ## Prepare Message Queue
 InLong Support the following Message Queue services now, **you can choose one of them**.

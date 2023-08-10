@@ -6,6 +6,7 @@ sidebar_position: 1
 - MySQL 5.7+
 - [Flink 1.13.5](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/try-flink/local_installation/)
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
+- Linux 或 Mac 环境
 
 ## 准备消息队列
 InLong 当前支持以下消息队列，根据使用情况**选择其一**即可。
@@ -85,5 +86,4 @@ Password: inlong
 
 ## 使用
 创建数据流可以参考 [Pulsar Example](quick_start/pulsar_example.md).
-
 
