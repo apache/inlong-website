@@ -39,7 +39,7 @@ inlong-tubemq-manager/lib/
 local_ip=
 # 消息队列服务： pulsar 或者 kafka
 mq_type=pulsar
-# 数据库配置，MySQL 或者 PostgreSQL
+# 数据库配置，需要使用 MySQL
 spring_datasource_hostname=
 spring_datasource_port=3306
 spring_datasource_username=root
