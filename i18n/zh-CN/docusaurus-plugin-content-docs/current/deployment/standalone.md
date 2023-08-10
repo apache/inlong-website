@@ -22,7 +22,7 @@ InLong 当前支持以下消息队列，根据使用情况**选择其一**即可
 :::
 
 ## DB 依赖
-- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar), 并将其放入以下目录：
+- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.28.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar), 并将其放入以下目录：
 ```bash
 inlong-agent/lib/
 inlong-audit/lib/
