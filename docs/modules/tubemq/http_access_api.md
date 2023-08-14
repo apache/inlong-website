@@ -305,9 +305,9 @@ __Request__
 
 |name|must|description|type|
 |---|---|---|---|
-|topicName|yes| the topic name|String|
+|topicName|no| the topic name|String|
 |topicStatusId|no| the status of topic record, 0-normal record, 1-already soft delete, 2-already hard delete, default 0|int|
-|brokerId|yes|the id of the broker, its default value is 0. If brokerId is not zero, it ignores brokerIp field|String|
+|brokerId|no|the id of the broker, its default value is 0. If brokerId is not zero, it ignores brokerIp field|String|
 |deleteWhen|no|the default deleting time of the topic data. The format should like cronjob form `0 0 6, 18 * * ?`|String|
 |deletePolicy|no|the default policy for deleting, the default policy is "delete, 168"|String|
 |numPartitions|no|the default partition number of a default topic on the broker. Default 3|Int|
@@ -320,8 +320,8 @@ __Request__
 |brokerTLSPort|no|the port of TLS of the broker, it has no default value|Int|
 |acceptPublish|no|whether the broker accept publish, default true|Boolean|
 |acceptSubscribe|no|whether the broker accept subscribe, default true| Boolean|
-|createUser|yes|the creator|String|
-|modifyUser|yes|the modifier|String|
+|createUser|no|the creator|String|
+|modifyUser|no|the modifier|String|
 
 #### 1.3.3 `admin_modify_topic_info`
 
