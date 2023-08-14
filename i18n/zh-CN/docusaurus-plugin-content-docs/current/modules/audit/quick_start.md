@@ -15,7 +15,7 @@ clickhouse client -u DB_USER --password DB_PASSWD < sql/apache_inlong_audit_clic
 ```
   
 ## 依赖
-- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.27/mysql-connector-java-8.0.27.jar), 并将其放入 `lib/` 目录。
+- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.28.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar), 并将其放入 `lib/` 目录。
 - 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
 
 ## Audit Proxy
@@ -92,7 +92,7 @@ clickhouse.password=default
 ```
 
 ### 依赖
-- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.27.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.27.jar), 并将其放入 `lib/` 目录。
+- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.28.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.28.jar), 并将其放入 `lib/` 目录。
 - 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
 
 ### 启动
