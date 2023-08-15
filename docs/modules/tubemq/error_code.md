@@ -5,33 +5,35 @@ title: Error Code
 ## 1 Introduction of TubeMQ Error
 
 TubeMQ use `errCode` and `errMsg` combined to return specific operation result. Firstly, determine the type of result(problem) by errCode, and then determine the specific reson of the errCode based on errMsg. The following table summarizes all the errCodes and errMsgs that may return during operation.
+TubeMQ's computation is parallel, and all child operations are surrounded by the parent value. Note that the error code of the parent class and the subclass have no synchronization relationship, and the error code of the parent class only indicates whether the allocator of the TubeMQ child request works properly.
+The following error codes represent the error codes for sub-operations.
 
 ## 2 errCodes
 
 | Error Type | errCode | Error Mark | Meaning | Note |
-| ---------- | ------- | ---------- | ------- | ---- |
-| Operation Success | 200 | Operation Success| Success. ||
-| Operation Success| 201| NOT_READY | The request is accepted, but the server is not ready or the service is not running.| unused now, reserved. ||
-| Temporary Conflict Resolved | 301 | MOVED| Temporary switching of data results in an unsuccessful operation and a request for a new operation needs to be initiated. ||
-| Client Error | 400 | BAD_REQUEST| Client error, including parameter error, status error, etc. |Refer to ErrMsg for detail to location the error. |
-| Client Error | 401| UNAUTHORIZED| Unauthorized operation, make sure that the client has permission to perform the operation. | Need to check configuration. ||
-| Client Error | 403| FORBIDDEN | Topic not found or already deleted. |||
-| Client Error | 404| NOT_FOUND | Consumer has reach the max offset of the topic. |||
-| Client Error | 405| ALL_PARTITION_FROZEN | All available partitions are frozen. | The available partition has been frozen by the client, and it needs to be unfrozen or wait a while and try again. ||
-| Client Error | 406| NO_PARTITION_ASSIGNED | The current client is not allocated a partition for consumption. | The number of clients exceeds the number of partitions, or the server has not performed load balancing operations, so you need to wait and try again. ||
-| Client Error | 407| ALL_PARTITION_WAITING | The current available partitions have reached the maximum consumption position. | Need to wait and try again. ||
-| Client Error | 408| ALL_PARTITION_INUSE | Currently available partitions are all used by business but not released. | Need to wait for the business logic to call the confirm API to release the partition, wait and try again. ||
-| Client Error | 410| PARTITION_OCCUPIED| Partition consumption conflicts. Ignore it. | Temporary status of internal registration. ||
-| Client Error | 411| HB_NO_NODE| Node timeout, need to reduce the frequency of the operation and wait a while before retrying. | It usually occurs when the heartbeat sent from client to the server is timeout, try to reduce the operation frequency and wait for a while for the lib to register successfully before retrying the process. ||
-| Client Error | 412| DUPLICATE_PARTITION | Partition consumption conflicts. Ignore it. | Usually caused by node timeout, retry it. ||
-| Client Error | 415| CERTIFICATE_FAILURE | Authorization fails, including user authentication and operational authorization. | Usually occurs when the user name and password are inconsistent, the operation is not authorized. ||
-| Client Error | 419| SERVER_RECEIVE_OVERFLOW | Server receives overflow and need to retry. | For long-term overflow, try to expand the storage instance or expand the memory cache size. ||
-| Client Error | 450| CONSUME_GROUP_FORBIDDEN | Consumer group is forbidden. |||
-| Client Error | 452| SERVER_CONSUME_SPEED_LIMIT| Consumption speed is limited. |||
-| Client Error | 455| CONSUME_CONTENT_FORBIDDEN | Consumption is rejected, including that the consumer group is forbidden to filter consume and The filter `streamId` set does not match the allowed `streamId` set, etc. | Confirm the setting of filter of message.  ||
-| Server Error | 500 | INTERNAL_SERVER_ERROR| Internal server error | Refer to ErrMsg for detail to location the error. |
-| Server Error| 503| SERVICE_UNAVILABLE| Temporary ban on reading or writing for business. | Retry it. ||
-| Server Error| 510| INTERNAL_SERVER_ERROR_MSGSET_NULL | Can not read Message Set. | Retry it. ||
+| ---------- |---------| ---------- | ------- | ---- |
+| Operation Success | 0       | Operation Success| Success. ||
+| Operation Success| 201     | NOT_READY | The request is accepted, but the server is not ready or the service is not running.| unused now, reserved. ||
+| Temporary Conflict Resolved | 301     | MOVED| Temporary switching of data results in an unsuccessful operation and a request for a new operation needs to be initiated. ||
+| Client Error | 400     | BAD_REQUEST| Client error, including parameter error, status error, etc. |Refer to ErrMsg for detail to location the error. |
+| Client Error | 401     | UNAUTHORIZED| Unauthorized operation, make sure that the client has permission to perform the operation. | Need to check configuration. ||
+| Client Error | 403     | FORBIDDEN | Topic not found or already deleted. |||
+| Client Error | 404     | NOT_FOUND | Consumer has reach the max offset of the topic. |||
+| Client Error | 405     | ALL_PARTITION_FROZEN | All available partitions are frozen. | The available partition has been frozen by the client, and it needs to be unfrozen or wait a while and try again. ||
+| Client Error | 406     | NO_PARTITION_ASSIGNED | The current client is not allocated a partition for consumption. | The number of clients exceeds the number of partitions, or the server has not performed load balancing operations, so you need to wait and try again. ||
+| Client Error | 407     | ALL_PARTITION_WAITING | The current available partitions have reached the maximum consumption position. | Need to wait and try again. ||
+| Client Error | 408     | ALL_PARTITION_INUSE | Currently available partitions are all used by business but not released. | Need to wait for the business logic to call the confirm API to release the partition, wait and try again. ||
+| Client Error | 410     | PARTITION_OCCUPIED| Partition consumption conflicts. Ignore it. | Temporary status of internal registration. ||
+| Client Error | 411     | HB_NO_NODE| Node timeout, need to reduce the frequency of the operation and wait a while before retrying. | It usually occurs when the heartbeat sent from client to the server is timeout, try to reduce the operation frequency and wait for a while for the lib to register successfully before retrying the process. ||
+| Client Error | 412     | DUPLICATE_PARTITION | Partition consumption conflicts. Ignore it. | Usually caused by node timeout, retry it. ||
+| Client Error | 415     | CERTIFICATE_FAILURE | Authorization fails, including user authentication and operational authorization. | Usually occurs when the user name and password are inconsistent, the operation is not authorized. ||
+| Client Error | 419     | SERVER_RECEIVE_OVERFLOW | Server receives overflow and need to retry. | For long-term overflow, try to expand the storage instance or expand the memory cache size. ||
+| Client Error | 450     | CONSUME_GROUP_FORBIDDEN | Consumer group is forbidden. |||
+| Client Error | 452     | SERVER_CONSUME_SPEED_LIMIT| Consumption speed is limited. |||
+| Client Error | 455     | CONSUME_CONTENT_FORBIDDEN | Consumption is rejected, including that the consumer group is forbidden to filter consume and The filter `streamId` set does not match the allowed `streamId` set, etc. | Confirm the setting of filter of message.  ||
+| Server Error | 500     | INTERNAL_SERVER_ERROR| Internal server error | Refer to ErrMsg for detail to location the error. |
+| Server Error| 503     | SERVICE_UNAVILABLE| Temporary ban on reading or writing for business. | Retry it. ||
+| Server Error| 510     | INTERNAL_SERVER_ERROR_MSGSET_NULL | Can not read Message Set. | Retry it. ||
 
 ## 3 Common errMsgs
 
