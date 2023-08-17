@@ -14,14 +14,18 @@ mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
 ````
   
 ## Configuration
-- create `tubemanager` and account in MySQL.
-- Add mysql information in conf/application.properties:
+- Add mysql information in conf/application.properties (you can directly use the database you just imported via sql/apache_tube_manager.sql)
 
 ```ini
 # mysql configuration for manager
-spring.datasource.url=jdbc:mysql://mysql_ip:mysql_port/tubemanager
+spring.datasource.url=jdbc:mysql://mysql_ip:mysql_port/apache_tube_manager
 spring.datasource.username=mysql_username
 spring.datasource.password=mysql_password
+
+# If you are on JDK version 11+, add the following extra, otherwise ignore it
+spring.jaxb-compatibility-mode=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+
 ```
 
 ## Dependencies
@@ -35,8 +39,14 @@ spring.datasource.password=mysql_password
 - If the backend database is PostgreSQL, there's no need for additional dependencies.
 
 ## Start
-
+- Start the manager service as configured above
 ``` bash
+$ bin/start-manager.sh 
+```
+## Restart
+- If you change the mysql configuration in the applications.properties file midway through the process, you need to shut down and restart the manager service for the new configuration to take effect.
+``` bash
+$ bin/stop-manager.sh 
 $ bin/start-manager.sh 
 ```
 
