@@ -43,7 +43,6 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 $ bin/start-manager.sh 
 ```
 ## Restart
-- When you change the configuration above
 ``` bash
 $ bin/restart-manager.sh 
 ```
