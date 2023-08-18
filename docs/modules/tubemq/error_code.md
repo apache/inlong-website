@@ -12,7 +12,8 @@ The following error codes represent the error codes for sub-operations.
 
 | Error Type | errCode | Error Mark | Meaning | Note |
 | ---------- |---------| ---------- | ------- | ---- |
-| Operation Success | 0       | Operation Success| Success. ||
+| Operation Success | 0       | Operation Success| This is the normal error code that is currently used uniformly ||
+| Operation Success | 0       | Operation Success| This is the original normal error code, this part of the error code is gradually modified to 0, but 200 still means normal ||
 | Operation Success| 201     | NOT_READY | The request is accepted, but the server is not ready or the service is not running.| unused now, reserved. ||
 | Temporary Conflict Resolved | 301     | MOVED| Temporary switching of data results in an unsuccessful operation and a request for a new operation needs to be initiated. ||
 | Client Error | 400     | BAD_REQUEST| Client error, including parameter error, status error, etc. |Refer to ErrMsg for detail to location the error. |
