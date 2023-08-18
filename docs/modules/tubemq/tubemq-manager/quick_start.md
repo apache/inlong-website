@@ -23,7 +23,6 @@ spring.datasource.password=mysql_password
 # If you are on JDK version 11+, add the following extra
 spring.jaxb-compatibility-mode=true
 spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
-
 ```
 
 ## Dependencies
