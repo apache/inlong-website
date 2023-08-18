@@ -345,7 +345,7 @@ Oracle Extract 节点是一个 Flink Source 连接器，它将首先读取数据
 
 配置选项 `scan.startup.mode` 指定 Oracle Extract 节点消费者的启动模式。有效的枚举是：
 
-- `initial` (默认): 首次启动时对被监控的数据库表进行初始快照，并继续读取最新的 Binlog。
+- `initial` (默认): 首次启动时对被监控的数据库表进行初始快照，并继续读取最新的 Redo Log。
 - `latest-offset`: 永远不要在第一次启动时对受监控的数据库表执行快照，只需从自连接器启动以来的更改。
 
 _注意: `scan.startup.mode` 选项的机制依赖于 Debezium 的`snapshot.mode` 配置。所以请不要一起使用它们。如果您在 DDL 表中同时指定了 `scan.startup.mode` 和 `debezium.snapshot.mode` 选项，可能会导致 `scan.startup.mode` 不起作用。_
