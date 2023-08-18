@@ -15,7 +15,7 @@ mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
   
 ## Configuration
 ```ini
-# mysql configuration for manager
+# MySQL configuration for Manager
 spring.datasource.url=jdbc:mysql://mysql_ip:mysql_port/apache_tube_manager
 spring.datasource.username=mysql_username
 spring.datasource.password=mysql_password
