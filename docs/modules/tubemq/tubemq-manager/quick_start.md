@@ -14,8 +14,6 @@ mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
 ````
   
 ## Configuration
-- create `apache_tube_manager` and account in MySQL.
-- Add mysql information in conf/application.properties:
 ```ini
 # mysql configuration for manager
 spring.datasource.url=jdbc:mysql://mysql_ip:mysql_port/apache_tube_manager
@@ -42,6 +40,7 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 ``` bash
 $ bin/start-manager.sh 
 ```
+
 ## Restart
 ``` bash
 $ bin/restart-manager.sh 

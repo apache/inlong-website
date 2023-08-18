@@ -14,8 +14,6 @@ mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
 ```
   
 ## 配置
-- 在mysql中创建`apache_tube_manager`数据和相应用户.
-- 在conf/application.properties中添加mysql信息：
 
 ```ini
 # mysql configuration for manager
@@ -41,7 +39,8 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 ``` bash
 $ bin/start-manager.sh 
 ```
-## 重新启动
+
+## 重启
 ``` bash
 $ bin/restart-manager.sh 
 ```
