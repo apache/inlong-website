@@ -14,14 +14,18 @@ mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
 ```
   
 ## 配置
-- 在mysql中创建`tubemanager`数据和相应用户.
+- 在mysql中创建`apache_tube_manager`数据和相应用户.
 - 在conf/application.properties中添加mysql信息：
 
 ```ini
 # mysql configuration for manager
-spring.datasource.url=jdbc:mysql://mysql_ip:mysql_port/tubemanager
+spring.datasource.url=jdbc:mysql://mysql_ip:mysql_port/apache_tube_manager
 spring.datasource.username=mysql_username
 spring.datasource.password=mysql_password
+
+# 如果您使用的是 JDK 11+ 版本，请额外添加以下内容
+spring.jaxb-compatibility-mode=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 ```
 
 ### 依赖
@@ -36,6 +40,11 @@ spring.datasource.password=mysql_password
 
 ``` bash
 $ bin/start-manager.sh 
+```
+## 重新启动
+- 当你更改了上文配置
+``` bash
+$ bin/restart-manager.sh 
 ```
 
 ## 初始化TubeMQ集群
