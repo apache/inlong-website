@@ -45,7 +45,7 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 
 ## 任务创建
 ### 新建数据流组
-页面点击【数据集成】→【新建数据流组】，只用填写 ID 接选择 Pulsar 即可：：
+页面点击【数据接入】→【新建接入】，只用填写 ID 接选择 Pulsar 即可：：
 ![Create datastream](img/clickhouse/pulsar_ingestion.png)
 
 :::note
@@ -57,11 +57,11 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 ![Create datastream](img/clickhouse/pulsar_stream.png)
 
 ### 为数据流添加文件数据源
-点击【新建数据源】，配置数据源信息，包括名称、选择 File 类型、选择采集 Agent 集群及 IP 、采集文件路径等；
+点击【新建数据源】，选择file类型，配置数据源信息，包括名称、选择采集 Agent 集群及 IP 、采集文件路径等；
 ![Create datastream](img/clickhouse/pulsar_source.png)
 
 ### 新建数据目标
-点击【新建数据目标】，包括名称、配置 ClickHouse 后的库表名称、选择已创建的节点及 Schema 映射信息等，然后点击【提交审批】
+点击【新建数据目标】，选择ClickHouse类型，配置包括名称、库表名称、选择已创建的节点及 Schema 映射信息等，然后点击【提交审批】
 
 ![Create data object](img/clickhouse/pulsar_sink.png)
 
