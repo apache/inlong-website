@@ -1,9 +1,9 @@
 ---
-title: ClickHouse Example
+title: Collect File and Writing to ClickHouse Example 
 sidebar_position: 2
 ---
 
-Here we use an example to introduce how to use Apache InLong creating MySQL -> Kafka -> ClickHouse data access.
+Here we use an example to introduce how to collect file and write to clickHouse.
 
 ## Deployment
 ### Install InLong
