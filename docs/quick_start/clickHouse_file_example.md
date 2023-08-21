@@ -1,5 +1,5 @@
 ---
-title: Collect File and Writing to ClickHouse Example 
+title: File to ClickHouse 
 sidebar_position: 2
 ---
 
