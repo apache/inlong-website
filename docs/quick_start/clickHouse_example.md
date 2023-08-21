@@ -1,9 +1,9 @@
 ---
-title: ClickHouse Example
+title: MySQL to ClickHouse
 sidebar_position: 2
 ---
 
-Here we use an example to introduce how to use Apache InLong creating MySQL -> Kafka -> ClickHouse data access.
+Here we use an example to introduce how to use Apache InLong creating MySQL -> Kafka -> ClickHouse data ingestion.
 
 ## Deployment
 ### Install InLong
@@ -33,7 +33,7 @@ Password: inlong
 ```
 
 ### Create Cluster Tag
-Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge:
+Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge.
 ![Create Cluster label](img/clickhouse/create_cluster_label.png)
 
 :::caution
@@ -41,7 +41,7 @@ Since each component reports the ClusterTags as `default_cluster` by default, do
 :::
 
 ### Register Kafka Cluster
-Click [Clusters]->[Create] on the page to register Kafka Cluster:
+Click [Clusters]->[Create] on the page to register Kafka Cluster.
 ![Create kafka cluster](img/clickhouse/kafka_cluster.png)
 
 ### Register Clickhouse DataNodes
@@ -50,7 +50,7 @@ Click [DataNodes]->[Create] on the page to register ClickHouse DataNodes.
 
 ## Create Task
 ### Create Data Streams Group
-Click [Ingestion]->[Create], inpit ID and select Kafka MQ Type
+Click [Ingestion]->[Create], input ID and select Kafka MQ Type.
 ![Create datastream](img/clickhouse/create_ingestion.png)
 
 ### Create Data Stream
@@ -88,9 +88,3 @@ then enter ClickHouse container, check data in table
 ## Questions
 ### Task Configuration Failed
 Generally, the MQ or Flink group configuration is incorrect. You can view the error information on the page, or enter the Manager container to view detailed logs.
-
-
-
-
-
-
