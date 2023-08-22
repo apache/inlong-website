@@ -1,5 +1,5 @@
 ---
-title: MySQL to ClickHouse
+title: MySQL -> Kafka -> ClickHouse Example
 sidebar_position: 2
 ---
 
@@ -26,7 +26,7 @@ docker run -d --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_
 ```
 
 ## Cluster Initialize
-When all containers are successfully started, you can access the Inlong dashboard address http://localhost, and use the following default account to log in:
+When all containers are successfully started, you can access the Inlong dashboard address http://localhost, and use the following default account to log in.
 ```
 User: admin
 Password: inlong
@@ -54,7 +54,7 @@ Click [Ingestion]->[Create], input ID and select Kafka MQ Type.
 ![Create datastream](img/clickhouse/create_ingestion.png)
 
 ### Create Data Stream
-Click [Next]->[Create], config data stream
+Click [Next]->[Create], config data stream.
 ![Create datastream](img/clickhouse/data_stream_config.png)
 
 ### Create Data Source
@@ -63,26 +63,25 @@ Click [Sources create]->[MySQL], config data source informations.
 
 ### Create Data Sink
 Click [Sinks create]->[ClickHouse], input Name, DbName, TableName and select created ck DataNode and so on, then click [save].
-
 ![Create data object](img/clickhouse/create_sink.png)
 
 ### Approve Data Stream
-Click [Approval]->[MyApproval]->[Detail]->[Select Cluster tag]->[Ok]
+Click [Approval]->[MyApproval]->[Detail]->[Select Cluster tag]->[Ok].
 ![clickhouse](img/clickhouse/approval.png)
 
-Back to [Ingestion] page, wait for [configuration success]
+Back to [Ingestion] page, wait for [configuration success].
 ![clickhouse](img/clickhouse/result.png)
 
 ## Test Data
 ### Send Data
 ![clickhouse](img/clickhouse/send_data.png)
-Add 1001 datas to MySQL
+Add 1001 datas to MySQL.
 
 ### Verify Data
-Check data in [Audit] page
+Check data in [Audit] page.
 ![clickhouse](img/clickhouse/data_page.png)
 
-then enter ClickHouse container, check data in table
+then enter ClickHouse container, check data in table.
 ![clickhouse](img/clickhouse/data_table.png)
 
 ## Questions
