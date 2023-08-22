@@ -1,6 +1,6 @@
 ---
 title: File -> Pulsar -> ClickHouse Example 
-sidebar_position: 2
+sidebar_position: 4
 ---
 
 Here we use an example to introduce how to create File -> Pulsar -> ClickHouse data ingestion.
