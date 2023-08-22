@@ -1,6 +1,6 @@
 ---
 title: MySQL -> Kafka -> ClickHouse 示例
-sidebar_position: 2
+sidebar_position: 5
 ---
 
 在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建 MySQL -> Kafka -> ClickHouse 数据链路。
