@@ -3,7 +3,7 @@ title: File -> Pulsar -> ClickHouse 示例
 sidebar_position: 2
 ---
 
-在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建File -> Pulsar -> ClickHouse数据流。
+在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建 File -> Pulsar -> ClickHouse 数据流。
 
 ## 环境部署
 ### 安装 InLong
@@ -31,16 +31,16 @@ Password: inlong
 
 ### 注册 Pulsar 集群
 页面点击 [集群管理]->[集群管理]->[新建集群]，注册 Pulsar 集群：
-![](img/create_pulsar_cluster.png)
+![Create Pulsar Cluster](img/create_pulsar_cluster.png)
 
 :::note
-集群标签选择刚创建的 `default_cluster`，docker 部署的 Pulsar 集群：
+集群标签选择刚创建的 `default_cluster`，配置 Docker 部署的 Pulsar 集群：
 
 Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 :::
 
 ### 注册 Clickhouse 数据节点
-页面点击 【数据节点】→【新建】，新增 ClickHouse 数据节点：
+页面点击【数据节点】→【新建】，新增 ClickHouse 数据节点：
 ![Create kafka cluster](img/clickhouse/datanode.png)
 
 ## 任务创建
@@ -49,7 +49,7 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 ![Create datastream](img/clickhouse/pulsar_ingestion.png)
 
 :::note
-注：如果需要使用kafka，需要修改 docker-compose.yml 中的 MQ_TYPE。
+注：如果需要使用 Kafka，需要修改 docker-compose.yml 中的 MQ_TYPE。
 :::
 
 ### 新建数据流
@@ -57,12 +57,11 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 ![Create datastream](img/clickhouse/pulsar_stream.png)
 
 ### 为数据流添加文件数据源
-点击【新建数据源】，选择file类型，配置数据源信息，包括名称、选择采集 Agent 集群及 IP 、采集文件路径等：
+点击【新建数据源】，选择 File 类型，配置数据源信息，包括名称、选择采集 Agent 集群及 IP 、采集文件路径等：
 ![Create datastream](img/clickhouse/pulsar_source.png)
 
 ### 新建数据目标
-点击【新建数据目标】，选择ClickHouse类型，配置包括名称、库表名称、选择已创建的节点及 Schema 映射信息等，然后点击【提交审批】：
-
+点击【新建数据目标】，选择 ClickHouse 类型，配置包括名称、库表名称、选择已创建的节点及 Schema 映射信息等，然后点击【提交审批】：
 ![Create data object](img/clickhouse/pulsar_sink.png)
 
 ### 审批数据流

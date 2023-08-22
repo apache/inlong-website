@@ -18,14 +18,14 @@ docker run -d --rm --net=host --name clickhouse -e CLICKHOUSE_USER=admin -e CLIC
 ```
 
 ## Cluster Initialize
-When all containers are successfully started, you can access the Inlong dashboard address http://localhost, and use the following default account to log in:
+When all containers are successfully started, you can access the Inlong dashboard address http://localhost, and use the following default account to log in.
 ```
 User: admin
 Password: inlong
 ```
 
 ### Create Cluster Tag
-Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge:
+Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge.
 ![Create Cluster label](img/clickhouse/create_cluster_label.png)
 
 :::caution
@@ -33,7 +33,7 @@ Since each component reports the ClusterTags as `default_cluster` by default, do
 :::
 
 ### Register Pulsar Cluster
-Click [Clusters]->[ClusterTags]->[Create] on the page to register Pulsar Cluster:
+Click [Clusters]->[ClusterTags]->[Create] on the page to register Pulsar Cluster.
 ![pulsar cluster](img/create_pulsar_cluster.png)
 
 :::note
@@ -48,7 +48,7 @@ Click [DataNodes]->[Create] on the page to register ClickHouse DataNodes.
 
 ## Create Task
 ### Create Data Streams Group
-Click [Ingestion]->[Create], inpit ID and select Pulsar Type
+Click [Ingestion]->[Create], inpit ID and select Pulsar Type.
 ![Create datastream](img/clickhouse/pulsar_group.png)
 
 :::note
@@ -56,10 +56,8 @@ If you want to use Kafka, you need to modify the MQ_TYPE in docker-compose.yml
 :::
 
 ### Create Data Stream
-Click [Next]->[Create], config data stream
+Click [Next]->[Create], config data stream.
 ![Create datastream](img/clickhouse/pulsar_stream.png)
-
-
 
 ### Create Data Source
 Click [Sources create]->[File], config data source informations.
@@ -67,14 +65,13 @@ Click [Sources create]->[File], config data source informations.
 
 ### Create Data Sink
 Click [Sinks create]->[ClickHouse], input Name, DbName, TableName and select created ck DataNode and so on, then click [save].
-
 ![Create data object](img/clickhouse/pulsar_sink.png)
 
 ### Approve Data Stream
-Click [Approval]->[MyApproval]->[Detail]->[Select Cluster tag]->[Ok]
+Click [Approval]->[MyApproval]->[Detail]->[Select Cluster tag]->[Ok].
 ![clickhouse](img/clickhouse/pulsar_approval.png)
 
-Back to [Ingestion] page, wait for [configuration success]
+Back to [Ingestion] page, wait for [configuration success].
 ![clickhouse](img/clickhouse/pulsar_approve_result.png)
 
 ## Test Data
@@ -90,10 +87,10 @@ for i in {0..10000};do echo "name_$i | $i" >> /data/collect-data/test.log ;done
 ```
 
 ### Verify Data
-Check data in [Audit] page
+Check data in [Audit] page.
 ![clickhouse](img/clickhouse/pulsar_audit.png)
 
-then enter ClickHouse container, check data in table
+Then enter ClickHouse container, check data in table.
 ![clickhouse](img/clickhouse/pulsar_table.png)
 
 ## Questions
