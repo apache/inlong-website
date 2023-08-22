@@ -1,9 +1,9 @@
 ---
-title: File to ClickHouse 
+title: File -> Pulsar -> ClickHouse Example 
 sidebar_position: 2
 ---
 
-Here we use an example to introduce how to collect file and write to clickHouse.
+Here we use an example to introduce how to create File -> Pulsar -> ClickHouse data ingestion.
 
 ## Deployment
 ### Install InLong

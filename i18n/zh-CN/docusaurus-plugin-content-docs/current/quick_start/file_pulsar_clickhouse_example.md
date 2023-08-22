@@ -1,13 +1,12 @@
 ---
-title: 创建文件到 ClickHouse 数据流示例
+title: File -> Pulsar -> ClickHouse 示例
 sidebar_position: 2
 ---
 
-在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建文件到 ClickHouse 数据流。
+在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建File -> Pulsar -> ClickHouse数据流。
 
 ## 环境部署
 ### 安装 InLong
-
 在开始之前，我们需要安装 InLong 的全部组件，这里提供两种方式：
 1. 按照 [这里的说明](deployment/docker.md)，使用 Docker 进行快速部署。（推荐）
 2. 按照 [这里的说明](deployment/bare_metal.md)，使用二进制包依次安装各组件。
@@ -23,6 +22,7 @@ docker run -d --rm --net=host --name clickhouse -e CLICKHOUSE_USER=admin -e CLIC
 User: admin
 Password: inlong
 ```
+
 ### 创建集群标签
 页面点击 【集群管理】->【标签管理】->【新建】，指定集群标签名称和负责人：
 ![Create Cluster label](img/clickhouse/create_cluster_label.png)
@@ -45,7 +45,7 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 
 ## 任务创建
 ### 新建数据流组
-页面点击【数据接入】→【新建接入】，只用填写 ID 接选择 Pulsar 即可：：
+页面点击【数据接入】→【新建接入】，只用填写 ID 接选择 Pulsar 即可：
 ![Create datastream](img/clickhouse/pulsar_ingestion.png)
 
 :::note
@@ -57,19 +57,19 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 ![Create datastream](img/clickhouse/pulsar_stream.png)
 
 ### 为数据流添加文件数据源
-点击【新建数据源】，选择file类型，配置数据源信息，包括名称、选择采集 Agent 集群及 IP 、采集文件路径等；
+点击【新建数据源】，选择file类型，配置数据源信息，包括名称、选择采集 Agent 集群及 IP 、采集文件路径等：
 ![Create datastream](img/clickhouse/pulsar_source.png)
 
 ### 新建数据目标
-点击【新建数据目标】，选择ClickHouse类型，配置包括名称、库表名称、选择已创建的节点及 Schema 映射信息等，然后点击【提交审批】
+点击【新建数据目标】，选择ClickHouse类型，配置包括名称、库表名称、选择已创建的节点及 Schema 映射信息等，然后点击【提交审批】：
 
 ![Create data object](img/clickhouse/pulsar_sink.png)
 
 ### 审批数据流
-页面点击【审批管理】->【我的审批】->【详情】->【选择集群标签】->【通过】
+页面点击【审批管理】->【我的审批】->【详情】->【选择集群标签】->【通过】：
 ![clickhouse](img/clickhouse/pulsar_approval.png)
 
-返回 【数据集成】页面，等待任务配置成功
+返回【数据集成】，等待任务配置成功：
 ![clickhouse](img/clickhouse/pulsar_approval_result.png)
 
 ## 测试数据
@@ -85,7 +85,7 @@ for i in {0..10000};do echo "name_$i | $i" >> /data/collect-data/test.log ;done
 ```
 
 ### 数据验证
-查看审计页面发送数据
+查看审计页面发送数据：
 ![clickhouse](img/clickhouse/pulsar_audit.png)
 
 然后进入 ClickHouse 容器，查看库表数据：
@@ -97,8 +97,3 @@ API 不兼容导致，可以删除 docker-compose.yml 中的 platform: "linux/x8
 
 ### 数据流配置错误
 一般是 MQ 或者 Flink 集群配置错误导致，可以在页面查看错误信息，或者进入 Manager 容器查看详细日志。
-
-
-
-
-
