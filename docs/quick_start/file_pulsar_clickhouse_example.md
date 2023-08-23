@@ -25,15 +25,15 @@ Password: inlong
 ```
 
 ### Create Cluster Tag
-Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge.
-![Create Cluster label](img/clickhouse/create_cluster_label.png)
+Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster label name and person in charge.
+![Create Cluster label](img/file_clickhouse/create_cluster_label.png)
 
 :::caution
 Since each component reports the ClusterTags as `default_cluster` by default, do not use other names.
 :::
 
 ### Register Pulsar Cluster
-Click [Clusters]->[ClusterTags]->[Create] on the page to register Pulsar Cluster.
+Click [Clusters] -> [ClusterTags] -> [Create] on the page to register Pulsar Cluster.
 ![pulsar cluster](img/create_pulsar_cluster.png)
 
 :::note
@@ -43,36 +43,36 @@ Service URL is `pulsar://pulsar:6650`, Admin URL is `http://pulsar:8080`.
 :::
 
 ### Register Clickhouse DataNodes
-Click [DataNodes]->[Create] on the page to register ClickHouse DataNodes.
-![Create kafka cluster](img/clickhouse/datanode.png)
+Click [DataNodes] -> [Create] on the page to register ClickHouse DataNodes.
+![Create kafka cluster](img/file_clickhouse/datanode.png)
 
 ## Create Task
 ### Create Data Streams Group
-Click [Ingestion]->[Create], inpit ID and select Pulsar Type.
-![Create datastream](img/clickhouse/pulsar_group.png)
+Click [Ingestion] -> [Create], inpit ID and select Pulsar Type.
+![Create datastream](img/file_clickhouse/pulsar_group.png)
 
 :::note
 If you want to use Kafka, you need to modify the MQ_TYPE in docker-compose.yml
 :::
 
 ### Create Data Stream
-Click [Next]->[Create], config data stream.
-![Create datastream](img/clickhouse/pulsar_stream.png)
+Click [Next] -> [Create], config data stream.
+![Create datastream](img/file_clickhouse/pulsar_stream.png)
 
 ### Create Data Source
-Click [Sources create]->[File], config data source informations.
-![Create datastream](img/clickhouse/pulsar_file_source.png)
+Click [Sources create] -> [File], config data source informations.
+![Create datastream](img/file_clickhouse/pulsar_file_source.png)
 
 ### Create Data Sink
-Click [Sinks create]->[ClickHouse], input Name, DbName, TableName and select created ck DataNode and so on, then click [save].
-![Create data object](img/clickhouse/pulsar_sink.png)
+Click [Sinks create] -> [ClickHouse], input Name, DbName, TableName and select created ck DataNode and so on, then click [save].
+![Create data object](img/file_clickhouse/pulsar_sink.png)
 
 ### Approve Data Stream
-Click [Approval]->[MyApproval]->[Detail]->[Select Cluster tag]->[Ok].
-![clickhouse](img/clickhouse/pulsar_approval.png)
+Click [Approval] -> [MyApproval] -> [Detail] -> [Select Cluster tag] -> [Ok].
+![clickhouse](img/file_clickhouse/pulsar_approval.png)
 
 Back to [Ingestion] page, wait for [configuration success].
-![clickhouse](img/clickhouse/pulsar_approve_result.png)
+![clickhouse](img/file_clickhouse/pulsar_approve_result.png)
 
 ## Test Data
 ### Enter Agent Container
@@ -88,10 +88,10 @@ for i in {0..10000};do echo "name_$i | $i" >> /data/collect-data/test.log ;done
 
 ### Verify Data
 Check data in [Audit] page.
-![clickhouse](img/clickhouse/pulsar_audit.png)
+![clickhouse](img/file_clickhouse/pulsar_audit.png)
 
 Then enter ClickHouse container, check data in table.
-![clickhouse](img/clickhouse/pulsar_table.png)
+![clickhouse](img/file_clickhouse/pulsar_table.png)
 
 ## Questions
 ### "specify container image platform" when start Docker Compose
