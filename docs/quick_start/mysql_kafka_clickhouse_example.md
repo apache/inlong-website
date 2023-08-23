@@ -33,56 +33,56 @@ Password: inlong
 ```
 
 ### Create Cluster Tag
-Click [Clusters]->[ClusterTags]->[Create] on the page to specify the cluster label name and person in charge.
-![Create Cluster label](img/clickhouse/create_cluster_label.png)
+Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster label name and person in charge.
+![Create Cluster label](img/mysql_clickhouse/create_cluster_label.png)
 
 :::caution
 Since each component reports the ClusterTags as `default_cluster` by default, do not use other names.
 :::
 
 ### Register Kafka Cluster
-Click [Clusters]->[Create] on the page to register Kafka Cluster.
-![Create kafka cluster](img/clickhouse/kafka_cluster.png)
+Click [Clusters] -> [Create] on the page to register Kafka Cluster.
+![Create kafka cluster](img/mysql_clickhouse/kafka_cluster.png)
 
 ### Register Clickhouse DataNodes
-Click [DataNodes]->[Create] on the page to register ClickHouse DataNodes.
-![Create kafka cluster](img/clickhouse/datanode.png)
+Click [DataNodes] -> [Create] on the page to register ClickHouse DataNodes.
+![Create kafka cluster](img/mysql_clickhouse/datanode.png)
 
 ## Create Task
 ### Create Data Streams Group
-Click [Ingestion]->[Create], input ID and select Kafka MQ Type.
-![Create datastream](img/clickhouse/create_ingestion.png)
+Click [Ingestion] -> [Create], input ID and select Kafka MQ Type.
+![Create datastream](img/mysql_clickhouse/create_ingestion.png)
 
 ### Create Data Stream
-Click [Next]->[Create], config data stream.
-![Create datastream](img/clickhouse/data_stream_config.png)
+Click [Next] -> [Create], config data stream.
+![Create datastream](img/mysql_clickhouse/data_stream_config.png)
 
 ### Create Data Source
-Click [Sources create]->[MySQL], config data source informations.
-![Create datastream](img/clickhouse/create_data_source.png)
+Click [Sources create] -> [MySQL], config data source informations.
+![Create datastream](img/mysql_clickhouse/create_data_source.png)
 
 ### Create Data Sink
-Click [Sinks create]->[ClickHouse], input Name, DbName, TableName and select created ck DataNode and so on, then click [save].
-![Create data object](img/clickhouse/create_sink.png)
+Click [Sinks create] -> [ClickHouse], input Name, DbName, TableName and select created ck DataNode and so on, then click [save].
+![Create data object](img/mysql_clickhouse/create_sink.png)
 
 ### Approve Data Stream
-Click [Approval]->[MyApproval]->[Detail]->[Select Cluster tag]->[Ok].
-![clickhouse](img/clickhouse/approval.png)
+Click [Approval] -> [MyApproval] -> [Detail] -> [Select Cluster tag] -> [Ok].
+![clickhouse](img/mysql_clickhouse/approval.png)
 
 Back to [Ingestion] page, wait for [configuration success].
-![clickhouse](img/clickhouse/result.png)
+![clickhouse](img/mysql_clickhouse/result.png)
 
 ## Test Data
 ### Send Data
-![clickhouse](img/clickhouse/send_data.png)
+![clickhouse](img/mysql_clickhouse/send_data.png)
 Add 1001 datas to MySQL.
 
 ### Verify Data
 Check data in [Audit] page.
-![clickhouse](img/clickhouse/data_page.png)
+![clickhouse](img/mysql_clickhouse/data_page.png)
 
 then enter ClickHouse container, check data in table.
-![clickhouse](img/clickhouse/data_table.png)
+![clickhouse](img/mysql_clickhouse/data_table.png)
 
 ## Questions
 ### Task Configuration Failed
