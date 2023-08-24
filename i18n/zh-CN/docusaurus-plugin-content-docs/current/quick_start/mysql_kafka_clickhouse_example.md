@@ -42,24 +42,24 @@ Password: inlong
 ![Create kafka cluster](img/mysql_clickhouse/kafka_cluster.png)
 
 ### 注册 Clickhouse 数据节点
-页面点击【数据节点】→【新建】，新增 ClickHouse 数据节点：
+页面点击【数据节点】->【新建】，新增 ClickHouse 数据节点：
 ![Create kafka cluster](img/mysql_clickhouse/datanode.png)
 
 ## 任务创建
 ### 新建数据流组
-页面点击【数据集成】→【新建数据流组】，填写 ID，选择 MQ 类型为 Kafka 即可：
+页面点击【数据集成】->【新建数据流组】，填写 ID，选择 MQ 类型为 Kafka 即可：
 ![Create datastream](img/mysql_clickhouse/create_ingestion.png)
 
 ### 新建数据流
-点击【下一步】→【新建数据流】，配置数据流 ID 及测试源字段信息：
+点击【下一步】->【新建数据流】，配置数据流 ID 及测试源字段信息：
 ![Create datastream](img/mysql_clickhouse/data_stream_config.png)
 
 ### 新建数据源
-点击【新建数据源】→【MySQL】，配置数据源名称、地址、用户密码以及库表信息等：
+点击【新建数据源】->【MySQL】，配置数据源名称、地址、用户密码以及库表信息等：
 ![Create datastream](img/mysql_clickhouse/create_data_source.png)
 
 ### 新建数据目标
-点击【新建数据目标】→【ClickHouse】，配置名称、库表、已创建的 ck 数据节点以及 Schema 映射信息等，完成后点击 【提交审批】：
+点击【新建数据目标】->【ClickHouse】，配置名称、库表、已创建的 ck 数据节点以及 Schema 映射信息等，完成后点击 【提交审批】：
 ![Create data object](img/mysql_clickhouse/create_sink.png)
 
 ### 审批数据流
