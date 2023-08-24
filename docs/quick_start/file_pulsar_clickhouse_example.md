@@ -34,7 +34,7 @@ Since each component reports the ClusterTags as `default_cluster` by default, do
 
 ### Register Pulsar Cluster
 Click [Clusters] -> [ClusterTags] -> [Create] on the page to register Pulsar Cluster.
-![pulsar cluster](img/create_pulsar_cluster.png)
+![pulsar cluster](img/file_clickhouse/create_pulsar_cluster.png)
 
 :::note
 The ClusterTags selects the newly created `default_cluster`, the Pulsar cluster deployed by docker:

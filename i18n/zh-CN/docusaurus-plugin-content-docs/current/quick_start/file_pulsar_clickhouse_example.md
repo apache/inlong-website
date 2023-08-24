@@ -30,8 +30,8 @@ Password: inlong
 **注：default_cluster 是各个组件默认上报集群标签，请勿使用其它名称。**
 
 ### 注册 Pulsar 集群
-页面点击 [集群管理]->[集群管理]->[新建集群]，注册 Pulsar 集群：
-![Create Pulsar Cluster](img/create_pulsar_cluster.png)
+页面点击 [集群管理] -> [集群管理] -> [新建集群]，注册 Pulsar 集群：
+![Create Pulsar Cluster](img/file_clickhouse/create_pulsar_cluster.png)
 
 :::note
 集群标签选择刚创建的 `default_cluster`，配置 Docker 部署的 Pulsar 集群：
@@ -40,12 +40,12 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 :::
 
 ### 注册 Clickhouse 数据节点
-页面点击【数据节点】→【新建】，新增 ClickHouse 数据节点：
+页面点击【数据节点】->【新建】，新增 ClickHouse 数据节点：
 ![Create kafka cluster](img/file_clickhouse/datanode.png)
 
 ## 任务创建
 ### 新建数据流组
-页面点击【数据接入】→【新建接入】，只用填写 ID 接选择 Pulsar 即可：
+页面点击【数据接入】->【新建接入】，只用填写 ID 接选择 Pulsar 即可：
 ![Create datastream](img/file_clickhouse/pulsar_ingestion.png)
 
 :::note
@@ -53,7 +53,7 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 :::
 
 ### 新建数据流
-点击【下一步】→【新建数据流】，配置 ID 及测试源字段信息：
+点击【下一步】->【新建数据流】，配置 ID 及测试源字段信息：
 ![Create datastream](img/file_clickhouse/pulsar_stream.png)
 
 ### 为数据流添加文件数据源
