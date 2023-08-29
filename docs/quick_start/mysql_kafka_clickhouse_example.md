@@ -1,6 +1,6 @@
 ---
-title: MySQL -> Kafka -> ClickHouse Example
-sidebar_position: 5
+title: MySQL -> Kafka -> ClickHouse
+sidebar_position: 3
 ---
 
 Here we use an example to introduce how to use Apache InLong creating MySQL -> Kafka -> ClickHouse data ingestion.
