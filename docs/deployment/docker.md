@@ -49,7 +49,7 @@ Service URL is `pulsar://pulsar:6650`, Admin URL is `http://pulsar:8080`.
 :::
 
 ## Use
-You can refer [Pulsar Example](quick_start/pulsar_example.md) to create Data Stream.
+You can refer to [Example](quick_start/file_pulsar_clickhouse_example.md) to create a Data Stream.
 
 ## Destroy
 ```shell
