@@ -49,7 +49,7 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 :::
 
 ## 使用
-创建数据流可以参考 [Pulsar Example](quick_start/pulsar_example.md).
+创建数据流可以参考 [Example](quick_start/file_pulsar_clickhouse_example.md).
 
 ## 销毁
 ```

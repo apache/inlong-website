@@ -85,4 +85,4 @@ The ClusterTags selects the newly created `default_cluster`, and then configurin
 :::
 
 ## Use
-You can refer [Pulsar Example](quick_start/pulsar_example.md) to create Data Stream.
+You can refer to [Example](quick_start/file_pulsar_clickhouse_example.md) to create a Data Stream.

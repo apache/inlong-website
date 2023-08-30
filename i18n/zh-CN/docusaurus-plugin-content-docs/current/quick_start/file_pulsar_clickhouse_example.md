@@ -1,6 +1,6 @@
 ---
-title: File -> Pulsar -> ClickHouse 示例
-sidebar_position: 4
+title: File -> Pulsar -> ClickHouse
+sidebar_position: 2
 ---
 
 在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建 File -> Pulsar -> ClickHouse 数据流。
