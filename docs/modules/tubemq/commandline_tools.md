@@ -1,6 +1,10 @@
+---
+title: Command-line Tools
+sidebar_position: 15
+---
 ## Overview
-TubeMQ provides command-line tools to view and manage the topics as well as the production and consumption of messages.  
-`tubectl` can be run from TubeMQ bin directory.
+TubeMQ provides command line tools to manage topics, produce and consume messages, and manage consumer groups.  
+The command line tool `tubectl` can be found in the `bin` directory of the TubeMQ installation path.
 
 usage:
 ```
@@ -16,7 +20,7 @@ command:
 $ bin/tubectl topic -h
 ```
 ## Topic
-`topic` is used to manage topics in TubeMQ, including adding, deleting, modifying, checking, etc.
+`topic` is used to manage topics, including adding, deleting, modifying, checking, etc.
 
 command:
 
@@ -75,7 +79,7 @@ options:
 
 ### `create`
 ```shell
-$ bin/tubectl create
+$ bin/tubectl topic create
 ```
 options:
 
@@ -105,17 +109,28 @@ $ bin/tubectl topic delete
 ```
 options:
 
-|   **parameter**    | **type** |                                                **description**                                                 | **default** | **required** |
-|:------------------:|:--------:|:--------------------------------------------------------------------------------------------------------------:|:-----------:|:------------:|
-|  -o, --delete-opt  |  String  | Delete options, must in { soft &#124; redo &#124; hard }, represents soft deletion, rollback and hard deletion |    soft     |              |
-|    -t, --topic     |  String  |                                                   Topic name                                                   |             |     yes      |
-| -bid, --broker-id  |  String  |                                        Brokers' ID, separated by commas                                        |             |     yes      |
-|   -m, --modifier   |  String  |                                                Record modifier                                                 |             |     yes      |
-| -at, --auth-token  |  String  |                                     Admin api operation authorization code                                     |             |     yes      |
-| -md, --modify-date |  String  |                                            Record modification date                                            |             |              |
+|   **parameter**    | **type** |                    **description**                     | **default** | **required** |
+|:------------------:|:--------:|:------------------------------------------------------:|:-----------:|:------------:|
+|  -o, --delete-opt  |  String  | Delete option, optional values: `soft`, `redo`,`hard`  |   `soft`    |              |
+|    -t, --topic     |  String  |                       Topic name                       |             |     yes      |
+| -bid, --broker-id  |  String  |            Brokers' ID, separated by commas            |             |     yes      |
+|   -m, --modifier   |  String  |                    Record modifier                     |             |     yes      |
+| -at, --auth-token  |  String  |         Admin api operation authorization code         |             |     yes      |
+| -md, --modify-date |  String  |                Record modification date                |             |              |
+
+<details>
+<summary>delete option type</summary>
+
+| delete options type |           description           |
+|:-------------------:|:-------------------------------:|
+|       `soft`        |          soft deletion          |
+|       `redo`        | rollback a previous soft delete |
+|       `hard`        |          hard deletion          |
+
+</details>
 
 ## Message
-`message` is used for message management, including production and consumption.
+`message` is used to produce and consume messages.
 
 command:
 
@@ -127,12 +142,24 @@ $ bin/tubectl message produce
 ```
 options:
 
-|     **parameter**     | **type** |                                         **description**                                          | **default** | **required** |
-|:---------------------:|:--------:|:------------------------------------------------------------------------------------------------:|:-----------:|:------------:|
-|      -t, --topic      |  String  |                                            Topic name                                            |             |     yes      |
-| -ms, --master-servers |  String  |       The master address(es) to connect to. Format is master1_ip:port\[,master2_ip:port\]        |             |     yes      |
-|   -mt, --msg-total    |   Long   |                 The total number of messages to be produced. -1 means unlimited.                 |     -1      |              |
-|      -m, --mode       |  String  | Produce mode, must in { sync &#124; async }, represents synchronous and asynchronous production. |    async    |              |
+|     **parameter**     | **type** |                                 **description**                                 | **default** | **required** |
+|:---------------------:|:--------:|:-------------------------------------------------------------------------------:|:-----------:|:------------:|
+|      -t, --topic      |  String  |                                   Topic name                                    |             |     yes      |
+| -ms, --master-servers |  String  | The master address to connect to. Format is master1_ip:port\[,master2_ip:port\] |             |     yes      |
+|   -mt, --msg-total    |   Long   |         The total number of messages to be produced, -1 means unlimited         |     -1      |              |
+|      -m, --mode       |  String  |                Produce mode, optional values: `sync`, `async` }                 |   `async`   |              |
+
+<details>
+<summary>produce mode type</summary>
+
+| produce mode type | description |
+|:-----------------:|:-----------:|
+|      `sync`       |  sync mode  |
+|      `async`      | async mode  |
+
+</details>
+
+
 
 ### `consume`
 ```shell
@@ -140,18 +167,40 @@ $ bin/tubectl message consume
 ```
 options:
 
-|       **parameter**       | **type** |                                                         **description**                                                          | **default** | **required** |
-|:-------------------------:|:--------:|:--------------------------------------------------------------------------------------------------------------------------------:|:-----------:|:------------:|
-|        -t, --topic        |  String  |                                                            Topic name                                                            |             |     yes      |
-|        -g, --group        |  String  |                                                          Consumer group                                                          |             |     yes      |
-|   -ms, --master-servers   |  String  |                       The master address(es) to connect to. Format is master1_ip:port\[,master2_ip:port\]                        |             |     yes      |
-|      -p, --position       |  String  |                                   Consume position, must in { first &#124; latest &#124; max }                                   |   latest    |              |
-| -po, --partitions-offsets |  String  |       Assign consume partitions and their offsets, format is id1:offset1\[,id2:offset2\]\[...\], for example: 0:0,1:0,2:0        |             |              |
-|        -m, --mode         |  String  | Consume mode, must in { pull &#124; push &#124; balance }. When the -po parameter is specified, balance mode is used by default. |    pull     |              |
+|       **parameter**       | **type** |                                                          **description**                                                          | **default** | **required** |
+|:-------------------------:|:--------:|:---------------------------------------------------------------------------------------------------------------------------------:|:-----------:|:------------:|
+|        -t, --topic        |  String  |                                                            Topic name                                                             |             |     yes      |
+|        -g, --group        |  String  |                                                          Consumer group                                                           |             |     yes      |
+|   -ms, --master-servers   |  String  |                          The master address to connect to. Format is master1_ip:port\[,master2_ip:port\]                          |             |     yes      |
+|      -p, --position       |  String  |                                   Consume position, optional values: `first`, `latest`, `max` }                                   |   `first`   |              |
+| -po, --partitions-offsets |  String  |          Assign consume partition ids and their offsets. Format is id1:offset1\[,id2:offset2\], for example: 0:0,1:0,2:0          |             |              |
+|        -m, --mode         |  String  | Consume mode, optional values: `pull`, `push`, `balance`. When the -po parameter is specified, `balance` mode is used by default. |   `pull`    |              |
+
+<details>
+<summary>consume position type</summary>
+
+| consume position |                                          description                                           |
+|:----------------:|:----------------------------------------------------------------------------------------------:|
+|     `first`      |          Start from 0 for the first time. Otherwise start from last consume position.          |
+|     `latest`     | Start from the latest position for the first time. Otherwise start from last consume position. |
+|      `max`       |                          Always start from the max consume position.                           |
+
+</details>
+
+<details>
+<summary>consume mode type</summary>
+
+| consume mode |     description     |
+|:------------:|:-------------------:|
+|    `pull`    |      pull mode      |
+|    `push`    |      push mode      |
+|  `balance`   | client balance mode |
+
+</details>
 
 
 ## Group
-`group` is used for consumer group management. Currently, it supports query, addition, and deletion.    
+`group` is used for consumer group management. It currently supports query, addition, and deletion.    
 
 command：
 

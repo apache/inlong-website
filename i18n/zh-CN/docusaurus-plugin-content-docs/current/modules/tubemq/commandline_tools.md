@@ -1,7 +1,12 @@
+---
+title: 命令行工具
+sidebar_position: 15
+---
 ## 总览
-TubeMQ提供命令行工具来查看管理Topic，以及消息的生产与消费。
+TubeMQ提供命令行工具来管理主题，生产和消费消息，以及管理消费者组。
 
-命令行工具`tubectl`可以在TubeMQ的bin目录运行。
+命令行工具`tubectl`可以在TubeMQ安装路径的`bin`目录下找到。
+
 用法
 ```
 $ bin/tubectl [options] [command] [command options]
@@ -18,7 +23,7 @@ $ bin/tubectl [options] [command] [command options]
 $ bin/tubectl topic -h
 ```
 ## Topic
-`topic`命令用于对TubeMQ内的topic进行管理，包括增删改查等等。
+`topic`命令用于管理主题，包括增删改查等。
 
 命令：
 
@@ -36,7 +41,7 @@ $ bin/tubectl topic list
 |:----------------------------:|:------:|:----------------------------:|:-------:|:------:|
 |         -t, --topic          | String |           topic名称            |         |        |
 |   -sid, --topic-status-id    |  Int   |          topic记录状态           |    0    |        |
-|      -bid, --broker-id       | String |  broker的ID，多个broker之间以逗号间隔   |         |        |
+|      -bid, --broker-id       | String | broker的ID，多个broker之间以英文逗号间隔  |         |        |
 |     -dp, --delete-policy     | String | topic数据删除策略，类似"delete,168"定义 |         |        |
 |    -np, --num-partitions     |  Int   |      topic在该broker上的分区量      |    3    |        |
 |   -nts, --num-topic-stores   |  Int   |    允许建立Topic数据块和分区管理组的个数     |    1    |        |
@@ -58,7 +63,7 @@ $ bin/tubectl topic update
 |            **参数**            | **类型**  |            **描述**            | **默认值** | **必需** |
 |:----------------------------:|:-------:|:----------------------------:|:-------:|:------:|
 |         -t, --topic          | String  |           topic名称            |         |   是    |
-|      -bid, --broker-id       | String  |  broker的ID，多个broker之间以逗号间隔   |         |   是    |
+|      -bid, --broker-id       | String  | broker的ID，多个broker之间以英文逗号间隔  |         |   是    |
 |        -m, --modifier        | String  |           topic修改者           |         |   是    |
 |      -at, --auth-token       | String  |          配置修改授权key           |         |   是    |
 |     -dp, --delete-policy     | String  | topic数据删除策略，类似"delete,168"定义 |         |        |
@@ -84,7 +89,7 @@ $ bin/tubectl create
 |            **参数**            | **类型**  |            **描述**            | **默认值** | **必需** |
 |:----------------------------:|:-------:|:----------------------------:|:-------:|:------:|
 |         -t, --topic          | String  |           topic名称            |         |   是    |
-|      -bid, --broker-id       | String  |  broker的ID，多个broker之间以逗号间隔   |         |   是    |
+|      -bid, --broker-id       | String  | broker的ID，多个broker之间以英文逗号间隔  |         |   是    |
 |        -c, --creator         | String  |           topic创建者           |         |   是    |
 |      -at, --auth-token       | String  |          配置修改授权key           |         |   是    |
 |     -dp, --delete-policy     | String  | topic数据删除策略，类似"delete,168"定义 |         |        |
@@ -107,17 +112,29 @@ $ bin/tubectl topic delete
 ```
 选项：
 
-|       **参数**       | **类型** |                          **描述**                          | **默认值** | **必需** |
-|:------------------:|:------:|:--------------------------------------------------------:|:-------:|:------:|
-|  -o, --delete-opt  | String | 删除选项, 可选 { soft &#124; redo &#124; hard }，分别代表软删除、回滚和硬删除 |  soft   |        |
-|    -t, --topic     | String |                         topic名称                          |         |   是    |
-| -bid, --broker-id  | String |                broker的ID，多个broker之间以逗号间隔                 |         |   是    |
-|   -m, --modifier   | String |                         topic修改者                         |         |   是    |
-| -at, --auth-token  | String |                        配置修改授权key                         |         |   是    |
-| -md, --modify-date | String |                           修改时间                           |         |        |
+|       **参数**       | **类型** |            **描述**             | **默认值** | **必需** |
+|:------------------:|:------:|:-----------------------------:|:-------:|:------:|
+|  -o, --delete-opt  | String | 删除选项，可选值：`soft`，`redo`，`hard` | `soft`  |        |
+|    -t, --topic     | String |            topic名称            |         |   是    |
+| -bid, --broker-id  | String |  broker的ID，多个broker之间以英文逗号间隔  |         |   是    |
+|   -m, --modifier   | String |           topic修改者            |         |   是    |
+| -at, --auth-token  | String |           配置修改授权key           |         |   是    |
+| -md, --modify-date | String |             修改时间              |         |        |
+
+<details>
+<summary>删除选项说明</summary>
+
+|  删除选项  |    描述    |
+|:------:|:--------:|
+| `soft` |   软删除    |
+| `redo` | 回滚之前的软删除 |
+| `hard` |   硬删除    |
+
+</details>
+
 
 ## Message
-`message`命令用于消息管理，包括生产和消费。
+`message`命令用于生产和消费消息。
 
 命令：
 
@@ -133,9 +150,20 @@ $ bin/tubectl message produce
 |        **参数**         | **类型** |                       **描述**                        | **默认值** | **必需** |
 |:---------------------:|:------:|:---------------------------------------------------:|:-------:|:------:|
 |      -t, --topic      | String |                       topic名称                       |         |   是    |
-| -ms, --master-servers | String | 连接的master地址, 格式为master1_ip:port\[,master2_ip:port\] |         |   是    |
-|   -mt, --msg-total    |  Long  |                 需要生产的消息总条数，-1代表不限制。                 |   -1    |        |
-|      -m, --mode       | String |     生产模式, 可选 { sync &#124; async }，分别代表同步和异步生产      |  async  |        |
+| -ms, --master-servers | String | 连接的master地址，格式为 master1_ip:port\[,master2_ip:port\] |         |   是    |
+|   -mt, --msg-total    |  Long  |                 需要生产的消息总条数，-1表示不限制                  |   -1    |        |
+|      -m, --mode       | String |               生产模式，可选值：`sync`，`async`               | `async` |        |
+
+<details>
+<summary>生产模式说明</summary>
+
+|  生产模式   |    描述    |
+|:-------:|:--------:|
+| `sync`  |   同步模式   |
+| `async` |   异步模式   |
+
+</details>
+
 
 ### `consume`
 ```shell
@@ -143,14 +171,40 @@ $ bin/tubectl message consume
 ```
 选项：
 
-|          **参数**           | **类型** |                                **描述**                                | **默认值** | **必需** |
-|:-------------------------:|:------:|:--------------------------------------------------------------------:|:-------:|:------:|
-|        -t, --topic        | String |                               topic名称                                |         |   是    |
-|        -g, --group        | String |                                 消费者组                                 |         |   是    |
-|   -ms, --master-servers   | String |          连接的master地址,格式为master1_ip:port\[,master2_ip:port\]          |         |   是    |
-|      -p, --position       | String |              消费位置，可选 { first &#124; latest &#124; max }              |  first  |        |
-| -po, --partitions-offsets | String | 指定消费分区和offsets，格式为 id1:offset1\[,id2:offset2\]\[...\]，例如：0:0,1:0,2:0 |         |        |
-|        -m, --mode         | String | 消费模式，可选 { pull &#124; push &#124; balance },当指定了-po参数时，默认使用balance模式 |  pull   |        |
+|          **参数**           | **类型** |                             **描述**                             | **默认值** | **必需** |
+|:-------------------------:|:------:|:--------------------------------------------------------------:|:-------:|:------:|
+|        -t, --topic        | String |                            topic名称                             |         |   是    |
+|        -g, --group        | String |                              消费者组                              |         |   是    |
+|   -ms, --master-servers   | String |      连接的master地址，格式为 master1_ip:port\[,master2_ip:port\]       |         |   是    |
+|      -p, --position       | String |                消费位置，可选值：`first`，`latest`，`max`                 | `first` |        |
+| -po, --partitions-offsets | String | 指定消费分区ID和offset，格式为 id1:offset1\[,id2:offset2\]，例如：0:0,1:0,2:0 |         |        |
+|        -m, --mode         | String |  消费模式，可选值：`pull`，`push`，`balance`；当指定了-po参数时，默认使用`balance`模式   | `pull`  |        |
+
+<details>
+<summary>消费位置说明</summary>
+
+|   消费位置   |           描述            |
+|:--------:|:-----------------------:|
+| `first`  | 第一次消费时从0开始，否则从上次消费位置开始  |
+| `latest` | 第一次从最新的位置开始，否则从上次消费位置开始 |
+|  `max`   |       始终从最大消费位置开始       |
+
+</details>
+
+
+<details>
+<summary>消费模式说明</summary>
+
+|   消费模式    |    描述     |
+|:---------:|:---------:|
+|  `pull`   |  pull模式   |
+|  `push`   |  push模式   |
+| `balance` | 客户端分区分配模式 |
+
+</details>
+
+
+
 
 ## Group
 `group`命令用于消费者组管理，目前支持查询、增加和删除。
