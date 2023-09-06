@@ -2,6 +2,7 @@
 title: Command-line Tools
 sidebar_position: 15
 ---
+
 ## Overview
 TubeMQ provides command line tools to manage topics, produce and consume messages, and manage consumer groups.  
 The command line tool `tubectl` can be found in the `bin` directory of the TubeMQ installation path.
@@ -19,15 +20,16 @@ command:
 ```shell
 $ bin/tubectl topic -h
 ```
+
 ## Topic
 `topic` is used to manage topics, including adding, deleting, modifying, checking, etc.
 
 command:
-
 - `list`
 - `update`
 - `create`
 - `delete`
+
 ### `list`
 ```shell
 $ bin/tubectl topic list
@@ -136,6 +138,7 @@ command:
 
 - `produce`
 - `consume`
+
 ### `produce`
 ```shell
 $ bin/tubectl message produce
@@ -158,8 +161,6 @@ options:
 |      `async`      | async mode  |
 
 </details>
-
-
 
 ### `consume`
 ```shell
@@ -198,7 +199,6 @@ options:
 
 </details>
 
-
 ## Group
 `group` is used for consumer group management. It currently supports query, addition, and deletion.    
 
@@ -207,6 +207,7 @@ command：
 - `list`
 - `create`
 - `delete`
+
 ### `list`
 ```shell
 $ bin/tubectl group list 
@@ -245,4 +246,3 @@ options:
 | -at, --auth-token |  String  | Admin api operation authorization code |             |     yes      |
 |  -m, --modifier   |  String  |            Record modifier             |             |     yes      |
 |    -g, --group    |  String  |             Consumer group             |             |              |
-

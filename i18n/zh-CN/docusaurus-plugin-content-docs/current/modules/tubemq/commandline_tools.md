@@ -2,9 +2,9 @@
 title: 命令行工具
 sidebar_position: 15
 ---
-## 总览
-TubeMQ提供命令行工具来管理主题，生产和消费消息，以及管理消费者组。
 
+## 总览
+TubeMQ提供命令行工具来管理主题，生产和消费消息，以及管理消费者组。      
 命令行工具`tubectl`可以在TubeMQ安装路径的`bin`目录下找到。
 
 用法
@@ -22,15 +22,16 @@ $ bin/tubectl [options] [command] [command options]
 ```shell
 $ bin/tubectl topic -h
 ```
+
 ## Topic
 `topic`命令用于管理主题，包括增删改查等。
 
 命令：
-
 - `list`
 - `update`
 - `create`
 - `delete`
+
 ### `list`
 ```shell
 $ bin/tubectl topic list
@@ -132,12 +133,10 @@ $ bin/tubectl topic delete
 
 </details>
 
-
 ## Message
 `message`命令用于生产和消费消息。
 
 命令：
-
 - `produce`
 - `consume`
 
@@ -163,7 +162,6 @@ $ bin/tubectl message produce
 | `async` |   异步模式   |
 
 </details>
-
 
 ### `consume`
 ```shell
@@ -191,7 +189,6 @@ $ bin/tubectl message consume
 
 </details>
 
-
 <details>
 <summary>消费模式说明</summary>
 
@@ -203,17 +200,14 @@ $ bin/tubectl message consume
 
 </details>
 
-
-
-
 ## Group
 `group`命令用于消费者组管理，目前支持查询、增加和删除。
 
 命令：
-
 - `list`
 - `create`
 - `delete`
+
 ### `list`
 ```shell
 $ bin/tubectl cgroup list 
@@ -252,4 +246,3 @@ $ bin/tubectl cgroup delete
 | -at, --auth-token | String | 配置修改授权key |         |   是    |
 |  -m, --modifier   | String |    修改者    |         |   是    |
 |    -g, --group    | String |   消费者组    |         |
-
