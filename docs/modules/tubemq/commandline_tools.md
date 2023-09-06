@@ -147,7 +147,7 @@ options:
 |      -t, --topic      |  String  |                                   Topic name                                    |             |     yes      |
 | -ms, --master-servers |  String  | The master address to connect to. Format is master1_ip:port\[,master2_ip:port\] |             |     yes      |
 |   -mt, --msg-total    |   Long   |         The total number of messages to be produced, -1 means unlimited         |     -1      |              |
-|      -m, --mode       |  String  |                Produce mode, optional values: `sync`, `async` }                 |   `async`   |              |
+|      -m, --mode       |  String  |                 Produce mode, optional values: `sync`, `async`                  |   `async`   |              |
 
 <details>
 <summary>produce mode type</summary>
@@ -172,7 +172,7 @@ options:
 |        -t, --topic        |  String  |                                                            Topic name                                                             |             |     yes      |
 |        -g, --group        |  String  |                                                          Consumer group                                                           |             |     yes      |
 |   -ms, --master-servers   |  String  |                          The master address to connect to. Format is master1_ip:port\[,master2_ip:port\]                          |             |     yes      |
-|      -p, --position       |  String  |                                   Consume position, optional values: `first`, `latest`, `max` }                                   |   `first`   |              |
+|      -p, --position       |  String  |                                   Consume position, optional values: `first`, `latest`, `max`                                     |   `first`   |              |
 | -po, --partitions-offsets |  String  |          Assign consume partition ids and their offsets. Format is id1:offset1\[,id2:offset2\], for example: 0:0,1:0,2:0          |             |              |
 |        -m, --mode         |  String  | Consume mode, optional values: `pull`, `push`, `balance`. When the -po parameter is specified, `balance` mode is used by default. |   `pull`    |              |
 
