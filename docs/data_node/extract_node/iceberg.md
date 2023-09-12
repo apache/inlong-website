@@ -30,7 +30,7 @@ import {siteVariables} from '../../version';
 
 Before creating the Iceberg task, we need a Flink environment integrated with Hadoop
 
-1. Download `Hadoop` on the host.
+1. Download `Hadoop` on host machine.
 2. Modify `jobmanager.sh` and `taskmanager.sh` in the host and add `Hadoop` environment variables.
    For commands, please refer
    to [Apache Flink](https://github.com/apache/flink/tree/master/flink-dist/src/main/flink-bin/bin).
@@ -95,7 +95,6 @@ CREATE TABLE `iceberg_table_source`(
     `name` STRING,
     `age` INT)
     WITH (
-    'metrics.audit.key' = '13&14',
     'connector' = 'iceberg-inlong',
     'catalog-database' = 'DATABASES',
     'catalog-table' = 'TABLE',

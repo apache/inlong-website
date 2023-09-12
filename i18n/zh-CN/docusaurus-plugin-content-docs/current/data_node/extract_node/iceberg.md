@@ -90,7 +90,6 @@ CREATE TABLE `iceberg_table_source`(
     `name` STRING,
     `age` INT)
     WITH (
-    'metrics.audit.key' = '13&14',
     'connector' = 'iceberg-inlong',
     'catalog-database' = 'DATABASES',
     'catalog-table' = 'TABLE',
