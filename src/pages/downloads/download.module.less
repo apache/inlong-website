@@ -2,28 +2,46 @@
   width: 50%;
   margin: 20px auto 50px auto;
 }
-.cardDiv {
-  float: left;
+.cardSection {
   box-sizing: border-box;
   position: relative;
-  margin: 0 auto;
+  padding: 0px;
+  background-size: cover;
 }
+
+.cardUl {
+  margin-top: 2rem;
+  list-style: none;
+  padding: 0;
+  border: 1px solid white;
+
+  li {
+    vertical-align: top;
+    display: inline-block;
+    margin-bottom: 40px;
+    width: 33%;
+    min-height: 26rem;
+    position: relative;
+  }
+
+  @media screen and (min-width: 1268px){
+    li {
+      width: 33%;
+    }
+  }
+}
+
 .card{
-  width: 30%;
-  border-radius: 0.75rem;
-  flex-direction: column;
   border: 1px solid #eee;
+  padding: 3rem 2rem;
+  border-radius: 0.75rem;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
-  padding: 2rem;
-  margin-bottom: 4rem;
-  height: 390px;
-  float: left;
-  @media (max-width: 1800px) {
-    height: 470px;
-  }
-  @media (max-width: 1500px) {
-    height: auto;
-  }
+  vertical-align: top;
+  display: inline-block;
+  margin-bottom: 20px;
+  width: 95%;
+  min-height: 23rem;
+  position: relative;
 }
 
 .leftSide{
@@ -49,6 +67,7 @@
 .rightSide {
   text-align:center;
   margin-top: 20px;
+  width: 80%;
 }
 
 .buttonCard {
@@ -60,21 +79,19 @@
   text-align: left;
   font-size: 0.9rem;
   margin-top: 30px;
-  @media (max-width: 600px) {
-    margin-bottom: 1rem;
-    text-align: left;
-  }
+  width: 100%;
 }
 
 .styledDropdown {
   list-style-type: none;
   top: 0px;
   left: 0;
-  position: absolute;
-  margin-top: 0.15rem;
+  position: relative;
+  margin-top: 65px;
   border-radius: 0.5rem;
   z-index: 100;
   transition-delay: 0.6s;
+  width: 140%;
 }
 
 .dropdownItem {
@@ -96,25 +113,25 @@
 
 .connectorDropdownOne {
   list-style-type: none;
-  top: 0px;
-  left: 0;
-  position: absolute;
+  top: 10px;
+  position: relative;
   margin-top: -0.36rem;
   border-radius: 0.5rem;
   z-index: 100;
   transition-delay: 0.6s;
+  width: 140%;
 }
 
 .connectorDropdownTwo {
   list-style-type: none;
-  top: 0px;
+  top: 10px;
   left: 0;
-  position: absolute;
-  margin-top: 35px;
+  position: relative;
   border-radius: 0.5rem;
   z-index: 100;
   float: left;
   transition-delay: 0.6s;
+  width: 140%;
 }
 
 .connectorDropdownItem {
@@ -127,6 +144,7 @@
   border: 1px solid #eee;
   float: left;
   color: inherit;
+  width: auto;
   &:hover {
     color: white;
     background: var(--ifm-color-primary);
@@ -140,6 +158,7 @@
   cursor: pointer;
   font-weight: 500;
   float: left;
+  position: relative;
 }
 
 .versionInfo {
@@ -162,5 +181,3 @@
 .styledDropdown:hover {
   visibility: inherit;
 }
-
-
