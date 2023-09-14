@@ -26,21 +26,20 @@ import {siteVariables} from '../../version';
 `}
 </code></pre>
 
-## 如何配置 Iceberg 数据抽取节点
+## 配置 Iceberg 数据抽取节点
 
-在创建 Iceberg 任务之前，我们需要一个集成 Hadoop 的 Flink 环境
+在创建 Iceberg 任务之前，我们需要一个集成 Hadoop 的 Flink 环境。
 
-1. 在宿主机中下载 `Hadoop`
-2. 在宿主机中修改 `jobmanager.sh` 和 `taskmanager.sh`，加入 `Hadoop` 环境变量。启动命令可以参考 [Apache Flink](https://github.com/apache/flink/tree/master/flink-dist/src/main/flink-bin/bin)
+- 下载 [`Apache Hadoop`](https://hadoop.apache.org/releases.html)
+- 修改 `jobmanager.sh` 和 `taskmanager.sh`，加入 `Hadoop` 环境变量。启动命令可以参考 [Apache Flink](https://github.com/apache/flink/tree/master/flink-dist/src/main/flink-bin/bin)
 
 ```shell
 export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 ```
 
-3. 修改 `docker/docker-compose` 目录下的 `docker-compose.yml`，将 `Hadoop` 和 `Flink 启动命令` 挂载至容器中
+- 修改 `docker/docker-compose` 目录下的 `docker-compose.yml`，将 `Hadoop` 和 `Flink 启动命令` 挂载至容器中:
 
 ```shell
-# flink jobmanager
   jobmanager:
     image: apache/flink:1.13-scala_2.11
     container_name: jobmanager
@@ -56,7 +55,6 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
       - "8081:8081"
     command: jobmanager
 
-  # flink taskmanager
   taskmanager:
     image: apache/flink:1.13-scala_2.11
     container_name: taskmanager
@@ -71,7 +69,7 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
     command: taskmanager
 ```
 
-### SQL API 的使用
+### Flink SQL API
 
 使用 Flink sql client 之前，`sql-client.sh` 启动命令也需要添加 Hadoop 环境变量，并挂载至容器。
 启动命令可以参考 [Apache Flink](https://github.com/apache/flink/blob/master/flink-table/flink-sql-client/bin/sql-client.sh)
@@ -100,17 +98,17 @@ CREATE TABLE `iceberg_table_source`(
 );
 ```
 
-### InLong Dashboard 方式
+### Dashboard 
 
 页面点击 数据源 → 新建 → Iceberg
 
 ![img.png](img/iceberg-source.png)
 
-### InLong Manager Client 方式
+### Manager Client
 
 TODO
 
-## Iceberg 抽取节点参数信息
+## 参数信息
 
 | 选项                   | 必填  | 类型     | 描述                                                                               |
 |----------------------|-----|--------|----------------------------------------------------------------------------------|

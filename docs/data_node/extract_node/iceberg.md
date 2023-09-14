@@ -28,10 +28,10 @@ import {siteVariables} from '../../version';
 
 ## Usage
 
-Before creating the Iceberg task, we need a Flink environment integrated with Hadoop
+Before creating the Iceberg task, we need a Flink environment integrated with Hadoop.
 
-1. Download `Hadoop` on host machine.
-2. Modify `jobmanager.sh` and `taskmanager.sh` in the host and add `Hadoop` environment variables.
+- Download [`Apache Hadoop`](https://hadoop.apache.org/releases.html).
+- Modify `jobmanager.sh` and `taskmanager.sh` and add `Hadoop` environment variables.
    For commands, please refer
    to [Apache Flink](https://github.com/apache/flink/tree/master/flink-dist/src/main/flink-bin/bin).
 
@@ -39,11 +39,10 @@ Before creating the Iceberg task, we need a Flink environment integrated with Ha
 export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 ```
 
-3. Modify `docker-compose.yml` in the `docker/docker-compose` and mount `Hadoop` and `Flink startup commands` into the
-   container
+- Modify `docker-compose.yml` in the `docker/docker-compose` and mount `Hadoop` and `Flink startup commands` into the
+   container:
 
 ```shell
-# flink jobmanager
   jobmanager:
     image: apache/flink:1.13-scala_2.11
     container_name: jobmanager
@@ -59,7 +58,6 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
       - "8081:8081"
     command: jobmanager
 
-  # flink taskmanager
   taskmanager:
     image: apache/flink:1.13-scala_2.11
     container_name: taskmanager
@@ -74,7 +72,7 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
     command: taskmanager
 ```
 
-### Usage for SQL API
+### Flink SQL API
 
 Before using `Flink sql client`, `sql-client.sh` also needs to add Hadoop environment variables and mounted to the
 container.
@@ -105,17 +103,17 @@ CREATE TABLE `iceberg_table_source`(
 );
 ```
 
-### Usage for InLong Dashboard
+### Dashboard
 
 Source → Create → Iceberg
 
 ![img.png](img/iceberg-source.png)
 
-### Usage for InLong Manager Client
+### Manager Client
 
 TODO
 
-## Iceberg Extract Node Options
+## Options
 
 | Options              | Required | Type   | Description                                                                                                                                       |
 |----------------------|----------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------|
