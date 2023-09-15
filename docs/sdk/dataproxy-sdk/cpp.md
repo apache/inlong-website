@@ -6,29 +6,23 @@ sidebar_position: 1
 import {siteVariables} from '../../version';
 
 ## Create real-time synchronization task
-
 Create a task on the Dashboard or through the command line, and use `Auto Push` (autonomous push) as the data source
 type.
 
 ## Import C++ SDK
-
 The header files and libraries of the SDK need to be introduced into the project before using the SDK. Header files and
 libraries can be self-compiled from source,
 see [SDK Compile&Use](https://github.com/apache/inlong/tree/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-cpp)。
 
 ## Data report process
-
 After import the SDK, you can report single or batch data by calling the `send` related interface of the
 SDK [send_demo.cc](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-cpp/release/demo/send_demo.cc)
 。The overall process includes the following three steps：
 
 ### Initialize SDK
-
 SDK supports a process to create one SDK instance, which is multi-thread safe. It also supports a process to create
 multiple SDK instances. Each SDK instance is independent of each other and each SDK instance is also thread-safe
-
 - Create SDK instance object
-
 ``` 
 InLongApi inlong_api
 ```
@@ -36,24 +30,20 @@ InLongApi inlong_api
 - object instance initialization
   Configuration files are in json format, see [Config file description](#Appendix：Config File Description), initialize
   the SDK through the configuration file:
-
 ```
 // Initialize the SDK, the parameter is the path name of the configuration file; a return value of zero indicates successful initialization
 int32_t result = inlong_api.InitApi("/home/conf/config.json");
 ```
 
 ### Call the send interface to report data
-
 The SDK supports single (recommended) and batch sending, both of which are sent in asynchronous mode, and the data
 reporting interface is thread-safe. Before data reporting, the callback function can be set to perform callback
 processing when the data transmission fails. The callback function signature is as follows:
-
 ```
 int32_t callBackFunc(const char* inlong_group_id, const char* inlong_stream_id, const char* msg, int32_t msg_len, const int64_t report_time, const char* client_ip);
 ```
 
 - Single data reporting interface
-
 ```
 // Return value: zero means sending is successful, non-zero means failure, see SDKInvalidReuslt in tc_api.h for specific exception return value
 int32_t CallBackFunc(const char* inlong_group_id, const char* inlong_stream_id,
@@ -63,9 +53,7 @@ int32_t CallBackFunc(const char* inlong_group_id, const char* inlong_stream_id,
 ```
 
 ### Close SDK
-
 Call the close interface to close the SDK:
-
 ```
 // A return value of zero means that the shutdown is successful, and subsequent data reporting cannot be performed
 // max_waitms：The maximum number of milliseconds to wait before closing the SDK, waiting for the completion of the SDK internal data sending
@@ -73,7 +61,6 @@ int32_t CloseApi(int32_t max_waitms);
 ```
 
 ## Warning
-
 - It is recommended to use the SDK as a resident service for data reporting to avoid frequent initialization and
   shutdown of the same process midway, as repeated initialization and shutdown will bring more overhead;
 - SDK sending is asynchronous, and a return value of 0 indicates that the data has been successfully stored in the SDK's
@@ -82,9 +69,7 @@ int32_t CloseApi(int32_t max_waitms);
   this interface, and execute the callback when the data fails to be sent after multiple retries.
 
 ## Appendix：Config File Description
-
 The configuration file format and important parameters are as follows:
-
 ```json
 {
   "init-param": {
@@ -117,7 +102,6 @@ The configuration file format and important parameters are as follows:
   }
 }
 ```
-
 | parameter               | meaning                                  | Defaults                                                         |
 |-------------------------|------------------------------------------|------------------------------------------------------------------|
 | inlong_group_ids        | inlong_group_id list                     | b_inlong_group_test_01, b_inlong_group_test_02                   |
