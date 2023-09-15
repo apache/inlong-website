@@ -28,8 +28,6 @@ import {siteVariables} from '../../version';
 
 ## 配置 Iceberg 数据抽取节点
 
-在创建 Iceberg 任务之前，我们需要一个集成 Hadoop 的 Flink 环境。
-
 - 下载 [`Apache Hadoop`](https://hadoop.apache.org/releases.html)
 - 修改 `jobmanager.sh` 和 `taskmanager.sh`，加入 `Hadoop` 环境变量。启动命令可以参考 [Apache Flink](https://github.com/apache/flink/tree/master/flink-dist/src/main/flink-bin/bin)
 
@@ -49,7 +47,9 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
     volumes:
+      # Mount Hadoop
       - HADOOP_HOME:HADOOP_HOME
+      # Mount the modified jobmanager.sh which adds the HADOOP_HOME env correctly
       - /jobmanager.sh:/opt/flink/bin/jobmanager.sh
     ports:
       - "8081:8081"
@@ -64,7 +64,9 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
         jobmanager.rpc.address: jobmanager
         taskmanager.numberOfTaskSlots: 2
     volumes:
+      # Mount Hadoop
       - HADOOP_HOME:HADOOP_HOME
+      # Mount the modified taskmanager.sh which adds the HADOOP_HOME env correctly
       - /taskmanager.sh:/opt/flink/bin/taskmanager.sh
     command: taskmanager
 ```

@@ -32,15 +32,13 @@ Before creating the Iceberg task, we need a Flink environment integrated with Ha
 
 - Download [`Apache Hadoop`](https://hadoop.apache.org/releases.html).
 - Modify `jobmanager.sh` and `taskmanager.sh` and add `Hadoop` environment variables.
-   For commands, please refer
-   to [Apache Flink](https://github.com/apache/flink/tree/master/flink-dist/src/main/flink-bin/bin).
+For commands, please refer to [Apache Flink](https://github.com/apache/flink/tree/master/flink-dist/src/main/flink-bin/bin).
 
 ```shell
 export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 ```
 
-- Modify `docker-compose.yml` in the `docker/docker-compose` and mount `Hadoop` and `Flink startup commands` into the
-   container:
+- Modify `docker-compose.yml` in the `docker/docker-compose` and mount `Hadoop` and `Flink startup commands` into the container:
 
 ```shell
   jobmanager:
@@ -52,7 +50,9 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
         FLINK_PROPERTIES=
         jobmanager.rpc.address: jobmanager
     volumes:
+      # Mount Hadoop
       - HADOOP_HOME:HADOOP_HOME
+      # Mount the modified jobmanager.sh which adds the HADOOP_HOME env correctly
       - /jobmanager.sh:/opt/flink/bin/jobmanager.sh
     ports:
       - "8081:8081"
@@ -67,17 +67,17 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
         jobmanager.rpc.address: jobmanager
         taskmanager.numberOfTaskSlots: 2
     volumes:
+      # Mount Hadoop
       - HADOOP_HOME:HADOOP_HOME
+      # Mount the modified taskmanager.sh which adds the HADOOP_HOME env correctly
       - /taskmanager.sh:/opt/flink/bin/taskmanager.sh
     command: taskmanager
 ```
 
 ### Flink SQL API
 
-Before using `Flink sql client`, `sql-client.sh` also needs to add Hadoop environment variables and mounted to the
-container.
-For commands, please refer
-to [Apache Flink](https://github.com/apache/flink/blob/master/flink-table/flink-sql-client/bin/sql-client.sh).
+Before using `Flink sql client`, `sql-client.sh` also needs to add Hadoop environment variables and mounted to the container.
+For commands, please refer to [Apache Flink](https://github.com/apache/flink/blob/master/flink-table/flink-sql-client/bin/sql-client.sh).
 
 ```shell
 export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
