@@ -79,8 +79,8 @@ docker exec -it agent /bin/bash
 
 ### 发送数据
 ```
-# 采集文件 /data/collect-data/test.log 数据源配置路径，总共发送 10001 条
-for i in {0..10000};do echo "name_$i | $i" >> /data/collect-data/test.log ;done
+# 采集文件 /data/collect-data/test.log 数据源配置路径，总共发送 10000 条
+for i in {1..10000};do echo "name_$i | $i" >> /data/collect-data/test.log;done
 ```
 
 ### 数据验证

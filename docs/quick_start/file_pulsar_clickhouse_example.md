@@ -61,7 +61,7 @@ Click [Next] -> [Create], config data stream.
 
 ### Create Data Source
 Click [Sources create] -> [File], config data source informations.
-![Create datastream](img/file_clickhouse/pulsar_file_source.png)
+![Create datastream](img/file_clickhouse/pulsar_source.png)
 
 ### Create Data Sink
 Click [Sinks create] -> [ClickHouse], input Name, DbName, TableName and select created ck DataNode and so on, then click [save].
@@ -82,8 +82,8 @@ docker exec -it agent /bin/bash
 
 ### Send Data
 ```
-# collect file /data/collect-data/test.log data source configuration path and total of 10001 data packets are sent.
-for i in {0..10000};do echo "name_$i | $i" >> /data/collect-data/test.log ;done
+# collect file /data/collect-data/test.log data source configuration path and total of 10000 data packets are sent.
+for i in {1..10000};do echo "name_$i | $i" >> /data/collect-data/test.log;done
 ```
 
 ### Verify Data
