@@ -56,7 +56,15 @@ Password: inlong
 
 ### 新建数据源
 点击【新建数据源】->【MySQL】，配置数据源名称、地址、用户密码以及库表信息等：
-![Create datastream](img/mysql_clickhouse/create_data_source.png)
+![Create datastream](img/mysql_clickhouse/create_source.png)
+
+:::note
+请预先创建 `test_mysql_db.test_mysql_table` 库表，schema 为：
+CREATE TABLE test_mysql_db.test_mysql_table (
+id INT PRIMARY KEY,
+name VARCHAR(50)
+);
+:::
 
 ### 新建数据目标
 点击【新建数据目标】->【ClickHouse】，配置名称、库表、已创建的 ck 数据节点以及 Schema 映射信息等，完成后点击 【提交审批】：
@@ -72,15 +80,41 @@ Password: inlong
 ## 测试数据
 ### 发送数据
 ![clickhouse](img/mysql_clickhouse/send_data.png)
-累计对 MySQL 添加 1001 条数据。
+累计对 MySQL 添加 1000 条数据。
 
 ### 数据验证
 查看审计页面发送数据：
-![clickhouse](img/mysql_clickhouse/data_page.png)
+![clickhouse](img/mysql_clickhouse/stream_audit.png)
 
 然后进入 ClickHouse 容器，查看库表数据：
-![clickhouse](img/mysql_clickhouse/data_table.png)
+![clickhouse](img/mysql_clickhouse/receive_data.png)
 
 ## 常见问题
 ### 任务配置失败
 一般是 MQ 或者 Flink 集群配置错误导致，可以在页面查看错误信息，或者进入 Manager 容器查看详细日志。
+
+### 发送数据生成脚本
+```bash
+#!/bin/bash
+
+# MySQL数据库连接信息
+DB_HOST="mysql"
+DB_USER="root"
+DB_PASS="inlong"
+DB_NAME="test_mysql_db"
+DB_TABLE="test_mysql_table"
+
+# 循环插入数据
+for ((i=1; i<=1000; i++))
+do
+    # 生成要插入的数据
+    id=$i
+    name="name_$i"
+
+    # 构建插入语句
+    query="INSERT INTO $DB_TABLE (id, name) VALUES ($id, '$name');"
+
+    # 执行插入语句
+    mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "$query"
+done
+```
