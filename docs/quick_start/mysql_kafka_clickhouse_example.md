@@ -58,8 +58,16 @@ Click [Next] -> [Create], config data stream.
 ![Create datastream](img/mysql_clickhouse/data_stream_config.png)
 
 ### Create Data Source
-Click [Sources create] -> [MySQL], config data source informations.
-![Create datastream](img/mysql_clickhouse/create_data_source.png)
+Click [Sources create] -> [MySQL], config data source information.
+![Create datastream](img/mysql_clickhouse/create_source.png)
+
+:::note
+Please create `test_mysql_db.test_mysql_table` database and table, it's schema is:
+CREATE TABLE test_mysql_db.test_mysql_table (
+id INT PRIMARY KEY,
+name VARCHAR(50)
+);
+:::
 
 ### Create Data Sink
 Click [Sinks create] -> [ClickHouse], input Name, DbName, TableName and select created ck DataNode and so on, then click [save].
@@ -75,15 +83,39 @@ Back to [Ingestion] page, wait for [configuration success].
 ## Test Data
 ### Send Data
 ![clickhouse](img/mysql_clickhouse/send_data.png)
-Add 1001 datas to MySQL.
+Add 1000 data items to MySQL.
 
 ### Verify Data
 Check data in [Audit] page.
-![clickhouse](img/mysql_clickhouse/data_page.png)
+![clickhouse](img/mysql_clickhouse/stream_audit.png)
 
 then enter ClickHouse container, check data in table.
-![clickhouse](img/mysql_clickhouse/data_table.png)
+![clickhouse](img/mysql_clickhouse/receive_data.png)
 
 ## Questions
 ### Task Configuration Failed
 Generally, the MQ or Flink group configuration is incorrect. You can view the error information on the page, or enter the Manager container to view detailed logs.
+
+### The script for sending data
+```bash
+#!/bin/bash
+
+# MySQL information
+DB_HOST="mysql"
+DB_USER="root"
+DB_PASS="inlong"
+DB_NAME="test_mysql_db"
+DB_TABLE="test_mysql_table"
+
+# insert data by a loop
+for ((i=1; i<=1000; i++))
+do
+    # generate data
+    id=$i
+    name="name_$i"
+    # insert data
+    query="INSERT INTO $DB_TABLE (id, name) VALUES ($id, '$name');"
+    # execute insert
+    mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "$query"
+done
+```
