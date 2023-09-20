@@ -1,16 +1,16 @@
 ---
-title: MySQL -> Kafka -> ClickHouse
+title: Kafka Example
 sidebar_position: 3
 ---
 
-Here we use an example to introduce how to use Apache InLong creating MySQL -> Kafka -> ClickHouse data ingestion.
+Here we use an example to introduce how to use Apache InLong creating `MySQL -> Kafka -> ClickHouse` data ingestion.
 
 ## Deployment
 ### Install InLong
 
 Before we begin, we need to install InLong. Here we provide two ways:
-1. Install InLong with Docker by according to the [instructions here](deployment/docker.md).(Recommanded)
-2. Install InLong binary according to the [instructions here](deployment/bare_metal.md).
+- [Docker Deployment](deployment/docker.md) (Recommended)
+- [Bare Metal Deployment](deployment/bare_metal.md)
 
 ### Install ClickHouse
 ```shell
@@ -26,7 +26,7 @@ docker run -d --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_
 ```
 
 ## Cluster Initialize
-When all containers are successfully started, you can access the Inlong dashboard address http://localhost, and use the following default account to log in.
+When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.
 ```
 User: admin
 Password: inlong
