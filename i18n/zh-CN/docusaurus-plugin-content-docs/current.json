@@ -11,6 +11,14 @@
     "message": "快速开始",
     "description": "The label for category Quick Start in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.Data Ingestion": {
+    "message": "数据接入",
+    "description": "The label for category Data Ingestion in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Data Synchronization": {
+    "message": "数据同步",
+    "description": "The label for category Data Synchronization in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Deployment": {
     "message": "安装部署",
     "description": "The label for category Deployment in sidebar tutorialSidebar"

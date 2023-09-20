@@ -85,5 +85,5 @@ Password: inlong
 :::
 
 ## 使用
-创建数据流可以参考 [Example](quick_start/file_pulsar_clickhouse_example.md).
+创建数据流可以参考 [Example](quick_start/data_ingestion/file_pulsar_clickhouse_example.md).
 

@@ -1,15 +1,15 @@
 ---
-title: File -> Pulsar -> ClickHouse
+title: Pulsar 示例
 sidebar_position: 2
 ---
 
-在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建 File -> Pulsar -> ClickHouse 数据流。
+在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建 `File -> Pulsar -> ClickHouse` 数据接入。
 
 ## 环境部署
 ### 安装 InLong
 在开始之前，我们需要安装 InLong 的全部组件，这里提供两种方式：
-1. 按照 [这里的说明](deployment/docker.md)，使用 Docker 进行快速部署。（推荐）
-2. 按照 [这里的说明](deployment/bare_metal.md)，使用二进制包依次安装各组件。
+- [Docker 部署](deployment/docker.md)（推荐）
+- [Bare Metal 部署](deployment/bare_metal.md)
 
 ### 安装 ClickHouse
 ```shell

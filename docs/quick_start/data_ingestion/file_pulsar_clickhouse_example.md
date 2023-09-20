@@ -1,16 +1,16 @@
 ---
-title: File -> Pulsar -> ClickHouse 
+title: Pulsar Example
 sidebar_position: 2
 ---
 
-Here we use an example to introduce how to create File -> Pulsar -> ClickHouse data ingestion.
+Here we use an example to introduce how to create `File -> Pulsar -> ClickHouse` data ingestion.
 
 ## Deployment
 ### Install InLong
 
 Before we begin, we need to install InLong. Here we provide two ways:
-1. Install InLong with Docker by according to the [instructions here](deployment/docker.md).(Recommanded)
-2. Install InLong binary according to the [instructions here](deployment/bare_metal.md).
+- [Docker Deployment](deployment/docker.md) (Recommended)
+- [Bare Metal Deployment](deployment/bare_metal.md)
 
 ### Install ClickHouse
 ```shell
@@ -18,7 +18,7 @@ docker run -d --rm --net=host --name clickhouse -e CLICKHOUSE_USER=admin -e CLIC
 ```
 
 ## Cluster Initialize
-When all containers are successfully started, you can access the Inlong dashboard address http://localhost, and use the following default account to log in.
+When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.
 ```
 User: admin
 Password: inlong
