@@ -3,7 +3,7 @@ title: REST API
 sidebar_position: 4
 ---
 
-<!-- To maintain consistent display, please remove the info and host content from the original `api.json` -->
+<!-- To maintain consistent display, please remove the `info` and `host` content from the original `api.json` -->
 
 import SwaggerUI from 'swagger-ui-react';
 import 'swagger-ui-react/swagger-ui.css';
