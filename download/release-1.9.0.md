@@ -36,36 +36,43 @@ We also provide <code>SHA-512</code> checksums for every release file. After you
 | [INLONG-8146](https://github.com/apache/inlong/issues/8146) | [Improve][Agent] Optimize agent-env.sh, and '-XX:NativeMemoryTracking'                                                          |
 | [INLONG-8799](https://github.com/apache/inlong/issues/8799) | [Bug][Manager][Agent][DataProxy] The "opentelemetry" related configs may affect the startup of services                         |
 | [INLONG-8611](https://github.com/apache/inlong/issues/8611) | [Feature][Manager][Agent][DataProxy] Support full link tracking to improve the observability of the project                     |
-
-### SDK
+                                                                                                                                                                                                
+### Audit
 |                            ISSUE                            | Summary                                                                                                                         |
 |:-----------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|
-| [INLONG-8916](https://github.com/apache/inlong/issues/8916) | [Improve][SDK] Update SDK configuration file for dataproxy cpp sdk                                                              |
-| [INLONG-8910](https://github.com/apache/inlong/issues/8910) | [Improve][SDK] Adjust some default configuration parameters                                                                     |
-| [INLONG-8905](https://github.com/apache/inlong/issues/8905) | [Improve][SDK] Code specifications for dataproxy cpp sdk                                                                        |
-| [INLONG-8896](https://github.com/apache/inlong/issues/8896) | [Improve][SDK] Remove old code before refactoring for dataproxy cpp sdk                                                         |
-| [INLONG-8891](https://github.com/apache/inlong/issues/8891) | [Improve][SDK] Optimize compile for dataproxy cpp sdk                                                                           |
-| [INLONG-8889](https://github.com/apache/inlong/issues/8889) | [Improve][SDK] Optimize CmakeList for dataproxy cpp sdk                                                                         |
-| [INLONG-8887](https://github.com/apache/inlong/issues/8887) | [Improve][SDK] Optimize api framework for dataproxy cpp sdk                                                                     |
-| [INLONG-8885](https://github.com/apache/inlong/issues/8885) | [Improve][SDK] Optimize tcp manager framework for dataproxy cpp sdk                                                             |
-| [INLONG-8883](https://github.com/apache/inlong/issues/8883) | [Improve][SDK] Optimize proxy config manager framework for dataproxy cpp sdk                                                    |
-| [INLONG-8868](https://github.com/apache/inlong/issues/8868) | [Improve][SDK] Optimize send data framework for dataproxy cpp sdk                                                               |
-| [INLONG-8866](https://github.com/apache/inlong/issues/8866) | [Improve][SDK] Optimize data receiving framework for dataproxy cpp sdk                                                          |
-| [INLONG-8864](https://github.com/apache/inlong/issues/8864) | [Improve][SDK] Add memory utils for dataproxy cpp sdk                                                                           |
-| [INLONG-8861](https://github.com/apache/inlong/issues/8861) | [Improve][SDK] Add mutex utils for dataproxy cpp sdk                                                                            |
-| [INLONG-8860](https://github.com/apache/inlong/issues/8860) | [Improve][SDK] Add log utils for dataproxy cpp sdk                                                                              |
-| [INLONG-8858](https://github.com/apache/inlong/issues/8858) | [Improve][SDK] Add init helper information for dataproxy cpp sdk                                                                |
-| [INLONG-8856](https://github.com/apache/inlong/issues/8856) | [Improve][SDK] Add msg information for dataproxy cpp sdk                                                                        |
-| [INLONG-8854](https://github.com/apache/inlong/issues/8854) | [Improve][SDK] Add return code information for dataproxy cpp sdk                                                                |
-| [INLONG-8784](https://github.com/apache/inlong/issues/8784) | [INLONG-8766][SDK] SortSdk create consumer in parallel                                                                          |
-| [INLONG-8766](https://github.com/apache/inlong/issues/8766) | [Improve][SDK] SortSdk create consumer in parallel                                                                              |
-| [INLONG-8747](https://github.com/apache/inlong/issues/8747) | [Improve][SDK] Optimize the local configuration management of cpp sdk                                                           |
-| [INLONG-8728](https://github.com/apache/inlong/issues/8728) | [Improve][SDK] Optimize the problem of third-party openssl library dependency failure                                           |
-| [INLONG-8639](https://github.com/apache/inlong/issues/8639) | [Improve][SDK] Improve send failed logic of DataProxy                                                                           |
-| [INLONG-8637](https://github.com/apache/inlong/issues/8637) | [Improve][SDK] Pool data request and batch request for DataProxy                                                                |
-| [INLONG-8635](https://github.com/apache/inlong/issues/8635) | [Improve][SDK] Update dependency packages and required Go version for DataProxy                                                 |
-| [INLONG-8633](https://github.com/apache/inlong/issues/8633) | [Improve][SDK] Update debug log level for DataProxy SDK                                                                         |
-| [INLONG-8631](https://github.com/apache/inlong/issues/8631) | [Improve][SDK] Handle context.Done() in Send() for DataProxy SDK                                                                |
+| [INLONG-8836](https://github.com/apache/inlong/issues/8836) | [Improve][Audit] Add audit_tag information to distinguish data sources and data targets                                         |
+| [INLONG-8753](https://github.com/apache/inlong/issues/8753) | [Improve][Audit] Separate commons-text from org.apache.flume                                                                    |
+| [INLONG-8699](https://github.com/apache/inlong/issues/8699) | [Improve][Audit] Optimize the service log of audit-proxy                                                                        |
+| [INLONG-8642](https://github.com/apache/inlong/issues/8642) | [Improve][Audit] Remove the audit commons-text dependency                                                                       |
+
+### Dashboard
+|                            ISSUE                            | Summary                                                                                                                         |
+|:-----------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|
+| [INLONG-8882](https://github.com/apache/inlong/issues/8882) | [Feature][Dashboard] Support management of Pulsar data node                                                                     |
+| [INLONG-8881](https://github.com/apache/inlong/issues/8881) | [Feature][Dashboard] Support management of Pulsar sink                                                                          |
+| [INLONG-8843](https://github.com/apache/inlong/issues/8843) | [Improve][Dashboard] StarRocks sink field optimization                                                                          |
+| [INLONG-8841](https://github.com/apache/inlong/issues/8841) | [Feature][Dashboard] Support management of Iceberg sources                                                                      |
+| [INLONG-8810](https://github.com/apache/inlong/issues/8810) | [Improve][Dashboard] Approval management process ID link optimization                                                           |
+| [INLONG-8800](https://github.com/apache/inlong/issues/8800) | [Improve][Dashboard] Owners search component optimization                                                                       |
+| [INLONG-8788](https://github.com/apache/inlong/issues/8788) | [Improve][Dashboard] Data synchronization page optimization                                                                     |
+| [INLONG-8779](https://github.com/apache/inlong/issues/8779) | [Improve][Dashboard] Modify password verification optimization                                                                  |
+| [INLONG-8760](https://github.com/apache/inlong/issues/8760) | [Bug][Dashboard] The transform button was not at the center                                                                     |
+| [INLONG-8757](https://github.com/apache/inlong/issues/8757) | [Improve][Dashboard] Implement buttons using a link  good first issue                                                           |
+| [INLONG-8755](https://github.com/apache/inlong/issues/8755) | [Improve][Dashboard] Data synchronization field mapping optimization                                                            |
+| [INLONG-8727](https://github.com/apache/inlong/issues/8727) | [Improve][Dashboard] Approval management Application details optimization                                                       |
+| [INLONG-8705](https://github.com/apache/inlong/issues/8705) | [Improve][Dashboard] Source and sink title optimization                                                                         |
+| [INLONG-8693](https://github.com/apache/inlong/issues/8693) | [Feature][Dashboard] Data synchronization supports Audit                                                                        |
+| [INLONG-8661](https://github.com/apache/inlong/issues/8661) | [Bug][DashBoard] DatabaseWhiteList is required which is inconsistent with tips                                                  |
+| [INLONG-8624](https://github.com/apache/inlong/issues/8624) | [Bug][Dashboard] Tenant Management Search Tenant Exceptions                                                                     |
+| [INLONG-8621](https://github.com/apache/inlong/issues/8621) | [Feature][Dashboard] Approval management supports approval data synchronization                                                 |
+| [INLONG-8575](https://github.com/apache/inlong/issues/8575) | [Improve][Dashboard] Tenant management query optimization                                                                       |
+| [INLONG-8560](https://github.com/apache/inlong/issues/8560) | [Bug][Dashboard] No username and password when configuring hive.                                                                |
+| [INLONG-8548](https://github.com/apache/inlong/issues/8548) | [Feature][Dashboard] Data access supports displaying transmission delay                                                         |
+| [INLONG-8546](https://github.com/apache/inlong/issues/8546) | [Bug][Dashboard] Inlong group resource details display error good first issue                                                   |
+| [INLONG-8512](https://github.com/apache/inlong/issues/8512) | [Bug][Dashboard] Create tube consumer failed when selecting topic 1.9.x/bugfix                                                  |
+| [INLONG-8502](https://github.com/apache/inlong/issues/8502) | [Bug][Dashboard] Query data preview interface exception                                                                         |
+| [INLONG-8500](https://github.com/apache/inlong/issues/8500) | [Bug][Dashboard] Fix stream data preview url error                                                                              |
+| [INLONG-8008](https://github.com/apache/inlong/issues/8008) | [Improve][Dashboard] Add default icon for different data nodes good first issue                                                 |
 
 ### DataProxy
 |                            ISSUE                            | Summary                                                                                                                         |
@@ -87,20 +94,7 @@ We also provide <code>SHA-512</code> checksums for every release file. After you
 | [INLONG-6364](https://github.com/apache/inlong/issues/6364) | [Improve][DataProxy] Add DataProxy node load information stage/stale                                                            |
 | [INLONG-8799](https://github.com/apache/inlong/issues/8799) | [Bug][Manager][Agent][DataProxy] The "opentelemetry" related configs may affect the startup of services                         |
 | [INLONG-8611](https://github.com/apache/inlong/issues/8611) | [Feature][Manager][Agent][DataProxy] Support full link tracking to improve the observability of the project                     |
-
-### TubeMQ
-|                            ISSUE                            | Summary                                                                                                                         |
-|:-----------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|
-| [INLONG-4972](https://github.com/apache/inlong/issues/4972) | [Feature][TubeMQ] Add TubeMQ Command Tools stage/roadmap                                                                        |
-| [INLONG-8903](https://github.com/apache/inlong/issues/8903) | [Bug][TubeMQ][Sort] int64 not recognized by the compiler and Missing @Override annotations                                      |
-| [INLONG-8871](https://github.com/apache/inlong/issues/8871) | [Improve][TubeMQ] Use an error code in checkMessageAndStatus() to return the check result instead of throwing an exception      |
-| [INLONG-8812](https://github.com/apache/inlong/issues/8812) | [Improve][Tubemq] Missing parameter                                                                                             |
-| [INLONG-8793](https://github.com/apache/inlong/issues/8793) | [INLONG-8791][TubeMQ] Tubemq-client-go lacks log level configuration API                                                        |
-| [INLONG-8768](https://github.com/apache/inlong/issues/8768) | [Improve][TubeMQ] Adding restart-manager.sh for inlong-tubemq-manager                                                           |
-| [INLONG-8720](https://github.com/apache/inlong/issues/8720) | [Improve][TubeMQ] Some unused return params in WebParamaterUtils                                                                |
-| [INLONG-8717](https://github.com/apache/inlong/issues/8717) | [Bug][TubeMQ] Display wrong response message in TubeMQ master web panel                                                         |
-| [INLONG-8716](https://github.com/apache/inlong/issues/8716) | [Bug][TubeMQ] set error code 0 when it works                                                                                    |
-| [INLONG-8701](https://github.com/apache/inlong/issues/8701) | [Improve][TubeMQ] Master dashboard respond always true when some operation complete                                             |
+| [INLONG-8936](https://github.com/apache/inlong/issues/8936) | [Bug][DataProxy] The log's path for DataProxy is wrong                                                                          |
 
 ### Manager
 |                            ISSUE                            | Summary                                                                                                                         |
@@ -167,6 +161,39 @@ We also provide <code>SHA-512</code> checksums for every release file. After you
 | [INLONG-8403](https://github.com/apache/inlong/issues/8403) | [Feature][Manager] Support resource migrate to different tenant                                                                 |
 | [INLONG-8374](https://github.com/apache/inlong/issues/8374) | [Feature][Manager] Manager client tools support multiple tenant good first issue                                                |
 | [INLONG-8360](https://github.com/apache/inlong/issues/8360) | [Improve][Manager] Support previewing data of Kafka                                                                             |
+| [INLONG-8939](https://github.com/apache/inlong/issues/8939) | [Improve][Manager] Add a switch to initiate the delete data source task                                                         |
+| [INLONG-8946](https://github.com/apache/inlong/issues/8946) | [Improve][Manager] Optimize the audit ID method issued by the manager                                                           |
+| [INLONG-8951](https://github.com/apache/inlong/issues/8951) | [Improve][Manager] Support for configuring built-in fields for iceberg                                                          |
+
+### SDK
+|                            ISSUE                            | Summary                                                                                                                         |
+|:-----------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|
+| [INLONG-8916](https://github.com/apache/inlong/issues/8916) | [Improve][SDK] Update SDK configuration file for dataproxy cpp sdk                                                              |
+| [INLONG-8910](https://github.com/apache/inlong/issues/8910) | [Improve][SDK] Adjust some default configuration parameters                                                                     |
+| [INLONG-8905](https://github.com/apache/inlong/issues/8905) | [Improve][SDK] Code specifications for dataproxy cpp sdk                                                                        |
+| [INLONG-8896](https://github.com/apache/inlong/issues/8896) | [Improve][SDK] Remove old code before refactoring for dataproxy cpp sdk                                                         |
+| [INLONG-8891](https://github.com/apache/inlong/issues/8891) | [Improve][SDK] Optimize compile for dataproxy cpp sdk                                                                           |
+| [INLONG-8889](https://github.com/apache/inlong/issues/8889) | [Improve][SDK] Optimize CmakeList for dataproxy cpp sdk                                                                         |
+| [INLONG-8887](https://github.com/apache/inlong/issues/8887) | [Improve][SDK] Optimize api framework for dataproxy cpp sdk                                                                     |
+| [INLONG-8885](https://github.com/apache/inlong/issues/8885) | [Improve][SDK] Optimize tcp manager framework for dataproxy cpp sdk                                                             |
+| [INLONG-8883](https://github.com/apache/inlong/issues/8883) | [Improve][SDK] Optimize proxy config manager framework for dataproxy cpp sdk                                                    |
+| [INLONG-8868](https://github.com/apache/inlong/issues/8868) | [Improve][SDK] Optimize send data framework for dataproxy cpp sdk                                                               |
+| [INLONG-8866](https://github.com/apache/inlong/issues/8866) | [Improve][SDK] Optimize data receiving framework for dataproxy cpp sdk                                                          |
+| [INLONG-8864](https://github.com/apache/inlong/issues/8864) | [Improve][SDK] Add memory utils for dataproxy cpp sdk                                                                           |
+| [INLONG-8861](https://github.com/apache/inlong/issues/8861) | [Improve][SDK] Add mutex utils for dataproxy cpp sdk                                                                            |
+| [INLONG-8860](https://github.com/apache/inlong/issues/8860) | [Improve][SDK] Add log utils for dataproxy cpp sdk                                                                              |
+| [INLONG-8858](https://github.com/apache/inlong/issues/8858) | [Improve][SDK] Add init helper information for dataproxy cpp sdk                                                                |
+| [INLONG-8856](https://github.com/apache/inlong/issues/8856) | [Improve][SDK] Add msg information for dataproxy cpp sdk                                                                        |
+| [INLONG-8854](https://github.com/apache/inlong/issues/8854) | [Improve][SDK] Add return code information for dataproxy cpp sdk                                                                |
+| [INLONG-8784](https://github.com/apache/inlong/issues/8784) | [INLONG-8766][SDK] SortSdk create consumer in parallel                                                                          |
+| [INLONG-8766](https://github.com/apache/inlong/issues/8766) | [Improve][SDK] SortSdk create consumer in parallel                                                                              |
+| [INLONG-8747](https://github.com/apache/inlong/issues/8747) | [Improve][SDK] Optimize the local configuration management of cpp sdk                                                           |
+| [INLONG-8728](https://github.com/apache/inlong/issues/8728) | [Improve][SDK] Optimize the problem of third-party openssl library dependency failure                                           |
+| [INLONG-8639](https://github.com/apache/inlong/issues/8639) | [Improve][SDK] Improve send failed logic of DataProxy                                                                           |
+| [INLONG-8637](https://github.com/apache/inlong/issues/8637) | [Improve][SDK] Pool data request and batch request for DataProxy                                                                |
+| [INLONG-8635](https://github.com/apache/inlong/issues/8635) | [Improve][SDK] Update dependency packages and required Go version for DataProxy                                                 |
+| [INLONG-8633](https://github.com/apache/inlong/issues/8633) | [Improve][SDK] Update debug log level for DataProxy SDK                                                                         |
+| [INLONG-8631](https://github.com/apache/inlong/issues/8631) | [Improve][SDK] Handle context.Done() in Send() for DataProxy SDK                                                                |
 
 ### Sort
 |                            ISSUE                            | Summary                                                                                                                         |
@@ -207,43 +234,21 @@ We also provide <code>SHA-512</code> checksums for every release file. After you
 | [INLONG-7763](https://github.com/apache/inlong/issues/7763) | [Feature][Sort] Support ddl change for doris                                                                                    |
 | [INLONG-8797](https://github.com/apache/inlong/issues/8797) | [Feature][Manager][Sort] Audit has no data for data sync                                                                        |
 | [INLONG-8903](https://github.com/apache/inlong/issues/8903) | [Bug][TubeMQ][Sort] int64 not recognized by the compiler and Missing @Override annotations                                      |
+| [INLONG-8953](https://github.com/apache/inlong/issues/8953) | [Bug][Sort] Iceberg source default the StartSnapshot to the latest                                                              |
 
-### Audit
+### TubeMQ
 |                            ISSUE                            | Summary                                                                                                                         |
 |:-----------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|
-| [INLONG-8836](https://github.com/apache/inlong/issues/8836) | [Improve][Audit] Add audit_tag information to distinguish data sources and data targets                                         |
-| [INLONG-8753](https://github.com/apache/inlong/issues/8753) | [Improve][Audit] Separate commons-text from org.apache.flume                                                                    |
-| [INLONG-8699](https://github.com/apache/inlong/issues/8699) | [Improve][Audit] Optimize the service log of audit-proxy                                                                        |
-| [INLONG-8642](https://github.com/apache/inlong/issues/8642) | [Improve][Audit] Remove the audit commons-text dependency                                                                       |
-
-### Dashboard
-|                            ISSUE                            | Summary                                                                                                                         |
-|:-----------------------------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|
-| [INLONG-8882](https://github.com/apache/inlong/issues/8882) | [Feature][Dashboard] Support management of Pulsar data node                                                                     |
-| [INLONG-8881](https://github.com/apache/inlong/issues/8881) | [Feature][Dashboard] Support management of Pulsar sink                                                                          |
-| [INLONG-8843](https://github.com/apache/inlong/issues/8843) | [Improve][Dashboard] StarRocks sink field optimization                                                                          |
-| [INLONG-8841](https://github.com/apache/inlong/issues/8841) | [Feature][Dashboard] Support management of Iceberg sources                                                                      |
-| [INLONG-8810](https://github.com/apache/inlong/issues/8810) | [Improve][Dashboard] Approval management process ID link optimization                                                           |
-| [INLONG-8800](https://github.com/apache/inlong/issues/8800) | [Improve][Dashboard] Owners search component optimization                                                                       |
-| [INLONG-8788](https://github.com/apache/inlong/issues/8788) | [Improve][Dashboard] Data synchronization page optimization                                                                     |
-| [INLONG-8779](https://github.com/apache/inlong/issues/8779) | [Improve][Dashboard] Modify password verification optimization                                                                  |
-| [INLONG-8760](https://github.com/apache/inlong/issues/8760) | [Bug][Dashboard] The transform button was not at the center                                                                     |
-| [INLONG-8757](https://github.com/apache/inlong/issues/8757) | [Improve][Dashboard] Implement buttons using a link  good first issue                                                           |
-| [INLONG-8755](https://github.com/apache/inlong/issues/8755) | [Improve][Dashboard] Data synchronization field mapping optimization                                                            |
-| [INLONG-8727](https://github.com/apache/inlong/issues/8727) | [Improve][Dashboard] Approval management Application details optimization                                                       |
-| [INLONG-8705](https://github.com/apache/inlong/issues/8705) | [Improve][Dashboard] Source and sink title optimization                                                                         |
-| [INLONG-8693](https://github.com/apache/inlong/issues/8693) | [Feature][Dashboard] Data synchronization supports Audit                                                                        |
-| [INLONG-8661](https://github.com/apache/inlong/issues/8661) | [Bug][DashBoard] DatabaseWhiteList is required which is inconsistent with tips                                                  |
-| [INLONG-8624](https://github.com/apache/inlong/issues/8624) | [Bug][Dashboard] Tenant Management Search Tenant Exceptions                                                                     |
-| [INLONG-8621](https://github.com/apache/inlong/issues/8621) | [Feature][Dashboard] Approval management supports approval data synchronization                                                 |
-| [INLONG-8575](https://github.com/apache/inlong/issues/8575) | [Improve][Dashboard] Tenant management query optimization                                                                       |
-| [INLONG-8560](https://github.com/apache/inlong/issues/8560) | [Bug][Dashboard] No username and password when configuring hive.                                                                |
-| [INLONG-8548](https://github.com/apache/inlong/issues/8548) | [Feature][Dashboard] Data access supports displaying transmission delay                                                         |
-| [INLONG-8546](https://github.com/apache/inlong/issues/8546) | [Bug][Dashboard] Inlong group resource details display error good first issue                                                   |
-| [INLONG-8512](https://github.com/apache/inlong/issues/8512) | [Bug][Dashboard] Create tube consumer failed when selecting topic 1.9.x/bugfix                                                  |
-| [INLONG-8502](https://github.com/apache/inlong/issues/8502) | [Bug][Dashboard] Query data preview interface exception                                                                         |
-| [INLONG-8500](https://github.com/apache/inlong/issues/8500) | [Bug][Dashboard] Fix stream data preview url error                                                                              |
-| [INLONG-8008](https://github.com/apache/inlong/issues/8008) | [Improve][Dashboard] Add default icon for different data nodes good first issue                                                 |
+| [INLONG-4972](https://github.com/apache/inlong/issues/4972) | [Feature][TubeMQ] Add TubeMQ Command Tools stage/roadmap                                                                        |
+| [INLONG-8903](https://github.com/apache/inlong/issues/8903) | [Bug][TubeMQ][Sort] int64 not recognized by the compiler and Missing @Override annotations                                      |
+| [INLONG-8871](https://github.com/apache/inlong/issues/8871) | [Improve][TubeMQ] Use an error code in checkMessageAndStatus() to return the check result instead of throwing an exception      |
+| [INLONG-8812](https://github.com/apache/inlong/issues/8812) | [Improve][Tubemq] Missing parameter                                                                                             |
+| [INLONG-8793](https://github.com/apache/inlong/issues/8793) | [INLONG-8791][TubeMQ] Tubemq-client-go lacks log level configuration API                                                        |
+| [INLONG-8768](https://github.com/apache/inlong/issues/8768) | [Improve][TubeMQ] Adding restart-manager.sh for inlong-tubemq-manager                                                           |
+| [INLONG-8720](https://github.com/apache/inlong/issues/8720) | [Improve][TubeMQ] Some unused return params in WebParamaterUtils                                                                |
+| [INLONG-8717](https://github.com/apache/inlong/issues/8717) | [Bug][TubeMQ] Display wrong response message in TubeMQ master web panel                                                         |
+| [INLONG-8716](https://github.com/apache/inlong/issues/8716) | [Bug][TubeMQ] set error code 0 when it works                                                                                    |
+| [INLONG-8701](https://github.com/apache/inlong/issues/8701) | [Improve][TubeMQ] Master dashboard respond always true when some operation complete                                             |
 
 ### Other
 |                            ISSUE                            | Summary                                                                                                                         |
@@ -263,3 +268,6 @@ We also provide <code>SHA-512</code> checksums for every release file. After you
 | [INLONG-8683](https://github.com/apache/inlong/issues/8683) | [Improve][Security] OutOfMemoryError for large multipart without filename in Eclipse Jetty                                      |
 | [INLONG-8682](https://github.com/apache/inlong/issues/8682) | [Improve][Security] Guava vulnerable to insecure use of temporary directory                                                     |
 | [INLONG-8681](https://github.com/apache/inlong/issues/8681) | [Improve][Security] netty-handler SniHandler 16MB allocation                                                                    |
+| [INLONG-8934](https://github.com/apache/inlong/issues/8934) | [Feature][Distribution] Add Iceberg connectors into the bundle                                                                  |
+| [INLONG-8942](https://github.com/apache/inlong/issues/8942) | [Improve][Distribution]Support to merge all jar file of multiple modules in order to reduce version package size                |
+| [INLONG-8965](https://github.com/apache/inlong/issues/8965) | [Improve][Doc] Update the description for swagger API                                                                           |
