@@ -7,7 +7,7 @@ import {siteVariables} from '../../version';
 
 ## 概览
 
-`SQLServer Load` 节点支持将数据写入 MySQL 数据库。 本文档介绍如何设置 SQLServer Load 节点以对 SQLServer 数据库运行 SQL 查询。
+`SQLServer Load` 节点支持将数据写入 SQLServer 数据库。 本文档介绍如何设置 SQLServer Load 节点以对 SQLServer 数据库运行 SQL 查询。
 
 ## 支持的版本
 
@@ -36,19 +36,19 @@ import {siteVariables} from '../../version';
 
 ```sql
 
--- MySQL Extract 节点
-CREATE TABLE `mysql_extract_table`(
-  PRIMARY KEY (`id`) NOT ENFORCED,
-  `id` BIGINT,
-  `name` STRING,
-  `age` INT
+-- SQLServer extract node
+CREATE TABLE `sqlserver_extract_table`(
+      PRIMARY KEY (`id`) NOT ENFORCED,
+      `id` BIGINT,
+      `name` STRING,
+      `age` INT
 ) WITH (
-  'connector' = 'mysql-cdc-inlong',
-  'url' = 'jdbc:mysql://localhost:3306/read',
-  'username' = 'inlong',
-  'password' = 'inlong',
-  'table-name' = 'user'
-)
+      'connector' = 'sqlserver-cdc-inlong',
+      'url' = 'jdbc:sqlserver://localhost:1433/read',
+      'username' = 'inlong',
+      'password' = 'inlong',
+      'table-name' = 'dbo.user'
+      )
 
 -- SQLServer Load 节点
 CREATE TABLE `sqlserver_load_table`(
