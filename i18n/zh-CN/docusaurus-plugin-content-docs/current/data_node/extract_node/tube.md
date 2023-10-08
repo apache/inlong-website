@@ -45,9 +45,9 @@ Flink SQL> CREATE TABLE tube_extract_node (
      ) WITH (
      'connector' = 'tubemq',
      'topic' = 'topicName',
-     'masterRpc' = 'rpcUrl', -- 127.0.0.1:8715
+     'master.rpc' = 'rpcUrl', -- 127.0.0.1:8715
      'format' = 'json',
-     'groupId' = 'groupName');
+     'group.id' = 'groupName');
   
 -- Read data from tube_extract_node
 Flink SQL> SELECT * FROM tube_extract_node;
