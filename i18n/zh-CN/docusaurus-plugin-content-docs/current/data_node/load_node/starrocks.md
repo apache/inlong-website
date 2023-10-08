@@ -202,7 +202,8 @@ Flink SQL> CREATE TABLE cdc_starrocks_sink (
     >  'table.identifier' = 'cdc.cdc_starrocks_sink',
     >  'username' = 'username',
     >  'password' = 'password',
-    >  'sink.properties.format' = 'json'
+    >  'sink.properties.format' = 'json',
+    >  'sink.properties.strip_outer_array' = 'true'
     > );
 [INFO] Execute statement succeed.
 
