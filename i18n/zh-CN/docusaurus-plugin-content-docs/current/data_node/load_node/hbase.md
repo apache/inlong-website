@@ -56,16 +56,16 @@ CREATE TABLE hbase_load_node (
 
 -- 使用 ROW(...) 构造函数构造列族和写数据到 HBase 表。
 -- 假设表"T"的 schema [rowkey, f1q1, f2q2, f2q3, f3q4, f3q5, f3q6]
-INSERT INTO hTable
+INSERT INTO hbase_load_node
 SELECT rowkey, ROW(f1q1), ROW(f2q2, f2q3), ROW(f3q4, f3q5, f3q6) FROM T;
 
 -- 从 HBase 表中扫描数据
-SELECT rowkey, family1, family3.q4, family3.q6 FROM hTable;
+SELECT rowkey, family1, family3.q4, family3.q6 FROM hbase_load_node;
 
 -- 将 HBase 表临时连接为维度表
 SELECT * FROM myTopic
-LEFT JOIN hTable FOR SYSTEM_TIME AS OF myTopic.proctime
-ON myTopic.key = hTable.rowkey;
+LEFT JOIN hbase_load_node FOR SYSTEM_TIME AS OF myTopic.proctime
+ON myTopic.key = hbase_load_node.rowkey;
 ```
 
 ### InLong Dashboard 用法
