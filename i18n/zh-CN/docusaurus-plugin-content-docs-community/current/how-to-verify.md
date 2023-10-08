@@ -49,7 +49,7 @@ for i in *.tar.gz; do echo $i; gpg --verify $i.asc $i ; done
 - 单测是否能够跑通
 
 :::note
-可以通过 `mvn clean package install` 检查编译和单测，如果编译失败，先清理掉本地仓库。
+可以通过 `mvn clean package install -DskipTests && mvn test` 检查编译和单测，如果编译失败，先清理掉本地仓库。
 :::
 
 ### 检查二进制包

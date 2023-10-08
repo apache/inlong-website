@@ -49,7 +49,7 @@ Unzip `apache-inlong-${release_version}-src.tar.gz` and check the following:
 - Whether the single test can run through
 
 :::note
-You can check the compilation and unit test through `mvn clean package install`. If the compilation fails, clean up the local warehouse first.
+You can check the compilation and UTs through `mvn clean package install -DskipTests && mvn test`. If the compilation fails, clean up the local repository first.
 :::
 
 ### Check binary packages
