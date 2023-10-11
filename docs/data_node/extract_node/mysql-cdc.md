@@ -74,9 +74,9 @@ When an initial consistent snapshot is made for large databases, your establishe
 
 :::caution
 If you use MySQL with the version above 8.0 with SSL mode disable, you should try one of these to make connector work normally:
-- giving RSA of server when connecting.  
-- enable `allowPublicKeyRetrieval`. (Maybe cause MITM)  
-- using MySQL native password mode. (Do not recommend this for safety reason)  
+- Giving RSA of server when connecting  
+- Enable `allowPublicKeyRetrieval` (Maybe cause MITM)  
+- Using MySQL native password mode (Do not recommend this for safety reason)  
 :::
 
 ## How to create a MySQL Extract Node
