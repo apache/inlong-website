@@ -9,11 +9,11 @@ import {siteVariables} from '../../version';
 
 `Redis Load` 节点支持将数据写入 Redis 。
 
-### data-type
+### Data Type
 
 详细见：[Redis数据类型](https://redis.io/topics/data-types-intro)
 
-#### PLAIN
+#### Plain
 
 | c1     | c2  | c3  | c4  | c5  | c6  | c7  | 
 |--------|-----|-----|-----|-----|-----|-----|
@@ -21,41 +21,41 @@ import {siteVariables} from '../../version';
 
 Redis 字符串命令用于管理 Redis 中的字符串值。
 
-第一个元素是 Redis 行键，必须是字符串类型，其余字段('c2' ~ 'c6')将被序列化为一个值并放入 Redis 中。
+第一个元素是 Redis 行键，必须是字符串类型，其余字段 ('c2' ~ 'c6') 将被序列化为一个值并放入 Redis 中。
 
-#### HASH
+#### Hash
 
 Redis Hash 是一种数据类型，表示字符串字段和字符串之间的映射。其有两个成员：  
-- Redis哈希字段  
-- Redis哈希值  
+- Redis 哈希字段  
+- Redis 哈希值  
 
-#### SET
+#### Set
 
-Redis SET 是简单的字符串列表，按插入顺序排序。你可以在 Redis SET 的头部或尾部添加元素。
+Redis SET 是简单的字符串列表，按插入顺序排序。你可以在 Redis Set 的头部或尾部添加元素。
 
-#### BITMAP
+#### BitMap
 
 BITMAP 不是一种实际的数据类型，而是在 String 对象上定义的一组面向 Bit 的类型。由于字符串是 binary safe blobs，其最大长度为512 MB, 它们适合设置多达 2^32 个不同的 Bit。
 
 ### SchemaMappingMode
 
-#### DYNAMIC
+#### Dynamic
 
 Dynamic 模式映射 java.util.map 到 RedisDataType，该模式下有两个成员：  
 - Redis key
-- java.util。Map, 它将被迭代，其中键为 Redis key，值为 Redis value  
+- java.util.Map, 它将被迭代，其中键为 Redis key，值为 Redis value  
 
-#### STATIC_PREFIX_MATCH
+#### Static Prefix Match
 
-其中至少有两个字段，第一个成员是redis key，第二个字段中的每个字段代表一个 Redis value
+其中至少有两个字段，第一个成员是 Redis key，第二个字段中的每个字段代表一个 Redis value
 
 ```shell
 key, field, value1, value2, value3, [value]...
 ```
 
-#### STATIC_KV_PAIR;
+#### Static KV Pair
 
-其有两个字段，第一个字段是key，和其他字段是键值对
+其有两个字段，第一个字段是 key ，和其他字段是键值对
 
 ```shell
  key, field1, value1,field2,value2,field3,value3,[field,value]...
@@ -63,9 +63,9 @@ key, field, value1, value2, value3, [value]...
 
 ### SQL demo
 
-#### PLAIN
+#### Plain
 
-> Plain只支持 STATIC_PREFIX_MATCH 模式
+> Plain 只支持 Static Prefix Match 模式
 
 ```sql
 CREATE TABLE sink (
@@ -89,15 +89,15 @@ CREATE TABLE sink (
 );
 ```
 
-#### HASH with PREFIX_MATCH
+#### Hash with Prefix Match
 
 | c1     | c2            | c3  | c4  | c5  | c6  | c7  | 
 |--------|---------------|-----|-----|-----|-----|-----|
 | rowKey | field: String |     |     |     |     |     |
 
 第一个元素是 Redis Key，必须是字符串类型  
-第二个元素是哈希数据类型中的 Redis字段名  
-其余字段(' c2 ' ~ ' c7 ')将被序列化为一个值并放入 Redis 中
+第二个元素是哈希数据类型中的 Redis 字段名  
+其余字段 (' c2 ' ~ ' c7 ') 将被序列化为一个值并放入 Redis 中
 
 ```sql
 CREATE TABLE sink (
@@ -121,15 +121,15 @@ CREATE TABLE sink (
 );
 ```
 
-#### HASH with STATIC_KV_PAIR
+#### Hash with Static KV Pair
 
 | c1     | c2             | c3             | c4              | c5             | c6              | c7             | 
 |--------|----------------|----------------|-----------------|----------------|-----------------|----------------|
 | rowKey | field1: String | value 1:String | field 2: String | value 2:String | field 3: String | value 3:String |
 
-第一个元素是Redis 行键，必须是字符串类型。
-奇数元素(' c2 ' / ' c4 ' / ' c6 ')是哈希数据类型中的Redis字段名，必须是字符串类型。
-偶数元素(' c3 ' / ' c5 ' / ' c7 ')是哈希数据类型中的Redis字段值，必须是字符串类型。
+第一个元素是 Redis 行键，必须是字符串类型。
+奇数元素 (' c2 ' / ' c4 ' / ' c6 ') 是哈希数据类型中的 Redis 字段名，必须是字符串类型。
+偶数元素 (' c3 ' / ' c5 ' / ' c7 ') 是哈希数据类型中的 Redis 字段值，必须是字符串类型。
 
 ```sql
 CREATE TABLE sink (
@@ -155,14 +155,14 @@ CREATE TABLE sink (
 );
 ```
 
-#### HASH with DYNAMIC
+#### Hash with Dynamic
 
 | c1     | c2            | 
 |--------|---------------|
 | rowKey | fieldValueMap |
 
 第一个元素是 Redis 行键，必须是字符串类型。
-第二个元素必须是 Map<String,String>, 其中键是fieldName，值是fieldValue。
+第二个元素必须是 Map<String,String>, 其中键是 fieldName ，值是 fieldValue。
 
 ```sql
 CREATE TABLE sink (
@@ -185,15 +185,15 @@ CREATE TABLE sink (
 )"
 ```
 
-#### BITMAP with STATIC_KV_PAIR
+#### BitMap with Static KV Pair
 
 | c1     | c2           | c3              | c4            | c5              | c6            | c7              | 
 |--------|--------------|-----------------|---------------|-----------------|---------------|-----------------|
 | rowKey | field1: Long | value 1:Boolean | field 2: Long | value 2:Boolean | field 3: Long | value 3:Boolean |
 
-第一个元素是Redis行键，必须是字符串类型。
-奇数元素(' c2 ' / ' c4 ' / ' c6 ')是位图数据类型中的Redis偏移量，必须是Long类型。
-偶数元素(' c3 ' / ' c5 ' / ' c7 ')是位图数据类型中的Redis值，必须是布尔类型。
+第一个元素是 Redis 行键，必须是字符串类型。
+奇数元素 (' c2 ' / ' c4 ' / ' c6 ') 是位图数据类型中的 Redis 偏移量，必须是 Long 类型。
+偶数元素 (' c3 ' / ' c5 ' / ' c7 ') 是位图数据类型中的 Redis 值，必须是布尔类型。
 
 ```sql
 CREATE TABLE sink (

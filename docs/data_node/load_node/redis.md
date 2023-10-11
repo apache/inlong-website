@@ -9,11 +9,11 @@ import {siteVariables} from '../../version';
 
 `Redis Load` Node supports writing data to redis.
 
-### data-type
+### Data Type
 
 See detail: [Redis Data Type](https://redis.io/topics/data-types-intro)
 
-#### PLAIN
+#### Plain
 
 | c1     | c2  | c3  | c4  | c5  | c6  | c7  | 
 |--------|-----|-----|-----|-----|-----|-----|
@@ -23,30 +23,30 @@ Redis strings commands are used for managing string values in Redis
 
 The first element is Redis row key,must be string type, and the remaining fields(`c2`~`c6`) will be serialized into one value and put into Redis.
 
-#### HASH
+#### Hash
 
 * A Redis hash is a data type that represents a mapping between a string field and a string
   value. There are two members in hash DataType:
 - Redis Hash  
 - Redis Hash value  
 
-#### SET
+#### Set
 
 Redis SET are simply lists of strings, sorted by insertion order. You can add elements in Redis SET in the head or the tail of the list.
 
-#### BITMAP
+#### BitMap
 
-Bitmaps are not an actual data type, but a set of bit-oriented operations defined on the String type.Since strings are binary safe blobs and their maximum length is 512 MB, they are suitable to set up to 2^32 different bits.  
+BitMaps are not an actual data type, but a set of bit-oriented operations defined on the String type.Since strings are binary safe blobs and their maximum length is 512 MB, they are suitable to set up to 2^32 different bits.  
 
 ### SchemaMappingMode
 
-#### DYNAMIC
+#### Dynamic
 
 The DYNAMIC mode witch mapping a java.util.Map to RedisDataType. There are two members in DYNAMIC mode:  
 - Redis key
 - java.util.Map object, witch will be iterated, the entry key is redis key, and the entry value is redis value.  
 
-#### STATIC_PREFIX_MATCH
+#### Static Prefix Match
 
 The are at least two fields, the first member is redis key, and each field from the second field represents a redis value.  
 
@@ -54,7 +54,7 @@ The are at least two fields, the first member is redis key, and each field from 
 key, field, value1, value2, value3, [value]...
 ```
 
-#### STATIC_KV_PAIR;
+#### Static KV Pair
 
 There are two fields, the first field is key, and the other fields are pairs of field and value.  
 
@@ -62,9 +62,9 @@ There are two fields, the first field is key, and the other fields are pairs of 
  key, field1, value1,field2,value2,field3,value3,[field,value]...
 ```
 
-### SQL demo
+### SQL Demo
 
-#### PLAIN
+#### Plain
 
 > Plain only support STATIC_PREFIX_MATCH schema mapping mode
 
@@ -90,7 +90,7 @@ CREATE TABLE sink (
 );
 ```
 
-#### HASH with PREFIX_MATCH
+#### Hash with Prefix Match
 
 | c1     | c2            | c3  | c4  | c5  | c6  | c7  | 
 |--------|---------------|-----|-----|-----|-----|-----|
@@ -122,7 +122,7 @@ CREATE TABLE sink (
 );
 ```
 
-#### HASH with STATIC_KV_PAIR
+#### Hash with Static KV Pair
 
 | c1     | c2             | c3             | c4              | c5             | c6              | c7             | 
 |--------|----------------|----------------|-----------------|----------------|-----------------|----------------|
@@ -156,7 +156,7 @@ CREATE TABLE sink (
 );
 ```
 
-#### HASH with DYNAMIC
+#### Hash with dynamic
 
 | c1     | c2            | 
 |--------|---------------|
@@ -186,7 +186,7 @@ CREATE TABLE sink (
 )"
 ```
 
-#### BITMAP with STATIC_KV_PAIR
+#### BitMap with static KV pair
 
 | c1     | c2           | c3              | c4            | c5              | c6            | c7              | 
 |--------|--------------|-----------------|---------------|-----------------|---------------|-----------------|
