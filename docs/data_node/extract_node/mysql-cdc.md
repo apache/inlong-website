@@ -72,6 +72,12 @@ When an initial consistent snapshot is made for large databases, your establishe
 - `interactive_timeout`: The number of seconds the server waits for activity on an interactive connection before closing it. See [MySQL documentations](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_interactive_timeout).
 - `wait_timeout`: The number of seconds the server waits for activity on a noninteractive connection before closing it. See [MySQL documentations](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_wait_timeout).
 
+### Attention In No SSL Mode
+
+If you use MySQL with the version above 8.0, you should pay attention to your SSL settings.  
+If you use default password mode, and disable SSL, you should enable `allowPublicKeyRetrieval`(Maybe cause MITM), or give RSA of server when connecting.  
+Another solution is using MySQL native password mode, however, we do not recommend this for safety reason.  
+
 ## How to create a MySQL Extract Node
 
 ### Usage for SQL API
