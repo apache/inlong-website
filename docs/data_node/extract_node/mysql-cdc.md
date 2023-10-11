@@ -73,9 +73,10 @@ When an initial consistent snapshot is made for large databases, your establishe
 - `wait_timeout`: The number of seconds the server waits for activity on a noninteractive connection before closing it. See [MySQL documentations](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_wait_timeout).
 
 :::caution
-If you use MySQL with the version above 8.0, you should pay attention to your SSL settings.  
-If you use default password mode, and disable SSL, you should enable `allowPublicKeyRetrieval`(Maybe cause MITM), or give RSA of server when connecting.  
-Another solution is using MySQL native password mode, however, we do not recommend this for safety reason.  
+If you use MySQL with the version above 8.0 with SSL mode disable, you should try one of these to make connector work normally:
+- giving RSA of server when connecting.  
+- enable `allowPublicKeyRetrieval`. (Maybe cause MITM)  
+- using MySQL native password mode. (Do not recommend this for safety reason)  
 :::
 
 ## How to create a MySQL Extract Node
