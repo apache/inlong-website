@@ -70,6 +70,13 @@ mysql> FLUSH PRIVILEGES;
 - `interactive_timeout`：服务器在关闭交互式连接之前等待其活动的秒数。请参阅 [MySQL 文档](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_interactive_timeout)。
 - `wait_timeout`：服务器在关闭非交互式连接之前等待其活动的秒数。请参阅 [MySQL 文档](https://dev.mysql.com/doc/refman/8.0/en/server-system-variables.html#sysvar_wait_timeout)。
 
+:::caution
+如果你使用的是 MySQL 8.0 及以上版本，你应该尝试下述操作中的一条以使得你的 Connector 工作正常：  
+- 连接时手动指定服务器 RSA 公钥  
+- 启用 `allowPublicKeyRetrieval` (可能会导致中间人攻击)   
+- 使用 MySQL native 密码模式 (因为安全原因，我们不推荐这个操作)  
+:::
+
 ## 如何创建一个 MySQL Extract 节点
 
 ### SQL API 用法
