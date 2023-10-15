@@ -58,16 +58,16 @@ CREATE TABLE hbase_load_node (
 
 -- use ROW(...) construction function construct column families and write data into the HBase table.
 -- assuming the schema of "T" is [rowkey, f1q1, f2q2, f2q3, f3q4, f3q5, f3q6]
-INSERT INTO hTable
+INSERT INTO hbase_load_node
 SELECT rowkey, ROW(f1q1), ROW(f2q2, f2q3), ROW(f3q4, f3q5, f3q6) FROM T;
 
 -- scan data from the HBase table
-SELECT rowkey, family1, family3.q4, family3.q6 FROM hTable;
+SELECT rowkey, family1, family3.q4, family3.q6 FROM hbase_load_node;
 
 -- temporal join the HBase table as a dimension table
 SELECT * FROM myTopic
-LEFT JOIN hTable FOR SYSTEM_TIME AS OF myTopic.proctime
-ON myTopic.key = hTable.rowkey;
+LEFT JOIN hbase_load_node FOR SYSTEM_TIME AS OF myTopic.proctime
+ON myTopic.key = hbase_load_node.rowkey;
 ```
 
 ### Usage for InLong Dashboard
