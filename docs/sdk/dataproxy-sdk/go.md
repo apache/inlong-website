@@ -123,31 +123,31 @@ Some common errors:
 
 | Option                      | Default value                | Desc                                                         | Optional                                                     |
 | --------------------------- | ---------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| WithGroupID()               | ""                           | Sets the Group ID.                                            | No                                                           |
-| WithURL()                   | ""                           | Sets the Manager URL.                                | No                                                           |
-| WithUpdateInterval()        | 5m                           | Sets the update interval of service discoery.                 | Yes                                                           |
-| WithConnTimeout()           | 3000ms                       | Sets the connection timeout.                                  | Yes                                                           |
-| WriteBufferSize             | 16M                          | Sets the write buffer size.                                   | Yes                                                           |
-| WithReadBufferSize          | 16M                          | Sets the read buffer size.                                    | Yes                                                           |
-| WithSocketSendBufferSize    | 16M                          | Sets the socket send buffer size.                             | Yes                                                           |
-| WithSocketRecvBufferSize    | 16M                          | Sets the socket receive buffer size.                          | Yes                                                           |
-| WithBufferPool              | nil                          | Sets the buffer pool to use.                                  | Yes, if the application has one, use the same one is recommended.                                     |
-| WithBytePool                | nil                          | Sets the byte pool to use.                                   | Yes, if the application has one, use the same one is recommended.                                    |
-| WithBufferPoolSize          | 409600                       | Sets the buffer pool size.                                   | Yes                                                           |
-| WithBytePoolSize            | 409600                       | Sets the byte pool size.                                     | Yes                                                           |
-| WithBytePoolWidth           | equals to BatchingMaxSize    | Sets the byte pool width.                                    | Yes                                                           |
-| WithLogger                  | std.out                      | Sets the debug logger.                                       | Yes, but the default one is not recommended, as it has no log levels control.                       |
+| WithGroupID()               | ""                           | Sets the Group ID.                                           | No                                                           |
+| WithURL()                   | ""                           | Sets the Manager URL.                                        | No                                                           |
+| WithUpdateInterval()        | 5m                           | Sets the update interval of service discoery.                | Yes                                                          |
+| WithConnTimeout()           | 3000ms                       | Sets the connection timeout.                                 | Yes                                                          |
+| WriteBufferSize             | 8M                           | Sets the write buffer size.                                  | Yes                                                          |
+| WithReadBufferSize          | 1M                           | Sets the read buffer size.                                   | Yes                                                          |
+| WithSocketSendBufferSize    | 8M                           | Sets the socket send buffer size.                            | Yes                                                          |
+| WithSocketRecvBufferSize    | 1M                           | Sets the socket receive buffer size.                         | Yes                                                          |
+| WithBufferPool              | nil                          | Sets the buffer pool to use.                                 | Yes, if the application has one, use the same one is recommended. |
+| WithBytePool                | nil                          | Sets the byte pool to use.                                   | Yes, if the application has one, use the same one is recommended. |
+| WithBufferPoolSize          | 409600                       | Sets the buffer pool size.                                   | Yes                                                          |
+| WithBytePoolSize            | 409600                       | Sets the byte pool size.                                     | Yes                                                          |
+| WithBytePoolWidth           | equals to BatchingMaxSize    | Sets the byte pool width.                                    | Yes                                                          |
+| WithLogger                  | std.out                      | Sets the debug logger.                                       | Yes, but the default one is not recommended, as it has no log levels control. |
 | WithMetricsName             | "dataproxy-go"               | Sets the metrics name of this client.                        | Yes, if there are more than one client instance in one application, the metrics names must be different. |
-| WithMetricsRegistry         | prometheus.DefaultRegisterer | Sets the metrics registry.                                               | Yes                                                           |
-| WithWorkerNum               | 8                            | Sets the worker number.                                               | Yes                                                           |
-| WithSendTimeout             | 30000ms                      | Sets the send timeout.                                                 | Yes                                                           |
-| WithMaxRetries              | 2                            | Sets the max retry count.                                             | Yes                                                           |
-| WithBatchingMaxPublishDelay | 10ms                         | Sets how long a message to wait for batching.        | Yes                                                           |
-| WithBatchingMaxMessages     | 10                           | Sets the message number of a batch.                         | Yes                                                           |
-| WithBatchingMaxSize         | 4K                           | Sets the batch size in Bytes of a batch.                     | Yes                                                           |
-| WithMaxPendingMessages      | 409600                       | Sets the queue length of each worker.                        | Yes                                                           |
-| WithBlockIfQueueIsFull      | false                        | Sets if block if the queue is full.                          | Yes                                                           |
-| WithAddColumns              | nil                          | Sets the added columns to all the messages, DataProxy supports add addtional columns at specific positions to all messages，for example:\_\_addcol1\_\_worldid=xxx will add a column named 'worldid' at position 1 and its value is 'xxx'. | Yes                                                           |
+| WithMetricsRegistry         | prometheus.DefaultRegisterer | Sets the metrics registry.                                   | Yes                                                          |
+| WithWorkerNum               | 8                            | Sets the worker number.                                      | Yes                                                          |
+| WithSendTimeout             | 30000ms                      | Sets the send timeout.                                       | Yes                                                          |
+| WithMaxRetries              | 2                            | Sets the max retry count.                                    | Yes                                                          |
+| WithBatchingMaxPublishDelay | 20ms                         | Sets how long a message to wait for batching.                | Yes                                                          |
+| WithBatchingMaxMessages     | 50                           | Sets the message number of a batch.                          | Yes                                                          |
+| WithBatchingMaxSize         | 40K                          | Sets the batch size in Bytes of a batch.                     | Yes                                                          |
+| WithMaxPendingMessages      | 204800                       | Sets the queue length of each worker.                        | Yes                                                          |
+| WithBlockIfQueueIsFull      | false                        | Sets if block if the queue is full.                          | Yes                                                          |
+| WithAddColumns              | nil                          | Sets the added columns to all the messages, DataProxy supports add addtional columns at specific positions to all messages，for example:\_\_addcol1\_\_worldid=xxx will add a column named 'worldid' at position 1 and its value is 'xxx'. | Yes                                                          |
 
 options refers to [options.go](https://github.com/apache/inlong/tree/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-golang/dataproxy/opitons.go)
 
