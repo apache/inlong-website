@@ -31,18 +31,18 @@ public class InlongSDKTest {
     static String inlongStreamId = "***";
     static String username = "***";
     static String password = "***";
-    //集群tag: 不填默认为all
+    //dataproxy cluster-tag: default: all
     static String netTag = "";
-    //本地配置文件存放路径
+    //Local configuration file storage path
     static String configBasePath = "";
-    //Manager地址
+    //Manager address
     static String inLongManagerAddr = "127.0.0.1";
-    //Manager端口号默认都是8083
+    //Manager port default: 8083
     static String inLongManagerPort = "8083";
-    //是否内网访问，默认填false
+    //Whether to access intranet，defalut: false
     static boolean isLocalVisit = false;
-    //是否从本地文件获取DataProxy节点，容灾措施，当连接不到manager可以使用该参数
-    static boolean isReadProxyIPFromLocal = true;
+    //Whether to obtain the DataProxy node from a local file. This parameter can be used when the manager cannot be connected. defalut: false
+    static boolean isReadProxyIPFromLocal = false;
     //inlong msgType
     static int msgType = 7;
     static String messageBody = "test";
