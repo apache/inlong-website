@@ -21,50 +21,72 @@ The library of the SDK need to be imported into the project before using the SDK
 `}
 </code></pre>
 
-## Data report process
-After import the SDK, you can instantiate a [MessageSender](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/MessageSender.java) object, call sync(`sendMessage()`) or async(`asyncSendMessage()`) interface to report single or multiple(batch) data. see [Send Demo](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/example/TcpClientExample.java). 
-The overall process includes the following three steps：
-
-### Initialize SDK
+## Send data using tcp protocol
 From the demo code, we can see that the client initialization is mainly done in the `getMessageSender()` function:
 ```java
-public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String netTag, String dataProxyGroup, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
-    ProxyClientConfig dataProxyConfig = null;
-    DefaultMessageSender messageSender = null;
-    try {
-        // Initialize client configuration.  'test', '123456' is username and password, which need to be replaced according to the environment configuration in actual use.
-        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), dataProxyGroup, netTag, "test", "123456");
-        // Set the local save path of the configuration. This setting is optional. By default, the SDK will create a "/.inlong/" directory under the current user's working directory to store the configuration.
-		if (StringUtils.isNotEmpty(configBasePath)) {
-            dataProxyConfig.setConfStoreBasePath(configBasePath);
-        }
-		// Set whether to use the local saved configuration or not. This setting is optional. By default, do not use. 
-        dataProxyConfig.setReadProxyIPFromLocal(isReadProxyIPFromLocal);
-		// Initialize MessageSender object, if there is an exception, an exception will be thrown.
-        messageSender = DefaultMessageSender.generateSenderByClusterId(dataProxyConfig);
-        // Set message type to send. This setting is optional. By default, send data in binary format.
-        messageSender.setMsgtype(msgType);
-    } catch (Exception e) {
-        logger.error("getMessageSender has exception e = {}", e);
-    }
-	// Return initialization result.
-    return messageSender;
-}
-```
+public class InlongSDKTest {
+    
+    static String localIP = "127.0.0.1";
+    static String inlongGroupId = "**";
+    static String inlongStreamId = "***";
+    static String username = "***";
+    static String password = "***";
+    //集群tag: 不填默认为all
+    static String netTag = "";
+    //本地配置文件存放路径
+    static String configBasePath = "";
+    //Manager地址
+    static String inLongManagerAddr = "127.0.0.1";
+    //Manager端口号默认都是8083
+    static String inLongManagerPort = "8083";
+    //是否内网访问，默认填false
+    static boolean isLocalVisit = false;
+    //是否从本地文件获取DataProxy节点，容灾措施，当连接不到manager可以使用该参数
+    static boolean isReadProxyIPFromLocal = true;
+    //inlong msgType
+    static int msgType = 7;
+    static String messageBody = "test";
 
-### Call the send interface to report data
-The SDK data send interface is thread safe, support send single or multiple messages by sync and async two ways. The following demo uses a single sync way to send, and the message does not contain property information:
-```java
-public void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId, String inlongStreamId, String messageBody, long dt) {
-    SendResult result = null;
-    try {
-        // Sends a single message in sync mode, and does not contain property information    
-        result = sender.sendMessage(messageBody.getBytes("utf8"), inlongGroupId, inlongStreamId,
-                0, String.valueOf(dt), 20, TimeUnit.SECONDS);
-    } catch (UnsupportedEncodingException e) {
-        e.printStackTrace();
+
+    public static void main(String[] args) {
+        DefaultMessageSender sender = getMessageSender(localIP, inLongManagerAddr, inLongManagerPort, netTag,
+                inlongGroupId, isLocalVisit, isReadProxyIPFromLocal, configBasePath, msgType);
+        sendTcpMessage(sender, inlongGroupId, inlongStreamId, messageBody, System.currentTimeMillis());
     }
-    logger.info("messageSender {}", result);
+
+    private static DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort,
+            String netTag, String dataProxyGroup, boolean isLocalVisit, boolean isReadProxyIPFromLocal,
+            String configBasePath, int msgType) {
+        ProxyClientConfig dataProxyConfig = null;
+        DefaultMessageSender messageSender = null;
+        try {
+            dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr,
+                    Integer.valueOf(inLongManagerPort), dataProxyGroup, netTag, username, password);
+            if (StringUtils.isNotEmpty(configBasePath)) {
+                dataProxyConfig.setConfStoreBasePath(configBasePath);
+            }
+            dataProxyConfig.setReadProxyIPFromLocal(isReadProxyIPFromLocal);
+            messageSender = DefaultMessageSender.generateSenderByClusterId(dataProxyConfig);
+            messageSender.setMsgtype(msgType);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return messageSender;
+    }
+    /**
+    * The SDK data send interface is thread safe, support send single or multiple messages by sync and async two ways. The following demo uses a single sync way to send, and the message does not contain property information
+    */
+    private static void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId,
+            String inlongStreamId, String messageBody, long dt) {
+        SendResult result = null;
+        try {
+            result = sender.sendMessage(messageBody.getBytes("utf8"), inlongGroupId, inlongStreamId,
+                    0, String.valueOf(dt), 20, TimeUnit.SECONDS);
+            System.out.println(result);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+    }
 }
 ```
 
