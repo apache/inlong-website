@@ -51,7 +51,7 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
     return messageSender;
 }
 ```
-### ProxyClientConfig重要配置参数说明
+### 配置参数
 | 参数名 | 参数说明 | 默认值 |
 | ------ | ------ | -------|
 | inlongGroupId | inlongGroupId | 非NULL |
@@ -83,8 +83,8 @@ public void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId, St
 ### 关闭 SDK 
 Demo 里没有实现关闭操作，使用时我们需要调用MessageSender接口对象的close()函数关闭数据上报服务：
 
-# 注意事项
-- MessageSender接口对象是基于inlongGroupId进行初始化，因而每个MessageSender对象基于inlongGroupId区别使用，同一个进程内允许创建多个MessageSender对象；
+## 注意事项
+- `MessageSender` 接口对象是基于 `inlongGroupId` 进行初始化，因而每个 `MessageSender` 对象基于 `inlongGroupId` 区别使用，同一个进程内允许创建多个 `MessageSender` 对象；
 - SDK 封装了TCP、HTTP、UDP共三种不同的网络交互方式，并在[example](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/example)目录里给出了3种方式的不同示例（参考TcpClientExample.java，HttpClientExample.java，UdpClientExample.java实现），业务可以根据自身需要来初始化不同的MessageSender对象；
 - SDK 中包含了复杂的网络交互，使用时需要将 SDK 作为常驻服务对象来使用，避免同个进程中途频繁地初始化和关闭MessageSender对象（重复初始化和关闭会带来很大的资源开销，并且影响数据上报的时效性）；
 - SDK 不对发送失败的消息做重发处理，用户在使用 SDK 上报数据时遇到发送失败，业务要根据自身数据要求来决定是否重发消息，避免数据丢失。
