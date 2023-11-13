@@ -21,81 +21,70 @@ import {siteVariables} from '../../version';
 `}
 </code></pre>
 
-## 使用TCP协议发送消息
+## 数据上报流程
+引入 SDK 后，通过实例化一个[MessageSender](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/MessageSender.java)接口对象后，调用相关的同步（sendMessage()）或 异步（asyncSendMessage()）接口来完成单条或多条（批量）数据的上报任务。发送Demo可参考 [TcpClientExample.java](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/example/TcpClientExample.java)。
+整体流程包括以下三个步骤：
+
+### 初始化 SDK
 从Demo示例代码我们可以看到，客户端初始化主要是在 `getMessageSender()` 函数中完成：
 ```java
-public class InlongSDKTest {
-    
-    static String localIP = "127.0.0.1";
-    static String inlongGroupId = "**";
-    static String inlongStreamId = "***";
-    static String username = "***";
-    static String password = "***";
-    //集群tag 默认:all
-    static String netTag = "";
-    //本地配置文件存放路径
-    static String configBasePath = "";
-    //Manager地址
-    static String inLongManagerAddr = "127.0.0.1";
-    //Manager端口号 默认: 8083
-    static String inLongManagerPort = "8083";
-    //是否内网访问，默认: false
-    static boolean isLocalVisit = false;
-    //是否从本地文件获取DataProxy节点，容灾措施，当连接不到manager可以使用该参数,默认: false
-    static boolean isReadProxyIPFromLocal = false;
-    //inlong msgType
-    static int msgType = 7;
-    static String messageBody = "test";
-
-
-    public static void main(String[] args) {
-        DefaultMessageSender sender = getMessageSender(localIP, inLongManagerAddr, inLongManagerPort, netTag,
-                inlongGroupId, isLocalVisit, isReadProxyIPFromLocal, configBasePath, msgType);
-        sendTcpMessage(sender, inlongGroupId, inlongStreamId, messageBody, System.currentTimeMillis());
-    }
-
-    private static DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort,
-            String netTag, String dataProxyGroup, boolean isLocalVisit, boolean isReadProxyIPFromLocal,
-            String configBasePath, int msgType) {
-        ProxyClientConfig dataProxyConfig = null;
-        DefaultMessageSender messageSender = null;
-        try {
-            dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr,
-                    Integer.valueOf(inLongManagerPort), dataProxyGroup, netTag, username, password);
-            if (StringUtils.isNotEmpty(configBasePath)) {
-                dataProxyConfig.setConfStoreBasePath(configBasePath);
-            }
-            dataProxyConfig.setReadProxyIPFromLocal(isReadProxyIPFromLocal);
-            messageSender = DefaultMessageSender.generateSenderByClusterId(dataProxyConfig);
-            messageSender.setMsgtype(msgType);
-        } catch (Exception e) {
-            e.printStackTrace();
+public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String netTag, String inlongGroupId, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
+    ProxyClientConfig dataProxyConfig = null;
+    DefaultMessageSender messageSender = null;
+    try {
+        // 初始化客户端配置，其中“test”，“123456”是需要认证的用户名和密码，实际使用时需要根据环境配置进行更替
+        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), inlongGroupId, netTag, "test", "123456");
+		// 设置配置信息的本地保存路径，该设置可选，缺省情况下 SDK 会在当前用户工作目录下构造一个"/.inlong/"目录存储配置数据
+		if (StringUtils.isNotEmpty(configBasePath)) {
+            dataProxyConfig.setConfStoreBasePath(configBasePath);
         }
-        return messageSender;
+		// 设置是否允许使用本地保存的配置信息，该设置可选，缺省不启用
+        dataProxyConfig.setReadProxyIPFromLocal(isReadProxyIPFromLocal);
+		// 初始化MessageSender对象，异常将抛异常
+        messageSender = DefaultMessageSender.generateSenderByClusterId(dataProxyConfig);
+		// 设置 SDK 与DataProxy间消息发送的消息类型，该设置可选，缺省默认为7以二进制形式进行数据发送
+        messageSender.setMsgtype(msgType);
+    } catch (Exception e) {
+        logger.error("getMessageSender has exception e = {}", e);
     }
-    /**
-    * SDK 的数据发送接口时线程安全的，支持以同步或者异步模式发送单条或多条消息。Demo里采用的是单条同步消息发送，并且消息中不包含属性信息
-    */
-    private static void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId,
-            String inlongStreamId, String messageBody, long dt) {
-        SendResult result = null;
-        try {
-            result = sender.sendMessage(messageBody.getBytes("utf8"), inlongGroupId, inlongStreamId,
-                    0, String.valueOf(dt), 20, TimeUnit.SECONDS);
-            System.out.println(result);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        }
-    }
+	// 返回初始化结果
+    return messageSender;
 }
 ```
+### ProxyClientConfig重要配置参数说明
+| 参数名 | 参数说明 | 默认值 |
+| ------ | ------ | -------|
+| inlongGroupId | inlongGroupId | 非NULL |
+| inlongStreamId | inlongStreamId | 非NULL |
+| username | 用户名 | 非NULL|
+| password | 密码 | 非NULL|
+| isLocalVisit| 是否内网访问 | 默认：false|
+|isReadProxyIPFromLocal|是否从本地读取ProxyIp|默认：false|
+|netTag|DataProxy区域,可以获取指定地区tag|默认：""|
+
+### 调用发送接口进行数据上报
+SDK 的数据发送接口时线程安全的，支持以同步或者异步模式发送单条或多条消息。Demo里采用的是单条同步消息发送，并且消息中不包含属性信息：
+```java
+public void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId, String inlongStreamId, String messageBody, long dt) {
+    SendResult result = null;
+    try {
+        // 以同步模式发送单条消息，不携带属性信息
+        result = sender.sendMessage(messageBody.getBytes("utf8"), inlongGroupId, inlongStreamId,
+                0, String.valueOf(dt), 20, TimeUnit.SECONDS);
+    } catch (UnsupportedEncodingException e) {
+        e.printStackTrace();
+    }
+    logger.info("messageSender {}", result);
+}
+```
+
 大家还可以根据业务需要选择不同的发送接口进行数据上报，具体接口细节可以参考[MessageSender](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/MessageSender.java)接口文件中的定义，里面有详细的接口使用及参数定义介绍，这里不做额外说明。
 
 ### 关闭 SDK 
 Demo 里没有实现关闭操作，使用时我们需要调用MessageSender接口对象的close()函数关闭数据上报服务：
 
 # 注意事项
-- MessageSender接口对象是基于GroupID进行初始化，因而每个MessageSender对象基于GroupID区别使用，同一个进程内允许创建多个MessageSender对象；
+- MessageSender接口对象是基于inlongGroupId进行初始化，因而每个MessageSender对象基于GroupID区别使用，同一个进程内允许创建多个MessageSender对象；
 - SDK 封装了TCP、HTTP、UDP共三种不同的网络交互方式，并在[example](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/example)目录里给出了3种方式的不同示例（参考TcpClientExample.java，HttpClientExample.java，UdpClientExample.java实现），业务可以根据自身需要来初始化不同的MessageSender对象；
 - SDK 中包含了复杂的网络交互，使用时需要将 SDK 作为常驻服务对象来使用，避免同个进程中途频繁地初始化和关闭MessageSender对象（重复初始化和关闭会带来很大的资源开销，并且影响数据上报的时效性）；
 - SDK 不对发送失败的消息做重发处理，用户在使用 SDK 上报数据时遇到发送失败，业务要根据自身数据要求来决定是否重发消息，避免数据丢失。
