@@ -51,7 +51,7 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
     return messageSender;
 }
 ```
-### ProxyClientConfig  configuration  description
+### ProxyClientConfig  configuration
 | parameter name | Parameter Description | default value |
 | ------ | ------ | -------|
 | inlongGroupId | inlongGroupId | not null |
@@ -83,7 +83,7 @@ You can also choose different send interfaces to report data according to your b
 ### Close SDK 
 In Demo, there is no close operation. When in use, we can call the `close()` function of the MessageSender interface object to stop data reporting.
 
-# Warning
+## Warning
 - The `MessageSender` interface object is initialized based on the `inlongGroupId`, so each `MessageSender` object can be used differently based on the `inlongGroupId`, and multiple `MessageSender` objects can be created in the same process.
 - The SDK provides three different network interaction ways: TCP, HTTP, and UDP. Examples of these three ways are given in the [example](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/example) (refer to `TcpClientExample.java`, `HttpClientExample.java`, `UdpClientExample.java`), and the business can be customized according to its own needs to initialize different `MessageSender` object.
 - The SDK contains complex network interactions, `MessageSender` should be used as a resident object. Avoid frequent initialization and shutdown of `MessageSender` (frequent initialization and shutdown will have a large resource overhead and will affect the timeliness of data reporting).
