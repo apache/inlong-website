@@ -54,13 +54,13 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
 ### 配置参数
 | 参数名 | 参数说明 | 默认值 |
 | ------ | ------ | -------|
-| inlongGroupId | inlongGroupId | 非NULL |
-| inlongStreamId | inlongStreamId | 非NULL |
-| username | 用户名 | 非NULL|
-| password | 密码 | 非NULL|
-| isLocalVisit| 是否内网访问 | 默认：false|
-|isReadProxyIPFromLocal|是否从本地读取ProxyIp|默认：false|
-|netTag|DataProxy区域,可以获取指定地区tag|默认：""|
+| inlongGroupId | inlongGroupId | not null |
+| inlongStreamId | inlongStreamId | not null |
+| username | 用户名 |not null|
+| password | 密码 |not null|
+| isLocalVisit| 请求inlong Manager协议 |https: false , http: true|
+|isReadProxyIPFromLocal|是否从本地读取 DataProxy Ip|false|
+|netTag|DataProxy区域,可以获取指定地区tag|""|
 
 ### 调用发送接口进行数据上报
 SDK 的数据发送接口时线程安全的，支持以同步或者异步模式发送单条或多条消息。Demo里采用的是单条同步消息发送，并且消息中不包含属性信息：
