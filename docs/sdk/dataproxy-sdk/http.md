@@ -3,8 +3,27 @@ title: HTTP Report
 sidebar_position: 3
 ---
 
+## HTTP report process introduction
+InLong processes HTTP report through the DataProxy node. The data source regularly obtains the access point list from the Manager, then selects available HTTP DataProxy nodes from the access point list according to its own policies, and then uses the HTTP protocol for data production; due to the performance of HTTP report due to problems such as low proportion of valid data and easy loss of request messages, it is recommended that users use TCP to report data as much as possible. The overall HTTP report process is shown below:
+
+![](img/http_report.png)
+
+- Heartbeat report: DataProxy regularly reports heartbeats to the Manager, providing {IP, Port, Protocol, Load} information that the node has enabled access to;
+
+- Online node cache: Manager caches the heartbeat information reported by DataProxy, senses the available access nodes in the cluster, and the available reported access information;
+
+- Access point acquisition: HTTP SDK (the data source adopts HttpProxySender implemented by DataProxy-SDK, or the HTTP report SDK developed by itself according to the HTTP report protocol) regularly through "/inlong/manager/openapi/dataproxy/getIpList/{inlongGroupId}" The method obtains the available report access point list information corresponding to the currently reported groupId from the Manager;
+
+- Access point selection: HTTP SDK selects the DataProxy node to be reported according to the report node selection strategy;
+
+- Data report: HTTP SDK constructs a message according to the HTTP report protocol, sends a request message to the selected DataProxy node, and after receiving the response, performs operations such as whether to resend and output exceptions based on the response result;
+
+- Data acceptance: DataProxy checks the HTTP message, and returns a success response if it is accepted successfully, and forwards the message to the MQ cluster; if the message format or value does not meet the specifications, or the message processing fails, DataProxy returns a failure response, and the response carries the corresponding Error code and detailed error message.
+
+
 ## Create real-time synchronization task
 Create a task on the Dashboard or through the command line, and use `Auto Push` (autonomous push) as the data source type.
+
 
 ## Method 1: Call the interface to report (CURL)
 ```bash
