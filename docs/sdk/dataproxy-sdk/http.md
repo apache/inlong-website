@@ -3,23 +3,20 @@ title: HTTP Report
 sidebar_position: 3
 ---
 
-## HTTP report process introduction
-InLong processes HTTP report through the DataProxy node. The data source regularly obtains the access point list from the Manager, then selects available HTTP DataProxy nodes from the access point list according to its own policies, and then uses the HTTP protocol for data production; due to the performance of HTTP report due to problems such as low proportion of valid data and easy loss of request messages, it is recommended that users use TCP to report data as much as possible. The overall HTTP report process is shown below:
+## Introduction to the HTTP Reporting Process
+InLong processes HTTP report messages through DataProxy nodes：the reporting source periodically obtains the access point list from the Manager, and then selects available HTTP reporting nodes from the access point list based on its own strategy, after that uses the HTTP protocol for data production. The overall HTTP reporting process is illustrated in the following diagram:
 
 ![](img/http_report.png)
 
-- Heartbeat report: DataProxy regularly reports heartbeats to the Manager, providing {IP, Port, Protocol, Load} information that the node has enabled access to;
+- Heartbeat reporting: DataProxy periodically reports heartbeats to the Manager, providing information about the enabled access points, including {IP, Port, Protocol, Load}.
+- Online node caching: The Manager caches the heartbeat information reported by DataProxy, sensing the available access nodes in the cluster and the available reporting access information.
+- Access point acquisition: The HTTP SDK (either an HttpProxySender implemented by DataProxy-SDK or an HTTP reporting SDK developed according to the HTTP reporting protocol) periodically obtains the available reporting access point list information for the current groupId by calling the "/inlong/manager/openapi/dataproxy/getIpList/{inlongGroupId}" method from the Manager.
+- Access point selection: The HTTP SDK selects the DataProxy node for message reporting based on the reporting node selection strategy.
+- Data reporting: The HTTP SDK constructs the reporting message according to the HTTP reporting protocol, sends the request message to the selected DataProxy node, and performs actions such as resending or exception output based on the response result after receiving the response.
+- Data acceptance: DataProxy checks the HTTP message. If the message is successfully accepted, it returns a success response and forwards the message to the MQ cluster. If the message format or value does not meet the specifications, or if the message processing fails, DataProxy returns a failure response with the corresponding error code and detailed error information.
 
-- Online node cache: Manager caches the heartbeat information reported by DataProxy, senses the available access nodes in the cluster, and the available reported access information;
-
-- Access point acquisition: HTTP SDK (the data source adopts HttpProxySender implemented by DataProxy-SDK, or the HTTP report SDK developed by itself according to the HTTP report protocol) regularly through "/inlong/manager/openapi/dataproxy/getIpList/{inlongGroupId}" The method obtains the available report access point list information corresponding to the currently reported groupId from the Manager;
-
-- Access point selection: HTTP SDK selects the DataProxy node to be reported according to the report node selection strategy;
-
-- Data report: HTTP SDK constructs a message according to the HTTP report protocol, sends a request message to the selected DataProxy node, and after receiving the response, performs operations such as whether to resend and output exceptions based on the response result;
-
-- Data acceptance: DataProxy checks the HTTP message, and returns a success response if it is accepted successfully, and forwards the message to the MQ cluster; if the message format or value does not meet the specifications, or the message processing fails, DataProxy returns a failure response, and the response carries the corresponding Error code and detailed error message.
-
+Suggestion: 
+Due to the issues of low performance, low proportion of valid data, and the ease of losing request messages in HTTP reporting, it is recommended for businesses to prioritize using the TCP method for data reporting.
 
 ## Create real-time synchronization task
 Create a task on the Dashboard or through the command line, and use `Auto Push` (autonomous push) as the data source type.
