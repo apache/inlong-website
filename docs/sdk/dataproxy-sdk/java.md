@@ -60,7 +60,6 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
 | password | password | not null|
 |isLocalVisit| request inlong manager protocol | https: false , http: true|
 |isReadProxyIPFromLocal|whether to read DataProxy ip from local|false|
-|netTag|data proxy area, you can get the specified area tag|""|
 
 ### Call the send interface to report data
 The SDK data send interface is thread safe, support send single or multiple messages by sync and async two ways. The following demo uses a single sync way to send, and the message does not contain property information:

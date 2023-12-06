@@ -60,7 +60,6 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
 | password | 密码 |not null|
 | isLocalVisit| 请求inlong Manager协议 |https: false , http: true|
 |isReadProxyIPFromLocal|是否从本地读取 DataProxy Ip|false|
-|netTag|DataProxy区域,可以获取指定地区tag|""|
 
 ### 调用发送接口进行数据上报
 SDK 的数据发送接口时线程安全的，支持以同步或者异步模式发送单条或多条消息。Demo里采用的是单条同步消息发送，并且消息中不包含属性信息：
