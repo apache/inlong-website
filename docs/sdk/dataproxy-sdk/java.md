@@ -28,12 +28,12 @@ The overall process includes the following three steps：
 ### Initialize SDK
 From the demo code, we can see that the client initialization is mainly done in the `getMessageSender()` function:
 ```java
-public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String netTag, String inlongGroupId, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
+public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String inlongGroupId, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
     ProxyClientConfig dataProxyConfig = null;
     DefaultMessageSender messageSender = null;
     try {
         // Initialize client configuration.  'test', '123456' is username and password, which need to be replaced according to the environment configuration in actual use.
-        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), inlongGroupId, netTag, "test", "123456");
+        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), inlongGroupId, "test", "123456");
         // Set the local save path of the configuration. This setting is optional. By default, the SDK will create a "/.inlong/" directory under the current user's working directory to store the configuration.
 		if (StringUtils.isNotEmpty(configBasePath)) {
             dataProxyConfig.setConfStoreBasePath(configBasePath);

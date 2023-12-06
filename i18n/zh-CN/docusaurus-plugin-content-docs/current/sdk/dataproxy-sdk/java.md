@@ -28,12 +28,12 @@ import {siteVariables} from '../../version';
 ### 初始化 SDK
 从Demo示例代码我们可以看到，客户端初始化主要是在 `getMessageSender()` 函数中完成：
 ```java
-public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String netTag, String inlongGroupId, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
+public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String inlongGroupId, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
     ProxyClientConfig dataProxyConfig = null;
     DefaultMessageSender messageSender = null;
     try {
         // 初始化客户端配置，其中“test”，“123456”是需要认证的用户名和密码，实际使用时需要根据环境配置进行更替
-        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), inlongGroupId, netTag, "test", "123456");
+        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), inlongGroupId, "test", "123456");
 		// 设置配置信息的本地保存路径，该设置可选，缺省情况下 SDK 会在当前用户工作目录下构造一个"/.inlong/"目录存储配置数据
 		if (StringUtils.isNotEmpty(configBasePath)) {
             dataProxyConfig.setConfStoreBasePath(configBasePath);
