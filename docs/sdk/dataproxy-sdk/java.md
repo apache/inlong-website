@@ -28,12 +28,12 @@ The overall process includes the following three steps：
 ### Initialize SDK
 From the demo code, we can see that the client initialization is mainly done in the `getMessageSender()` function:
 ```java
-public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String netTag, String dataProxyGroup, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
+public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String inlongGroupId, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
     ProxyClientConfig dataProxyConfig = null;
     DefaultMessageSender messageSender = null;
     try {
         // Initialize client configuration.  'test', '123456' is username and password, which need to be replaced according to the environment configuration in actual use.
-        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), dataProxyGroup, netTag, "test", "123456");
+        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), inlongGroupId, "test", "123456");
         // Set the local save path of the configuration. This setting is optional. By default, the SDK will create a "/.inlong/" directory under the current user's working directory to store the configuration.
 		if (StringUtils.isNotEmpty(configBasePath)) {
             dataProxyConfig.setConfStoreBasePath(configBasePath);
@@ -51,6 +51,15 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
     return messageSender;
 }
 ```
+### ProxyClientConfig  configuration
+| parameter name | Parameter Description | default value |
+| ------ | ------ | -------|
+| inlongGroupId | inlongGroupId | not null |
+| inlongStreamId | inlongStreamId | not null |
+| username | username | not null|
+| password | password | not null|
+|isLocalVisit| request inlong manager protocol | https: false , http: true|
+|isReadProxyIPFromLocal|whether to read DataProxy ip from local|false|
 
 ### Call the send interface to report data
 The SDK data send interface is thread safe, support send single or multiple messages by sync and async two ways. The following demo uses a single sync way to send, and the message does not contain property information:
@@ -73,8 +82,8 @@ You can also choose different send interfaces to report data according to your b
 ### Close SDK 
 In Demo, there is no close operation. When in use, we can call the `close()` function of the MessageSender interface object to stop data reporting.
 
-# Warning
-- The `MessageSender` interface object is initialized based on the GroupID, so each `MessageSender` object can be used differently based on the GroupID, and multiple `MessageSender` objects can be created in the same process.
+## Warning
+- The `MessageSender` interface object is initialized based on the `inlongGroupId`, so each `MessageSender` object can be used differently based on the `inlongGroupId`, and multiple `MessageSender` objects can be created in the same process.
 - The SDK provides three different network interaction ways: TCP, HTTP, and UDP. Examples of these three ways are given in the [example](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/example) (refer to `TcpClientExample.java`, `HttpClientExample.java`, `UdpClientExample.java`), and the business can be customized according to its own needs to initialize different `MessageSender` object.
 - The SDK contains complex network interactions, `MessageSender` should be used as a resident object. Avoid frequent initialization and shutdown of `MessageSender` (frequent initialization and shutdown will have a large resource overhead and will affect the timeliness of data reporting).
 - The SDK does not resend the failed message. When using the SDK to report data, if send fails, you need to decide whether to resend according to your own needs.
