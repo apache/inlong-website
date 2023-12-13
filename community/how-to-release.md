@@ -227,9 +227,6 @@ $ cd apache-inlong-${release_version}
 $ mvn compile clean install package -DskipTests
 # for signature convenient, copy the binary package to the source code directory
 $ cp ./inlong-distribution/target/apache-inlong-${release_version}-bin.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
-# for signature convenient, copy the connectors binary package to the source code directory
-$ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connectors-flink-v1.13.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
-$ cp ./inlong-distribution/target/apache-inlong-${release_version}-sort-connectors-flink-v1.15.tar.gz /tmp/apache-inlong-${release_version}-${rc_version}/
 ```
 
 ### Sign the source package/binary package/sha512
