@@ -12,6 +12,10 @@ Before we begin, we need to install InLong. Here we provide two ways:
 - [Docker Deployment](deployment/docker.md) (Recommended)
 - [Bare Metal Deployment](deployment/bare_metal.md)
 
+### Add Connectors
+
+Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink 1.13, and after decompression, place `sort-connector-starrocks-[vsersion]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
+
 ### Install StarRocks
 Please refer to the [Installation Tutorial](https://docs.starrocks.io/docs/quick_start/) on the Apache StarRocks official website
 
@@ -106,7 +110,7 @@ done
 
 Add a total of 1000 pieces of data to the `source_table`:
 
-![Result Source](img/mysql_iceberg/result_mysql.png)
+![Result Source](img/mysql_starrocks/result_source.png)
 
 ### Verify Data
 Enter StarRocks, check data in `sink_table`.

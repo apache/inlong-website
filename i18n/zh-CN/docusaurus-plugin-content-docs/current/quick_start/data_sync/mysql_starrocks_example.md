@@ -12,6 +12,10 @@ sidebar_position: 2
 - [Docker 部署](deployment/docker.md)（推荐）
 - [Bare Metal 部署](deployment/bare_metal.md)
 
+### 添加 Connectors
+
+下载 Flink 1.13 对应版本的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-starrocks-[vsersion]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
+
 ### 安装 StarRocks
 请参考 Apache StarRocks 官网的[安装教程](https://docs.starrocks.io/docs/quick_start/)。
 
