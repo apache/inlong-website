@@ -13,7 +13,7 @@ sidebar_position: 5
  
 I nominate ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
 
-Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2] to the project and improved the management module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
+Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2] to the project and improved the ${Candidate_Module_Name} module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
  
 So I nominated ${Candidate_Full_Name} as a ${Committer or PMC Member} of the InLong project.
  
@@ -32,7 +32,7 @@ So I nominated ${Candidate_Full_Name} as a ${Committer or PMC Member} of the InL
 ```shell
 [VOTE] ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}
  
-Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2],[3] to the project and improved the management module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
+Judging from the contributions in recent months, ${Candidate_Full_Name} has submitted many implementations[1],[2],[3] to the project and improved the ${Candidate_Module_Name} module for the project. During the optimization and improvement period of the project, it is hoped that more people will participate in the actual project optimization and improvement, to let the project more perfect and easier to use.
 I think making him a ${Committer or PMC Member} will be a recognition of his outstanding work for InLong. So, I am happy to call VOTE to accept ${Candidate_Full_Name} as an InLong ${Committer or PMC Member}.
  
 Voting will continue for at least 72 hours or until the required number of votes is reached.
