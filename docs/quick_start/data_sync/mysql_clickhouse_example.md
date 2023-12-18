@@ -78,7 +78,7 @@ In the data source, click [New] → [MySQL] to configure the source name, addres
 
 ### Create Data Sink
 
-In the data target, click [New] → [ClickHouse] to configure the name, library table, and created ck data node.
+In the data target, click [New] → [ClickHouse] to configure the name, DB name, table name, and created ck data node.
 
 ![Create Sink](img/mysql_clickhouse/sink.png)
 
@@ -130,7 +130,7 @@ Insert 1000 pieces of data in total:
 
 ### Verify Data
 
-Then enter the ClickHouse container and view the library table data:
+Then enter the ClickHouse container and view the source table data:
 
 ![Source_data](img/mysql_clickhouse/sink_data.png)
 
@@ -139,4 +139,4 @@ You can also view audit data on the page:
 ![Source_data](img/mysql_clickhouse/audit.png)
 
 ## FAQ
-ClinkHouse fails to write data, you can view the error on the Flink page and check the permissions of the user and table engine used.
+ClickHouse fails to write data, you can view the error on the Flink page and check the permissions of the user and table engine used.

@@ -130,4 +130,4 @@ done
 ![Source_data](img/mysql_clickhouse/audit.png)
 
 ## 常见问题
-Clinkhouse 写入数据失败，可以在 Flink 页面查看报错，并检查所使用的用户的权限以及表引擎
+ClickHouse 写入数据失败，可以在 Flink 页面查看报错，并检查所使用的用户的权限以及表引擎
