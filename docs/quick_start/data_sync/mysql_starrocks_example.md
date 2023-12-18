@@ -13,7 +13,7 @@ Before we begin, we need to install InLong. Here we provide two ways:
 - [Bare Metal Deployment](deployment/bare_metal.md)
 
 ### Install StarRocks
-Please refer to the [Installation Tutorial](https://iceberg.apache.org/hive-quickstart) on the Apache StarRocks official website
+Please refer to the [Installation Tutorial](https://docs.starrocks.io/docs/quick_start/) on the Apache StarRocks official website
 
 ## Cluster Initialize
 When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.

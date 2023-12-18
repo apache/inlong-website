@@ -13,7 +13,7 @@ sidebar_position: 2
 - [Bare Metal 部署](deployment/bare_metal.md)
 
 ### 安装 StarRocks
-请参考 Apache StarRocks 官网的[安装教程](https://iceberg.apache.org/hive-quickstart)。
+请参考 Apache StarRocks 官网的[安装教程](https://docs.starrocks.io/docs/quick_start/)。
 
 ## 集群初始化
 容器启动成功后，访问 InLong Dashboard 地址 http://localhost，并使用以下默认账号登录：
