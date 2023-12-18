@@ -12,6 +12,9 @@ sidebar_position: 3
 - [Docker 部署](deployment/docker.md)（推荐）
 - [Bare Metal 部署](deployment/bare_metal.md)
 
+### 添加 Connectors
+下载 Flink 1.13 对应版本的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-iceberg-[vsersion]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
+
 ### 安装 Iceberg
 请参考 Apache Iceberg 官网的[安装教程](https://iceberg.apache.org/hive-quickstart)
 
@@ -31,7 +34,6 @@ Password: inlong
 ### 注册 Pulsar 集群
 页面点击 [集群管理] -> [集群管理] -> [新建集群]，注册 Pulsar 集群：
 ![Create Pulsar Cluster](img/mysql_iceberg/create_pulsar_cluster.png)
-
 
 :::note
 集群标签选择刚创建的 `default_cluster`，配置 Docker 部署的 Pulsar 集群：

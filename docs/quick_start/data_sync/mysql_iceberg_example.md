@@ -12,6 +12,9 @@ Before we begin, we need to install InLong. Here we provide two ways:
 - [Docker Deployment](deployment/docker.md) (Recommended)
 - [Bare Metal Deployment](deployment/bare_metal.md)
 
+### Add Connectors
+Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink 1.13, and after decompression, place `sort-connector-iceberg-[vsersion]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
+
 ### Install Iceberg
 Please refer to the [Installation Tutorial](https://iceberg.apache.org/hive-quickstart) on the Apache Iceberg official website.
 
@@ -33,7 +36,6 @@ Since each component reports the ClusterTags as `default_cluster` by default, do
 ### Register Pulsar Cluster
 Click [Clusters] -> [Cluster] -> [Create] on the page to register Pulsar Cluster.
 ![Create Pulsar Cluster](img/mysql_iceberg/create_pulsar_cluster.png)
-
 
 :::note
 The ClusterTags selects the newly created `default_cluster`, the Pulsar cluster deployed by docker:
