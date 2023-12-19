@@ -30,7 +30,7 @@ Password: inlong
 页面点击 【集群管理】->【标签管理】->【新建】，指定集群标签名称和负责人：
 ![Create Cluster Tag](img/mysql_starrocks/create_cluster_tag.png)
 
-**注：default_cluster 是各个组件默认上报集群标签，请勿使用其它名称。**
+**注：default_cluster 是各个组件默认上报集群标签，如果使用其它名称，确认对应标签配置已修改。**
 
 ### 注册 Pulsar 集群
 页面点击 【集群管理】 -> 【集群管理】 -> 【新建集群】，注册 Pulsar 集群：
