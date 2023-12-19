@@ -5,22 +5,16 @@ sidebar_position: 1
 
 在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建 MySQL -> ClickHouse 数据同步。
 
-## 资源准备
-
-- 下载最新发布的 [Apache InLong 1.9.0 安装包](https://downloads.apache.org/inlong/1.9.0/apache-inlong-1.9.0-bin.tar.gz)
-- 准备 Docker、Docker Compose 环境
-
 ## 环境部署
-### 安装 Apache InLong
+### 安装 InLong
 
-解压 apache-inlong-1.9.0-bin.tar.gz
+在开始之前，我们需要安装 InLong 的全部组件，这里提供两种方式：
+- [Docker 部署](deployment/docker.md)（推荐）
+- [Bare Metal 部署](deployment/bare_metal.md)
 
-``` shell
-# 进入安装目录
-cd docker/docker-compose
-# 启动
-docker-compose up -d
-```
+### 添加 Connectors
+
+下载 Flink 1.13 对应版本的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-jdbc-[version]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
 
 ### 安装 ClickHouse
 ```shell
@@ -38,7 +32,7 @@ Password: inlong
 
 ![Create Cluster Tag](img/mysql_clickhouse/cluster_tag.png)
 
-**注意：由于各个组件默认上报集群标签为 default_cluster，请勿使用其它名称。**
+**注意：default_cluster 是各个组件默认上报集群标签，如果使用其它名称，确认对应标签配置已修改。**
 
 ### 注册 Pulsar 集群
 

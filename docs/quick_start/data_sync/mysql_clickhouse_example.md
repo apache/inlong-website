@@ -5,22 +5,16 @@ sidebar_position: 1
 
 Here we use an example to introduce how to use Apache InLong creating `MySQL -> ClickHouse` data synchronization.
 
-## Resource
-
-- Download the latest released [Apache InLong 1.9.0 installation package](https://downloads.apache.org/inlong/1.9.0/apache-inlong-1.9.0-bin.tar.gz)
-- Prepare Docker, Docker Compose environment
-
 ## Deployment
-### Install Apache InLong
+### Install InLong
 
-Decompression apache-inlong-1.9.0-bin.tar.gz
+Before we begin, we need to install InLong. Here we provide two ways:
+- [Docker Deployment](deployment/docker.md) (Recommended)
+- [Bare Metal Deployment](deployment/bare_metal.md)
 
-``` shell
-# Go to installation directory
-cd docker/docker-compose
-# Start
-docker-compose up -d
-```
+### Add Connectors
+
+Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink 1.13, and after decompression, place `sort-connector-jdbc-[version]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
 
 ### Install ClickHouse
 ```shell
@@ -40,7 +34,7 @@ Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster
 ![Create Cluster Tag](img/mysql_clickhouse/cluster_tag.png)
 
 :::caution
-Since each component reports the ClusterTags as `default_cluster` by default, do not use other names.
+`default_cluster` is the default ClusterTags reported by each component. If you decide to use a different name, make sure to update the corresponding tag configuration accordingly.
 :::
 
 ### Register Pulsar Cluster
