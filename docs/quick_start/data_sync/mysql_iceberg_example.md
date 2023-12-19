@@ -30,7 +30,7 @@ Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster
 ![Create Cluster Tag](img/mysql_iceberg/create_cluster_tag.png)
 
 :::caution
-Since each component reports the ClusterTags as `default_cluster` by default, do not use other names.
+`default_cluster` is the default ClusterTags reported by each component. If you decide to use a different name, make sure to update the corresponding tag configuration accordingly.
 :::
 
 ### Register Pulsar Cluster
