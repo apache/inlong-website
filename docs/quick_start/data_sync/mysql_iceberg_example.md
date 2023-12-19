@@ -110,3 +110,7 @@ Modify the variables in the script according to the actual environment, and inse
 Enter Iceberg, check data in table.
 
 ![Result Sink](img/mysql_iceberg/result_iceberg.png)
+
+You can also view audit data on the page:
+
+![Result Sink](img/mysql_iceberg/audit_iceberg.png)

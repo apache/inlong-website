@@ -109,3 +109,7 @@ done
 进入 Iceberg，查看表数据
 
 ![Result Sink](img/mysql_iceberg/result_iceberg.png)
+
+也可以在页面查看审计数据:
+
+![Result Sink](img/mysql_iceberg/audit_iceberg.png)
