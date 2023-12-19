@@ -116,3 +116,7 @@ Modify the variables in the script according to the actual environment, and add 
 Enter StarRocks, check data in `sink_table`.
 
 ![Result Sink](img/mysql_starrocks/result_sink.png)
+
+You can also view audit data on the page:
+
+![Result Sink](img/mysql_starrocks/audit_starrocks.png)

@@ -110,3 +110,7 @@ done
 进入 StarRocks，查看 sink_table 表数据
 
 ![Result Sink](img/mysql_starrocks/result_sink.png)
+
+也可以在页面查看审计数据:
+
+![Result Sink](img/mysql_starrocks/audit_starrocks.png)
