@@ -14,7 +14,7 @@ sidebar_position: 2
 
 ### 添加 Connectors
 
-下载 Flink 1.13 对应版本的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-starrocks-[vsersion]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
+下载 Flink 1.13 对应版本的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-starrocks-[version]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
 
 ### 安装 StarRocks
 请参考 Apache StarRocks 官网的[安装教程](https://docs.starrocks.io/docs/quick_start/)。
@@ -102,7 +102,7 @@ do
 done
 ```
 
-`source_table` 表中累计添加 1000 条数据:
+根据实际环境修改脚本中的变量，执行脚本向 `source_table` 表中累计添加 1000 条数据:
 
 ![Result Source](img/mysql_starrocks/result_source.png)
 

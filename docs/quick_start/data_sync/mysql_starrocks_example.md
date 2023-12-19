@@ -14,7 +14,7 @@ Before we begin, we need to install InLong. Here we provide two ways:
 
 ### Add Connectors
 
-Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink 1.13, and after decompression, place `sort-connector-starrocks-[vsersion]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
+Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink 1.13, and after decompression, place `sort-connector-starrocks-[version]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
 
 ### Install StarRocks
 Please refer to the [Installation Tutorial](https://docs.starrocks.io/docs/quick_start/) on the Apache StarRocks official website
@@ -27,7 +27,7 @@ Password: inlong
 ```
 
 ### Create Cluster Tag
-Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster label name and person in charge.
+Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster label name and responsible person.
 ![Create Cluster Tag](img/mysql_starrocks/create_cluster_tag.png)
 
 :::caution
@@ -55,7 +55,7 @@ Click [DataNodes] -> [Create] on the page to register StarRocks DataNodes.
 
 ## Create Task
 ### Create Data Streams Group
-Click [Synchronization] → [Create] on the page and input the Group ID, Steam ID and Full database migration:
+Click [Synchronization] → [Create] on the page and input the Group ID, Stream ID and Full database migration:
 ![Create Group Stream](img/mysql_starrocks/create_group_stream.png)
 
 ### Create Data Source
@@ -108,7 +108,7 @@ do
 done
 ```
 
-Add a total of 1000 pieces of data to the `source_table`:
+Modify the variables in the script according to the actual environment, and add a total of 1000 pieces of data to the `source_table`:
 
 ![Result Source](img/mysql_starrocks/result_source.png)
 
