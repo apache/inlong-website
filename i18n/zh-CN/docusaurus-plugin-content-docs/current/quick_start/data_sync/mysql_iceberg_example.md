@@ -13,7 +13,7 @@ sidebar_position: 3
 - [Bare Metal 部署](deployment/bare_metal.md)
 
 ### 添加 Connectors
-下载 Flink 1.13 对应版本的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-iceberg-[vsersion]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
+下载 Flink 1.13 对应版本的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-iceberg-[version]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
 
 ### 安装 Iceberg
 请参考 Apache Iceberg 官网的[安装教程](https://iceberg.apache.org/hive-quickstart)
@@ -61,7 +61,7 @@ Service URL 为 `pulsar://pulsar:6650`, Admin URL 为 `http://pulsar:8080`.
 
 ### 创建数据目标
 数据目标中点击 [新建] → [Iceberg]，设置数据目标名称并选择创建好的 Iceberg 数据节点,
-库表名称我们可以选择与数据源一直，或者自定义。
+库表名称我们可以选择与数据源一致，或者自定义。
 ![Create data object](img/mysql_iceberg/create_stream_sink.png)
 
 ### 审批数据流
@@ -101,7 +101,7 @@ do
 done
 ```
 
-每个表中插入 500 条数据(这里 `source_table` 中有一条存量数据):
+根据实际环境修改脚本中的变量，向每个表中插入 500 条数据(这里 `source_table` 中有一条存量数据):
 
 ![Result Source](img/mysql_iceberg/result_mysql.png)
 
