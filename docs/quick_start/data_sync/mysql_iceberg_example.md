@@ -66,6 +66,16 @@ In the data sink, click [New] → [Iceberg] to configure the sink name and creat
 We can choose the data sink to have the same database table name as the data source, or customize it.
 ![Create data object](img/mysql_iceberg/create_stream_sink.png)
 
+:::note
+When customizing the names of database tables, you can use built-in parameters and string combinations to generate the target table names.
+
+Built-in parameters include:
+- Source database name: ${database}
+- Source table name: ${table}
+
+For example, if the source table name is `table1` and the mapping rule is `${table}_inlong`, the data from `table1` will be ultimately mapped and written into `table1_inlong`.
+:::
+
 ### Approve Data Stream
 Click [Approval] -> [MyApproval] -> [Approval] -> [Ok].
 ![Approve](img/mysql_iceberg/approval.png)

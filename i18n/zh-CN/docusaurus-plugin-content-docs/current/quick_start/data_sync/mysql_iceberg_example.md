@@ -64,6 +64,16 @@ Service URL 为 `pulsar://pulsar:6650`, Admin URL 为 `http://pulsar:8080`.
 库表名称我们可以选择与数据源一致，或者自定义。
 ![Create data object](img/mysql_iceberg/create_stream_sink.png)
 
+:::note
+自定义库表名称时，支持使用内置参数和字符串组合生成目标库表名称。
+
+内置参数包括：
+- 来源库名：${database}
+- 来源表名：${table}
+
+如：来源表名称为 `table1`，映射规则为 `${table}_inlong`，则 `table1` 的数据将被最终映射写入至 `table1_inlong` 中。
+:::
+
 ### 审批数据流
 点击 [审批管理] -> [我的审批] -> [审批] -> [Ok].
 ![Approve](img/mysql_iceberg/approval.png)
