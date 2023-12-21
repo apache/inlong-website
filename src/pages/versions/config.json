@@ -14,13 +14,18 @@
       "nextLink": "/zh-CN/docs/next/introduction",
       "version": [
         {
-          "title": "1.9.0",
+          "title": "1.10.0",
           "link": "/zh-CN/docs/introduction",
+          "releaseUrl": "/zh-CN/download/release-1.10.0"
+        },
+        {
+          "title": "1.9.0",
+          "link": "/zh-CN/docs/1.9.0/introduction",
           "releaseUrl": "/zh-CN/download/release-1.9.0"
         },
         {
           "title": "1.8.0",
-          "link": "/zh-CN/docs/introduction",
+          "link": "/zh-CN/docs/1.8.0/introduction",
           "releaseUrl": "/zh-CN/download/release-1.8.0"
         },
         {
@@ -92,13 +97,18 @@
       "nextLink": "/docs/next/introduction",
       "version": [
         {
-          "title": "1.9.0",
+          "title": "1.10.0",
           "link": "/docs/introduction",
+          "releaseUrl": "/download/release-1.10.0"
+        },
+        {
+          "title": "1.9.0",
+          "link": "/docs/1.9.0/introduction",
           "releaseUrl": "/download/release-1.9.0"
         },
         {
           "title": "1.8.0",
-          "link": "/docs/introduction",
+          "link": "/docs/1.8.0/introduction",
           "releaseUrl": "/download/release-1.8.0"
         },
         {
