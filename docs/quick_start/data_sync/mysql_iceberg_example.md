@@ -13,7 +13,7 @@ Before we begin, we need to install InLong. Here we provide two ways:
 - [Bare Metal Deployment](deployment/bare_metal.md)
 
 ### Add Connectors
-Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink 1.13, and after decompression, place `sort-connector-iceberg-[version]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
+Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink version, and after decompression, place `sort-connector-iceberg-[version]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
 
 ### Install Iceberg
 Please refer to the [Installation Tutorial](https://iceberg.apache.org/hive-quickstart) on the Apache Iceberg official website.

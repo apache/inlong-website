@@ -14,7 +14,7 @@ Before we begin, we need to install InLong. Here we provide two ways:
 
 ### Add Connectors
 
-Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink 1.13, and after decompression, place `sort-connector-starrocks-[version]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
+Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink version, and after decompression, place `sort-connector-starrocks-[version]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
 
 ### Install StarRocks
 Please refer to the [Installation Tutorial](https://docs.starrocks.io/docs/quick_start/) on the Apache StarRocks official website

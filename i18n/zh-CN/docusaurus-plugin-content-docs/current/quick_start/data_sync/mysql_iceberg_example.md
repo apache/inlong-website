@@ -13,7 +13,7 @@ sidebar_position: 3
 - [Bare Metal 部署](deployment/bare_metal.md)
 
 ### 添加 Connectors
-下载 Flink 1.13 对应版本的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-iceberg-[version]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
+下载与 Flink 版本对应的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-iceberg-[version]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
 
 ### 安装 Iceberg
 请参考 Apache Iceberg 官网的[安装教程](https://iceberg.apache.org/hive-quickstart)
