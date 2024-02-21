@@ -20,14 +20,14 @@ You can get binary package from [Download Page](https://inlong.apache.org/downlo
 You need deploy all InLong components for Standard Architecture, which supports `Data Ingestion`, `Data Synchronization` and `Data Subscription` at the same time.
 
 ### Deploy
-| order | component              | dependencies           | deploy guide                                                                                                                                                 | description |
-|-------|------------------------|------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| 1     | inlong-audit           | MySQL or Elasticsearch | [InLong Audit](modules/audit/quick_start.md)                                                                                                                 |             |
-| 2     | inlong-manager         | MySQL                  | [InLong Manager](modules/manager/quick_start.md)                                                                                                             |             |
-| 3     | inlong-dataproxy       | None                   | [InLong DataProxy](modules/dataproxy/quick_start.md)                                                                                                         |             |
-| 4     | inlong-agent           | None                   | [InLong Agent](modules/agent/quick_start.md)                                                                                                                 |             |
-| 5     | inlong-dashboard       | Nginx or Docker        | [InLong Dashboard](modules/dashboard/quick_start.md)                                                                                                         |             |
-| 6     | inlong-sort-connectors | Apache Flink           | Extract [apache-inlong-[version]-sort-connectors.tar.gz](https://inlong.apache.org/download/) and move connectors jar to `inlong-sort/connectors` directory. |             |
+| order | component              | dependencies                  | deploy guide                                                                                                                                                 | description |
+|-------|------------------------|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
+| 1     | inlong-audit           | MySQL or Elasticsearch        | [InLong Audit](modules/audit/quick_start.md)                                                                                                                 |             |
+| 2     | inlong-manager         | MySQL                         | [InLong Manager](modules/manager/quick_start.md)                                                                                                             |             |
+| 3     | inlong-dataproxy       | None                          | [InLong DataProxy](modules/dataproxy/quick_start.md)                                                                                                         |             |
+| 4     | inlong-agent           | None                          | [InLong Agent](modules/agent/quick_start.md)                                                                                                                 |             |
+| 5     | inlong-dashboard       | Nginx or Docker               | [InLong Dashboard](modules/dashboard/quick_start.md)                                                                                                         |             |
+| 6     | inlong-sort-connectors | Apache Flink 1.13.x or 1.15.x | Extract [apache-inlong-[version]-sort-connectors.tar.gz](https://inlong.apache.org/download/) and move connectors jar to `inlong-sort/connectors` directory. |             |
 
 ### Create Data Stream
 After the InLong cluster deployed successfully, you can create a data stream refer to the [Dashboard Usage Guide](user_guide/dashboard_usage.md) to start using.
