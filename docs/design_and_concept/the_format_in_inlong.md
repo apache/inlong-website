@@ -14,7 +14,7 @@ Format provides two interfaces : SerializationSchema and DeserializationSchema :
 - When Flink reads data from MQ , it works vice versa . It reads data from MQ with format Byte[] . Then deserializes them into Format and finally converts them into Flink row .
 
 > See
-> details: [`inlong-sort/sort-formats`](https://github.com/apache/inlong/tree/release-1.5.0/inlong-sort/sort-formats)
+> details: [`inlong-sort/sort-formats`](https://github.com/apache/inlong/tree/master/inlong-sort/sort-formats)
 
 ## The format in InLong
 

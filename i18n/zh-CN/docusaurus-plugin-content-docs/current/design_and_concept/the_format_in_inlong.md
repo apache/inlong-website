@@ -16,7 +16,7 @@ Flink 的 Format 提供了两种接口：SerializationSchema 和 Deserialization
   这时调用了 `SerializationSchema#serialize` 方法，数据会序列化成 `Byte[]`，写入到 `MQ`。
 - 当 Flink 读取 MQ 的数据时，该过程则相反：从 MQ 读取数据，数据格式为 `byte[]`，反序列化为`Format`，再转换为 `Flink row`。
 
-> 详情请查看代码 [`inlong-sort/sort-formats`](https://github.com/apache/inlong/tree/release-1.5.0/inlong-sort/sort-formats)
+> 详情请查看代码 [`inlong-sort/sort-formats`](https://github.com/apache/inlong/tree/master/inlong-sort/sort-formats)
 
 ## InLong 中的 Format
 
