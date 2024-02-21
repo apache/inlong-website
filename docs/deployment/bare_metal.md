@@ -5,7 +5,7 @@ sidebar_position: 4
 
 ## Environment Requirements
 - MySQL 5.7+ or PostgreSQL
-- [Apache Flink 1.13.5](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/overview/)
+- [Apache Flink 1.13.x](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/try-flink/local_installation/) or [1.15.x](https://nightlies.apache.org/flink/flink-docs-release-1.15/docs/try-flink/local_installation/)
 
 ## Prepare Message Queue
 InLong Support the following Message Queue services now, you can choose one of them.

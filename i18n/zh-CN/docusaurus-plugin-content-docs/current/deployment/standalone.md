@@ -4,7 +4,7 @@ sidebar_position: 1
 ---
 ## 环境要求
 - MySQL 5.7+
-- [Flink 1.13.5](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/try-flink/local_installation/)
+- [Apache Flink 1.13.x](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/try-flink/local_installation/) 或 [1.15.x](https://nightlies.apache.org/flink/flink-docs-release-1.15/docs/try-flink/local_installation/)
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 - Linux 或 Mac 环境
 
