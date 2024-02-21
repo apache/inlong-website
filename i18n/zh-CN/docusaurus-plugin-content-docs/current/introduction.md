@@ -45,7 +45,7 @@ values={[
 <TabItem value="standard"> 标准架构：包含 InLong Agent、Manager、MQ、Sort、Dashboard 等所有 InLong 组件，同时支持`数据接入`、`数据同步`和`数据订阅`。
 <img src="/img/inlong-structure-zh.png" align="center" alt="Apache InLong"/>
 </TabItem>
-<TabItem value="lightweight"> 轻量化架构：只包含 InLong Sort 一个组件，也可以搭配 Manager，Dashboard 一起使用。轻量化架构简单、灵活，只支持`数据同步`。
+<TabItem value="lightweight"> 轻量化架构：只包含 InLong Sort 一个组件，也可以搭配 Manager，Dashboard 一起使用。轻量化架构简单、灵活，支持`数据同步`。
 <img src="/img/inlong-structure-light.png" align="center" style={{objectFit: 'cover', height: '460px', width: '860px'}} alt="Apache InLong"/>
 </TabItem>
 </Tabs>
@@ -56,9 +56,9 @@ Apache InLong 服务于数据采集到落地的整个生命周期，按数据的
 - **inlong-agent**，数据采集服务，包括文件采集、DB 采集等。
 - **inlong-dataproxy**，一个基于 Flume-ng 的 Proxy 组件，支持数据发送阻塞和落盘重发，拥有将接收到的数据转发到不同 MQ（消息队列）的能力。
 - **inlong-tubemq**，腾讯自研的消息队列服务，专注于大数据场景下海量数据的高性能存储和传输，在海量实践和低成本方面有着良好的核心优势。
-- **inlong-sort**，对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、Hbase、Iceberg、Hudi 等存储系统。
+- **inlong-sort**，对从不同的 MQ 消费到的数据进行 ETL 处理，然后汇聚并写入 Hive、ClickHouse、HBase、Iceberg、Hudi 等存储系统。
 - **inlong-manager**，提供完整的数据服务管控能力，包括元数据、任务流、权限，OpenAPI 等。
-- **inlong-dashboard**，用于管理数据接入的前端页面，简化整个 InLong 管控平台的使用。
+- **inlong-dashboard**，用于管理数据集成任务的前端页面，简化整个 InLong 管控平台的使用。
 - **inlong-audit**，对 InLong 系统的 Agent、DataProxy、Sort 模块的入流量、出流量进行实时审计对账。
 
 ## 已支持数据节点（更新中）
