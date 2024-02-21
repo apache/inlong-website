@@ -4,9 +4,7 @@ sidebar_position: 2
 ---
 
 ## Set up Flink Environment
-InLong Sort is based on Apache Flink, you need to set up an [Apache Flink Environment](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/overview/).
-
-InLong Sort relies on Apache Flink 1.13.5 or 1.15.4. Chose `flink-1.13.5-bin-scala_2.11.tgz` or `flink-1.15.4-bin-scala_2.12.tgz` when downloading package.
+InLong Sort is based on Apache Flink, you need to set up an [Apache Flink 1.13.x](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/deployment/overview/) or [1.15.x](https://nightlies.apache.org/flink/flink-docs-release-1.15/docs/try-flink/local_installation/).
 
 ## Prepare installation files
 - InLong Sort file, [Download](https://inlong.apache.org/download/) `apache-inlong-[version]-bin.tar.gz`
