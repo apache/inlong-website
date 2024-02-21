@@ -48,7 +48,7 @@ values={[
 <TabItem value="standard"> Standard Architecture: contains all InLong components such as InLong Agent, Manager, MQ, Sort, Dashboard, which supports `Data Ingestion`, `Data Synchronization` and `Data Subscription` at the same time.
 <img src="/img/inlong-structure-en.png" align="center" alt="Apache InLong"/>
 </TabItem>
-<TabItem value="lightweight"> Lightweight Architecture: contains only one component of InLong Sort, which also can be used with Manager, Dashboard, and it is simple and flexible, only support `Data Synchronization`.
+<TabItem value="lightweight"> Lightweight Architecture: contains only one component of InLong Sort, which also can be used with Manager, Dashboard, and it is simple and flexible, support `Data Synchronization`.
 <img src="/img/inlong-structure-light.png" align="center" style={{objectFit: 'cover', height: '460px', width: '860px'}} alt="Apache InLong"/>
 </TabItem>
 </Tabs>
@@ -59,9 +59,9 @@ Apache InLong serves the entire life cycle from data collection to landing,  and
 - **inlong-agent**,  data collection services, including file collection, DB collection, etc.
 - **inlong-dataproxy**,  a Proxy component based on Flume-ng,  supports data transmission blocking,  placing retransmission, and has the ability to forward received data to different MQ (message queues).
 - **inlong-tubemq**,  Tencent's self-developed message queuing service,  focuses on high-performance storage and transmission of massive data in big data scenarios and has a relatively good core advantage in mass practice and low cost.
-- **inlong-sort**,  after consuming data from different MQ services,  perform ETL processing,  and then aggregate and write the data into Apache Hive, ClickHouse,  Hbase,  IceBerg,  Hudi,  etc.
+- **inlong-sort**,  after consuming data from different MQ services,  perform ETL processing,  and then aggregate and write the data into Apache Hive, ClickHouse,  HBase,  IceBerg,  Hudi,  etc.
 - **inlong-manager**, provides complete data service management and control capabilities,  including metadata,  OpenAPI,  task flow,  authority,  etc.
-- **inlong-dashboard**, a front-end page for managing data access,  simplifying the use of the entire InLong control platform.
+- **inlong-dashboard**, a front-end page for managing data integration task,  simplifying the use of the entire InLong control platform.
 - **inlong-audit**, performs real-time audit and reconciliation on the incoming and outgoing traffic of the Agent, DataProxy, and Sort modules of the InLong system.
 
 ## Supported Data Nodes (Updating)
