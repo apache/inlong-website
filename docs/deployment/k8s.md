@@ -8,7 +8,7 @@ sidebar_position: 3
 - Kubernetes 1.10+
 - Helm 3.0+
 - [InLong Helm Chart](https://github.com/apache/inlong/tree/master/docker/kubernetes)
-- [Flink 1.13.5](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/try-flink/local_installation/)
+- [Apache Flink 1.13.x](https://nightlies.apache.org/flink/flink-docs-release-1.13/docs/try-flink/local_installation/) or [1.15.x](https://nightlies.apache.org/flink/flink-docs-release-1.15/docs/try-flink/local_installation/)
 - [Apache Pulsar 2.8.x](https://pulsar.apache.org/docs/en/2.8.1/standalone/)
 - A dynamic provisioner for the PersistentVolumes(`production environment`)
 
