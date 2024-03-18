@@ -47,41 +47,6 @@
           "title": "1.5.0",
           "link": "/zh-CN/docs/1.5.0/introduction",
           "releaseUrl": "/zh-CN/download/release-1.5.0"
-        },
-        {
-          "title": "1.4.0",
-          "link": "/zh-CN/docs/1.4.0/introduction",
-          "releaseUrl": "/zh-CN/download/release-1.4.0"
-        },
-        {
-          "title": "1.3.0",
-          "link": "/zh-CN/docs/1.3.0/introduction",
-          "releaseUrl": "/zh-CN/download/release-1.3.0"
-        },
-        {
-          "title": "1.2.0",
-          "link": "/zh-CN/docs/1.2.0/introduction",
-          "releaseUrl": "/zh-CN/download/release-1.2.0"
-        },
-        {
-          "title": "1.1.0",
-          "link": "/zh-CN/docs/1.1.0/introduction",
-          "releaseUrl": "/zh-CN/download/release-1.1.0"
-        },
-        {
-          "title": "1.0.0",
-          "link": "/zh-CN/docs/1.0.0/introduction",
-          "releaseUrl": "/zh-CN/download/release-1.0.0"
-        },
-        {
-          "title": "0.12.0",
-          "link": "/zh-CN/docs/0.12.0/introduction",
-          "releaseUrl": "/zh-CN/download/release-0.12.0"
-        },
-        {
-          "title": "0.11.0",
-          "link": "/zh-CN/docs/0.11.0/user_guide/quick_start",
-          "releaseUrl": "/zh-CN/download/release-0.11.0"
         }
       ]
     }
@@ -135,41 +100,6 @@
           "title": "1.5.0",
           "link": "/docs/1.5.0/introduction",
           "releaseUrl": "/download/release-1.5.0"
-        },
-        {
-          "title": "1.4.0",
-          "link": "/docs/1.4.0/introduction",
-          "releaseUrl": "/download/release-1.4.0"
-        },
-        {
-          "title": "1.3.0",
-          "link": "/docs/1.3.0/introduction",
-          "releaseUrl": "/download/release-1.3.0"
-        },
-        {
-          "title": "1.2.0",
-          "link": "/docs/1.2.0/introduction",
-          "releaseUrl": "/download/release-1.2.0"
-        },
-        {
-          "title": "1.1.0",
-          "link": "/docs/1.1.0/introduction",
-          "releaseUrl": "/download/release-1.1.0"
-        },
-        {
-          "title": "1.0.0",
-          "link": "/docs/1.0.0/introduction",
-          "releaseUrl": "/download/release-1.0.0"
-        },
-        {
-          "title": "0.12.0",
-          "link": "/docs/0.12.0/introduction",
-          "releaseUrl": "/download/release-0.12.0"
-        },
-        {
-          "title": "0.11.0",
-          "link": "/docs/0.11.0/user_guide/quick_start",
-          "releaseUrl": "/download/release-0.11.0"
         }
       ]
     }
