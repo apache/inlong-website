@@ -1,6 +1,6 @@
 {
   "copyright": {
-    "message": "<div style=\"font-family: Avenir-Medium;font-size: 14px;color: #999;\">\n          <div>Copyright © 2020-2023 The Apache Software Foundation. Licensed under the Apache License, Version 2.0.</div>\n          <div style=\"margin-top: 20px; padding-top: 20px; border-top: 1px solid #666;line-height: 20px;\">The Apache Software Foundation Apache InLong, InLong, Apache, the Apache feather, and the Apache InLong project logo are either registered trademarks or trademarks of the Apache Software Foundation.</div>\n        </div>",
+    "message": "<div style=\"font-family: Avenir-Medium;font-size: 14px;color: #999;\">\n          <div>Copyright © 2020-2024 The Apache Software Foundation. Licensed under the Apache License, Version 2.0.</div>\n          <div style=\"margin-top: 20px; padding-top: 20px; border-top: 1px solid #666;line-height: 20px;\">The Apache Software Foundation Apache InLong, InLong, Apache, the Apache feather, and the Apache InLong project logo are either registered trademarks or trademarks of the Apache Software Foundation.</div>\n        </div>",
     "description": "The footer copyright"
   },
   "link.title.Events": {
