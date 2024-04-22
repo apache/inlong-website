@@ -1,11 +1,15 @@
+---
+title: Agent 插件
+sidebar_position: 3
+---
 ## 概述
-
 在 Standard Architecture 中，我们可以通过 InLong Agent 来采集各种类型的数据源。InLong Agent 支持以插件的方式扩展新的采集类型，本文将指导开发者如何自定义新的 Agent 采集数据源插件。
 
 ## 核心概念
 ### Task 和 Instance
 Task 和 Instance 是 Agent 最核心的两个概念，简单理解：Task 对应管理平台上配置的一个采集任务，而 Instance 则是由 Task 生成的一个具体的采集实例。举个例子，管理平台上有个采集任务的配置： `127.0.0.1 -> /data/log/YYMMDDhh.log._[0-9]+`，表示用户需要在  `127.0.0.1` 这台机器上采集符合 `/data/log/YYMMDDhh.log._[0-9]+`，这个路径规则的数据，**这就是一个 Task**。这个 Task 会根据这个路径规则去寻找满足条件的文件，**为每个符合条件的文件生成一个对应的 Instance**，比如说有`/data/log/2024040221.log.0，/data/log/2024040221.log.1，/data/log/2024040221.log.3` 3个文件，那么 Task 就会生成 3 个 Instance 分别采集这三个文件的数据。
 ![](img/agent_basic_concepts.png)
+
 ### Source 和 Sink
 Source 和 Sink 属于 Instance 下一级的概念，可以简单理解为每个 Instance 都有一个 Source 和 一个 Sink。顾名思义，Source 用于从数据源读取数据；Sink 用于向目标存储写入数据。
 
@@ -18,7 +22,6 @@ Source 和 Sink 属于 Instance 下一级的概念，可以简单理解为每个
 
 ### 新增 Task
 这里就是要在 org.apache.inlong.agent.plugin.task 新增一个 PulsarTask 类。
-
 ```
 public class PulsarTask extends AbstractTask {
 
@@ -45,7 +48,6 @@ public class PulsarTask extends AbstractTask {
 
 ### 新增 Instance
 在 `org.apache.inlong.agent.plugin.instance` 增加 PulsarInstance 类，这个类会比较空闲，主要逻辑都是在 CommonInstance 基类里。作用是创建 Source、Sink，从 Source 读数据，然后写入 Sink。我们这里只要实现一下 setInodeInfo 接口即可。除了 FileInstance 比较特殊需要设置文件的 Inode Info，其余的 Instance 类都只要设置成空字符串即可。
-
 ```
 public class PulsarInstance extends CommonInstance {
 
@@ -151,6 +153,5 @@ public class PulsarSource extends AbstractSource {
 
 ## 测试
 - **审计指标对齐**
-
 要求 Agent 采集、Agent 发送、DataProxy 接收 三个指标完全对齐
 ![](img/agent_audit.png)
