@@ -14,7 +14,7 @@ Task and Instance are the two core concepts of Agent. Simple understanding: Task
 Source and Sink are lower-level concepts of Instance. They can be simply understood as each Instance has a Source and a Sink. As the name suggests, Source is used to read data from the data source; Sink is used to write data to the target storage.
 
 ## Development process (taking Pulsar as an example)
-### Main process
+### Process
 - Add Task: implement logic such as initialization, destruction, configuration verification, etc.
 - Add Instance: implements logic such as node information setting.
 - Add Source: implements logic such as initialization, destruction, data collection, and data provision.
