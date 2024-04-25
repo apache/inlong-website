@@ -22,19 +22,16 @@ Fixes #XYZ
 
 *(Please pick either of the following options)*
 
-This change is a trivial rework / code cleanup without any test coverage.
+- [ ] This change is a trivial rework/code cleanup without any test coverage.
 
-*(or)*
+- [ ] This change is already covered by existing tests, such as:
+  *(please describe tests)*
 
-This change is already covered by existing tests, such as *(please describe tests)*.
+- [ ] This change added tests and can be verified as follows:
 
-*(or)*
-
-This change added tests and can be verified as follows:
-
-*(example:)*
-  - *Added integration tests for end-to-end deployment with large payloads (10MB)*
-  - *Extended integration test for recovery after broker failure*
+  *(example:)*
+    - *Added integration tests for end-to-end deployment with large payloads (10MB)*
+    - *Extended integration test for recovery after broker failure*
 
 ### Documentation
 
