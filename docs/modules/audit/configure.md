@@ -5,8 +5,9 @@ sidebar_position: 3
 
 ## Overview
 
-Audit-proxy source-channel-sink pipeline configuration (audit-proxy-{tube|pulsar|kafka}.conf).Audit-store storage service
-configuration (application.properties)
+* Audit-proxy source-channel-sink pipeline configuration (audit-proxy-{tube|pulsar|kafka}.conf).
+* Audit-store storage service configuration (application.properties).
+* OpenAPI audit-service configuration audit-service.properties.
 
 ## Audit-proxy source-channel-sink pipeline configuration (`audit-proxy-{tube|pulsar|kafka}.conf`)
 
@@ -87,3 +88,21 @@ configuration (application.properties)
 | clickhouse.url| clickhouse URL | jdbc:clickhouse://127.0.0.1:8123/Default value |                                            |
 | clickhouse.username         | account name  | Default value   | |
 | clickhouse.password         | password  | Default value   | |
+
+### StarRocks configuration
+
+| Parameter                  | Description   | Default value   | Notes                                        |
+|---------------------|---------------|-----------------|---------------------------------------------|
+| jdbc.driver         | Driver type   | com.mysql.cj.jdbc.Driver |                                            |
+| jdbc.url      | StarRocks URL | jdbc:mysql://127.0.0.1:8123/default |                                            |
+| jdbc.username | account name           | default         | |
+| jdbc.password | password            | default         | |
+
+## OpenAPI audit-service
+configuration `audit-service.properties`
+
+| Parameter                | Description  | Default value  | Notes                                        |
+|-------------------|--------------|-------|---------------------------------------------|
+| mysql.jdbc.url    | mysql URL    | jdbc:mysql://127.0.0.1:8123/default |                                            |
+| mysql.username    | account name | default   | |
+| mysql.password    | password     | default   | |
