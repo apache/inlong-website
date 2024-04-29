@@ -44,10 +44,11 @@ agent1.sinks.kafka-sink-msg2.topic = inlong-audit
 # By default, pulsar is used as the MessageQueue, and the audit-proxy-pulsar.conf configuration file is loaded.
 bash +x ./bin/proxy-start.sh [pulsar｜tube｜kafka]
 ```
+The default listen port is `10081`.
 
 ## Audit Store
 ### Configure
-The configuration file  is `conf/application.properties`. 
+The configuration file is `conf/application.properties`. 
 
 ```Shell
 # proxy.type: pulsar / tube / kafka
@@ -87,6 +88,12 @@ clickhouse.driver=ru.yandex.clickhouse.ClickHouseDriver
 clickhouse.url=jdbc:clickhouse://127.0.0.1:8123/default
 clickhouse.username=default
 clickhouse.password=default
+
+# starrocks config (optional)
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://127.0.0.1:9020/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
+jdbc.username=*******
+jdbc.password=********
 ```
 
 ### Dependencies
@@ -99,4 +106,25 @@ clickhouse.password=default
 bash +x ./bin/store-start.sh
 ```
 
-The default listen port is `10081`.
+## Audit Service
+### Configure
+The configuration file is `conf/audit-service.properties`
+```Shell
+mysql.jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useUnicode=true&rewriteBatchedStatements=true
+mysql.username=*****
+mysql.password=*****
+```
+### Configure audit data sources
+In the audit_source_config table used by the Audit Service, configure the data source for audit storage.
+
+### Configure audit audit items
+In the audit_id_config table used by the Audit Service, configure the audit items that need to be cached.
+
+### Dependencies
+- If the backend database is MySQL, please download [mysql-connector-java-8.0.28.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar) and put it into `lib/` directory.
+- If the backend database is PostgreSQL, there's no need for additional dependencies.
+
+### Start
+```Shell
+bash +x ./bin/service-start.sh
+```

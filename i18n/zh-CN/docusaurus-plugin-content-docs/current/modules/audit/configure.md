@@ -5,9 +5,12 @@ sidebar_position: 3
 
 ## 概览
 
-审计代理服务 audit-proxy 在 `audit-proxy-{tube|pulsar|kafka}.conf`中设置。 审计存储服务 audit-store 在 `application.properties`中设置。
+* 审计代理服务audit-proxy在`audit-proxy-{tube|pulsar|kafka}.conf`中设置。
+* 审计存储服务audit-store在`application.properties`中设置。
+* 审计OpenAPI服务audit-service`在audit-service.properties`中配置。
 
-## 审计代理层 audit-proxy source-channel-sink 管道配置（audit-proxy-{tube|pulsar|kafka}.conf）
+## 审计代理层 audit-proxy 
+配置（audit-proxy-{tube|pulsar|kafka}.conf）
 
 ### 通用设置
 
@@ -16,7 +19,7 @@ sidebar_position: 3
 | agent1.sources     | source类型  |    tcp-source                                            |                                                        |
 | agent1.channels            | 使用的channel                         | ch-msg1                                             |                                                        |
 | agent1.sinks      | 使用的sink | pulsar-sink-msg1                                            |                                                        |
-|
+
 
 ### sources 相关设置
 
@@ -44,7 +47,8 @@ sidebar_position: 3
 | agent1.sinks.pulsar-sink-msg1.enable_token_auth    | 是否需要安全认证 | false     |     |
 | agent1.sinks.pulsar-sink-msg1.auth_token    | pulsar认证token | 空     |     |
 
-## 审计存储服务 audit-store 配置 `application.properties`
+## 审计存储服务 audit-store 
+配置 `application.properties`
 
 ### MQ配置
 
@@ -78,7 +82,7 @@ sidebar_position: 3
 | elasticsearch.indexDeleteDay  | 索引保存时间，天  | 5   |     |
 | elasticsearch.auditIdSet | 允许写入的审计ID列表  | 1,2   |     |
 
-### clickhouse 相关配置
+### ClickHouse 相关配置
 
 | 参数                       | 描述               | 默认值  | 备注                                        |
 |---------------------------|--------------------|-------|---------------------------------------------|
@@ -86,3 +90,21 @@ sidebar_position: 3
 | clickhouse.url| clickhouse的URL | jdbc:clickhouse://127.0.0.1:8123/default |                                            |
 | clickhouse.username         | 账号名  | default   | |
 | clickhouse.password         | 密码  | default   | |
+
+### StarRocks 相关配置
+
+| 参数                  | 描述               | 默认值                                   | 备注                                        |
+|---------------------|--------------------|---------------------------------------|---------------------------------------------|
+| jdbc.driver         | 设置Driver类型  | com.mysql.cj.jdbc.Driver |                                            |
+| jdbc.url      | StarRocks的URL | jdbc:mysql://127.0.0.1:8123/default   |                                            |
+| jdbc.username | 账号名  | default                               | |
+| jdbc.password | 密码  | default                               | |
+
+## OpenAPI服务 audit-service 
+配置 `audit-service.properties`
+
+| 参数                | 描述        | 默认值  | 备注                                        |
+|-------------------|-----------|-------|---------------------------------------------|
+| mysql.jdbc.url    | mysql的URL | jdbc:mysql://127.0.0.1:8123/default |                                            |
+| mysql.username    | 账号名       | default   | |
+| mysql.password    | 密码        | default   | |

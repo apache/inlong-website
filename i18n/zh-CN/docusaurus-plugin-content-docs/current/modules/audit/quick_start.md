@@ -5,13 +5,19 @@ title: 安装部署
 所有的安装文件都在 `inlong-audit` 目录下，如果使用 MySQL 存储审计数据，需要先通过`sql/apache_inlong_audit.sql`初始化数据库。
 ```shell
 # 初始化 database
-mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit.sql
+mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_mysql.sql
 ```
 
 如果使用 ClickHouse 存储审计数据，需要先通过`sql/apache_inlong_audit_clickhouse.sql`初始化数据库。
 ```shell
 # 初始化 database
 clickhouse client -u DB_USER --password DB_PASSWD < sql/apache_inlong_audit_clickhouse.sql
+```
+
+如果使用 StarRocks 存储审计数据，需要先通过`sql/apache_inlong_audit_starrocks.sql`初始化数据库。
+```shell
+# 初始化 StarRocks database
+mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_starrocks.sql
 ```
   
 ## 依赖
@@ -47,6 +53,7 @@ agent1.sinks.kafka-sink-msg2.topic = inlong-audit
 # 默认使用 pulsar 作为消息队列，加载 audit-proxy-pulsar.conf 配置文件
 bash +x ./bin/proxy-start.sh [pulsar｜tube｜kafka]
 ```
+Audit Proxy 默认监听端口为 `10081`。
 
 ## Audit Store
 ### 配置
@@ -89,6 +96,12 @@ elasticsearch.port=9200
 clickhouse.url=jdbc:clickhouse://127.0.0.1:8123/default
 clickhouse.username=default
 clickhouse.password=default
+
+# starrocks config (optional)
+jdbc.driver=com.mysql.cj.jdbc.Driver
+jdbc.url=jdbc:mysql://127.0.0.1:9020/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
+jdbc.username=*******
+jdbc.password=********
 ```
 
 ### 依赖
@@ -100,4 +113,25 @@ clickhouse.password=default
 bash +x ./bin/store-start.sh
 ```
 
-Audit Proxy 默认监听端口为 `10081`。
+## Audit Service
+### 配置
+配置文件 `conf/audit-service.properties`
+```Shell
+mysql.jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useUnicode=true&rewriteBatchedStatements=true
+mysql.username=*****
+mysql.password=*****
+```
+#### 配置审计数据源
+在Audit Service服务使用的audit_source_config表中，配置审计存储的数据源。
+
+#### 配置审计审计项
+在Audit Service服务使用的audit_id_config表中，配置需要cache的审计项。
+
+### 依赖
+- 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.28.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.28.jar), 并将其放入 `lib/` 目录。
+- 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
+
+### 启动
+```Shell
+bash +x ./bin/service-start.sh
+```

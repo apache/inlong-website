@@ -16,6 +16,8 @@ The transmission status of each module, and whether the data stream is lost or r
 3. The distribution service consumes the audit data of MQ, and writes the audit data to MySQL, Elasticsearch and ClickHouse.
 4. The interface layer encapsulates the data of MySQL, Elasticsearch and ClickHouse.
 5. Application scenarios mainly include report display, audit reconciliation, etc.
+6. Support audit and reconciliation of data supplementary recording scenarios.
+7. Support audit reconciliation in Flink checkpoint scenarios.
 
 ## Audit Dimension
 | | | || | | | | | |
@@ -101,119 +103,31 @@ message AuditReply {
 ***2. Data Uniqueness***
 ***3. Reduce data loss caused by abnormal restart***
 
-### Main Logic Diagram
-![](img/audit_sdk.png)
-
-1. The sdk provides the add interface externally. The parameters are: audit_id, inlong_group_id, inlong_stream_id, number, size.
-2. The sdk uses log time+audit_id+inlong_group_id+inlong_stream_id as the key to perform real-time statistics.
-3. When the sending cycle is satisfied or the business program is actively triggered, the SDK will package the statistical results with the PB protocol and send the audit access layer.
-4. If (4) fails to send, put it into the failure queue, and continue to send in the next cycle.
-5. When the failure queue is greater than the threshold, perform disaster recovery through local files.
-
 ### Service Discovery
 Audit name discovery between sdk and access layer, support plug-in, including domain name, vip, etc.
 
 ### Disaster Recovery
-![](img/audit_sdk_disaster_recovery.png)
-1. When the SDK fails to send the access layer, it will be placed in the failure queue.
-2. When the failure queue reaches the threshold, it will be written to the local disaster recovery file.
-3. When the local disaster recovery file reaches the threshold, the old data will be eliminated (eliminated by time).
+* When the SDK fails to send the access layer, it will be placed in the failure queue. 
+* When the failure queue reaches the threshold, it will be written to the local disaster recovery file. 
+* When the local disaster recovery file reaches the threshold, the old data will be eliminated (eliminated by time).
 
 ## Access layer Implementation
 ### Target
 ***1.High reliability***  
-***2.at least once***  
+***2.at least once***
 
-### Main Logic Diagram
-![](img/audit_proxy.png)
-1. After the access layer receives the packet sent by the sdk, it writes the message queue.
-2. After writing the message queue successfully, return success to the sdk.
-3. The data protocol of the message queue is the PB protocol.
-4. Set the ack of the write message queue to -1 or all.
-
-## Elasticsearch Distribution Implementation
+## Distribution Implementation
 ### Target
 ***1. High real-time performance (minute level)***
 ***2. Can operate tens of billions of audit data per day***
 ***3. Can be deduplicated***
 
-### Main Logic Diagram
-![](img/elasticsearch_overview.png)
-1. Distribution service AuditDds consumes messages in real time.
-2. According to the audit ID in the audit data, route the data to the corresponding Elasticsearch cluster.
-3. Each audit ID corresponds to an Elasticsearch index.
+## OpenAPI Implementation
+### Architecture
+![](img/audit_openapi.png)
+* The audit interface layer provides OpenAPI capabilities to the outside world through real-time aggregation and local caching of multiple audit data sources.
 
-### Elasticsearch Index Design
-#### Index Name
-The index name consists of date + audit item ID, such as 20211019_1, 20211019_2.
-#### Index Field Schema
-
-|field               |type        |instruction |
-|----               |----       |----|
-|audit_id	        |keyword    |Audit ID |
-|inlong_group_id	|keyword    |inlong_group_id |
-|inlong_stream_id	|keyword    |inlong_stream_id |
-|docker_id	        |keyword    |ID of the container where the dk is located|
-|thread_id	        |keyword    |thread ID |
-|packet_id	        |keyword    |Package ID reported by sdk |
-|ip	                |keyword    |Machine IP |
-|log_ts	            |keyword    |log time |
-|sdk_ts	            |long       |Audit SDK reporting time |
-|count	            |long       |Number of logs |
-|size	            |long       |size of log  |
-|delay	            |long       |The log transfer time, equal to the current machine time minus the log time |
-
-#### Elasticsearch Index Storage Period
-Storage by day, storage period is dynamically configurable
-
-## Elasticsearch Write Design
-### The relationship between inlong_group_id, inlong_stream_id, audit ID and Elasticsearch index
-![](img/elasticsearch_index.png)
-The relationship between inlong_group_id, inlong_stream_id, audit ID and Elasticsearch index is 1:N in system design and service implementation
-
-### Write Routing Policy
-![](img/elasticsearch_write.png)
-Use inlong_group_id and inlong_stream_id to route to Elasticsearch shards to ensure that the same inlong_group_id and inlong_stream_id are stored in the same shard
-When writing the same inlong_group_id and inlong_stream_id to the same shard, when querying and aggregating, only one shard needs to be processed, which can greatly improve performance
-
-### Optional DeduplicationBy doc_id
-Elasticsearch is resource-intensive for real-time deduplication. This function is optional through configuration.
-
-### Use bulk batch method
-Use bulk to write, each batch of 5000, improve the write performance of the Elasticsearch cluster
-
-## MySQL Distribution Implementation
-### Target
-***1. High real-time performance (minute level)***  
-***2. Simple to deploy***  
-***3. Can be deduplicated***  
-
-### Main Logic Diagram
-![](img/audit_mysql.png)
-MySQL distribution supports distribution to different MySQL instances according to the audit ID, and supports horizontal expansion.
-
-### Usage introduction
-  1. When the audit scale of the business is relatively small, less than ten million per day, you can consider using MySQL as the audit storage. Because the deployment of MySQL is much simpler than that of Elasticsearch, the resource cost will be much less.
-  2. If the scale of audit data is large and MySQL cannot support it, you can consider using Elasticsearch as storage. After all, a single Elasticsearch cluster can support tens of billions of audit data and horizontal expansion.
-  
-## ClickHouse Distribution Implementation
-### Target
-***1. High real-time performance (minute level)***  
-***2. Simple to deploy***  
-***3. Can be deduplicated***  
-
-### Main Logic Diagram
-ClickHouse distribution supports distribution to different ClickHouse instances according to the audit ID, and supports horizontal expansion.
-
-### Usage introduction
-  1. When the audit scale of the business is huge and you want to use SQL to access audit data, you can consider using ClickHouse as the audit storage. Because ClickHouse support SQL accessing, and support tens of billions of audit data and horizontal expansion.
-  
-## Audit Usage Interface Design
-### Main Logic Diagram
-![](img/audit_api.png)
-The audit interface layer uses SQL to check MySQL/ClickHouse or restful to check Elasticsearch. How to check which type of storage the interface uses depends on which type of storage is used.
-
-### UI Interface Display
-### Main Logic Diagram
+### UI Interface display
+### Architecture
 ![](img/audit_ui.png)
-The front-end page pulls the audit data of each module through the interface layer and displays it.
+* The front-end page pulls the audit data of each module through the interface layer and displays it.
