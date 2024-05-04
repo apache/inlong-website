@@ -2,7 +2,9 @@
 title: InLong v1.12.0
 ---
 
+
 使用以下链接下载 InLong。
+
 
 ## 1.12.0 release
 
@@ -19,9 +21,10 @@ title: InLong v1.12.0
 我们为每个发布文件提供 OpenPGP 签名。此签名应与包含 InLong 发布经理的 OpenPGP 密钥的 [KEYS](https://downloads.apache.org/inlong/KEYS) 文件匹配。
 我们还为每个发布文件提供 <code>SHA-512</code> 校验和。下载文件后，您应该计算下载的校验和，并确保它与我们提供的相同。
 
+
 ## 版本 Notes
 ### Agent
-| <div style="width:130px;">ISSUE</div>                           | <div style="width:950px;">Summary</div>                                                                                                                                               |
+| ISSUE                           | Summary                                                                                                                                               |
 |:---------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [INLONG-9801](https://github.com/apache/inlong/issues/9801)    | [Umbrella][Agent] Add an agent installer module for agent installation                                                                                                               |         
 | [INLONG-9698](https://github.com/apache/inlong/issues/9698)    | [Improve][Agent] Optimize file collection initialization logic toIO                                                                                                                  |   
@@ -72,7 +75,7 @@ title: InLong v1.12.0
 | [INLONG-9683](https://github.com/apache/inlong/issues/9683)    | [Bug][Agent] time to remove Akka and use Apache Pekko?                                                                                                                               |
 
 ### Dashboard
-| <div style="width:130px;">ISSUE</div>                           | <div style="width:950px;">Summary</div>                                               |
+| ISSUE                           | Summary                                               |
 |:---------------------------------------------------------------|:-------------------------------------------------------------------------------------|
 | [INLONG-9708](https://github.com/apache/inlong/issues/9708)    | [Improve][Dashboard] Module audit query date optimization                            |
 | [INLONG-9723](https://github.com/apache/inlong/issues/9723)    | [Improve][Dashboard] Module audit id query item optimization                         |
@@ -89,7 +92,7 @@ title: InLong v1.12.0
 | [INLONG-10001](https://github.com/apache/inlong/issues/10001)  | [Bug][Dashboard] End date time initialization error on the audit page                |
 
 ### Manager
-| <div style="width:130px;">ISSUE</div>                           | <div style="width:950px;">Summary</div>                                                             |
+| ISSUE                           | Summary                                                             |
 |:---------------------------------------------------------------|:---------------------------------------------------------------------------------------------------|
 | [INLONG-9689](https://github.com/apache/inlong/issues/9689)    | [Improve][Manager] Optimize MySQL JDBC URL check                                                   |
 | [INLONG-9706](https://github.com/apache/inlong/issues/9706)    | [Improve][Manager] Supports jdbc verification under multiple hosts                                 |
@@ -140,12 +143,12 @@ title: InLong v1.12.0
 | [INLONG-9953](https://github.com/apache/inlong/issues/9953)    | [Bug][Manager] stop stream source failed                                                           |
                                                          
 ### SDK
-| <div style="width:130px;">ISSUE</div>                           | <div style="width:950px;">Summary</div>          |
+| ISSUE                           | Summary                      |
 |:---------------------------------------------------------------|:------------------------------------------------|
 | [INLONG-9762](https://github.com/apache/inlong/issues/9762)    | [Bug][SDK] DataProxy SDK Connect Manager error. |
 
 ### Sort
-| <div style="width:130px;">ISSUE</div>                           | <div style="width:950px;">Summary</div>                                                                                                |
+| ISSUE                           | Summary                                                                                                |
 |:---------------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------|
 | [INLONG-9687](https://github.com/apache/inlong/issues/9687)    | [Improve][Sort] Remove useless configuration items in pom.xml                                                                         |
 | [INLONG-9739](https://github.com/apache/inlong/issues/9739)    | [Improve][Sort] onParsingBodyFailure function in FailureHandler class need add 'head' paramete to generate failure <br/> metric.      |
@@ -169,7 +172,7 @@ title: InLong v1.12.0
 | [INLONG-9695](https://github.com/apache/inlong/issues/9695)    | [Bug][Sort] Fix kafka extract node option config building error when use upsert-kafka connector                                       |
 
 ### Audit
-| <div style="width:130px;">ISSUE</div>                           | <div style="width:950px;">Summary</div>                                        |
+| ISSUE                           | Summary                                        |
 |:---------------------------------------------------------------|:------------------------------------------------------------------------------|
 | [INLONG-9807](https://github.com/apache/inlong/issues/9807)    | [Improve][Audit] Add debug log for audit-proxy                                |
 | [INLONG-10014](https://github.com/apache/inlong/issues/10014)  | [Improve][Audit] Add new audit SDK API for Flink Sort                         |
@@ -188,7 +191,7 @@ title: InLong v1.12.0
 | [INLONG-10003](https://github.com/apache/inlong/issues/10003)  | [Feature][Audit] Audit-service supports multiple data source clusters         |
 
 ### 其它
-| <div style="width:130px;">ISSUE</div>                           | <div style="width:950px;">Summary</div>                   |
+| ISSUE                           | Summary                   |
 |:---------------------------------------------------------------|:---------------------------------------------------------|
 | [INLONG-9934](https://github.com/apache/inlong/issues/9934)    | [Improve][doc] update copyright date to 2024             |
 | [INLONG-9893](https://github.com/apache/inlong/issues/9893)    | [Improve][Common] Optimized code InLongMsg.java          |
