@@ -2,16 +2,10 @@
 title: 安装部署
 ---
 
-所有的安装文件都在 `inlong-audit` 目录下，如果使用 MySQL 存储审计数据，需要先通过`sql/apache_inlong_audit.sql`初始化数据库。
+所有的安装文件都在 `inlong-audit` 目录下，如果使用 MySQL 存储审计数据，需要先通过`sql/apache_inlong_audit_mysql.sql`初始化数据库。
 ```shell
 # 初始化 database
 mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_mysql.sql
-```
-
-如果使用 ClickHouse 存储审计数据，需要先通过`sql/apache_inlong_audit_clickhouse.sql`初始化数据库。
-```shell
-# 初始化 database
-clickhouse client -u DB_USER --password DB_PASSWD < sql/apache_inlong_audit_clickhouse.sql
 ```
 
 如果使用 StarRocks 存储审计数据，需要先通过`sql/apache_inlong_audit_starrocks.sql`初始化数据库。
