@@ -2,16 +2,16 @@
 title: Deployment
 ---
 
-All deploying files at `inlong-audit` directory, if you use MySQL to store audit data, you need to first create the database through `sql/apache_inlong_audit.sql`.
+All deploying files at `inlong-audit` directory, if you use MySQL to store audit data, you need to first create the database through `sql/apache_inlong_audit_mysql.sql`.
 ```shell
 # initialize database
-mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit.sql
+mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_mysql.sql
 ```
 
-If you use ClickHouse to store audit data, you need to first create the database through `sql/apache_inlong_audit_clickhouse.sql`.
+If you use StarRocks to store audit data, you need to first create the database through `sql/apache_inlong_audit_starrocks.sql`.
 ```shell
 # initialize database
-clickhouse client -u DB_USER --password DB_PASSWD < sql/apache_inlong_audit_clickhouse.sql
+clickhouse client -u DB_USER --password DB_PASSWD < sql/apache_inlong_audit_starrocks.sql
 ```
   
 ## Audit Proxy
