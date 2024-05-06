@@ -11,7 +11,7 @@ mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_mysql.sql
 If you use StarRocks to store audit data, you need to first create the database through `sql/apache_inlong_audit_starrocks.sql`.
 ```shell
 # initialize database
-clickhouse client -u DB_USER --password DB_PASSWD < sql/apache_inlong_audit_starrocks.sql
+mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_starrocks.sql
 ```
   
 ## Audit Proxy
