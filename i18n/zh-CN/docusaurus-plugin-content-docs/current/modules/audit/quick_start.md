@@ -2,13 +2,13 @@
 title: 安装部署
 ---
 
-所有的安装文件都在 `inlong-audit` 目录下，如果使用 MySQL 存储审计数据，需要先通过`sql/apache_inlong_audit_mysql.sql`初始化数据库。
+所有的安装文件都在 `inlong-audit` 目录下，如果使用 MySQL 存储审计数据，需要先通过 `sql/apache_inlong_audit_mysql.sql` 初始化数据库。
 ```shell
 # 初始化 database
 mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_mysql.sql
 ```
 
-如果使用 StarRocks 存储审计数据，需要先通过`sql/apache_inlong_audit_starrocks.sql`初始化数据库。
+如果使用 StarRocks 存储审计数据，需要先通过 `sql/apache_inlong_audit_starrocks.sql` 初始化数据库。
 ```shell
 # 初始化 StarRocks database
 mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_starrocks.sql
@@ -57,45 +57,36 @@ Audit Proxy 默认监听端口为 `10081`。
 # proxy.type: pulsar / tube / kafka
 audit.config.proxy.type=pulsar
 
-# store.server: mysql / elasticsearch 
-audit.config.store.mode=mysql
+# Supports common JDBC protocol
+audit.config.store.mode=jdbc
 
 # manger config
 manager.hosts=127.0.0.1:8083
 proxy.cluster.tag=default_cluster
 
-# audit pulsar config (optional)
+# pulsar config
 audit.pulsar.topic=persistent://public/default/inlong-audit
-audit.pulsar.consumer.sub.name=sub-audit
+audit.pulsar.consumer.sub.name=inlong-audit-subscription
+audit.pulsar.token=
+audit.pulsar.enable.auth=false
 
-# audit tube config (optional)
+# tube config
 audit.tube.topic=inlong-audit
 audit.tube.consumer.group.name=inlong-audit-consumer
 
-# kafka config (optional)
+# kafka config
 audit.kafka.topic=inlong-audit
+# create a topic if the topic does not exist.
+audit.kafka.topic.numPartitions=3
+audit.kafka.topic.replicationFactor=2
 audit.kafka.consumer.name=inlong-audit-consumer
 audit.kafka.group.id=audit-consumer-group
 
-# mysql config
-spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
-spring.datasource.druid.username=root
-spring.datasource.druid.password=inlong
-
-# es config (optional)
-elasticsearch.host=127.0.0.1
-elasticsearch.port=9200
-
-# clickhouse config (optional)
-clickhouse.url=jdbc:clickhouse://127.0.0.1:8123/default
-clickhouse.username=default
-clickhouse.password=default
-
-# starrocks config (optional)
+# Generic jdbc storage
 jdbc.driver=com.mysql.cj.jdbc.Driver
-jdbc.url=jdbc:mysql://127.0.0.1:9020/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
-jdbc.username=*******
-jdbc.password=********
+jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
+jdbc.username=root
+jdbc.password=inlong
 ```
 
 ### 依赖
@@ -112,14 +103,14 @@ bash +x ./bin/store-start.sh
 配置文件 `conf/audit-service.properties`
 ```Shell
 mysql.jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useUnicode=true&rewriteBatchedStatements=true
-mysql.username=*****
-mysql.password=*****
+mysql.username=root
+mysql.password=inlong
 ```
-#### 配置审计数据源
-在Audit Service服务使用的audit_source_config表中，配置审计存储的数据源。
+#### (可选)配置审计数据源
+在 Audit Service 服务使用的 audit_source_config 表中，配置审计存储的数据源。默认和 Audit Service 使用相同的 MySQL 配置
 
-#### 配置审计审计项
-在Audit Service服务使用的audit_id_config表中，配置需要cache的审计项。
+#### (可选)配置审计审计项
+在 Audit Service 服务使用的 audit_id_config 表中，配置需要 cache 的审计项。默认使用 Agent 接收成功、Agent 发送成功、DataProxy 接收成功、DataProxy 发送成功
 
 ### 依赖
 - 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.28.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.28.jar), 并将其放入 `lib/` 目录。

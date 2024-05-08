@@ -13,11 +13,20 @@ The transmission status of each module, and whether the data stream is lost or r
 ![](img/audit_architecture.png)
 1. The audit SDK is nested in the service that needs to be audited, audits the service, and sends the audit result to the audit access layer
 2. The audit proxy writes audit data to MQ (Pulsar, Kafka or TubeMQ)
-3. The distribution service consumes the audit data of MQ, and writes the audit data to MySQL, Elasticsearch and ClickHouse.
-4. The interface layer encapsulates the data of MySQL, Elasticsearch and ClickHouse.
+3. The distribution service consumes the audit data of MQ, and writes the audit data to MySQL or StarRocks.
+4. The interface layer encapsulates the data of MySQL or StarRocks.
 5. Application scenarios mainly include report display, audit reconciliation, etc.
 6. Support audit and reconciliation of data supplementary recording scenarios.
 7. Support audit reconciliation in Flink checkpoint scenarios.
+
+## Module
+
+| Modules                     | Description                                                                                  |
+|:----------------------------|:---------------------------------------------------------------------------------------------|
+| audit-sdk                   | Audit hidden points are reported. Each module uses the SDK to report audit data              |
+| audit-proxy                 | Audit proxy layer, receives data reported by SDK and forwards it to MQ (pulsar/kafka/tubeMQ) |
+| audit-store                 | Audit storage layer, supporting common JDBC protocol                                         |
+| audit-service               | Audit service layer, providing aggregation, cache, OpenAPI and other capabilities            |
 
 ## Audit Dimension
 | | | || | | | | | |
@@ -34,11 +43,9 @@ The receiving and sending of each module are respectively an independent audit i
 |Inlong Agent Send Successfully	|4|
 |Inlong DataProxy Received Successfully	|5|
 |Inlong DataProxy Send Successfully	|6|
-|Inlong Sort Received Successfully	|7|
-|Inlong Sort Send Successfully	|8|
 
 ## Data Transfer Protocol
-The transmission protocol between sdk, access layer, and distribution layer is Protocol Buffers
+The transmission protocol between SDK, Audit Proxy, and Audit Store is Protocol Buffers
 ```markdown
 syntax = "proto3";
 
@@ -97,37 +104,3 @@ message AuditReply {
   optional string message = 2;
 }
 ```
-## Audit SDK Implementation Details
-### Target
-***1. Support local disaster recovery***
-***2. Data Uniqueness***
-***3. Reduce data loss caused by abnormal restart***
-
-### Service Discovery
-Audit name discovery between sdk and access layer, support plug-in, including domain name, vip, etc.
-
-### Disaster Recovery
-* When the SDK fails to send the access layer, it will be placed in the failure queue. 
-* When the failure queue reaches the threshold, it will be written to the local disaster recovery file. 
-* When the local disaster recovery file reaches the threshold, the old data will be eliminated (eliminated by time).
-
-## Access layer Implementation
-### Target
-***1.High reliability***  
-***2.at least once***
-
-## Distribution Implementation
-### Target
-***1. High real-time performance (minute level)***
-***2. Can operate tens of billions of audit data per day***
-***3. Can be deduplicated***
-
-## OpenAPI Implementation
-### Architecture
-![](img/audit_openapi.png)
-* The audit interface layer provides OpenAPI capabilities to the outside world through real-time aggregation and local caching of multiple audit data sources.
-
-### UI Interface display
-### Architecture
-![](img/audit_ui.png)
-* The front-end page pulls the audit data of each module through the interface layer and displays it.
