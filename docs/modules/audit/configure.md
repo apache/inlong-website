@@ -45,7 +45,7 @@ sidebar_position: 3
 | agent1.sinks.pulsar-sink-msg1.enable_token_auth    | Whether security certification is required | false     |     |
 | agent1.sinks.pulsar-sink-msg1.auth_token    | pulsar authentication token |      |     |
 
-## Audit Store Storage Service Configuration (`application.properties`)
+## Audit Store Configuration (`application.properties`)
 
 ### MQ Configuration
 
