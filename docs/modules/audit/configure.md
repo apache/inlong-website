@@ -9,7 +9,7 @@ sidebar_position: 3
 * Audit-store storage service configuration (application.properties).
 * OpenAPI audit-service configuration audit-service.properties.
 
-## Audit Proxy Source-Channel-Sink Pipeline Configuration (`audit-proxy-{tube|pulsar|kafka}.conf`)
+## Audit Proxy Configuration (`audit-proxy-{tube|pulsar|kafka}.conf`)
 
 ### Basic Configuration
 
