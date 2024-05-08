@@ -2,13 +2,13 @@
 title: 安装部署
 ---
 
-所有的安装文件都在 `inlong-audit` 目录下，如果使用 MySQL 存储审计数据，需要先通过`sql/apache_inlong_audit_mysql.sql`初始化数据库。
+所有的安装文件都在 `inlong-audit` 目录下，如果使用 MySQL 存储审计数据，需要先通过 `sql/apache_inlong_audit_mysql.sql` 初始化数据库。
 ```shell
 # 初始化 database
 mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_mysql.sql
 ```
 
-如果使用 StarRocks 存储审计数据，需要先通过`sql/apache_inlong_audit_starrocks.sql`初始化数据库。
+如果使用 StarRocks 存储审计数据，需要先通过 `sql/apache_inlong_audit_starrocks.sql` 初始化数据库。
 ```shell
 # 初始化 StarRocks database
 mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_starrocks.sql
@@ -106,11 +106,11 @@ mysql.jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding
 mysql.username=root
 mysql.password=inlong
 ```
-#### 配置审计数据源(可选)
-在Audit Service服务使用的audit_source_config表中，配置审计存储的数据源。默认和Audit Service使用相同的MySQL配置
+#### (可选)配置审计数据源
+在 Audit Service 服务使用的 audit_source_config 表中，配置审计存储的数据源。默认和 Audit Service 使用相同的 MySQL 配置
 
-#### 配置审计审计项(可选)
-在Audit Service服务使用的audit_id_config表中，配置需要cache的审计项。默认使用Agent接收成功、Agent发送成功、DataProxy接收成功、DataProxy发送成功
+#### (可选)配置审计审计项
+在 Audit Service 服务使用的 audit_id_config 表中，配置需要 cache 的审计项。默认使用 Agent 接收成功、Agent 发送成功、DataProxy 接收成功、DataProxy 发送成功
 
 ### 依赖
 - 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.28.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.28.jar), 并将其放入 `lib/` 目录。

@@ -19,7 +19,7 @@ The transmission status of each module, and whether the data stream is lost or r
 6. Support audit and reconciliation of data supplementary recording scenarios.
 7. Support audit reconciliation in Flink checkpoint scenarios.
 
-## 模块
+## Module
 
 | Modules                     | Description                                                                                  |
 |:----------------------------|:---------------------------------------------------------------------------------------------|
@@ -45,7 +45,7 @@ The receiving and sending of each module are respectively an independent audit i
 |Inlong DataProxy Send Successfully	|6|
 
 ## Data Transfer Protocol
-The transmission protocol between sdk, access layer, and distribution layer is Protocol Buffers
+The transmission protocol between SDK, Audit Proxy, and Audit Store is Protocol Buffers
 ```markdown
 syntax = "proto3";
 

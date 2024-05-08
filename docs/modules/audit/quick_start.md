@@ -104,10 +104,10 @@ mysql.jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding
 mysql.username=root
 mysql.password=inlong
 ```
-### Configure audit data sources(optional)
+### (optional) Configure Audit Data Sources
 In the audit_source_config table used by the Audit Service, configure the data source for audit storage. By default, the same MySQL configuration is used as the Audit Service
 
-### Configure audit audit items(optional)
+### (optional) Configure Audit Items
 In the audit_id_config table used by the Audit Service, configure the audit items that need to be cached. By default, Agent is used to receive successfully, Agent is sent successfully, DataProxy is received successfully, and DataProxy is sent successfully.
 
 ### Dependencies

@@ -9,7 +9,7 @@ sidebar_position: 3
 * Audit-store storage service configuration (application.properties).
 * OpenAPI audit-service configuration audit-service.properties.
 
-## Audit-proxy source-channel-sink pipeline configuration (`audit-proxy-{tube|pulsar|kafka}.conf`)
+## Audit Proxy Source-Channel-Sink Pipeline Configuration (`audit-proxy-{tube|pulsar|kafka}.conf`)
 
 ### Basic Configuration
 
@@ -19,7 +19,7 @@ sidebar_position: 3
 | agent1.channels            | used channel                         | ch-msg1                                             |                                                        |
 | agent1.sinks      | used sink | pulsar-sink-msg1                                            |                                                        |
 
-### sources Configuration
+### Sources Configuration
 
 | Parameter                       | Description               | Default value  | Notes                                        |
 |---------------------------|--------------------|-------|---------------------------------------------|
@@ -27,14 +27,14 @@ sidebar_position: 3
 | agent1.sources.tcp-source.host | tcp ip binding and listening  | 0.0.0.0  |                                            |
 | agent1.sources.tcp-source.port         | tcp port binding  | 10081   | |
 
-### channel Configuration
+### Channel Configuration
 
 | Parameter                       | Description                      | Default value | Notes |
 |--------------------------|----------------------------|------|-----|
 | agent1.channels.ch-msg1.type     | memory channel type   | memory    |     |
 | agent1.channels.ch-msg2.type  | file channel type | file   |     |
 
-### sink Configuration
+### Sink Configuration
 
 | Parameter                     | Description                            | Default value | Notes |
 |------------------------|----------------------------------|-------|-----|
@@ -45,9 +45,9 @@ sidebar_position: 3
 | agent1.sinks.pulsar-sink-msg1.enable_token_auth    | Whether security certification is required | false     |     |
 | agent1.sinks.pulsar-sink-msg1.auth_token    | pulsar authentication token |      |     |
 
-## Audit-store storage service configuration (`application.properties`)
+## Audit Store Storage Service Configuration (`application.properties`)
 
-### MQ configuration
+### MQ Configuration
 
 | Parameter                         | Description                                        | Default value                                                | Notes         |
 |----------------------------|---------------------------------------------|-------------------------------------------------------|---------------|
@@ -58,7 +58,7 @@ sidebar_position: 3
 | audit.pulsar.enable.auth      | Whether security certification is required | false                                            |               |
 | audit.pulsar.token      | pulsar authentication token  |                                            |               |
 
-### MySQL / StarRocks configuration
+### MySQL / StarRocks Configuration
 
 | Parameter                  | Description   | Default value   | Notes                                        |
 |---------------------|---------------|-----------------|---------------------------------------------|
@@ -66,7 +66,7 @@ sidebar_position: 3
 | jdbc.username | account name           | default         | |
 | jdbc.password | password            | default         | |
 
-## OpenAPI audit-service
+## OpenAPI Audit Service
 configuration `audit-service.properties`
 
 | Parameter                | Description  | Default value  | Notes                                        |
