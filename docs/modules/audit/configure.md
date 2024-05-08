@@ -18,7 +18,6 @@ sidebar_position: 3
 | agent1.sources     | source  typpe  |    tcp-source                                            |                                                        |
 | agent1.channels            | used channel                         | ch-msg1                                             |                                                        |
 | agent1.sinks      | used sink | pulsar-sink-msg1                                            |                                                        |
-|
 
 ### sources Configuration
 
@@ -50,50 +49,19 @@ sidebar_position: 3
 
 ### MQ configuration
 
-| Parameter                         | Description                                        | Default value                                                | Notes                                                   |
-|----------------------------|---------------------------------------------|-------------------------------------------------------|--------------------------------------------------------|
-| audit.config.proxy.type     | MQ type  |    pulsar                                            |                                                        |
-| audit.pulsar.server.url           | pulsar broker                         | pulsar://127.0.0.1:6650                                             |                                                        |
-| audit.pulsar.topic      | pulsar topic | persistent://public/Default value/inlong-audit                                            |                                                        |
-| audit.pulsar.consumer.sub.name      | consumer | inlong-audit-subscription                                           |                                                        |
-| audit.pulsar.enable.auth      | Whether security certification is required | false                                            |                                                        |
-| audit.pulsar.token      | pulsar authentication token  |                                            |                                                        |
+| Parameter                         | Description                                        | Default value                                                | Notes         |
+|----------------------------|---------------------------------------------|-------------------------------------------------------|---------------|
+| audit.config.proxy.type     | MQ type  |    pulsar                                            |               |
+| audit.pulsar.server.url           | pulsar broker                         | pulsar://127.0.0.1:6650     | |
+| audit.pulsar.topic      | pulsar topic | persistent://public/Default value/inlong-audit     |               |
+| audit.pulsar.consumer.sub.name      | consumer | inlong-audit-subscription                                           |               |
+| audit.pulsar.enable.auth      | Whether security certification is required | false                                            |               |
+| audit.pulsar.token      | pulsar authentication token  |                                            |               |
 
-### DB configuration
-
-| Parameter                       | Description               | Default value  | Notes                                        |
-|---------------------------|--------------------|-------|---------------------------------------------|
-| spring.datasource.druid.driver-class-name | Set the driver type  | com.mysql.cj.jdbc.Driver  |                                            |
-| spring.datasource.druid.url| jdbc URL | jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL&allowPublicKeyRetrieval=true |                                            |
-| spring.datasource.druid.username         | account name  | root   | |
-| spring.datasource.druid.password         | password  | inlong   | |
-
-### ElasticSearch configuration
-
-| Parameter                       | Description                      | Default value | Notes |
-|--------------------------|----------------------------|------|-----|
-| elasticsearch.host     | broker   | 127.0.0.1    |     |
-| elasticsearch.port  | port  | 9200   |     |
-| elasticsearch.authEnable  | Whether security certification is required  | false   |     |
-| elasticsearch.username  | account name  | elastic   |     |
-| elasticsearch.password  | password  | inlong   |     |
-| elasticsearch.indexDeleteDay  | Index retention time, days  | 5   |     |
-| elasticsearch.auditIdSet | List of audit IDs that are allowed to write  | 1,2   |     |
-
-### clickhouse configuration
-
-| Parameter                       | Description               | Default value  | Notes                                        |
-|---------------------------|--------------------|-------|---------------------------------------------|
-| clickhouse.driver | Set the driver type  | ru.yandex.clickhouse.ClickHouseDriver  |                                            |
-| clickhouse.url| clickhouse URL | jdbc:clickhouse://127.0.0.1:8123/Default value |                                            |
-| clickhouse.username         | account name  | Default value   | |
-| clickhouse.password         | password  | Default value   | |
-
-### StarRocks configuration
+### MySQL / StarRocks configuration
 
 | Parameter                  | Description   | Default value   | Notes                                        |
 |---------------------|---------------|-----------------|---------------------------------------------|
-| jdbc.driver         | Driver type   | com.mysql.cj.jdbc.Driver |                                            |
 | jdbc.url      | StarRocks URL | jdbc:mysql://127.0.0.1:8123/default |                                            |
 | jdbc.username | account name           | default         | |
 | jdbc.password | password            | default         | |

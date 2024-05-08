@@ -13,11 +13,20 @@ sidebar_position: 1
 ![](img/audit_architecture.png)
 1. 审计SDK嵌套在需要审计的服务，对服务进行审计，将审计结果发送到审计接入层。
 2. 审计接入层将审计数据写到 MQ(Pulsar、Kafka 或者 TubeMQ)。
-3. 分发服务消费 MQ 的审计数据，将审计数据写到 MySQL、Elasticsearch、ClickHouse、StarRocks。
-4. 接口层将 MySQL、Elasticsearch、ClickHouse、StarRocks的数据进行实时聚合并且cache,对外提供OpenAPI。
+3. 分发服务消费 MQ 的审计数据，将审计数据写到 MySQL、StarRocks。
+4. 接口层将 MySQL、StarRocks的数据进行实时聚合并且cache,对外提供OpenAPI。
 5. 应用场景主要包括报表展示、审计对账等等。
 6. 支持数据补录场景的审计对账。
 7. 支持Flink checkpoint场景的审计对账。
+
+## 模块
+
+| 模块             | 描述                                           |
+|:---------------|:---------------------------------------------|
+| audit-sdk      | 审计埋点上报，各个模块使用该SDK上报审计数据                      |
+| audit-proxy    | 审计代理层，接收SDK上报数据，转发到MQ(pulsar/kafka/tubeMQ)   |
+| audit-store    | 审计存储层，支持通用的JDBC协议                            |
+| audit-service  | 审计服务层，提供聚合、cache、OpenAPI等能力                  |
 
 ## 审计维度
 | | | || | | | | | |
@@ -35,10 +44,6 @@ sidebar_position: 1
 |Inlong agent发送成功	|4|
 |Inlong DataProxy接收成功	|5|
 |Inlong DataProxy发送成功	|6|
-|Inlong分发服务1接收成功	|7|
-|Inlong分发服务1发送成功	|8|
-|Inlong分发服务2接收成功	|9|
-|Inlong分发服务2发送成功	|10|
 
 ## 数据传输协议
 sdk、接入层、分发层之间的传输协议为Protocol Buffers
@@ -100,37 +105,3 @@ message AuditReply {
   optional string message = 2;
 }
 ```
-## 审计SDK实现
-### 目标
-***1.支持本地容灾***  
-***2.数据唯一性***  
-***3.减少异常重启导致的数据丢失***  
-
-### 服务发现
-* 审计sdk与接入层之间的名字发现，支持插件化，包括域名、vip等
-
-### 容灾逻辑
-* sdk发送接入层失败时，会放入失败队列  
-* 失败队列达到阈值时，将写到本地容灾文件  
-* 本地容灾文件达到阈值时，将淘汰旧数据(按时间淘汰)  
-
-## 接入层实现
-### 目标
-***1.高可靠***
-***2.at least once***
-
-## 分发层实现
-### 目标
-***1.高实时性(分钟级)***   
-***2.部署简单***  
-***3.可去重***
-
-## OpenAPI实现
-### 主要逻辑图
-![](img/audit_openapi.png)
-* 审计接口层通过对多个审计数据源进行实时聚合、本地cache，对外提供OpenAPI能力。
-
-### UI 界面展示
-### 主要逻辑图
-![](img/audit_ui.png)
-* 前端页面通过接口层，拉取各个模块的审计数据，进行展示

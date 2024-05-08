@@ -54,46 +54,36 @@ The configuration file is `conf/application.properties`.
 # proxy.type: pulsar / tube / kafka
 audit.config.proxy.type=pulsar
 
-# store.server: mysql / elasticsearch / clickhouse 
-audit.config.store.mode=mysql
+# Supports common JDBC protocol
+audit.config.store.mode=jdbc
 
 # manger config
 manager.hosts=127.0.0.1:8083
 proxy.cluster.tag=default_cluster
 
-# audit pulsar config (optional)
+# pulsar config
 audit.pulsar.topic=persistent://public/default/inlong-audit
-audit.pulsar.consumer.sub.name=sub-audit
+audit.pulsar.consumer.sub.name=inlong-audit-subscription
+audit.pulsar.token=
+audit.pulsar.enable.auth=false
 
-# audit tube config (optional)
+# tube config
 audit.tube.topic=inlong-audit
 audit.tube.consumer.group.name=inlong-audit-consumer
 
-# kafka config (optional)
+# kafka config
 audit.kafka.topic=inlong-audit
+# create a topic if the topic does not exist.
+audit.kafka.topic.numPartitions=3
+audit.kafka.topic.replicationFactor=2
 audit.kafka.consumer.name=inlong-audit-consumer
 audit.kafka.group.id=audit-consumer-group
 
-# mysql config
-spring.datasource.druid.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
-spring.datasource.druid.username=root
-spring.datasource.druid.password=inlong
-
-# es config (optional)
-elasticsearch.host=127.0.0.1
-elasticsearch.port=9200
-
-# clickhouse config (optional)
-clickhouse.driver=ru.yandex.clickhouse.ClickHouseDriver
-clickhouse.url=jdbc:clickhouse://127.0.0.1:8123/default
-clickhouse.username=default
-clickhouse.password=default
-
-# starrocks config (optional)
+# Generic jdbc storage
 jdbc.driver=com.mysql.cj.jdbc.Driver
-jdbc.url=jdbc:mysql://127.0.0.1:9020/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
-jdbc.username=*******
-jdbc.password=********
+jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL
+jdbc.username=root
+jdbc.password=inlong
 ```
 
 ### Dependencies
@@ -111,14 +101,14 @@ bash +x ./bin/store-start.sh
 The configuration file is `conf/audit-service.properties`
 ```Shell
 mysql.jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useUnicode=true&rewriteBatchedStatements=true
-mysql.username=*****
-mysql.password=*****
+mysql.username=root
+mysql.password=inlong
 ```
-### Configure audit data sources
-In the audit_source_config table used by the Audit Service, configure the data source for audit storage.
+### Configure audit data sources(optional)
+In the audit_source_config table used by the Audit Service, configure the data source for audit storage. By default, the same MySQL configuration is used as the Audit Service
 
-### Configure audit audit items
-In the audit_id_config table used by the Audit Service, configure the audit items that need to be cached.
+### Configure audit audit items(optional)
+In the audit_id_config table used by the Audit Service, configure the audit items that need to be cached. By default, Agent is used to receive successfully, Agent is sent successfully, DataProxy is received successfully, and DataProxy is sent successfully.
 
 ### Dependencies
 - If the backend database is MySQL, please download [mysql-connector-java-8.0.28.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.28/mysql-connector-java-8.0.28.jar) and put it into `lib/` directory.

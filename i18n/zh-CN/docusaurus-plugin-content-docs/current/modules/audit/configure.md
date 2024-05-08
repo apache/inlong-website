@@ -61,41 +61,10 @@ sidebar_position: 3
 | audit.pulsar.enable.auth      | 是否需要安全认证 | false                                            |                                                        |
 | audit.pulsar.token      | 认证token |                                            |                                                        |
 
-### DB 相关设置
-
-| 参数                       | 描述               | 默认值  | 备注                                        |
-|---------------------------|--------------------|-------|---------------------------------------------|
-| spring.datasource.druid.driver-class-name | 设置Driver类型  | com.mysql.cj.jdbc.Driver  |                                            |
-| spring.datasource.druid.url| jdbc的URL | jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useSSL=false&serverTimezone=GMT%2b8&rewriteBatchedStatements=true&allowMultiQueries=true&zeroDateTimeBehavior=CONVERT_TO_NULL&allowPublicKeyRetrieval=true |                                            |
-| spring.datasource.druid.username         | 账号名  | root   | |
-| spring.datasource.druid.password         | 密码  | inlong   | |
-
-### ElasticSearch 配置
-
-| 参数                       | 描述                      | 默认值 | 备注 |
-|--------------------------|----------------------------|------|-----|
-| elasticsearch.host     | 集群地址   | 127.0.0.1    |     |
-| elasticsearch.port  | 集群端口  | 9200   |     |
-| elasticsearch.authEnable  | 是否认证  | false   |     |
-| elasticsearch.username  | 账号名  | elastic   |     |
-| elasticsearch.password  | 密码  | inlong   |     |
-| elasticsearch.indexDeleteDay  | 索引保存时间，天  | 5   |     |
-| elasticsearch.auditIdSet | 允许写入的审计ID列表  | 1,2   |     |
-
-### ClickHouse 相关配置
-
-| 参数                       | 描述               | 默认值  | 备注                                        |
-|---------------------------|--------------------|-------|---------------------------------------------|
-| clickhouse.driver | 设置Driver类型  | ru.yandex.clickhouse.ClickHouseDriver  |                                            |
-| clickhouse.url| clickhouse的URL | jdbc:clickhouse://127.0.0.1:8123/default |                                            |
-| clickhouse.username         | 账号名  | default   | |
-| clickhouse.password         | 密码  | default   | |
-
-### StarRocks 相关配置
+### MySQL / StarRocks 相关配置
 
 | 参数                  | 描述               | 默认值                                   | 备注                                        |
 |---------------------|--------------------|---------------------------------------|---------------------------------------------|
-| jdbc.driver         | 设置Driver类型  | com.mysql.cj.jdbc.Driver |                                            |
 | jdbc.url      | StarRocks的URL | jdbc:mysql://127.0.0.1:8123/default   |                                            |
 | jdbc.username | 账号名  | default                               | |
 | jdbc.password | 密码  | default                               | |
