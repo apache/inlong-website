@@ -110,7 +110,7 @@ mysql.password=inlong
 在Audit Service服务使用的audit_source_config表中，配置审计存储的数据源。默认和Audit Service使用相同的MySQL配置
 
 #### 配置审计审计项(可选)
-在Audit Service服务使用的audit_id_config表中，配置需要cache的审计项。默认使用Agent接收成功、Agent发送成功、、DataProxy接收成功、、DataProxy发送成功
+在Audit Service服务使用的audit_id_config表中，配置需要cache的审计项。默认使用Agent接收成功、Agent发送成功、DataProxy接收成功、DataProxy发送成功
 
 ### 依赖
 - 如果后端连接 MySQL 数据库，请下载 [mysql-connector-java-8.0.28.jar](https://repo1.maven.org/maven2/mysql/mysql-connector-java/8.0.26/mysql-connector-java-8.0.28.jar), 并将其放入 `lib/` 目录。
