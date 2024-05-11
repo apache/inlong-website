@@ -1,4 +1,8 @@
-## 概览
+---
+title: 总览
+sidebar_position: 1
+---
+
 InLong Agent 属于 InLong 数据链路的采集层，是一个支持多种数据源类型的收集工具，致力于实现包括 File、MySQL、Pulsar、Metrics 等多种异构数据源稳定高效的数据采集功能。
 
 ### 整体架构
@@ -101,6 +105,3 @@ InstanceDB 记录里保存着指定的 Source、Sink 类名，这是由于 Agent
 我们使用了 `RandomAccessFile` 类来读取文件， `RandomAccessFile` 的实例支持对随机访问文件的读取和写入。随机访问文件的行为类似存储在文件系统中的一个大型 byte 数组。存在指向该隐含数组的光标或索引，称为文件指针；从文件指针开始读取字节，并随着对字节的读取而前移此文件指针。举个例子：文件共有 13 字节，我们需要从 Offset 为 4 的地方开始读取 3 个字节。我们只需要把文件指针指向 Offset 为 4 的地方，然后读取 3 个字节即可。
 
 ![](img/agent_overview_12.png)
-
-## 结语
-目前 Agent 已经支持的数据源有文件、Kafka、Pulsar、MongoDB、PostgreSQL 等，后续还将继续支持更多的数据源，包括 Doris、Oracle、Redis 等。同时也会持续做补充单元测试和其他增加 Agent 健壮性的工作，欢迎大家一起共建！
