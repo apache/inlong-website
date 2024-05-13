@@ -21,7 +21,7 @@ InLong 当前支持以下消息队列，根据使用情况**选择其一**即可
 ### 安装
 | 顺序     | 组件                        | 第三方依赖                         | 部署指引                                                                                                                                        | 说明  |
 |--------|---------------------------|-------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|-----|
-| 1      | inlong-audit              | MySQL 或者 Elasticsearch        | [InLong Audit](modules/audit/quick_start.md)                                                                                                |     |
+| 1      | inlong-audit              | MySQL 或者 StarRocks        | [InLong Audit](modules/audit/quick_start.md)                                                                                                |     |
 | 2      | inlong-manager            | MySQL                         | [InLong Manager](modules/manager/quick_start.md)                                                                                            |     |
 | 3      | inlong-dataproxy          | 无                             | [InLong DataProxy](modules/dataproxy/quick_start.md)                                                                                        |     |
 | 4      | inlong-agent              | 无                             | [InLong Agent](modules/agent/quick_start.md)                                                                                                |     |

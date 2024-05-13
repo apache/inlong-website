@@ -10,7 +10,6 @@ Agent needs to pull the configuration from Manager, the configuration conf/agent
 ```ini
 # replace by agent IP
 agent.local.ip=127.0.0.1
-agent.http.port=8008
 # manager IP
 agent.manager.vip.http.host=127.0.0.1
 # manager port

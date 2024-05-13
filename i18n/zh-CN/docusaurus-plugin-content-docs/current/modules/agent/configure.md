@@ -24,8 +24,6 @@ Agent 相关参数均在配置文件 `agent.properties` 中设置。
 | 参数                       | 描述               | 默认值  | 备注                                        |
 |---------------------------|--------------------|-------|---------------------------------------------|
 | agent.localStore.readonly | 本地缓存文件是否只读  | false  |                                            |
-| agent.http.enable         | 是否开启 HTTP 服务  | true   | 如果开启，会启动一个 HTTP 服务器，支持通过 HTTP 方式来获取采集任务 |
-| agent.http.port           | HTTP 服务端口号     | 8008   |                                            |
 
 ## Job 和 JobManager 相关设置
 

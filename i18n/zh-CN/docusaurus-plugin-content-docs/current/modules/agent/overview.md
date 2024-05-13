@@ -33,7 +33,7 @@ InLong Agent 本身作为数据采集框架，为了方便扩展数据源，将�
 #### Source 和 Sink
 Source 和 Sink 属于 Instance 下一级的概念，每个 Instance 都有一个 Source 和一个 Sink，Source 从数据源读取数据，Sink 把数据写入目标存储。在 InLong 体系中，数据经过 Agent 采集会统一写入 DataProxy 服务，即只有  DataProxy Sink 类型。
 
-## InLong Agent 实现原理
+## 实现原理
 ### 生命周期
 
 ![](img/agent_overview_4.png)
@@ -86,7 +86,7 @@ InstanceDB 记录里保存着指定的 Source、Sink 类名，这是由于 Agent
 - Step 6: Instance 根据 OffsetDB 的配置对 Source 进行初始化，恢复 Offset
 - Step 7: 定时根据 Manager 配置更新任务
 
-## InLong Agent 文件采集机制
+## 文件采集机制
 ### 文件夹扫描
 把相应路径下的文件都扫一遍，然后匹配一下规则，匹配上就算是找到了。但是文件数量较多的情况下，扫描一遍需要较长的时间、也比较耗资源，扫描周期太小则资源消耗过大；扫描周期太大则响应速度过慢。
 

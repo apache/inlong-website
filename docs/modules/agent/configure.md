@@ -24,8 +24,6 @@ Uses can set customized configuration in `agent.properties`.
 | Parameter                 | Description                          | Default Value | Notes                                                      |
 |---------------------------|--------------------------------------|---------------|------------------------------------------------------------|
 | agent.localStore.readonly | whether local-store-data is readonly | false         |                                                            |
-| agent.http.enable         | whether enable HTTP service          | true          | Start a HTTP server and getting job/agent config via http. |
-| agent.http.port           | http port of HTTP service            | 8008          |                                                            |
 
 ## Job and JobManager Configuration
 

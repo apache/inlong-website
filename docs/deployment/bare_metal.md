@@ -22,7 +22,7 @@ You need deploy all InLong components for Standard Architecture, which supports 
 ### Deploy
 | order | component              | dependencies                  | deploy guide                                                                                                                                                 | description |
 |-------|------------------------|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| 1     | inlong-audit           | MySQL or Elasticsearch        | [InLong Audit](modules/audit/quick_start.md)                                                                                                                 |             |
+| 1     | inlong-audit           | MySQL or StarRocks            | [InLong Audit](modules/audit/quick_start.md)                                                                                                                 |             |
 | 2     | inlong-manager         | MySQL                         | [InLong Manager](modules/manager/quick_start.md)                                                                                                             |             |
 | 3     | inlong-dataproxy       | None                          | [InLong DataProxy](modules/dataproxy/quick_start.md)                                                                                                         |             |
 | 4     | inlong-agent           | None                          | [InLong Agent](modules/agent/quick_start.md)                                                                                                                 |             |

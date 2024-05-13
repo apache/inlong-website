@@ -33,7 +33,7 @@ Taking file collection as an example, there is a collection task configuration o
 #### Source and Sink
 Source and Sink belong to the concept of the lower level of an instance. Each instance has a Source and a Sink, where the Source reads data from the data source and the Sink writes the data to the target storage. In the InLong system, data collected by the Agent will be uniformly written to the DataProxy service, which only has DataProxy Sink types.
 
-## Implementation principle of InLong Agent
+## Implementation principle
 ### Life cycle
 
 ![](img/agent_overview_4.png)
@@ -86,7 +86,7 @@ As mentioned above, the status information of Task, Instance, and Offset is stor
 - Step 6: Instance initializes the Source based on the OffsetDB configuration and restores the Offset
 - Step 7: Regularly update tasks based on Manager configuration
 
-## InLong Agent file collection mechanism
+## File collection mechanism
 ### Folder scanning
 Scan all the files in the corresponding path and match the rules. Once matched, it is considered to be found. However, in the case of a large number of files, scanning once takes a long time and consumes resources. If the scanning cycle is too small, the resource consumption is too high; If the scanning cycle is too long, the response speed will be too slow.
 

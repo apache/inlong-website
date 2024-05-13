@@ -2,7 +2,7 @@
 title: Deployment
 ---
 
-All deploying files at `inlong-audit` directory, if you use MySQL to store audit data, you need to first create the database through `sql/apache_inlong_audit_mysql.sql`.
+All installation files are in the `inlong-audit` directory, if you use MySQL to store audit data, you need to first create the database through `sql/apache_inlong_audit_mysql.sql`.
 ```shell
 # initialize database
 mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_mysql.sql
@@ -25,13 +25,6 @@ agent1.sinks.pulsar-sink-msg1.topic = persistent://public/default/inlong-audit
 agent1.sinks.pulsar-sink-msg2.topic = persistent://public/default/inlong-audit
 ```
 
-- If using TubeMQ, the configuration file is `conf/audit-proxy-tube.conf`. Change the TubeMQ Topic info.
-
-```Shell
-agent1.sinks.tube-sink-msg1.topic = inlong-audit
-agent1.sinks.tube-sink-msg2.topic = inlong-audit
-```
-
 - If using Kafka, the configuration file is `conf/audit-proxy-kafka.conf`. Change the Kafka Topic info.
 
 ```Shell
@@ -42,7 +35,7 @@ agent1.sinks.kafka-sink-msg2.topic = inlong-audit
 ### Start
 ```Shell
 # By default, pulsar is used as the MessageQueue, and the audit-proxy-pulsar.conf configuration file is loaded.
-bash +x ./bin/proxy-start.sh [pulsar｜tube｜kafka]
+bash +x ./bin/proxy-start.sh [pulsar｜kafka]
 ```
 The default listen port is `10081`.
 
@@ -51,15 +44,14 @@ The default listen port is `10081`.
 The configuration file is `conf/application.properties`. 
 
 ```Shell
-# proxy.type: pulsar / tube / kafka
+# the MQ type for audit proxy: pulsar / kafka
 audit.config.proxy.type=pulsar
-
-# Supports common JDBC protocol
-audit.config.store.mode=jdbc
 
 # manger config
 manager.hosts=127.0.0.1:8083
-proxy.cluster.tag=default_cluster
+
+# Get Kafka or Pulsar address from the cluster tag
+default.mq.cluster.tag=default_cluster
 
 # pulsar config
 audit.pulsar.topic=persistent://public/default/inlong-audit
@@ -67,13 +59,8 @@ audit.pulsar.consumer.sub.name=inlong-audit-subscription
 audit.pulsar.token=
 audit.pulsar.enable.auth=false
 
-# tube config
-audit.tube.topic=inlong-audit
-audit.tube.consumer.group.name=inlong-audit-consumer
-
 # kafka config
 audit.kafka.topic=inlong-audit
-# create a topic if the topic does not exist.
 audit.kafka.topic.numPartitions=3
 audit.kafka.topic.replicationFactor=2
 audit.kafka.consumer.name=inlong-audit-consumer
@@ -104,10 +91,10 @@ mysql.jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding
 mysql.username=root
 mysql.password=inlong
 ```
-### (optional) Configure Audit Data Sources
+- (optional) Configure Audit Data Sources
 In the audit_source_config table used by the Audit Service, configure the data source for audit storage. By default, the same MySQL configuration is used as the Audit Service
 
-### (optional) Configure Audit Items
+- (optional) Configure Audit Items
 In the audit_id_config table used by the Audit Service, configure the audit items that need to be cached. By default, Agent is used to receive successfully, Agent is sent successfully, DataProxy is received successfully, and DataProxy is sent successfully.
 
 ### Dependencies
@@ -118,3 +105,4 @@ In the audit_id_config table used by the Audit Service, configure the audit item
 ```Shell
 bash +x ./bin/service-start.sh
 ```
+The default listen port is `10080`.
