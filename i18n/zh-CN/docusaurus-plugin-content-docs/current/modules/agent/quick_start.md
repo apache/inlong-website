@@ -9,7 +9,6 @@ Agent 需要从 Manager 拉取配置，配置conf/agent.properties如下：
 ```ini
 # replace by agent IP
 agent.local.ip=127.0.0.1
-agent.http.port=8008
 # manager IP
 agent.manager.vip.http.host=127.0.0.1
 # manager port
