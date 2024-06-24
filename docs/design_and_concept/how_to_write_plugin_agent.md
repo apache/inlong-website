@@ -19,6 +19,7 @@ Source and Sink are lower-level concepts of Instance. They can be simply underst
 - Add Instance: implements logic such as node information setting.
 - Add Source: implements logic such as initialization, destruction, data collection, and data provision.
 - Add Sink: implement logic such as initialization, destruction, data input, data output (this article only focuses on new data sources, Sink will not be introduced, the default Sink is ProxySink)
+- Add TaskPojo: handles the differences between Agent and Manager fields and binds Task, Source, etc.
 
 ### Add Task
 Here we need to add a PulsarTask class to org.apache.inlong.agent.plugin.task.
@@ -113,17 +114,48 @@ public class PulsarSource extends AbstractSource {
 - isRunnable: returns whether this data source should continue.
 - releaseSource: release the resources of the data source
 
+### Add TaskPojo
+Add the PulsarTask class in `org.apache.inlong.agent.pojo`:
+```
+public class PulsarTask {
+
+    private String tenant;
+    private String namespace;
+    private String topic;
+    private String subscription;
+    private String subscriptionType;
+    private String serviceUrl;
+    private String subscriptionPosition;
+    private Long resetTime;
+
+    public static class PulsarTaskConfig {
+
+        private String pulsarTenant;
+        private String namespace;
+        private String topic;
+        private String subscription;
+        private String subscriptionType;
+        private String serviceUrl;
+        private String scanStartupMode;
+        private Long resetTime;
+    }
+}
+```
+- The field names in PulsarTaskConfig are the names passed by the Manager and must be consistent with the field names defined by the Manager
+- The field names and types in PulsarTask are the ones required by the Agent
+
 ## Task configuration
 From the above, we can see that we have created new classes such as Task, Instance, Source, etc., and task configuration is to connect these classes together.
+
+Bind Task, Source, etc. to Pulsar in `convertToTaskProfile` in `org.apache.inlong.agent.pojo.TaskProfileDto` class:
 ```
-{
-    "task.id": "74",
-    "task.groupId": "test_group_pulsar",
-    "task.streamId": "test_stream_pulsar",
-    "task.source": "org.apache.inlong.agent.plugin.sources.PulsarSource",
-    "task.sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-    "task.taskClass": "org.apache.inlong.agent.plugin.task.PulsarTask"
-}
+case PULSAR:
+    task.setTaskClass(DEFAULT_PULSAR_TASK);
+    PulsarTask pulsarTask = getPulsarTask(dataConfig);
+    task.setPulsarTask(pulsarTask);
+    task.setSource(PULSAR_SOURCE);
+    profileDto.setTask(task);
+    break;
 ```
 - task.source: Source class specified
 - task.sink: Sink class specified
