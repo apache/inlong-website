@@ -18,7 +18,8 @@ Source 和 Sink 属于 Instance 下一级的概念，可以简单理解为每个
 - 新增 Task：实现初始化、销毁、配置校验等逻辑。
 - 新增 Instance：实现节点信息设置等逻辑。
 - 新增 Source：实现初始化、销毁、采集数据、提供数据等逻辑。
-- 新增 Sink：实现初始化、销毁、数据输入、数据输出等逻辑（本文只针对新增数据源，Sink 不做介绍，默认 Sink 是 ProxySink）
+- 新增 Sink：实现初始化、销毁、数据输入、数据输出等逻辑（本文只针对新增数据源，Sink 不做介绍，默认 Sink 是 ProxySink）。
+- 新增 TaskPojo：处理 Agent 与 Manager 字段上的差异以及绑定 Task、Source 等。
 
 ### 新增 Task
 这里就是要在 org.apache.inlong.agent.plugin.task 新增一个 PulsarTask 类。
@@ -111,23 +112,42 @@ public class PulsarSource extends AbstractSource {
 - readFromSource：真正从数据源读取数据，例如从 Kafka SDK、Pulsar SDK 消费数据。
 - getThreadName：获取该数据源的工作线程名。
 - isRunnable：返回该数据源是否应该继续。
-- releaseSource：释放该数据源的资源
+- releaseSource：释放该数据源的资源。
 
-## 任务配置
-从上面看我们新建了 Task、Instance、Source 等类，而任务配置就是将这些了类串联起来
+### 新增 TaskPojo
+在 `org.apache.inlong.agent.pojo 增加 PulsarTask` 类：
 ```
-{
-    "task.id": "74",
-    "task.groupId": "test_group_pulsar",
-    "task.streamId": "test_stream_pulsar",
-    "task.source": "org.apache.inlong.agent.plugin.sources.PulsarSource",
-    "task.sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-    "task.taskClass": "org.apache.inlong.agent.plugin.task.PulsarTask"
+public class PulsarTask {
+
+    private String topic;
+    private String subscription;
+
+    public static class PulsarTaskConfig {
+
+        private String topic;
+        private String subscription;
+    }
 }
 ```
-- task.source：指定了 Source 类
-- task.sink：指定了 Sink 类
-- task.taskClass：指定了 Task 类
+- PulsarTaskConfig 中的字段名称为 Manager 传递的名称，必须与 Manager 定义的字段名称保持一致。
+- PulsarTask 中的字段名称以及类型为 Agent 所需。
+
+## 任务配置
+从上面看我们新建了 Task、Instance、Source 等类，而任务配置就是将这些了类串联起来。
+
+在`org.apache.inlong.agent.pojo.TaskProfileDto` 类中的 `convertToTaskProfile` 中为 Pulsar 绑定 Task、Source 等：
+```
+case PULSAR:
+    task.setTaskClass(DEFAULT_PULSAR_TASK);
+    PulsarTask pulsarTask = getPulsarTask(dataConfig);
+    task.setPulsarTask(pulsarTask);
+    task.setSource(PULSAR_SOURCE);
+    profileDto.setTask(task);
+    break;
+```
+- task.source：指定了 Source 类。
+- task.sink：指定了 Sink 类。
+- task.taskClass：指定了 Task 类。
 
 ## 位点控制
 ```

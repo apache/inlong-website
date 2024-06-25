@@ -18,7 +18,8 @@ Source and Sink are lower-level concepts of Instance. They can be simply underst
 - Add Task: implement logic such as initialization, destruction, configuration verification, etc.
 - Add Instance: implements logic such as node information setting.
 - Add Source: implements logic such as initialization, destruction, data collection, and data provision.
-- Add Sink: implement logic such as initialization, destruction, data input, data output (this article only focuses on new data sources, Sink will not be introduced, the default Sink is ProxySink)
+- Add Sink: implement logic such as initialization, destruction, data input, data output (this article only focuses on new data sources, Sink will not be introduced, the default Sink is ProxySink).
+- Add TaskPojo: handles the differences between Agent and Manager fields and binds Task, Source, etc.
 
 ### Add Task
 Here we need to add a PulsarTask class to org.apache.inlong.agent.plugin.task.
@@ -111,23 +112,42 @@ public class PulsarSource extends AbstractSource {
 - readFromSource: actually reads data from the data source, such as consuming data from Kafka SDK and Pulsar SDK.
 - getThreadName: get the worker thread name of the data source.
 - isRunnable: returns whether this data source should continue.
-- releaseSource: release the resources of the data source
+- releaseSource: release the resources of the data source.
+
+### Add TaskPojo
+Add the PulsarTask class in `org.apache.inlong.agent.pojo`:
+```
+public class PulsarTask {
+
+    private String topic;
+    private String subscription;
+
+    public static class PulsarTaskConfig {
+
+        private String topic;
+        private String subscription;
+    }
+}
+```
+- The field names in PulsarTaskConfig are the names passed by the Manager and must be consistent with the field names defined by the Manager.
+- The field names and types in PulsarTask are the ones required by the Agent.
 
 ## Task configuration
 From the above, we can see that we have created new classes such as Task, Instance, Source, etc., and task configuration is to connect these classes together.
+
+Bind Task, Source, etc. to Pulsar in `convertToTaskProfile` in `org.apache.inlong.agent.pojo.TaskProfileDto` class:
 ```
-{
-    "task.id": "74",
-    "task.groupId": "test_group_pulsar",
-    "task.streamId": "test_stream_pulsar",
-    "task.source": "org.apache.inlong.agent.plugin.sources.PulsarSource",
-    "task.sink": "org.apache.inlong.agent.plugin.sinks.ProxySink",
-    "task.taskClass": "org.apache.inlong.agent.plugin.task.PulsarTask"
-}
+case PULSAR:
+    task.setTaskClass(DEFAULT_PULSAR_TASK);
+    PulsarTask pulsarTask = getPulsarTask(dataConfig);
+    task.setPulsarTask(pulsarTask);
+    task.setSource(PULSAR_SOURCE);
+    profileDto.setTask(task);
+    break;
 ```
-- task.source: Source class specified
-- task.sink: Sink class specified
-- task.taskClass: specifies the Task class
+- task.source: Source class specified.
+- task.sink: Sink class specified.
+- task.taskClass: specifies the Task class.
 
 ## Offset control
 ```
@@ -144,7 +164,7 @@ From the above, we can see that we have created new classes such as Task, Instan
 ```
 We can see that when the Source reads data, each piece of data will record its corresponding Offset. This Offset will be automatically recorded by the Agent after the Sink is successfully written.
 When Source is initialized, its corresponding Offset will be automatically read and stored in the member variable offsetProfile of AbstractSource. You can use offsetProfile.getOffset() to
-Get its Offset for initializing the data source.
+get its Offset for initializing the data source.
 ```
 	protected void initOffset() {
         offsetProfile = OffsetManager.getInstance().getOffset(taskId, instanceId);
