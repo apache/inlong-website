@@ -17,7 +17,7 @@ Before we begin, we need to install InLong. Here we provide two ways:
 Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink version, and after decompression, place `sort-connector-starrocks-[version]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
 
 ### Install StarRocks
-Please refer to the [Installation Tutorial](https://docs.starrocks.io/docs/quick_start/) on the Apache StarRocks official website
+Please refer to the [Installation Tutorial](https://docs.starrocks.io/docs/quick_start/) on the StarRocks official website
 
 ## Cluster Initialize
 When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.
