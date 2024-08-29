@@ -17,7 +17,7 @@ sidebar_position: 2
 下载与 Flink 版本对应的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-starrocks-[version]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
 
 ### 安装 StarRocks
-请参考 Apache StarRocks 官网的[安装教程](https://docs.starrocks.io/docs/quick_start/)。
+请参考 StarRocks 官网的[安装教程](https://docs.starrocks.io/docs/quick_start/)。
 
 ## 集群初始化
 容器启动成功后，访问 InLong Dashboard 地址 http://localhost，并使用以下默认账号登录：
