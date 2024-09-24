@@ -35,24 +35,24 @@ import inlong_dataproxy
  SDK 支持进程创建多个 SDK 实例，各个 SDK 实例相互独立，SDK 实例线程安全：
 - 创建 SDK 实例对象
 
-```
+```python
 inlong_api = inlong_dataproxy.InLongApi()
 ```
 - 在配置文件中配置 GroupID、StreamID 任务参数，auth_id、auth_key 用户 cmk 认证参数，及 is_internal 为 `true`，详细配置文件说明见附录
 
-```
+```python
 // Initialize the SDK, with the parameter being the path name of the configuration file; a return value of zero indicates successful initialization.
 init_status = inlong_api.init_api("./config.json")
 ```
 ### 调用发送接口进行数据上报
 
  SDK 支持单条（推荐）和批量发送，二者发送过程均为异步模式，数据上报接口是线程安全的。在进行数据上报前，可设置回调函数在数据发送失败时进行回调处理，回调函数签名如下：
-```
+```python
 int CallbackFunc(const char *a, const char *b, const char *c, int32_t d, const int64_t e, const char *f)
 ```
 - 单条数据数据上报接口
 
-```
+```python
 // Return value: Zero indicates successful sending, non-zero indicates failure. For specific exception return values, please refer to SDKInvalidResult in tc_api.h of the C++ SDK.
 // msg is the data to be sent, msg_len is the length of the data, and call_back_func is the callback function (which can be set to None).
 send(inlong_group_id, inlong_stream_id, msg, msg_len, call_back_func)
@@ -60,15 +60,15 @@ send(inlong_group_id, inlong_stream_id, msg, msg_len, call_back_func)
 ### 关闭 SDK
 
 调用 close 接口关闭 SDK：
-```
+```python
 // A return value of zero indicates successful closure, and subsequent data reporting will not be possible.
 // max_waitms: The maximum number of milliseconds to wait before closing the SDK, waiting for the internal data sending of the SDK to complete.
 inlong_api.close_api(max_waitms)
 ```
 ## 注意事项
 
-- It is recommended to use the SDK as a resident service for data reporting, to avoid frequent initialization and closure in the same process midway. Repeated initialization and closure will bring more overhead.
-- The SDK sending is carried out asynchronously, and a return value of 0 indicates that the data has been successfully stored in the SDK internal buffer, waiting for network transmission. If the inlong_group_id itself is incorrectly configured or there is a network exception, it will also lead to data sending failure. Therefore, it is recommended that users set a callback when calling this interface, and execute the callback when data fails to be sent after multiple retries.
+- 建议采用将 SDK 作为常驻服务来进行数据上报，避免同个进程中途频繁地初始化和关闭，重复初始化和关闭会带来更多开销。
+-  SDK 发送是异步进行的，返回值为 0 表示数据成功存入了 SDK 内部缓冲区，等待网络发送。如果 `inlong_group_id` 本身配置有误或者网络异常，也会导致数据发送失败，所以建议用户在调用该接口时设置回调，数据多次重试发送仍失败时执行回调。
 
 ## 附录：配置文件参数说明
 |参数 |含义 |默认值 |
