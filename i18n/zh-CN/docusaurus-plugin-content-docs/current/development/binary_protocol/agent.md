@@ -58,9 +58,9 @@ Instance 主要功能是从 Source 取出 Message 然后写入到 Sink，过程�
 ### Sink
 ![](img/sink_1.png)
 
-当前我们的实现里 Sink 可以认为只有一种类型，那就是 DataProxySink。DataProxySink 主要有 4 个功能：
+当前我们的实现里 Sink 可以认为只有一种类型，那就是 DataProxy Sink。DataProxy Sink 主要有 4 个功能：
 
-- 外部调用 Write 方法将 Message 类型数据写入到 DataProxySink，方法内部用 Message 填充 ProxyMessage。
+- 外部调用 Write 方法将 Message 类型数据写入到 DataProxy Sink，方法内部用 Message 填充 ProxyMessage。
 
 - 将 ProxyMessage 放入 ProxyMessageCache 中，ProxyMessageCache 会将不同 inlongStreamId 的 ProxyMessage 分开存放。
 
