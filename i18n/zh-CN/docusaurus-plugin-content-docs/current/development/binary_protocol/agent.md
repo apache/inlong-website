@@ -27,10 +27,10 @@ public class SourceData {
     private String offset;
 }
 ```
-从数据源采集的数据可能会有各种各样的格式，因此我们用 byte[] 来存放（原始数据在后续各个缓解流转时均保持 byte[]）。同时每一条数据都会有对应的位点信息，
+从数据源采集的数据可能会有各种各样的格式，因此我们用 byte[] 来存放（原始数据在后续各个环节流转时均保持 byte[]）。同时每一条数据都会有对应的位点信息，
 并且由于位点信息多种多样，我们用 String 来存放位点信息。
 #### 缓存队列
-顾名思义，我们将 SourceData 放到 queue 中以达到缓存的目的，这样可以解耦数据源和 Agent 内部处理速度不匹配的问题。queue 类
+顾名思义，我们将 SourceData 放到 Queue 中以达到缓存的目的，这样可以解耦数据源和 Agent 内部处理速度不匹配的问题。Queue 类
 型是 LinkedBlockingQueue，防止多线程访问出现问题，由于是纯内存操作，可以保证性能。
 #### Message 
 ```java
