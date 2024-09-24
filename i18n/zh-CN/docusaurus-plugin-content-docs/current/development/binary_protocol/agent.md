@@ -15,13 +15,13 @@ sidebar_position: 2
 
 Source 主要有 3 个功能：
 
-1 从数据源采集数据，每条数据填充到一个新的 SourceData 对象。
+- 从数据源采集数据，每条数据填充到一个新的 SourceData 对象。
 
-2 将填充完成的 SourceData 对象放入 Source 模块的缓存队列中。
+- 将填充完成的 SourceData 对象放入 Source 模块的缓存队列中。
 
-3 外部调用 Source 模块 Read 方法时从缓存队列中取出一个 SourceData 组装成 Message 并返回。
+- 外部调用 Source 模块 Read 方法时从缓存队列中取出一个 SourceData 组装成 Message 并返回。
 #### SourceData
-``` 
+```java 
 public class SourceData {
     private byte[] data;
     private String offset;
@@ -33,7 +33,7 @@ public class SourceData {
 顾名思义，我们将 SourceData 放到 queue 中以达到缓存的目的，这样可以解耦数据源和 Agent 内部处理速度不匹配的问题。queue 类
 型是 LinkedBlockingQueue，防止多线程访问出现问题，由于是纯内存操作，可以保证性能。
 #### Message 
-```
+```java
 public interface Message {
 
     byte[] getBody();
@@ -41,7 +41,7 @@ public interface Message {
 }
 ```
 Source 提供的 Read 方法返回类型是 Message，具体实现时如下：
-```
+```java
 public class DefaultMessage implements Message {
 
     private final byte[] body;
@@ -58,18 +58,18 @@ Instance 主要功能是从 Source 取出 Message 然后写入到 Sink，过程�
 ### Sink
 ![](img/sink_1.png)
 
-当前我们的实现里 Sink 可以认为只有一种类型，那就是 DataProxySink。DataProxy 主要有 4 个功能：
+当前我们的实现里 Sink 可以认为只有一种类型，那就是 DataProxySink。DataProxySink 主要有 4 个功能：
 
-1 外部调用 Write 方法将 Message 类型数据写入到 DataProxySink，方法内部用 Message 填充 ProxyMessage。
+- 外部调用 Write 方法将 Message 类型数据写入到 DataProxySink，方法内部用 Message 填充 ProxyMessage。
 
-2 将 ProxyMessage 放入 ProxyMessageCache 中，ProxyMessageCache 会将不同 inlongStreamId 的 ProxyMessage 分开存放。
+- 将 ProxyMessage 放入 ProxyMessageCache 中，ProxyMessageCache 会将不同 inlongStreamId 的 ProxyMessage 分开存放。
 
-3 从 cache 中获取 SenderMessage（由多个 ProxyMessage 构成），并调用 SenderManager::sendBatch 进行发送。
+- 从 cache 中获取 SenderMessage（由多个 ProxyMessage 构成），并调用 SenderManager::sendBatch 进行发送。
 
-4 SenderManager 接收到 SenderMessage 后构造 DataProxySDK 方法所需回调对象 AgentSenderCallback 进行异步发送。
+- SenderManager 接收到 SenderMessage 后构造 DataProxy SDK 方法所需回调对象 AgentSenderCallback 进行异步发送。
 
 #### ProxyMessage
-```
+```java
 public class ProxyMessage implements Message {
 
     private final byte[] body;
@@ -77,7 +77,7 @@ public class ProxyMessage implements Message {
     OffsetAckInfo ackInfo;
 ```
 ProxyMessage 的 body 与 header 都是从 Message 复制而来。另外，新增 ackInfo 用于记录发送情况：
-```
+```java
 public class OffsetAckInfo {
 
     private String offset;
@@ -90,7 +90,7 @@ public class OffsetAckInfo {
 ![](img/cache_1.png)
 
 填充完成的 ProxyMessage 首先会放到 ProxyMessageCache：
-```
+```java
 public class ProxyMessageCache {
 
     private final String taskId;
@@ -106,7 +106,7 @@ public class ProxyMessageCache {
 ProxyMessageCache 的核心属性是 messageQueueMap，其 key 是 inlongStreamId，value 是一个队列。除此之外 ProxyMessageCache 
 会通过 fetchSenderMessage 方法返回 SenderMessage，SenderMessage 由多个 ProxyMessage 构成，这样就可以批量发送数据。
 #### SenderMessage
-```
+```java
 public class SenderMessage {
 
     private List<byte[]> dataList;
@@ -117,18 +117,18 @@ public class SenderMessage {
 
 SenderMessage 在 ProxyMessageCache 内部构建，由多个相同 inlongStreamId 的 ProxyMessage 组成：
 
-dataList 则由多个 ProxyMessage::body 填充；
+- dataList 则由多个 ProxyMessage::body 填充；
 
-extraMap 包含了审计版本、预定义字段（从任务配置里获取）；
+- extraMap 包含了审计版本、预定义字段（从任务配置里获取）；
 
-offsetAckList 由多个 ProxyMessage::ackInfo 填充；
+- offsetAckList 由多个 ProxyMessage::ackInfo 填充；
 #### SenderManager
-SenderManager 内部直接调用 DataProxySDK 进行数据发送，需要 3 个核心参数：
-1 原始数据内容
-2 扩展属性
-3 回调对象
+SenderManager 内部直接调用 DataProxy SDK 进行数据发送，需要 3 个核心参数：
+- 原始数据内容
+- 扩展属性
+- 回调对象
 其中原始数据内容由 dataList 提供；扩展属性由 extraMap 提供；回调内容则需要构造 AgentSenderCallback 来提供：
-```
+```java
 private class AgentSenderCallback implements SendMessageCallback {
 
         private final SenderMessage message;
@@ -146,7 +146,7 @@ private class AgentSenderCallback implements SendMessageCallback {
 回调对象 onMessageAck 方法会携带发送结果，返回成功后遍历 SenderMessage::offsetAckList，将 OffsetAckInfo::hasAck 设
 置成 true。
 ## 总结
-数据在 agent 内部从数据源到 DataProxySDK 经过如下数据结构：
+数据在 Agent 内部从数据源到 DataProxy SDK 经过如下数据结构：
 
 ![](img/total.png)
 
