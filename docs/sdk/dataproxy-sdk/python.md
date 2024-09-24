@@ -6,7 +6,7 @@ sidebar_position: 5
 ## Create New Data Ingestion
 Create data ingestion in the Dashboard or through the command-line tool, using Auto Push as the data source type.
 
-## 引入 Python SDK
+## Import Python SDK
 The Python SDK is built by encapsulating the C++ SDK and exposes relevant interfaces. At runtime, it calls the underlying C++ SDK to implement related operations (such as sending, closing, etc.).
 Because the underlying layer runs based on the C++ SDK, it is highly bound to the system's C++ environment. If the C++ environment used by the provided software package is not completely consistent with the user's system environment, it may cause runtime errors.
 First, you need to compile it from the source code yourself. See [C++ SDK Compilation and Usage](https://github.com/apache/inlong/tree/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-cpp).
