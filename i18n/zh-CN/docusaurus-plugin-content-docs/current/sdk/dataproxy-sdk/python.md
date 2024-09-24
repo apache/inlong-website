@@ -11,7 +11,7 @@ sidebar_position: 5
 因为底层是基于 C++ SDK 运行的，与系统 C++ 环境高度绑定，如果提供的软件包使用的 C++ 环境与用户系统环境不完全一致，可能会导致运行报错。
 首先需要从源码自行编译，见 [C++ SDK 编译使用](https://github.com/apache/inlong/tree/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-cpp)。
 若成功编译，会在 dataproxy-sdk-cpp/release/lib 目录下发现静态库文件 dataproxy_sdk.a 。
-进入 Python SDK 目录[dataproxy-sdk-python](https://github.com/apache/inlong/tree/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-python)，依次执行以下命令:
+进入 Python SDK 目录 [dataproxy-sdk-python](https://github.com/apache/inlong/tree/master/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-python)，依次执行以下命令:
 ```shell
 chmod +x ./build.sh
 ./build.sh
@@ -61,8 +61,8 @@ send(inlong_group_id, inlong_stream_id, msg, msg_len, call_back_func)
 
 调用 close 接口关闭 SDK：
 ```
-// 返回值为零表示关闭成功，后续无法再进行数据上报
-// max_waitms：关闭SDK前的等待最大毫秒数，等待SDK内部数据发送完成
+// A return value of zero indicates successful closure, and subsequent data reporting will not be possible.
+// max_waitms: The maximum number of milliseconds to wait before closing the SDK, waiting for the internal data sending of the SDK to complete.
 inlong_api.close_api(max_waitms)
 ```
 ## 注意事项
