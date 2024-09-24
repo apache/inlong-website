@@ -8,7 +8,7 @@ sidebar_position: 2
 ![](img/agent_1.png)
 
 在 Agent 模块介绍时我们知道 Agent 中有 Source 和 Sink 模块，其中 Source 负责从数据源采集数据；Sink 负责将数据发送到下游，当
-前我们认为下游只有 DataProxy。Instance 则是负责将数据从 Source 搬运到 Sink。
+前我们认为下游只有 DataProxy；Instance 则是负责将数据从 Source 搬运到 Sink。
 ## 数据格式
 ### Source
 ![](img/source_1.png)
@@ -30,7 +30,7 @@ public class SourceData {
 从数据源采集的数据可能会有各种各样的格式，因此我们用 byte[] 来存放（原始数据在后续各个环节流转时均保持 byte[]）。同时每一条数据都会有对应的位点信息，
 并且由于位点信息多种多样，我们用 String 来存放位点信息。
 #### 缓存队列
-顾名思义，我们将 SourceData 放到 Queue 中以达到缓存的目的，这样可以解耦数据源和 Agent 内部处理速度不匹配的问题。Queue 类
+顾名思义，我们将 SourceData 放到 Queue 中以达到缓存的目的，这样可以解决数据源和 Agent 内部处理速度不匹配的问题。Queue 类
 型是 LinkedBlockingQueue，防止多线程访问出现问题，由于是纯内存操作，可以保证性能。
 #### Message 
 ```java
@@ -40,7 +40,7 @@ public interface Message {
     Map<String, String> getHeader();
 }
 ```
-Source 提供的 Read 方法返回类型是 Message，具体实现时如下：
+Source 提供的 Read 方法返回类型是 Message，具体实现如下：
 ```java
 public class DefaultMessage implements Message {
 
