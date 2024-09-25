@@ -5,14 +5,14 @@ sidebar_position: 2
 ## Overview
 This article mainly introduces the flow of Agent data between submodules and the corresponding binary protocol.
 ## Data flow
-![](docs/development/binary_protocol/img/agent_1.png)
+![](img/agent_1.png)
 
 When introducing the Agent module, we know that there are Source and Sink modules in the Agent, where Source is responsible 
-for collecting data from the data source; Sink is responsible for sending data downstream, when Previously, we believed that 
+for collecting data from the data source; Sink is responsible for sending data downstream, and currently we believed that 
 downstream only had DataProxy; Instance is responsible for moving data from Source to Sink.
 ## Binary protocol
 ### Source
-![](docs/development/binary_protocol/img/source_1.png)
+![](img/source_1.png)
 
 Source has three main functions:
 
@@ -60,7 +60,7 @@ each of which is a k/v pair of the Default Message::header. Usually, we also fil
 The main function of Instance is to retrieve the Message from the Source and write it to the Sink, without generating any 
 new binary protocol during the process.
 ### Sink
-![](docs/development/binary_protocol/img/sink_1.png)
+![](img/sink_1.png)
 
 Currently, in our implementation, there is only one type of Sink that can be considered, and that is DataProxy Sink. There are four main functions of DataProxy Sink:
 
@@ -91,7 +91,7 @@ public class OffsetAckInfo {
 ```
 The offset comes from the Message::header; Len comes from Message::body len; HasAck indicates whether the information was successfully sent and is initialized to false.
 #### ProxyMessageCache
-![](docs/development/binary_protocol/img/cache_1.png)
+![](img/cache_1.png)
 
 The filled ProxyMessage will first be placed in the ProxyMessageCache:
 ```java
@@ -153,7 +153,7 @@ SenderMessage::offsetAckList and set OffsetAckInfo::hasAck to true.
 ## Summary 
 The data goes through the following data structure from the data source to the DataProxy SDK within the Agent:
 
-![](docs/development/binary_protocol/img/total.png)
+![](img/total.png)
 
 We can see from the various data types introduced above that the original data content of each structure is stored using byte[]. On the one hand, it can preserve the original
 data information without being affected by the encoding format, and on the other hand, it can reduce the cost of string conversion, making the overall efficiency higher.
