@@ -10,7 +10,7 @@ sidebar_position: 3
 ### Task 和 Instance
 Task 和 Instance 是 Agent 最核心的两个概念，简单理解：Task 对应管理平台上配置的一个采集任务，而 Instance 则是由 Task 生成的一个具体的采集实例。举个例子，管理平台上有个采集任务的配置： `127.0.0.1 -> /data/log/YYMMDDhh.log._[0-9]+`，表示用户需要在  `127.0.0.1` 这台机器上采集符合 `/data/log/YYMMDDhh.log._[0-9]+`，这个路径规则的数据，**这就是一个 Task**。这个 Task 会根据这个路径规则去寻找满足条件的文件，**为每个符合条件的文件生成一个对应的 Instance**，比如说有`/data/log/2024040221.log.0，/data/log/2024040221.log.1，/data/log/2024040221.log.3` 3个文件，那么 Task 就会生成 3 个 Instance 分别采集这三个文件的数据。
 
-![](img/agent_1.png)
+![](img/model.png)
 ### Source 和 Sink
 Source 和 Sink 属于 Instance 下一级的概念，可以简单理解为每个 Instance 都有一个 Source 和 一个 Sink。顾名思义，Source 用于从数据源读取数据；Sink 用于向目标存储写入数据。
 
@@ -159,4 +159,4 @@ public class PulsarSource extends AbstractSource {
 
 要求 Agent 采集、Agent 发送、DataProxy 接收 三个指标完全对齐
 
-![](img/agent_2.png)
+![](img/audit.png)
