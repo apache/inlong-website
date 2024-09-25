@@ -1,5 +1,5 @@
 ---
-title: Agent 新增数据源
+title: Agent 插件扩展
 sidebar_position: 3
 ---
 ## 概述
