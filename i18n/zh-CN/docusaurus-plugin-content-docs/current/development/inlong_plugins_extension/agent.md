@@ -20,6 +20,7 @@ Source 和 Sink 属于 Instance 下一级的概念，可以简单理解为每个
 - 新增 Instance：实现节点信息设置等逻辑。
 - 新增 Source：实现初始化、销毁、采集数据、提供数据等逻辑。
 - 新增 Sink：实现初始化、销毁、数据输入、数据输出等逻辑（本文只针对新增数据源，Sink 不做介绍，默认 Sink 是 ProxySink）
+- 新增 TaskPojo: 处理 Agent 和 Manager 字段之间的差异，并绑定 Task、Source 等。
 
 ### 新增 Task
 这里就是要在 org.apache.inlong.agent.plugin.task 新增一个 PulsarTask 类。
@@ -115,6 +116,24 @@ public class PulsarSource extends AbstractSource {
 - getThreadName：获取该数据源的工作线程名。
 - isRunnable：返回该数据源是否应该继续。
 - releaseSource：释放该数据源的资源
+
+### 新增 TaskPojo
+新增 PulsarTask 类到 `org.apache.inlong.agent.pojo`:
+```java
+public class PulsarTask {
+
+    private String topic;
+    private String subscription;
+
+    public static class PulsarTaskConfig {
+
+        private String topic;
+        private String subscription;
+    }
+}
+```
+- PulsarTaskConfig 中的字段名称是 Manager 传递的名称，必须与 Manager 定义的字段名称一致。
+- PulsarTask 中的字段名称和类型是 Agent 所要求的。
 
 ## 任务配置
 从上面看我们新建了 Task、Instance、Source 等类，而任务配置就是将这些了类串联起来

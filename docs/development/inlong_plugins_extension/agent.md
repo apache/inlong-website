@@ -23,7 +23,7 @@ Source and Sink are lower-level concepts of Instance. They can be simply underst
 
 ### Add Task
 Here we need to add a PulsarTask class to org.apache.inlong.agent.plugin.task.
-```
+```java
 public class PulsarTask extends AbstractTask {
 
     @Override
@@ -49,7 +49,7 @@ public class PulsarTask extends AbstractTask {
 
 ### Add Instance
 Add the PulsarInstance class in `org.apache.inlong.agent.plugin.instance`. This class will be relatively idle because the main logic is in the CommonInstance base class. Its function is to create Source and Sink, read data from Source, and then write it to Sink. We only need to implement the setInodeInfo interface here. Except for FileInstance, which needs to set the Inode Info of the file, the other Instance classes only need to be set to empty strings.
-```
+```java
 public class PulsarInstance extends CommonInstance {
 
     @Override
@@ -61,7 +61,7 @@ public class PulsarInstance extends CommonInstance {
 
 ### Add Source
 Add the PulsarSource class to `org.apache.inlong.agent.plugin.sources:
-```
+```java
 public class PulsarSource extends AbstractSource {
 
     @Override
@@ -116,7 +116,7 @@ public class PulsarSource extends AbstractSource {
 
 ### Add TaskPojo
 Add the PulsarTask class in `org.apache.inlong.agent.pojo`:
-```
+```java
 public class PulsarTask {
 
     private String topic;
@@ -136,7 +136,7 @@ public class PulsarTask {
 From the above, we can see that we have created new classes such as Task, Instance, Source, etc., and task configuration is to connect these classes together.
 
 Bind Task, Source, etc. to Pulsar in `convertToTaskProfile` in `org.apache.inlong.agent.pojo.TaskProfileDto` class:
-```
+```java
 case PULSAR:
     task.setTaskClass(DEFAULT_PULSAR_TASK);
     PulsarTask pulsarTask = getPulsarTask(dataConfig);
@@ -150,14 +150,14 @@ case PULSAR:
 - task.taskClass: specifies the Task class.
 
 ## Offset control
-```
+```java
     protected class SourceData {
 
         private byte[] data;
         private Long offset;
     }
 ```
-```
+```java
     protected List<SourceData> readFromSource() {
         return null;
     }
@@ -165,7 +165,7 @@ case PULSAR:
 We can see that when the Source reads data, each piece of data will record its corresponding Offset. This Offset will be automatically recorded by the Agent after the Sink is successfully written.
 When Source is initialized, its corresponding Offset will be automatically read and stored in the member variable offsetProfile of AbstractSource. You can use offsetProfile.getOffset() to
 get its Offset for initializing the data source.
-```
+```java
 	protected void initOffset() {
         offsetProfile = OffsetManager.getInstance().getOffset(taskId, instanceId);
     }
