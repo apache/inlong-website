@@ -3,7 +3,7 @@ title: Cluster Management
 sidebar_position: 5
 ---
 
-Only system administrators or tenant administrators have permission to use this feature, and they can create, modify, and delete clusters:
+Only system administrators or tenant administrators have permission to use this feature, and they can create, modify, and delete clusters.
 
 
 ### Create cluster
@@ -17,7 +17,7 @@ Users with system administrator or tenant administrator permissions can create n
 - Cluster Tag：The cluster belongs to the cluster tag
 - Owners：Specify the person responsible for the cluster, who is the only one able to modify the cluster's configuration information.
 - Description：Provide a brief description of the cluster.
-- 
+
 The above are the basic configuration information for the cluster. Depending on the type of cluster, additional configuration information may be required. For example, for a Pulsar cluster, you may need to fill in the Service URL, AdminURL, default tenant, and token.
 
 ### Delete cluster
