@@ -1,5 +1,5 @@
 ---
-title: agent 管理
+title: Agent 管理
 sidebar_position: 1
 ---
 
