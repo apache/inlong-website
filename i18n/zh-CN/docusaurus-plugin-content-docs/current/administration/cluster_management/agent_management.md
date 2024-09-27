@@ -23,7 +23,7 @@ MD5：安装包文件的 MD5 值，用于下载完成后校验安装包是否有
 点击 "详情" 即可进行 Agent 的修改；点击 "删除" 即可进行安装包删除。
 ![](img/agent_package_modify_delete.png)
 
-### Install 
+### Installer 
 Installer 是 Agent 的守护进程，实际上我们在业务机器上同时装了 Installer 和 Agent 两个进程。Installer 的安装包、版本管理和 Agent 一样。
 
 ## 版本管理
@@ -59,7 +59,7 @@ IP：要安装 Agent 的机器的 IP。
 
 版本：选择 Agent 的版本。
 
-安装方式：平台自动安装选择 SSH 安装，并且一般是通过 SSH 密码安装。
+安装方式：如果要平台自动安装，请选择 SSH 安装，并且一般是通过 SSH 密码安装。
 
 SSH 用户名：SSH 登录用户名
 
