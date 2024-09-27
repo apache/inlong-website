@@ -11,9 +11,9 @@ import {siteVariables} from '../../version';
 
 ## Version
 
-| Extract Node            | Version                                                      |
-|-------------------------|--------------------------------------------------------------|
-| [Iceberg](./iceberg.md) | [Iceberg](https://iceberg.apache.org/): 0.12.x, 0.13.x <br/> |
+| Extract Node            | Version                                             |
+|-------------------------|-----------------------------------------------------|
+| [Iceberg](./iceberg.md) | [Iceberg](https://iceberg.apache.org/): 1.13+ <br/> |
 
 ## Dependencies
 
@@ -42,7 +42,7 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 
 ```shell
   jobmanager:
-    image: apache/flink:1.13-scala_2.11
+    image: apache/flink:1.15-scala_2.12
     container_name: jobmanager
     user: root
     environment:
@@ -59,7 +59,7 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
     command: jobmanager
 
   taskmanager:
-    image: apache/flink:1.13-scala_2.11
+    image: apache/flink:1.15-scala_2.12
     container_name: taskmanager
     environment:
       - |

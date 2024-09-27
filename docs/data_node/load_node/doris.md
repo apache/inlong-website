@@ -171,7 +171,7 @@ Query OK, 0 rows affected (0.06 sec)
 ### Usage for SQL API
 - For Single-sink: Doris load
 ```sql
-[root@tasknode001 flink-1.13.5]# ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
+[root@tasknode001 flink-1.15.4]# ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
 [INFO] Session property has been set.
 

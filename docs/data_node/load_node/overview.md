@@ -32,7 +32,7 @@ The following table shows the version mapping between InLong<sup>®</sup> Load N
 
 | InLong<sup>®</sup> Load Nodes Version |          Flink<sup>®</sup> Version          |
 |:-------------------------------------:|:-------------------------------------------:|
-|  <font color="DarkCyan">1.2.0</font>  | <font color="MediumVioletRed">1.13.5</font> |
+|  <font color="DarkCyan">1.2.0</font>  | <font color="MediumVioletRed">1.15.4</font> |
 
 ## Usage for SQL API
 - [Deploy InLong Sort](modules/sort/quick_start.md)
