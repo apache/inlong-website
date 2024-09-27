@@ -3,12 +3,12 @@ title: HTTP Report Example
 sidebar_position: 1
 ---
 
-In the following content, we will use a complete example to introduce how to use HTTP to report data, quickly verify whether the applied {groupId, streamId} account is effective, and whether the data is accepted by InLong DataProxy and correctly written to the MQ cluster.
+In the following content, we will use a complete example to introduce how to use HTTP to report data, quickly verify whether the applied {groupId, streamId} is effective, and whether the data is accepted by InLong DataProxy and correctly written to the MQ cluster.
 
 ## Prepare resources
 ### Apply for InLong group and stream
 We need to apply for {groupId, streamId} in InLong Manager first. As shown in the following figure, we have applied for {test_http, test_stream} information and the administrator has approved it:
-![prepare account](img/http_account_en.png)
+![prepare group and stream](img/http_group_stream_en.png)
 
 In the application report stream, we defined that the data of this report stream is reported in CSV format. The data content consists of three fields (ID, Name, Desc) separated by vertical bars ("|"):
 ![define report stream](img/http_stream_define_en.png)

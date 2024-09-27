@@ -3,12 +3,12 @@ title: HTTP 上报示例
 sidebar_position: 1
 ---
 
-在下面的内容中，我们将通过一个完整的示例介绍如何使用 HTTP 上报数据，快速验证申请的 {groupId, streamId} 账号是否已生效，数据是否被 InLong DataProxy 接纳并正确地写入到 MQ 集群。
+在下面的内容中，我们将通过一个完整的示例介绍如何使用 HTTP 上报数据，快速验证申请的 {groupId, streamId} 是否已生效，数据是否被 InLong DataProxy 接纳并正确地写入到 MQ 集群。
 
 ## 准备上报资源
 ### 申请 InLong group 和 stream
-我们需要先在 InLong 的 Manager 里申请 {groupId, streamId} 账号，如下图示，我们已经申请了 {test_http, test_stream} 信息并且管理员已审批通过：
-![账号准备](img/http_account_cn.png)
+我们需要先在 InLong 的 Manager 里申请上报所需的 {groupId, streamId} 信息，如下图示，我们已经申请了 {test_http, test_stream} 信息并且管理员已审批通过：
+![group 和 stream 准备](img/http_group_stream_cn.png)
 
 在申请的上报流里，我们定义了该上报流的数据采用 CSV 格式上报数据，数据内容由三个字段（ID，Name，Desc）组成，并以竖线（"|"）分隔：
 ![数据流定义](img/http_stream_define_cn.png)
