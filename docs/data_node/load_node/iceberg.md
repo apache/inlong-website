@@ -10,9 +10,9 @@ import {siteVariables} from '../../version';
 
 ## Version
 
-| Extract Node            | Version                                                    |
-| ----------------------- | ---------------------------------------------------------- |
-| [Iceberg](./iceberg.md) | [Iceberg](https://dev.mysql.com/doc): 0.12.x, 0.13.x <br/> |
+| Extract Node            | Version                                            |
+| ----------------------- |----------------------------------------------------|
+| [Iceberg](./iceberg.md) | [Iceberg](https://dev.mysql.com/doc): 1.13+ <br/> |
 
 ## Dependencies
 

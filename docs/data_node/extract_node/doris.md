@@ -79,7 +79,7 @@ The following example shows how to create a Doris Extract node with `Flink SQL`:
 * connector is `doris`
 ```sql
 # Start flink sql-client, load the doris connector jar package
-[root@tasknode001 flink-1.13.5]# ./bin/sql-client.sh -l ./opt/connectors/doris/
+[root@tasknode001 flink-1.15.4]# ./bin/sql-client.sh -l ./opt/connectors/doris/
 
 -- Create Doris table 'doris_extract_node' using Flink SQL
 Flink SQL> CREATE TABLE doris_extract_node (
