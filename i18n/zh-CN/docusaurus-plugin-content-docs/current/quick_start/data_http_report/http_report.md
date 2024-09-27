@@ -15,7 +15,7 @@ sidebar_position: 1
 
 ### 查找支持 HTTP 接入的 DataProxy 节点 IP 及端口号
 InLong 支持通过 HTTP 直接上报数据，这个上报示例里我们直接从上报账号的资源详情页面选一台支持 HTTP 上报的 DataProxy 进行消息上报。在演示环境里 DataProxy 开启的 HTTP 接收端口是 47805，如下图示：
-![DataProxy 信息](img/http_dataProxy_cn.png)
+![DataProxy 信息](img/http_dataproxy_cn.png)
 
 至此，我们已经获得了数据上报所需要的账号信息，以及 HTTP 上报所要上报的 DataProxy 节点 IP 及端口信息，接下来我们就可以通过 HTTP 上报数据，验证账号及管道是否可用。
 

@@ -15,7 +15,7 @@ In the application report stream, we defined that the data of this report stream
 
 ### Find the IP and port of the DataProxy node that supports HTTP access
 InLong supports direct data reporting via HTTP. In this reporting example, we directly select a DataProxy that supports HTTP reporting from the resource details page of the reporting account to report the message. In the demonstration environment, the HTTP receiving port opened by DataProxy is 47805, as shown below:
-![DataProxy information](img/http_dataProxy_en.png)
+![DataProxy information](img/http_dataproxy_en.png)
 
 At this point, we have obtained the account information required for data reporting, as well as the DataProxy node IP and port information to be reported by HTTP reporting. Next, we can report data through HTTP to verify whether the account and pipeline are available.
 
