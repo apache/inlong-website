@@ -24,7 +24,7 @@ MD5：安装包文件的 MD5 值，用于下载完成后校验安装包是否有
 ![](img/agent_package_modify_delete.png)
 
 ### Install 
-Installer Agent 的守护进程，实际上我们在业务机器上同时装了 Installer 和 Agent 两个进程。Installer 的安装包、版本管理和 Agent 一样。
+Installer 是 Agent 的守护进程，实际上我们在业务机器上同时装了 Installer 和 Agent 两个进程。Installer 的安装包、版本管理和 Agent 一样。
 
 ## 版本管理
 版本管理是基于安装包管理之上的，主要是管理这个安装包所需的安装、检查、启动、停止命令。
