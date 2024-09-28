@@ -9,9 +9,11 @@ Users report data to the InLong system through SDK, HTTP, Agent and other data r
 ## InLongMsg data format
 ### Format framework
 InLongMsg is a binary data packet in a custom format, which consists of a formatted payload information encapsulated by the same magic number (Magic) of 2 bytes at the front and back, as shown in the following figure:
+
 ![InLongMsg frame](img/inlongmsg_frame.png)
 
-The Magic field has 4 valid values ​​in the current implementation of InLongMsg, which respectively identify 4 different data versions that can be carried in the Payload part (MAGIC0 is an invalid value):
+The Magic field has 4 valid values in the current implementation of InLongMsg, which respectively identify 4 different data versions that can be carried in the Payload part (MAGIC0 is an invalid value):
+
 ```java
     private static final byte[] MAGIC0 = {(byte) 0xf, (byte) 0x0};
     private static final byte[] MAGIC1 = {(byte) 0xf, (byte) 0x1};
@@ -20,7 +22,6 @@ The Magic field has 4 valid values ​​in the current implementation of InLong
     private static final byte[] MAGIC4 = {(byte) 0xf, (byte) 0x4};
 ```
 The Payload part carries data content in the corresponding format according to the definition of the above Magic field. Regardless of the format used, these contents are ultimately mapped to the original data information reported by the user according to {attribute set, single data} or {attribute set, multiple data}.
-
 Next, we begin to introduce the corresponding Payload definitions according to different Magic version values.
 
 ### InLongMsg V1
@@ -82,25 +83,24 @@ The relevant fields are defined as follows:
 
 For ExtField field, each bit is defined as follows:
 
-| Bit | Meaning                                        | Remark                                        |
-|-----|------------------------------------------------|-----------------------------------------------|
-| 0   | reserved                                       |                                               |
-| 1   | Whether each data contains private attributes  |  1 indicates inclusion, 0 indicates exclusion |
-| 2   | Whether to enable digital group, stream        | 0 indicates enabled, 1 indicates not enabled  |
-| 3   | reserved                                       |                                               |
-| 4   | reserved                                       |                                               |
-| 5   | Whether multiple data are separated by newline characters | 1 indicates enabled, 0 indicates not enabled   |
-| 6   | reserved                                       |                                               |
-| 7   | reserved                                       |                                               |
+| Bit | Meaning                                                   | Remark                                       |
+|-----|-----------------------------------------------------------|----------------------------------------------|
+| 0   | reserved                                                  |                                              |
+| 1   | Whether each data contains private attributes             | 1 indicates inclusion, 0 indicates exclusion |
+| 2   | Whether to enable digital group, stream                   | 0 indicates enabled, 1 indicates not enabled |
+| 3   | reserved                                                  |                                              |
+| 4   | reserved                                                  |                                              |
+| 5   | Whether multiple data are separated by newline characters | 1 indicates enabled, 0 indicates not enabled |
+| 6   | reserved                                                  |                                              |
+| 7   | reserved                                                  |                                              |
 
 For BodyData field value, the format is as follows:
 ![InLongMsg V4 BodyData](img/inlongmsg_v4_bodydata.png)
-
+- 
 - ItemLen: identifies the data length;
 - ItemData: identifies the data value;
 - IAttrLen: identifies the private attribute length;
 - IitemAttr: identifies the private attribute value.
-
 
 ## Parsing messages of type InLongMsg
 The data consumed directly from InLong's message queue (InLong TubeMQ or Pulsar), you need to parse InLongMsg first. You can parse the source data in the following ways.
