@@ -3,7 +3,7 @@ title: Parse InLongMsg
 sidebar_position: 1
 ---
 
-import {siteVariables} from '../version';
+import {siteVariables} from '../../version';
 
 ## Overview
 If you consume data directly from a message queue (InLong TubeMQ or Pulsar), you need to parse `InLongMsg` first. Origin data can be parsed in the following ways.
