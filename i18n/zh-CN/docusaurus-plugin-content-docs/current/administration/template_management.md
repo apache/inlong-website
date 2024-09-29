@@ -38,4 +38,5 @@ sidebar_position: 7
   ![img.png](img/use_template_2.png)
 - 选择【新建数据流】，并点击【选择模板】，选择已经配置好的数，并完善其他配置后点击保存。
   ![img.png](img/use_template_3.png)
-  至此完成了字段模板的使用
+
+  至此完成了字段模板的使用。

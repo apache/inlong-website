@@ -38,4 +38,5 @@ After configuring the field template, users can use the pre-configured field tem
   ![img.png](img/use_template_2.png)
 - Select the pre-configured template and click Save.
   ![img.png](img/use_template_3.png)
-  By following these steps, you have successfully used the field template
+
+  By following these steps, you have successfully used the field template.
