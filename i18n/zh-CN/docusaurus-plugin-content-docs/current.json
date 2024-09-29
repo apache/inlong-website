@@ -19,6 +19,18 @@
     "message": "数据同步",
     "description": "The label for category Data Synchronization in sidebar tutorialSidebar"
   },
+  "sidebar.tutorialSidebar.category.Offline Data Synchronization": {
+    "message": "离线数据同步",
+    "description": "The label for category Offline Data Synchronization in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.HTTP Report": {
+    "message": "HTTP 消息上报",
+    "description": "The label for category HTTP Report in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Transform": {
+    "message": "Transform",
+    "description": "The label for category Transform in sidebar tutorialSidebar"
+  },
   "sidebar.tutorialSidebar.category.Deployment": {
     "message": "安装部署",
     "description": "The label for category Deployment in sidebar tutorialSidebar"
@@ -26,14 +38,6 @@
   "sidebar.tutorialSidebar.category.Components": {
     "message": "组件介绍",
     "description": "The label for category Components in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Manager": {
-    "message": "Manager",
-    "description": "The label for category Manager in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.Dashboard": {
-    "message": "Dashboard",
-    "description": "The label for category Dashboard in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Agent": {
     "message": "Agent",
@@ -43,32 +47,96 @@
     "message": "DataProxy",
     "description": "The label for category DataProxy in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.DataProxy-SDK": {
-    "message": "DataProxy-SDK",
-    "description": "The label for category DataProxy-SDK in sidebar tutorialSidebar"
-  },
   "sidebar.tutorialSidebar.category.TubeMQ": {
     "message": "TubeMQ",
     "description": "The label for category TubeMQ in sidebar tutorialSidebar"
-  },
-  "sidebar.tutorialSidebar.category.tubemq-manager": {
-    "message": "tubemq-manager",
-    "description": "The label for category tubemq-manager in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.Sort": {
     "message": "Sort",
     "description": "The label for category Sort in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Development": {
-    "message": "开发指引",
-    "description": "The label for category Development in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Manager": {
+    "message": "Manager",
+    "description": "The label for category Manager in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Dashboard": {
+    "message": "Dashboard",
+    "description": "The label for category Dashboard in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Sort Standalone": {
+    "message": "Sort Standalone",
+    "description": "The label for category Sort Standalone in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Audit": {
+    "message": "Audit",
+    "description": "The label for category Audit in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.tubemq-manager": {
+    "message": "tubemq-manager",
+    "description": "The label for category tubemq-manager in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Data Nodes": {
+    "message": "数据节点",
+    "description": "The label for category Data Nodes in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Extract Nodes": {
+    "message": "Extract Nodes",
+    "description": "The label for category Extract Nodes in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Load Nodes": {
+    "message": "Load Nodes",
+    "description": "The label for category Load Nodes in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.SDK": {
+    "message": "SDK",
+    "description": "The label for category SDK in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.DataProxy SDK": {
+    "message": "DataProxy SDK",
+    "description": "The label for category DataProxy SDK in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Manager SDK": {
+    "message": "Manager SDK",
+    "description": "The label for category Manager SDK in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TubeMQ SDK": {
+    "message": "TubeMQ SDK",
+    "description": "The label for category TubeMQ SDK in sidebar tutorialSidebar"
   },
   "sidebar.tutorialSidebar.category.User Guide": {
     "message": "用户指引",
     "description": "The label for category User Guide in sidebar tutorialSidebar"
   },
-  "sidebar.tutorialSidebar.category.Data Nodes": {
-    "message": "数据节点",
-    "description": "The label for category Data Nodes in sidebar tutorialSidebar"
+  "sidebar.tutorialSidebar.category.Development": {
+    "message": "开发指引",
+    "description": "The label for category Development in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Binary Protocol": {
+    "message": "数据协议",
+    "description": "The label for Binary Protocol in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Agent Plugins Extension": {
+    "message": "Agent 插件扩展",
+    "description": "The label for Agent Plugins Extension in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Manager Plugins Extension": {
+    "message": "Manager 插件扩展",
+    "description": "The label for Manager Plugins Extension in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Sort Plugins Extension": {
+    "message": "Sort 插件扩展",
+    "description": "The label for Sort Plugins Extension in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Transform Plugins Extension": {
+    "message": "Transform 插件扩展",
+    "description": "The label for Transform Plugins Extension in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Administration": {
+    "message": "Administration",
+    "description": "The label for Administration in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.Cluster Management": {
+    "message": "Cluster Management",
+    "description": "The label for cluster management in sidebar tutorialSidebar"
   }
 }

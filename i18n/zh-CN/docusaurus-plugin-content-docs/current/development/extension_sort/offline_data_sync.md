@@ -1,6 +1,6 @@
 ---
 title: 离线同步 Connector 插件扩展
-sidebar_position: 6
+sidebar_position: 3
 ---
 ## 概述
 目前，Apache InLong 支持数据实时同步和离线同步，底层的数据计算引擎都是 Flink。

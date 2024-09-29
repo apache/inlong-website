@@ -1,6 +1,6 @@
 ---
 title: Agent Plugin
-sidebar_position: 3
+sidebar_position: 1
 ---
 ## Summary
 In Standard Architecture, we can collect various types of data sources through the InLong Agent. The InLong Agent supports the extension of new collection types through plugins. This article will guide developers on how to customize the new Agent collection data source plugin.

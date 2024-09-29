@@ -1,6 +1,6 @@
 ---
 title: 自定义认证
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 import {siteVariables} from '../../version';

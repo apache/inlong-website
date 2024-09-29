@@ -1,6 +1,6 @@
 ---
 title: REST API
-sidebar_position: 8
+sidebar_position: 7
 ---
 
 <!-- To maintain consistent display, please remove the `info` and `host` content from the original `api.json` -->
