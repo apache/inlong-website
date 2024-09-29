@@ -1,6 +1,6 @@
 ---
 title: Offline Sync Connector Extension
-sidebar_position: 6
+sidebar_position: 3
 ---
 ## Overview
 Apache InLong is a powerful data synchronization tool that supports both real-time and offline synchronization, relying on Flink as its underlying engine.

@@ -1,6 +1,6 @@
 ---
 title: InLong sort format extend
-sidebar_position: 5
+sidebar_position: 2
 ---
 ## Overview
 
