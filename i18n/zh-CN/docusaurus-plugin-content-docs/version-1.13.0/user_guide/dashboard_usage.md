@@ -125,3 +125,70 @@ HIVE流向：
 - 数据用途说明：需申请人根据自身消费场景，简要说明使用的项目和数据的用途
 
 信息填完完成后，点击【提交】后，会将次数据消费流程正式提交待审批人审批后方可生效。
+
+## 数据同步
+数据同步模块展示目前用户权限内同步系统所有任务列表，可以对这些任务详情查看、编辑更新和删除操作。
+点击【新建数据同步】，进入数据同步流程，需要对同步信息相关信息进行填写，可选择两种同步类型：实时或者离线。
+
+![Application detail](img/create_sync.png)
+
+### 基础信息
+
+#### 实时同步
+
+填写好相关基础信息之后即可进行下一步
+
+![Application detail](img/realtime_sync.png)
+#### 离线同步
+
+填写好相关基础信息后，还需要填写离线同步相关信息，比如：调度规则、依赖配置。
+
+![Application detail](img/offline_sync.png)
+
+## 数据节点
+
+数据节点模块展示目前用户权限内数据节点列表，可以对这些节点详情查看、编辑更新和删除操作。
+点击【新建】，弹出新建节点的对话框，可选择不同的节点类型，比如：Redis，Kafka，MySQL等。
+
+![Application detail](img/create_node.png)
+
+![Application detail](img/create_node_type.png)
+
+
+## 集群管理
+
+集群管理模块分为集群标签管理和集群管理两个模块，集群标签管理用于管理集群标签，集群管理用于管理集群。
+
+### 集群标签管理
+
+集群标签管理可以对集群标签进行新增、删除、修改以及查看集群列表、绑定集群等操作
+
+![Application detail](img/cluster_tag.png)
+
+#### 新增集群标签
+
+![Application detail](img/add_cluster_tag.png)
+
+#### 绑定集群
+
+![Application detail](img/bind_cluster.png)
+
+![Application detail](img/detail_bind_cluster.png)
+
+- 集群名称：当集群列表为空时，需要去集群管理页面创建需要的集群，集群标签才能绑定集群
+
+### 集群管理
+
+集群管理可以对集群进行新增、删除、修改以及查看集群列表、查看集群详情、查看集群节点等操作
+
+#### 新建集群
+
+点击【新建集群】 ，弹出新建集群的对话框，可选择不同的集群类型，比如：Agent，Kafka等。
+
+![Application detail](img/create_cluster.png)
+
+![Application detail](img/cluster_detail.png)
+
+
+
+
