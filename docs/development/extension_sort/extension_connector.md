@@ -49,7 +49,7 @@ Inlong Sort encapsulates the metric reporting process in the `org.apache.inlong.
 
 The common practice is to pass parameters such as the InLong Audit address when constructing the Source/Sink, and initialize the `SourceExactlyMetric/SinkExactlyMetric` object when calling the open() method to initialize the Source/Sink operator. After processing the actual data, call the corresponding audit reporting method.
 
-```java
+```
 public class StarRocksDynamicSinkFunctionV2<T> extends StarRocksDynamicSinkFunctionBase<T> {
 
     private static final long serialVersionUID = 1L;
