@@ -1,9 +1,7 @@
 ---
 title: Audit 数据格式定义及使用
-sidebar_position: 1
+sidebar_position: 2
 ---
-
-import {siteVariables} from '../../version';
 
 ## 概述
 
