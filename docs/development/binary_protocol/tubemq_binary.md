@@ -118,7 +118,7 @@ Producer needs to pay attention to **multi-language implementation:**
 
 ### Consumer consumption interaction diagram
 
-Consumer uses a total of 7 pairs of instructions: registering with the Master, heartbeat, and deregistering; registering with the Broker, deregistering, heartbeat, pulling messages, and confirming messages. The registration and deregistration with the Broker use the same command name with different status codes to identify and distinguish different operations:
+Consumer uses a total of 8 pairs of instructions: registering with the Master, heartbeat, and deregistering; registering with the Broker, deregistering, heartbeat, pulling messages, and confirming messages; the registration and deregistration with the Broker use the same command name with different status codes to identify and distinguish different operations:
 
 ![Consumer RPC interaction](img/tubemq_rpc_consumer.png)
 
@@ -173,7 +173,7 @@ message RegisterResponseM2P {
 }
 ```
 
-- ClientId：Identifies the Producer object. The ID value is constructed when the Producer is started and is valid during the Producer life cycle. The current construction rules of the Java version of the SDK are:
+- clientId：Identifies the Producer object. The ID value is constructed when the Producer is started and is valid during the Producer life cycle. The current construction rules of the Java version of the SDK are:
 
   ```java
     ClientId = consumerGroup + "_"
@@ -186,7 +186,7 @@ message RegisterResponseM2P {
   ```
   It is recommended that other languages add the above mark to facilitate troubleshooting;
 
-- TopicList: Identifies the topic list published by the user. The Producer will provide the initial topic list of the data to be published during initialization. During operation, the business is also allowed to delay adding new topics and reducing published topics through the Publish function;
+- topicList: Identifies the topic list published by the user. The Producer will provide the initial topic list of the data to be published during initialization. During operation, the business is also allowed to delay adding new topics and reducing published topics through the Publish function;
 
 - brokerCheckSum: The check value of the Broker metadata information saved locally by the client. The Producer does not have this data locally during initial startup, so the value is -1; the SDK needs to carry the last brokerCheckSum value in each request, and the Master determines whether the client's metadata needs to be updated by comparing this value;
 
@@ -350,7 +350,7 @@ message SendMessageResponseB2P {
     optional int64 appendOffset = 7;
 }
 ```
-- Data: Binary byte stream information of Message, implemented as follows:
+- data: Binary byte stream information of Message, implemented as follows:
 
     ```Java
     private byte[] encodePayload(final Message message) {

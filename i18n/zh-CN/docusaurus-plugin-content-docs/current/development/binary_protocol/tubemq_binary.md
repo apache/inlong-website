@@ -117,7 +117,7 @@ Producer 在 **多语言实现时需要注意：**
 
 ### Consumer 消费交互图
 
-Consumer 一共使用了 7 对指令：与 Master 进行注册，心跳，注销操作；与 Broker 进行注册，注销，心跳，拉取消息，确认消息操作。其中到 Broker 的注册、注销使用了同一个命令名携带不同的状态码方式来标识和区分不同操作：
+Consumer 一共使用了 8 对指令：与 Master 进行注册，心跳，注销操作；与 Broker 进行注册，注销，心跳，拉取消息，确认消息操作；其中到 Broker 的注册、注销使用了同一个命令名携带不同的状态码方式来标识和区分不同操作：
 
 ![Consumer RPC 交互](img/tubemq_rpc_consumer.png)
 
@@ -172,7 +172,7 @@ message RegisterResponseM2P {
 }
 ```
 
-- ClientId：标识 Producer 对象，该 ID 值在 Producer 启动时构造并在 Producer 生命周期内有效，目前 Java 版本的 SDK 构造规则是：
+- clientId：标识 Producer 对象，该 ID 值在 Producer 启动时构造并在 Producer 生命周期内有效，目前 Java 版本的 SDK 构造规则是：
 
   ```java
     ClientId = consumerGroup + "_"
@@ -185,7 +185,7 @@ message RegisterResponseM2P {
   ```
   建议其他语言增加如上标记，以便于问题排查；
 
-- TopicList：标识用户发布的 Topic 列表，Producer 在初始化时候会提供初始的待发布数据的 Topic 列表，在运行中也允许业务通过 Publish 函数延迟的增加新的 Topic 及减少已 Publish 的 topic；
+- topicList：标识用户发布的 Topic 列表，Producer 在初始化时候会提供初始的待发布数据的 Topic 列表，在运行中也允许业务通过 Publish 函数延迟的增加新的 Topic 及减少已 Publish 的 Topic；
 
 - brokerCheckSum：客户端本地保存的 Broker 元数据信息的校验值，初始启动时候 Producer 本地是没有该数据的，取 -1 值；SDK 需要在每次请求时把上次的 brokerCheckSum 值携带上，Master 通过比较该值来确定客户端的元数据是否需要更新；
 
@@ -352,7 +352,7 @@ message SendMessageResponseB2P {
 }
 ```
 
-- Data：Message 的二进制字节流信息，实现如下：
+- data：Message 的二进制字节流信息，实现如下：
 
   ```java
   private byte[] encodePayload(final Message message) {
