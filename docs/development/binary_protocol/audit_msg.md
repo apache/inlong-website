@@ -1,19 +1,22 @@
 ---
-title: Audit 数据格式定义及使用
+title: Audit data format definition and usage
 sidebar_position: 5
 ---
 
-## 概述
+## Overview
 
-在 InLong 系统架构中，采集层、汇聚层和分拣层等模块通过 Audit SDK 将审计数据上报至Audit系统。Audit Proxy 组件负责接收这些数据，并将其转换为
-AuditData 格式，随后存储在 MQ 消息的消息体中。
-接下来，Audit Store 从 MQ 中提取这些数据，并将其持久化至如 ClickHouse 等存储系统。本文将深入分析和讲解 Audit 系统相关的数据协议。
+In the InLong system architecture, modules such as the collection layer, aggregation layer, and sorting layer report
+audit data to the Audit system through the Audit SDK. The Audit Proxy component is responsible for receiving this data
+and converting it into the `AuditData` format, which is then stored in the message body of the MQ message.
+Next, the Audit Store extracts this data from the MQ and persists it in storage systems such as ClickHouse. This article
+will provide an in-depth analysis and explanation of the data protocol related to the Audit system.
 
 ![](img/audit.png)
 
-## Audit SDK 原始数据格式
+## Audit SDK raw data format
 
-Audit SDK 的原始数据采用 Protobuf 协议进行封装，其中包含请求类型、数据通用头部和数据主体等信息。以下是相关协议的详细描述：
+The raw data of the Audit SDK is encapsulated using the Protobuf protocol, which includes information such as request
+type, common data header, and data body. Here is a detailed description of the relevant protocol:
 
 ```protobuf
 syntax = "proto3";
@@ -80,7 +83,8 @@ message AuditReply {
 
 #### Audit Header
 
-审计数据的头部包含以下机器元数据信息：机器 IP、容器 ID、线程 ID、当前机器时间以及数据包 ID。以下是具体的协议描述：
+The header of the audit data contains the following machine metadata information: machine IP, container ID, thread ID,
+current machine time, and data packet ID. Here is the specific protocol description:
 
 ```protobuf
 message AuditMessageHeader {
@@ -92,17 +96,20 @@ message AuditMessageHeader {
 }
 ```
 
-- IP：记录生成或处理数据的机器的 IP 地址;
-- Docker ID：标识数据所属的容器;
-- Thread ID：标识生成或处理数据的线程;
-- SdkTs：记录 SDK 上报数据的机器时间戳;
-- Packet ID：用于标识每个数据包。
+- IP: Record the IP address of the machine generating or processing the data;
+- Docker ID: Identify the container to which the data belongs;
+- Thread ID: Identify the thread generating or processing the data;
+- SdkTs: Record the machine timestamp of the data reported by the SDK;
+- Packet ID: Used to identify each data packet;
 
-这些机器元数据信息的用途在于实现审计数据的去重以及运营监控。通过记录和分析这些信息，可以确保数据的唯一性，同时有助于进行运营监控和故障排查等操作。
+The purpose of these machine metadata information is to achieve deduplication of audit data and enable operational
+monitoring. By recording and analyzing these information, it ensures the uniqueness of the data and facilitates
+operations monitoring and troubleshooting activities.
 
 #### Audit Body
 
-审计数据的主体包含以下信息：数据时间、InLong GroupId、InLong StreamId、AuditId、AuditTag、Audit版本、条数、大小以及传输时延。以下是具体的协议描述：
+The subject of audit data includes the following information: data time, InLong GroupId, InLong StreamId, AuditId,
+AuditTag, Audit version, count, size, and transmission delay. Here is the specific protocol description:
 
 ```protobuf
 message AuditMessageBody {
@@ -118,22 +125,25 @@ message AuditMessageBody {
 }
 ```
 
-- LogTs：记录数据生成或处理的时间戳；
-- InLong GroupId：标识数据所属的 InLong 组；
-- InLong StreamId：标识数据所属的 InLong 流；
-- AuditId：用于唯一标识每个审计记录；
-- AuditTag：用于标记审计记录的特定标签；
-- Audit Version：记录审计记录的版本号；
-- Count：记录数据中包含的条目数量；
-- Size：记录数据的大小；
-- Delay：记录数据传输所花费的时间。
+- LogTs: Record the timestamp of data generation or processing;
+- InLong GroupId: Identify the InLong group to which the data belongs;
+- InLong StreamId: Identify the InLong stream to which the data belongs;
+- AuditId: Used to uniquely identify each audit record;
+- AuditTag: Used to tag specific audit records;
+- Audit Version: Record the version number of the audit record;
+- Count: Record the number of entries included in the data;
+- Size: Record the size of the data;
+- Delay: Record the time taken for data transmission.
 
-这些审计信息的目的是用于对账，以确保数据的完整性和准确性。通过对这些信息进行统计，可以实现数据验证、故障排查以及性能分析等操作。
+The purpose of these audit information is for reconciliation to ensure the integrity and accuracy of the data. By
+performing statistical analysis on this information, data validation, troubleshooting, and performance analysis
+operations can be achieved.
 
-## AuditData 数据格式
+## AuditData data format
 
-Audit Proxy负责接收来自 Audit SDK 发送的 Protobuf 格式数据，并对其进行解析。解析完成后，它将 Audit Header 和Audit Body
-组装成一条完整的审计数据，随后将该数据写入消息队列（ MQ ）。AuditData 代表组装后的数据格式，具体细节如下：
+The Audit Proxy is responsible for receiving Protobuf formatted data from the Audit SDK and parsing it. Once the parsing
+is complete, it assembles the Audit Header and Audit Body into a complete audit record, which is then written to a
+message queue ( MQ ). `AuditData` represents the format of the assembled data, with the following specific details:
 
 ```json
 {
@@ -154,12 +164,12 @@ Audit Proxy负责接收来自 Audit SDK 发送的 Protobuf 格式数据，并对
 }
 ```
 
-## 审计数据存储格式
+## Audit data storage format
 
-Audit Store 从消息队列（ MQ ）中消费 `AuditData` 审计数据，对其进行协议解析后，将数据持久化至 ClickHouse、MySQL
-等存储系统中。具体的存储目标 Schema 如下所示：
+The Audit Store consumes `AuditData` audit data from the message queue ( MQ ), performs protocol parsing, and persists the
+data into storage systems such as ClickHouse, MySQL, etc. The specific storage target schema is as follows:
 
-### ClickHouse 表 Schema
+### ClickHouse table Schema
 
 ```clickhouse
 CREATE TABLE apache_inlong_audit.audit_data
@@ -187,10 +197,11 @@ CREATE TABLE apache_inlong_audit.audit_data
         SETTINGS index_granularity = 8192
 ```
 
-如上所述，该表采用 ReplicatedMergeTree 存储引擎，以实现分布式存储和高可用性。数据将根据 log_ts 列进行分区，并按照( log_ts,
-audit_id, inlong_group_id, inlong_stream_id, audit_tag, audit_version, ip )的顺序进行存储和管理，以优化查询性能。
+As described above, the table uses the ReplicatedMergeTree storage engine to achieve distributed storage and high
+availability. The data will be partitioned based on the log_ts column and stored and managed in the order of ( log_ts,
+audit_id, inlong_group_id, inlong_stream_id, audit_tag, audit_version, ip ) to optimize query performance.
 
-### MySQL 表 Schema
+### MySQL table Schema
 
 ```mysql
 CREATE TABLE IF NOT EXISTS `audit_data`
@@ -216,6 +227,7 @@ CREATE TABLE IF NOT EXISTS `audit_data`
   DEFAULT CHARSET = UTF8 COMMENT ='Inlong audit data table';
 ```
 
-如上所述，该表采用 InnoDB 存储引擎以确保数据一致性。同时，通过使用 INDEX 子句创建了名为 group_stream_audit_id 的索引，该索引涵盖了
-inlong_group_id、inlong_stream_id、audit_id 和 log_ts 列。
-这一索引的创建有助于提高查询效率，尤其是在基于这些列进行筛选和排序时。
+As described above, the table uses the InnoDB storage engine to ensure data consistency. Additionally, an index
+named "group_stream_audit_id" has been created using the INDEX clause, which covers the columns inlong_group_id,
+inlong_stream_id, audit_id, and log_ts. This index creation helps improve query efficiency, especially when filtering
+and sorting based on these columns.
