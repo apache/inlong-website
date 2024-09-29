@@ -150,3 +150,98 @@ the information filling module
 - Data usage description: The applicant needs to briefly explain the items used and the purpose of the data according to
   their own consumption scenarios After completing the information, click [Submit], and the data consumption process
   will be formally submitted to the approver before it will take effect.
+
+## Synchronization
+
+The data synchronization module displays a list of all tasks in the synchronization system within the current user permissions. You can view, edit, update and delete the details of these tasks.
+Click [New Data Synchronization] to enter the data synchronization process. You need to fill in the relevant information about the synchronization information. You can choose two synchronization types: real-time or offline.
+
+![Create sync](img/create-sync.png)
+
+### Base Information
+
+#### Realtime Synchronization
+
+After filling in the relevant basic information, you can proceed to the next step.
+
+![Realtime sync](img/realtime-sync.png)
+
+- Data flow group ID: The brief name of the synchronization task, which must be composed of lowercase letters, numbers, and underscores.
+- Responsible person: The responsible person can view and modify synchronized information.
+- Entire database migration: Choose whether you need to migrate the entire database according to your own needs.
+
+#### Offline Synchronization
+
+After filling in the relevant basic information, you also need to fill in the offline synchronization related information, such as: scheduling rules and dependency configuration.
+
+![Offline sync](img/offline-sync.png)
+
+Scheduling type: Choose regular or Crontab type according to your own needs.
+
+##### Regular Type
+
+- Scheduling unit: select minutes, hours, days, weeks, etc. according to your own needs.
+- Scheduling cycle: Select the cycle according to your own needs, and its unit is determined by the selection of the scheduling unit.
+- Delay time: fill in the required delay time.
+- Validity time: Configure the validity time of offline rules.
+
+##### Crontab Type
+
+- Valid time: The time interval can be filled in, the format is: 2021-01-01 00:00-2021-12-31 23:59
+- Crontab expression: Fill in the Crontab expression according to your own needs.
+
+## Data Node
+
+The data node module displays the list of data nodes within the current user permissions. You can view, edit, update and delete the details of these nodes.
+Click [New] to pop up a dialog box for creating a new node. You can choose different node types, such as: Redis, Kafka, MySQL, etc.
+
+![Create node](img/create-node.png)
+
+![create note type](img/create-node-type.png)
+
+- Node name: The brief name of the node, which must be composed of lowercase letters, numbers, and underscores.
+- Node type: Select the type of node.
+- Responsible person: The node responsible person can view and modify node information.
+
+## Cluster Management
+
+The cluster management module is divided into two modules: cluster label management and cluster management. Cluster label management is used to manage cluster labels, and cluster management is used to manage clusters.
+
+### Cluster Tag Management
+
+Cluster label management can add, delete, modify cluster labels, view the cluster list, bind clusters, etc.
+
+![Cluster tag](img/cluster-tag.png)
+
+#### Add New Cluster Label
+
+![add_cluster_tag](img/add-cluster-tag.png)
+
+- Cluster label: The brief name of the label, which must be composed of lowercase letters, numbers, and underscores. Modifying the cluster label name will also modify the label names in all clusters bound to this label. Make sure that this label is not used by InlongGroup. .
+- Person in charge: The person in charge can view and modify cluster label information.
+- Tenant: Select the tenant to be bound.
+
+#### Bind Cluster
+
+![Bind cluster](img/bind-cluster.png)
+
+![detail bind cluster](img/detail-bind-cluster.png)
+
+- Cluster name: When the cluster list is empty, you need to go to the cluster management page to create the required cluster so that the cluster label can be bound to the cluster.
+
+### Cluster Management
+
+Cluster management can add, delete, modify clusters, view the cluster list, view cluster details, view cluster nodes, etc.
+
+#### Create  New Cluster
+
+Click [New Cluster] and a dialog box for creating a new cluster will pop up. You can choose different cluster types, such as Agent, Kafka, etc.
+
+![create cluster](img/create-cluster.png)
+
+![cluster detail](img/cluster-detail.png)
+
+- Cluster name: The brief name of the cluster, which must be composed of lowercase letters, numbers, and underscores.
+- Cluster type: Select the type of cluster.
+- Person in charge: The person in charge of the cluster can view and modify the cluster information.
+- Cluster label: Select the label to be bound.
