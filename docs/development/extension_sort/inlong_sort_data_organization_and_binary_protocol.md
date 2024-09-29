@@ -45,7 +45,7 @@ By understanding the structure and components of the InLongMsg format, you can d
 
     ![The extension of parsing raw data formats not encapsulated in the InLongMsg](img/sort_data_raw_format_extend.png)
     <br/>
-    <center> Figure 1 The extension of parsing raw data formats not encapsulated in the InLongMsg </center>
+    <p align="center">Figure 1 The extension of parsing raw data formats not encapsulated in the InLongMsg</p>
 
 - Data formatted using InLongMsg
   + Parse processing <br/>
@@ -57,7 +57,8 @@ By understanding the structure and components of the InLongMsg format, you can d
   + Extend processing <br/>
     To extend the parsing of data formats encapsulated in the InLongMsg format, you need to implement one interface and inherit three base classes as shown in Figure 2. The arrows in the diagram represent the calling relationships between the implementations. 
     
-    ![To extend the parsing of data formats encapsulated in the InLongMsg format](img/sort_data_inlongmsg_format_extend.png) <center>Figure 2 To extend the parsing of data formats encapsulated in the InLongMsg format</center>
+    ![To extend the parsing of data formats encapsulated in the InLongMsg format](img/sort_data_inlongmsg_format_extend.png) 
+    <p align="center">Figure 2 To extend the parsing of data formats encapsulated in the InLongMsg format</p>
     <br/>
     Compareing with the parsing process shown in Figure 1, the main difference is that the DecodingFormat and DeserializationSchema obtained in the Figure 2 are subclasses of AbstractInLongMsgDecodingFormat and AbstractInLongMsgDeserializationSchema.
     For the implementation of the subclass of AbstractInLongMsgDeserializationSchema, it is recommended to implement a subclass of AbstractInLongMsgFormatDeserializer and invoke it.
