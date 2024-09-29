@@ -14,7 +14,7 @@ Docker Compose deploys all components for Standard Architecture, and choose [Apa
 - [Docker Compose 2.4+](https://docs.docker.com/compose/install/other/#on-linux)
 
 ## Download
-You can get `apache-inlong-[version]-bin.tar.gz` from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](quick_start/how_to_build.md).
+You can get `apache-inlong-[version]-bin.tar.gz` from [Download Page](https://inlong.apache.org/download) ,or you can build the InLong refer to [How to Build](../development/how_to_build.md).
 
 ## Deploy
 Start all components.

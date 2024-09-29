@@ -15,7 +15,7 @@ InLong 当前支持以下消息队列，根据使用情况**选择其一**即可
 - [Apache Kafka 2.x](https://kafka.apache.org/quickstart)
 
 ## 下载安装包
-可以从 [下载页面](https://inlong.apache.org/download) 获取二进制包，或参考 [如何编译](quick_start/how_to_build.md) 编译需要的版本。
+可以从 [下载页面](https://inlong.apache.org/download) 获取二进制包，或参考 [如何编译](../development/how_to_build.md) 编译需要的版本。
 
 :::note
 解压 `apache-inlong-[version]-bin.tar.gz` 和 `apache-inlong-[version]-sort-connectors.tar.gz`，并确保 `inlong-sort/connectors/` 目录包含 `sort-connector-[type]-[version].jar`。

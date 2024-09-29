@@ -14,7 +14,7 @@ Docker Compose 部署了`标准架构`所需要的所有组件，使用 [Apache 
 - [Docker Compose 2.4+](https://docs.docker.com/compose/install/other/#on-linux)
 
 ## 下载
-你可以从 [下载页面](https://inlong.apache.org/zh-CN/download/) 获取 `apache-inlong-[version]-bin.tar.gz`，或者参考 [How to Build](quick_start/how_to_build.md) 编译。
+你可以从 [下载页面](https://inlong.apache.org/zh-CN/download/) 获取 `apache-inlong-[version]-bin.tar.gz`，或者参考 [How to Build](../development/how_to_build.md) 编译。
 
 ## 部署
 启动所有组件：

@@ -1,15 +1,15 @@
 ---
-title: 自定义认证
+title: Custom Authentication
 sidebar_position: 2
 ---
 
-import {siteVariables} from '../version';
+import {siteVariables} from '../../version';
 
-## 总览
-Inlong Manager中使用了Apache Shiro框架实现了认证和授权等功能，Manager已经集成好了默认的实现逻辑，如果您想在Inlong Manager中实现自定义的基于Shiro的认证和授权功能，您可以按照如下的说明，进行相关功能的插件化开发。
+## Overview
+The Apache Shiro framework is used in the inlong manager to realize the functions of authentication and authorization. The manager has integrated the default implementation logic. If you want to realize the custom Shiro based authentication and authorization function in the inlong manager, you can carry out the plug-in development of relevant functions according to the following instructions.
 
-## 依赖
-- 增加maven 依赖
+## Dependency
+- Add Maven Dependency
 <pre><code parentName="pre">
 {`<dependency>
     <groupId>org.apache.inlong</groupId>
@@ -19,8 +19,8 @@ Inlong Manager中使用了Apache Shiro框架实现了认证和授权等功能，
 `}
 </code></pre>
 
-## 编码
-- 实现其中关于Shiro相关模块的接口
+## Code
+- Implement the following interfaces
 ```java
 org.apache.inlong.manager.common.auth.InlongShiro
 
@@ -41,7 +41,7 @@ public interface InlongShiro {
 }
 ```
 
-- 实现*InlongShiro*接口，并在"@ConditionalOnProperty"指定配置
+- Implement * InlongShiro * interface and specify the configuration in "@ conditionalonproperty"
 ```java
 @ConditionalOnProperty(name = "type", prefix = "inlong.auth", havingValue = "Custom")
 @Component
@@ -50,7 +50,7 @@ public class InlongShiroImpl implements InlongShiro {
 }
 ```
 
-- 修改manager-web module下application.properties文件中配置
+- Modify the application.properties under the manager web module
 ```java
 inlong.auth.type=Custom
 ```
