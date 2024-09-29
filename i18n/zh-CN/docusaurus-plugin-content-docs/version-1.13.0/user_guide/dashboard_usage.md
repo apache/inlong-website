@@ -127,53 +127,80 @@ HIVE流向：
 信息填完完成后，点击【提交】后，会将次数据消费流程正式提交待审批人审批后方可生效。
 
 ## 数据同步
+
 数据同步模块展示目前用户权限内同步系统所有任务列表，可以对这些任务详情查看、编辑更新和删除操作。
 点击【新建数据同步】，进入数据同步流程，需要对同步信息相关信息进行填写，可选择两种同步类型：实时或者离线。
 
-![Application detail](img/create_sync.png)
+![Create sync](img/create-sync.png)
 
 ### 基础信息
 
+- 数据流组 ID：同步任务的简要名称，必须是小写字母、数字、下划线组成。
+- 责任人：责任人可查看、修改同步信息。
+- 整库迁移：根据自身需求是否选择是否需要进行整库迁移。
+- 
 #### 实时同步
 
 填写好相关基础信息之后即可进行下一步
 
-![Application detail](img/realtime_sync.png)
+![Realtime sync](img/realtime-sync.png)
+
 #### 离线同步
 
 填写好相关基础信息后，还需要填写离线同步相关信息，比如：调度规则、依赖配置。
 
-![Application detail](img/offline_sync.png)
+![Offline sync](img/offline-sync.png)
+
+调度类型：根据自身需求选择常规或者Crontab类型。
+
+##### 常规类型
+
+- 调度单位：根据自身需求选择分钟、小时、天、周等。
+- 调度周期：根据自身需求选择周期，其单位根据调度单位的选择决定。
+- 延迟时间：填写需要的延迟时间。
+- 有效时间：配置离线规则的有效时间。
+
+##### Crontab类型
+
+- 有效时间: 可填写时间区间，格式为：2021-01-01 00:00-2021-12-31 23:59
+- Crontab 表达式：根据自身需求填写Crontab表达式。
 
 ## 数据节点
 
 数据节点模块展示目前用户权限内数据节点列表，可以对这些节点详情查看、编辑更新和删除操作。
 点击【新建】，弹出新建节点的对话框，可选择不同的节点类型，比如：Redis，Kafka，MySQL等。
 
-![Application detail](img/create_node.png)
+![Create node](img/create-node.png)
 
-![Application detail](img/create_node_type.png)
+![create note type](img/create-node-type.png)
 
+- 节点名称：节点的简要名称，必须是小写字母、数字、下划线组成。
+- 节点类型：选择节点的类型。
+- 责任人：节点责任人可查看、修改节点信息。
 
 ## 集群管理
 
 集群管理模块分为集群标签管理和集群管理两个模块，集群标签管理用于管理集群标签，集群管理用于管理集群。
 
-### 集群标签管理
+### 标签管理
 
 集群标签管理可以对集群标签进行新增、删除、修改以及查看集群列表、绑定集群等操作
 
-![Application detail](img/cluster_tag.png)
+![Cluster tag](img/cluster-tag.png)
 
 #### 新增集群标签
 
-![Application detail](img/add_cluster_tag.png)
+![add_cluster_tag](img/add-cluster-tag.png)
+
+- 集群标签：标签的简要名称，必须是小写字母、数字、下划线组成，修改集群标签名称，会同时修改所有绑定了此标签的集群中的标签名，且需确保此标签没有被 InlongGroup 所使。
+- 负责人：负责人可查看、修改集群标签信息。
+- 租户：选择需要绑定的租户。
 
 #### 绑定集群
 
-![Application detail](img/bind_cluster.png)
+![Bind cluster](img/bind-cluster.png)
 
-![Application detail](img/detail_bind_cluster.png)
+![detail bind cluster](img/detail-bind-cluster.png)
 
 - 集群名称：当集群列表为空时，需要去集群管理页面创建需要的集群，集群标签才能绑定集群
 
@@ -185,9 +212,14 @@ HIVE流向：
 
 点击【新建集群】 ，弹出新建集群的对话框，可选择不同的集群类型，比如：Agent，Kafka等。
 
-![Application detail](img/create_cluster.png)
+![create cluster](img/create-cluster.png)
 
-![Application detail](img/cluster_detail.png)
+![cluster detail](img/cluster-detail.png)
+
+- 集群名称：集群的简要名称，必须是小写字母、数字、下划线组成。
+- 集群类型：选择集群的类型。
+- 负责人：集群责任人可查看、修改集群信息。
+- 集群标签：选择需要绑定的标签。
 
 
 
