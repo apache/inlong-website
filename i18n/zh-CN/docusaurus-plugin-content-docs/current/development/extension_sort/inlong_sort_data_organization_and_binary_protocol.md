@@ -19,7 +19,7 @@ InLong-Sort-Formats 模块支持两大类的数据格式解析，分别基于 Fl
 
 ## 开发之前
 
-- InLongMsg 格式介绍参照 [InLongMsg](img/inlong_msg.md)；
+- InLongMsg 格式介绍参照 [InLongMsg](../binary_protocol/inlong_msg.md)；
 - 原始数据经过 DataProxy 模块的数据均会使用 InLongMsg 格式进行封装，在选用具体的解析方式时，需要注意。
 - InLongMsg 中会包含至少一条数据，解析的时候需要处理包含多条的场景；
 - InLongMsg 每条消息由两部分组成，消息头和消息体，其中：
@@ -28,24 +28,27 @@ InLong-Sort-Formats 模块支持两大类的数据格式解析，分别基于 Fl
 
 ## 流程图示
 - 原始格式数据
-  + 解析流程 
+  + 解析流程 <br>
     第一步：构建具体格式的 DeserializationFormatFactory 对象，例如：CsvFormatFactory；
     第二步：通过 DeserializationFormatFactory 对象，获取对应格式的 DecodingFormat 对象；
     第三步：通过 DecodingFormat 对象获取 具体格式对应的 DeserializationSchema 对象；
     第四步：通过 DeserializationSchema，调用 deserialize(byte[] message) 或 deserialize(byte[] message, Collector<T> out) 方法，传递要解析的数据及获取数据解析后的结果。
 
-  + 扩展流程
+  + 扩展流程 <br>
     如图1 所示，扩展非 InLongMsg 格式封装的原始数据格式的解析，需要实现图1 中的三个接口， 图中箭头表示实现间的调用关系。 ![非 InLongMsg 格式封装的原始数据格式解析扩展](img/sort_data_raw_format_extend.png) <center>图 1 非 InLongMsg 格式封装的原始数据格式解析扩展</center>
 
 - 经过 InLong Msg 封装的格式数据
-  + 解析流程 
-    第一步：构建具体格式的 DeserializationFormatFactory InLongMsgCsvFormatFactory
+  + 解析流程 <br>
+    第一步：构建具体格式的 DeserializationFormatFactory InLongMsgCsvFormatFactory；
     第二步：通过 DeserializationFormatFactory 对象，获取对应格式的 DecodingFormat 对象 （AbstractInLongMsgDecodingFormat 类的子类）；
     第三步：通过 DecodingFormat 对象获取 具体格式对应的 DeserializationSchema 对象 （AbstractInLongMsgDeserializationSchema 类的子类）；
     第四步：通过 DeserializationSchema，调用 deserialize(byte[] message) 或 deserialize(byte[] message, Collector<T> out) 方法，传递要解析的数据及获取数据解析后的结果。
 
-  + 扩展流程
-    如图2 所示，扩展 InLongMsg 格式封装的数据格式的解析，需要实现图 2 中的1个接口和继承实现3个基类，图中箭头表示实现间的调用关系： ![InLongMsg 格式封装的数据格式解析扩展](img/sort_data_inlongmsg_format_extend.png) <center>图 2 InLongMsg 格式封装的数据格式解析扩展</center>
+  + 扩展流程 <br>
+    如图2 所示，扩展 InLongMsg 格式封装的数据格式的解析，需要实现图 2 中的1个接口和继承实现3个基类，图中箭头表示实现间的调用关系：
+
+    ![InLongMsg 格式封装的数据格式解析扩展](img/sort_data_inlongmsg_format_extend.png) <center>图 2 InLongMsg 格式封装的数据格式解析扩展</center>
+    
     扩展流程与图1 中所示流程最大的区别是，中间的获取的 DecodingFormat、DeserializationSchema 分别是 AbstractInLongMsgDecodingFormat 与 AbstractInLongMsgDeserializationSchema 类的子类。
     其中，AbstractInLongMsgDeserializationSchema 子类的实现，建议通过实现 AbstractInLongMsgFormatDeserializer 基类的子类， 并调用实现。
 
