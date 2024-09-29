@@ -3,7 +3,7 @@ title: 离线同步 Connector 插件扩展
 sidebar_position: 6
 ---
 ## 概述
-目前，Apache InLong 支持数据的[实时同步](quick_start/data_sync)和离线同步，底层的数据计算引擎都是 Flink。
+目前，Apache InLong 支持数据实时同步和离线同步，底层的数据计算引擎都是 Flink。
 
 Apache InLong 通过流批统一的 Flink SQL API 实现一套代码同时支持实时和离线的数据同步任务的能力。
 两者的区别是实时同步使用 Flink Streaming 实现数据同步，而离线同步则是使用 Flink Batch 实现数据同步。
