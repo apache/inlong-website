@@ -36,10 +36,10 @@ By understanding the structure and components of the InLongMsg format, you can d
 ## Processing
 - Raw Format Data
   + Parse processing<br/>
-    Step 1: Build a DeserializationFormatFactory object for the specific format, for example, CsvFormatFactory.
-    Step 2: Use the DeserializationFormatFactory object to obtain the corresponding DecodingFormat object.
-    Step 3: Use the DecodingFormat object to obtain the DeserializationSchema object for the specific format.
-    Step 4: Use the DeserializationSchema object to call the deserialize(byte[] message) or deserialize(byte[] message, Collector<T> out) method, passing the data to be parsed and retrieving the parsed result.
+    * Step 1: Build a DeserializationFormatFactory object for the specific format, for example, CsvFormatFactory.
+    * Step 2: Use the DeserializationFormatFactory object to obtain the corresponding DecodingFormat object.
+    * Step 3: Use the DecodingFormat object to obtain the DeserializationSchema object for the specific format.
+    * Step 4: Use the DeserializationSchema object to call the deserialize(byte[] message) or deserialize(byte[] message, Collector<T> out) method, passing the data to be parsed and retrieving the parsed result.
   + Extend processing <br/>
     To extend the parsing of raw data formats that are not encapsulated in the InLongMsg format, you would need to implement the three interfaces shown in Figure 1. The arrows in the diagram represent the calling relationships between the implementations.
 
@@ -49,10 +49,10 @@ By understanding the structure and components of the InLongMsg format, you can d
 
 - Data formatted using InLongMsg
   + Parse processing <br/>
-    Step 1: Build a specific format DeserializationFormatFactory, such as InLongMsgCsvFormatFactory. This factory class is responsible for creating parsers for the desired format.
-    Step 2: Using the DeserializationFormatFactory object, obtain the corresponding DecodingFormat object, which is a subclass of AbstractInLongMsgDecodingFormat. This object is used to decode the InLongMsg formatted data.
-    Step 3: Using the DecodingFormat object, obtain the DeserializationSchema object corresponding to the specific format. This object is a subclass of AbstractInLongMsgDeserializationSchema. It defines the parsing rules and how the parsed results are returned.
-    Step 4: Using the DeserializationSchema object, call the deserialize(byte[] message) or deserialize(byte[] message, Collector<T> out) methods. Pass the data to be parsed as input and retrieve the parsed results. These methods will parse the data according to the defined rules and return the parsed results.
+    * Step 1: Build a specific format DeserializationFormatFactory, such as InLongMsgCsvFormatFactory. This factory class is responsible for creating parsers for the desired format.
+    * Step 2: Using the DeserializationFormatFactory object, obtain the corresponding DecodingFormat object, which is a subclass of AbstractInLongMsgDecodingFormat. This object is used to decode the InLongMsg formatted data.
+    * Step 3: Using the DecodingFormat object, obtain the DeserializationSchema object corresponding to the specific format. This object is a subclass of AbstractInLongMsgDeserializationSchema. It defines the parsing rules and how the parsed results are returned.
+    * Step 4: Using the DeserializationSchema object, call the deserialize(byte[] message) or deserialize(byte[] message, Collector<T> out) methods. Pass the data to be parsed as input and retrieve the parsed results. These methods will parse the data according to the defined rules and return the parsed results.
     By following these steps, you can parse data in the specific format of InLongMsg and obtain the parsed results. The actual implementation may involve specific classes and methods based on your requirements and the specific parsing format.
   + Extend processing <br/>
     To extend the parsing of data formats encapsulated in the InLongMsg format, you need to implement one interface and inherit three base classes as shown in Figure 2. The arrows in the diagram represent the calling relationships between the implementations. 
