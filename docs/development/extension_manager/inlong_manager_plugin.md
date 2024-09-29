@@ -21,20 +21,52 @@ This article is aimed at InLong-Manager plugin developers, trying to explain the
 
 ![](img/inlong_plugin.png)
 
-- When Inlong Manager is deployed, plugins must be located under installation directory, then **Manager Process** will find the plugin jar and install the plugin automatically.
+As shown in the figure, plugins mainly serve the workflows in InLong. Each task in the workflow corresponds to a listener queue, such as Init Mq corresponding to QueueOperateListener, Init Sink corresponding to SinkOperateListener, Init Sort corresponding to SortOperateListener, and Init Source corresponding to SourceOperateListener.
 
-![](img/plugin_location.png)
+When developers need to add a task to the workflow, they can add a Listener through the plugin and register the Listener to the task.
 
-- As a developer, you can confirm your plugin be loaded successfully by searching logs below:
+Below is an example of adding a TestListener process for the Init Sort task, mainly adding three files: TestListener, TestProcessPlugin, and plugin.yaml.
 
-![](img/plugin_log.png)
-
-## Reference Demo
-
-- For helping all Inlong developers. We hava provide **manager-plugins** in Inlong Manager Module, which provide **FlinkSortProcessPlugin** as an example; or you can create **ProcessPlugin** as below;
+![](img/plugin.png)
 
 ```java
-public class EmptyProcessPlugin implements ProcessPlugin {
+@Slf4j
+public class TestListener implements SortOperateListener {
+
+    @Override
+    public TaskEvent event() {
+        return TaskEvent.COMPLETE;
+    }
+
+    @Override
+    public boolean accept(WorkflowContext workflowContext) {
+        return true;
+    }
+
+    @Override
+    public ListenerResult listen(WorkflowContext context) throws Exception {
+        log.info("Success execute test stream listener");
+        return ListenerResult.success();
+    }
+}
+```
+TestListener implements SortOperateListener and overrides the listen method. When the execution reaches TestListener, it will print a line of log.
+
+```java
+@Slf4j
+public class TestProcessPlugin implements ProcessPlugin {
+
+    @Override
+    public List<SourceOperateListener> createSourceOperateListeners() {
+        return new LinkedList<>();
+    }
+
+    @Override
+    public List<SortOperateListener> createSortOperateListeners() {
+        List<SortOperateListener> listeners = new LinkedList<>();
+        listeners.add(new TestListener());
+        return listeners;
+    }
 
     @Override
     public Map<DataSourceOperateListener, EventSelector> createSourceOperateListeners() {
@@ -47,36 +79,35 @@ public class EmptyProcessPlugin implements ProcessPlugin {
     }
 
     @Override
-    public Map<SortOperateListener, EventSelector> createSortOperateListeners() {
-        return ProcessPlugin.super.createSortOperateListeners();
-    }
-
-    @Override
     public Map<SinkOperateListener, EventSelector> createSinkOperateListeners() {
-        return ProcessPlugin.super.createSinkOperateListeners();
+        return new LinkedHashMap<>();
     }
 
 }
 ```
+TestProcessPlugin implements ProcessPlugin and overrides the createSortOperateListeners method. When the plugin is loaded, the Manager will load TestListener into the SortOperateListener queue. When the workflow executes to Init Sort, TestListener will be executed.
 
-- **DataSourceOperateListener**,**QueueOperateListener**,**SortOperateListener**,**SinkOperateListener** are child_classes extended from **TaskEventListener**. Then **EventSelector** decides whether the listener should be triggered.
-
-```java
-public interface EventSelector {
-
-    boolean accept(WorkflowContext context);
-
-}
-```
 
 - After developing you plugin, you should prepare plugin definition file in **Yaml**, and put it under resources/META-INF.
 
 ```yaml
-name: example
+name: test
 description: example for manager plugin
 javaVersion: 1.8
-pluginClass: org.apache.inlong.manager.plugin.EmptyProcessPlugin
+pluginClass: org.apache.inlong.manager.plugin.TestProcessPlugin
 ```
+
+- When Inlong Manager is deployed, plugins must be located under installation directory, then **Manager Process** will find the plugin jar and install the plugin automatically.
+
+![](img/plugin_location.png)
+
+- As a developer, you can confirm your plugin be loaded successfully by searching logs below:
+
+![](img/plugin_log.png)
+
+- In this way, after executing the workflow, the following log will be printed, indicating that the plugin has been successfully executed.
+
+![](img/workflow_plugin.png)
 
 - To develop available Listeners , you can refer to the native Listeners in `org.apache.inlong.manager.service.workflow.listener.GroupTaskListenerFactory`
 

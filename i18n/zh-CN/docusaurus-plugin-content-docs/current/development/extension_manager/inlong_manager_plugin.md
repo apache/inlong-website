@@ -19,22 +19,54 @@ sidebar_position: 2
 
 - Inlong Manager 插件机制如下图所示:
 
-  ![](img/inlong_plugin.png)
+![](img/inlong_plugin.png)
 
-- 如图所示，插件需要被放置在安装路径之下, 当 Inlong Manager 进程启动时，会自动寻找插件编译的 jar 包并加载其中的代码。
+如图所示，插件主要服务于 InLong 中的工作流，工作流中的 task 对应一个 listener 队列，例如 Init Mq 对应 QueueOperateListener、Init Sink 对应 SinkOperateListener、Init Sort 对应 SortOperateListener、Init Source 对应 SourceOperateListener。
 
-![](img/plugin_location.png)
+当开发人员需要为工作流增加一个 task 时，就可以通过插件的方式添加 Listener，并将 Listener 注册到 task 中。
 
-- 作为开发人员，当你看到下图所示的日志时，可以确认插件已经加载成功了:
+下面以为 Init Sort 这个 Task 添加一个 TestListener 流程为例，主要添加三个文件，TestListener、TestProcessPlugin、plugin.yaml。
 
-![](img/plugin_log.png)
-
-## 参考 Demo
-
-- 为方便开发人员理解. 我们在 Inlong Manager 目录下增加了 ***manager-plugins** , 开发人员可参考 **FlinkSortProcessPlugin** 进行自己的插件开发; 或者按照如下的案例开发插件；
+![](img/plugin.png)
 
 ```java
-public class EmptyProcessPlugin implements ProcessPlugin {
+@Slf4j
+public class TestListener implements SortOperateListener {
+
+    @Override
+    public TaskEvent event() {
+        return TaskEvent.COMPLETE;
+    }
+
+    @Override
+    public boolean accept(WorkflowContext workflowContext) {
+        return true;
+    }
+
+    @Override
+    public ListenerResult listen(WorkflowContext context) throws Exception {
+        log.info("Success execute test stream listener");
+        return ListenerResult.success();
+    }
+}
+```
+TestListener 实现了 SortOperateListener，并重写了 listen 方法，当执行到 TestListener 时，将会打印一行日志。
+
+```java
+@Slf4j
+public class TestProcessPlugin implements ProcessPlugin {
+
+    @Override
+    public List<SourceOperateListener> createSourceOperateListeners() {
+        return new LinkedList<>();
+    }
+
+    @Override
+    public List<SortOperateListener> createSortOperateListeners() {
+        List<SortOperateListener> listeners = new LinkedList<>();
+        listeners.add(new TestListener());
+        return listeners;
+    }
 
     @Override
     public Map<DataSourceOperateListener, EventSelector> createSourceOperateListeners() {
@@ -47,37 +79,36 @@ public class EmptyProcessPlugin implements ProcessPlugin {
     }
 
     @Override
-    public Map<SortOperateListener, EventSelector> createSortOperateListeners() {
-        return ProcessPlugin.super.createSortOperateListeners();
-    }
-
-    @Override
     public Map<SinkOperateListener, EventSelector> createSinkOperateListeners() {
-        return ProcessPlugin.super.createSinkOperateListeners();
+        return new LinkedHashMap<>();
     }
 
 }
 ```
-
-- **DataSourceOperateListener**,**QueueOperateListener**,**SortOperateListener**,**SinkOperateListener** 是 **TaskEventListener** 的子类, 分别负责源数据端，消息队列，sort 函数，目标数据端的初始化工作。 与 Listener 绑定的**EventSelector**决定该 Listener 是否在运行时被激活。
-
-```java
-public interface EventSelector {
-
-    boolean accept(WorkflowContext context);
-
-}
-```
+TestProcessPlugin 实现了 ProcessPlugin，并重写了 createSortOperateListeners 方法，当插件被加载时，Manager 就会将 TestListener 加载到 SortOperateListener 的队列中，当工作流执行到 Init Sort 时，TestListener 就会被执行。
 
 - 完成插件的开发工作后, 你需要编写对应的**Yaml**格式的插件定义文件, 将其放置在工程目录 resources/META-INF 下。
 
 ```yaml
-name: example
+name: test
 description: example for manager plugin
 javaVersion: 1.8
-pluginClass: org.apache.inlong.manager.plugin.EmptyProcessPlugin
+pluginClass: org.apache.inlong.manager.plugin.TestProcessPlugin
 ```
-- 如果你不确定怎样开发一个可用的 Listener ,请参考`org.apache.inlong.manager.service.workflow.listener.GroupTaskListenerFactory`中原生 Listener 的逻辑。
+
+- 如图所示，当插件开放完成后，插件需要被放置在安装路径之下, 当 Inlong Manager 进程启动时，会自动寻找插件编译的 jar 包并加载其中的代码。
+
+![](img/plugin_location.png)
+
+- 作为开发人员，当你看到下图所示的日志时，可以确认插件已经加载成功了:
+
+![](img/plugin_log.png)
+
+- 这样当执行工作流后就会打印以下日志，此时表示插件已经成功执行。
+
+![](img/workflow_plugin.png)
+
+- 如果你仍然不确定怎样开发一个可用的 Listener ,请参考`org.apache.inlong.manager.service.workflow.listener.GroupTaskListenerFactory`中原生 Listener 的逻辑。
 
 ## 写在最后
 
