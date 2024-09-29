@@ -3,7 +3,7 @@ title: 自定义认证
 sidebar_position: 2
 ---
 
-import {siteVariables} from '../version';
+import {siteVariables} from '../../version';
 
 ## 总览
 Inlong Manager中使用了Apache Shiro框架实现了认证和授权等功能，Manager已经集成好了默认的实现逻辑，如果您想在Inlong Manager中实现自定义的基于Shiro的认证和授权功能，您可以按照如下的说明，进行相关功能的插件化开发。
