@@ -52,7 +52,7 @@ InLong-Sort-Formats 模块支持两大类的数据格式解析，分别基于 Fl
     ![InLongMsg 格式封装的数据格式解析扩展](img/sort_data_inlongmsg_format_extend.png)
     <p align="center">图 2 InLongMsg 格式封装的数据格式解析扩展</p>
     
-    扩ß展流程与图1 中所示流程最大的区别是，中间的获取的 DecodingFormat、DeserializationSchema 分别是 AbstractInLongMsgDecodingFormat 与 AbstractInLongMsgDeserializationSchema 类的子类。
+    扩展流程与图1 中所示流程最大的区别是，中间的获取的 DecodingFormat、DeserializationSchema 分别是 AbstractInLongMsgDecodingFormat 与 AbstractInLongMsgDeserializationSchema 类的子类。
     其中，AbstractInLongMsgDeserializationSchema 子类的实现，建议通过实现 AbstractInLongMsgFormatDeserializer 基类的子类， 并调用实现。
 
 ## 参考 Demo
