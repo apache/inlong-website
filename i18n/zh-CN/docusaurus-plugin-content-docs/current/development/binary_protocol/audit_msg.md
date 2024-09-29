@@ -139,20 +139,20 @@ Audit Proxy负责接收来自 Audit SDK 发送的 Protobuf 格式数据，并对
 
 ```json
 {
-  "ip": "value",
-  "dockerId": "value",
-  "threadId": "value",
-  "sdkTs": value,
-  "packetId": value,
-  "logTs": value,
-  "inlongGroupId": "value",
-  "inlongStreamId": "value",
-  "auditId": "value",
-  "auditTag": "value",
-  "count": value,
-  "size": value,
-  "delay": value,
-  "auditVersion": value
+  "ip": "127.0.0.1",
+  "dockerId": "1",
+  "threadId": "1",
+  "sdkTs": 1727600278000,
+  "packetId": 1,
+  "logTs": 1727600278000,
+  "inlongGroupId": "groupId",
+  "inlongStreamId": "streamId",
+  "auditId": "auditId",
+  "auditTag": "auditTag",
+  "count": 1,
+  "size": 1,
+  "delay": 1,
+  "auditVersion": 1
 }
 ```
 
