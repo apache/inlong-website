@@ -32,8 +32,8 @@ To customize an `Extract Node`, you need to inherit the `org.apache.inlong.sort.
 Additionally, Sort has added two extra interfaces, `InlongMetric` and `Metadata`, to support richer semantics.
 
 #### InlongMetric
-If a custom node needs to report Inlong metrics, it must implement the `org.apache.inlong.sort.protocol.InlongMetric` interface.<br>
-When Sort parses the configuration, it adds the startup parameter `'inlong.metric.labels' = 'groupId={g}&streamId={s}&nodeId={n}'` to the table option, which is used to configure Inlong Audit.<br>
+If a custom node needs to report Inlong metrics, it must implement the `org.apache.inlong.sort.protocol.InlongMetric` interface.
+When Sort parses the configuration, it adds the startup parameter `'inlong.metric.labels' = 'groupId={g}&streamId={s}&nodeId={n}'` to the table option, which is used to configure Inlong Audit.
 For details, see [How to Integrate Inlong Audit into Custom Connector](#jump1)
 
 #### Metadata

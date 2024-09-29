@@ -37,9 +37,9 @@ Apache InLong Sort 启动时通过将一组 Extract 和 Load Node 配置翻译�
 同时，Sort 还增加了 `InlongMetric` 和 `Metadata` 两个额外的接口用来支持更丰富的语义。
 
 #### InlongMetric
-如果自定义节点需要上报 Inlong 指标，则需要实现 `org.apache.inlong.sort.protocol.InlongMetric` 接口。<br>
+如果自定义节点需要上报 Inlong 指标，则需要实现 `org.apache.inlong.sort.protocol.InlongMetric` 接口。
 Inlong Sort 解析配置时会向 table option 中增加 
-`'inlong.metric.labels' = 'groupId={g}&streamId={s}&nodeId={n}'` 启动参数，并以此来配置 Inlong Audit。<br>
+`'inlong.metric.labels' = 'groupId={g}&streamId={s}&nodeId={n}'` 启动参数，并以此来配置 Inlong Audit。
 详情请查看
 [如何集成 Inlong Audit 到自定义 Connector](#jump1)
 
