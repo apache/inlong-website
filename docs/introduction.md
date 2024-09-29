@@ -68,29 +68,36 @@ Apache InLong serves the entire life cycle from data collection to landing,  and
 | Type         | Name              | Version                      |
 |--------------|-------------------|------------------------------|
 | Extract Node | Auto Push         | None                         |
+|              | Doris             | >= 0.13                      |
 |              | File              | None                         |
+|              | Iceberg           | 0.12.x                       |
 |              | Kafka             | 2.x                          |
 |              | MySQL             | 5.6, 5.7, 8.0.x              |
 |              | MongoDB           | >= 3.6                       |
 |              | MQTT              | >= 3.1                       |
+|              | OceanusBase       | None                         |
 |              | Oracle            | 11,12,19                     |
 |              | PostgreSQL        | 9.6, 10, 11, 12              |
 |              | Pulsar            | 2.8.x                        |
 |              | Redis             | 2.6.x                        |
 |              | SQLServer         | 2012, 2014, 2016, 2017, 2019 |
+|              | TubeMQ            | 1.3.0+                       |
 | Load Node    | Auto Consumption  | None                         |
-|              | Hive              | 1.x, 2.x, 3.x                |
-|              | Iceberg           | 0.12.x                       |
 |              | ClickHouse        | 20.7+                        |
-|              | Kafka             | 2.x                          |
-|              | HBase             | 2.2.x                        |
-|              | PostgreSQL        | 9.6, 10, 11, 12              |
-|              | Oracle            | 11, 12, 19                   |
-|              | MySQL             | 5.6, 5.7, 8.0.x              |
-|              | TDSQL-PostgreSQL  | 10.17                        |
-|              | Greenplum         | 4.x, 5.x, 6.x                |
-|              | Elasticsearch     | 6.x, 7.x                     |
-|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 |
 |              | Doris             | >= 0.13                      |
-|              | StarRocks         | >= 2.0                       |
+|              | Elasticsearch     | 6.x, 7.x                     |
+|              | Greenplum         | 4.x, 5.x, 6.x                |
+|              | HBase             | 2.2.x                        |
 |              | HDFS              | 2.x, 3.x                     |
+|              | Hive              | 1.x, 2.x, 3.x                |
+|              | Hudi              | 0.12.x                       |
+|              | Iceberg           | 0.12.x                       |
+|              | Kafka             | 2.x                          |
+|              | MySQL             | 5.6, 5.7, 8.0.x              |
+|              | OceanusBase       | None                         |
+|              | Oracle            | 11, 12, 19                   |
+|              | PostgreSQL        | 9.6, 10, 11, 12              |
+|              | Redis             | 2.6.x                        |
+|              | SQLServer         | 2012, 2014, 2016, 2017, 2019 |
+|              | StarRocks         | >= 2.0                       |
+|              | TDSQL-PostgreSQL  | 10.17                        |
