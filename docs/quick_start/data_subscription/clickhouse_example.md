@@ -8,7 +8,7 @@ sidebar_position: 1
 - Configure the Inlong group and Inlong stream
 
 # Create clickhouse sink
-After configuring the Clickhouse data node, Inlong group, and Inlong stream, you can create a Clickhouse sink:
+After configuring the Clickhouse data node, Inlong group and Inlong stream, you can create a Clickhouse sink:
 
 
 Select【Ingestion】and click【Detail】
