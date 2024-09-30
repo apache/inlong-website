@@ -24,9 +24,9 @@ sidebar_position: 1
 - 名称：用户自定义名，用来标识此此订阅信息。
 - 描述：该订阅描述信息。
 - 是否创建资源：决定该订阅是否进行建表操作。
-- DB名称：clickhouse 数据库名。
-- 表名称：clickhouse 表名。
-- 数据节点：clickhouse 节点信息。
+- DB 名称：Clickhouse 数据库名。
+- 表名称：Clickhouse 表名。
+- 数据节点：Clickhouse 节点信息。
 
 
 至此完成了订阅的创建。

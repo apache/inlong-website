@@ -25,8 +25,8 @@ Fill in the required configuration information for Clickhouse and click Save.
 - Name：User-defined name, used to identify this sink information.
 - Sink description：This sink description information.
 - Create resource：Decide whether to perform table creation operation for this sink.
-- DB name：clickhouse database name.
-- Table name：clickhouse table name.
-- Data node：clickhouse data node.
+- DB name：Clickhouse database name.
+- Table name：Clickhouse table name.
+- Data node：Clickhouse data node.
 
 The creation of the subscription is now complete.
