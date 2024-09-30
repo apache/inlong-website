@@ -15,14 +15,14 @@ The transmission status of each module, and whether the data stream is lost or r
 
 ![](img/audit_architecture.png)
 
-1. The audit SDK is nested in the service that needs to be audited, audits the service, and sends the audit result to
-   the audit access layer
-2. The audit proxy writes audit data to MQ (Pulsar, Kafka or TubeMQ)
-3. The distribution service consumes the audit data of MQ, and writes the audit data to MySQL or StarRocks.
-4. The interface layer encapsulates the data of MySQL or StarRocks.
-5. Application scenarios mainly include report display, audit reconciliation, etc.
-6. Support audit and reconciliation of data supplementary recording scenarios.
-7. Support audit reconciliation in Flink checkpoint scenarios.
+- The audit SDK is nested in the service that needs to be audited, audits the service, and sends the audit result to
+  the audit access layer
+- The audit proxy writes audit data to MQ (Pulsar, Kafka or TubeMQ)
+- The distribution service consumes the audit data of MQ, and writes the audit data to MySQL or StarRocks.
+- The interface layer encapsulates the data of MySQL or StarRocks.
+- Application scenarios mainly include report display, audit reconciliation, etc.
+- Support audit and reconciliation of data supplementary recording scenarios.
+- Support audit reconciliation in Flink checkpoint scenarios.
 
 ## Module
 

@@ -14,13 +14,13 @@ InLong
 
 ![](img/audit_architecture.png)
 
-1. 审计SDK嵌套在需要审计的服务，对服务进行审计，将审计结果发送到审计接入层。
-2. 审计接入层将审计数据写到 MQ (Pulsar、Kafka 或者 TubeMQ)。
-3. 分发服务消费 MQ 的审计数据，将审计数据写到 MySQL、StarRocks。
-4. 接口层将 MySQL、StarRocks 的数据进行实时聚合并且 cache,对外提供 OpenAPI。
-5. 应用场景主要包括报表展示、审计对账等等。
-6. 支持数据补录场景的审计对账。
-7. 支持 Flink CheckPoint 场景的审计对账。
+- 审计SDK嵌套在需要审计的服务，对服务进行审计，将审计结果发送到审计接入层。
+- 审计接入层将审计数据写到 MQ (Pulsar、Kafka 或者 TubeMQ)。
+- 分发服务消费 MQ 的审计数据，将审计数据写到 MySQL、StarRocks。
+- 接口层将 MySQL、StarRocks 的数据进行实时聚合并且 cache,对外提供 OpenAPI。
+- 应用场景主要包括报表展示、审计对账等等。
+- 支持数据补录场景的审计对账。
+- 支持 Flink CheckPoint 场景的审计对账。
 
 ## 模块
 
