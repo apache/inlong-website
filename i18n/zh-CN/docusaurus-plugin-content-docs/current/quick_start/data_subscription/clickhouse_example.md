@@ -21,7 +21,7 @@ sidebar_position: 1
 填好 Clickhouse 所需配置信息，并点击保存。
 
 ![img.png](img/create_clickhouse_sink_3.png)
-- 名称：用户自定义名，用来标识此此订阅信息。
+- 名称：用户自定义名，用来标识此订阅信息。
 - 描述：该订阅描述信息。
 - 是否创建资源：决定该订阅是否进行建表操作。
 - DB 名称：Clickhouse 数据库名。
