@@ -56,7 +56,7 @@ The receiving and sending of each module are respectively an independent audit i
 
 Audit Store supports writing operations to all storage components compatible with the JDBC protocol. Therefore, when
 selecting a storage component compatible with the JDBC protocol, it is only necessary to ensure that it meets the
-following schema
+following schema:
 
 ```mysql
 CREATE TABLE IF NOT EXISTS `audit_data`
