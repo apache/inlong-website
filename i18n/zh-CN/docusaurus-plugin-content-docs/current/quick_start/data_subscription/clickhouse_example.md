@@ -8,7 +8,7 @@ sidebar_position: 1
 - 配置好 Inlong group、 Inlong stream
 
 # 创建数据目标
-当配置好 Clickhouse 数据节点、Inlong group 和 Inlong stream 后，就可以在创建 Clickhouse 数据目标了:
+当配置好 Clickhouse 数据节点、Inlong group 和 Inlong stream 后，就可以创建 Clickhouse 数据目标了:
 
 
 选择【数据接入】，点击【详情】
