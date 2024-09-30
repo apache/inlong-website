@@ -123,5 +123,5 @@ MsgType=8 格式的消息为链接心跳保活及状态传递消息，其 MsgTyp
 该消息类型用来作为 SDK 与 DataProxy 间 TCP 长连接的心跳包，心跳请求和响应消息格式相同。除了完成心跳保活，SDK 还在请求 Version 字段里携带 SDK 的版本信息；DataProxy 在响应的 BodyData 里填写 2 个字节长度的节点负载信息。
 
 ## SDK 上报示例
-参考 DataProxy SDK 相关部分的介绍，这里省略
-[DataProxy SDK](../../sdk/dataproxy-sdk/java.md)
+
+参考 [DataProxy SDK](../../sdk/dataproxy-sdk/java.md) 相关部分的介绍，这里省略

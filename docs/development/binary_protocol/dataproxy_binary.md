@@ -125,6 +125,4 @@ This message type is used as a heartbeat packet for a TCP long connection betwee
 
 ## SDK reporting example
 
-Refer to the introduction of the relevant part of the DataProxy SDK, which is omitted here.
-
-[DataProxy SDK](../../sdk/dataproxy-sdk/java.md)
+Refer to the introduction of the relevant part of the [DataProxy SDK](../../sdk/dataproxy-sdk/java.md), which is omitted here.
