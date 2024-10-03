@@ -28,29 +28,35 @@ The overall process includes the following three steps：
 ### Initialize SDK
 From the demo code, we can see that the client initialization is mainly done in the `getMessageSender()` function:
 ```java
-public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String inlongGroupId, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
-    ProxyClientConfig dataProxyConfig = null;
-    DefaultMessageSender messageSender = null;
-    try {
-        // Initialize client configuration.  'test', '123456' is username and password, which need to be replaced according to the environment configuration in actual use.
-        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), inlongGroupId, "test", "123456");
-        // Set the local save path of the configuration. This setting is optional. By default, the SDK will create a "/.inlong/" directory under the current user's working directory to store the configuration.
-		if (StringUtils.isNotEmpty(configBasePath)) {
-            dataProxyConfig.setConfStoreBasePath(configBasePath);
+public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort,
+            String inlongGroupId, boolean requestByHttp, boolean isReadProxyIPFromLocal,
+            String configBasePath, int msgType) {
+        ProxyClientConfig dataProxyConfig = null;
+        DefaultMessageSender messageSender = null;
+        try {
+            // Initialize client configuration.  'admin', 'inlong' is default username and password of InLong-Manager, which need to be replaced according to the environment configuration in actual use.
+            dataProxyConfig = new ProxyClientConfig(localIP, requestByHttp, inLongManagerAddr,
+                    Integer.valueOf(inLongManagerPort), inlongGroupId, "admin", "inlong");
+             // Set the local save path of the configuration. This setting is optional. By default, the SDK will create a "/.inlong/" directory under the current user's working directory to store the configuration.
+            if (StringUtils.isNotEmpty(configBasePath)) {
+                dataProxyConfig.setConfStoreBasePath(configBasePath);
+            }
+            // Set whether to use the local saved configuration or not. This setting is optional. By default, do not use. 
+            dataProxyConfig.setReadProxyIPFromLocal(isReadProxyIPFromLocal);
+            // Set the TCP protocol for transmission
+            dataProxyConfig.setProtocolType(ProtocolType.TCP);
+            // Initialize MessageSender object, if there is an exception, an exception will be thrown.
+            messageSender = DefaultMessageSender.generateSenderByClusterId(dataProxyConfig);
+            // Set message type to send. This setting is optional. By default, send data in binary format.
+            messageSender.setMsgtype(msgType);
+        } catch (Exception e) {
+            logger.error("getMessageSender has exception e = {}", e);
         }
-		// Set whether to use the local saved configuration or not. This setting is optional. By default, do not use. 
-        dataProxyConfig.setReadProxyIPFromLocal(isReadProxyIPFromLocal);
-		// Initialize MessageSender object, if there is an exception, an exception will be thrown.
-        messageSender = DefaultMessageSender.generateSenderByClusterId(dataProxyConfig);
-        // Set message type to send. This setting is optional. By default, send data in binary format.
-        messageSender.setMsgtype(msgType);
-    } catch (Exception e) {
-        logger.error("getMessageSender has exception e = {}", e);
+        // Return the sender.
+        return messageSender;
     }
-	// Return initialization result.
-    return messageSender;
-}
 ```
+
 ### ProxyClientConfig  configuration
 | parameter name | Parameter Description | default value |
 | ------ | ------ | -------|
@@ -58,7 +64,7 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
 | inlongStreamId | inlongStreamId | not null |
 | username | username | not null|
 | password | password | not null|
-|isLocalVisit| request inlong manager protocol | https: false , http: true|
+|requestByHttp| request inlong manager protocol | https: false , http: true|
 |isReadProxyIPFromLocal|whether to read DataProxy ip from local|false|
 
 ### Call the send interface to report data
@@ -80,7 +86,12 @@ public void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId, St
 You can also choose different send interfaces to report data according to your business needs. For the details of the interface, please refer to the definition in the [MessageSender](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/MessageSender.java) interface file, which has a detailed introduction, no additional explanation here. 
 
 ### Close SDK 
-In Demo, there is no close operation. When in use, we can call the `close()` function of the MessageSender interface object to stop data reporting.
+
+You can call the `close()` function of the MessageSender interface object to stop data reporting:
+
+```java
+sender.close(); // close the sender
+```
 
 ## Warning
 - The `MessageSender` interface object is initialized based on the `inlongGroupId`, so each `MessageSender` object can be used differently based on the `inlongGroupId`, and multiple `MessageSender` objects can be created in the same process.
