@@ -25,22 +25,6 @@ User: admin
 Password: inlong
 ```
 
-### 创建集群标签
-页面点击 【集群管理】->【标签管理】->【新建】，指定集群标签名称和负责人：
-![Create Cluster Tag](img/mysql_iceberg/create_cluster_tag.png)
-
-**注：default_cluster 是各个组件默认上报集群标签，如果使用其它名称，确认对应标签配置已修改。**
-
-### 注册 Pulsar 集群
-页面点击 [集群管理] -> [集群管理] -> [新建集群]，注册 Pulsar 集群：
-![Create Pulsar Cluster](img/mysql_iceberg/create_pulsar_cluster.png)
-
-:::note
-集群标签选择刚创建的 `default_cluster`，配置 Docker 部署的 Pulsar 集群：
-
-Service URL 为 `pulsar://pulsar:6650`, Admin URL 为 `http://pulsar:8080`.
-:::
-
 ### 注册 Iceberg 数据节点
 页面点击 [数据节点] -> [创建] ，新增 Iceberg 数据节点.
 ![Create Iceberg DataNode](img/mysql_iceberg/create_iceberg_datanode.png)
