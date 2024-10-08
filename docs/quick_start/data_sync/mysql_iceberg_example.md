@@ -25,24 +25,6 @@ User: admin
 Password: inlong
 ```
 
-### Create Cluster Tag
-Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster label name and responsible person.
-![Create Cluster Tag](img/mysql_iceberg/create_cluster_tag.png)
-
-:::caution
-`default_cluster` is the default ClusterTags reported by each component. If you decide to use a different name, make sure to update the corresponding tag configuration accordingly.
-:::
-
-### Register Pulsar Cluster
-Click [Clusters] -> [Cluster] -> [Create] on the page to register Pulsar Cluster.
-![Create Pulsar Cluster](img/mysql_iceberg/create_pulsar_cluster.png)
-
-:::note
-The ClusterTags selects the newly created `default_cluster`, the Pulsar cluster deployed by docker:
-
-Service URL is `pulsar://pulsar:6650`, Admin URL is `http://pulsar:8080`.
-:::
-
 ### Register Iceberg DataNodes
 Click [DataNodes] -> [Create] on the page to register Iceberg DataNodes.
 ![Create Iceberg DataNode](img/mysql_iceberg/create_iceberg_datanode.png)
