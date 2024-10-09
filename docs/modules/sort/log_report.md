@@ -1,5 +1,5 @@
 ---
-title: Log Report
+title: OpenTelemetry Log Report
 sidebar_position: 6
 ---
 
