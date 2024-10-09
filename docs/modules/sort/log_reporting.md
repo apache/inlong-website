@@ -1,9 +1,9 @@
 ---
-title: Log reporting
+title: OpenTelemetry log reporting
 sidebar_position: 6
 ---
 
-## 概览
+## Overview
 
 OpenTelemetry is a solution designed to provide a unified telemetry data collection, processing, and export solution for distributed systems. It includes a set of APIs, libraries, agents, and tools for tracing, metrics, and logging. The goal of OpenTelemetry is to simplify and standardize data collection for monitoring and observability in cloud-native applications and microservices architectures.
 

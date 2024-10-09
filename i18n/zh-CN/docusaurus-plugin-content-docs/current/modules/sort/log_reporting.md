@@ -1,5 +1,5 @@
 ---
-title: 日志上报
+title: OpenTelemetry 日志上报
 sidebar_position: 6
 ---
 
