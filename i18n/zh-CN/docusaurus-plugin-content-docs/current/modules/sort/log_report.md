@@ -7,7 +7,7 @@ sidebar_position: 6
 
 ## 概览
 
-由于`InLong Sor`t会运行在`Apache Flink`的不同`Task Manager`节点上，每个节点独立存储产生的日志，我们需要到每个节点上查看日志，维护效率低下。为此`InLong Sort`提供了基于OpenTelemetry的日志集中管理方案，用户可以高效地集中处理`Flink`日志。
+由于`InLong Sort`会运行在`Apache Flink`的不同`Task Manager`节点上，每个节点独立存储产生的日志，我们需要到每个节点上查看日志，维护效率低下。为此`InLong Sort`提供了基于OpenTelemetry的日志集中管理方案，用户可以高效地集中处理`Flink`日志。
 
 `InLong Sort`可以将日志上报功能集成到各个`Connector`中，其日志处理流程如下图所示。日志通过[OpenTelemetry](https://opentelemetry.io/)进行上报，经由[OpenTelemetry Collector](https://opentelemetry.io/docs/collector/)收集处理后发往[Grafana Loki](https://grafana.com/oss/loki/)进行集中管理。 
 
