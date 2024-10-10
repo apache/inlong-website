@@ -3,7 +3,7 @@ title: Customize Flink Metrics in Sort
 sidebar_position: 1
 ---
 
-# Custom Flink Metrics in Sort-Connector
+# Customize Flink Metrics in Sort-Connector
 
 ## Overview
 
