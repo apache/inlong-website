@@ -43,7 +43,8 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
             }
             // 设置是否允许使用本地保存的配置信息，该设置可选，缺省不启用
             dataProxyConfig.setReadProxyIPFromLocal(isReadProxyIPFromLocal);
-            // =设置采用TCP协议进行数据传输
+            // 设置采用TCP协议进行数据传输
+
             dataProxyConfig.setProtocolType(ProtocolType.TCP);
             // 初始化MessageSender对象，异常将抛异常
             messageSender = DefaultMessageSender.generateSenderByClusterId(dataProxyConfig);
