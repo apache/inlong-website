@@ -1,6 +1,6 @@
 ---
 title: Customize Flink Metrics in Sort  
-sidebar_position: 1
+sidebar_position: 4
 ---
 
 # Customize Flink Metrics in Sort-Connector
