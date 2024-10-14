@@ -1,9 +1,9 @@
 ---
-title: MySQL to ClickHouse Example
-sidebar_position: 1
+title: Pulsar to ClickHouse Example
+sidebar_position: 4
 ---
 
-Here we use an example to introduce how to use Apache InLong creating `MySQL -> ClickHouse` data synchronization.
+Here we use an example to introduce how to use Apache InLong creating `Pulsar -> ClickHouse` data synchronization.
 
 ## Deployment
 ### Install InLong
@@ -32,56 +32,61 @@ Password: inlong
 
 Click [DataNodes] -> [Create] on the page to register ClickHouse DataNodes.
 
-![Create Clickhouse Datanode](img/mysql_clickhouse/clickhouse_datanode.png)
+![Create Clickhouse Datanode](img/pulsar_clickhouse/clickhouse_datanode.png)
 
 ## Create Task
 ### Create Data Streams Group
 
 Click [Synchronization] → [Create] on the page and input the Group ID and Steam ID:
 
-![Create Group_Stream](img/mysql_clickhouse/group_stream.png)
+![Create Group_Stream](img/pulsar_clickhouse/group_stream.png)
 
 ### Create Data Source
-In the data source, click [New] → [MySQL] to configure the source name, address, databases and tables information.
+In the data source, click [New] → [Pulsar] to configure the source name, pulsar tenant, namespace, topic and other information.
 
-![Create Source](img/mysql_clickhouse/source.png)
+![Create Source](img/pulsar_clickhouse/source.png)
 
 :::note
-- Please create the test.source_table database table in advance, the schema is: CREATE TABLE test.source_table (id INT PRIMARY KEY, name VARCHAR(50));
+- Please create the pulsar tenant, namespace and topic in advance, you can do it by [Pulsar-admin](https://pulsar.apache.org/docs/2.10.x/pulsar-admin/#create-3) 
 :::
 
 ### Create Data Sink
 
 In the data target, click [New] → [ClickHouse] to configure the name, DB name, table name, and created ck data node.
 
-![Create Sink](img/mysql_clickhouse/sink.png)
+![Create Sink](img/pulsar_clickhouse/sink.png)
 
 ### Configuration Fields
 
 Configure fields mapping in [Source Field] and [Target Field] respectively, and click [Submit] after completion.
 
-![Create Fields](img/mysql_clickhouse/sink_fields.png)
+![Create Fields](img/pulsar_clickhouse/sink_fields.png)
 
 ### Approve Data Stream
 
 Click [Approval] -> [MyApproval] -> [Approval] -> [Ok].
 
-![Approve](img/mysql_clickhouse/approve.png)
+![Approve](img/pulsar_clickhouse/approve.png)
 
 Back to [Synchronization] page, wait for [success].
 
 ## Test Data
 ### Send Data
 
+Enter the pulsar container
+
+```shell
+docker exec -it pulsar /bin/bash
+```
+
+Insert 1000 pieces of data in total
 ```shell
 #!/bin/bash
 
-# MySQL info
-DB_HOST="mysql"
-DB_USER="root"
-DB_PASS="inlong"
-DB_NAME="test"
-DB_TABLE="source_table"
+# Pulsar info
+TENANT="public"
+NAMESPACE="default"
+TOPIC="test"
 
 # Insert data in a loop
 for ((i=1; i<=1000; i++))
@@ -90,27 +95,19 @@ do
 id=$i
 name="name_$i"
 
-    # Build an insert SQL
-    query="INSERT INTO $DB_TABLE (id, name) VALUES ($id, '$name');"
+    # Build one message
+    message="$id|$name"
 
-    # Execute insert SQL
-    mysql -h $DB_HOST -u $DB_USER -p$DB_PASS $DB_NAME -e "$query"
+    # Produce message to pulsar
+    bin/pulsar-client produce persistent://$TENANT/$NAMESPACE/$TOPIC --messages $message
 done
 ```
-
-Insert 1000 pieces of data in total:
-
-![Source_data](img/mysql_clickhouse/source_data.png)
 
 ### Verify Data
 
 Then enter the ClickHouse container and view the source table data:
 
-![Source_data](img/mysql_clickhouse/sink_data.png)
-
-You can also view audit data on the page:
-
-![Source_data](img/mysql_clickhouse/audit.png)
+![Source_data](img/pulsar_clickhouse/sink_data.png)
 
 ## FAQ
 ClickHouse fails to write data, you can view the error on the Flink page and check the permissions of the user and table engine used.
