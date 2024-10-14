@@ -49,8 +49,8 @@ public class XXXSourceReader<T>
 
     @Override
     public void close() throws Exception {
-        openTelemetryLogger.uninstall(); // 关闭日志上报功能
         super.close();
+        openTelemetryLogger.uninstall(); // 关闭日志上报功能
     }
     
     ...
@@ -66,9 +66,14 @@ public class XXXSourceReader<T>
 | `layout` | `Log4j2` 的日志格式，应设置为一个`PatternLayout`对象 |`%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n`|
 | `logLevel` | 上报的日志级别 |`Level.INFO`|
 | `localHostIp` | 所在`Flink`节点IP，可在`SourceReader`中通过`this.context.getLocalHostName()`获取 |`null`|
-## 使用说明
 
-除了要为`Connector`集成日志上报功能外，还需要增加`opentelemetry-collector`、`grafana loki`、`grafana`三个docker容器，并为`Flink`容器配置`OTEL_EXPORTER_ENDPOINT`环境变量，`docker-compose.yml`文件参考如下：
+## 容器配置
+
+除了要为`Connector`集成日志上报功能外，还需要增加`opentelemetry-collector`、`grafana loki`、`grafana`三个docker容器，并为`Flink`容器配置`OTEL_EXPORTER_ENDPOINT`环境变量。
+
+> 此部分配置在`/inlong/docker/docker-compose/docker-compose.yml`中已提供，仅需在启动`docker compose`时增加`--profile sort-report`选项即可，完整启动命令为`docker compose --profile sort-report up -d`
+
+也可以参考下面的内容配置，`docker-compose.yml`文件参考如下：
 
 ```yml
 # flink jobmanager
@@ -218,7 +223,9 @@ pattern_ingester:
   enabled: true
 ```
 
-启动`docker-compose`，并按照 [数据接入](quick_start/data_ingestion/file_pulsar_clickhouse_example.md)流程创建并启动一个任务流程(使用到的`connector`需要集成好`OpenTelemetryAppender`)，通过访问`http://127.0.0.1:3000/explore`地址进入`Grafana Loki`界面，使用`service_name`字段进行日志查询：
+## 使用说明
+
+在`inlong/docker/`路径下执行`docker compose --profile sort-report up -d`来启动相关容器，并按照 [数据接入](quick_start/data_ingestion/file_pulsar_clickhouse_example.md)流程创建并启动一个任务流程(使用到的`connector`需要集成好`OpenTelemetryAppender`)，通过访问`http://127.0.0.1:3000/explore`地址进入`Grafana Loki`界面，使用`service_name`字段进行日志查询：
 
 ![日志查询](img/loki1.png)
 

@@ -48,8 +48,8 @@ public class XXXSourceReader<T>
 
     @Override
     public void close() throws Exception {
-        openTelemetryLogger.uninstall(); // close log reporting
         super.close();
+        openTelemetryLogger.uninstall(); // close log reporting
     }
     
     ...
@@ -65,9 +65,13 @@ The `OpenTelemetryLogger` currently provides the following configuration items:
 | `logLevel` | Log level |`Level.INFO`|
 | `localHostIp` | IP of the `Flink` node, available in `SourceReader` via `this.context.getLocalHostName()`. |`null`|
 
-## Usage
+## Docker Configuration
 
-In addition to integrating the log reporting function for  Connector, you also need to add three docker containers(`opentelemetry-collector`, `grafana loki`,  `grafana`), and configure the `OTEL_EXPORTER_ENDPOINT` environment variable for the `Flink` container. The `docker-compose.yml` file is shown below:
+In addition to integrating the log reporting function for  Connector, you also need to add three docker containers(`opentelemetry-collector`, `grafana loki`,  `grafana`), and configure the `OTEL_EXPORTER_ENDPOINT` environment variable for the `Flink` container.
+
+> This part of the configuration is already provided in `-inlong-docker-docker-compose-docker-compose.yml`. Just add the `--profile sort-report` option when starting `docker compose` to enable it. The full command is `docker compose --profile sort-report up -d`
+
+You can also refer to the following content to configure your own application， the `docker-compose.yml` file is shown below:
 
 
 ```yml
@@ -218,9 +222,11 @@ pattern_ingester:
   enabled: true
 ```
 
-Firstly start `docker-compose`, then create and start a task process according to [Data Ingestion](quick_start/data_ingestion/file_pulsar_clickhouse_example.md) (the involved connectors need to be integrated with OpenTelemetryAppender).
+## Usage
 
-Then you can enter the `Grafana Loki` system by `http://127.0.0.1:3000/explore`, and query the logs by the `service_name` field:
+Execute `docker compose --profile sort-report up -d` in the `inlong/docker/` path to start the relevant containers, then create and start a task process according to [Data Ingestion](quick_start/data_ingestion/file_pulsar_clickhouse_example.md) (the involved connectors need to be integrated with OpenTelemetryAppender).
+
+After that you can enter the `Grafana Loki` system by `http://127.0.0.1:3000/explore`, and query the logs by the `service_name` field:
 
 ![Loki_1](img/loki1.png)
 
