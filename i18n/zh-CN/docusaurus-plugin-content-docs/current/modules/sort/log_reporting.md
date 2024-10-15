@@ -13,7 +13,7 @@ OpenTelemetry 是一个旨在为分布式系统提供统一的遥测数据收集
 
 首先在自己的电脑中下载 [SigNoz](https://github.com/SigNoz/signoz) 到本地
 
-这里我们可以根据自己的需求，选择使用 InLong 还是 SigNoz项目中的 OpenTelemetry
+这里我们可以根据自己的需求，选择使用 InLong 还是 SigNoz 项目中的 OpenTelemetry
 
 ### SigNoz中的OpenTelemetry
 
