@@ -63,7 +63,7 @@ This method ensures that `incNumDeserializeError` is called to increment the err
 
 ### 5. Add the New Metric Output in the `toString` Method
 
-To facilitate debugging and monitoring, include the custom metric output in the `toString` method:
+To facilitate debugging, monitoring and ensure the completeness of code, include the custom metric output in the `toString` method:
 
 ```java
 @Override
@@ -74,7 +74,7 @@ public String toString() {
 }
 ```
 
-### 6. Insert the Custom Metric in the Sink/Source Function
+### 6. Insert the Custom Metric in appropriate places
 
 After registering and initializing the metric, invoke it at the appropriate logic node. In this example, call `incNumDeserializeError` in the deserialization method to track each deserialization error. The following code shows how to implement this:
 
@@ -131,7 +131,7 @@ Using `sort-end-to-end-tests` located in the `inlong-sort/sort-end-to-end-tests/
     metrics.reporter.slf4j.interval: 5 SECONDS
     ```
 
-3. **Run the End2End Test and Verify Output**: Run the specific End2End test and check if `numDeserializeError` increments as expected:
+3. **Run the End2End Test and Verify Output**: Run the specific End2End test under path `inlong-sort/sort-end-to-end-tests/sort-end-to-end-tests-v1.15` and check whether `numDeserializeError` increments as expected:
 
     ```bash
     mvn test -Dtest=Postgres2StarRocksTest
