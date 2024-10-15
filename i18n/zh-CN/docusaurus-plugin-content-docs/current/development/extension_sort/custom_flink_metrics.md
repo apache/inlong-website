@@ -119,17 +119,17 @@ InLong Sort 框架允许用户在不同的 Connector 中定义和插入自定义
       metrics.reporter.slf4j.interval: 5 SECONDS
   ```
   
-3. **运行 end-to-end 测试并验证输出**：使用以下命令在`inlong-sort/sort-end-to-end-tests/sort-end-to-end-tests-v1.15`运行指定的 end-to-end 测试，并在控制台中查看 `numDeserializeError` 是否增加：
+3. **运行 end-to-end 测试并验证输出**：使用以下命令在`inlong-sort/sort-end-to-end-tests/sort-end-to-end-tests-v1.15`运行指定的 end-to-end 测试，并在控制台中查看 `numDeserializeError` 的值是否为预期值。：
   ```bash
       mvn test -Dtest=Postgres2StarRocksTest
   ```
-  
+  提示：可以考虑添加一些逻辑或构造一些数据，触发`incDeserializeError()`，以确认 Metric 运作正常
 
 ## 注意事项
 
 * **创建Metric时务必传入 `MetricGroup` **：确保在创建 `SourceExactlyMetric` 或 `SinkExactlyMetric` 对象时通过 `runtimeContext` 获取 `MetricGroup` 传入 `SourceExactlyMetric` 或 `SinkExactlyMetric` 的构造函数，以免出现指标注册失败的情况。
 * **确认 MetricOption 非空**：在创建 Metric 对象前应检查 `MetricOption` 是否非空，以避免因缺少 `inlong.metric.labels` 而导致空指针异常。
-* **处理空指针异常**：在操作 `SourceExactlyMetric` 或 `SinkExactlyMetric` 对象的自定义 `Flink Metric` 时，例如调用 `incNumDeserializeSuccess()`，应判断该对象是否为空，以避免在Flink SQL中未指定 `'inlong.metric.labels'` 时出现空指针异常。
-* ** end-to-end 测试覆盖**：如果新增指标的 Connector 没有被 end-to-end 测试覆盖，需要自行编写 end-to-end 测试以保障Metric能被正常上报。
+* **处理空指针异常**：在操作 `SourceExactlyMetric` 或 `SinkExactlyMetric` 对象的自定义 `Flink Metric` 时，例如调用 `sourceExactlyMetric.incNumDeserializeSuccess()`，应判断该对`SourceExactlyMetric` 以及对应的 `Counter` `numDeserializeSuccess` 是否为空，以避免在Flink SQL中未指定 `'inlong.metric.labels'` 时出现空指针异常。
+* ** End-to-end 测试覆盖**：如果新增指标的 Connector 没有被 end-to-end 测试覆盖，需要自行编写 end-to-end 测试以保障Metric能被正常上报。
 
 通过这种方式，可以在 InLong Sort Connector 中插入自定义 Flink Metric 指标，并通过测试验证其工作状态，从而增强可观测性。

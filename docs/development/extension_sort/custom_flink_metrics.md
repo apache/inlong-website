@@ -122,6 +122,8 @@ Using `sort-end-to-end-tests` located in the `inlong-sort/sort-end-to-end-tests/
         -- Added portion
         'inlong.metric.labels' = 'groupId=pggroup&streamId=pgStream&nodeId=pgNode'
     );
+
+    -- Keep Flink SQL for sink unchanged
     ```
 
 2. **Configure Log Output for Metric Viewing**: Enable metric log output in the test environment configuration to view results on the console:
@@ -131,17 +133,18 @@ Using `sort-end-to-end-tests` located in the `inlong-sort/sort-end-to-end-tests/
     metrics.reporter.slf4j.interval: 5 SECONDS
     ```
 
-3. **Run the End2End Test and Verify Output**: Run the specific End2End test under path `inlong-sort/sort-end-to-end-tests/sort-end-to-end-tests-v1.15` and check whether `numDeserializeError` increments as expected:
+3. **Run the end-to-end Test and Verify Output**: Run the specific end-to-end test under path `inlong-sort/sort-end-to-end-tests/sort-end-to-end-tests-v1.15` and check whether `numDeserializeError` is the expected value:
 
     ```bash
     mvn test -Dtest=Postgres2StarRocksTest
-    ```
+
+Note: You may want to insert test code or construct specific data to trigger `incDeserializeError()` and ensure your metrics are functioning as expected.
 
 ## Notes
 
 * **Pass `MetricGroup` When Creating Metrics**: Ensure that when creating `SourceExactlyMetric` or `SinkExactlyMetric`, you pass a `MetricGroup` obtained via `runtimeContext` to avoid registration failures.
 * **Check for Non-Null `MetricOption`**: Validate that `MetricOption` is non-null before creating metric objects to avoid null pointer exceptions due to missing `inlong.metric.labels`.
 * **Handle Null Pointers**: Check for null `SourceExactlyMetric` or `SinkExactlyMetric` objects when operating on custom metrics like `incNumDeserializeSuccess()` to avoid null pointer exceptions if `'inlong.metric.labels'` isn’t specified.
-* **End2End Test Coverage**: If a new connector metric isn’t covered by an End2End test, create a test to verify metric reporting functionality.
+* **End-to-end Test Coverage**: If a new connector metric isn’t covered by an end-to-end test, create a test to verify metric reporting functionality.
 
 This approach allows the insertion of custom Flink metrics in the Postgres connector, verified by testing, to enhance observability.
