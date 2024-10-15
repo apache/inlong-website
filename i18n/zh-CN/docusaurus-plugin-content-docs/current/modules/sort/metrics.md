@@ -89,7 +89,7 @@ sidebar_position: 4
 
 ## 用法
 
-这里将介绍一个同步MYSQL数据到PostgreSQL的例子，同时介绍指标的使用。
+这里将介绍一个同步 MYSQL 数据到 PostgreSQL 的例子，同时介绍指标的使用。
 
 * flink sql 的使用
 ```sql
@@ -133,7 +133,7 @@ sidebar_position: 4
  FROM `table_groupId_streamId_nodeId1`;
 ```
 
-* 要将指标上报到外部系统，我们可以在flink-conf.yaml中添加metric report配置（以`Prometheus`为例）
+* 要将指标上报到外部系统，我们可以在 flink-conf.yaml 中添加 metric report 配置（以`Prometheus`为例）
 
 ```yaml
 metric.reporters: promgateway
