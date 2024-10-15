@@ -2,7 +2,7 @@
 title: Sort 自定义 Flink Metrics 指标
 sidebar_position: 4
 ---
-# Sort-Connector自定义 Flink Metric 指标
+# Sort-Connector 自定义 Flink Metric 指标
 
 ## 总览
 
