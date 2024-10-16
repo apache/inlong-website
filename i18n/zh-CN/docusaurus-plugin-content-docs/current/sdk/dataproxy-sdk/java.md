@@ -28,28 +28,34 @@ import {siteVariables} from '../../version';
 ### 初始化 SDK
 从Demo示例代码我们可以看到，客户端初始化主要是在 `getMessageSender()` 函数中完成：
 ```java
-public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort, String inlongGroupId, boolean isLocalVisit, boolean isReadProxyIPFromLocal, String configBasePath, int msgType) {
-    ProxyClientConfig dataProxyConfig = null;
-    DefaultMessageSender messageSender = null;
-    try {
-        // 初始化客户端配置，其中“test”，“123456”是需要认证的用户名和密码，实际使用时需要根据环境配置进行更替
-        dataProxyConfig = new ProxyClientConfig(localIP, isLocalVisit, inLongManagerAddr, Integer.valueOf(inLongManagerPort), inlongGroupId, "test", "123456");
-		// 设置配置信息的本地保存路径，该设置可选，缺省情况下 SDK 会在当前用户工作目录下构造一个"/.inlong/"目录存储配置数据
-		if (StringUtils.isNotEmpty(configBasePath)) {
-            dataProxyConfig.setConfStoreBasePath(configBasePath);
+public DefaultMessageSender getMessageSender(String localIP, String inLongManagerAddr, String inLongManagerPort,
+            String inlongGroupId, boolean requestByHttp, boolean isReadProxyIPFromLocal,
+            String configBasePath, int msgType) {
+        ProxyClientConfig dataProxyConfig = null;
+        DefaultMessageSender messageSender = null;
+        try {
+              // 初始化客户端配置，其中“admin，“inlong”是InLong-Manager的用户名和密码，实际使用时需要根据环境配置进行更替
+            dataProxyConfig = new ProxyClientConfig(localIP, requestByHttp, inLongManagerAddr,
+                    Integer.valueOf(inLongManagerPort), inlongGroupId, "admin", "inlong");
+             // 设置配置信息的本地保存路径，该设置可选，缺省情况下 SDK 会在当前用户工作目录下构造一个"/.inlong/"目录存储配置数据
+            if (StringUtils.isNotEmpty(configBasePath)) {
+                dataProxyConfig.setConfStoreBasePath(configBasePath);
+            }
+            // 设置是否允许使用本地保存的配置信息，该设置可选，缺省不启用
+            dataProxyConfig.setReadProxyIPFromLocal(isReadProxyIPFromLocal);
+            // 设置采用TCP协议进行数据传输
+
+            dataProxyConfig.setProtocolType(ProtocolType.TCP);
+            // 初始化MessageSender对象，异常将抛异常
+            messageSender = DefaultMessageSender.generateSenderByClusterId(dataProxyConfig);
+            // 设置 SDK 与DataProxy间消息发送的消息类型，该设置可选，缺省默认为7以二进制形式进行数据发送
+            messageSender.setMsgtype(msgType);
+        } catch (Exception e) {
+            logger.error("getMessageSender has exception e = {}", e);
         }
-		// 设置是否允许使用本地保存的配置信息，该设置可选，缺省不启用
-        dataProxyConfig.setReadProxyIPFromLocal(isReadProxyIPFromLocal);
-		// 初始化MessageSender对象，异常将抛异常
-        messageSender = DefaultMessageSender.generateSenderByClusterId(dataProxyConfig);
-		// 设置 SDK 与DataProxy间消息发送的消息类型，该设置可选，缺省默认为7以二进制形式进行数据发送
-        messageSender.setMsgtype(msgType);
-    } catch (Exception e) {
-        logger.error("getMessageSender has exception e = {}", e);
+        // 返回sender
+        return messageSender;
     }
-	// 返回初始化结果
-    return messageSender;
-}
 ```
 ### 配置参数
 | 参数名 | 参数说明 | 默认值 |
@@ -58,7 +64,7 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
 | inlongStreamId | inlongStreamId | not null |
 | username | 用户名 |not null|
 | password | 密码 |not null|
-| isLocalVisit| 请求inlong Manager协议 |https: false , http: true|
+| requestByHttp| 请求inlong Manager协议 |https: false , http: true|
 |isReadProxyIPFromLocal|是否从本地读取 DataProxy Ip|false|
 
 ### 调用发送接口进行数据上报
@@ -80,7 +86,10 @@ public void sendTcpMessage(DefaultMessageSender sender, String inlongGroupId, St
 大家还可以根据业务需要选择不同的发送接口进行数据上报，具体接口细节可以参考[MessageSender](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/MessageSender.java)接口文件中的定义，里面有详细的接口使用及参数定义介绍，这里不做额外说明。
 
 ### 关闭 SDK 
-Demo 里没有实现关闭操作，使用时我们需要调用MessageSender接口对象的close()函数关闭数据上报服务：
+可以调用MessageSender接口对象的close()函数关闭数据上报服务：
+```java
+sender.close();
+```
 
 ## 注意事项
 - `MessageSender` 接口对象是基于 `inlongGroupId` 进行初始化，因而每个 `MessageSender` 对象基于 `inlongGroupId` 区别使用，同一个进程内允许创建多个 `MessageSender` 对象；
