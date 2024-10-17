@@ -15,11 +15,13 @@ SigNoz 是一个开源的 APM 和可观测性平台，它可以帮助你收集�
 
 ### SigNoz 的安装
 
-你可以通过以下命令来一键启动 InLong 和 SigNoz
+你可以通过以下命令来启动 InLong 和 SigNoz
 
 ```bash
 cd ./docker/docker-compose
-docker-compose -f docker-compose.yml -f log-system\signoz\clickhouse-setup\docker-compose.yaml up -d
+docker-compose -f docker-compose.yml up -d
+cd log-system/signoz/clickhouse-setup
+docker-compose -f docker-compose-minimal.yaml up -d
 ```
 
 ## SigNoz 的使用

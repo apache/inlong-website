@@ -19,7 +19,9 @@ You can start InLong and SigNoz with one click using the following command
 
 ```bash
 cd ./docker/docker-compose
-docker-compose -f docker-compose.yml -f log-system\signoz\clickhouse-setup\docker-compose.yaml up -d
+docker-compose -f docker-compose.yml up -d
+cd log-system/signoz/clickhouse-setup
+docker-compose -f docker-compose-minimal.yaml up -d
 ```
 
 ## Use of SigNoz
