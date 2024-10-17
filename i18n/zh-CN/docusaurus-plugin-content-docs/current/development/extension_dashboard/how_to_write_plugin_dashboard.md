@@ -1,6 +1,6 @@
 ---
-title: Dashboard 插件
-sidebar_position: 5
+title: Dashboard 插件扩展
+sidebar_position: 1
 ---
 
 ## 总览

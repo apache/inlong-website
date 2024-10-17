@@ -1,6 +1,6 @@
 ---
 title: Agent management
-sidebar_position: 1
+sidebar_position: 8
 ---
 
 ## Overview

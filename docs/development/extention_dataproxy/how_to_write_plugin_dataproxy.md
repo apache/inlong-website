@@ -1,6 +1,6 @@
 ---
-title: DataProxy Plugin
-sidebar_position: 7
+title: DataProxy Plugin Extension
+sidebar_position: 1
 ---
 
 ## Overview

@@ -1,6 +1,6 @@
 ---
-title: Dashboard Plugin
-sidebar_position: 5
+title: Dashboard Plugin Extension
+sidebar_position: 1
 ---
 
 ## Overview

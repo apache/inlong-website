@@ -1,6 +1,6 @@
 ---
 title: Custom Authentication
-sidebar_position: 2
+sidebar_position: 1
 ---
 
 import {siteVariables} from '../../version';
