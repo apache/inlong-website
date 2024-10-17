@@ -1,6 +1,6 @@
 ---
 title: Agent 管理
-sidebar_position: 1
+sidebar_position: 8
 ---
 
 ## 概述

@@ -1,6 +1,6 @@
 ---
-title: DataProxy 插件
-sidebar_position: 7
+title: DataProxy 插件扩展
+sidebar_position: 1
 ---
 
 ## 总览
