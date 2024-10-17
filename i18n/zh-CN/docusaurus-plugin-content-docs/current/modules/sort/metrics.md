@@ -36,6 +36,13 @@ sidebar_position: 4
 | groupId_streamId_nodeId_database_table_numBytesInPerSecond | mysql-cdc | 每秒输入字节数 |
 | groupId_streamId_nodeId_database_schema_table_numBytesInPerSecond | oracle-cdc,postgresql-cdc | 每秒输入字节数 |
 | groupId_streamId_nodeId_database_collection_numBytesInPerSecond | mongodb-cdc | 每秒输入字节数 |
+| groupId_streamId_nodeId_database_collection_numSnapshotCreate | postgresql-cdc,pulsar | 尝试创建Checkpoint数 |
+| groupId_streamId_nodeId_database_collection_numSnapshotError | postgresql-cdc,pulsar | 创建Checkpoint异常数 |
+| groupId_streamId_nodeId_database_collection_numSnapshotComplete | postgresql-cdc,pulsar | 创建Checkpoint成功数 |
+| groupId_streamId_nodeId_database_collection_snapshotToCheckpointTimeLag | postgresql-cdc,pulsar | 从开始创建Checkpoint到完成创建延迟（毫秒） |
+| groupId_streamId_nodeId_database_collection_numDeserializeSuccess | postgresql-cdc,pulsar | 反序列化成功数 |
+| groupId_streamId_nodeId_database_collection_numDeserializeSuccess | postgresql-cdc,pulsar | 反序列化异常数 |
+| groupId_streamId_nodeId_database_collection_deserializeTimeLag | postgresql-cdc,pulsar | 反序列化延迟（毫秒） |
 
 ### 支持的 load 节点
 
@@ -72,10 +79,17 @@ sidebar_position: 4
 | groupId_streamId_nodeId_database_table_dirtyBytesOut | doris,iceberg,starRocks | 输出脏数据字节数据 |
 | groupId_streamId_nodeId_database_schema_table_dirtyBytesOut | postgresql | 输出脏数据字节数据 |
 | groupId_streamId_nodeId_topic_dirtyBytesOut | kafka | 输出脏数据字节数据 |
+| groupId_streamId_nodeId_numSerializeSuccess |  starRocks | 序列化成功数 |
+| groupId_streamId_nodeId_numSerializeError |  starRocks | 序列化异常数 |
+| groupId_streamId_nodeId_serializeTimeLag |  starRocks | 序列化延迟（毫秒） |
+| groupId_streamId_nodeId_numSnapshotCreate |  starRocks | 尝试创建Checkpoint数 |
+| groupId_streamId_nodeId_numSnapshotError |  starRocks | 创建Checkpoint异常数 |
+| groupId_streamId_nodeId_numSnapshotComplete |  starRocks | 创建Checkpoint成功数 |
+| groupId_streamId_nodeId_snapshotToCheckpointTimeLag |  starRocks | 从开始创建Checkpoint到完成创建延迟（毫秒） |
 
 ## 用法
 
-这里将介绍一个同步MYSQL数据到PostgreSQL的例子，同时介绍指标的使用。
+这里将介绍一个同步 MYSQL 数据到 PostgreSQL 的例子，同时介绍指标的使用。
 
 * flink sql 的使用
 ```sql
@@ -108,7 +122,7 @@ sidebar_position: 4
          'username' = 'postgres',
          'password' = 'inlong',
          'table-name' = 'public.user',
-         'inlong.metric' = 'pggroup&pgStream&pgNode'
+         'inlong.metric.labels' = 'groupId=xxgroup&streamId=xxstream&nodeId=xxnode'
          );
 
  INSERT INTO `table_groupId_streamId_nodeId2`
@@ -119,7 +133,7 @@ sidebar_position: 4
  FROM `table_groupId_streamId_nodeId1`;
 ```
 
-* 我们可以在flink-conf.yaml中添加metric report配置
+* 要将指标上报到外部系统，我们可以在 flink-conf.yaml 中添加 metric report 配置（以`Prometheus`为例）
 
 ```yaml
 metric.reporters: promgateway
