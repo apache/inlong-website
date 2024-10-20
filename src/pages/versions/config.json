@@ -14,6 +14,11 @@
       "nextLink": "/zh-CN/docs/next/introduction",
       "version": [
         {
+          "title": "2.0.0",
+          "link": "/zh-CN/docs/introduction",
+          "releaseUrl": "/zh-CN/download/release-2.0.0"
+        },
+        {
           "title": "1.13.0",
           "link": "/zh-CN/docs/introduction",
           "releaseUrl": "/zh-CN/download/release-1.13.0"
@@ -76,6 +81,11 @@
       "source": "Source Code",
       "nextLink": "/docs/next/introduction",
       "version": [
+        {
+          "title": "2.0.0",
+          "link": "/docs/introduction",
+          "releaseUrl": "/download/release-2.0.0"
+        },
         {
           "title": "1.13.0",
           "link": "/docs/introduction",
