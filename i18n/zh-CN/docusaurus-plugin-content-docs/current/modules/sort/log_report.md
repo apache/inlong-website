@@ -7,19 +7,19 @@ sidebar_position: 6
 
 ## 概览
 
-由于`InLong Sort`会运行在`Apache Flink`的不同`Task Manager`节点上，每个节点独立存储产生的日志，我们需要到每个节点上查看日志，维护效率低下。为此`InLong Sort`提供了基于OpenTelemetry的日志集中管理方案，用户可以高效地集中处理`Flink`日志。
+由于 `InLong Sort` 会运行在 `Apache Flink` 的不同 `Task Manager` 节点上，每个节点独立存储产生的日志，我们需要到每个节点上查看日志，维护效率低下。为此 `InLong Sort` 提供了基于 OpenTelemetry 的日志集中管理方案，用户可以高效地集中处理`Flink`日志。
 
-`InLong Sort`可以将日志上报功能集成到各个`Connector`中，其日志处理流程如下图所示。日志通过[OpenTelemetry](https://opentelemetry.io/)进行上报，经由[OpenTelemetry Collector](https://opentelemetry.io/docs/collector/)收集处理后发往[Grafana Loki](https://grafana.com/oss/loki/)进行集中管理。 
+`InLong Sort`可以将日志上报功能集成到各个`Connector`中，其日志处理流程如下图所示。日志通过 [OpenTelemetry](https://opentelemetry.io/) 进行上报，经由 [OpenTelemetry Collector](https://opentelemetry.io/docs/collector/) 收集处理后发往 [Grafana Loki](https://grafana.com/oss/loki/) 进行集中管理。 
 
 ![日志处理流程](img/LogProcess.png)
 
 ## Connector集成日志上报功能
 
-`InLong Sort` 封装了[OpenTelemetryLogger](https://github.com/apache/inlong/blob/6e78dd2de8e917b9fc17a18d5e990b43089bb804/inlong-sort/sort-flink/base/src/main/java/org/apache/inlong/sort/base/util/OpenTelemetryLogger.java)类，其提供了一个` Builder`来帮助用户快速配置一个`OpenTelemetryLogger`，并可以通过调用`OpenTelemetryLogger`的`install`和`uninstall`方法来开启和关闭日志上报功能。借助`OpenTelemetryLogger`我们可以很便捷地为`Connector`赋予日志上报功能，以下介绍如何借助`OpenTelemetryLogger`类为符合[FLIP-27](https://cwiki.apache.org/confluence/display/FLINK/FLIP-27%3A+Refactor+Source+Interface#FLIP27:RefactorSourceInterface-Motivation)标准的`Connector`集成日志上报功能：
+`InLong Sort` 封装了 [OpenTelemetryLogger](https://github.com/apache/inlong/blob/6e78dd2de8e917b9fc17a18d5e990b43089bb804/inlong-sort/sort-flink/base/src/main/java/org/apache/inlong/sort/base/util/OpenTelemetryLogger.java) 类，其提供了一个 `Builder` 来帮助用户快速配置一个 `OpenTelemetryLogger` ，并可以通过调用 `OpenTelemetryLogger` 的 `install` 和 `uninstall` 方法来开启和关闭日志上报功能。借助 `OpenTelemetryLogger` 我们可以很便捷地为 `Connector` 赋予日志上报功能，以下介绍如何借助 `OpenTelemetryLogger` 类为符合 [FLIP-27](https://cwiki.apache.org/confluence/display/FLINK/FLIP-27%3A+Refactor+Source+Interface#FLIP27:RefactorSourceInterface-Motivation) 标准的 `Connector` 集成日志上报功能：
 
-1. 在connector `SourceReader`类构造方法中使用`OpenTelemetryLogger.Builder()`构造一个`openTelemetryLogger`对象
-2. 在`SourceReader`的`Start`接口中调用`openTelemetryLogger`对象的`install()`方法
-3. 在`SourceReader`的`close`接口中调用`openTelemetryLogger`对象的`uninstall()`方法
+1. 在connector `SourceReader` 类构造方法中使用 `OpenTelemetryLogger.Builder()` 构造一个 `openTelemetryLogger` 对象
+2. 在 `SourceReader` 的 `Start` 接口中调用 `openTelemetryLogger` 对象的 `install()` 方法
+3. 在 `SourceReader` 的 `close` 接口中调用 `openTelemetryLogger` 对象的 `uninstall()` 方法
 
 使用示例如下：
 
@@ -57,7 +57,7 @@ public class XXXSourceReader<T>
 }
 ```
 
-目前`OpenTelemetryLogger`提供如下配置项：
+目前 `OpenTelemetryLogger` 提供如下配置项：
 
 | 配置项      | 说明                               | 默认值 |
 | ----------- | ---------------------------------- | -------- |
@@ -69,11 +69,11 @@ public class XXXSourceReader<T>
 
 ## 容器配置
 
-除了要为`Connector`集成日志上报功能外，还需要增加`opentelemetry-collector`、`grafana loki`、`grafana`三个docker容器，并为`Flink`容器配置`OTEL_EXPORTER_ENDPOINT`环境变量。
+除了要为 `Connector` 集成日志上报功能外，还需要增加 `opentelemetry-collector`、`grafana loki`、`grafana` 三个docker容器，并为 `Flink` 容器配置 `OTEL_EXPORTER_ENDPOINT` 环境变量。
 
-> 此部分配置在`/inlong/docker/docker-compose/docker-compose.yml`中已提供，仅需在启动`docker compose`时增加`--profile sort-report`选项即可，完整启动命令为`docker compose --profile sort-report up -d`
+> 此部分配置在 `/inlong/docker/docker-compose/docker-compose.yml` 中已提供，仅需在启动 `docker compose` 时增加 `--profile sort-report` 选项即可，完整启动命令为 `docker compose --profile sort-report up -d`
 
-也可以参考下面的内容配置，`docker-compose.yml`文件参考如下：
+也可以参考下面的内容配置，`docker-compose.yml` 文件参考如下：
 
 ```yml
 # flink jobmanager
@@ -150,7 +150,7 @@ grafana:
     - "3000:3000"
 ```
 
-还需要为`logcollector`和`Loki`分别提供一个名为`otel-config.yaml`和`loki.yaml`的配置文件，`otel-config.yaml`文件内容如下：
+还需要为 `logcollector` 和 `Loki` 分别提供一个名为 `otel-config.yaml` 和 `loki.yaml` 的配置文件， `otel-config.yaml` 文件内容如下：
 
 ```yaml
 receivers:
@@ -177,7 +177,7 @@ service:
       exporters: [otlphttp, logging]
 ```
 
-`loki.yaml`文件内容如下：
+`loki.yaml` 文件内容如下：
 
 ```yaml
 auth_enabled: false
@@ -225,7 +225,7 @@ pattern_ingester:
 
 ## 使用说明
 
-在`inlong/docker/`路径下执行`docker compose --profile sort-report up -d`来启动相关容器，并按照 [数据接入](quick_start/data_ingestion/file_pulsar_clickhouse_example.md)流程创建并启动一个任务流程(使用到的`connector`需要集成好`OpenTelemetryAppender`)，通过访问`http://127.0.0.1:3000/explore`地址进入`Grafana Loki`界面，使用`service_name`字段进行日志查询：
+在 `inlong/docker/` 路径下执行 `docker compose --profile sort-report up -d` 来启动相关容器，并按照 [数据接入](quick_start/data_ingestion/file_pulsar_clickhouse_example.md) 流程创建并启动一个任务流程(使用到的 `connector` 需要集成好 `OpenTelemetryAppender` )，通过访问 `http://127.0.0.1:3000/explore` 地址进入 `Grafana Loki` 界面，使用 `service_name` 字段进行日志查询：
 
 ![日志查询](img/loki1.png)
 
