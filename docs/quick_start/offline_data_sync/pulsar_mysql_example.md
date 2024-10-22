@@ -17,30 +17,6 @@ Before we begin, we need to install InLong. Here we provide two ways:
 Download the [connectors](https://inlong.apache.org/downloads/) corresponding to Flink version, and after decompression, place `sort-connector-jdbc-[version]-SNAPSHOT.jar` in `/inlong-sort/connectors/` directory.
 > Currently, Apache InLong's offline data synchronization capability only supports Flink-1.18, so please download the 1.18 version of connectors.
 
-### Install Pulsar
-First, download the binary release package of Pulsar (the version can be modified as needed):
-
-```shell
- wget https://archive.apache.org/dist/pulsar/pulsar-3.3.1/apache-pulsar-3.3.1-bin.tar.gz
-```
-Then, unzip it:
-```shell
- tar xvfz apache-pulsar-3.3.1-bin.tar.gz
-```
-Navigate to the Pulsar directory:
-```shell
- cd apache-pulsar-3.3.1
-```
-Quickly start a Pulsar cluster in Standalone mode:
-```shell
- sh bin/pulsar-daemon start standalone
-```
-After starting, the Pulsar cluster will have： 
-- `adminUrl` as http://localhost:8080 
-- `serviceUrl` as pulsar://localhost:6650
-
-You can manage the cluster through `adminUrl` and produce and consume data via `serviceUrl`.
-
 ## Cluster Initialize
 When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.
 ```

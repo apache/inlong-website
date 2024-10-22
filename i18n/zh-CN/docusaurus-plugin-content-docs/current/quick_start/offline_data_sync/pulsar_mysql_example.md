@@ -17,30 +17,6 @@ sidebar_position: 1
 下载与 Flink 版本对应的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-jdbc-[version]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
 > 当前 Apache InLong 的离线数据同步能力只支持 Flink-1.18 版本，所以请下载 1.18 版本的 connectors。
 
-### 安装 Pulsar
-
-首先下载 Pulsar 的二进制发布包（版本可以根据需要修改）:
-```shell
- wget https://archive.apache.org/dist/pulsar/pulsar-3.3.1/apache-pulsar-3.3.1-bin.tar.gz
-```
-然后，解压:
-```shell
- tar xvfz apache-pulsar-3.3.1-bin.tar.gz
-```
-进入 Pulsar 目录：
-```shell
- cd apache-pulsar-3.3.1
-```
-通过 Standalone 的方式快速启动一个 Pulsar 集群：
-```shell
- sh bin/pulsar-daemon start standalone
-```
-启动之后的 Pulsar 集群：
-- `adminUrl` 为 `http://localhost:8080`
-- `serviceUrl` 为 `pulsar://localhost:6650`
-
-可以通过 `adminUrl` 来管理集群，通过 `serviceUrl` 进行数据的生产和消费。
-
 ## 集群初始化
 InLong 服务启动后，可以访问 InLong Dashboard 地址 http://localhost，并使用以下默认账号登录:
 ```
