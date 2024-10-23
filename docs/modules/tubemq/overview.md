@@ -4,7 +4,7 @@ sidebar_position: 1
 ---
 
 ## 1 TubeMQ Architecture:
-After years of evolution, the TubeMQ cluster is divided into the following 5 parts:
+After years of evolution, the TubeMQ cluster is divided into the following 4 parts:
 ![](img/sys_structure.png)
 
 - **Portal：** The Portal part responsible for external interaction and maintenance operations, including API and Web. 
@@ -28,8 +28,6 @@ After years of evolution, the TubeMQ cluster is divided into the following 5 par
   modes, data consumption behavior support both order and filtered consumption. For the Pull consumption mode, the 
   service supports resetting the precise offset through the client to support the business extract-once consumption.
   At the same time, the consumer has launched a new cross-cluster switch-free Consumer client;
-
-- **ZooKeeper：** Responsible for the ZooKeeper part of the offset storage. This part of the function has been weakened to only the persistent storage of the offset. Considering the next multi-node copy function, this module is temporarily reserved;
 
 ## 2 Broker File Storage Scheme Improvement:
 Systems that use disks as data persistence media are faced with various system performance problems caused by disk problems. The TubeMQ system is no exception, the performance improvement is largely to solve the problem of how to read, write and store message data. In this regard TubeMQ has made many improvements: storage instances is as the smallest Topic data management unit; each storage instance includes a file storage block and a memory cache block; each Topic can be assigned multiple storage instances. 

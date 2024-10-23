@@ -9,14 +9,18 @@ There're two components in the cluster: **Master** and **Broker**. Master and Br
 can be deployed on the same server or different servers. In this example, we setup our cluster
 like this, and all services run on the same node. Zookeeper should be setup in your environment also.
 
-| Role | TCP Port | TLS Port | Web Port | Comment                                                              |
-| ---- | -------- | -------- | -------- |----------------------------------------------------------------------|
-| Master | 8099 | 8199 | 8080 | Meta data is stored in ZooKeeper /tubemq                             |
-| Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data                                 |
-| Zookeeper | 2181 |  |  | Master metadata or Broker offset information are stored at /tubemq |
+| Role | TCP Port | TLS Port | Web Port | Comment                                                                                         |
+| ---- | -------- | -------- | -------- |-------------------------------------------------------------------------------------------------|
+| Master | 8099 | 8199 | 8080 | Meta data is stored in ZooKeeper /tubemq                                                        |
+| Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data                                                            |
+| Zookeeper | 2181 |  |  | Master metadata is stored at /tubemq, this component is not required if meta_bdb is configured. |
 
 ### 1.2 Prerequisites
 - ZooKeeper Cluster
+
+ZooKeeper is not mandatory in the TubeMQ environment. If the Master metadata is stored in BDB, this part of the resource can be omitted.
+
+- TubeMQ installation package deployment
 
 After you extract the package file, here's the folder structure.
 ```
@@ -96,13 +100,6 @@ masterAddressList=MASTER_NODE_IP1:8099,MASTER_NODE_IP2:8099   // multi addresses
 - Metadata Path
 ```ini
 primaryPath=/stage/msg_data
-```
-
-- ZooKeeper Cluster
-```ini
-[zookeeper]                             // Master and Broker in the same cluster must use the same zookeeper environment and have the same configuration
-zkNodeRoot=/tubemq
-zkServerAddr=localhost:2181             // multi zookeeper addresses can separate with ","
 ```
 
 ### 1.5 Start Master
