@@ -2,14 +2,14 @@
 title: Configuration
 ---
 
-## 1 TubeMQ configuration item description
+## TubeMQ configuration item description
 
 The TubeMQ server includes two modules for the Master and the Broker. The Master also includes a Web front-end module for external page access (this part is stored in the resources). Considering the actual deployment, two modules are often deployed in the same machine, TubeMQ. The contents of the three parts of the two modules are packaged and delivered to the operation and maintenance; the client does not include the lib package of the server part and is delivered to the user separately.
 
 Master and Broker use the ini configuration file format, and the relevant configuration files are placed in the master.ini and broker.ini files in the tubemq-server-x.y.z/conf/ directory:
 ![](img/configure/conf_ini_pos.png)
 
-Their configuration is defined by a set of configuration units. The Master configuration consists of four mandatory units: [master], required but optional in [meta_zookeeper], [meta_bdb], and optional [tlsSetting]. The Broker configuration is mandatory. Broker], [zookeeper] and optional [tlsSetting] consist of a total of 3 configuration units; in actual use, you can also combine the contents of the two configuration files into one ini file.
+Their configuration is defined by a set of configuration units. The Master configuration consists of four mandatory units: [master], required but optional in [meta_zookeeper], [meta_bdb], and optional [tlsSetting]. The Broker configuration is mandatory. [Broker], and optional [tlsSetting] consist of a total of 2 configuration units; in actual use, you can also combine the contents of the two configuration files into one ini file.
 
 **Note**:
 - Due to the LICENSE problem of the Apache dependency package, the package released by TubeMQ from version 1.1.0 no longer contains the BDB package;
@@ -20,9 +20,9 @@ In addition to the back-end system configuration file, the Master also stores th
 ![](img/configure/conf_velocity_pos.png)
 
 
-## 2 Configuration item details:
+## Configuration item details:
 
-### 2.1 master.ini file:
+### master.ini file:
 [master]
 > Master system runs the main configuration unit, required unit, the value is fixed to "[master]"
 
@@ -110,54 +110,47 @@ In addition to the back-end system configuration file, the Master also stores th
 | tlsTrustStorePath     | no       | string  | The absolute storage path of the TLS TrustStore file + the TrustStore file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
 | tlsTrustStorePassword | no       | string  | The absolute storage path of the TLS TrustStorePassword file + the TrustStorePassword file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
 
-### 2.2 velocity.properties file:
+### velocity.properties file:
 
 | Name                      | Required                          | Type                          | Description                                                  |
 | ------------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
 | file.resource.loader.path | yes      | string | The absolute path of the master web template. This part is the absolute path plus /resources/templates of the project when the master is deployed. The configuration is consistent with the actual deployment. If the configuration fails, the master front page access fails. |
 
-### 2.3 broker.ini file:
+### broker.ini file:
 
 [broker]
 >The broker system runs the main configuration unit, required unit, and the value is fixed to "[broker]"
 
-| Name                  | Required                          | Type                          | Description                                                  |
-| --------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
-| brokerId              | yes      | int     | Server unique flag, required field, can be set to 0; when set to 0, the system will default to take the local IP to int value |
-| hostName              | yes      | string  | The host address of the broker external service, required, must be configured in the NIC, is enabled, non-loopback and cannot be IP of 127.0.0.1 |
-| port                  | no       | int     | Broker listening port, optional, default is 8123             |
-| webPort               | no       | int     | Broker's http management access port, optional, default is 8081 |
-| masterAddressList     | yes      | string  | Master address list of the cluster to which the broker belongs. Required fields. The format must be ip1:port1, ip2:port2, ip3:port3. |
-| primaryPath           | yes      | string  | Broker stores the absolute path of the message, mandatory field |
-| maxSegmentSize        | no       | int     | Broker stores the file size of the message data content, optional field, default 512M, maximum 1G |
-| maxIndexSegmentSize   | no       | int     | Broker stores the file size of the message Index content, optional field, default 18M, about 70W messages per file |
-| transferSize          | no       | int     | Broker allows the maximum message content size to be transmitted to the client each time, optional field, default is 512K |
-| consumerRegTimeoutMs  | no       | long    | Consumer heartbeat timeout, optional, in milliseconds, default 30 seconds |
-| socketRecvBuffer      | no       | long    | Socket receives the size of the Buffer buffer SO_RCVBUF, the unit byte, the negative number is not set, the default value is |
-| socketSendBuffer      | no       | long    | Socket sends Buffer buffer SO_SNDBUF size, unit byte, negative number is not set, the default value is |
-| tcpWriteServiceThread | no       | int     | Broker supports the number of socket worker threads for TCP production services, optional fields, and defaults to 2 times the number of CPUs of the machine. |
-| tcpReadServiceThread  | no       | int     | Broker supports the number of socket worker threads for TCP consumer services, optional fields, defaults to 2 times the number of CPUs of the machine |
-| logClearupDurationMs  | no       | long    | The aging cleanup period of the message file, in milliseconds. The default is 3 minutes for a log cleanup operation. The minimum is 1 minutes. |
-| logFlushDiskDurMs     | no       | long    | Batch check message persistence to file check cycle, in milliseconds, default is 20 seconds for a full check and brush |
-| visitTokenCheckInValidTimeMs       | no       | long | The length of the delay check for the visitToken check since the Broker is registered, in ms, the default is 120000, the value range [60000, 300000]. |
-| visitMasterAuth       | no       | boolean | Whether the authentication of the master is enabled, the default is false. If true, the user name and signature information are added to the signaling reported to the master. |
-| visitName             | no       | string  | User name of the access master. The default is an empty string. This value must exist when visitMasterAuth is true. The value must be the same as the value of the visitName field in master.ini. |
+| Name                  | Required                          | Type                          | Description                                                                                                                                                                                                |
+| --------------------- |  ----------------------------- |  ----------------------------- |------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| brokerId              | yes      | int     | Server unique flag, required field, can be set to 0; when set to 0, the system will default to take the local IP to int value                                                                              |
+| hostName              | yes      | string  | The host address of the broker external service, required, must be configured in the NIC, is enabled, non-loopback and cannot be IP of 127.0.0.1                                                           |
+| port                  | no       | int     | Broker listening port, optional, default is 8123                                                                                                                                                           |
+| webPort               | no       | int     | Broker's http management access port, optional, default is 8081                                                                                                                                            |
+| masterAddressList     | yes      | string  | Master address list of the cluster to which the broker belongs. Required fields. The format must be ip1:port1, ip2:port2, ip3:port3.                                                                       |
+| primaryPath           | yes      | string  | Broker stores the absolute path of the message, mandatory field                                                                                                                                            |
+| maxSegmentSize        | no       | int     | Broker stores the file size of the message data content, optional field, default 512M, maximum 1G                                                                                                          |
+| maxIndexSegmentSize   | no       | int     | Broker stores the file size of the message Index content, optional field, default 18M, about 70W messages per file                                                                                         |
+| transferSize          | no       | int     | Broker allows the maximum message content size to be transmitted to the client each time, optional field, default is 512K                                                                                  |
+| consumerRegTimeoutMs  | no       | long    | Consumer heartbeat timeout, optional, in milliseconds, default 30 seconds                                                                                                                                  |
+| socketRecvBuffer      | no       | long    | Socket receives the size of the Buffer buffer SO_RCVBUF, the unit byte, the negative number is not set, the default value is                                                                               |
+| socketSendBuffer      | no       | long    | Socket sends Buffer buffer SO_SNDBUF size, unit byte, negative number is not set, the default value is                                                                                                     |
+| tcpWriteServiceThread | no       | int     | Broker supports the number of socket worker threads for TCP production services, optional fields, and defaults to 2 times the number of CPUs of the machine.                                               |
+| tcpReadServiceThread  | no       | int     | Broker supports the number of socket worker threads for TCP consumer services, optional fields, defaults to 2 times the number of CPUs of the machine                                                      |
+| logClearupDurationMs  | no       | long    | The aging cleanup period of the message file, in milliseconds. The default is 3 minutes for a log cleanup operation. The minimum is 1 minutes.                                                             |
+| logFlushDiskDurMs     | no       | long    | Batch check message persistence to file check cycle, in milliseconds, default is 20 seconds for a full check and brush                                                                                     |
+| visitTokenCheckInValidTimeMs       | no       | long | The length of the delay check for the visitToken check since the Broker is registered, in ms, the default is 120000, the value range [60000, 300000].                                                      |
+| visitMasterAuth       | no       | boolean | Whether the authentication of the master is enabled, the default is false. If true, the user name and signature information are added to the signaling reported to the master.                             |
+| visitName             | no       | string  | User name of the access master. The default is an empty string. This value must exist when visitMasterAuth is true. The value must be the same as the value of the visitName field in master.ini.          |
 | visitPassword         | no       | string  | The password for accessing the master. The default is an empty string. This value must exist when visitMasterAuth is true. The value must be the same as the value of the visitPassword field in master.ini. |
-| logFlushMemDurMs      | no       | long    | Batch check message memory persistence to file check cycle, in milliseconds, default is 10 seconds for a full check and brush |
+| logFlushMemDurMs      | no       | long    | Batch check message memory persistence to file check cycle, in milliseconds, default is 10 seconds for a full check and brush                                                                              |
+| enableWriteOffset2Zk | no    | boolean    | Whether to write the consumer group Offset record to ZooKeeper at the same time. The default value is false, which means no record is written.                                                             |
+| offsetStgFilePath | no    | String    | The file storage path of the consumer group Offset record, the default is the primaryPath directory                                                                                                        |
+| grpOffsetStgExpMs | no    | long    | The storage period of the unupdated consumer group Offset record in the file, in milliseconds, the default value is 20 days (20 * 24 * 60 * 60 * 1000)                                                     |
+| offsetStgCacheFlushMs | no    | long    | The period for updating the Offset record of the consumer group to the cache, in ms, with a default value of 5000ms                                                                                    |
+| offsetStgFileSyncMs | no    | long    | The consumer group Offset records the period of synchronizing from the cache to the file, in milliseconds. The default value is offsetStgCacheFlushMs + 1000ms                                  |
+| offsetStgSyncDurWarnMs | no    | long    | The alarm value of the excessive time taken for the consumer group Offset record to be synchronized from the cache to the file, in milliseconds, with a default value of 20000ms                     |
 
-[zookeeper]
->The Tube MQ cluster corresponding to the Broker stores the information about the ZooKeeper cluster of the Offset. The required unit has a fixed value of "[zookeeper]".
-
-
-| Name                  | Required                          | Type                          | Description                                                  |
-| --------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
-| zkServerAddr          | no       | string | Zk server address, optional configuration, defaults to "localhost:2181" |
-| zkNodeRoot            | no       | string | The root path of the node on zk, optional configuration. The default is "/tube". |
-| zkSessionTimeoutMs    | no       | long   | Zk heartbeat timeout, in milliseconds, default 30 seconds    |
-| zkConnectionTimeoutMs | no       | long   | Zk connection timeout, in milliseconds, default 30 seconds   |
-| zkSyncTimeMs          | no       | long   | Zk data synchronization time, in milliseconds, default 5 seconds |
-| zkCommitPeriodMs      | no       | long   | The interval at which the broker cache data is flushed to zk, in milliseconds, default 5 seconds |
-| zkCommitFailRetries   | no       | int    | The maximum number of re-brushings after Broker fails to flush cached data to Zk |
 
 [tlsSetting]
 >The Master uses TLS to encrypt the transport layer data. When TLS is enabled, the configuration unit provides related settings. The optional unit has a fixed value of "[tlsSetting]".
