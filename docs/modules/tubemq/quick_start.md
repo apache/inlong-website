@@ -2,9 +2,9 @@
 title: Quick Start
 sidebar_position: 2
 ---
-## 1 Deploy and Start
+## Deploy and Start
 
-### 1.1 Configuration Example
+### Configuration Example
 There're two components in the cluster: **Master** and **Broker**. Master and Broker
 can be deployed on the same server or different servers. In this example, we setup our cluster
 like this, and all services run on the same node. Zookeeper should be setup in your environment also.
@@ -15,7 +15,7 @@ like this, and all services run on the same node. Zookeeper should be setup in y
 | Broker | 8123 | 8124 | 8081 | Message is stored at /stage/msg_data                                                            |
 | Zookeeper | 2181 |  |  | Master metadata is stored at /tubemq, this component is not required if meta_bdb is configured. |
 
-### 1.2 Prerequisites
+### Prerequisites
 - ZooKeeper Cluster
 
 ZooKeeper is not mandatory in the TubeMQ environment. If the Master metadata is stored in BDB, this part of the resource can be omitted.
@@ -32,7 +32,7 @@ After you extract the package file, here's the folder structure.
 └── resources
 ```
 
-### 1.3 Configure Master
+### Configure Master
 You can change configurations in `conf/master.ini` according to cluster information.
 - Master IP and Port
 ```ini
@@ -81,7 +81,7 @@ the introduction of availability level.
 - It is necessary to ensure the clock synchronization between all master nodes
 
 
-### 1.4 Configure Broker
+### Configure Broker
 You can change configurations in `conf/broker.ini` according to cluster information.
 - Broker IP and Port
 ```ini
@@ -102,7 +102,7 @@ masterAddressList=MASTER_NODE_IP1:8099,MASTER_NODE_IP2:8099   // multi addresses
 primaryPath=/stage/msg_data
 ```
 
-### 1.5 Start Master
+### Start Master
 - Please go to the `bin` folder and run this command to start
 the master service.
 ```bash
@@ -113,7 +113,7 @@ the master service.
 web GUI now.
 
 
-#### 1.5.1 Configure Broker Metadata
+#### Configure Broker Metadata
 Before we start a broker service, we need to configure it on master web GUI first. Go to the `Broker List` page, click `Add Single Broker`, and input the new broker information.
 In this example, we only need to input broker IP and authToken:
 1. broker IP: broker server ip
@@ -123,7 +123,7 @@ In this example, we only need to input broker IP and authToken:
 Click the online link to activate the new added broker.
 
 
-### 1.6 Start Broker
+### Start Broker
 - Please go to the `bin` folder and run this command to start the broker service
 ```bash
 ./tubemq.sh broker start
@@ -134,8 +134,8 @@ Click the online link to activate the new added broker.
 - After the sub-state of the broker changed to `idle`, we can add topics to that broker.
 
 
-## 2 Quick Start
-### 3.1 Add Topic
+## Quick Start
+### Add Topic
 - 3.1.1 We can add or manage the cluster topics on the web GUI. To add a new topic, go to the
 topic list page and click the add new topic button
 
@@ -149,10 +149,10 @@ that the topic publish/subscribe state is active now.
 
 - 3.1.5 Now we can use the topic to send messages.
 
-### 2.2 Run Example
+### Run Example
 Now we can use `demo` topic which created before to test our cluster.
 
-#### 2.2.1 Produce Messages
+#### Produce Messages
 
 Please don't forget replace `YOUR_MASTER_IP:port` with your server ip and port, and start producer.
 
@@ -164,7 +164,7 @@ cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
 From the log, we can see the message is sent out.
 ![Demo 1](img/tubemq-send-message.png)
 
-#### 2.2.2 Consume Messages
+#### Consume Messages
 
 Please don't forget replace YOUR_MASTER_IP:port with your server ip and port, and start consumer.
 ```bash
@@ -175,10 +175,10 @@ cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
 From the log, we can see the message received by the consumer.
 ![Demo 2](img/tubemq-consume-message.png)
 
-## 3 Deploy Manager
+## Deploy Manager
 You can refer to [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
 
-## 4 The End
+## The End
 Here, the compilation, deployment, system configuration, startup, production and consumption of TubeMQ have been completed. If you need to understand more in-depth content, please check the relevant content in "TubeMQ HTTP API" and make the corresponding configuration settings.
 
 ---

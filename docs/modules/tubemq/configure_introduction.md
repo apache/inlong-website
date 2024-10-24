@@ -2,7 +2,7 @@
 title: Configuration
 ---
 
-## 1 TubeMQ configuration item description
+## TubeMQ configuration item description
 
 The TubeMQ server includes two modules for the Master and the Broker. The Master also includes a Web front-end module for external page access (this part is stored in the resources). Considering the actual deployment, two modules are often deployed in the same machine, TubeMQ. The contents of the three parts of the two modules are packaged and delivered to the operation and maintenance; the client does not include the lib package of the server part and is delivered to the user separately.
 
@@ -20,9 +20,9 @@ In addition to the back-end system configuration file, the Master also stores th
 ![](img/configure/conf_velocity_pos.png)
 
 
-## 2 Configuration item details:
+## Configuration item details:
 
-### 2.1 master.ini file:
+### master.ini file:
 [master]
 > Master system runs the main configuration unit, required unit, the value is fixed to "[master]"
 
@@ -110,13 +110,13 @@ In addition to the back-end system configuration file, the Master also stores th
 | tlsTrustStorePath     | no       | string  | The absolute storage path of the TLS TrustStore file + the TrustStore file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
 | tlsTrustStorePassword | no       | string  | The absolute storage path of the TLS TrustStorePassword file + the TrustStorePassword file name. This field is required and cannot be empty when the TLS function is enabled and mutual authentication is enabled. |
 
-### 2.2 velocity.properties file:
+### velocity.properties file:
 
 | Name                      | Required                          | Type                          | Description                                                  |
 | ------------------------- |  ----------------------------- |  ----------------------------- | ------------------------------------------------------------ |
 | file.resource.loader.path | yes      | string | The absolute path of the master web template. This part is the absolute path plus /resources/templates of the project when the master is deployed. The configuration is consistent with the actual deployment. If the configuration fails, the master front page access fails. |
 
-### 2.3 broker.ini file:
+### broker.ini file:
 
 [broker]
 >The broker system runs the main configuration unit, required unit, and the value is fixed to "[broker]"

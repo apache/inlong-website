@@ -2,7 +2,7 @@
 title: 配置参数
 ---
 
-## 1 TubeMQ 服务端配置文件说明：
+## TubeMQ 服务端配置文件说明：
 
 TubeMQ 服务端包括 Master 和 Broker 共 2 个模块，Master 又包含供外部页面访问的 Web 前端模块（该部分存放在 resources 中），考虑到实际部署时 2 个模块常常部署在同 1 台机器中，TubeMQ 将 2 个模块 3 个部分的内容打包在一起交付给运维使用；客户端则不包含服务端部分的 lib 包单独交付给业务使用。
 
@@ -22,9 +22,9 @@ Master 除了后端系统配置文件外，还在 resources 里存放了 Web 前
 ![](img/configure/conf_velocity_pos.png)
 
 
-## 2 配置项详情：
+## 配置项详情：
 
-### 2.1 master.ini 文件中关键配置内容说明：
+### master.ini 文件中关键配置内容说明：
 [master]
 > master 系统运行主要配置单元，必填单元，值固定为 &quot;[master]&quot;
 
@@ -111,14 +111,14 @@ Master 除了后端系统配置文件外，还在 resources 里存放了 Web 前
 - 需保证 Master 所有节点之间的时钟同步
 
 
-### 2.2 Master 的前台配置文件 velocity.properties 中关键配置内容说明：
+### Master 的前台配置文件 velocity.properties 中关键配置内容说明：
 
 | 配置项 | 是否必选 | 值类型 | 配置说明                                                                                                       |
 | --- | --- | --- |------------------------------------------------------------------------------------------------------------|
 | file.resource.loader.path | 是 | String | Master 的 Web 的模板绝对路径，该部分为实际部署 Master 时的工程绝对路径 + /resources/templates，该配置要与实际部署相吻合，配置失败会导致 Master 前端页面访问失败。 |
 
 
-### 2.3 broker.ini 文件中关键配置内容说明：
+### broker.ini 文件中关键配置内容说明：
 [broker]
 > Broker 系统运行主配置单元，必填单元，值固定为 &quot;[broker]&quot;
 
