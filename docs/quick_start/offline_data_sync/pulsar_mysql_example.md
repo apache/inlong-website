@@ -80,7 +80,7 @@ CREATE TABLE sink_table (
 );
 ```
 
-In the data sink section, click [Create] → [MySQL], and configure the data sink name, database name, and table name (test.source_table), among other information.
+In the data sink section, click [Create] → [MySQL], and configure the data sink name, database name, and table name (test.sink_table), among other information.
 
 ![Create Sink](img/pulsar_mysql/sink.png)
 
