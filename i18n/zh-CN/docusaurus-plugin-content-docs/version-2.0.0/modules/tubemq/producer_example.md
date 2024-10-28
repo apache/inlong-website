@@ -1,6 +1,6 @@
 ---
 title: 生产者示例
-sidebar_position: 4
+sidebar_position: 3
 ---
 
 ## 1 Producer 示例

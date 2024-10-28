@@ -1,6 +1,6 @@
 ---
 title: Consumer Example
-sidebar_position: 5
+sidebar_position: 4
 ---
 
 ## 1 Consumer Example

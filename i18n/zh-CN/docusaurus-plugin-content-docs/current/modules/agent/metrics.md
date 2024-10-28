@@ -1,6 +1,6 @@
 ---
 title: 监控指标
-sidebar_position: 3
+sidebar_position: 4
 ---
 
 ## JMX 配置

@@ -1,6 +1,6 @@
 ---
 title: REST API
-sidebar_position: 8
+sidebar_position: 9
 ---
 
 <!-- 为了保持显示一致，请删除原始 `api.json` 中的 `info` 和 `host` 内容 -->

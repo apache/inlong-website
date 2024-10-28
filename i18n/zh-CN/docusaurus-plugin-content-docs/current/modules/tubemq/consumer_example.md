@@ -1,6 +1,6 @@
 ---
 title: 消费者示例
-sidebar_position: 5
+sidebar_position: 4
 ---
 
 ## 1 Consumer 示例

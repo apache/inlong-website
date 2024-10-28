@@ -1,5 +1,6 @@
 ---
 title: TubeMQ管控台操作指引
+sidebar_position: 10
 ---
 
 ## 1 管控台关系

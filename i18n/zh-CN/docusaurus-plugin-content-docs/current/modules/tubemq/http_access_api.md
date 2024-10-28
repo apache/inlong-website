@@ -1,5 +1,6 @@
 ---
 title: HTTP API 介绍
+sidebar_position: 12
 ---
 
 HTTP API 是 Master 或者 Broker 对外功能暴露的接口，管控台的各项操作都是基于这些 API 进行；如果有最新的功能，或者管控台没有涵盖的功能，业务都可以直接通过调用 HTTP API 接口完成。

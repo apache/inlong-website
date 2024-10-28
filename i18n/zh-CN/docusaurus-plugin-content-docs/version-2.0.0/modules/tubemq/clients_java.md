@@ -1,5 +1,6 @@
 ---
 title: JAVA SDK API
+sidebar_position: 8
 ---
 
 

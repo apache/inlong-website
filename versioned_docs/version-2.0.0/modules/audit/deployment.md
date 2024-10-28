@@ -1,5 +1,6 @@
 ---
 title: Deployment
+sidebar_position: 2
 ---
 
 All installation files are in the `inlong-audit` directory, if you use MySQL to store audit data, you need to first create the database through `sql/apache_inlong_audit_mysql.sql`.
