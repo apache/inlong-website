@@ -26,7 +26,7 @@ The following table shows the version mapping between InLong<sup>®</sup> Extrac
 |          <font color="DarkCyan">1.2.0</font>           | <font color="MediumVioletRed">1.15.4</font> |
 
 ## Usage for SQL API
-- [Deploy InLong Sort](modules/sort/quick_start.md)
+- [Deploy InLong Sort](modules/sort/deployment.md)
 - Create Data Node
 
 The example shows how to create a MySQL Extract Node in [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-release-1.13/dev/table/sqlClient.html) and execute queries on it.

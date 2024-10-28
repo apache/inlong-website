@@ -1,5 +1,6 @@
 ---
 title: TubeMQ指标
+sidebar_position: 13
 ---
 
 ## 1 TubeMQ指标集介绍

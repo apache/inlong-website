@@ -1,5 +1,6 @@
 ---
 title: client partition assign
+sidebar_position: 7
 ---
 
 ## 1 Preface

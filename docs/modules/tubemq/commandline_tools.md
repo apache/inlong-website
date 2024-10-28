@@ -1,6 +1,6 @@
 ---
 title: Command-line Tools
-sidebar_position: 15
+sidebar_position: 6
 ---
 
 ## Overview

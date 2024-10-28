@@ -1,5 +1,6 @@
 ---
 title: TubeMQ Metrics
+sidebar_position: 13
 ---
 
 ## 1 Introduction to TubeMQ metric set

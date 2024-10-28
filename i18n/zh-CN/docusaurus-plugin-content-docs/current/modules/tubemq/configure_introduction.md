@@ -1,5 +1,6 @@
 ---
 title: 配置参数
+sidebar_position: 9
 ---
 
 ## TubeMQ 服务端配置文件说明：

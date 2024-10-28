@@ -1,5 +1,6 @@
 ---
 title: 安装部署
+sidebar_position: 2
 ---
 
 安装文件在inlong-tubemq-manager目录.

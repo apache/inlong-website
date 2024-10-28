@@ -1,6 +1,6 @@
 ---
 title: 快速开始
-sidebar_position: 1
+sidebar_position: 2
 ---
 ## 1 部署运行
 
@@ -180,7 +180,7 @@ cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
 ![Demo 2](img/tubemq-consume-message.png)
 
 ## 3 部署 Manager
-参考 [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
+参考 [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/deployment.md)
 
 ## 4 结束
 在这里，已经完成了TubeMQ的编译，部署，系统配置，启动，生产和消费。如果需要了解更深入的内容，请查看《TubeMQ HTTP API》里的相关内容，进行相应的配置设置。

@@ -14,7 +14,7 @@ The following will introduce SQL, Dashboard, Manager Client Tools methods to use
 - Apache Hive 3.x
 
 ## Prepare InLong Sort And Connectors
-You can prepare InLong Sort and Data Node Connectors by referring to [Deployment Guide](quick_start.md).
+You can prepare InLong Sort and Data Node Connectors by referring to [Deployment Guide](deployment).
 
 ## Usage for SQL API
 

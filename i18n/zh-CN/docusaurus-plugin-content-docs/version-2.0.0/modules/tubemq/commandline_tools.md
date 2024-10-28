@@ -1,6 +1,6 @@
 ---
 title: 命令行工具
-sidebar_position: 15
+sidebar_position: 6
 ---
 
 ## 总览

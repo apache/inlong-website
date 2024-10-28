@@ -1,5 +1,6 @@
 ---
 title: HTTP API
+sidebar_position: 12
 ---
 
 ## 1 Master metadata configuration API

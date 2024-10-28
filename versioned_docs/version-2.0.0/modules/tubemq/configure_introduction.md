@@ -1,5 +1,6 @@
 ---
 title: Configuration
+sidebar_position: 9
 ---
 
 ## 1 TubeMQ configuration item description

@@ -22,11 +22,11 @@ You need deploy all InLong components for Standard Architecture, which supports 
 ### Deploy
 | order | component              | dependencies                  | deploy guide                                                                                                                                                 | description |
 |-------|------------------------|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------|
-| 1     | inlong-audit           | MySQL or StarRocks            | [InLong Audit](modules/audit/quick_start.md)                                                                                                                 |             |
-| 2     | inlong-manager         | MySQL                         | [InLong Manager](modules/manager/quick_start.md)                                                                                                             |             |
-| 3     | inlong-dataproxy       | None                          | [InLong DataProxy](modules/dataproxy/quick_start.md)                                                                                                         |             |
-| 4     | inlong-agent           | None                          | [InLong Agent](modules/agent/quick_start.md)                                                                                                                 |             |
-| 5     | inlong-dashboard       | Nginx or Docker               | [InLong Dashboard](modules/dashboard/quick_start.md)                                                                                                         |             |
+| 1     | inlong-audit           | MySQL or StarRocks            | [InLong Audit](modules/audit/deployment.md)                                                                                                                 |             |
+| 2     | inlong-manager         | MySQL                         | [InLong Manager](modules/manager/deployment.md)                                                                                                             |             |
+| 3     | inlong-dataproxy       | None                          | [InLong DataProxy](modules/dataproxy/deployment.md)                                                                                                         |             |
+| 4     | inlong-agent           | None                          | [InLong Agent](modules/agent/deployment.md)                                                                                                                 |             |
+| 5     | inlong-dashboard       | Nginx or Docker               | [InLong Dashboard](modules/dashboard/deployment.md)                                                                                                         |             |
 | 6     | inlong-sort-connectors | Apache Flink 1.13.x or 1.15.x | Extract [apache-inlong-[version]-sort-connectors.tar.gz](https://inlong.apache.org/download/) and move connectors jar to `inlong-sort/connectors` directory. |             |
 
 ### Create Data Stream
@@ -35,4 +35,4 @@ After the InLong cluster deployed successfully, you can create a data stream ref
 ## Lightweight Architecture
 ### Deploy
 Lightweight Architecture only support `Data Synchronization`, you need to deploy InLong Sort component, it is simple and flexible, suitable for small-scale data.
-You can deploy and use it refer [the deployment guide](modules/sort/quick_start.md).
+You can deploy and use it refer [the deployment guide](modules/sort/deployment.md).

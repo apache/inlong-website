@@ -1,5 +1,6 @@
 ---
 title: Error Code
+sidebar_position: 11
 ---
 
 ## 1 Introduction of TubeMQ Error

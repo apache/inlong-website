@@ -1,5 +1,6 @@
 ---
 title: Console Introduction
+sidebar_position: 10
 ---
 
 ## 1 Control console relationship

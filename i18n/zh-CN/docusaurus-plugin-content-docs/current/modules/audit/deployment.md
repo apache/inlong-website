@@ -1,5 +1,6 @@
 ---
 title: 安装部署
+sidebar_position: 2
 ---
 
 所有的安装文件都在 `inlong-audit` 目录下，如果使用 MySQL 存储审计数据，需要先通过 `sql/apache_inlong_audit_mysql.sql` 初始化数据库。

@@ -1,5 +1,6 @@
 ---
 title: TubeMQ VS Kafka
+sidebar_position: 14
 ---
 
 ## 1 Background

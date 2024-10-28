@@ -1,5 +1,6 @@
 ---
 title: 错误码定义
+sidebar_position: 11
 ---
 
 ## 1 TubeMQ错误信息介绍
