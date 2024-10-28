@@ -177,7 +177,7 @@ cd /INSTALL_PATH/apache-inlong-tubemq-server-[TUBEMQ-VERSION]-bin
 ![Demo 2](img/tubemq-consume-message.png)
 
 ## 部署 Manager
-参考 [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
+参考 [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/deployment.md)
 
 ---
 <a href="#top">Back to top</a>

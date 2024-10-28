@@ -176,7 +176,7 @@ From the log, we can see the message received by the consumer.
 ![Demo 2](img/tubemq-consume-message.png)
 
 ## Deploy Manager
-You can refer to [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/quick_start.md)
+You can refer to [InLong TubeMQ Manager](modules/tubemq/tubemq-manager/deployment.md)
 
 ## The End
 Here, the compilation, deployment, system configuration, startup, production and consumption of TubeMQ have been completed. If you need to understand more in-depth content, please check the relevant content in "TubeMQ HTTP API" and make the corresponding configuration settings.

@@ -28,7 +28,7 @@ Extract 节点列表是一组基于 <a href="https://flink.apache.org/">Apache F
 | <font color="DarkCyan">1.2.0</font> | <font color="MediumVioletRed">1.13.5</font> |
 
 ## SQL API 用法
-- [部署 InLong Sort](modules/sort/quick_start.md)
+- [部署 InLong Sort](modules/sort/deployment.md)
 - 创建数据节点
 
 下面例子展示了如何在 [Flink SQL Client](https://ci.apache.org/projects/flink/flink-docs-release-1.13/dev/table/sqlClient.html) 创建 MySQL Extract 节点，并从中查询数据：
