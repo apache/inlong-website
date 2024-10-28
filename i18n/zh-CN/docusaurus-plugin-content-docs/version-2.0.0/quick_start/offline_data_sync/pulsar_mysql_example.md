@@ -78,7 +78,7 @@ CREATE TABLE sink_table (
 );
 ```
 
-数据目标中 点击 【新建】→【MySQL】，配置数据源名称、库名和表名（test.source_table）等信息信息等。
+数据目标中 点击 【新建】→【MySQL】，配置数据目标名称、库名和表名（test.sink_table）等信息。
 
 ![Create Sink](img/pulsar_mysql/sink.png)
 
