@@ -84,17 +84,17 @@ export default function() {
                                     </div>
                                     <div className={styles.buttonRow}>
                                         <div className={styles.buttonCard}>
-                                            <div className={styles.connectorDropdownOne}>
-                                                <span className={styles.connectorSpan}>v1.13:</span>
-                                                <a className={styles.connectorDropdownItem} href={`https://repository.apache.org/content/groups/public/org/apache/inlong/inlong-distribution/${version}/inlong-distribution-${version}-sort-connectors-flink-v1.13.tar.gz`}>BIN</a>
-                                                <a target="_blank" className={styles.connectorDropdownItem} href={`https://repository.apache.org/content/groups/public/org/apache/inlong/inlong-distribution/${version}/inlong-distribution-${version}-sort-connectors-flink-v1.13.tar.gz.asc`}>ASC</a>
-                                                <a target="_blank" className={styles.connectorDropdownItem} href={`https://repository.apache.org/content/groups/public/org/apache/inlong/inlong-distribution/${version}/inlong-distribution-${version}-sort-connectors-flink-v1.13.tar.gz.sha512`}>SHA512</a>
-                                            </div>
                                             <div className={styles.connectorDropdownTwo}>
                                                 <span className={styles.connectorSpan}>v1.15:</span>
                                                 <a className={styles.connectorDropdownItem} href={`https://repository.apache.org/content/groups/public/org/apache/inlong/inlong-distribution/${version}/inlong-distribution-${version}-sort-connectors-flink-v1.15.tar.gz`}>BIN</a>
                                                 <a target="_blank" className={styles.connectorDropdownItem} href={`https://repository.apache.org/content/groups/public/org/apache/inlong/inlong-distribution/${version}/inlong-distribution-${version}-sort-connectors-flink-v1.15.tar.gz.asc`}>ASC</a>
                                                 <a target="_blank" className={styles.connectorDropdownItem} href={`https://repository.apache.org/content/groups/public/org/apache/inlong/inlong-distribution/${version}/inlong-distribution-${version}-sort-connectors-flink-v1.15.tar.gz.sha512`}>SHA512</a>
+                                            </div>
+                                            <div className={styles.connectorDropdownTwo}>
+                                                <span className={styles.connectorSpan}>v1.18:</span>
+                                                <a className={styles.connectorDropdownItem} href={`https://repository.apache.org/content/groups/public/org/apache/inlong/inlong-distribution/${version}/inlong-distribution-${version}-sort-connectors-flink-v1.18.tar.gz`}>BIN</a>
+                                                <a target="_blank" className={styles.connectorDropdownItem} href={`https://repository.apache.org/content/groups/public/org/apache/inlong/inlong-distribution/${version}/inlong-distribution-${version}-sort-connectors-flink-v1.18.tar.gz.asc`}>ASC</a>
+                                                <a target="_blank" className={styles.connectorDropdownItem} href={`https://repository.apache.org/content/groups/public/org/apache/inlong/inlong-distribution/${version}/inlong-distribution-${version}-sort-connectors-flink-v1.18.tar.gz.sha512`}>SHA512</a>
                                             </div>
                                         </div>
                                     </div>
