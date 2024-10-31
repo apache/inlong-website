@@ -38,13 +38,13 @@ Sort will export metric by flink metric group, So user can use [metric reporter]
 | groupId_streamId_nodeId_database_table_numBytesInPerSecond | mysql-cdc | input bytes number per second |
 | groupId_streamId_nodeId_database_schema_table_numBytesInPerSecond | oracle-cdc,postgresql-cdc | input bytes number per second |
 | groupId_streamId_nodeId_database_collection_numBytesInPerSecond | mongodb-cdc | input bytes number per second |
-| groupId_streamId_nodeId_database_collection_numSnapshotCreate | postgresql-cdc,pulsar | checkpoint creation attempt number | 
-| groupId_streamId_nodeId_database_collection_numSnapshotError | postgresql-cdc,pulsar | checkpoint creation exception number |
-| groupId_streamId_nodeId_database_collection_numSnapshotComplete | postgresql-cdc,pulsar | successful checkpoint creation number |
-| groupId_streamId_nodeId_database_collection_snapshotToCheckpointTimeLag | postgresql-cdc,pulsar | time lag from start to completion of checkpoint creation (ms) |
-| groupId_streamId_nodeId_database_collection_numDeserializeSuccess | postgresql-cdc,pulsar | successful deserialization number | 
-| groupId_streamId_nodeId_database_collection_numDeserializeError | postgresql-cdc,pulsar | deserialization error number | 
-| groupId_streamId_nodeId_database_collection_deserializeTimeLag | postgresql-cdc,pulsar | deserialization time lag (ms) |
+| groupId_streamId_nodeId_database_collection_numSnapshotCreate | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | checkpoint creation attempt number | 
+| groupId_streamId_nodeId_database_collection_numSnapshotError | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | checkpoint creation exception number |
+| groupId_streamId_nodeId_database_collection_numSnapshotComplete | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | successful checkpoint creation number |
+| groupId_streamId_nodeId_database_collection_snapshotToCheckpointTimeLag | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | time lag from start to completion of checkpoint creation (ms) |
+| groupId_streamId_nodeId_database_collection_numDeserializeSuccess | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | successful deserialization number | 
+| groupId_streamId_nodeId_database_collection_numDeserializeError | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | deserialization error number | 
+| groupId_streamId_nodeId_database_collection_deserializeTimeLag | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | deserialization time lag (ms) |
 ### Supporting load node
 
 #### Node level metric

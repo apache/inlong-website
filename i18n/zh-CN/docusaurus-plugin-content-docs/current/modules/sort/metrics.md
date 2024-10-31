@@ -36,13 +36,13 @@ sidebar_position: 4
 | groupId_streamId_nodeId_database_table_numBytesInPerSecond | mysql-cdc | 每秒输入字节数 |
 | groupId_streamId_nodeId_database_schema_table_numBytesInPerSecond | oracle-cdc,postgresql-cdc | 每秒输入字节数 |
 | groupId_streamId_nodeId_database_collection_numBytesInPerSecond | mongodb-cdc | 每秒输入字节数 |
-| groupId_streamId_nodeId_database_collection_numSnapshotCreate | postgresql-cdc,pulsar | 尝试创建Checkpoint数 |
-| groupId_streamId_nodeId_database_collection_numSnapshotError | postgresql-cdc,pulsar | 创建Checkpoint异常数 |
-| groupId_streamId_nodeId_database_collection_numSnapshotComplete | postgresql-cdc,pulsar | 创建Checkpoint成功数 |
-| groupId_streamId_nodeId_database_collection_snapshotToCheckpointTimeLag | postgresql-cdc,pulsar | 从开始创建Checkpoint到完成创建延迟（毫秒） |
-| groupId_streamId_nodeId_database_collection_numDeserializeSuccess | postgresql-cdc,pulsar | 反序列化成功数 |
-| groupId_streamId_nodeId_database_collection_numDeserializeSuccess | postgresql-cdc,pulsar | 反序列化异常数 |
-| groupId_streamId_nodeId_database_collection_deserializeTimeLag | postgresql-cdc,pulsar | 反序列化延迟（毫秒） |
+| groupId_streamId_nodeId_database_collection_numSnapshotCreate | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | 尝试创建Checkpoint数 |
+| groupId_streamId_nodeId_database_collection_numSnapshotError | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | 创建Checkpoint异常数 |
+| groupId_streamId_nodeId_database_collection_numSnapshotComplete | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | 创建Checkpoint成功数 |
+| groupId_streamId_nodeId_database_collection_snapshotToCheckpointTimeLag | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | 从开始创建Checkpoint到完成创建延迟（毫秒） |
+| groupId_streamId_nodeId_database_collection_numDeserializeSuccess | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | 反序列化成功数 |
+| groupId_streamId_nodeId_database_collection_numDeserializeSuccess | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | 反序列化异常数 |
+| groupId_streamId_nodeId_database_collection_deserializeTimeLag | postgresql-cdc,pulsar,mongodb-cdc,sqlserver-cdc | 反序列化延迟（毫秒） |
 
 ### 支持的 load 节点
 
