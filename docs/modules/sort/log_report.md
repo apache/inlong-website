@@ -21,6 +21,40 @@ InLong Sort wraps the [OpenTelemetryLogger](https://github.com/apache/inlong/blo
 2. Call `install()` method of the `OpenTelemetryLogger` object in `Start()` function of `SourceReader`.
 3. Call `uninstall()` method of the `OpenTelemetryLogger` object in `close()` function of `SourceReader`.
 
+**Note**: If the `maven-shade-plugin` plugin is used, the `opentelemetry` and `okhttp` related packages need to be included:
+
+```xml
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${plugin.shade.version}</version>
+                <executions>
+                    <execution>
+                        <id>shade-flink</id>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <artifactSet>
+                                <includes>
+                                    <include>io.opentelemetry*</include>
+                                    <include>com.squareup.*</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+
+
 The example is:
 ```java
 import org.apache.inlong.sort.base.util.OpenTelemetryLogger;
@@ -230,6 +264,6 @@ After that you can enter the `Grafana Loki` system by `http://127.0.0.1:3000/exp
 
 ![Loki_1](img/loki1.png)
 
-Click on the log item to view the log details:
+Click on the log item to view the log details (**Note:** The default log reporting level is `ERROR`.):
 
 ![Loki_2](img/loki2.png)

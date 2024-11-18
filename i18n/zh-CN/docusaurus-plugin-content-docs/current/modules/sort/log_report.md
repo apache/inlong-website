@@ -21,6 +21,39 @@ sidebar_position: 6
 2. 在 `SourceReader` 的 `Start` 接口中调用 `openTelemetryLogger` 对象的 `install()` 方法
 3. 在 `SourceReader` 的 `close` 接口中调用 `openTelemetryLogger` 对象的 `uninstall()` 方法
 
+**注意**：如果使用了 `maven-shade-plugin` 插件，需要将 `opentelemetry` 及 `okhttp` 相关包包含在内：
+
+```xml
+<build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>${plugin.shade.version}</version>
+                <executions>
+                    <execution>
+                        <id>shade-flink</id>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <phase>package</phase>
+                        <configuration>
+                            <createDependencyReducedPom>false</createDependencyReducedPom>
+                            <artifactSet>
+                                <includes>
+                                    <include>io.opentelemetry*</include>
+                                    <include>com.squareup.*</include>
+                                </includes>
+                            </artifactSet>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+```
+
+
 使用示例如下：
 
 ```java
@@ -229,6 +262,6 @@ pattern_ingester:
 
 ![日志查询](img/loki1.png)
 
-点击相应的日志项，可以查看到日志的详细信息：
+点击相应的日志项，可以查看到日志的详细信息（**注意：**默认设置的日志上报级别为 `ERROR`）：
 
 ![日志信息](img/loki2.png)
