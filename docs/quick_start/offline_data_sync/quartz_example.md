@@ -27,13 +27,13 @@ Password: inlong
 ### Create Cluster Tag
 Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster label name and person in charge.
 
-![Create Cluster Tag](img/pulsar_mysql/cluster_tag.png)
+![Create Cluster Tag](img/pulsar_mysql/quartz/cluster_tag.png)
 
 **caution: `default_cluster` is the default ClusterTags for each component. If you decide to use a different name, make sure to update the corresponding tag configuration accordingly.**
 
 ### Register Pulsar Cluster
 
-![Create Pulsar](img/pulsar_mysql/create_pulsar_cluster.png)
+![Create Pulsar](img/pulsar_mysql/quartz/create_pulsar_cluster.png)
 
 **You can refer to the screenshot information to fill in details such as cluster name, associated tag, and Pulsar cluster address.**
 
@@ -42,12 +42,12 @@ Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster
 Click on [Synchronization]→[Create], fill in the Group ID, and ensure the [Sync Type] is checked as "Offline".
 
 
-![Create Offline Group](img/pulsar_mysql/create_offline_group.png)
+![Create Offline Group](img/pulsar_mysql/quartz/create_offline_group.png)
 
 ### Configuration Scheduling Rules
 After selecting "offline" for [Sync Type], you can configure the [Scheduling Rules] for offline tasks. Apache InLong provide several scheduling engines for users to choose from, Quartz is a build-in schedule engine in Apache InLong use quartz to handle tasks
 
-![Schedule Engine Type](img/pulsar_mysql/schedule_engine_type.png)
+![Schedule Engine Type](img/pulsar_mysql/quartz/schedule_engine_type.png)
 
 And for Schedule Type, two types are supported: Conventional and Crontab.
 
@@ -57,18 +57,18 @@ Conventional Scheduling Configuration requires the following parameters:
 - Delay Time: Indicates the delay time for task startup.
 - Valid Time: Includes start time and end time; the scheduled task will only execute within this time range.
 
-![Conventional Schedule Rule](img/pulsar_mysql/conventional_schedule.png)
+![Conventional Schedule Rule](img/pulsar_mysql/quartz/conventional_schedule.png)
 
 Crontab Scheduling requires the following parameters:
 - Valid Time: Includes start time and end time; the scheduled task will only execute within this time range.
 - Crontab Expression: Indicates the task cycle, e.g., `0 */5 * * * ?`
 
-![Cron Schedule Rule](img/pulsar_mysql/cron_schedule.png)
+![Cron Schedule Rule](img/pulsar_mysql/quartz/cron_schedule.png)
 
 ### Create Data Source
 In the data source section, click [Create] → [Pulsar], and configure the data source name, Pulsar tenant, namespace, topic, admin URL, service URL, data format, and other parameters.
 
-![Create Source](img/pulsar_mysql/source.png)
+![Create Source](img/pulsar_mysql/quartz/source.png)
 
 Note: The Pulsar topic needs to be created in the Pulsar cluster in advance (or enable the automatic topic creation feature in the Pulsar cluster).
 
@@ -86,25 +86,25 @@ CREATE TABLE sink_table (
 
 In the data sink section, click [Create] → [MySQL], and configure the data sink name, database name, and table name (test.sink_table), among other information.
 
-![Create Sink](img/pulsar_mysql/sink.png)
+![Create Sink](img/pulsar_mysql/quartz/sink.png)
 
 ### Configure source and sink fields
 
 Configure schema mapping information in the [Source fields] and [Sink fields] sections, and click [Submit] for approval.
 
-![Create Source Fields](img/pulsar_mysql/source_fields.png)
+![Create Source Fields](img/pulsar_mysql/quartz/source_fields.png)
 
-![Create Sink Fields](img/pulsar_mysql/sink_fields.png)
+![Create Sink Fields](img/pulsar_mysql/quartz/sink_fields.png)
 
 ### Approval data flow
 
 On the page, click [Approval] -> [My Approvals] -> [Approve] → [OK].
 
-![Approve](img/pulsar_mysql/approve.png)
+![Approve](img/pulsar_mysql/quartz/approve.png)
 
 Return to the [Synchronization] page and wait for the task configuration to succeed. Once configured successfully, the Manager will periodically submit Flink Batch Jobs to the Flink cluster.
 
-![Flink Batch Job](img/pulsar_mysql/flink_batch_job.png)
+![Flink Batch Job](img/pulsar_mysql/quartz/flink_batch_job.png)
 
 ## Test Data
 ### Sending Data
@@ -128,4 +128,4 @@ Use the Pulsar SDK to produce data into the Pulsar topic. An example is as follo
 
 Then enter MySQL to check the data in the table:
 
-![Mysql Sink](img/pulsar_mysql/mysql_sink.png)
+![Mysql Sink](img/pulsar_mysql/quartz/mysql_sink.png)
