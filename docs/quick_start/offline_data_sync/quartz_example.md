@@ -1,9 +1,9 @@
 ---
-title: Pulsar to MySQL Example
+title: Use Quartz built-in scheduling engine
 sidebar_position: 1
 ---
 
-In the following content, we will introduce how to use Apache InLong to create offline data synchronization from Pulsar to MySQL through a complete example.
+In the following content, we will introduce how to use built-in schedule engine in Apache InLong to create offline data synchronization from Pulsar to MySQL through a complete example.
 
 ## Deployment
 ### Install InLong
@@ -45,7 +45,11 @@ Click on [Synchronization]→[Create], fill in the Group ID, and ensure the [Syn
 ![Create Offline Group](img/pulsar_mysql/create_offline_group.png)
 
 ### Configuration Scheduling Rules
-After selecting "offline" for [Sync Type], you can configure the [Scheduling Rules] for offline tasks. Currently, two types are supported: Conventional and Crontab.
+After selecting "offline" for [Sync Type], you can configure the [Scheduling Rules] for offline tasks. Apache InLong provide several scheduling engines for users to choose from, Quartz is a build-in schedule engine in Apache InLong use quartz to handle tasks
+
+![Schedule Engine Type](img/pulsar_mysql/schedule_engine_type.png)
+
+And for Schedule Type, two types are supported: Conventional and Crontab.
 
 Conventional Scheduling Configuration requires the following parameters:
 - Scheduling Unit: Supports minutes, hours, days, months, years, and single execution (single execution means it will run only once).

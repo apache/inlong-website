@@ -1,9 +1,9 @@
 ---
-title: Pulsar 到 MySQL 示例
+title: 使用内置的 Quartz 调度引擎
 sidebar_position: 1
 ---
 
-在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建 Pulsar -> MySQL 的离线数据同步。
+在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 内置的调度引擎创建 Pulsar -> MySQL 的离线数据同步。
 
 ## 环境部署
 ### 安装 InLong
@@ -43,7 +43,11 @@ Password: inlong
 ![Create Offline Group](img/pulsar_mysql/create_offline_group.png)
 
 ### 配置调度规则
-在同步类型勾选为“离线”之后，就可以配置离线任务的调度规则，目前支持两种：常规和 crontab。
+在同步类型勾选为“离线”之后，就可以配置离线任务的调度规则，Apache InLong 提供了多种调度引擎供用户选择，Quartz 是 Apache InLong 内置的调度引擎，这里使用 Quartz 来处理任务
+
+![image-20241127153445466](/Users/empty/gitprojects/inlong-website/i18n/zh-CN/docusaurus-plugin-content-docs/version-2.0.0/quick_start/offline_data_sync/img/pulsar_mysql/schedule_engine_type.png)
+
+对于调度类型目前支持两种：常规和 crontab。
 
 常规调度配置需要设置以下参数：
 - 调度单位：支持分钟、小时、天、月、年以及单次，单次表示只执行一次
