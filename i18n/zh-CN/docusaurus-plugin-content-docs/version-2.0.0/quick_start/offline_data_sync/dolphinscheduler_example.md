@@ -23,17 +23,17 @@ sidebar_position: 1
 
 在使用 DolphinScheduler 作为调度引擎之前，请确保手头有正常可用的 DolphinScheduler。如果您需要为自己部署一个 DolphinScheduler，请参考 [DolphinScheduler 官方文档](https://dolphinscheduler.apache.org/zh-cn)。
 
-![DolphinScheduler Security](img/dolphinscheduler/ds_security.png)
+![DolphinScheduler Security](img/pulsar_mysql/dolphinscheduler/ds_security.png)
 
-![DolphinScheduler Token Manager](img/dolphinscheduler/ds_token_manager.png)
+![DolphinScheduler Token Manager](img/pulsar_mysql/dolphinscheduler/ds_token_manager.png)
 
 进入令牌管理器页面创建一个令牌供 InLong 进行访问
 
-![DolphinScheduler Token Generate](img/dolphinscheduler/ds_token_generate.png)
+![DolphinScheduler Token Generate](img/pulsar_mysql/dolphinscheduler/ds_token_generate.png)
 
 按照图中步骤设置 token 参数，包括 [过期时间]、[用户]，并生成令牌。
 
-![DolphinScheduler Token Copy](img/dolphinscheduler/ds_token_copy.png)
+![DolphinScheduler Token Copy](img/pulsar_mysql/dolphinscheduler/ds_token_copy.png)
 
 ### 修改 InLong Manager 中的配置
 
@@ -45,7 +45,7 @@ sidebar_position: 1
 * `schedule.engine.dolphinscheduler.url` : DolphinScheduler 部署的 url，一般格式为 http://{ip}:{port}/dolphinScheduler
 * `schedule.engine.dolphinscheduler.token` : 上文中在 DolphinScheduler 令牌管理器页面中生成的 Token。
 
-![InLong Manager Configuration](img/dolphinscheduler/inlong_manager_conf.png)
+![InLong Manager Configuration](img/pulsar_mysql/dolphinscheduler/inlong_manager_conf.png)
 
 完成这些操作后，重新启动 InLong Manager 以确保配置成功启用。
 
@@ -53,21 +53,21 @@ sidebar_position: 1
 
 在配置离线同步任务时，在选择调度引擎时选择 DolphinScheduler，然后配置其他参数
 
-![DolphinScheduler Task Configuration](img/dolphinscheduler/ds_task_conf.png)
+![DolphinScheduler Task Configuration](img/pulsar_mysql/dolphinscheduler/ds_task_conf.png)
 
 集群管理和相关数据节点的配置请参见[使用内置的 Quartz 调度引擎](quartz_example.md)。
 
 审批数据流后，返回【数据同步】页面，等待任务配置成功，配置成功后，DolphinScheduler 将定期回调 InLong Manager，并周期提交 Flink Batch Job 到 Flink 集群。
 
-![DolphinScheduler Schedule Process](img/dolphinscheduler/ds_schedule_process.png)
+![DolphinScheduler Schedule Process](img/pulsar_mysql/dolphinscheduler/ds_schedule_process.png)
 
-![DolphinScheduler Process Success](img/dolphinscheduler/ds_process_success.png)
+![DolphinScheduler Process Success](img/pulsar_mysql/dolphinscheduler/ds_process_success.png)
 
-![DolphinScheduler Process Instance](img/dolphinscheduler/ds_process_instance.png)
+![DolphinScheduler Process Instance](img/pulsar_mysql/dolphinscheduler/ds_process_instance.png)
 
 查看 DolphinScheduler 任务实例日志。输出如下日志表示配置成功
 
-![DolphinScheduler Schedule Success](img/dolphinscheduler/ds_schedule_success.png)
+![DolphinScheduler Schedule Success](img/pulsar_mysql/dolphinscheduler/ds_schedule_success.png)
 
 ## 测试数据
 
@@ -93,4 +93,4 @@ sidebar_position: 1
 
 然后进入 Mysql，查看库表数据，可以看到数据已经同步到 MySQL 中。
 
-![MySQL Result](img/dolphinscheduler/mysql_result.png)
+![MySQL Result](img/pulsar_mysql/dolphinscheduler/mysql_result.png)
