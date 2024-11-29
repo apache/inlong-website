@@ -1,11 +1,11 @@
 ---
 title: 使用第三方 DolphinScheduler 调度引擎
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 在接下来的内容中，我们将介绍如何在 Apache InLong 中集成第三方调度引擎 DolphinScheduler 来创建离线数据同步。
 
-## ## 环境部署
+## 环境部署
 
 ### 安装 InLong
 
@@ -21,7 +21,7 @@ sidebar_position: 1
 
 ### 在 DolphinScheduler 上的操作
 
-在使用 DolphinScheduler 作为调度引擎之前，请确保手头有正常可用的 DolphinScheduler。如果您需要为自己部署一个 DolphinScheduler，请参考 [DolphinScheduler 官方文档](https://dolphinscheduler.apache.org/zh-cn)。
+在使用 DolphinScheduler 作为调度引擎之前，请确保有可以提供服务的 DolphinScheduler 。如果您需要为自己部署一个 DolphinScheduler，请参考 [DolphinScheduler 官方文档](https://dolphinscheduler.apache.org/zh-cn)。
 
 ![DolphinScheduler Security](img/pulsar_mysql/dolphinscheduler/ds_security.png)
 

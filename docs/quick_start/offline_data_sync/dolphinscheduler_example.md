@@ -1,9 +1,9 @@
 ---
 title: Use DolphinScheduler third-party scheduling engine
-sidebar_position: 1
+sidebar_position: 2
 ---
 
-In the following content, we will introduce how to use DolphinScheduler third-party schedule engine in Apache InLong to create offline data synchronization.
+In the following content, we will introduce how to use DolphinScheduler, a third-party schedule engine in Apache InLong to create offline data synchronization.
 
 ## Deployment
 
