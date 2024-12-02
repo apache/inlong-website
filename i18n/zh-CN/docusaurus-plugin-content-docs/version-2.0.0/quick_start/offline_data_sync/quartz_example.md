@@ -9,8 +9,8 @@ sidebar_position: 1
 ### 安装 InLong
 
 在开始之前，我们需要安装 InLong 的全部组件，这里提供两种方式：
-- [Docker 部署](../../deployment/docker.md)（推荐）
-- [Bare Metal 部署](../../deployment/bare_metal.md)
+- [Docker 部署](deployment/docker.md)（推荐）
+- [Bare Metal 部署](deployment/bare_metal.md)
 
 ### 添加 Connectors
 
