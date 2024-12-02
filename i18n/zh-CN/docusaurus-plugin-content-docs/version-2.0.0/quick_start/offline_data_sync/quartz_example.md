@@ -43,11 +43,15 @@ Password: inlong
 ![Create Offline Group](img/pulsar_mysql/quartz/create_offline_group.png)
 
 ### 配置调度规则
-在同步类型勾选为“离线”之后，就可以配置离线任务的调度规则，Apache InLong 提供了多种调度引擎供用户选择，Quartz 是 Apache InLong 内置的调度引擎，这里使用 Quartz 来处理任务
+在同步类型勾选为“离线”之后，就可以配置离线任务的调度规则，调度规则主要由两个部分组成，分别为【调度引擎】和【调度类型】。
+
+#### 调度引擎
+Apache InLong 提供了多种调度引擎供用户选择，Quartz 是 Apache InLong 内置的调度引擎，这里使用 Quartz 来处理任务
 
 ![Schedule Engine Type](img/pulsar_mysql/quartz/schedule_engine_type.png)
 
-对于调度类型目前支持两种：常规和 crontab。
+#### 调度类型
+ Apache InLong 目前支持两种调度类型：常规和 crontab。
 
 常规调度类型配置需要设置以下参数：
 - 调度单位：支持分钟、小时、天、月、年以及单次，单次表示只执行一次

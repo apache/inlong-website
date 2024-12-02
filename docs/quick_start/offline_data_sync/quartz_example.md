@@ -45,11 +45,15 @@ Click on [Synchronization]→[Create], fill in the Group ID, and ensure the [Syn
 ![Create Offline Group](img/pulsar_mysql/quartz/create_offline_group.png)
 
 ### Configuration Scheduling Rules
-After selecting "offline" for [Sync Type], you can configure the [Scheduling Rules] for offline tasks. Apache InLong provide several scheduling engines for users to choose from, Quartz is a build-in schedule engine in Apache InLong use quartz to handle tasks
+After selecting "offline" for [Sync Type], you can configure the [Scheduling Rules] for offline tasks. Scheduling Rules include two parts: [Scheduling Engine] and [Scheduling Type].
+
+#### Scheduling Engine
+Apache InLong provide several scheduling engines for users to choose from, Quartz is a build-in schedule engine in Apache InLong. Here we use quartz to handle tasks
 
 ![Schedule Engine Type](img/pulsar_mysql/quartz/schedule_engine_type.png)
 
-And for Schedule Type, two types are supported: Conventional and Crontab.
+#### Schedule Type
+Apache InLong supports two scheduling types currently: Conventional and Crontab.
 
 Conventional Scheduling Configuration requires the following parameters:
 - Scheduling Unit: Supports minutes, hours, days, months, years, and single execution (single execution means it will run only once).
