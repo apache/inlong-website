@@ -18,13 +18,13 @@ sidebar_position: 1
 > 当前 Apache InLong 的离线数据同步能力只支持 Flink-1.18 版本，所以请下载 1.18 版本的 connectors。
 
 ## 集群初始化
-InLong 服务启动后，可以访问 InLong Dashboard 地址 http://localhost，并使用以下默认账号登录:
+InLong 服务启动后，可以访问 InLong Dashboard 地址 `http://localhost`，并使用以下默认账号登录:
 ```
 User: admin
 Password: inlong
 ```
 ### 创建集群标签
-页面点击 【集群管理】→【标签管理】→【新建】
+页面点击 【集群管理】→【标签管理】→【新建】。
 
 ![Create Cluster Tag](img/pulsar_mysql/quartz/cluster_tag.png)
 
@@ -46,7 +46,7 @@ Password: inlong
 在同步类型勾选为“离线”之后，就可以配置离线任务的调度规则，调度规则主要由两个部分组成，分别为【调度引擎】和【调度类型】。
 
 #### 调度引擎
-Apache InLong 提供了多种调度引擎供用户选择，Quartz 是 Apache InLong 内置的调度引擎，这里使用 Quartz 来处理任务
+Apache InLong 提供了多种调度引擎供用户选择，Quartz 是 Apache InLong 内置的调度引擎，这里使用 Quartz 来处理任务。
 
 ![Schedule Engine Type](img/pulsar_mysql/quartz/schedule_engine_type.png)
 
@@ -54,16 +54,16 @@ Apache InLong 提供了多种调度引擎供用户选择，Quartz 是 Apache InL
  Apache InLong 目前支持两种调度类型：常规和 crontab。
 
 常规调度类型配置需要设置以下参数：
-- 调度单位：支持分钟、小时、天、月、年以及单次，单次表示只执行一次
-- 调度周期：表示两次任务调度之间的时间间隔
-- 延迟时间：表示任务启动的延迟时间
-- 有效时间：包括起始时间和结束时间，调度任务只会在这个时间范围内执行
+- 调度单位：支持分钟、小时、天、月、年以及单次，单次表示只执行一次。
+- 调度周期：表示两次任务调度之间的时间间隔。
+- 延迟时间：表示任务启动的延迟时间。
+- 有效时间：包括起始时间和结束时间，调度任务只会在这个时间范围内执行。
 
 ![Create Offline Group](img/pulsar_mysql/quartz/normal_schedule.png)
 
 crontab 调度类型需要设置以下参数：
-- 有效时间：包括起始时间和结束时间，调度任务只会在这个时间范围内执行
-- crontab 表达式：表示任务的周期，比如 0 */5 * * * ?
+- 有效时间：包括起始时间和结束时间，调度任务只会在这个时间范围内执行。
+- crontab 表达式：表示任务的周期，比如 `0 */5 * * * ?`。
 
 ![Crontab Schedule](img/pulsar_mysql/quartz/cron_schedule.png)
 
@@ -92,7 +92,7 @@ CREATE TABLE sink_table (
 
 ### 配置字段信息
 
-分别在 【源字段】 和 【目标字段】中配置 Schema 映射信息，完成后点击 【提交审批】
+分别在 【源字段】 和 【目标字段】中配置 Schema 映射信息，完成后点击 【提交审批】。
 
 ![Create Source Fields](img/pulsar_mysql/quartz/source_field.png)
 
@@ -100,7 +100,7 @@ CREATE TABLE sink_table (
 
 ### 审批数据流
 
-页面点击【审批管理】->【我的审批】->【详情】->【通过】
+页面点击【审批管理】->【我的审批】->【详情】->【通过】。
 
 ![Approve](img/pulsar_mysql/quartz/approve.png)
 

@@ -18,7 +18,7 @@ Download the [connectors](https://inlong.apache.org/downloads/) corresponding to
 > Currently, Apache InLong's offline data synchronization capability only supports Flink-1.18, so please download the 1.18 version of connectors.
 
 ## Cluster Initialize
-When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.
+When all containers are successfully started, you can access the InLong dashboard address `http://localhost`, and use the following default account to log in.
 ```
 User: admin
 Password: inlong
@@ -48,7 +48,7 @@ Click on [Synchronization]→[Create], fill in the Group ID, and ensure the [Syn
 After selecting "offline" for [Sync Type], you can configure the [Scheduling Rules] for offline tasks. Scheduling Rules include two parts: [Scheduling Engine] and [Scheduling Type].
 
 #### Scheduling Engine
-Apache InLong provide several scheduling engines for users to choose from, Quartz is a build-in schedule engine in Apache InLong. Here we use quartz to handle tasks
+Apache InLong provide several scheduling engines for users to choose from, Quartz is a build-in schedule engine in Apache InLong. Here we use quartz to handle tasks.
 
 ![Schedule Engine Type](img/pulsar_mysql/quartz/schedule_engine_type.png)
 
@@ -65,7 +65,7 @@ Conventional Scheduling Configuration requires the following parameters:
 
 Crontab Scheduling requires the following parameters:
 - Valid Time: Includes start time and end time; the scheduled task will only execute within this time range.
-- Crontab Expression: Indicates the task cycle, e.g., `0 */5 * * * ?`
+- Crontab Expression: Indicates the task cycle, e.g. `0 */5 * * * ?`
 
 ![Cron Schedule Rule](img/pulsar_mysql/quartz/cron_schedule.png)
 

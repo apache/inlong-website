@@ -27,7 +27,7 @@ sidebar_position: 2
 
 ![DolphinScheduler Token Manager](img/pulsar_mysql/dolphinscheduler/ds_token_manager.png)
 
-进入令牌管理器页面创建一个令牌供 InLong 进行访问
+进入令牌管理器页面创建一个令牌供 InLong 进行访问。
 
 ![DolphinScheduler Token Generate](img/pulsar_mysql/dolphinscheduler/ds_token_generate.png)
 
@@ -37,7 +37,7 @@ sidebar_position: 2
 
 ### 修改 InLong Manager 中的配置
 
-对于第三方调度引擎，我们需要在 InLong Manager 中修改配置
+对于第三方调度引擎，我们需要在 InLong Manager 中修改配置。
 
 对于 DolphinScheduler 引擎，需要修改以下配置：
 
@@ -51,7 +51,7 @@ sidebar_position: 2
 
 ### 在离线同步任务中使用 DolphinScheduler
 
-在配置离线同步任务时，在选择调度引擎时选择 DolphinScheduler，然后配置其他参数
+在配置离线同步任务时，在选择调度引擎时选择 DolphinScheduler，然后配置其他参数。
 
 ![DolphinScheduler Task Configuration](img/pulsar_mysql/dolphinscheduler/ds_task_conf.png)
 
@@ -65,7 +65,7 @@ sidebar_position: 2
 
 ![DolphinScheduler Process Instance](img/pulsar_mysql/dolphinscheduler/ds_process_instance.png)
 
-查看 DolphinScheduler 任务实例日志。输出如下日志表示配置成功
+查看 DolphinScheduler 任务实例日志，输出如下日志表示配置成功。
 
 ![DolphinScheduler Schedule Success](img/pulsar_mysql/dolphinscheduler/ds_schedule_success.png)
 

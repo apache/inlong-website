@@ -22,13 +22,13 @@ Download the [connectors](https://inlong.apache.org/downloads/) corresponding to
 
 ### Operations on DolphinScheduler
 
-Before using DolphinScheduler as your scheduling engine, please make sure you have a working DolphinScheduler on hand. If you need to deploy a DolphinScheduler for yourself, please refer to the [DolphinScheduler Official Document](https://dolphinscheduler.apache.org/zh-cn)
+Before using DolphinScheduler as your scheduling engine, please make sure you have a working DolphinScheduler on hand. If you need to deploy a DolphinScheduler for yourself, please refer to the [DolphinScheduler Official Document](https://dolphinscheduler.apache.org/zh-cn).
 
 ![DolphinScheduler Security](img/pulsar_mysql/dolphinscheduler/ds_security.png)
 
 ![DolphinScheduler Token Manager](img/pulsar_mysql/dolphinscheduler/ds_token_manager.png)
 
-Go into Token Manager page to create a token for InLong to access
+Go into Token Manager page to create a token for InLong to access.
 
 ![DolphinScheduler Token Generate](img/pulsar_mysql/dolphinscheduler/ds_token_generate.png)
 
@@ -38,7 +38,7 @@ Set parameters for the token according to the steps in the figure, include [Expi
 
 ### Modify configuration in InLong Manager
 
-For third-party scheduling engine, we need to modify configurations in manager
+For third-party scheduling engine, we need to modify configurations in manager.
 
 For DolphinScheduler engine there are following configurations need to be modified:
 
@@ -52,11 +52,11 @@ After doing this, restart the InLong Manager to ensure the configuration is enab
 
 ### Use DolphinScheduler in offline synchronization
 
-During configure the offline synchronization task, choose DolphinScheduler when selecting the scheduling engine, then configure other parameters
+During configure the offline synchronization task, choose DolphinScheduler when selecting the scheduling engine, then configure other parameters.
 
 ![DolphinScheduler Task Configuration](img/pulsar_mysql/dolphinscheduler/ds_task_conf.png)
 
-For details about how to manage clusters and configure data nodes, see [Use Quartz built-in scheduling engine](quartz_example.md)
+For details about how to manage clusters and configure data nodes, see [Use Quartz built-in scheduling engine](quartz_example.md).
 
 After approval data flow, return to the [Synchronization] page and wait for the task configuration to succeed. Once configured successfully, the DolphinScheduler will periodically calls back InLong to synchronize offline data and the Manager will periodically submit Flink Batch Jobs to the Flink cluster.
 
@@ -66,7 +66,7 @@ After approval data flow, return to the [Synchronization] page and wait for the 
 
 ![DolphinScheduler Process Instance](img/pulsar_mysql/dolphinscheduler/ds_process_instance.png)
 
-View the DolphinScheduler task instance logs. The following logs indicate that the configuration is successful
+View the DolphinScheduler task instance logs. The following logs indicate that the configuration is successful.
 
 ![DolphinScheduler Schedule Success](img/pulsar_mysql/dolphinscheduler/ds_schedule_success.png)
 
