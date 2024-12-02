@@ -49,9 +49,9 @@ After selecting "offline" for [Sync Type], you can configure the [Scheduling Rul
 
 ![Schedule Engine Type](img/pulsar_mysql/quartz/schedule_engine_type.png)
 
-And for Schedule Type, two types are supported: Conventional and Crontab.
+And for Scheduling Rules, two types are supported: Conventional and Crontab.
 
-Conventional Scheduling Configuration requires the following parameters:
+Conventional Scheduling Rule Configuration requires the following parameters:
 - Scheduling Unit: Supports minutes, hours, days, months, years, and single execution (single execution means it will run only once).
 - Scheduling Interval: Indicates the time interval between two task schedules.
 - Delay Time: Indicates the delay time for task startup.
@@ -59,7 +59,7 @@ Conventional Scheduling Configuration requires the following parameters:
 
 ![Conventional Schedule Rule](img/pulsar_mysql/quartz/conventional_schedule.png)
 
-Crontab Scheduling requires the following parameters:
+Crontab Scheduling Rule requires the following parameters:
 - Valid Time: Includes start time and end time; the scheduled task will only execute within this time range.
 - Crontab Expression: Indicates the task cycle, e.g., `0 */5 * * * ?`
 
