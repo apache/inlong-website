@@ -57,7 +57,7 @@ sidebar_position: 2
 
 集群管理和相关数据节点的配置请参见[使用内置的 Quartz 调度引擎](quartz_example.md)。
 
-审批数据流后，返回【数据同步】页面，等待任务配置成功，配置成功后，DolphinScheduler 将定期回调 InLong Manager，并周期提交 Flink Batch Job 到 Flink 集群。
+审批数据流后，返回【数据同步】页面，等待任务配置成功，配置成功后，DolphinScheduler 将定期回调 InLong Manager，并由 InLong Manager 周期提交 Flink Batch Job 到 Flink 集群。
 
 ![DolphinScheduler Schedule Process](img/pulsar_mysql/dolphinscheduler/ds_schedule_process.png)
 
