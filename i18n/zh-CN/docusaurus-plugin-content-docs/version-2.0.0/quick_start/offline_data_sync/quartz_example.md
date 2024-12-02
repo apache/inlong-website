@@ -47,9 +47,9 @@ Password: inlong
 
 ![Schedule Engine Type](img/pulsar_mysql/quartz/schedule_engine_type.png)
 
-对于调度规则目前支持两种：常规和 crontab。
+对于调度类型目前支持两种：常规和 crontab。
 
-常规调度规则配置需要设置以下参数：
+常规调度类型配置需要设置以下参数：
 - 调度单位：支持分钟、小时、天、月、年以及单次，单次表示只执行一次
 - 调度周期：表示两次任务调度之间的时间间隔
 - 延迟时间：表示任务启动的延迟时间
@@ -57,7 +57,7 @@ Password: inlong
 
 ![Create Offline Group](img/pulsar_mysql/quartz/normal_schedule.png)
 
-crontab 调度规则需要设置以下参数：
+crontab 调度类型需要设置以下参数：
 - 有效时间：包括起始时间和结束时间，调度任务只会在这个时间范围内执行
 - crontab 表达式：表示任务的周期，比如 0 */5 * * * ?
 
