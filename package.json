@@ -28,7 +28,7 @@
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "swagger-ui-react": "^5.7.2",
+    "swagger-ui-react": "^5.18.2",
     "url-loader": "^4.1.1"
   },
   "browserslist": {
