@@ -58,7 +58,7 @@ CREATE TABLE myUserTable (
   pv BIGINT,
   PRIMARY KEY (user_id) NOT ENFORCED
 ) WITH (
-  'connector' = 'elasticsearch-7',
+  'connector' = 'elasticsearch7-inlong',
   'hosts' = 'http://localhost:9200',
   'index' = 'users'
 );

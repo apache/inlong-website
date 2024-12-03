@@ -59,7 +59,7 @@ Flink SQL> CREATE TABLE kafka_extract_node (
 -- Read data
 Flink SQL> SELECT * FROM kafka_extract_node;
 ```
-* connector is `upsert-kafka`
+* connector is `upsert-kafka-inlong`
 ```sql
 -- Set checkpoint every 3000 milliseconds                       
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';

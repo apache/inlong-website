@@ -49,7 +49,7 @@ Flink SQL> CREATE TABLE kafka_load_node (
            'format' = 'csv'
            )
 ```
-* 连接器是 `upsert-kafka`
+* 连接器是 `upsert-kafka-inlong`
 ```sql
 -- 使用 Flink SQL 创建 Kafka 表 'kafka_load_node'
 Flink SQL> CREATE TABLE kafka_load_node (

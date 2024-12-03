@@ -57,7 +57,7 @@ Flink SQL> CREATE TABLE kafka_extract_node (
 -- 读取数据
 Flink SQL> SELECT * FROM kafka_extract_node;
 ```
-* 连接器是 `upsert-kafka`
+* 连接器是 `upsert-kafka-inlong`
 ```sql
 -- 设置 Checkpoint 为 3000 毫秒                       
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
