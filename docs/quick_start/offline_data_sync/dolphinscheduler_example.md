@@ -42,9 +42,9 @@ For third-party scheduling engine, we need to modify configurations in manager.
 
 For DolphinScheduler engine there are following configurations need to be modified:
 
-* `schedule.engine.inlong.manager.url` : Third-party scheduling engine needs to access the inlong manager through this url
+* `schedule.engine.inlong.manager.url` : Third-party scheduling engine needs to access the inlong manager through this url.
 * `schedule.engine.dolphinscheduler.url` : DolphinScheduler deployment url, general format is http://{ip}:{port}/dolphinscheduler
-* `schedule.engine.dolphinscheduler.token` : Token you just generated in Token Manager of DolphinScheduler
+* `schedule.engine.dolphinscheduler.token` : Token you just generated in Token Manager of DolphinScheduler.
 
 ![InLong Manager Configuration](img/pulsar_mysql/dolphinscheduler/inlong_manager_conf.png)
 
