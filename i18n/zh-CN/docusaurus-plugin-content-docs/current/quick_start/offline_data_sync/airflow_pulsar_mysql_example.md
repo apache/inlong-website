@@ -87,7 +87,7 @@ schedule.engine.airflow.creator.id=dag_creator
 ### 创建数据流组
 ![airflow_data_stream_group](img/pulsar_mysql/airflow/airflow_data_stream_group.png)
 
-后续步骤请参照: [Pulsar 到 MySQL 示例](./pulsar_mysql_example.md)
+后续步骤请参照: [使用内置的 Quartz 调度引擎](./quartz_example.md)
 
 ### 创建 Airflow 离线任务
 

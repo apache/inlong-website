@@ -1,9 +1,9 @@
 ---
-title: Pulsar to MySQL Example
+title: Use Quartz built-in scheduling engine
 sidebar_position: 1
 ---
 
-In the following content, we will introduce how to use Apache InLong to create offline data synchronization from Pulsar to MySQL through a complete example.
+In the following content, we will introduce how to use built-in schedule engine in Apache InLong to create offline data synchronization from Pulsar to MySQL through a complete example.
 
 ## Deployment
 ### Install InLong
@@ -18,7 +18,7 @@ Download the [connectors](https://inlong.apache.org/downloads/) corresponding to
 > Currently, Apache InLong's offline data synchronization capability only supports Flink-1.18, so please download the 1.18 version of connectors.
 
 ## Cluster Initialize
-When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.
+When all containers are successfully started, you can access the InLong dashboard address `http://localhost`, and use the following default account to log in.
 ```
 User: admin
 Password: inlong
@@ -45,7 +45,15 @@ Click on [Synchronization]→[Create], fill in the Group ID, and ensure the [Syn
 ![Create Offline Group](img/pulsar_mysql/create_offline_group.png)
 
 ### Configuration Scheduling Rules
-After selecting "offline" for [Sync Type], you can configure the [Scheduling Rules] for offline tasks. Currently, two types are supported: Conventional and Crontab.
+After selecting "offline" for [Sync Type], you can configure the [Scheduling Rules] for offline tasks. Scheduling Rules include two parts: [Scheduling Engine] and [Scheduling Type].
+
+#### Scheduling Engine
+Apache InLong provide several scheduling engines for users to choose from, Quartz is a build-in schedule engine in Apache InLong. Here we use quartz to handle tasks.
+
+![Schedule Engine Type](img/pulsar_mysql/schedule_engine_type.png)
+
+#### Schedule Type
+Apache InLong supports two scheduling types currently: Conventional and Crontab.
 
 Conventional Scheduling Configuration requires the following parameters:
 - Scheduling Unit: Supports minutes, hours, days, months, years, and single execution (single execution means it will run only once).
@@ -57,7 +65,7 @@ Conventional Scheduling Configuration requires the following parameters:
 
 Crontab Scheduling requires the following parameters:
 - Valid Time: Includes start time and end time; the scheduled task will only execute within this time range.
-- Crontab Expression: Indicates the task cycle, e.g., `0 */5 * * * ?`
+- Crontab Expression: Indicates the task cycle, e.g. `0 */5 * * * ?`
 
 ![Cron Schedule Rule](img/pulsar_mysql/cron_schedule.png)
 

@@ -1,9 +1,9 @@
 ---
-title: Pulsar 到 MySQL 示例
+title: 使用内置的 Quartz 调度引擎
 sidebar_position: 1
 ---
 
-在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 创建 Pulsar -> MySQL 的离线数据同步。
+在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 内置的调度引擎创建 Pulsar -> MySQL 的离线数据同步。
 
 ## 环境部署
 ### 安装 InLong
@@ -18,7 +18,7 @@ sidebar_position: 1
 > 当前 Apache InLong 的离线数据同步能力只支持 Flink-1.18 版本，所以请下载 1.18 版本的 connectors。
 
 ## 集群初始化
-InLong 服务启动后，可以访问 InLong Dashboard 地址 http://localhost，并使用以下默认账号登录:
+InLong 服务启动后，可以访问 InLong Dashboard 地址 `http://localhost`，并使用以下默认账号登录:
 ```
 User: admin
 Password: inlong
@@ -43,9 +43,17 @@ Password: inlong
 ![Create Offline Group](img/pulsar_mysql/quartz/create_offline_group.png)
 
 ### 配置调度规则
-在同步类型勾选为“离线”之后，就可以配置离线任务的调度规则，目前支持两种：常规和 crontab。
+在同步类型勾选为“离线”之后，就可以配置离线任务的调度规则，调度规则主要由两个部分组成，分别为【调度引擎】和【调度类型】。
 
-常规调度配置需要设置以下参数：
+#### 调度引擎
+Apache InLong 提供了多种调度引擎供用户选择，Quartz 是 Apache InLong 内置的调度引擎，这里使用 Quartz 来处理任务。
+
+![Schedule Engine Type](img/pulsar_mysql/quartz/schedule_engine_type.png)
+
+#### 调度类型
+ Apache InLong 目前支持两种调度类型：常规和 crontab。
+
+常规调度类型配置需要设置以下参数：
 - 调度单位：支持分钟、小时、天、月、年以及单次，单次表示只执行一次。
 - 调度周期：表示两次任务调度之间的时间间隔。
 - 延迟时间：表示任务启动的延迟时间。
@@ -53,9 +61,9 @@ Password: inlong
 
 ![Create Offline Group](img/pulsar_mysql/quartz/normal_schedule.png)
 
-crontab 调度需要设置以下参数：
+crontab 调度类型需要设置以下参数：
 - 有效时间：包括起始时间和结束时间，调度任务只会在这个时间范围内执行。
-- crontab 表达式：表示任务的周期，比如 `0 */5 * * * ?` 。
+- crontab 表达式：表示任务的周期，比如 `0 */5 * * * ?`。
 
 ![Crontab Schedule](img/pulsar_mysql/quartz/cron_schedule.png)
 

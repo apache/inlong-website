@@ -83,7 +83,7 @@ schedule.engine.airflow.creator.id=dag_creator
 ### Create Data Stream Group
 ![airflow_data_stream_group](img/pulsar_mysql/airflow/airflow_data_stream_group.png)
 
-Please refer to the following steps: [Pulsar to MySQL Example](./pulsar_mysql_example.md)
+Please refer to the following steps: [Use Quartz built-in scheduling engine](./quartz_example.md)
 ### Create Airflow Offline Task
 
 After approval and configuration, Inlong Manager will trigger `dag_creator` through the Airflow API to create the offline task DAG:
