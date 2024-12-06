@@ -20,10 +20,40 @@ Download the [connectors](https://inlong.apache.org/downloads/) corresponding to
 
 > Currently, Apache InLong's offline data synchronization capability only supports Flink-1.18, so please download the 1.18 version of connectors.
 
-### Operations on DolphinScheduler
+## Create Clusters And Data Target
+When all containers are successfully started, you can access the InLong dashboard address `http://localhost`, and use the following default account to log in.
+```
+User: admin
+Password: inlong
+```
+
+### Create Cluster Tag
+![DolphinScheduler Create Cluster Tag](img/pulsar_mysql/dolphinscheduler/ds_create_cluster_tag.png)
+
+### Register Pulsar Cluster
+
+![DolphinScheduler Create Pulsar Cluster](img/pulsar_mysql/dolphinscheduler/ds_create_pulsar_cluster.png)
+
+### Create Data Target
+
+![DolphinScheduler Create Data Target](img/pulsar_mysql/dolphinscheduler/ds_create_data_target.png)
+
+Execute the following SQL statement:
+
+```mysql
+CREATE TABLE sink_table (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## DolphinScheduler Initialize
+### Deploy DolphinScheduler
 
 Before using DolphinScheduler as your scheduling engine, please make sure you have a working DolphinScheduler on hand. If you need to deploy a DolphinScheduler for yourself, please refer to the [DolphinScheduler Official Document](https://dolphinscheduler.apache.org/zh-cn).
 
+### Get DolphinScheduler token
 ![DolphinScheduler Security](img/pulsar_mysql/dolphinscheduler/ds_security.png)
 
 ![DolphinScheduler Token Manager](img/pulsar_mysql/dolphinscheduler/ds_token_manager.png)
@@ -50,13 +80,19 @@ For DolphinScheduler engine there are following configurations need to be modifi
 
 After doing this, restart the InLong Manager to ensure the configuration is enabled.
 
-### Use DolphinScheduler in offline synchronization
+## Task Creation
+### Create Synchronization Task
+![DolphinScheduler Create Synchronization Task](img/pulsar_mysql/dolphinscheduler/ds_create_synchronization_task.png)
+
+### Create Data Stream Group
 
 During configure the offline synchronization task, choose DolphinScheduler when selecting the scheduling engine, then configure other parameters.
 
 ![DolphinScheduler Task Configuration](img/pulsar_mysql/dolphinscheduler/ds_task_conf.png)
 
 For details about how to manage clusters and configure data nodes, see [Quartz Scheduling Engine Example](quartz_example.md).
+
+### Create DolphinScheduler Offline Task
 
 After approval data flow, return to the [Synchronization] page and wait for the task configuration to succeed. Once configured successfully, the DolphinScheduler will periodically calls back InLong to synchronize offline data and the Manager will periodically submit Flink Batch Jobs to the Flink cluster.
 

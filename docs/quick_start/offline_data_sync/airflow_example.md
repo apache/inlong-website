@@ -86,6 +86,7 @@ schedule.engine.airflow.creator.id=dag_creator
 ### Create Synchronization Task
 
 ![Airflow Create Synchronization Task](img/pulsar_mysql/airflow/airflow_create_synchronization_task.png)
+
 ### Create Data Stream Group
 ![Airflow Data Stream Group](img/pulsar_mysql/airflow/airflow_data_stream_group.png)
 

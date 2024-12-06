@@ -19,10 +19,39 @@ sidebar_position: 2
 下载与 Flink 版本对应的 [connectors](https://inlong.apache.org/zh-CN/downloads)，解压后将 `sort-connector-jdbc-[version]-SNAPSHOT.jar` 放在 `/inlong-sort/connectors/` 目录下。
 > 当前 Apache InLong 的离线数据同步能力只支持 Flink-1.18 版本，所以请下载 1.18 版本的 connectors。
 
-### 在 DolphinScheduler 上的操作
+## 创建集群和数据目标
+InLong 服务启动后，可以访问 InLong Dashboard 地址 `http://localhost`，并使用以下默认账号登录：
+```
+User: admin
+Password: inlong
+```
+### 创建集群标签
+![DolphinScheduler Create Cluster Tag](img/pulsar_mysql/dolphinscheduler/ds_create_cluster_tag.png)
+
+### 注册 Pulsar 集群
+
+![DolphinScheduler Create Pulsar Cluster](img/pulsar_mysql/dolphinscheduler/ds_create_pulsar_cluster.png)
+
+### 创建数据目标
+
+![DolphinScheduler Create Data Target](img/pulsar_mysql/dolphinscheduler/ds_create_data_target.png)
+
+执行如下 Sql 语句：
+
+```mysql
+CREATE TABLE sink_table (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    create_time TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+```
+
+## DolphinScheduler 初始化
+### 部署 DolphinScheduler 
 
 在使用 DolphinScheduler 作为调度引擎之前，请确保有可以提供服务的 DolphinScheduler 。如果您需要为自己部署一个 DolphinScheduler，请参考 [DolphinScheduler 官方文档](https://dolphinscheduler.apache.org/zh-cn)。
 
+### 获取 DolphinScheduler 令牌
 ![DolphinScheduler Security](img/pulsar_mysql/dolphinscheduler/ds_security.png)
 
 ![DolphinScheduler Token Manager](img/pulsar_mysql/dolphinscheduler/ds_token_manager.png)
@@ -49,13 +78,19 @@ sidebar_position: 2
 
 完成这些操作后，重新启动 InLong Manager 以确保配置成功启用。
 
-### 在离线同步任务中使用 DolphinScheduler
+## 任务创建
+### 创建同步任务
+![DolphinScheduler Create Synchronization Task](img/pulsar_mysql/dolphinscheduler/ds_create_synchronization_task.png)
+
+### 创建数据流组
 
 在配置离线同步任务时，在选择调度引擎时选择 DolphinScheduler，然后配置其他参数。
 
 ![DolphinScheduler Task Configuration](img/pulsar_mysql/dolphinscheduler/ds_task_conf.png)
 
 集群管理和相关数据节点的配置请参见[Quartz 调度引擎示例](quartz_example.md)。
+
+### 创建 DolphinScheduler 离线任务
 
 审批数据流后，返回【数据同步】页面，等待任务配置成功，配置成功后，DolphinScheduler 将定期回调 InLong Manager，并由 InLong Manager 周期提交 Flink Batch Job 到 Flink 集群。
 
