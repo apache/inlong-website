@@ -1,9 +1,9 @@
 ---
-title: 使用内置的 Quartz 调度引擎
+title: Quartz 调度引擎示例
 sidebar_position: 1
 ---
 
-在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 内置的调度引擎创建 Pulsar -> MySQL 的离线数据同步。
+在下面的内容中，我们将通过一个完整的示例介绍如何使用 Apache InLong 内置的调度引擎 (Quartz) 创建 Pulsar 到 MySQL 的离线数据同步。
 
 ## 环境部署
 ### 安装 InLong
