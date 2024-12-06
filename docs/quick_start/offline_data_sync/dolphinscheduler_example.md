@@ -1,9 +1,9 @@
 ---
-title: Use DolphinScheduler third-party scheduling engine
+title: DolphinScheduler Scheduling Engine Example
 sidebar_position: 2
 ---
 
-In the following content, we will introduce how to use DolphinScheduler, a third-party schedule engine in Apache InLong to create offline data synchronization.
+In the following sections, we will walk through a complete example to demonstrate how to integrate the third-party scheduling engine DolphinScheduler into Apache InLong to create an offline data synchronization from Pulsar to MySQL.
 
 ## Deployment
 
@@ -36,7 +36,7 @@ Set parameters for the token according to the steps in the figure, include [Expi
 
 ![DolphinScheduler Token Copy](img/pulsar_mysql/dolphinscheduler/ds_token_copy.png)
 
-### Modify configuration in InLong Manager
+### Configure InLong Manager
 
 For third-party scheduling engine, we need to modify configurations in manager.
 
@@ -56,7 +56,7 @@ During configure the offline synchronization task, choose DolphinScheduler when 
 
 ![DolphinScheduler Task Configuration](img/pulsar_mysql/dolphinscheduler/ds_task_conf.png)
 
-For details about how to manage clusters and configure data nodes, see [Use Quartz built-in scheduling engine](quartz_example.md).
+For details about how to manage clusters and configure data nodes, see [Quartz Scheduling Engine Example](quartz_example.md).
 
 After approval data flow, return to the [Synchronization] page and wait for the task configuration to succeed. Once configured successfully, the DolphinScheduler will periodically calls back InLong to synchronize offline data and the Manager will periodically submit Flink Batch Jobs to the Flink cluster.
 
@@ -71,7 +71,6 @@ View the DolphinScheduler task instance logs. The following logs indicate that t
 ![DolphinScheduler Schedule Success](img/pulsar_mysql/dolphinscheduler/ds_schedule_success.png)
 
 ## Test Data
-
 ### Sending Data
 
 Use the Pulsar SDK to produce data into the Pulsar topic. An example is as follows:

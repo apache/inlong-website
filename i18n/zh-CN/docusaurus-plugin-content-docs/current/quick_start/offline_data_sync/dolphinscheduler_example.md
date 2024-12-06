@@ -1,9 +1,9 @@
 ---
-title: 使用第三方 DolphinScheduler 调度引擎
+title: DolphinScheduler 调度引擎示例
 sidebar_position: 2
 ---
 
-在接下来的内容中，我们将介绍如何在 Apache InLong 中集成第三方调度引擎 DolphinScheduler 来创建离线数据同步。
+在下面的内容中，我们将通过一个完整的示例介绍如何在 Apache InLong 中集成第三方调度引擎 DolphinScheduler 来创建 Pulsar 到 MySQL 的离线数据同步。
 
 ## 环境部署
 
@@ -35,7 +35,7 @@ sidebar_position: 2
 
 ![DolphinScheduler Token Copy](img/pulsar_mysql/dolphinscheduler/ds_token_copy.png)
 
-### 修改 InLong Manager 中的配置
+### 配置 InLong Manager
 
 对于第三方调度引擎，我们需要在 InLong Manager 中修改配置。
 
@@ -55,7 +55,7 @@ sidebar_position: 2
 
 ![DolphinScheduler Task Configuration](img/pulsar_mysql/dolphinscheduler/ds_task_conf.png)
 
-集群管理和相关数据节点的配置请参见[使用内置的 Quartz 调度引擎](quartz_example.md)。
+集群管理和相关数据节点的配置请参见[Quartz 调度引擎示例](quartz_example.md)。
 
 审批数据流后，返回【数据同步】页面，等待任务配置成功，配置成功后，DolphinScheduler 将定期回调 InLong Manager，并由 InLong Manager 周期提交 Flink Batch Job 到 Flink 集群。
 
