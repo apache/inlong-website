@@ -88,7 +88,7 @@ CREATE TABLE sink_table (
 
 ![DolphinScheduler Task Configuration](img/pulsar_mysql/dolphinscheduler/ds_task_conf.png)
 
-集群管理和相关数据节点的配置请参见[Quartz 调度引擎示例](quartz_example.md)。
+集群管理和相关数据节点的配置请参见 [Quartz 调度引擎示例](quartz_example.md)。
 
 ### 创建 DolphinScheduler 离线任务
 
