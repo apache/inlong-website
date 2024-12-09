@@ -1,9 +1,9 @@
 ---
-title: Use Quartz built-in scheduling engine
+title: Quartz Scheduling Engine Example
 sidebar_position: 1
 ---
 
-In the following content, we will introduce how to use built-in schedule engine in Apache InLong to create offline data synchronization from Pulsar to MySQL through a complete example.
+In the following sections, we will walk through a complete example to demonstrate how to use Apache InLong's built-in scheduling engine (Quartz) to create an offline data synchronization from Pulsar to MySQL.
 
 ## Deployment
 ### Install InLong
