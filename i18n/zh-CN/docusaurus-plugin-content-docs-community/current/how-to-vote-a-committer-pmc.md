@@ -43,8 +43,8 @@ Please vote accordingly:
 [ ] -1 disapprove with the reason  
   
 Here are three links to his contributions to InLong:
-1. Issues: https://github.com/apache/inlong/pulls?q=${Candidate_GitHub_ID}
-2. PRs   : https://github.com/apache/inlong/issues?q=${Candidate_GitHub_ID}
+1. Issues: https://github.com/apache/inlong/issues/created_by/${Candidate_GitHub_ID}
+2. PRs   : https://github.com/apache/inlong/pulls/created_by/${Candidate_GitHub_ID}
 3. Others:  https://xxx.com/xxx/xxx/?q=${Candidate_GitHub_ID}
 ```
 
