@@ -171,7 +171,7 @@ data into storage systems such as ClickHouse, MySQL, etc. The specific storage t
 
 ### ClickHouse table Schema
 
-```clickhouse
+```sql
 CREATE TABLE apache_inlong_audit.audit_data
 (
     `log_ts`           DateTime COMMENT 'Log timestamp',
@@ -189,12 +189,11 @@ CREATE TABLE apache_inlong_audit.audit_data
     `size`             Int64 COMMENT 'Message size',
     `delay`            Int64 COMMENT 'Message delay',
     `update_time`      DateTime COMMENT 'Update time'
-)
-    ENGINE = ReplicatedMergeTree('/clickhouse/tables/{uuid}/{shard}', '{replica}')
-        PARTITION BY toDate(log_ts)
-        ORDER BY (log_ts, audit_id, inlong_group_id, inlong_stream_id, audit_tag, audit_version, ip)
-        TTL toDateTime(log_ts) + toIntervalDay(8)
-        SETTINGS index_granularity = 8192
+) ENGINE = ReplicatedMergeTree('/clickhouse/tables/{uuid}/{shard}', '{replica}')
+  PARTITION BY toDate(log_ts)
+  ORDER BY (log_ts, audit_id, inlong_group_id, inlong_stream_id, audit_tag, audit_version, ip)
+  TTL toDateTime(log_ts) + toIntervalDay(8)
+  SETTINGS index_granularity = 8192
 ```
 
 As described above, the table uses the ReplicatedMergeTree storage engine to achieve distributed storage and high
@@ -203,7 +202,7 @@ audit_id, inlong_group_id, inlong_stream_id, audit_tag, audit_version, ip ) to o
 
 ### MySQL table Schema
 
-```mysql
+```sql
 CREATE TABLE IF NOT EXISTS `audit_data`
 (
     `id`               int(32)      NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Incremental primary key',

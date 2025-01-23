@@ -10,19 +10,18 @@ The Apache Shiro framework is used in the inlong manager to realize the function
 
 ## Dependency
 - Add Maven Dependency
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>manager-common</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## Code
 - Implement the following interfaces
 ```java
-org.apache.inlong.manager.common.auth.InlongShiro
+package org.apache.inlong.manager.common.auth.InlongShiro
 
 public interface InlongShiro {
 
@@ -51,6 +50,6 @@ public class InlongShiroImpl implements InlongShiro {
 ```
 
 - Modify the application.properties under the manager web module
-```java
+```properties
 inlong.auth.type=Custom
 ```

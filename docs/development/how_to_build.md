@@ -9,11 +9,11 @@ Download Source Code from [InLong Download Page](https://inlong.apache.org/downl
 - Java [JDK 8](https://adoptopenjdk.net/?variant=openjdk8)
 - Maven 3.6.1+
 
-```
+```shell
 $ mvn clean install -DskipTests
 ```
 (Optional) Compile using docker image:
-```
+```shell
 $ docker pull maven:3.6-openjdk-8
 $ docker run -v `pwd`:/inlong  -w /inlong maven:3.6-openjdk-8 mvn clean install -DskipTests
 ```
@@ -33,6 +33,6 @@ inlong-dashboard
 ## Build Docker Images
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 
-```
+```shell
 mvn clean package -DskipTests -Pdocker
 ```

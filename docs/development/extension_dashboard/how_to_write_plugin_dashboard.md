@@ -43,7 +43,7 @@ On the view, we provide two basic view classes, each plugin can implement one or
 
 Below is a basic example, in the plugin, a class that communicates with backend is implemented, containing 3 fields (username, password, format). Among them, `BasicInfo` comes from their different base type classes.
 
-```ts
+```typescript
 import { DataWithBackend } from '@/metas/DataWithBackend';
 import { RenderRow } from '@/metas/RenderRow';
 import { RenderList } from '@/metas/RenderList';

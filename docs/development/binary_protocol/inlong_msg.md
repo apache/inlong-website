@@ -20,11 +20,11 @@ InLongMsg is a binary data packet in a custom format, which consists of a format
 The Magic field has 4 valid values in the current implementation of InLongMsg, which respectively identify 4 different data versions that can be carried in the Payload part (MAGIC0 is an invalid value):
 
 ```java
-    private static final byte[] MAGIC0 = {(byte) 0xf, (byte) 0x0};
-    private static final byte[] MAGIC1 = {(byte) 0xf, (byte) 0x1};
-    private static final byte[] MAGIC2 = {(byte) 0xf, (byte) 0x2};
-    private static final byte[] MAGIC3 = {(byte) 0xf, (byte) 0x3};
-    private static final byte[] MAGIC4 = {(byte) 0xf, (byte) 0x4};
+private static final byte[] MAGIC0 = {(byte) 0xf, (byte) 0x0};
+private static final byte[] MAGIC1 = {(byte) 0xf, (byte) 0x1};
+private static final byte[] MAGIC2 = {(byte) 0xf, (byte) 0x2};
+private static final byte[] MAGIC3 = {(byte) 0xf, (byte) 0x3};
+private static final byte[] MAGIC4 = {(byte) 0xf, (byte) 0x4};
 ```
 The Payload part carries data content in the corresponding format according to the definition of the above Magic field. Regardless of the format used, these contents are ultimately mapped to the original data information reported by the user according to {attribute set, single data} or {attribute set, multiple data}.
 Next, we begin to introduce the corresponding Payload definitions according to different Magic version values.
@@ -150,14 +150,13 @@ The data consumed directly from InLong's message queue (InLong TubeMQ or Pulsar)
 
 ### Add Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>inlong-common</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ### Add Parse Method
 
