@@ -12,14 +12,14 @@ import {siteVariables} from '../../version';
 需要在项目中包含 SDK 的头文件和库，进行 SDK 的使用。头文件和库提供以下两种获取方式：
 - 获取源码自行编译并将 SDK 包部署到本地仓库，见[如何编译](https://inlong.apache.org/docs/next/quick_start/how_to_build/)；
 - 直接引用Apache仓库里的已有库，见
-<pre><code parentName="pre">
-{`<dependency>
+
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>dataproxy-sdk</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 数据上报流程
 引入 SDK 后，通过实例化一个[MessageSender](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/MessageSender.java)接口对象后，调用相关的同步（sendMessage()）或 异步（asyncSendMessage()）接口来完成单条或多条（批量）数据的上报任务。发送Demo可参考 [TcpClientExample.java](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/example/TcpClientExample.java)。
@@ -55,7 +55,7 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
         }
         // 返回sender
         return messageSender;
-    }
+}
 ```
 ### 配置参数
 | 参数名 | 参数说明 | 默认值 |

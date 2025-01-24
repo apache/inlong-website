@@ -23,14 +23,14 @@ SDK [send_demo.cc](https://github.com/apache/inlong/blob/master/inlong-sdk/datap
 SDK supports a process to create one SDK instance, which is multi-thread safe. It also supports a process to create
 multiple SDK instances. Each SDK instance is independent of each other and each SDK instance is also thread-safe
 - Create SDK instance object
-``` 
+```cpp
 InLongApi inlong_api
 ```
 
 - object instance initialization
   Configuration files are in json format, see [Config file description](#Appendix：Config File Description), initialize
   the SDK through the configuration file:
-```
+```cpp
 // Initialize the SDK, the parameter is the path name of the configuration file; a return value of zero indicates successful initialization
 int32_t result = inlong_api.InitApi("/home/conf/config.json");
 ```
@@ -39,22 +39,24 @@ int32_t result = inlong_api.InitApi("/home/conf/config.json");
 The SDK supports single (recommended) and batch sending, both of which are sent in asynchronous mode, and the data
 reporting interface is thread-safe. Before data reporting, the callback function can be set to perform callback
 processing when the data transmission fails. The callback function signature is as follows:
-```
-int32_t callBackFunc(const char* inlong_group_id, const char* inlong_stream_id, const char* msg, int32_t msg_len, const int64_t report_time, const char* client_ip);
-```
-
-- Single data reporting interface
-```
-// Return value: zero means sending is successful, non-zero means failure, see SDKInvalidReuslt in tc_api.h for specific exception return value
+```cpp
 int32_t CallBackFunc(const char* inlong_group_id, const char* inlong_stream_id,
                      const char* msg, int32_t msg_len, 
                      const int64_t report_time, 
                      const char* client_ip);
 ```
 
+- Single data reporting interface
+```cpp
+// Return value: zero means sending is successful, non-zero means failure, see SDKInvalidReuslt in tc_api.h for specific exception return value
+int32_t Send(const char *inlong_group_id, const char *inlong_stream_id,
+             const char *msg, int32_t msg_len,
+             UserCallBack call_back = nullptr)
+```
+
 ### Close SDK
 Call the close interface to close the SDK:
-```
+```cpp
 // A return value of zero means that the shutdown is successful, and subsequent data reporting cannot be performed
 // max_waitms：The maximum number of milliseconds to wait before closing the SDK, waiting for the completion of the SDK internal data sending
 int32_t CloseApi(int32_t max_waitms);

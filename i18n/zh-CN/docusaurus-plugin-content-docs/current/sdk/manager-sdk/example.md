@@ -11,15 +11,14 @@ Apache InLong Manager 是整个数据集成平台面向用户的统一管理入�
 
 ## 依赖
 
-- 增加 maven 依赖
-<pre><code parentName="pre">
-{`<dependency>
+- 添加 maven 依赖
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>manager-client</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 代码
 

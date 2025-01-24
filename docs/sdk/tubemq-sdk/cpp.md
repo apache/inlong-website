@@ -15,7 +15,6 @@ mkdir build && cd build
 cmake .. 
 
 make -j8 # the thread num is based on the cpu cores
-
 ```
 
 The building can also be completed in [docker](https://github.com/apache/inlong/tree/master/inlong-tubemq/tubemq-docker/tubemq-cpp) environment provided by InLong.

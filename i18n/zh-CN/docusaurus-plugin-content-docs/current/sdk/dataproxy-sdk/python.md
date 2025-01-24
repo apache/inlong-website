@@ -22,7 +22,7 @@ Your system's Python site-packages directory is: xxx/xxx
 Enter the target directory for the .so files (Press Enter to use the default site-packages directory):
 ```
 构建过程完成后，您可以在 Python 项目中导入该软件包，使用 InLong DataProxy SDK 上报数据。
-```shell
+```python
 import inlong_dataproxy
 ```
 > **Note**: 当 C++ SDK 或您正在使用的 Python 版本更新时，您需要按照上述步骤重新构建它。

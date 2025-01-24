@@ -20,19 +20,19 @@ import {siteVariables} from '../../version';
 ### 创建 SDK实例
 SDK 支持进程创建1个SDK实例，多线程安全，也支持进程创建多个SDK实例，各个SDK实例相互独立，各个SDK实例也线程安全：
 - 创建SDK实例对象
-```
+```cpp
   InLongApi inlong_api
 ```
 
 - 对象实例初始化 ，配置文件采用 json 格式，见[配置文件说明](#附录：配置文件说明)
-```
+```cpp
 // 初始化SDK，参数为配置文件的路径名；返回值为零表示初始化成功
 int32_t result = inlong_api.InitApi("/home/conf/config.json");
 ```
 
 ### 调用发送接口进行数据上报
 SDK 支持单条（推荐）和批量发送，二者发送过程均为异步模式，数据上报接口是线程安全的。在进行数据上报前，可设置回调函数在数据发送失败时进行回调处理，回调函数签名如下：
-```
+```cpp
 int32_t CallBackFunc(const char* inlong_group_id, const char* inlong_stream_id,
                      const char* msg, int32_t msg_len, 
                      const int64_t report_time, 
@@ -40,16 +40,16 @@ int32_t CallBackFunc(const char* inlong_group_id, const char* inlong_stream_id,
 ```
 
 - 单条数据数据上报接口
-```
+```cpp
 // 返回值：零表示发送成功，非零表示失败，具体异常返回值详见tc_api.h中的SDKInvalidReuslt
-  int32_t Send(const char *inlong_group_id, const char *inlong_stream_id,
-               const char *msg, int32_t msg_len,
-               UserCallBack call_back = nullptr)
+int32_t Send(const char *inlong_group_id, const char *inlong_stream_id,
+             const char *msg, int32_t msg_len,
+             UserCallBack call_back = nullptr)
 ```
 
 ### 关闭 SDK
 调用 close 接口关闭 SDK：
-```
+```cpp
 // 返回值为零表示关闭成功，后续无法再进行数据上报
 // max_waitms：关闭SDK前的等待最大毫秒数，等待SDK内部数据发送完成
 int32_t CloseApi(int32_t max_waitms);

@@ -12,14 +12,14 @@ Create a task on the Dashboard or through the command line, and use `Auto Push` 
 The library of the SDK need to be imported into the project before using the SDK. The library can be obtained in the following two ways:
 - Get the source code and compile it yourself and deploy the SDK package to the local warehouse, see [How to Build](https://inlong.apache.org/docs/next/quick_start/how_to_build/).
 - Imported through maven dependency like this:
-<pre><code parentName="pre">
-{`<dependency>
+
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>dataproxy-sdk</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## Data report process
 After import the SDK, you can instantiate a [MessageSender](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/MessageSender.java) object, call sync(`sendMessage()`) or async(`asyncSendMessage()`) interface to report single or multiple(batch) data. see [Send Demo](https://github.com/apache/inlong/blob/master/inlong-sdk/dataproxy-sdk/src/main/java/org/apache/inlong/sdk/dataproxy/example/TcpClientExample.java). 
@@ -54,7 +54,7 @@ public DefaultMessageSender getMessageSender(String localIP, String inLongManage
         }
         // Return the sender.
         return messageSender;
-    }
+}
 ```
 
 ### ProxyClientConfig  configuration
