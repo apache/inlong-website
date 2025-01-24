@@ -41,7 +41,7 @@ kubectl port-forward $DASHBOARD_POD_NAME 80:$DASHBOARD_CONTAINER_PORT --address=
 ```
 
 之后就可以访问 [http://127.0.0.1:80](http://127.0.0.1:80) 进入 InLong Dashboard 了，默认登录账号为：
-```
+```properties
 User: admin
 Password: inlong
 ```

@@ -35,9 +35,9 @@ InLong 作为一站式、全场景的数据集成平台，将 MQ（图中 Cache 
 
 ```xml
 <dependency>
-<groupId>org.apache.inlong</groupId>
-<artifactId>sort-format-csv</artifactId>
-<version>${inlong.version}</version>
+    <groupId>org.apache.inlong</groupId>
+    <artifactId>sort-format-csv</artifactId>
+    <version>${inlong.version}</version>
 </dependency>
 ```
 
@@ -57,9 +57,9 @@ InLong 作为一站式、全场景的数据集成平台，将 MQ（图中 Cache 
 
 ```xml
 <dependency>
-<groupId>org.apache.inlong</groupId>
-<artifactId>sort-format-kv</artifactId>
-<version>${inlong.version}</version>
+    <groupId>org.apache.inlong</groupId>
+    <artifactId>sort-format-kv</artifactId>
+    <version>${inlong.version}</version>
 </dependency>
 ```
 
@@ -67,8 +67,8 @@ InLong 作为一站式、全场景的数据集成平台，将 MQ（图中 Cache 
 
 | Option                    | Type    | Required | Default value                            | 高级属性 | Remark                                                                                                                                 |
 |---------------------------|---------|----------|------------------------------------------|------|----------------------------------------------------------------------------------------------------------------------------------------|
-| `format.entry-delimiter`  | char    | N        | '&'                                      | N    |                                                                                                                                        |
-| `format.kv-delimiter`     | char    | N        | '='                                      | N    |                                                                                                                                        |
+| `format.entry-delimiter`  | char    | N        | `&`                                      | N    |                                                                                                                                        |
+| `format.kv-delimiter`     | char    | N        | `=`                                      | N    |                                                                                                                                        |
 | `format.escape-character` | char    | N        | disabled                                 | Y    |                                                                                                                                        |
 | `format.quote-character`  | char    | N        | disabled                                 | Y    |                                                                                                                                        |
 | `format.null-literal`     | char    | N        | disabled                                 | Y    |                                                                                                                                        |
@@ -80,9 +80,9 @@ InLong 作为一站式、全场景的数据集成平台，将 MQ（图中 Cache 
 
 ```xml
 <dependency>
-<groupId>org.apache.flink</groupId>
-<artifactId>flink-json</artifactId>
-<version>${flink.version}</version>
+    <groupId>org.apache.flink</groupId>
+    <artifactId>flink-json</artifactId>
+    <version>${flink.version}</version>
 </dependency>
 ```
 
@@ -93,7 +93,7 @@ InLong 作为一站式、全场景的数据集成平台，将 MQ（图中 Cache 
 | Option                           | Type    | Required | Default value | 高级属性 | Remark                                                                                                                                                                    |
 |----------------------------------|---------|----------|---------------|------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `ignore-parse-errors`            | Boolean | N        | false         | N    | 可选标志以跳过具有解析错误而不是失败的字段和行； <br/>如果出现错误，字段设置为 null，默认情况下为 false。                                                                                                             |
-| `map-null-key.mode`              | String  | N        | "FAIL"        | Y    | 可选标志，用于在序列化map数据的空键时控制处理模式。<br/><br/>选项 DROP 将删除map数据的空键条目。<br/>选项 LITERAL 将使用 'map-null-key.literal' 作为 key 关键字。                                                           |
+| `map-null-key.mode`              | String  | N        | "FAIL"        | Y    | 可选标志，用于在序列化map数据的空键时控制处理模式。<br/><br/>选项 DROP 将删除map数据的空键条目。<br/>选项 LITERAL 将使用 `map-null-key.literal` 作为 key 关键字。                                                           |
 | `map-null-key.literal`           | String  | N        | "null"        | Y    | 当“map-null-key.mode”为 LITERAL 时，用于为空键指定字符串文字的可选标志。                                                                                                                        |
 | `encode.decimal-as-plain-number` | Boolean | N        | false         | Y    | 可选标志，用于指定是否将所有小数编码为普通数字而不是科学记数法，默认情况下为 false。                                                                                                                             |
 | `timestamp-format.standard`      | String  | N        | "SQL"         | Y    | 用于指定时间戳格式的可选标志，默认为 SQL。<br/>选项 ISO-8601 将以“yyyy-MM-ddTHH:mm:ss.s{precision}” 格式解析输入时间戳，并以相同格式输出时间戳。 <br/>选项 SQL 将以“yyyy-MM-dd HH:mm:ss.s{precision}”格式解析输入时间戳，并以相同格式输出时间戳。 |

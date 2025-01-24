@@ -18,14 +18,14 @@ Docker Compose 部署了`标准架构`所需要的所有组件，使用 [Apache 
 
 ## 部署
 启动所有组件：
-```
+```shell
 cd docker/docker-compose
 docker-compose up -d
 ```
 
 ## 集群初始化
 当所有容器都成功启动后，可以访问 InLong Dashboard 地址`http://localhost`，并使用以下默认账号登录:
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -52,6 +52,6 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 创建数据流可以参考 [Example](quick_start/data_ingestion/file_pulsar_clickhouse_example.md).
 
 ## 销毁
-```
+```shell
 docker-compose down
 ```
