@@ -17,14 +17,13 @@ import {siteVariables} from '../../version';
 
 ## 依赖项
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-pulsar</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 用法
 
@@ -79,11 +78,15 @@ VALUES
 
 ### Inlong Dashboard 用法
 
-TODO
+:::note
+将在未来支持此功能
+:::
 
 ### InLong Manager Client 方式
 
-TODO
+:::note
+将在未来支持此功能
+:::
 
 ## Pulsar Extract 节点参数
 

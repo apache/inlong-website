@@ -25,24 +25,23 @@ Elasticsearch Load 节点允许将数据写入到 Elasticsearch 引擎的索引�
 
 - Elasticsearch 6
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-elasticsearch6</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
+
 - Elasticsearch 7
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-elasticsearch7</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 如何创建一个 Elasticsearch Load 节点
 
@@ -66,11 +65,15 @@ CREATE TABLE myUserTable (
 
 ### InLong Dashboard 用法
 
-TODO: 将在未来支持这个特性。
+:::note
+将在未来支持此功能
+:::
 
 ### InLong Manager Client 用法
 
-TODO: 将在未来支持这个特性。
+:::note
+将在未来支持此功能
+:::
 
 ## Elasticsearch Load 节点参数
 
@@ -119,7 +122,7 @@ Elasticsearch Load 节点通过使用 `document-id.key-delimiter` 指定的键�
 
 Elasticsearch Load 节点同时支持静态索引和动态索引。
 
-如果你想使用静态索引，则 `index` 选项值应为纯字符串，例如 `'myusers'`，所有记录都将被写入到 "myusers" 索引中。
+如果你想使用静态索引，则 `index` 选项值应为纯字符串，例如 `myusers`，所有记录都将被写入到 `myusers` 索引中。
 
 如果你想使用动态索引，你可以使用 `{field_name}` 来引用记录中的字段值来动态生成目标索引。
 你也可以使用 `'{field_name|date_format_string}'` 将 `TIMESTAMP/DATE/TIME` 类型的字段值转换为 `date_format_string` 指定的格式。

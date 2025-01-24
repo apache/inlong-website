@@ -23,19 +23,18 @@ import {siteVariables} from '../../version';
 
 ### Maven 依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-doris</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 准备
 ### 创建 MySQL Extract 表
 - 单表写入：在 MySQL `cdc` 数据库中创建表 `cdc_mysql_source`。 命令如下:
-```sql
+```shell
 [root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
 mysql> use cdc;
 Database changed
@@ -62,7 +61,7 @@ mysql> select * from cdc_mysql_source;
 3 rows in set (0.07 sec)
 ```
 - 多表写入：在 MySQL `user_db` 数据库中创建表 `user_id_name`、`user_id_score`。 命令如下:
-```sql
+```shell
 [root@fe001 ~]# mysql -u root -h localhost -P 3306 -p123456
 mysql> use user_db;
 Database changed
@@ -111,7 +110,7 @@ mysql> select * from user_id_score;
 
 ### 创建 Doris Load 表
 - 单表写入：在 Doris `cdc`数据库中创建表`cdc_doris_sink`。命令如下:
-```sql
+```shell
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
 mysql> use cdc;
 Reading table information for completion of table and column names
@@ -132,7 +131,7 @@ mysql> CREATE TABLE `cdc_doris_sink` (
 Query OK, 0 rows affected (0.06 sec)
 ```
 - 多表写入：在 Doris `user_db`数据库中创建表`doris_user_id_name`、`doris_user_id_score`。命令如下:
-```sql
+```shell
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
 mysql> use user_db;
 Reading table information for completion of table and column names
@@ -168,7 +167,7 @@ Query OK, 0 rows affected (0.06 sec)
 
 ### SQL API 用法
 - 单表写入： Doris 单表写入
-```sql
+```shell
 [root@tasknode001 flink-1.13.5]# ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
 [INFO] Session property has been set.
@@ -215,7 +214,7 @@ Job ID: 5f89691571d7b3f3ca446589e3d0c3d3
 ```
 
 - 多表写入： Doris 多表写入
-```sql
+```shell
 ./bin/sql-client.sh -l ./opt/connectors/mysql-cdc-inlong/ -l ./opt/connectors/doris/
 Flink SQL> SET 'execution.checkpointing.interval' = '3s';
 [INFO] Session property has been set.
@@ -265,11 +264,15 @@ Job ID: 30feaa0ede92h6b6e25ea0cfda26df5e
 
 ### InLong Dashboard 用法
 
-TODO: 将在未来支持此功能。
+:::note
+将在未来支持此功能
+:::
 
 ### InLong Manager Client 用法
 
-TODO: 将在未来支持此功能。
+:::note
+将在未来支持此功能
+:::
 
 ## Doris Load 节点参数
 
@@ -294,7 +297,7 @@ TODO: 将在未来支持此功能。
 | sink.batch.size                   | 可选   | 10000             | int      | 单次写 BE 的最大行数                                                                                                                                                                                                                                                                                           |
 | sink.max-retries                  | 可选   | 1                 | int      | 写 BE 失败之后的重试次数                                                                                                                                                                                                                                                                                         |
 | sink.batch.interval               | 可选   | 10s               | string   | Flush 间隔时间，超过该时间后异步线程将缓存中数据写入 BE。 默认值为10秒，支持时间单位 ms、s、min、h和d。设置为0表示关闭定期写入。                                                                                                                                                                                                                            |
-| sink.properties.*                 | 可选   | (none)            | string   | Stream load 的导入参数<br /><br />例如:<br />'sink.properties.column_separator' = ', '<br />定义列分隔符<br /><br />'sink.properties.escape_delimiters' = 'true'<br />特殊字符作为分隔符,'\\x01' 会被转换为二进制的 0x01 <br /><br /> 'sink.properties.format' = 'json'<br />'sink.properties.strip_outer_array' = 'true' <br />JSON 格式导入<br /><br /> 'sink.properties.format' = 'csv'<br />CSV 格式导入 |
+| sink.properties.*                 | 可选   | (none)            | string   | Stream load 的导入参数<br /><br />例如:<br />`sink.properties.column_separator` = `,`<br />定义列分隔符<br /><br />`sink.properties.escape_delimiters` = `true`<br />特殊字符作为分隔符,`\\x01` 会被转换为二进制的 0x01 <br /><br /> `sink.properties.format` = `json`<br />`sink.properties.strip_outer_array` = `true` <br />JSON 格式导入<br /><br /> `sink.properties.format` = `csv`<br />CSV 格式导入 |
 | sink.enable-delete                | 可选   | true              | boolean  | 是否启用删除。此选项需要 Doris 表开启批量删除功能(0.15+版本默认开启)，只支持 Uniq 模型。                                                                                                                                                                                                                                                 |
 | sink.enable-delete                | 可选   | true              | boolean  | 是否启用删除。此选项需要 Doris 表开启批量删除功能(0.15+版本默认开启)，只支持 Uniq 模型。                                                                                                                                                                                                                                                 |
 | sink.multiple.enable              | 可选   | false             | boolean  | 是否支持 Doris 多表写入。 `sink.multiple.enable` 为 `true` 时，需要 `sink.multiple.format` 、 `sink.multiple.database-pattern` 、 `sink.multiple.table-pattern` 分别设置正确的值。        |

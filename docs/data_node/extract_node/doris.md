@@ -23,19 +23,18 @@ such as Maven or SBT is provided below.
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-doris</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## Prepare
 ### Create a Doris Extract table
 First create a table `doris_extract_node` in the Doris database, the command is as follows:
-```
+```shell
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
 mysql> use test;
 Reading table information for completion of table and column names
@@ -77,7 +76,7 @@ mysql> select * from doris_extract_node;
 
 The following example shows how to create a Doris Extract node with `Flink SQL`:
 * connector is `doris`
-```sql
+```shell
 # Start flink sql-client, load the doris connector jar package
 [root@tasknode001 flink-1.15.4]# ./bin/sql-client.sh -l ./opt/connectors/doris/
 

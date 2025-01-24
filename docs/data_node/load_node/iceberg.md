@@ -16,14 +16,13 @@ import {siteVariables} from '../../version';
 
 ## Dependencies
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-iceberg</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## Usage
 
@@ -152,7 +151,8 @@ TODO
 Currently Iceberg support multiple table sinking, it require FLINK SQL create table parameters add  
 `'sink.multiple.enable' = 'true'` and target table schema can only be defined as `BYTES` or `STRING`
 Examples as follows:
-```
+
+```sql
 CREATE TABLE `table_2`(
     `data` STRING)
 WITH (
@@ -182,7 +182,8 @@ Examples of 'topic-parttern' are as follows:
 - 'sink.multiple.format' is 'canal-json':
 
 The upstream data is:
-```
+
+```json
 {
   "data": [
     {
@@ -222,16 +223,16 @@ The upstream data is:
   "type": "UPDATE"
 } 
 ```
-'topic-pattern' is '{database}_${table}', and the extracted topic is 'inventory_products'
-('source.db', 'source.table' are metadata fields, and 'id' are physical fields)
+`topic-pattern` is `{database}_${table}`, and the extracted topic is `inventory_products`
+(`source.db`, `source.table` are metadata fields, and `id` are physical fields)
 
-'topic-pattern' is '{database}_${table}_${id}', and the extracted topic is 'inventory_products_111' 
-('source.db', 'source.table' are metadata fields, and 'id' are physical fields)
+`topic-pattern` is `{database}_${table}_${id}`, and the extracted topic is `inventory_products_111` 
+(`source.db`, `source.table` are metadata fields, and `id` are physical fields)
 
 
 ### Auto create database/table
 Iceberg can auto create database and auto create table in multiple sink scenes if database and table not exists, and it supports capture new table at runtime。
-default Iceberg table parameters: `'format-version' = '2'`、`'write.upsert.enabled' = 'true''`、`'engine.hive.enabled' = 'true'`
+default Iceberg table parameters: `'format-version' = '2'`、`'write.upsert.enabled' = 'true'`、`'engine.hive.enabled' = 'true'`
 
 ### Dynamic schema evolution
 Iceberg support schema evolution from source table to target table in multiple sink scenes(DDL synchronize), supported schema evolution：

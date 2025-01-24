@@ -21,14 +21,13 @@ import {siteVariables} from '../../version';
 
 ### Maven 依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-postgres-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 设置 PostgreSQL 服务
 
@@ -115,11 +114,15 @@ CREATE TABLE `postgresTable`(
 
 ### InLong Dashboard 用法
 
-TODO: 将在未来支持此功能。
+:::note
+将在未来支持此功能
+:::
 
 ### Usage for InLong Manager Client
 
-TODO: 将在未来支持此功能。
+:::note
+将在未来支持此功能
+:::
 
 ## PostgreSQL Extract 节点参数
 
@@ -186,19 +189,17 @@ CREATE TABLE postgresTable (
 
 ## 数据类型映射
 
-| PostgreSQL 类型 | Flink SQL 类型 |
-|-----------------|----------------|
-|                 | TINYINT        |
-| SMALLINT <br/> INT2 <br/> SMALLSERIAL <br/> SERIAL2 | SMALLINT |
-| INTEGER <br/> SERIAL | INT |
-| BIGINT <br/> BIGSERIAL | BIGINT |
-| | DECIMAL(20, 0) |
-| REAL <br/> FLOAT4 | FLOAT |
-| FLOAT8 <br/> DOUBLE PRECISION| DOUBLE |
-| NUMERIC(p, s) <br/> DECIMAL(p, s) | DECIMAL(p, s) |
-| BOOLEAN | BOOLEAN |
-| DATE | DATE |
-| TIME [(p)] [WITHOUT TIMEZONE] | TIME [(p)] [WITHOUT TIMEZONE] |
-| TIMESTAMP [(p)] [WITHOUT TIMEZONE | TIMESTAMP [(p)] [WITHOUT TIMEZONE] |
+| PostgreSQL 类型                                                                     | Flink SQL 类型 |
+|-----------------------------------------------------------------------------------|----------------|
+| SMALLINT <br/> INT2 <br/> SMALLSERIAL <br/> SERIAL2                               | SMALLINT |
+| INTEGER <br/> SERIAL                                                              | INT |
+| BIGINT <br/> BIGSERIAL                                                            | BIGINT |
+| REAL <br/> FLOAT4                                                                 | FLOAT |
+| FLOAT8 <br/> DOUBLE PRECISION                                                     | DOUBLE |
+| NUMERIC(p, s) <br/> DECIMAL(p, s)                                                 | DECIMAL(p, s) |
+| BOOLEAN                                                                           | BOOLEAN |
+| DATE                                                                              | DATE |
+| TIME [(p)] [WITHOUT TIMEZONE]                                                     | TIME [(p)] [WITHOUT TIMEZONE] |
+| TIMESTAMP [(p)] [WITHOUT TIMEZONE                                                 | TIMESTAMP [(p)] [WITHOUT TIMEZONE] |
 | CHAR(n) <br/> CHARACTER(n) <br/> VARCHAR(n) <br/> CHARACTER VARYING(n) <br/> TEXT | STRING |
-| BYTEA | BYTES |
+| BYTEA                                                                             | BYTES |

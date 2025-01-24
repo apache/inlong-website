@@ -23,21 +23,19 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-jdbc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## How to create a ClickHouse Load Node
 
 ### Usage for SQL API
 
 ```sql
-
 -- MySQL extract node
 CREATE TABLE `mysql_extract_table`(
   PRIMARY KEY (`id`) NOT ENFORCED,

@@ -22,14 +22,14 @@ Of course, you can also use INLONG to provide jar packages.([sort-connector-hive
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hive</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
+
 ## How to create a Hive Load Node
 
 ### Usage for SQL API

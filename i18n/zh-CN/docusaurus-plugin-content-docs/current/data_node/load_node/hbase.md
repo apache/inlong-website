@@ -22,14 +22,14 @@ import {siteVariables} from '../../version';
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hbase</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
+
 ## 如何创建 HBase Load 节点
 
 ### SQL API 用法
@@ -70,11 +70,15 @@ ON myTopic.key = hbase_load_node.rowkey;
 
 ### InLong Dashboard 用法
 
-TODO: 将在未来支持此功能。
+:::note
+将在未来支持此功能
+:::
 
 ### InLong Manager Client 用法
 
-TODO: 将在未来支持此功能。
+:::note
+将在未来支持此功能
+:::
 
 ## HBase Load 节点参数
 
@@ -93,7 +97,7 @@ TODO: 将在未来支持此功能。
 | lookup.cache.max-rows | 可选 | (none) | Integer | 查找缓存的最大行数，超过这个值，最旧的行将过期。注意："lookup.cache.max-rows" 和 "lookup.cache.ttl" 必须同时被设置。默认情况下，查找缓存是禁用的。 |
 | lookup.cache.ttl | 可选 | (none) | Duration | 查找缓存中每一行的最大生存时间，在这段时间内，最老的行将过期。注意："lookup.cache.max-rows" 和 "lookup.cache.ttl" 必须同时被设置。默认情况下，查找缓存是禁用的。 |
 | lookup.max-retries | 可选 | 3 | Integer | 查找数据库失败时的最大重试次数。 |
-| properties.* | 可选 | (none) | String | 可以设置任意 HBase 的配置项。后缀名必须匹配在 [HBase 配置文档](https://hbase.apache.org/2.3/book.html#hbase_default_configurations) 中定义的配置键。Flink 将移除 "properties." 配置键前缀并将变换后的配置键和值传入底层的 HBase 客户端。 例如您可以设置 'properties.hbase.security.authentication' = 'kerberos' 等kerberos认证参数。 |
+| properties.* | 可选 | (none) | String | 可以设置任意 HBase 的配置项。后缀名必须匹配在 [HBase 配置文档](https://hbase.apache.org/2.3/book.html#hbase_default_configurations) 中定义的配置键。Flink 将移除 "properties." 配置键前缀并将变换后的配置键和值传入底层的 HBase 客户端。 例如您可以设置 `properties.hbase.security.authentication` = `kerberos` 等kerberos认证参数。 |
 | inlong.metric.labels | 可选 | (none) | String | inlong metric 的标签值，该值的构成为groupId=`{groupId}`&streamId=`{streamId}`&nodeId=`{nodeId}`。|
 
 ## 数据类型映射

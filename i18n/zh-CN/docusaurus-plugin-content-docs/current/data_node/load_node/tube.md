@@ -23,14 +23,13 @@ JAR 包的 SQL 客户端的两个项目的依赖关系信息。
 
 ### Maven 依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-tubemq</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 如何创建 TubeMQ Load 节点
 
@@ -62,11 +61,15 @@ FROM tube_load_node;
 
 ### InLong Dashboard 方式
 
-TODO
+:::note
+将在未来支持此功能
+:::
 
 ### InLong Manager Client 方式
 
-TODO
+:::note
+将在未来支持此功能
+:::
 
 ## TubeMQ Load 节点参数信息
 

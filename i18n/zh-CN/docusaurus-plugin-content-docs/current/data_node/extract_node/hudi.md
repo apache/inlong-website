@@ -24,14 +24,13 @@ Hudi 提供表、事务、高效的 upserts/delete、高级索引、流摄入服
 
 ### Maven 依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hudi</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 如何配置 Hudi 数据抽取节点
 
@@ -88,7 +87,7 @@ CREATE TABLE `hudi_table_name` (
 
 #### 配置
 
-在创建数据流时，选择数据落地为 'hudi' 然后点击 'Add' 来配置 Hudi 的相关信息。
+在创建数据流时，选择数据落地为 `hudi` 然后点击 `Add` 来配置 `Hudi` 的相关信息。
 
 ![Hudi Configuration](img/hudi.png)
 
@@ -104,19 +103,21 @@ CREATE TABLE `hudi_table_name` (
 
 ### InLong Manager Client 方式
 
-TODO: 未来版本支持
+:::note
+将在未来支持此功能
+:::
 
 ## Hudi 抽取节点参数信息
 
 | 选项                                          | 必填  | 类型     | 描述                                                                                              |
 | ------------------------------------------- | --- | ------ | ----------------------------------------------------------------------------------------------- |
-| connector                                   | 必填  | String | 指定要使用的Connector，这里应该是'hudi-inlong'。                                                             |
+| connector                                   | 必填  | String | 指定要使用的Connector，这里应该是`hudi-inlong`。                                                             |
 | uri                                         | 可选  | String | 用于配置单元同步的 Metastore uris                                                                        |
 | path                                         | 必填  | String |  用户保存hudi表的文件目录                                                                        |
 | hoodie.database.name                        | 可选  | String | 将用于增量查询的数据库名称。如果不同数据库在增量查询时有相同的表名，我们可以设置它来限制特定数据库下的表名                                           |
 | hoodie.table.name                           | 可选  | String | 将用于向 Hive 注册的表名。 需要在运行中保持一致。                                                                    |
 | `read.start-commit`     | 可选  | String | 指定`yyyyMMddHHmmss`格式的起始commit(闭区间) |
-| `read.streaming.skip_compaction`  | 可选  | String | 流读时是否跳过 compaction 的 commits(默认不跳过)，跳过 compaction 有两个用途：1）避免 upsert 语义 下重复消费(compaction 的 instant 为重复数据，如果不跳过，有小概率会重复消费）; 2) changelog 模式下保证语义正确性。 0.11 开始，以上两个问题已经通过保留 compaction 的 instant time 修复          |
+| `read.streaming.skip_compaction`  | 可选  | String | 流读时是否跳过 compaction 的 commits(默认不跳过)，跳过 compaction 有两个用途：1）避免 upsert 语义 下重复消费(compaction 的 instant 为重复数据，如果不跳过，有小概率会重复消费）; 2) changelog 模式下保证语义正确性。 0.11 开始，以上两个问题已经通过保留 compaction 的 instant time 修复         |
 | inlong.metric.labels                        | 可选  | String | 在long metric label中，value的格式为groupId=xxgroup&streamId=xxstream&nodeId=xxnode。                   |
 
 ## 数据类型映射

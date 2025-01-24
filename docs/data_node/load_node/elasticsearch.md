@@ -25,24 +25,23 @@ In order to use the Elasticsearch Load Node the following dependencies are requi
 
 - Elasticsearch 6
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-elasticsearch6</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
+
 - Elasticsearch 7
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-elasticsearch7</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## How to create an Elasticsearch Load Node
 
@@ -119,12 +118,12 @@ See [CREATE TABLE DDL](https://nightlies.apache.org/flink/flink-docs-release-1.1
 
 Elasticsearch Load Node supports both static index and dynamic index.
 
-If you want to have a static index, the `index` option value should be a plain string, e.g. `'myusers'`, all the records will be consistently written into "myusers" index.
+If you want to have a static index, the `index` option value should be a plain string, e.g. `'myusers'`, all the records will be consistently written into `myusers` index.
 
 If you want to have a dynamic index, you can use `{field_name}` to reference a field value in the record to dynamically generate a target index.
 You can also use `'{field_name|date_format_string}'` to convert a field value of `TIMESTAMP/DATE/TIME` type into the format specified by the `date_format_string`.
 The `date_format_string` is compatible with Java's [DateTimeFormatter](https://docs.oracle.com/javase/8/docs/api/index.html).
-For example, if the option value is `'myusers-{'{log_ts|yyyy-MM-dd}'}'`, then a record with `log_ts` field value `2020-03-27 12:25:55` will be written into "myusers-2020-03-27" index.
+For example, if the option value is `'myusers-{'{log_ts|yyyy-MM-dd}'}'`, then a record with `log_ts` field value `2020-03-27 12:25:55` will be written into `myusers-2020-03-27` index.
 
 ## Data Type Mapping
 

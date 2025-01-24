@@ -21,19 +21,18 @@ import {siteVariables} from '../../version';
 
 ### Maven 依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-doris</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 准备
 ### 创建 Doris Extract 表
 先在 Doris 数据库中创建表 `doris_extract_node`, 命令如下:
-```
+```shell
 [root@fe001 ~]# mysql -u root -h localhost -P 9030 -p000000
 mysql> use test;
 Reading table information for completion of table and column names
@@ -75,7 +74,7 @@ mysql> select * from doris_extract_node;
 
 下面这个例子展示了如何用 `Flink SQL` 创建一个 Doris Extract 节点:
 * 连接器是 `doris`
-```sql
+```shell
 # 启动flink sql-client, 加载 doris connector jar包
 [root@tasknode001 flink-1.13.5]# ./bin/sql-client.sh -l ./opt/connectors/doris/
 
@@ -98,11 +97,15 @@ Flink SQL> SELECT * FROM doris_extract_node;
 
 ### InLong Dashboard 用法
 
-TODO: 将在未来支持此功能。
+:::note
+将在未来支持此功能
+:::
 
 ### InLong Manager Client 用法
 
-TODO: 将在未来支持此功能。
+:::note
+将在未来支持此功能
+:::
 
 ## Doris Extract 节点参数
 
