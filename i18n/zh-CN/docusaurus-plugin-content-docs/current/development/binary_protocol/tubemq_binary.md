@@ -175,13 +175,13 @@ message RegisterResponseM2P {
 - clientId：标识 Producer 对象，该 ID 值在 Producer 启动时构造并在 Producer 生命周期内有效，目前 Java 版本的 SDK 构造规则是：
 
   ```java
-    ClientId = consumerGroup + "_"
-            + AddressUtils.getLocalAddress() + "_" // 本机IP (IPV4)
-            + pid + "_" // 进程ID
-            + timestamp + "_" // 时间戳
-            + counter + "_" // 自增计数器
-            + consumerType + "_" // 消费者类型，包含 Pull 和 Push 两种类型
-            + clientVersion; // 客户端版本号
+  ClientId = consumerGroup + "_"
+        + AddressUtils.getLocalAddress() + "_" // 本机IP (IPV4)
+        + pid + "_" // 进程ID
+        + timestamp + "_" // 时间戳
+        + counter + "_" // 自增计数器
+        + consumerType + "_" // 消费者类型，包含 Pull 和 Push 两种类型
+        + clientVersion; // 客户端版本号
   ```
   建议其他语言增加如上标记，以便于问题排查；
 
@@ -202,17 +202,17 @@ message RegisterResponseM2P {
 - brokerInfos：Broker 元数据信息，该字段里主要是 Master 反馈给 Producer 的整个集群的 Broker 信息列表；其格式如下：
 
   ```java
-    public BrokerInfo(String strBrokerInfo, int brokerPort) {
-            String[] strBrokers =
-                    strBrokerInfo.split(TokenConstants.ATTR_SEP);
-            this.brokerId = Integer.parseInt(strBrokers[0]);
-            this.host = strBrokers[1];
-            this.port = brokerPort;
-            if (!TStringUtils.isBlank(strBrokers[2])) {
-                this.port = Integer.parseInt(strBrokers[2]);
-            }
-            this.buildStrInfo();
-        }
+  public BrokerInfo(String strBrokerInfo, int brokerPort) {
+          String[] strBrokers =
+                  strBrokerInfo.split(TokenConstants.ATTR_SEP);
+          this.brokerId = Integer.parseInt(strBrokers[0]);
+          this.host = strBrokers[1];
+          this.port = brokerPort;
+          if (!TStringUtils.isBlank(strBrokers[2])) {
+              this.port = Integer.parseInt(strBrokers[2]);
+          }
+          this.buildStrInfo();
+  }
   ```
 
 - authorizedInfo：Master 提供的授权信息，格式如下：
@@ -354,22 +354,21 @@ message SendMessageResponseB2P {
 
 - data：Message 的二进制字节流信息，实现如下：
 
-  ```java
-  private byte[] encodePayload(final Message message) {
-          final byte[] payload = message.getData();
-          final String attribute = message.getAttribute();
-          if (TStringUtils.isBlank(attribute)) {
-              return payload;
-          }
-          byte[] attrData = StringUtils.getBytesUtf8(attribute);
-          final ByteBuffer buffer =
-                  ByteBuffer.allocate(4 + attrData.length + payload.length);
-          buffer.putInt(attrData.length);
-          buffer.put(attrData);
-          buffer.put(payload);
-          return buffer.array();
-      }
-  ```
+```java
+private byte[] encodePayload(final Message message) {
+    final byte[] payload = message.getData();
+    final String attribute = message.getAttribute();
+    if (TStringUtils.isBlank(attribute)) {
+        return payload;
+    }
+    byte[] attrData = StringUtils.getBytesUtf8(attribute);
+    final ByteBuffer buffer = yteBuffer.allocate(4 + attrData.length + payload.length);
+    buffer.putInt(attrData.length);
+    buffer.put(attrData);
+    buffer.put(payload);
+    return buffer.array();
+}
+```
 
 - sentAddr：SDK 所在本机的 IPv4，这里将IP地址转为 32 位的数字 ID；
 

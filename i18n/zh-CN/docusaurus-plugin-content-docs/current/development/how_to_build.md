@@ -9,11 +9,11 @@ sidebar_position: 1
 - Java [JDK 8](https://adoptopenjdk.net/?variant=openjdk8)
 - Maven 3.6.1+
 
-```
+```shell
 $ mvn clean install -DskipTests
 ```
 (可选) 使用docker编译:
-```
+```shell
 $ docker pull maven:3.6-openjdk-8
 $ docker run -v `pwd`:/inlong  -w /inlong maven:3.6-openjdk-8 mvn clean install -DskipTests
 ```
@@ -33,6 +33,6 @@ inlong-dashboard
 ## 编译Docker镜像
 - [Docker](https://docs.docker.com/engine/install/) 19.03.1+
 
-```
+```shell
 mvn clean package -DskipTests -Pdocker
 ```

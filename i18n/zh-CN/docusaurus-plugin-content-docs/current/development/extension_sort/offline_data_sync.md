@@ -22,12 +22,12 @@ Apache InLong 通过流批统一的 Flink SQL API 实现一套代码同时支持
 
 Flink 的 Source 中提供了接口来设置数据边界的接口：
 ```java
-    /**
-     * Get the boundedness of this source.
-     *
-     * @return the boundedness of this source.
-     */
-    Boundedness getBoundedness();
+/**
+ * Get the boundedness of this source.
+ *
+ * @return the boundedness of this source.
+ */
+Boundedness getBoundedness();
 ```
 Boundedness 是一个枚举类型，有两个值：
 ```java
@@ -70,20 +70,20 @@ public abstract class ExtractNode implements Node {
 `PulsarExtractNode` 中会将 Boundaries 信息配置到 Pulsar Connector 的相关参数中：
 ```java
 @Override
-    public void fillInBoundaries(Boundaries boundaries) {
-        super.fillInBoundaries(boundaries);
-        BoundaryType boundaryType = boundaries.getBoundaryType();
-        String lowerBoundary = boundaries.getLowerBound();
-        String upperBoundary = boundaries.getUpperBound();
-        if (Objects.requireNonNull(boundaryType) == BoundaryType.TIME) {
-            // 设置时间边界
-            sourceBoundaryOptions.put("source.start.publish-time", lowerBoundary);
-            sourceBoundaryOptions.put("source.stop.at-publish-time", upperBoundary);
-            log.info("Filled in source boundaries options");
-        } else {
-            log.warn("Not supported boundary type: {}", boundaryType);
-        }
+public void fillInBoundaries(Boundaries boundaries) {
+    super.fillInBoundaries(boundaries);
+    BoundaryType boundaryType = boundaries.getBoundaryType();
+    String lowerBoundary = boundaries.getLowerBound();
+    String upperBoundary = boundaries.getUpperBound();
+    if (Objects.requireNonNull(boundaryType) == BoundaryType.TIME) {
+        // set time boundaries
+        sourceBoundaryOptions.put("source.start.publish-time", lowerBoundary);
+        sourceBoundaryOptions.put("source.stop.at-publish-time", upperBoundary);
+        og.info("Filled in source boundaries options");
+    } else {
+        log.warn("Not supported boundary type: {}", boundaryType);
     }
+}
 ```
 这些参数会被 PulsarSource 感知到，在初始化 PulsarSource 时，会为 Source 设置一个 `BoundedStopCursor`
 ```java
@@ -109,10 +109,10 @@ public ScanRuntimeProvider getScanRuntimeProvider(ScanContext context) {
 如果配置了 `BoundedStopCursor`，则会将 Source 的 `boundedness` 属性设置为 `Boundedness.BOUNDED`。
 ```java
 public PulsarSourceBuilder<OUT> setBoundedStopCursor(StopCursor stopCursor) {
-        this.boundedness = Boundedness.BOUNDED;
-        this.stopCursor = checkNotNull(stopCursor);
-        return this;
-    }
+    this.boundedness = Boundedness.BOUNDED;
+    this.stopCursor = checkNotNull(stopCursor);
+    return this;
+}
 ```
 这样 Flink 引擎就可以感知这是一个有边界的 Source，从而使用 Batch 的方式来处理数据。
 

@@ -21,12 +21,12 @@ The offline data source reuses the Flink Connector from real-time synchronizatio
 
 Flink's Source provides interfaces to set data boundaries:
 ```java
-    /**
-     * Get the boundedness of this source.
-     *
-     * @return the boundedness of this source.
-     */
-    Boundedness getBoundedness();
+/**
+ * Get the boundedness of this source.
+ *
+ * @return the boundedness of this source.
+ */
+Boundedness getBoundedness();
 ```
 
 Boundedness is an enumeration type with two values: BOUNDED and CONTINUOUS_UNBOUNDED.

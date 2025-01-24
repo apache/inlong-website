@@ -153,24 +153,24 @@ public class PulsarTask {
 
 ## 位点控制
 ```java
-    protected class SourceData {
+protected class SourceData {
 
-        private byte[] data;
-        private Long offset;
-    }
+    private byte[] data;
+    private Long offset;
+}
 ```
 ```java
-    protected List<SourceData> readFromSource() {
-        return null;
-    }
+protected List<SourceData> readFromSource() {
+    return null;
+}
 ```
 我们可以看到，Source 读取数据时每一条数据都会记录其对应的 Offset，这个 Offset 最终在 Sink 端写入成功后才会由 Agent 自动记录。
 而在 Source 初始化时会自动读取其对应的 Offset，保存在 AbstractSource 的成员变量 offsetProfile，通过 offsetProfile.getOffset() 可以
 获得其 Offset 用于初始化数据源。
 ```java
-	protected void initOffset() {
-        offsetProfile = OffsetManager.getInstance().getOffset(taskId, instanceId);
-    }
+protected void initOffset() {
+    offsetProfile = OffsetManager.getInstance().getOffset(taskId, instanceId);
+}
 ```
 
 ## 测试
