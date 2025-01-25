@@ -55,7 +55,7 @@ InLong
 Audit Store 能够支持所有兼容 JDBC 协议的存储组件的写入操作。因此，在选择兼容 JDBC 协议的存储组件时，只需确保其满足以下
 Schema 即可:
 
-```mysql
+```sql
 CREATE TABLE IF NOT EXISTS `audit_data`
 (
     `id`               int(32)      NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Incremental primary key',

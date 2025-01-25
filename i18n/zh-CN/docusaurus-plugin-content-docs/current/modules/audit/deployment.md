@@ -25,20 +25,20 @@ mysql -uDB_USER -pDB_PASSWD < sql/apache_inlong_audit_starrocks.sql
 
 - 若使用 Pulsar，配置文件 `conf/audit-proxy-pulsar.conf`，修改下列配置中的 Pulsar Topic 信息。
 
-```Shell
+```shell
 agent1.sinks.pulsar-sink-msg1.topic = persistent://public/default/inlong-audit
 agent1.sinks.pulsar-sink-msg2.topic = persistent://public/default/inlong-audit
 ```
 
 - 若使用 Kafka，配置文件 `conf/audit-proxy-kafka.conf`，修改下列配置中的 Kafka Topic 信息。
 
-```Shell
+```shell
 agent1.sinks.kafka-sink-msg1.topic = inlong-audit
 agent1.sinks.kafka-sink-msg2.topic = inlong-audit
 ```
 
 ### 启动
-```Shell
+```shell
 # 默认使用 pulsar 作为消息队列，加载 audit-proxy-pulsar.conf 配置文件
 bash +x ./bin/proxy-start.sh [pulsar｜kafka]
 ```
@@ -48,7 +48,7 @@ Audit Proxy 默认监听端口为 `10081`。
 ### 配置
 配置文件 `conf/application.properties`
 
-```Shell
+```properties
 # the MQ type for audit proxy: pulsar / kafka
 audit.config.proxy.type=pulsar
 
@@ -83,14 +83,14 @@ jdbc.password=inlong
 - 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
 
 ### 启动
-```Shell
+```shell
 bash +x ./bin/store-start.sh
 ```
 
 ## Audit Service
 ### 配置
 配置文件 `conf/audit-service.properties`
-```Shell
+```properties
 mysql.jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useUnicode=true&rewriteBatchedStatements=true
 mysql.username=root
 mysql.password=inlong
@@ -106,7 +106,7 @@ mysql.password=inlong
 - 如果后端连接 PostgreSQL 数据库，不需要引入额外依赖。
 
 ### 启动
-```Shell
+```shell
 bash +x ./bin/service-start.sh
 ```
 Audit Service 默认监听端口为 `10080`。

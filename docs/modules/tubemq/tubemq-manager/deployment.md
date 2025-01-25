@@ -37,21 +37,23 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 - If the backend database is PostgreSQL, there's no need for additional dependencies.
 
 ## Start
-``` bash
+```bash
 $ bin/start-manager.sh 
 ```
 
 ## Restart
-``` bash
+```bash
 $ bin/restart-manager.sh 
 ```
 
 ## Register TubeMQ cluster
 
-    vim bin/init-tube-cluster.sh
+```bash
+vim bin/init-tube-cluster.sh
+``` 
 
 replace the parameters below
-```
+```properties
 TUBE_MANAGER_IP=  
 TUBE_MANAGER_PORT=   
 TUBE_MASTER_IP=   
@@ -61,7 +63,7 @@ TUBE_MASTER_TOKEN=
 ```
 
 then run：
-```
+```bash
 sh bin/init-tube-cluster.sh
 ```
 

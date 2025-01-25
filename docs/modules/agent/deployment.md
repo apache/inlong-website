@@ -7,7 +7,7 @@ All deploying files at `inlong-agent` directory.
 
 ## Configuration
 Agent needs to pull the configuration from Manager, the configuration conf/agent.properties is as follows:
-```ini
+```properties
 # replace by agent IP
 agent.local.ip=127.0.0.1
 # manager IP

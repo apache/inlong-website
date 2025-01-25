@@ -76,7 +76,6 @@ INSERT INTO `table_2`
     CAST(NULL as FLOAT) AS `salary`,
     `ts` AS `ts`
     FROM `table_1`;
-
 ```
 
 ### 读 Kafka 写 Hive

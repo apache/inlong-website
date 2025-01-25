@@ -83,53 +83,55 @@ One example about sync Kafka data to Kafka data and we will introduce usage of d
 
 * The useage for archive to log
 ```sql
-create table `table_user_input`(
-         `id` INT,
-         `name` INT,
-         `age` STRING)
-    WITH (
-        'dirty.side-output.connector' = 'log',
-        'dirty.ignore' = 'true',
-        'dirty.side-output.enable' = 'true',
-        'dirty.side-output.format' = 'csv',
-        'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user',
-        'inlong.metric.labels' = 'groupId=1&streamId=1&nodeId=1',
-        'topic' = 'user_input',
-        'properties.bootstrap.servers' = 'localhost:9092',
-        'connector' = 'kafka-inlong',
-        'scan.startup.mode' = 'earliest-offset',
-        'json.timestamp-format.standard' = 'SQL',
-        'json.encode.decimal-as-plain-number' = 'true',
-        'json.map-null-key.literal' = 'null',
-        'json.ignore-parse-errors' = 'false',
-        'json.map-null-key.mode' = 'DROP',
-        'format' = 'json',
-        'json.fail-on-missing-field' = 'false',
-        'properties.group.id' = 'test_group');
+CREATE TABLE `table_user_input` (
+    `id` INT,
+    `name` INT,
+    `age` STRING
+) WITH (
+    'dirty.side-output.connector' = 'log',
+    'dirty.ignore' = 'true',
+    'dirty.side-output.enable' = 'true',
+    'dirty.side-output.format' = 'csv',
+    'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user',
+    'inlong.metric.labels' = 'groupId=1&streamId=1&nodeId=1',
+    'topic' = 'user_input',
+    'properties.bootstrap.servers' = 'localhost:9092',
+    'connector' = 'kafka-inlong',
+    'scan.startup.mode' = 'earliest-offset',
+    'json.timestamp-format.standard' = 'SQL',
+    'json.encode.decimal-as-plain-number' = 'true',
+    'json.map-null-key.literal' = 'null',
+    'json.ignore-parse-errors' = 'false',
+    'json.map-null-key.mode' = 'DROP',
+    'format' = 'json',
+    'json.fail-on-missing-field' = 'false',
+    'properties.group.id' = 'test_group'
+);
 
-CREATE TABLE `table_user_output`(
-         `id` INT,
-         `name` STRING,
-         `age` INT)
-    WITH (
-        'topic' = 'user_output',
-        'properties.bootstrap.servers' = 'localhost:9092',
-        'connector' = 'kafka-inlong',
-        'sink.ignore.changelog' = 'true',
-        'json.timestamp-format.standard' = 'SQL',
-        'json.encode.decimal-as-plain-number' = 'true',
-        'json.map-null-key.literal' = 'null',
-        'json.ignore-parse-errors' = 'true',
-        'json.map-null-key.mode' = 'DROP',
-        'format' = 'json',
-        'json.fail-on-missing-field' = 'true',
-        'dirty.ignore' = 'true',
-        'dirty.side-output.connector' = 'log',
-        'dirty.side-output.enable' = 'true',
-        'dirty.side-output.format' = 'csv',
-        'dirty.side-output.log.enable' = 'true',
-        'dirty.side-output.log-tag' = 'DirtyData',
-        'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user');
+CREATE TABLE `table_user_output` (
+    `id` INT,
+    `name` STRING,
+    `age` INT
+) WITH (
+    'topic' = 'user_output',
+    'properties.bootstrap.servers' = 'localhost:9092',
+    'connector' = 'kafka-inlong',
+    'sink.ignore.changelog' = 'true',
+    'json.timestamp-format.standard' = 'SQL',
+    'json.encode.decimal-as-plain-number' = 'true',
+    'json.map-null-key.literal' = 'null',
+    'json.ignore-parse-errors' = 'true',
+    'json.map-null-key.mode' = 'DROP',
+    'format' = 'json',
+    'json.fail-on-missing-field' = 'true',
+    'dirty.ignore' = 'true',
+    'dirty.side-output.connector' = 'log',
+    'dirty.side-output.enable' = 'true',
+    'dirty.side-output.format' = 'csv',
+    'dirty.side-output.log.enable' = 'true',
+    'dirty.side-output.log-tag' = 'DirtyData',
+    'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user'
+);
 
 INSERT INTO `table_user_output`
 SELECT
@@ -143,65 +145,67 @@ FROM `table_user_input`;
 
 * The useage for archive to s3
 ```sql
-create table `table_user_input`(
-        `id` INT,
-        `name` INT,
-        `age` STRING)
-    WITH (
-        'dirty.side-output.connector' = 's3',
-        'dirty.ignore' = 'true',
-        'dirty.side-output.enable' = 'true',
-        'dirty.side-output.format' = 'csv',
-        'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user',
-        'dirty.side-output.s3.bucket' = 's3-test-bucket',
-        'dirty.side-output.s3.endpoint' = 's3.test.endpoint',
-        'dirty.side-output.s3.key' = 'dirty/test',
-        'dirty.side-output.s3.region' = 'region',
-        'dirty.side-output.s3.access-key-id' = 'access_key_id',
-        'dirty.side-output.s3.secret-key-id' = 'secret_key_id',
-        'dirty.identifier' = 'inlong-user-${SYSTEM_TIME}',
-        'inlong.metric.labels' = 'groupId=1&streamId=1&nodeId=1',
-        'topic' = 'user_input',
-        'properties.bootstrap.servers' = 'localhost:9092',
-        'connector' = 'kafka-inlong',
-        'scan.startup.mode' = 'earliest-offset',
-        'json.timestamp-format.standard' = 'SQL',
-        'json.encode.decimal-as-plain-number' = 'true',
-        'json.map-null-key.literal' = 'null',
-        'json.ignore-parse-errors' = 'false',
-        'json.map-null-key.mode' = 'DROP',
-        'format' = 'json',
-        'json.fail-on-missing-field' = 'false',
-        'properties.group.id' = 'test_group');
+CREATE TABLE `table_user_input` (
+    `id` INT,
+    `name` INT,
+    `age` STRING
+) WITH (
+    'dirty.side-output.connector' = 's3',
+    'dirty.ignore' = 'true',
+    'dirty.side-output.enable' = 'true',
+    'dirty.side-output.format' = 'csv',
+    'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user',
+    'dirty.side-output.s3.bucket' = 's3-test-bucket',
+    'dirty.side-output.s3.endpoint' = 's3.test.endpoint',
+    'dirty.side-output.s3.key' = 'dirty/test',
+    'dirty.side-output.s3.region' = 'region',
+    'dirty.side-output.s3.access-key-id' = 'access_key_id',
+    'dirty.side-output.s3.secret-key-id' = 'secret_key_id',
+    'dirty.identifier' = 'inlong-user-${SYSTEM_TIME}',
+    'inlong.metric.labels' = 'groupId=1&streamId=1&nodeId=1',
+    'topic' = 'user_input',
+    'properties.bootstrap.servers' = 'localhost:9092',
+    'connector' = 'kafka-inlong',
+    'scan.startup.mode' = 'earliest-offset',
+    'json.timestamp-format.standard' = 'SQL',
+    'json.encode.decimal-as-plain-number' = 'true',
+    'json.map-null-key.literal' = 'null',
+    'json.ignore-parse-errors' = 'false',
+    'json.map-null-key.mode' = 'DROP',
+    'format' = 'json',
+    'json.fail-on-missing-field' = 'false',
+    'properties.group.id' = 'test_group'
+);
 
-CREATE TABLE `table_user_output`(
-         `id` INT,
-         `name` STRING,
-         `age` INT)
-    WITH (
-        'topic' = 'user_output',
-        'properties.bootstrap.servers' = 'localhost:9092',
-        'connector' = 'kafka-inlong',
-        'sink.ignore.changelog' = 'true',
-        'json.timestamp-format.standard' = 'SQL',
-        'json.encode.decimal-as-plain-number' = 'true',
-        'json.map-null-key.literal' = 'null',
-        'json.ignore-parse-errors' = 'true',
-        'json.map-null-key.mode' = 'DROP',
-        'format' = 'json',
-        'json.fail-on-missing-field' = 'true',
-        'dirty.side-output.connector' = 's3',
-        'dirty.ignore' = 'true',
-        'dirty.side-output.enable' = 'true',
-        'dirty.side-output.format' = 'csv',
-        'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user',
-        'dirty.side-output.s3.bucket' = 's3-test-bucket',
-        'dirty.side-output.s3.endpoint' = 's3.test.endpoint',
-        'dirty.side-output.s3.key' = 'dirty/test',
-        'dirty.side-output.s3.region' = 'region',
-        'dirty.side-output.s3.access-key-id' = 'access_key_id',
-        'dirty.side-output.s3.secret-key-id' = 'secret_key_id',
-        'dirty.identifier' = 'inlong-user-${SYSTEM_TIME}');
+CREATE TABLE `table_user_output` (
+    `id` INT,
+    `name` STRING,
+    `age` INT
+) WITH (
+    'topic' = 'user_output',
+    'properties.bootstrap.servers' = 'localhost:9092',
+    'connector' = 'kafka-inlong',
+    'sink.ignore.changelog' = 'true',
+    'json.timestamp-format.standard' = 'SQL',
+    'json.encode.decimal-as-plain-number' = 'true',
+    'json.map-null-key.literal' = 'null',
+    'json.ignore-parse-errors' = 'true',
+    'json.map-null-key.mode' = 'DROP',
+    'format' = 'json',
+    'json.fail-on-missing-field' = 'true',
+    'dirty.side-output.connector' = 's3',
+    'dirty.ignore' = 'true',
+    'dirty.side-output.enable' = 'true',
+    'dirty.side-output.format' = 'csv',
+    'dirty.side-output.labels' = 'SYSTEM_TIME=${SYSTEM_TIME}&DIRTY_TYPE=${DIRTY_TYPE}&database=inlong&table=user',
+    'dirty.side-output.s3.bucket' = 's3-test-bucket',
+    'dirty.side-output.s3.endpoint' = 's3.test.endpoint',
+    'dirty.side-output.s3.key' = 'dirty/test',
+    'dirty.side-output.s3.region' = 'region',
+    'dirty.side-output.s3.access-key-id' = 'access_key_id',
+    'dirty.side-output.s3.secret-key-id' = 'secret_key_id',
+    'dirty.identifier' = 'inlong-user-${SYSTEM_TIME}'
+);
 
 INSERT INTO `table_user_output`
 SELECT

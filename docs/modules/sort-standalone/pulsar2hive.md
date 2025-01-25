@@ -14,7 +14,7 @@ At first, decompress the archive file, copy three files in the directory "conf/h
 
 ### Example: conf/common.properties
 
-```
+```properties
 clusterId=hivev3-sz-sz1
 nodeId=nodeId
 metricDomains=Sort
@@ -38,7 +38,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 ```
 
 ### Example: conf/SortClusterConfig.conf
-```
+```json
 {
 	"data":{
 		"clusterName":"hivev3-sz-sz1",
@@ -135,7 +135,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 
 ### Example: conf/sid_hive_inlong6th_v3.conf
 
-```
+```json
 {
 	"sortClusterName": "hivev3-sz-sz1",
 	"sortTaskId": "sid_hive_inlong6th_v3",

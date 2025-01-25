@@ -51,139 +51,161 @@ After DataProxy is started and successfully linked to the Manager, it will autom
 DataProxy supports configurable source-channel-sink, which is consistent to flume's configuration file structure,  so it should be modified according to the configuration file definition of Apache flume. The configuration file is placed in the dataproxy-{tube|pulsar}.conf file. Currently, dataproxy-pulsar.conf and dataproxy-tube.conf are supported to distinguish different middleware types. The specific type can be specified at startup. The default (when not specified) ) using dataproxy-pulsar.conf as configuration file. The following is an example for this configuration file:
 
 - Source configuration example:
-```shell
-agent1.sources.tcp-source.channels = ch-msg1 ch-msg2 ch-msg3 ch-more1 ch-more2 ch-more3 ch-msg5 ch-msg6 ch-msg7 ch-msg8 ch-msg9 ch-msg10 ch-transfer ch -Back
-Define the channel used in the source. Note that if the configuration below this source uses the channel, it needs to be annotated here
+```properties
+# Define the channel used in the source. Note that if the configuration below this
+# source uses the channel, it needs to be annotated here
+agent1.sources.tcp-source.channels = ch-msg1 ch-msg2 ch-msg3 ch-more1 ch-more2 ch-more3 ch-msg5 ch-msg6 ch-msg7 ch-msg8 ch-msg9 ch-msg10 ch-transfer ch-back
 
+# TCP resolution type definition, here provide the class name for instantiation.
+# SimpleTcpSource is mainly to initialize the configuration and start port monitoring
 agent1.sources.tcp-source.type = org.apache.flume.source.SimpleTcpSource
-tcp resolution type definition, here provide the class name for instantiation, SimpleTcpSource is mainly to initialize the configuration and start port monitoring
 
+# Handler used for message structure analysis, and set read stream handler and
+# write stream handler
 agent1.sources.tcp-source.msg-factory-name = org.apache.flume.source.ServerMessageFactory
-Handler used for message structure analysis, and set read stream handler and write stream handler
 
+# TCP IP binding monitoring, binding all network cards by default
 agent1.sources.tcp-source.host = 0.0.0.0
-tcp ip binding monitoring, binding all network cards by default
 
+# TCP port binding, port 46801 is bound by default
 agent1.sources.tcp-source.port = 46801
-tcp port binding, port 46801 is bound by default
 
-agent1.sources.tcp-source.highWaterMark=2621440
-The concept of netty, set the netty high water level value
+# The concept of Netty, set the Netty high water level value
+agent1.sources.tcp-source.highWaterMark = 2621440
 
-agent1.sources.tcp-source.enableExceptionReturn=true
-The new function of v1.7 version, optional, the default is false, used to open the exception channel, when an exception occurs, the data is written to the exception channel to prevent other normal data transmission (the open source version does not add this function), Details  |  Increase the local disk of abnormal data landing
+# The new function of v1.7 version, optional, the default is false. Used to open
+# the exception channel. When an exception occurs, the data is written to the 
+# exception channel to prevent other normal data transmission (the open source 
+# version does not add this function). Details | Increase the local disk of 
+# abnormal data landing
+agent1.sources.tcp-source.enableExceptionReturn = true
 
+# Limit the size of a single package. Here if the compressed package is 
+# transmitted, it is the compressed package size. The limit is 512KB
 agent1.sources.tcp-source.max-msg-length = 524288
-Limit the size of a single package, here if the compressed package is transmitted, it is the compressed package size, the limit is 512KB
 
+# The default topic value, if the mapping relationship between groupId and topic 
+# cannot be found, it will be sent to this topic
 agent1.sources.tcp-source.topic = test_token
-The default topic value, if the mapping relationship between groupId and topic cannot be found, it will be sent to this topic
 
+# The default value of m is set, where the value of m is the version of Inlong's 
+# internal TdMsg protocol
 agent1.sources.tcp-source.attr = m=9
-The default value of m is set, where the value of m is the version of inlong's internal TdMsg protocol
 
+# Concurrent connections go online. New connections will be broken when the 
+# upper limit is exceeded
 agent1.sources.tcp-source.connections = 5000
-Concurrent connections go online, new connections will be broken when the upper limit is exceeded
 
+# Netty thread pool work thread upper limit. Generally recommended to choose 
+# twice the CPU
 agent1.sources.tcp-source.max-threads = 64
-Netty thread pool work thread upper limit, generally recommended to choose twice the cpu
 
+# Netty server TCP receive buffer size tuning parameter
 agent1.sources.tcp-source.receiveBufferSize = 524288
-Netty server tcp tuning parameters
 
+# Netty server TCP send buffer size tuning parameter
 agent1.sources.tcp-source.sendBufferSize = 524288
-Netty server tcp tuning parameters
 
+# Whether to use the self-developed channel process. The self-developed channel 
+# process can select the alternate channel to send when the main channel is blocked
 agent1.sources.tcp-source.custom-cp = true
-Whether to use the self-developed channel process, the self-developed channel process can select the alternate channel to send when the main channel is blocked
 
+# This channel selector is a self-developed channel selector, which is not much 
+# different from the official website, mainly because of the channel master-slave 
+# selection logic
 agent1.sources.tcp-source.selector.type = org.apache.flume.channel.FailoverChannelSelector
-This channel selector is a self-developed channel selector, which is not much different from the official website, mainly because of the channel master-slave selection logic
 
+# Specify the master channel. These channels will be preferentially selected for 
+# data push. Those channels that are not in the master, transfer, fileMetric, and 
+# slaMetric configuration items, but are in defined channels, are all classified 
+# as slave channels. When the master channel is full, the slave channel will be 
+# selected. Generally, the file channel type is recommended for the slave channel.
 agent1.sources.tcp-source.selector.master = ch-msg5 ch-msg6 ch-msg7 ch-msg8 ch-msg9
-Specify the master channel, these channels will be preferentially selected for data push. Those channels that are not in the master, transfer, fileMetric, and slaMetric configuration items, but are in
-There are defined channels in channels, which are all classified as slave channels. When the master channel is full, the slave channel will be selected. Generally, the file channel type is recommended for the slave channel.
 
+# Specify the transfer channel to accept the transfer type data. The transfer 
+# here generally refers to the data pushed to the non-tube cluster, which is only 
+# for forwarding, and it is reserved for subsequent functions.
 agent1.sources.tcp-source.selector.transfer = ch-msg5 ch-msg6 ch-msg7 ch-msg8 ch-msg9
-Specify the transfer channel to accept the transfer type data. The transfer here generally refers to the data pushed to the non-tube cluster, which is only for forwarding, and it is reserved for subsequent functions.
 
+# Specify the fileMetric channel to receive the metric data reported by the agent
 agent1.sources.tcp-source.selector.fileMetric = ch-back
-Specify the fileMetric channel to receive the metric data reported by the agent
 ```
 
 - Channel configuration examples, memory channel:
 
-```shell
+```properties
+# memory channel type
 agent1.channels.ch-more1.type = memory
-memory channel type
 
+# Memory channel queue size, the maximum number of messages that can be cached
 agent1.channels.ch-more1.capacity = 10000000
-Memory channel queue size, the maximum number of messages that can be cached
 
+# The keep-alive time for the memory channel
 agent1.channels.ch-more1.keep-alive = 0
 
+# The maximum number of batches are processed in atomic operations, and the memory channel needs to be locked when used, 
+# so there will be a batch process to increase efficiency
 agent1.channels.ch-more1.transactionCapacity = 20
-The maximum number of batches are processed in atomic operations, and the memory channel needs to be locked when used, so there will be a batch process to increase efficiency
 ```
 
 - Channel configuration examples, file channel:
 
-```shell
+```properties
+# file channel type
 agent1.channels.ch-msg5.type = file
-file channel type
 
+# The maximum number of messages that can be cached in a file channel
 agent1.channels.ch-msg5.capacity = 100000000
-The maximum number of messages that can be cached in a file channel
 
+# file channel file maximum limit, the number of bytes
 agent1.channels.ch-msg5.maxFileSize = 1073741824
-file channel file maximum limit, the number of bytes
 
+# The minimum free space of the disk where the file channel is located. Setting this value can prevent the disk from being full
 agent1.channels.ch-msg5.minimumRequiredSpace = 1073741824
-The minimum free space of the disk where the file channel is located. Setting this value can prevent the disk from being full
 
+# file channel checkpoint path
 agent1.channels.ch-msg5.checkpointDir = /data/work/file/ch-msg5/check
-file channel checkpoint path
 
+# file channel data path
 agent1.channels.ch-msg5.dataDirs = /data/work/file/ch-msg5/data
-file channel data path
 
+# Whether to synchronize the disk for each atomic operation, it is recommended to change it to false, otherwise it will affect the performance
 agent1.channels.ch-msg5.fsyncPerTransaction = false
-Whether to synchronize the disk for each atomic operation, it is recommended to change it to false, otherwise it will affect the performance
 
+# The time interval between data flush from memory to disk, in seconds
 agent1.channels.ch-msg5.fsyncInterval = 5
-The time interval between data flush from memory to disk, in seconds
 ```
 
 - Sink configuration example:
 
-```shell
+```properties
+# The upstream channel name of the sink
 agent1.sinks.mq-sink-msg1.channel = ch-msg1
-The upstream channel name of the sink
 
+# The sink class is implemented, where the message is implemented to push data to some mq cluster
 agent1.sinks.mq-sink-msg1.type = org.apache.inlong.dataproxy.sink.mq.MessageQueueZoneSink
-The sink class is implemented, where the message is implemented to push data to some mq cluster
 
+# The maximum threads for sending message
 agent1.sinks.mq-sink-msg1.maxThreads = 2
-The maximum threads for sending message
 
+# Timeout when dispatching message
 agent1.sinks.mq-sink-msg1.dispatchTimeout = 2000
-Timeout when dispatching message
 
+# Dispatch queue max pack count
 agent1.sinks.mq-sink-msg1.dispatchMaxPackCount = 256
-Dispatch queue max pack count
 
+# Dispatch queue max pack size
 agent1.sinks.mq-sink-msg1.dispatchMaxPackSize = 3276800
-Dispatch queue max pack size
 
+# Dispatch max buffer queue size 
 agent1.sinks.mq-sink-msg1.maxBufferQueueSize=131072
-Dispatch max buffer queue size 
 
+# Interval to retry
 agent1.sinks.mq-sink-msg1.processInterval=100
-Interval to retry
 
+# Interval to reload remote configuration
 agent1.sinks.mq-sink-msg1.reloadInterval=60000
-Interval to reload remote configuration
 
+# Data compression type
 agent1.sinks.mq-sink-msg1.producer.compressionType=SNAPPY
-Data compression type
 ```
