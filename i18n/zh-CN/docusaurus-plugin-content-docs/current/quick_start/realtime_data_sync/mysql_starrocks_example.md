@@ -21,7 +21,7 @@ sidebar_position: 2
 
 ## 集群初始化
 容器启动成功后，访问 InLong Dashboard 地址 http://localhost，并使用以下默认账号登录：
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -61,7 +61,7 @@ Password: inlong
 
 ## 测试数据
 ### 发送数据
-```
+```shell
 #!/bin/bash
 
 # MySQL info

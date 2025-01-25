@@ -22,7 +22,7 @@ Download the [connectors](https://inlong.apache.org/downloads/) corresponding to
 
 ## Create Clusters And Data Target
 When all containers are successfully started, you can access the InLong dashboard address `http://localhost`, and use the following default account to log in.
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -40,7 +40,7 @@ Password: inlong
 
 Execute the following SQL statement:
 
-```mysql
+```sql
 CREATE TABLE sink_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -112,17 +112,17 @@ View the DolphinScheduler task instance logs. The following logs indicate that t
 Use the Pulsar SDK to produce data into the Pulsar topic. An example is as follows:
 
 ```java
-        // Create Pulsar client and producer
-        PulsarClient pulsarClient = PulsarClient.builder().serviceUrl("pulsar://localhost:6650").build();
-        Producer<byte[]> producer = pulsarClient.newProducer().topic("public/default/test").create();
+// Create Pulsar client and producer
+PulsarClient pulsarClient = PulsarClient.builder().serviceUrl("pulsar://localhost:6650").build();
+Producer<byte[]> producer = pulsarClient.newProducer().topic("public/default/test").create();
 
-        // Send messages
-        for (int i = 0; i < 10000; i++) {
-            // Field separator is |
-            String msgStr = i + "|msg-" + i;
-            MessageId msgId = producer.send(msgStr.getBytes(StandardCharsets.UTF_8));
-            System.out.println("Send msg : " + msgStr + " with msgId: " + msgId);
-        }
+// Send messages
+for (int i = 0; i < 10000; i++) {
+    // Field separator is |
+    String msgStr = i + "|msg-" + i;
+    MessageId msgId = producer.send(msgStr.getBytes(StandardCharsets.UTF_8));
+    System.out.println("Send msg : " + msgStr + " with msgId: " + msgId);
+}
 ```
 
 ### Data Validation

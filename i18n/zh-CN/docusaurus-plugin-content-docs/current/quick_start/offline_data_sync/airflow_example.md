@@ -19,7 +19,7 @@ sidebar_position:  3
 
 ## 创建集群和数据目标
 InLong 服务启动后，可以访问 InLong Dashboard 地址 `http://localhost`，并使用以下默认账号登录：
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -36,7 +36,7 @@ Password: inlong
 
 执行如下 Sql 语句：
 
-```mysql
+```sql
 CREATE TABLE sink_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,

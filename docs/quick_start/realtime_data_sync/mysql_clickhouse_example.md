@@ -23,7 +23,7 @@ docker run -d --rm --net=host --name clickhouse -e CLICKHOUSE_USER=admin -e CLIC
 
 ## Cluster Initialize
 When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.
-```
+```properties
 User: admin
 Password: inlong
 ```

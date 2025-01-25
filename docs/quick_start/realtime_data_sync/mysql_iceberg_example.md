@@ -20,7 +20,7 @@ Please refer to the [Installation Tutorial](https://iceberg.apache.org/hive-quic
 
 ## Cluster Initialize
 When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -67,7 +67,7 @@ Back to [Synchronization] page, wait for [success].
 
 ## Test Data
 ### Send Data
-```
+```bash
 #!/bin/bash
 
 # MySQL info

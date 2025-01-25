@@ -19,7 +19,7 @@ Download the [connectors](https://inlong.apache.org/downloads/) corresponding to
 
 ## Cluster Initialize
 When all containers are successfully started, you can access the InLong dashboard address `http://localhost`, and use the following default account to log in.
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -29,13 +29,17 @@ Click [Clusters] -> [ClusterTags] -> [Create] on the page to specify the cluster
 
 ![Create Cluster Tag](img/pulsar_mysql/quartz/cluster_tag.png)
 
-**caution: `default_cluster` is the default ClusterTags for each component. If you decide to use a different name, make sure to update the corresponding tag configuration accordingly.**
+:::caution
+`default_cluster` is the default ClusterTags for each component. If you decide to use a different name, make sure to update the corresponding tag configuration accordingly.
+:::
 
 ### Register Pulsar Cluster
 
 ![Create Pulsar](img/pulsar_mysql/quartz/create_pulsar_cluster.png)
 
-**You can refer to the screenshot information to fill in details such as cluster name, associated tag, and Pulsar cluster address.**
+:::info
+You can refer to the screenshot information to fill in details such as cluster name, associated tag, and Pulsar cluster address.
+:::
 
 ## Task Creation
 ### Create Data Stream Group
@@ -115,17 +119,17 @@ Return to the [Synchronization] page and wait for the task configuration to succ
 
 Use the Pulsar SDK to produce data into the Pulsar topic. An example is as follows:
 ```java
-        // Create Pulsar client and producer
-        PulsarClient pulsarClient = PulsarClient.builder().serviceUrl("pulsar://localhost:6650").build();
-        Producer<byte[]> producer = pulsarClient.newProducer().topic("public/default/test").create();
+// Create Pulsar client and producer
+PulsarClient pulsarClient = PulsarClient.builder().serviceUrl("pulsar://localhost:6650").build();
+Producer<byte[]> producer = pulsarClient.newProducer().topic("public/default/test").create();
 
-        // Send messages
-        for (int i = 0; i < 10000; i++) {
-            // Field separator is |
-            String msgStr = i + "|msg-" + i;
-            MessageId msgId = producer.send(msgStr.getBytes(StandardCharsets.UTF_8));
-            System.out.println("Send msg : " + msgStr + " with msgId: " + msgId);
-        }
+// Send messages
+for (int i = 0; i < 10000; i++) {
+    // Field separator is |
+    String msgStr = i + "|msg-" + i;
+    MessageId msgId = producer.send(msgStr.getBytes(StandardCharsets.UTF_8));
+    System.out.println("Send msg : " + msgStr + " with msgId: " + msgId);
+}
 ```
 
 ### Data Validation
