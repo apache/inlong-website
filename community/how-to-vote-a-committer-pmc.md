@@ -78,22 +78,6 @@ Thanks for everyone's support!
 If it is not passed, the result is "The vote for "${Candidate_GitHub_ID} as an InLong ${Committer or PMC Member}" has FAILED and closed now."
 :::
 
-## Newly added PMC Member notification email
-This step is only processed for the PMC Member that passed the vote. If the election is Committer, this step is skipped and not executed.
-Voting initiators need to send notification emails to Board’s mailing group and wait at least 72 hours; email owners send board@apache.org and CC private@inlong.apache.org; Board will analyze compliance Until there is no doubt.
-The following is an example of a new PMC Member notification email:
-```shell
-[NOTICE] ${Candidate_Full_Name} for Apache InLong PMC
-
-Hi everyone,
-
-Apache InLong proposes to invite ${Candidate_Full_Name} to join the PMC.
-
-The vote result is available here: ${vote_thread_url}
-
-Thanks!
-```
-
 ## Initiate invitation email
 After the result summary email is sent, the poll initiator must send an invitation email to the candidates.
 The invitation email is sent to the invitee with a CC to private@inlong.apache.org; the invited candidate must reply to accept or decline the invitation through the specified email address.
@@ -135,9 +119,16 @@ When signing the ICLA, the candidate needs to write the project name of “Apach
 :::
 
 ## Processing after accepting the invitation
-Create an Apache account and add the candidate account to the project.
-After the candidate accepts the invitation, if the candidate does not have an apache email account, the voting initiator needs to assist the candidate to create an apache account according to the guidelines.
-The voting initiator needs to add project team members, open a permission account for the apache project, and confirm that the candidate’s Apache account has been added to the [Apache InLong](http://people.apache.org/phonebook.html?project=inlong) project.
+After the candidate replies to accept the invitation in the invitation email, create an Apache account.
+
+The voter needs to add the candidate's account to the project in the [Whimsy Roster tool](https://whimsy.apache.org/roster/committee/inlong).
+
+After the candidate accepts the invitation, if the candidate does not have an Apache email account, the voter needs to assist the candidate in creating an Apache account according to the instructions and confirm that the candidate's Apache account has been added to the [Apache InLong](http://people.apache.org/phonebook.html?project=inlong) project.
+
+## Subscribing to the Apache InLong Mailing List
+PMC candidates subscribe to the private@inlong.apache.org mailing list through the [Whimsy Mailing List Subscription Tool](https://whimsy.apache.org/committers/subscribe.cgi)
+
+Committer candidates do not need to perform this operation.
 
 ## ANNOUNCE to the community
 After the above steps are completed, the vote initiator must send a notification email to the dev@inlong.apache.org mail group. The following is a template  notification email:
