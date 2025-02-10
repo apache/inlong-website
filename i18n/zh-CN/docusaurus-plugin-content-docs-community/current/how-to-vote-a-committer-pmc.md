@@ -77,22 +77,6 @@ Thanks for everyone's support!
 如果是未通过，结果是 "The vote for "${Candidate_Full_Name} as an InLong ${Committer or PMC Member}" has FAILED and closed now."
 :::
 
-## 新增 PMC 成员通知邮件
-该步骤只针对投票通过的 PMC 成员进行处理，如果选举的是 Committer，该步跳过不执行。
-投票发起者需要向 Board 邮件组发送知会邮件，并等待至少 72 小时；邮件主送 board@apache.org，抄送 private@inlong.apache.org。
-Board 们会分析合规性，直到没有疑义。如下是新增 PMC 成员通知邮件模板：
-```shell
-[NOTICE] ${Candidate_Full_Name} for Apache InLong PMC
-
-Hi everyone,
-
-Apache InLong proposes to invite ${Candidate_Full_Name} to join the PMC.
-
-The vote result is available here: ${vote_thread_url}
-
-Thanks!
-```
-
 ## 发起邀请邮件
 投票总结邮件发出后，或者 PMC 成员选举的周知邮件到期后，投票发起人要给候选人发送邀请邮件。
 邀请邮件主送被邀请人，抄送 private@inlong.apache.org；被邀请的候选人必须通过指定的邮箱地址回复接受或者拒绝该邀请。
@@ -134,8 +118,15 @@ The Apache InLong PMC
 :::
 
 ## 接受邀请后处理
-创建 Apache 帐号并将候选人帐号加入项目。
+候选人在邀请邮件下回复愿意接受邀请，创建 Apache 帐号。
+投票发起人在[Whimsy Roster 工具](https://whimsy.apache.org/roster/committee/inlong)中将候选人帐号加入项目。
+
 候选人接受邀请后，如果候选人没有 Apache 邮箱帐号，投票发起人需要协助候选人按照指引创建好 Apache 帐号，确认候选人的 Apache 帐号已加入 [Apache InLong](http://people.apache.org/phonebook.html?project=inlong) 项目。
+
+## 订阅 Apache InLong 邮件组
+PMC 候选人通过[Whimsy 邮件列表订阅工具](https://whimsy.apache.org/committers/subscribe.cgi)订阅 private@inlong.apache.org 邮件组
+
+Committer 候选人无需该操作。
 
 ## 向社区发布申明邮件
 如上步骤都完成后，投票发起人向 dev@inlong.apache.org 邮件组发通知邮件。
