@@ -22,7 +22,7 @@ import "github.com/apache/inlong/inlong-sdk/dataproxy-sdk-twins/dataproxy-sdk-go
 ```go
 client, err := dataproxy.NewClient(
 	dataproxy.WithGroupID("test"),		      	
-dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList"),
+    dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList"),
 	dataproxy.WithMetricsName("test"),
 )
 

@@ -72,7 +72,7 @@ inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/Extra
 ```
 在实现的 ExtractNode 中指定 connector；
 
-```Java
+```java
 // 继承 ExtractNode 类，实现具体的类，例如 MongoExtractNode
 @EqualsAndHashCode(callSuper = true)
 @JsonTypeName("MongoExtract")
@@ -267,7 +267,7 @@ Inlong Sort 将指标上报的流程封装在了 `org.apache.inlong.sort.base.me
 通常的做法是在构造 Source/Sink 时传递例如 InLong Audit 地址，在初始化 Source/Sink 算子调用 open() 方法时进行初始化 `SourceExactlyMetric/SinkExactlyMetric` 对象。
 在处理实际数据后再调用对应的审计上报方法。
 
-```
+```java
 public class StarRocksDynamicSinkFunctionV2<T> extends StarRocksDynamicSinkFunctionBase<T> {
 
     private static final long serialVersionUID = 1L;
@@ -322,5 +322,6 @@ public class StarRocksDynamicSinkFunctionV2<T> extends StarRocksDynamicSinkFunct
             sinkExactlyMetric.invoke(1, getDataSize(value), schemaUtils.getDataTime(data));
         }
     }
+}    
 ```
 

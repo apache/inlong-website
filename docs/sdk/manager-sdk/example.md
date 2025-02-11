@@ -13,14 +13,13 @@ which means you can use client to manipulate your group task instead of UI.
 ## Dependency
 
 - Add Maven Dependency
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>manager-client</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## Code
 

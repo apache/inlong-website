@@ -131,16 +131,16 @@ SenderManager 内部直接调用 DataProxy SDK 进行数据发送，需要 3 个
 ```java
 private class AgentSenderCallback implements SendMessageCallback {
 
-        private final SenderMessage message;
+    private final SenderMessage message;
   
-        AgentSenderCallback(SenderMessage message, int retry) {
-            this.message = message;
-        }
+    AgentSenderCallback(SenderMessage message, int retry) {
+        this.message = message;
+    }
 
-        @Override
-        public void onMessageAck(SendResult result) {
-        ...
-        }
+    @Override
+    public void onMessageAck(SendResult result) {
+    ...
+    }
 }
 ```
 回调对象 onMessageAck 方法会携带发送结果，返回成功后遍历 SenderMessage::offsetAckList，将 OffsetAckInfo::hasAck 设

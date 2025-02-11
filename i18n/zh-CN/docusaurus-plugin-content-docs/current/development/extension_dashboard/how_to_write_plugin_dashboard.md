@@ -43,7 +43,7 @@ InLong Dashboard 本身作为前端控制台，采用 React 框架构建。
 
 下面是一个基本示例，在该插件中，实现了与 backend 通信的一个类，包含3个字段(username, password, format)。其中，`BasicInfo` 来源于各自不同的基础类型类。
 
-```ts
+```typescript
 import { DataWithBackend } from '@/metas/DataWithBackend';
 import { RenderRow } from '@/metas/RenderRow';
 import { RenderList } from '@/metas/RenderList';

@@ -20,11 +20,11 @@ InLongMsg 是自定义格式的二进制数据包，由前后各 2 个字节的�
 Magic 字段在 InLongMsg 的当前实现里一共有 4 个有效值，分别标识 Payload 部分可携带的 4 种不同的数据版本（MAGIC0 为无效值）：
 
 ```java
-    private static final byte[] MAGIC0 = {(byte) 0xf, (byte) 0x0};
-    private static final byte[] MAGIC1 = {(byte) 0xf, (byte) 0x1};
-    private static final byte[] MAGIC2 = {(byte) 0xf, (byte) 0x2};
-    private static final byte[] MAGIC3 = {(byte) 0xf, (byte) 0x3};
-    private static final byte[] MAGIC4 = {(byte) 0xf, (byte) 0x4};
+private static final byte[] MAGIC0 = {(byte) 0xf, (byte) 0x0};
+private static final byte[] MAGIC1 = {(byte) 0xf, (byte) 0x1};
+private static final byte[] MAGIC2 = {(byte) 0xf, (byte) 0x2};
+private static final byte[] MAGIC3 = {(byte) 0xf, (byte) 0x3};
+private static final byte[] MAGIC4 = {(byte) 0xf, (byte) 0x4};
 ```
 Payload 部分根据上述 Magic 字段的定义携带对应格式的数据内容，这些内容不论采用什么样的格式最终都映射为用户按照 {属性集合，单条数据}，或者 {属性集合，多条数据} 上报的原始数据信息。
 
@@ -154,14 +154,13 @@ AttrDataCnt 接下来的信息则逐条存储 {属性，数据} 对信息
 
 ### 增加 maven 依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>inlong-common</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ### 增加解析逻辑
 

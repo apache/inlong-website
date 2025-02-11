@@ -68,7 +68,7 @@ inlong-sort/sort-common/src/main/java/org/apache/inlong/sort/protocol/node/Extra
 
 Specify the connector in the implemented ExtractNode.
 
-```Java
+```java
 // Inherit ExtractNode class and implement specific classes, such as MongoExtractNode
 @EqualsAndHashCode(callSuper = true)
 @JsonTypeName("MongoExtract")
@@ -255,7 +255,7 @@ Inlong Sort encapsulates the metric reporting process in the `org.apache.inlong.
 
 The common practice is to pass parameters such as the InLong Audit address when constructing the Source/Sink, and initialize the `SourceExactlyMetric/SinkExactlyMetric` object when calling the open() method to initialize the Source/Sink operator. After processing the actual data, call the corresponding audit reporting method.
 
-```
+```java
 public class StarRocksDynamicSinkFunctionV2<T> extends StarRocksDynamicSinkFunctionBase<T> {
 
     private static final long serialVersionUID = 1L;
@@ -310,4 +310,5 @@ public class StarRocksDynamicSinkFunctionV2<T> extends StarRocksDynamicSinkFunct
             sinkExactlyPropagateMetric.invoke(1, getDataSize(value), schemaUtils.getDataTime(data));
         }
     }
+}    
 ```

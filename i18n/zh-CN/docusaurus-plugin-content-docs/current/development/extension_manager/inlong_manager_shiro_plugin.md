@@ -9,20 +9,19 @@ import {siteVariables} from '../../version';
 Inlong Manager中使用了Apache Shiro框架实现了认证和授权等功能，Manager已经集成好了默认的实现逻辑，如果您想在Inlong Manager中实现自定义的基于Shiro的认证和授权功能，您可以按照如下的说明，进行相关功能的插件化开发。
 
 ## 依赖
-- 增加maven 依赖
-<pre><code parentName="pre">
-{`<dependency>
+- 添加maven 依赖
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>manager-common</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 编码
 - 实现其中关于Shiro相关模块的接口
 ```java
-org.apache.inlong.manager.common.auth.InlongShiro
+package org.apache.inlong.manager.common.auth.InlongShiro
 
 public interface InlongShiro {
 
@@ -51,6 +50,6 @@ public class InlongShiroImpl implements InlongShiro {
 ```
 
 - 修改manager-web module下application.properties文件中配置
-```java
+```properties
 inlong.auth.type=Custom
 ```

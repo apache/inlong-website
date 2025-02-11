@@ -138,7 +138,6 @@ if (result) {
 
 // stop the consumer 
 consumer.ShutDown();
-
 ```
 
 ### Example

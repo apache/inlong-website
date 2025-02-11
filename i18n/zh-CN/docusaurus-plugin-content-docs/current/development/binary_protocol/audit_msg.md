@@ -161,7 +161,7 @@ Audit Store 从消息队列（ MQ ）中消费 `AuditData` 审计数据，对其
 
 ### ClickHouse 表 Schema
 
-```clickhouse
+```sql
 CREATE TABLE apache_inlong_audit.audit_data
 (
     `log_ts`           DateTime COMMENT 'Log timestamp',
@@ -179,12 +179,11 @@ CREATE TABLE apache_inlong_audit.audit_data
     `size`             Int64 COMMENT 'Message size',
     `delay`            Int64 COMMENT 'Message delay',
     `update_time`      DateTime COMMENT 'Update time'
-)
-    ENGINE = ReplicatedMergeTree('/clickhouse/tables/{uuid}/{shard}', '{replica}')
-        PARTITION BY toDate(log_ts)
-        ORDER BY (log_ts, audit_id, inlong_group_id, inlong_stream_id, audit_tag, audit_version, ip)
-        TTL toDateTime(log_ts) + toIntervalDay(8)
-        SETTINGS index_granularity = 8192
+) ENGINE = ReplicatedMergeTree('/clickhouse/tables/{uuid}/{shard}', '{replica}')
+  PARTITION BY toDate(log_ts)
+  ORDER BY (log_ts, audit_id, inlong_group_id, inlong_stream_id, audit_tag, audit_version, ip)
+  TTL toDateTime(log_ts) + toIntervalDay(8)
+  SETTINGS index_granularity = 8192
 ```
 
 如上所述，该表采用 ReplicatedMergeTree 存储引擎，以实现分布式存储和高可用性。数据将根据 log_ts 列进行分区，并按照( log_ts,
@@ -192,7 +191,7 @@ audit_id, inlong_group_id, inlong_stream_id, audit_tag, audit_version, ip )的�
 
 ### MySQL 表 Schema
 
-```mysql
+```sql
 CREATE TABLE IF NOT EXISTS `audit_data`
 (
     `id`               int(32)      NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Incremental primary key',

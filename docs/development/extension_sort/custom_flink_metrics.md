@@ -137,6 +137,7 @@ Using `sort-end-to-end-tests` located in the `inlong-sort/sort-end-to-end-tests/
 
     ```bash
     mvn test -Dtest=Postgres2StarRocksTest
+    ```
 
 Note: You may want to insert test code or construct specific data to trigger `incDeserializeError()` and ensure your metrics are functioning as expected.
 

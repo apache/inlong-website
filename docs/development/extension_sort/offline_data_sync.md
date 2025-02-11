@@ -21,12 +21,12 @@ The offline data source reuses the Flink Connector from real-time synchronizatio
 
 Flink's Source provides interfaces to set data boundaries:
 ```java
-    /**
-     * Get the boundedness of this source.
-     *
-     * @return the boundedness of this source.
-     */
-    Boundedness getBoundedness();
+/**
+ * Get the boundedness of this source.
+ *
+ * @return the boundedness of this source.
+ */
+Boundedness getBoundedness();
 ```
 
 Boundedness is an enumeration type with two values: BOUNDED and CONTINUOUS_UNBOUNDED.
@@ -69,20 +69,20 @@ public abstract class ExtractNode implements Node {
 In `PulsarExtractNode`, the Boundaries information will be configured into the relevant parameters of the Pulsar Connector.：
 ```java
 @Override
-    public void fillInBoundaries(Boundaries boundaries) {
-        super.fillInBoundaries(boundaries);
-        BoundaryType boundaryType = boundaries.getBoundaryType();
-        String lowerBoundary = boundaries.getLowerBound();
-        String upperBoundary = boundaries.getUpperBound();
-        if (Objects.requireNonNull(boundaryType) == BoundaryType.TIME) {
-            // set time boundaries
-            sourceBoundaryOptions.put("source.start.publish-time", lowerBoundary);
-            sourceBoundaryOptions.put("source.stop.at-publish-time", upperBoundary);
-            log.info("Filled in source boundaries options");
-        } else {
-            log.warn("Not supported boundary type: {}", boundaryType);
-        }
+public void fillInBoundaries(Boundaries boundaries) {
+    super.fillInBoundaries(boundaries);
+    BoundaryType boundaryType = boundaries.getBoundaryType();
+    String lowerBoundary = boundaries.getLowerBound();
+    String upperBoundary = boundaries.getUpperBound();
+    if (Objects.requireNonNull(boundaryType) == BoundaryType.TIME) {
+        // set time boundaries
+        sourceBoundaryOptions.put("source.start.publish-time", lowerBoundary);
+        sourceBoundaryOptions.put("source.stop.at-publish-time", upperBoundary);
+        og.info("Filled in source boundaries options");
+    } else {
+        log.warn("Not supported boundary type: {}", boundaryType);
     }
+}
 ```
 These parameters will be recognized by the PulsarSource, and during the initialization of the PulsarSource, a `BoundedStopCursor` will be set for the Source.
 ```java
@@ -108,10 +108,10 @@ public ScanRuntimeProvider getScanRuntimeProvider(ScanContext context) {
 If a `BoundedStopCursor` is configured, the Source's boundedness property will be set to `Boundedness.BOUNDED`.
 ```java
 public PulsarSourceBuilder<OUT> setBoundedStopCursor(StopCursor stopCursor) {
-        this.boundedness = Boundedness.BOUNDED;
-        this.stopCursor = checkNotNull(stopCursor);
-        return this;
-    }
+    this.boundedness = Boundedness.BOUNDED;
+    this.stopCursor = checkNotNull(stopCursor);
+    return this;
+}
 ```
 This way, the Flink engine can recognize that this is a bounded Source, allowing it to process data using a batch approach.
 

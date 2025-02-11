@@ -218,6 +218,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
       prism: {
         theme: require('prism-react-renderer/themes/dracula'),
         darkTheme: darkCodeTheme,
+        additionalLanguages: ['java','bash','docker','protobuf','sql','properties','yaml','typescript', 'ini', 'nginx'],
       },
       algolia: {
         appId: 'YUW9QEL53E',

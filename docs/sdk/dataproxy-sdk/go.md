@@ -22,7 +22,7 @@ Basically, there are 3 steps to produce messages:
 ```go
 client, err := dataproxy.NewClient(
 	dataproxy.WithGroupID("test"),		      	
-dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList"),
+    dataproxy.WithURL("http://127.0.0.1:8083/inlong/manager/openapi/dataproxy/getIpList"),
 	dataproxy.WithMetricsName("test"),
 )
 

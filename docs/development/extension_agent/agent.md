@@ -151,24 +151,24 @@ case PULSAR:
 
 ## Offset control
 ```java
-    protected class SourceData {
+protected class SourceData {
 
-        private byte[] data;
-        private Long offset;
-    }
+    private byte[] data;
+    private Long offset;
+}
 ```
 ```java
-    protected List<SourceData> readFromSource() {
-        return null;
-    }
+protected List<SourceData> readFromSource() {
+    return null;
+}
 ```
 We can see that when the Source reads data, each piece of data will record its corresponding Offset. This Offset will be automatically recorded by the Agent after the Sink is successfully written.
 When Source is initialized, its corresponding Offset will be automatically read and stored in the member variable offsetProfile of AbstractSource. You can use offsetProfile.getOffset() to
 get its Offset for initializing the data source.
 ```java
-	protected void initOffset() {
-        offsetProfile = OffsetManager.getInstance().getOffset(taskId, instanceId);
-    }
+protected void initOffset() {
+    offsetProfile = OffsetManager.getInstance().getOffset(taskId, instanceId);
+}
 ```
 
 ## Test

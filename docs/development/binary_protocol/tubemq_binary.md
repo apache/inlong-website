@@ -176,13 +176,13 @@ message RegisterResponseM2P {
 - clientId：Identifies the Producer object. The ID value is constructed when the Producer is started and is valid during the Producer life cycle. The current construction rules of the Java version of the SDK are:
 
   ```java
-    ClientId = consumerGroup + "_"
-            + AddressUtils.getLocalAddress() + "_" // local ip (IPV4)
-            + pid + "_" // processId
-            + timestamp + "_" // timestamp
-            + counter + "_" // increament counter
-            + consumerType + "_" // type of consumer，including Pull and Push 
-            + clientVersion; // version for client
+  ClientId = consumerGroup + "_"
+          + AddressUtils.getLocalAddress() + "_" // local ip (IPV4)
+          + pid + "_" // processId
+          + timestamp + "_" // timestamp
+          + counter + "_" // increament counter
+          + consumerType + "_" // type of consumer，including Pull and Push 
+          + clientVersion; // version for client
   ```
   It is recommended that other languages add the above mark to facilitate troubleshooting;
 
@@ -213,7 +213,7 @@ message RegisterResponseM2P {
               this.port = Integer.parseInt(strBrokers[2]);
           }
           this.buildStrInfo();
-      }
+  }
   ```
 
 - authorizedInfo：Master provides authorization information in the following format:
@@ -352,22 +352,21 @@ message SendMessageResponseB2P {
 ```
 - data: Binary byte stream information of Message, implemented as follows:
 
-    ```Java
-    private byte[] encodePayload(final Message message) {
-            final byte[] payload = message.getData();
-            final String attribute = message.getAttribute();
-            if (TStringUtils.isBlank(attribute)) {
-                return payload;
-            }
-            byte[] attrData = StringUtils.getBytesUtf8(attribute);
-            final ByteBuffer buffer =
-                    ByteBuffer.allocate(4 + attrData.length + payload.length);
-            buffer.putInt(attrData.length);
-            buffer.put(attrData);
-            buffer.put(payload);
-            return buffer.array();
-        }
-    ```
+```java
+private byte[] encodePayload(final Message message) {
+    final byte[] payload = message.getData();
+    final String attribute = message.getAttribute();
+    if (TStringUtils.isBlank(attribute)) {
+        return payload;
+    }
+    byte[] attrData = StringUtils.getBytesUtf8(attribute);
+    final ByteBuffer buffer = yteBuffer.allocate(4 + attrData.length + payload.length);
+    buffer.putInt(attrData.length);
+    buffer.put(attrData);
+    buffer.put(payload);
+    return buffer.array();
+}
+```
 
 - sentAddr: IPv4 of the local machine where the SDK is located. Here, the IP address is converted into a 32-bit digital ID;
 

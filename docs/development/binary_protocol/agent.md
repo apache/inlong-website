@@ -136,16 +136,16 @@ The original data content is provided by dataList; Extended attributes are provi
 ```java
 private class AgentSenderCallback implements SendMessageCallback {
 
-        private final SenderMessage message;
+    private final SenderMessage message;
   
-        AgentSenderCallback(SenderMessage message, int retry) {
-            this.message = message;
-        }
+    AgentSenderCallback(SenderMessage message, int retry) {
+        this.message = message;
+    }
 
-        @Override
-        public void onMessageAck(SendResult result) {
-        ...
-        }
+    @Override
+    public void onMessageAck(SendResult result) {
+    ...
+    }
 }
 ```
 The onMessageAck method of the callback object will carry the sending result. After returning success, it will iterate through the 
