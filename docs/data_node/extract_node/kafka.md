@@ -24,14 +24,13 @@ build automation tool (such as Maven or SBT) and SQL Client with Sort Connectors
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-kafka</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## How to create a Kafka Extract Node
 

@@ -17,14 +17,13 @@ import {siteVariables} from '../../version';
 
 ## Dependencies
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-iceberg</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## Usage
 
@@ -40,7 +39,7 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 
 - Modify `docker-compose.yml` in the `docker/docker-compose` and mount `Hadoop` and `Flink startup commands` into the container:
 
-```shell
+```docker
   jobmanager:
     image: apache/flink:1.15-scala_2.12
     container_name: jobmanager
@@ -85,7 +84,7 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 
 使用 `Flink sql cli`：
 
-```
+```sql
 CREATE TABLE `iceberg_table_source`(
     PRIMARY KEY (`_id`) NOT ENFORCED,
     `_id` STRING,
@@ -117,7 +116,7 @@ TODO
 
 | Options              | Required | Type   | Description                                                                                                                                       |
 |----------------------|----------|--------|---------------------------------------------------------------------------------------------------------------------------------------------------|
-| connector            | required | String | Specify what connector to use, here should be 'iceberg-inlong'                                                                                    |
+| connector            | required | String | Specify what connector to use, here should be `iceberg-inlong`                                                                                    |
 | catalog-database     | required | String | Database name managed in the Iceberg directory                                                                                                    |
 | catalog-table        | required | String | Table name managed in Iceberg catalogs and databases                                                                                              |
 | catalog-type         | required | String | `hive` or `hadoop` for built-in directories                                                                                                       |

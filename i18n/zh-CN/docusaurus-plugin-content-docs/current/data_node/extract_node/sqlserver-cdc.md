@@ -22,14 +22,14 @@ SQLServer 提取节点从 SQLServer 数据库中读取数据和增量数据。�
 
 ### Maven依赖配置
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-sqlserver-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
+
 ## 配置 SQLServer 加载节点
 
 SQLServer 加载节点需要开启库和表的 CDC 功能，配置步骤如下：
@@ -45,7 +45,9 @@ end
 ```sql
 select is_cdc_enabled from sys.databases where name='dbName'
 ```
-备注: "1"表示数据库 CDC 开启
+:::tip
+"1"表示数据库 CDC 开启
+:::
 
 3. 开启表的 CDC 能力。
 ```sql
@@ -62,13 +64,18 @@ BEGIN
         @filegroup_name = 'PRIMARY' -- filegroup_name
 END
 ```
-备注: 表必须有主键或者唯一索引。
+:::tip
+表必须有主键或者唯一索引。
+:::
 
 4. 检查表 CDC 是否开启。
 ```sql
 SELECT is_tracked_by_cdc FROM sys.tables WHERE name='tableName'
 ```
-备注: "1"表示表 CDC 开启
+
+:::tip
+"1"表示表 CDC 开启
+:::
 
 ## 如何创建一个 SQLServer 抽取节点
 
@@ -103,16 +110,20 @@ Flink SQL> CREATE TABLE sqlserver_extract_node (
 Flink SQL> SELECT * FROM sqlserver_extract_node;
 ```
 ### InLong Dashboard 方式
-TODO
+:::note
+将在未来支持此功能
+:::
 
 ### InLong Manager Client 方式
-TODO
+:::note
+将在未来支持此功能
+:::
 
 ## SQLServer 抽取节点参数信息
 
 | 参数  | 是否必须 | 默认值 | 数据类型 | 描述                                                                               |
 | --- | --- | --- | --- |----------------------------------------------------------------------------------|
-| connector | 必须  | (none) | String | 指定使用什么连接器，这里应该是 'sqlserver-cdc-inlong'。                                          |
+| connector | 必须  | (none) | String | 指定使用什么连接器，这里应该是 `sqlserver-cdc-inlong`。                                          |
 | hostname | 必须  | (none) | String | SQLServer 数据库 IP 地址或者 hostname。                                                  |
 | username | 必须  | (none) | String | SQLServer 数据库用户名。                                                                |
 | password | 必须  | (none) | String | SQLServer 数据库用户密码。                                                               |
@@ -120,7 +131,7 @@ TODO
 | schema-name | 必须  | dbo | String | SQLServer 数据库监控的 schema 名称。                                                      |
 | table-name | 必须  | (none) | String | SQLServer 数据库监控的表名称。                                                             |
 | port | 可选  | 1433 | Integer | SQLServer 数据库端口。                                                                 |
-| server-time-zone | 可选  | UTC | String | SQLServer 数据库连接配置时区。 例如： "Asia/Shanghai"。                                        |
+| server-time-zone | 可选  | UTC | String | SQLServer 数据库连接配置时区。 例如： `Asia/Shanghai`。                                        |
 | inlong.metric.labels | 可选  | (none) | String | inlong metric 的标签值，该值的构成为 groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。 |
 
 ## 可用的元数据字段

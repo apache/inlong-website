@@ -21,14 +21,13 @@ Oracle Extract 节点允许从 Oracle 数据库中读取快照数据和增量数
 
 ### Maven 依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-oracle-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 连接 Oracle 数据库还需要 Oracle 驱动程序依赖项。请下载[ojdbc8-19.3.0.0.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/19.3.0.0/ojdbc8-19.3.0.0.jar) 并将其放入 `FLINK_HOME/lib/`。
 
@@ -67,10 +66,10 @@ Oracle Extract 节点允许从 Oracle 数据库中读取快照数据和增量数
     -- Should now "Database log mode: Archive Mode"
     archive log list;
     ```
-  **注意:**
-
+  :::tip
   必须为捕获的表或数据库启用补充日志记录，以便数据更改能够捕获已更改数据库行的<em>之前</em>状态。
   下面说明了如何在表/数据库级别进行配置。
+  :::
    ```sql
    -- 为特定表启用补充日志记录：
    ALTER TABLE inventory.customers ADD SUPPLEMENTAL LOG DATA (ALL) COLUMNS;
@@ -222,9 +221,9 @@ Flink SQL> CREATE TABLE products (
      
 Flink SQL> SELECT * FROM products;
 ```
-**注意:**
-
+:::info
 当使用 CDB + PDB 模型时，您需要在 Flink DDL 中添加一个额外的选项 `'debezium.database.pdb.name' = 'xxx'` 来指定要连接的 PDB 的名称。
+:::
 
 ### InLong Dashboard 用法
 
@@ -238,7 +237,7 @@ TODO: 将在未来支持此功能。
 
 | **选项**                  | **是否必须** | **默认**   | **类型** | **描述**                                                     |
 | ------------------------- | ------------ | ---------- | -------- | ------------------------------------------------------------ |
-|      connector|      必选|      (none)|      String|      指定要使用的连接器，这里应该是 <code>'oracle-cdc-inlong'</code>。|
+|      connector|      必选|      (none)|      String|      指定要使用的连接器，这里应该是 `oracle-cdc-inlong`。|
 |      hostname|      必选|      (none)|      String|      Oracle 数据库服务器的 IP 地址或主机名。|
 |      username|      必选|      (none)|      String|      连接到 Oracle 数据库服务器时要使用的 Oracle 数据库的名称。|
 |      password|      必选|      (none)|      String|      连接到 Oracle 数据库服务器时使用的密码。|
@@ -247,9 +246,9 @@ TODO: 将在未来支持此功能。
 |      table-name|      必选|      (none)|      String|      要监视的 Oracle 数据库的表名。格式为<i>&lt;schema_name&gt;.&lt;table_name&gt;</i>|
 |      port|      可选|      1521|      Integer|      Oracle 数据库服务器的整数端口号。|
 |      scan.startup.mode|      可选|      initial|      String|Oracle CDC 消费者的可选启动模式，有效枚举为"initial"和"latest-offset"。 请参阅<a href="#startup-reading-position">启动阅读位置</a>部分了解更多详细信息。|
-|      debezium.*|      可选|      (none)|      String|      将 Debezium 的属性整合到用于从 Oracle 服务器捕获数据更改的 Debezium Embedded Engine。 例如：<code>'debezium.snapshot.mode' = 'never'</code>。 详细了解 <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium 的 Oracle 连接器属性</a>| 
+|      debezium.*|      可选|      (none)|      String|      将 Debezium 的属性整合到用于从 Oracle 服务器捕获数据更改的 Debezium Embedded Engine。 例如：`debezium.snapshot.mode` = `never`。 详细了解 <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium 的 Oracle 连接器属性</a>| 
 |       inlong.metric.labels|       可选|       (none)|       String|       inlong metric 的标签值，该值的构成为groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId]。| 
-|       source.multiple.enable|       可选|       false|       Boolean|       是否开启多模式、表同步功能，如果为 'true'，Oracle Extract Node 则将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'。| 
+|       source.multiple.enable|       可选|       false|       Boolean|       是否开启多模式、表同步功能，如果为 `true`，Oracle Extract Node 则将表的物理字段压缩成 `canal-json` 格式的特殊元字段 `data_canal`。| 
 |       scan.incremental.snapshot.enabled|       可选|       true|       Boolean|       增量快照是一种读取表快照的新机制。与旧的快照机制相比，增量快照具有许多优点，包括：（1）在快照读取期间 Source 可以是并行的，（2）Source 可以在快照读取过程中执行 Chunk 粒度中的检查点，（3）Source 不需要在快照读取之前获取 ROW SHARE MODE 锁。| 
 |       scan.incremental.snapshot.chunk.size|       可选|       8096|       Integer|       表快照的块大小（行数），读取表的快照时，表的快照被分成多个块。| 
 |       scan.snapshot.fetch.size|       可选|       1024|       Integer|       读取表快照时每次轮询的最大获取大小。| 
@@ -288,7 +287,7 @@ restart-strategy.fixed-delay.attempts: 2147483647
 |      meta.database_name|      STRING NOT NULL|      该行所属的数据库名称。|
 |      meta.op_ts|      TIMESTAMP_LTZ(3) NOT NULL|      它指示在数据库中进行更改的时间。<br/>如果记录从表的快照而不是change流中读取，则该值始终为0。|
 |      meta.op_type|      STRING|      数据库操作的类型，如 INSERT/DELETE 等。|
-|      meta.data_canal|      STRING/BYTES|      `canal-json` 格式化的行的数据只有在 `source.multiple.enable` 选项为 'true' 时才存在。|
+|      meta.data_canal|      STRING/BYTES|      `canal-json` 格式化的行的数据只有在 `source.multiple.enable` 选项为 `true` 时才存在。|
 |      meta.is_ddl|      BOOLEAN|      是否是 DDL 语句。|
 |      meta.ts|      TIMESTAMP_LTZ(3) NOT NULL|      接收和处理行的当前时间。|
 |      meta.sql_type|      MAP|      将 Sql_type 表字段映射到 Java 数据类型 Id。|
@@ -330,8 +329,9 @@ CREATE TABLE products (
     'table-name' = 'inventory.products'
 );
 ```
-
-**注意**：Oracle 方言是区分大小写的，如果字段名没有被引用，它会将字段名转换为大写，Flink SQL 不会转换字段名。因此对于 oracle 数据库中的物理列，我们在 Flink SQL 中定义 `oracle-cdc` 表时应该使用其在 Oracle 中转换后的字段名称。
+:::caution
+Oracle 方言是区分大小写的，如果字段名没有被引用，它会将字段名转换为大写，Flink SQL 不会转换字段名。因此对于 oracle 数据库中的物理列，我们在 Flink SQL 中定义 `oracle-cdc` 表时应该使用其在 Oracle 中转换后的字段名称。
+:::
 
 ## 特征
 
@@ -348,7 +348,9 @@ Oracle Extract 节点是一个 Flink Source 连接器，它将首先读取数据
 - `initial` (默认): 首次启动时对被监控的数据库表进行初始快照，并继续读取最新的 Redo Log。
 - `latest-offset`: 永远不要在第一次启动时对受监控的数据库表执行快照，只需从自连接器启动以来的更改。
 
-_注意: `scan.startup.mode` 选项的机制依赖于 Debezium 的`snapshot.mode` 配置。所以请不要一起使用它们。如果您在 DDL 表中同时指定了 `scan.startup.mode` 和 `debezium.snapshot.mode` 选项，可能会导致 `scan.startup.mode` 不起作用。_
+:::caution
+`scan.startup.mode` 选项的机制依赖于 Debezium 的`snapshot.mode` 配置。所以请不要一起使用它们。如果您在 DDL 表中同时指定了 `scan.startup.mode` 和 `debezium.snapshot.mode` 选项，可能会导致 `scan.startup.mode` 不起作用。
+:::
 
 ### 单线程读取
 
@@ -356,7 +358,7 @@ Oracle Extract 节点不能并行读取，因为只有一个任务可以接收�
 
 ### 整库、多模式、表同步
 
-Oracle Extract 节点支持整库、多模式、多表同步。开启该功能后，Oracel Extract 节点会将表的物理字段压缩成 'canal-json' 格式的特殊元字段 'data_canal'。
+Oracle Extract 节点支持整库、多模式、多表同步。开启该功能后，Oracel Extract 节点会将表的物理字段压缩成 `canal-json` 格式的特殊元字段 `data_canal`。
 
 配置参数：
 

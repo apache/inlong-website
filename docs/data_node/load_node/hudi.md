@@ -25,14 +25,13 @@ Of course, you can also directly use the `jar` package provided by `INLONG`.
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hudi</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## How to create a Hudi Load Node
 

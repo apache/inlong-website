@@ -17,14 +17,13 @@ import {siteVariables} from '../../version';
 
 ## Dependencies
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-pulsar</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## Usage
 
@@ -94,14 +93,14 @@ TODO
 | topic                         | optional | (none)        | String | Set the input or output topic, use half comma for multiple and concatenate topics. Choose one with the topic-pattern. |
 | topic-pattern                 | optional | (none)        | String | Use regular to get the matching topic.                       |
 | service-url                   | required | (none)        | String | Set the Pulsar broker service address.                       |
-| admin-url                     | optional | (none)        | String | Set the Pulsar administration service address.**When this parameter is not passed in, the `startup mode` only supports `earliest` and `latest`, and the offset in the pulsar cluster cannot be updated.**               |
+| admin-url                     | optional | (none)        | String | Set the Pulsar administration service address.**When this parameter is not passed in, the `startup mode` only supports `earliest` and `latest`, and the offset in the pulsar cluster cannot be updated.**             |
 | scan.startup.mode             | optional | latest        | String | Configure the Source's startup mode. Available options are `earliest`, `latest`, `external-subscription`, and `specific-offsets`. |
 | scan.startup.specific-offsets | optional | (none)        | String | This parameter is required when the `specific-offsets` parameter is specified. |
 | scan.startup.sub-name         | optional | (none)        | String | This parameter is required when the `external-subscription` parameter is specified. |
 | discovery topic interval      | optional | (none)        | Long   | Set the time interval for partition discovery, in unit of milliseconds. |
 | sink.message-router           | optional | key-hash      | String | Set the routing method for writing messages to the Pulsar partition. Available options are `key-hash`, `round-robin`, and `custom MessageRouter`. |
 | sink.semantic                 | optional | at-least-once | String | The Sink writes the assurance level of the message. Available options are `at-least-once`, `exactly-once`, and `none`. |
-| properties                    | optional | empty         | Map    | Set Pulsar's optional configurations, in a format of `properties.key='value'`. For details, see [Configuration parameters](https://github.com/streamnative/pulsar-flink#configuration-parameters). |
+| properties                    | optional | empty         | Map    | Set Pulsar optional configurations, in a format of `properties.key='value'`. For details, see [Configuration parameters](https://github.com/streamnative/pulsar-flink#configuration-parameters). |
 | key.format                    | optional | (none)        | String | Set the key-based serialization format for Pulsar messages. Available options are `No format`, `optional raw`, `Avro`, `JSON`, etc. |
 | key.fields                    | optional | (none)        | String | The SQL definition field to be used when serializing Key, multiple by half comma `,` concatenated. |
 | key.fields-prefix             | optional | (none)        | String | Define a custom prefix for all fields in the key format to avoid name conflicts with fields in the value format. By default, the prefix is empty. If a custom prefix is defined, the Table schema and `key.fields` are used. |

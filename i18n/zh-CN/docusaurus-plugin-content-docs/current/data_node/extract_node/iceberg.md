@@ -17,14 +17,13 @@ import {siteVariables} from '../../version';
 
 ## 依赖项
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-iceberg</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 配置 Iceberg 数据抽取节点
 
@@ -37,7 +36,7 @@ export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 
 - 修改 `docker/docker-compose` 目录下的 `docker-compose.yml`，将 `Hadoop` 和 `Flink 启动命令` 挂载至容器中:
 
-```shell
+```docker
   jobmanager:
     image: apache/flink:1.13-scala_2.11
     container_name: jobmanager
@@ -108,19 +107,21 @@ CREATE TABLE `iceberg_table_source`(
 
 ### Manager Client
 
-TODO
+:::note
+将在未来支持此功能
+:::
 
 ## 参数信息
 
-| 选项                   | 必填  | 类型     | 描述                                                                               |
-|----------------------|-----|--------|----------------------------------------------------------------------------------|
-| connector            | 必填  | String | 指定要使用的 Connector，这里应该是 'iceberg-inlong'                                          |
-| catalog-database     | 必填  | String | 在 Iceberg 目录中管理的数据库名称                                                            |
-| catalog-table        | 必填  | String | 在 Iceberg 目录和数据库中管理的表名                                                           |
-| catalog-type         | 必填  | String | `hive` 或 `hadoop` 用于内置目录                                                         |
-| catalog-name         | 必填  | String | 目录名称                                                                             |
-| uri                  | 必填  | String | Hive 元存储的 thrift URI，如：`thrift://127.0.0.1:9083`                                 |
-| warehouse            | 可选  | String | 对于 Hive 目录，是 Hive 仓库位置。对于 hadoop 目录，是 HDFS 目录存放元数据文件和数据文件                        |
+| 选项                   | 必填  | 类型     | 描述                                                                              |
+|----------------------|-----|--------|---------------------------------------------------------------------------------|
+| connector            | 必填  | String | 指定要使用的 Connector，这里应该是 `iceberg-inlong`                                          |
+| catalog-database     | 必填  | String | 在 Iceberg 目录中管理的数据库名称                                                           |
+| catalog-table        | 必填  | String | 在 Iceberg 目录和数据库中管理的表名                                                          |
+| catalog-type         | 必填  | String | `hive` 或 `hadoop` 用于内置目录                                                        |
+| catalog-name         | 必填  | String | 目录名称                                                                            |
+| uri                  | 必填  | String | Hive 元存储的 thrift URI，如：`thrift://127.0.0.1:9083`                                |
+| warehouse            | 可选  | String | 对于 Hive 目录，是 Hive 仓库位置。对于 hadoop 目录，是 HDFS 目录存放元数据文件和数据文件                       |
 | inlong.metric.labels | 可选  | String | 在 long metric label 中，value 的格式为 groupId=xxgroup&streamId=xxstream&nodeId=xxnode |
 
 ## 数据类型映射

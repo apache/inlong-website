@@ -25,14 +25,13 @@ Of course, you can also directly use the `jar` package provided by `INLONG`.
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hudi</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## How to create a Hudi Extract Node
 
@@ -100,7 +99,7 @@ When creating a data stream, select `Hudi` for the data stream direction, and cl
 | `EnableCreateResource`               | -                                             | If the library table already exists and does not need to be modified, select [Do not create], <br/>otherwise select [Create], and the system will automatically create the resource. |
 | `Catalog URI`                        | `uri`                                         | The server uri of catalog                                                                                                                                                            |
 | `Warehouse`                          | -                                             | The location where the hudi table is stored in HDFS<br/>In the SQL DDL, the path attribute is to splice the `warehouse path` with the name of db and table                           |
-| `StartCommit` | `read.start-commit`     | Start commit instant for reading, the commit time format should be 'yyyyMMddHHmmss', by default reading from the latest instant for streaming read |
+| `StartCommit` | `read.start-commit`     | Start commit instant for reading, the commit time format should be `yyyyMMddHHmmss`, by default reading from the latest instant for streaming read |
 | `SkipCompaction` | `read.streaming.skip_compaction`  | Whether to skip compaction instants for streaming read, there are two cases that this option can be used to avoid reading duplicates: 1) you are definitely sure that the consumer reads faster than any compaction instants, usually with delta time compaction strategy that is long enough, for e.g, one week; 2) changelog mode is enabled, this option is a solution to keep data integrity  |
 
 ### Usage for InLong Manager Client
@@ -110,11 +109,11 @@ TODO
 
 | Option                                      | Required | Default | Type   | Description                                                                                                                                                                                                                   |
 | ------------------------------------------- | -------- | ------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| connector                                   | required | (none)  | String | Specify what connector to use, here should be 'hudi-inlong'.                                                                                                                                                                  |
+| connector                                   | required | (none)  | String | Specify what connector to use, here should be `hudi-inlong`.                                                                                                                                                                  |
 | uri                                         | required | (none)  | String | Metastore uris for hive sync                                                                                                                                                                                                  |
 | hoodie.database.name                        | optional | (none)  | String | Database name that will be used for incremental query.If different databases have the same table name during  incremental query,  we can set it to limit the table name under a specific database                             |
 | hoodie.table.name                           | optional | (none)  | String | Table name that will be used for registering with Hive. Needs to be same across runs.                                                                                                                                         |
-| `read.start-commit`     | optional  | newest commit id |String | Start commit instant for reading, the commit time format should be 'yyyyMMddHHmmss', by default reading from the latest instant for streaming read |
+| `read.start-commit`     | optional  | newest commit id |String | Start commit instant for reading, the commit time format should be `yyyyMMddHHmmss`, by default reading from the latest instant for streaming read |
 | `read.streaming.skip_compaction`  | option | false | String | Whether to skip compaction instants for streaming read, there are two cases that this option can be used to avoid reading duplicates: 1) you are definitely sure that the consumer reads faster than any compaction instants, usually with delta time compaction strategy that is long enough, for e.g, one week; 2) changelog mode is enabled, this option is a solution to keep data integrity  |
 | inlong.metric.labels                        | optional | (none)  | String | Inlong metric label, format of value is groupId=xxgroup&streamId=xxstream&nodeId=xxnode.                                                                                                                                      |
 

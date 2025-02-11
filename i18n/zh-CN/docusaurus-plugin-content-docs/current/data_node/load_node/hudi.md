@@ -24,14 +24,13 @@ Hudi 提供表、事务、高效的 upserts/delete、高级索引、流摄入服
 
 ### Maven 依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-hudi</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 如何配置 Hudi 数据加载节点
 
@@ -84,37 +83,39 @@ CREATE TABLE `hudi_table_name` (
 
 #### 配置
 
-在创建数据流时，选择数据落地为 'Hudi' 然后点击 'Add' 来配置 Hudi 的相关信息。
+在创建数据流时，选择数据落地为 `Hudi` 然后点击 `Add` 来配置 `Hudi` 的相关信息。
 
 ![Hudi Configuration](img/hudi.png)
 
-| 配置项            | 对应SQL DDL中的属性                                 | 备注                                                      |
-| -------------- | --------------------------------------------- | ------------------------------------------------------- |
-| `DB名称`         | `hoodie.database.name`                        | 库名称                                                     |
-| `表名`           | `hudi_table_name`                             | hudi表名                                                  |
-| `是否创建资源`       | -                                             | 如果库表已经存在，且无需修改，则选【不创建】；<br/>否则请选择【创建】，由系统自动创建资源。        |
-| `Catalog URI`  | `uri`                                         | 元数据服务地址                                                 |
+| 配置项            | 对应SQL DDL中的属性                                 | 备注                                                     |
+| -------------- | --------------------------------------------- | ------------------------------------------------------ |
+| `DB名称`         | `hoodie.database.name`                        | 库名称                                                    |
+| `表名`           | `hudi_table_name`                             | hudi表名                                                 |
+| `是否创建资源`       | -                                             | 如果库表已经存在，且无需修改，则选【不创建】；<br/>否则请选择【创建】，由系统自动创建资源。       |
+| `Catalog URI`  | `uri`                                         | 元数据服务地址                                                |
 | `仓库路径`         | -                                             | hudi表存储在HDFS中的位置<br/>在SQL DDL中path属性是将`仓库路径`与库、表名称拼接在一起 |
-| `属性`           | -                                             | hudi表的DDL属性需带前缀'ddl.'                                   |
-| `高级选项`>`数据一致性` | -                                             | Flink计算引擎的一致性语义: `EXACTLY_ONCE`或`AT_LEAST_ONCE`         |
-| `分区字段`         | `hoodie.datasource.write.partitionpath.field` | 分区字段                                                    |
-| `主键字段`         | `hoodie.datasource.write.recordkey.field`     | 主键字段                                                    |
+| `属性`           | -                                             | hudi表的DDL属性需带前缀`ddl`.                                   |
+| `高级选项`>`数据一致性` | -                                             | Flink计算引擎的一致性语义: `EXACTLY_ONCE`或`AT_LEAST_ONCE`        |
+| `分区字段`         | `hoodie.datasource.write.partitionpath.field` | 分区字段                                                   |
+| `主键字段`         | `hoodie.datasource.write.recordkey.field`     | 主键字段                                                   |
 
 ### InLong Manager Client 方式
 
-TODO: 未来版本支持
+:::note
+将在未来支持此功能
+:::
 
 ## Hudi 加载节点参数信息
 
-| 选项                                          | 必填  | 类型     | 描述                                                                                              |
-| ------------------------------------------- | --- | ------ | ----------------------------------------------------------------------------------------------- |
-| connector                                   | 必填  | String | 指定要使用的Connector，这里应该是'hudi-inlong'。                                                             |
-| uri                                         | 必填  | String | 用于配置单元同步的 Metastore uris                                                                        |
-| hoodie.database.name                        | 可选  | String | 将用于增量查询的数据库名称。如果不同数据库在增量查询时有相同的表名，我们可以设置它来限制特定数据库下的表名                                           |
-| hoodie.table.name                           | 可选  | String | 将用于向 Hive 注册的表名。 需要在运行中保持一致。                                                                    |
+| 选项                                          | 必填  | 类型     | 描述                                                                                             |
+| ------------------------------------------- | --- | ------ | ---------------------------------------------------------------------------------------------- |
+| connector                                   | 必填  | String | 指定要使用的Connector，这里应该是`hudi-inlong`。                                                             |
+| uri                                         | 必填  | String | 用于配置单元同步的 Metastore uris                                                                       |
+| hoodie.database.name                        | 可选  | String | 将用于增量查询的数据库名称。如果不同数据库在增量查询时有相同的表名，我们可以设置它来限制特定数据库下的表名                                          |
+| hoodie.table.name                           | 可选  | String | 将用于向 Hive 注册的表名。 需要在运行中保持一致。                                                                   |
 | hoodie.datasource.write.recordkey.field     | 必填  | String | 记录的主键字段。 用作“HoodieKey”的“recordKey”组件的值。 实际值将通过在字段值上调用 .toString() 来获得。 可以使用点符号指定嵌套字段，例如：`a.b.c` |
-| hoodie.datasource.write.partitionpath.field | 可选  | String | 分区路径字段。 在 HoodieKey 的 partitionPath 组件中使用的值。 通过调用 .toString() 获得的实际值                            |
-| inlong.metric.labels                        | 可选  | String | 在long metric label中，value的格式为groupId=xxgroup&streamId=xxstream&nodeId=xxnode。                   |
+| hoodie.datasource.write.partitionpath.field | 可选  | String | 分区路径字段。 在 HoodieKey 的 partitionPath 组件中使用的值。 通过调用 .toString() 获得的实际值                           |
+| inlong.metric.labels                        | 可选  | String | 在long metric label中，value的格式为groupId=xxgroup&streamId=xxstream&nodeId=xxnode。                  |
 
 ## 数据类型映射
 

@@ -17,14 +17,13 @@ import {siteVariables} from '../../version';
 
 ## 依赖项
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-iceberg</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 用法
 
@@ -34,7 +33,7 @@ import {siteVariables} from '../../version';
 
 Step.1 在hadoop环境下启动一个独立的flink集群。
 
-```
+```shell
 # HADOOP_HOME is your hadoop root directory after unpack the binary package.
 export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 
@@ -50,7 +49,7 @@ Step.2 启动flink SQL客户端。
 
 默认情况下，iceberg 包含用于 hadoop 目录的 hadoop jars。如果我们要使用 hive 目录，我们需要在打开 flink sql 客户端时加载 hive jars。幸运的是，apache inlong将 一个捆绑的hive jar打包进入Iceberg。所以我们可以如下打开sql客户端：
 
-```
+```shell
 # HADOOP_HOME is your hadoop root directory after unpack the binary package.
 export HADOOP_CLASSPATH=`$HADOOP_HOME/bin/hadoop classpath`
 
@@ -65,7 +64,7 @@ Step.3 在当前 Flink 目录中创建表
 
 下面的 SQL 会在当前 Flink 目录中创建一个 Flink 表，映射到 iceberg 目录中`default_database.iceberg_table`管理的 iceberg 表。由于目录类型默认是 hive，所以这里不需要放`catalog-type`.
 
-```
+```sql
 CREATE TABLE flink_table (
     id   BIGINT,
     data STRING
@@ -79,7 +78,7 @@ CREATE TABLE flink_table (
 
 如果要创建 Flink 表映射到 Hive 目录中管理的不同Iceberg表（例如`hive_db.hive_iceberg_table`在 Hive 中），则可以创建 Flink 表，如下所示：
 
-```
+```sql
 CREATE TABLE flink_table (
     id   BIGINT,
     data STRING
@@ -99,7 +98,7 @@ CREATE TABLE flink_table (
 
 以下 SQL 将在当前 Flink 目录中创建一个 Flink 表，该表映射到`default_database.flink_table`hadoop 目录中管理Iceberg表。
 
-```
+```sql
 CREATE TABLE flink_table (
     id   BIGINT,
     data STRING
@@ -113,7 +112,7 @@ CREATE TABLE flink_table (
 
 Step.6 向Iceberg表中插入数据
 
-```
+```sql
 INSERT INTO `flink_table` 
     SELECT 
     `id` AS `id`,
@@ -125,7 +124,7 @@ INSERT INTO `flink_table`
 
 以下 SQL 将在当前 Flink 目录中创建一个 Flink 表，该表映射到`default_database.flink_table`自定义目录中管理的Iceberg表。
 
-```
+```sql
 CREATE TABLE flink_table (
     id   BIGINT,
     data STRING
@@ -143,16 +142,20 @@ CREATE TABLE flink_table (
 请检查“集成”选项卡下的部分以获取所有自定义目录。
 
 ### InLong Dashboard 用法
-TODO
+:::note
+将在未来支持此功能
+:::
 
 ### InLong Manager Client 用法
-TODO
+:::note
+将在未来支持此功能
+:::
 
 ## 特征
 ### 多表写入
 目前 Iceberg 支持多表同时写入，需要在 FLINK SQL 的建表参数上添加 `'sink.multiple.enable' = 'true'` 并且目标表的schema
 只能定义成 `BYTES` 或者 `STRING` ，以下是一个建表语句举例：
-```
+```sql
 CREATE TABLE `table_2`(
     `data` STRING)
 WITH (
@@ -174,13 +177,13 @@ WITH (
 ### 动态表名映射
 Iceberg 在多表写入的时可以自定义映射的数据库名和表名的规则，可以填充占位符然后添加前后缀来修改映射的目标表名称。
 Iceberg Load Node 会解析 `'sink.multiple.database-pattern'` 作为目的端的 数据库名, 解析 `'sink.multiple.table-pattern'`
-作为目的端的表名，占位符是从数据中解析出来的，变量是严格通过 '${VARIABLE_NAME}' 来表示, 变量的取值来自于数据本身, 
+作为目的端的表名，占位符是从数据中解析出来的，变量是严格通过 `${VARIABLE_NAME}` 来表示, 变量的取值来自于数据本身, 
 即可以是通过 `'sink.multiple.format'` 指定的某种 Format 的元数据字段, 也可以是数据中的物理字段。
-关于 'topic-parttern' 的例子如下:
-- 'sink.multiple.format' 为 'canal-json':
+关于 `topic-parttern` 的例子如下:
+- `sink.multiple.format` 为 `canal-json`:
 
 上游数据为:
-```
+```json
 {
   "data": [
     {
@@ -220,11 +223,11 @@ Iceberg Load Node 会解析 `'sink.multiple.database-pattern'` 作为目的端�
   "type": "UPDATE"
 } 
 ```
-'topic-pattern' 为 '{database}_${table}', 提取后的 Topic 为 'inventory_products' ('database', 'table' 为元数据字段,
-'id' 为物理字段)
+`topic-pattern` 为 `{database}_${table}`, 提取后的 Topic 为 `inventory_products` (`database`, `table` 为元数据字段,
+`id` 为物理字段)
 
-'topic-pattern' 为 '{database}_${table}_${id}', 提取后的 Topic 为 'inventory_products_111' ('database', 'table' 
-为元数据字段, 'id' 为物理字段)
+`topic-pattern` 为 `{database}_${table}_${id}`, 提取后的 Topic 为 `inventory_products_111` (`database`, `table` 
+为元数据字段, `id` 为物理字段)
 
 ### 动态建库、建表
 Iceberg在多表写入时遇到不存在的表和不存在的库时会自动创建数据库和数据表，并且支持在运行过程中新增捕获额外的表入库。

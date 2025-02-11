@@ -20,14 +20,13 @@ In order to setup the MongoDB CDC connector, the following table provides depend
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mongodb-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## Setup MongoDB
 
@@ -173,11 +172,8 @@ CREATE TABLE `mysql_extract_node` (
 
 | BSON type                                                    | Flink SQL type                                               |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
-|                                                              | TINYINT                                                      |
-|                                                              | SMALLINT                                                     |
 | Int                                                          | INT                                                          |
 | Long                                                         | BIGINT                                                       |
-|                                                              | FLOAT                                                        |
 | Double                                                       | DOUBLE                                                       |
 | Decimal128                                                   | DECIMAL(p, s)                                                |
 | Boolean                                                      | BOOLEAN                                                      |

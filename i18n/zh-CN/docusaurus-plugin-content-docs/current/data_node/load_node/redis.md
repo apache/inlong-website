@@ -21,7 +21,7 @@ import {siteVariables} from '../../version';
 
 Redis 字符串命令用于管理 Redis 中的字符串值。
 
-第一个元素是 Redis 行键，必须是字符串类型，其余字段 ('c2' ~ 'c6') 将被序列化为一个值并放入 Redis 中。
+第一个元素是 Redis 行键，必须是字符串类型，其余字段 (`c2` ~ `c6`) 将被序列化为一个值并放入 Redis 中。
 
 #### Hash
 
@@ -97,7 +97,7 @@ CREATE TABLE sink (
 
 第一个元素是 Redis Key，必须是字符串类型  
 第二个元素是哈希数据类型中的 Redis 字段名  
-其余字段 (' c2 ' ~ ' c7 ') 将被序列化为一个值并放入 Redis 中
+其余字段 (` c2 ` ~ ` c7 `) 将被序列化为一个值并放入 Redis 中
 
 ```sql
 CREATE TABLE sink (
@@ -128,8 +128,8 @@ CREATE TABLE sink (
 | rowKey | field1: String | value 1:String | field 2: String | value 2:String | field 3: String | value 3:String |
 
 第一个元素是 Redis 行键，必须是字符串类型。
-奇数元素 (' c2 ' / ' c4 ' / ' c6 ') 是哈希数据类型中的 Redis 字段名，必须是字符串类型。
-偶数元素 (' c3 ' / ' c5 ' / ' c7 ') 是哈希数据类型中的 Redis 字段值，必须是字符串类型。
+奇数元素 (` c2 ` / ` c4 ` / ` c6 `) 是哈希数据类型中的 Redis 字段名，必须是字符串类型。
+偶数元素 (` c3 ` / ` c5 ` / ` c7 `) 是哈希数据类型中的 Redis 字段值，必须是字符串类型。
 
 ```sql
 CREATE TABLE sink (
@@ -192,8 +192,8 @@ CREATE TABLE sink (
 | rowKey | field1: Long | value 1:Boolean | field 2: Long | value 2:Boolean | field 3: Long | value 3:Boolean |
 
 第一个元素是 Redis 行键，必须是字符串类型。
-奇数元素 (' c2 ' / ' c4 ' / ' c6 ') 是位图数据类型中的 Redis 偏移量，必须是 Long 类型。
-偶数元素 (' c3 ' / ' c5 ' / ' c7 ') 是位图数据类型中的 Redis 值，必须是布尔类型。
+奇数元素 (` c2 ` / ` c4 ` / ` c6 `) 是位图数据类型中的 Redis 偏移量，必须是 Long 类型。
+偶数元素 (` c3 ` / ` c5 ` / ` c7 `) 是位图数据类型中的 Redis 值，必须是布尔类型。
 
 ```sql
 CREATE TABLE sink (

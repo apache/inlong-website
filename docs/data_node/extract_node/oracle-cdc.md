@@ -21,14 +21,13 @@ In order to setup the Oracle Extract Node, the following table provides dependen
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-oracle-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 The Oracle driver dependency is also required to connect to Oracle database. Please download [ojdbc8-19.3.0.0.jar](https://repo1.maven.org/maven2/com/oracle/database/jdbc/ojdbc8/19.3.0.0/ojdbc8-19.3.0.0.jar) and put it into `FLINK_HOME/lib/`.
 
@@ -247,9 +246,9 @@ TODO: It will be supported in the future.
 |		table-name|		required|		(none)|		String|		Table name of the Oracle database to monitor. The value is of the form <i>&lt;schema_name&gt;.&lt;table_name&gt;</i>|		
 |		port|		optional|		1521|		Integer|		Integer port number of the Oracle database server.|		
 |		scan.startup.mode|		optional|		initial|		String|		Optional startup mode for Oracle CDC consumer, valid enumerations are "initial" and "latest-offset". Please see <a href="#startup-reading-position">Startup Reading Position</a>section for more detailed information.|		
-|		debezium.*|		optional|		(none)|		String|		Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Oracle server. For example: <code>'debezium.snapshot.mode' = 'never'</code>. See more about the <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium's Oracle Connector properties</a>|		 
+|		debezium.*|		optional|		(none)|		String|		Pass-through Debezium's properties to Debezium Embedded Engine which is used to capture data changes from Oracle server. For example: `debezium.snapshot.mode` = `never` See more about the <a href="https://debezium.io/documentation/reference/1.5/connectors/oracle.html#oracle-connector-properties">Debezium's Oracle Connector properties</a>|		 
 |		inlong.metric.labels|		optional|		(none)|		String|		Inlong metric label, format of value is groupId=[groupId]&streamId=[streamId]&nodeId=[nodeId].|		 
-|		source.multiple.enable|		optional|		false|		Boolean|		Whether to enable multiple schema and table migration. If it is' true ', Oracle Extract Node will compress the physical field of the table into a special meta field 'data_canal' in the format of 'canal json'.|		 
+|		source.multiple.enable|		optional|		false|		Boolean|		Whether to enable multiple schema and table migration. If it is `true`, Oracle Extract Node will compress the physical field of the table into a special meta field `data_canal` in the format of `canal json`.|		 
 |		scan.incremental.snapshot.enabled|		optional|		true|		Boolean|		Incremental snapshot is a new mechanism to read snapshot of a table. Compared to the old snapshot mechanism, the incremental snapshot has many advantages, including: (1) source can be parallel during snapshot reading, (2) source can perform checkpoints in the chunk granularity during snapshot reading, (3) source doesn't need to acquire ROW SHARE MODE lock before snapshot reading.|		 
 |		scan.incremental.snapshot.chunk.size|		optional|		8096|		Integer|		The chunk size (number of rows) of table snapshot, captured tables are split into multiple chunks when read the snapshot of table.|		 
 |		scan.snapshot.fetch.size|		optional|		1024|		Integer|		The maximum fetch size for per poll when read table snapshot.|		 
@@ -266,7 +265,7 @@ TODO: It will be supported in the future.
 
 During scanning snapshot of database tables, since there is no recoverable position, we can't perform checkpoints. In order to not perform checkpoints, Oracle CDC source will keep the checkpoint waiting to timeout. The timeout checkpoint will be recognized as failed checkpoint, by default, this will trigger a failover for the Flink job. So if the database table is large, it is recommended to add following Flink configurations to avoid failover because of the timeout checkpoints:
 
-```
+```yaml
 execution.checkpointing.interval: 10min
 execution.checkpointing.tolerable-failed-checkpoints: 100
 restart-strategy: fixed-delay
@@ -354,7 +353,7 @@ The Oracle Extract Node can't work in parallel reading, because there is only on
 
 ### Whole Database, Multiple Schemas, Multiple Tables Migration
 
-Oracle Extract Node supports the whole database, multiple schemas, multiple tables migration function. When you enable this function, Oracle Extract Node will compress the physical field of the table into a special meta field 'data_canal' in the format of 'canal json'.
+Oracle Extract Node supports the whole database, multiple schemas, multiple tables migration function. When you enable this function, Oracle Extract Node will compress the physical field of the table into a special meta field `data_canal` in the format of `canal json`.
 
 config options:
 
@@ -369,7 +368,7 @@ The CREATE TABLE example demonstrates the syntax of this function:
 ```sql
 CREATE TABLE node(
     data STRING METADATA FROM 'meta.data_canal' VIRTUAL)
-    WITH (
+WITH (
     'connector' = 'oracle-cdc-inlong',
     'hostname' = 'localhost',
     'port' = '1521',

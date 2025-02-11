@@ -16,18 +16,17 @@ MongoDB CDC 连接器允许从 MongoDB 读取快照数据和增量数据。本�
 
 ## 依赖项
 
-I.为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工具（例如 Maven 或 SBT）的依赖关系信息
+为了设置 MongoDB CDC 连接器，下表提供了使用构建自动化工具（例如 Maven 或 SBT）的依赖关系信息
 
 ### Maven依赖
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-mongodb-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
 
 ## 设置 MongoDB
 

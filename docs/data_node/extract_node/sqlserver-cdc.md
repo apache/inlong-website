@@ -22,14 +22,14 @@ Of course, you can also use INLONG to provide jar packages.([sort-connector-sqls
 
 ### Maven dependency
 
-<pre><code parentName="pre">
-{`<dependency>
+```xml
+<dependency>
     <groupId>org.apache.inlong</groupId>
     <artifactId>sort-connector-sqlserver-cdc</artifactId>
     <version>${siteVariables.inLongVersion}</version>
 </dependency>
-`}
-</code></pre>
+```
+
 ## Setup SQLServer Extract Node
 
 SQLServer Extract Node needs to open related libraries and tables, the steps are as follows:
@@ -112,7 +112,7 @@ TODO
 
 | Option | Required | Default | Type | Description |
 | --- | --- | --- | --- | --- |
-| connector | required | (none) | String | Specify what connector to use, here should be 'sqlserver-cdc-inlong'. |
+| connector | required | (none) | String | Specify what connector to use, here should be `sqlserver-cdc-inlong`. |
 | hostname | required | (none) | String | IP address or hostname of the SQLServer database. |
 | username | required | (none) | String | Username to use when connecting to the SQLServer database. |
 | password | required | (none) | String | Password to use when connecting to the SQLServer database. |

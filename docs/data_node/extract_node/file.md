@@ -8,7 +8,7 @@ sidebar_position: 3
 - DataSource Name
 - Data source IP: Collect Node Agent IP.
 - File path: Must be an absolute path and support regular expressions.
-- Time offset: The file will be collected from a certain time,' 1m' means 1 minute later,' -1m' means 1 minute before, and m(minute), h(hour), d(day) are supported. If it is empty, the file will be collected from the current time.
+- Time offset: The file will be collected from a certain time, `1m` means 1 minute later, `-1m` means 1 minute before, and m(minute), h(hour), d(day) are supported. If it is empty, the file will be collected from the current time.
 - Source data fileDelimiter: Vertical line(|), Comma(,), Semicolon(;)...
 - Source data field: Delimited fields
 
