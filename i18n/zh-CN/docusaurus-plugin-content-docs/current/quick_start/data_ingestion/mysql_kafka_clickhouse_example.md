@@ -26,7 +26,7 @@ docker run -d --name kafka -p 9092:9092 -e KAFKA_BROKER_ID=0 -e KAFKA_ZOOKEEPER_
 
 ## 集群初始化
 容器启动成功后，访问 InLong Dashboard 地址 http://localhost，并使用以下默认账号登录：
-```
+```properties
 User: admin
 Password: inlong
 ```

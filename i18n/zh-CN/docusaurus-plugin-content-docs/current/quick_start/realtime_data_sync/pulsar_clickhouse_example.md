@@ -23,7 +23,7 @@ docker run -d --rm --net=host --name clickhouse -e CLICKHOUSE_USER=admin -e CLIC
 
 ## 集群初始化
 当所有容器都成功启动后，可以访问 InLong Dashboard 地址 http://localhost，并使用以下默认账号登录:
-```
+```properties
 User: admin
 Password: inlong
 ```

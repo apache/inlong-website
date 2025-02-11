@@ -18,7 +18,7 @@ docker run -d --rm --net=host --name clickhouse -e CLICKHOUSE_USER=admin -e CLIC
 
 ## 集群初始化
 容器启动成功后，访问 InLong Dashboard 地址 http://localhost，并使用以下默认账号登录：
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -73,12 +73,12 @@ Service URL 为 `pulsar://pulsar:6650`，Admin URL 为 `http://pulsar:8080`。
 
 ## 测试数据
 ### 进入 Agent 容器
-```
+```shell
 docker exec -it agent /bin/bash
 ```
 
 ### 发送数据
-```
+```shell
 # 采集文件 /data/collect-data/test.log 数据源配置路径，总共发送 10000 条
 for i in {1..10000};do echo "name_$i | $i" >> /data/collect-data/test.log;done
 ```

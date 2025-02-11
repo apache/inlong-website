@@ -19,7 +19,7 @@ sidebar_position: 1
 
 ## 集群初始化
 InLong 服务启动后，可以访问 InLong Dashboard 地址 `http://localhost`，并使用以下默认账号登录:
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -113,17 +113,17 @@ CREATE TABLE sink_table (
 
 通过 Pulsar SDK 生产数据写入的 Pulsar topic 中，示例如下：
 ```java
-        // 创建 pulsar client 和 producer
-        PulsarClient pulsarClient = PulsarClient.builder().serviceUrl("pulsar://localhost:6650").build();
-        Producer<byte[]> producer = pulsarClient.newProducer().topic("public/default/test").create();
+// 创建 pulsar client 和 producer
+PulsarClient pulsarClient = PulsarClient.builder().serviceUrl("pulsar://localhost:6650").build();
+Producer<byte[]> producer = pulsarClient.newProducer().topic("public/default/test").create();
 
-        // 发送消息
-        for (int i = 0; i < 10000; i++) {
-            // 字段分隔符为 |
-            String msgStr = i + "|msg-" + i;
-            MessageId msgId = producer.send(msgStr.getBytes(StandardCharsets.UTF_8));
-            System.out.println("Send msg : " + msgStr + " with msgId: " + msgId);
-        }
+// 发送消息
+for (int i = 0; i < 10000; i++) {
+    // 字段分隔符为 |
+    String msgStr = i + "|msg-" + i;
+    MessageId msgId = producer.send(msgStr.getBytes(StandardCharsets.UTF_8));
+    System.out.println("Send msg : " + msgStr + " with msgId: " + msgId);
+}
 ```
 
 ### 数据验证

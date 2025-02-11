@@ -19,7 +19,7 @@ Download the [connectors](https://inlong.apache.org/downloads/) corresponding to
 
 ## Create Clusters And Data Target
 When all containers are successfully started, you can access the InLong dashboard address `http://localhost`, and use the following default account to log in.
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -37,7 +37,7 @@ Password: inlong
 
 Execute the following SQL statement:
 
-```mysql
+```sql
 CREATE TABLE sink_table (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,

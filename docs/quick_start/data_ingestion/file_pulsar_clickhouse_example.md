@@ -19,7 +19,7 @@ docker run -d --rm --net=host --name clickhouse -e CLICKHOUSE_USER=admin -e CLIC
 
 ## Cluster Initialize
 When all containers are successfully started, you can access the InLong dashboard address http://localhost, and use the following default account to log in.
-```
+```properties
 User: admin
 Password: inlong
 ```
@@ -76,12 +76,12 @@ Back to [Ingestion] page, wait for [configuration success].
 
 ## Test Data
 ### Enter Agent Container
-```
+```shell
 docker exec -it agent /bin/bash
 ```
 
 ### Send Data
-```
+```shell
 # collect file /data/collect-data/test.log data source configuration path and total of 10000 data packets are sent.
 for i in {1..10000};do echo "name_$i | $i" >> /data/collect-data/test.log;done
 ```
