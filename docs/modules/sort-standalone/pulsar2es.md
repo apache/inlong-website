@@ -14,7 +14,7 @@ At first, decompress the archive file, copy three files in the directory "conf/e
 
 ### Example: conf/common.properties
 
-```
+```properties
 clusterId=esv3-sz-sz1
 nodeId=nodeId
 metricDomains=Sort
@@ -38,7 +38,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 
 ### Example: conf/SortClusterConfig.conf
 
-```
+```json
 {
 	"clusterName": "esv3-gz-gz1",
 	"sortTasks": [{
@@ -71,7 +71,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 
 ### Example: conf/sid_es_v3.conf
 
-```
+```json
 {
 	"sortClusterName": "esv3-gz-gz1",
 	"sortTaskId": "sid_es_v3",

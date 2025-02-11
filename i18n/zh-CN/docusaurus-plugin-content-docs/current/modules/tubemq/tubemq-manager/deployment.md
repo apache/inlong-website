@@ -15,7 +15,7 @@ mysql -uDB_USER -pDB_PASSWD < sql/apache_tube_manager.sql
 ```
   
 ## 配置
-```ini
+```properties
 # MySQL configuration for Manager
 spring.datasource.url=jdbc:mysql://mysql_ip:mysql_port/apache_tube_manager
 spring.datasource.username=mysql_username
@@ -36,21 +36,23 @@ spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
 
 ## 启动
 
-``` bash
+```bash
 $ bin/start-manager.sh 
 ```
 
 ## 重启
-``` bash
+```bash
 $ bin/restart-manager.sh 
 ```
 
 ## 初始化TubeMQ集群
 
-    vim bin/init-tube-cluster.sh
+```bash
+vim bin/init-tube-cluster.sh
+```
 
 替换如下六个参数
-```
+```properties
 TUBE_MANAGER_IP=   //tube manager服务启动ip
 TUBE_MANAGER_PORT=   //tube manager服务启动port
 TUBE_MASTER_IP=   //tube 集群master ip
@@ -60,7 +62,7 @@ TUBE_MASTER_TOKEN=
 ```
 
 然后执行以下命令：
-```
+```bash
 sh bin/init-tube-cluster.sh
 ```
 如上操作会创建一个clusterId为1的tube集群，注意该操作只进行一次，之后重启服务无需新建集群

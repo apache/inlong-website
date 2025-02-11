@@ -8,7 +8,7 @@ TubeMQ provides command line tools to manage topics, produce and consume message
 The command line tool `tubectl` can be found in the `bin` directory of the TubeMQ installation path.
 
 usage:
-```
+```shell
 $ bin/tubectl [options] [command] [command options]
 ```
 command:

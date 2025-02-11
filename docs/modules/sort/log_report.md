@@ -25,32 +25,32 @@ InLong Sort wraps the [OpenTelemetryLogger](https://github.com/apache/inlong/blo
 
 ```xml
 <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>${plugin.shade.version}</version>
-                <executions>
-                    <execution>
-                        <id>shade-flink</id>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <artifactSet>
-                                <includes>
-                                    <include>io.opentelemetry*</include>
-                                    <include>com.squareup.*</include>
-                                </includes>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>${plugin.shade.version}</version>
+            <executions>
+                <execution>
+                    <id>shade-flink</id>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <phase>package</phase>
+                    <configuration>
+                        <createDependencyReducedPom>false</createDependencyReducedPom>
+                        <artifactSet>
+                            <includes>
+                                <include>io.opentelemetry*</include>
+                                <include>com.squareup.*</include>
+                            </includes>
+                        </artifactSet>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 ```
 
 
@@ -108,7 +108,7 @@ In addition to integrating the log reporting function for  Connector, you also n
 You can also refer to the following content to configure your own application， the `docker-compose.yml` file is shown below:
 
 
-```yml
+```docker
 # flink jobmanager
 jobmanager:
   image: apache/flink:1.15-scala_2.12

@@ -69,4 +69,4 @@ INSERT INTO `table_2`
 --sql.script.file mysql-to-postgresql.sql
 ```
 
-其它完整使用示例，可以参考 [Example](example.md)
+Other complete usage example, you can refer to [Example](example.md)

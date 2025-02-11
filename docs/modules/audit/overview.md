@@ -58,7 +58,7 @@ Audit Store supports writing operations to all storage components compatible wit
 selecting a storage component compatible with the JDBC protocol, it is only necessary to ensure that it meets the
 following schema:
 
-```mysql
+```sql
 CREATE TABLE IF NOT EXISTS `audit_data`
 (
     `id`               int(32)      NOT NULL PRIMARY KEY AUTO_INCREMENT COMMENT 'Incremental primary key',

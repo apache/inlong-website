@@ -94,44 +94,43 @@ One example about sync mysql data to postgresql data. And We will introduce usag
 
 * use flink sql
 ```sql
-
- create table `table_groupId_streamId_nodeId1`(
-     `id` INT,
+CREATE TABLE `table_groupId_streamId_nodeId1` (
+    `id` INT,
     `name` INT,
     `age` STRING,
-    PRIMARY KEY(`id`) NOT ENFORCED)
-    WITH (
-        'connector' = 'mysql-cdc-inlong',
-        'hostname' = 'xxxx',
-        'username' = 'xxx',
-        'password' = 'xxx',
-        'database-name' = 'test',
-        'scan.incremental.snapshot.enabled' = 'true',
-        'server-time-zone' = 'GMT+8',
-        'table-name' = 'user',
-        'inlong.metric.labels' = 'groupId=xxgroup&streamId=xxstream&nodeId=xxnode'
+    PRIMARY KEY (`id`) NOT ENFORCED
+) WITH (
+    'connector' = 'mysql-cdc-inlong',
+    'hostname' = 'xxxx',
+    'username' = 'xxx',
+    'password' = 'xxx',
+    'database-name' = 'test',
+    'scan.incremental.snapshot.enabled' = 'true',
+    'server-time-zone' = 'GMT+8',
+    'table-name' = 'user',
+    'inlong.metric.labels' = 'groupId=xxgroup&streamId=xxstream&nodeId=xxnode'
 );
 
- CREATE TABLE `table_groupId_streamId_nodeId2`(
-     PRIMARY KEY (`id`) NOT ENFORCED,
-     `id` INT,
-     `name` STRING,
-     `age` INT)
-     WITH (
-         'connector' = 'jdbc-inlong',
-         'url' = 'jdbc:postgresql://ip:5432/postgres',
-         'username' = 'postgres',
-         'password' = 'inlong',
-         'table-name' = 'public.user',
-         'inlong.metric.labels' = 'groupId=pggroup&streamId=pgStream&nodeId=pgNode'
-         );
+CREATE TABLE `table_groupId_streamId_nodeId2` (
+    `id` INT,
+    `name` STRING,
+    `age` INT,
+    PRIMARY KEY (`id`) NOT ENFORCED
+) WITH (
+    'connector' = 'jdbc-inlong',
+    'url' = 'jdbc:postgresql://ip:5432/postgres',
+    'username' = 'postgres',
+    'password' = 'inlong',
+    'table-name' = 'public.user',
+    'inlong.metric.labels' = 'groupId=pggroup&streamId=pgStream&nodeId=pgNode'
+);
 
- INSERT INTO `table_groupId_streamId_nodeId2`
- SELECT
-     `id`,
-     `name`,
-     `age`
- FROM `table_groupId_streamId_nodeId1`;
+INSERT INTO `table_groupId_streamId_nodeId2`
+SELECT
+    `id`,
+    `name`,
+    `age`
+FROM `table_groupId_streamId_nodeId1`;
 ```
 
 * To report the metrics to an external system, we can add metric report in flink-conf.yaml. Take the `Prometheus` reporter as an example.

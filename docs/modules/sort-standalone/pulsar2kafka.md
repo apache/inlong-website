@@ -16,7 +16,7 @@ At first, decompress the archive file, copy three files in the directory "conf/k
 
 ### Example: conf/common.properties
 
-```
+```properties
 clusterId=kafkav3-sz-sz1
 nodeId=nodeId
 metricDomains=Sort
@@ -40,7 +40,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 
 ### Example: conf/SortClusterConfig.conf
 
-```
+```json
 {
 	"clusterName": "kafkav3-gz-gz1",
 	"sortTasks": [{
@@ -61,7 +61,7 @@ sortSourceConfig.QueryConsumeConfigType=file
 
 ### Example: conf/sid_kafka_v3.conf
 
-```
+```json
 {
 	"sortClusterName": "kafkav3-gz-gz1",
 	"sortTaskId": "sid_kafka_v3",

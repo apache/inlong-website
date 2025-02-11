@@ -17,7 +17,7 @@ Connectors 下载后可以将需要的 jars 放到`FLINK_HOME/lib/`下。
 :::
 
 ## 启动 InLong Sort 任务
-```
+```shell
 ./bin/flink run -c org.apache.inlong.sort.Entrance apache-inlong-[version]-bin/inlong-sort/sort-dist-[version].jar \
 --sql.script.file [souce-to-sink].sql
 ```
@@ -69,4 +69,4 @@ INSERT INTO `table_2`
 --sql.script.file mysql-to-postgresql.sql
 ```
 
-Other complete usage example, you can refer to [Example](example.md)
+其它完整使用示例，可以参考 [Example](example.md)

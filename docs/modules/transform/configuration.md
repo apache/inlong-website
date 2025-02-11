@@ -7,45 +7,42 @@ sidebar_position: 2
 ## TransformConfig Configuration Description
 ```java
 public class TransformConfig {
-
     @JsonProperty("sourceInfo")
-    private SourceInfo sourceInfo;	// Definition of data source decoding
+    private SourceInfo sourceInfo;    // Definition of data source decoding
     @JsonProperty("sinkInfo")
-    private SinkInfo sinkInfo;		// Definition of data result encoding
+    private SinkInfo sinkInfo;        // Definition of data result encoding
     @JsonProperty("transformSql")
-    private String transformSql;	//Data transformation SQL
+    private String transformSql;    //Data transformation SQL
 }
 ```
 
 ## SourceInfo Configuration Description
 ### CSV
 ```java
-    public CsvSourceInfo(
-            @JsonProperty("charset") String charset,		// Character set
-            @JsonProperty("delimiter") String delimiter,	// Delimiter
-            @JsonProperty("escapeChar") String escapeChar,	// Escape character, if empty, no unescaping operation is performed during decoding
-            @JsonProperty("fields") List<FieldInfo> fields)	// Field list, if empty, decode by default according to the delimiter, field names are assigned as $1, $2, $3... starting from 1;
-                                                            // If the number of defined fields is less than the number of decoded fields, the extra fields will be discarded
-      );
+public CsvSourceInfo(
+    @JsonProperty("charset") String charset,		// Character set
+    @JsonProperty("delimiter") String delimiter,	// Delimiter
+    @JsonProperty("escapeChar") String escapeChar,	// Escape character, if empty, no unescaping operation is performed during decoding
+    @JsonProperty("fields") List<FieldInfo> fields)	// Field list, if empty, decode by default according to the delimiter, field names are assigned as $1, $2, $3... starting from 1;
+);
 ```
 
 ### KV
 ```java
-    public KvSourceInfo(
-            @JsonProperty("charset") String charset,		// Character set
-            @JsonProperty("fields") List<FieldInfo> fields)	// Field list, if empty, decode by default using the Key in KV as the field name
-                                                            // If the field name does not match the decoded field name, the field value will be empty, and extra field names will be discarded
-      );
+public KvSourceInfo(
+    @JsonProperty("charset") String charset,		// Character set
+    @JsonProperty("fields") List<FieldInfo> fields)	// Field list, if empty, decode by default using the Key in KV as the field name
+);
 ```
 
 ### ProtoBuffer
 ```java
-    public PbSourceInfo(
-            @JsonProperty("charset") String charset,					// Character set
-            @JsonProperty("protoDescription") String protoDescription,	// Base64 encoded ProtoBuf protocol description
-            @JsonProperty("rootMessageType") String rootMessageType,	// MessageType of the decoded source data, MessageType needs to be defined in the ProtoBuf protocol
-            @JsonProperty("rowsNodePath") String rowsNodePath)			// Array node path of the ProtoBuf protocol containing multiple data to be converted
-      );
+public PbSourceInfo(
+    @JsonProperty("charset") String charset,					// Character set
+    @JsonProperty("protoDescription") String protoDescription,	// Base64 encoded ProtoBuf protocol description
+    @JsonProperty("rootMessageType") String rootMessageType,	// MessageType of the decoded source data, MessageType needs to be defined in the ProtoBuf protocol
+    @JsonProperty("rowsNodePath") String rowsNodePath)			// Array node path of the ProtoBuf protocol containing multiple data to be converted
+);
 ```
 
 #### Generate ProtoBuf Protocol Description
@@ -66,7 +63,7 @@ protoc --descriptor_set_out=transform.description ./transform.proto --proto_path
 base64 transform.description |tr -d '\n' > transform.base64
 ```
 - Example of transform.proto
-```ProtoBuf
+```protobuf
 syntax = "proto3";
 package test;
 message SdkMessage {
@@ -89,27 +86,27 @@ CrcCCg90cmFuc2Zvcm0ucHJvdG8SBHRlc3QirQEKClNka01lc3NhZ2USEAoDbXNnGAEgASgMUgNtc2cS
 
 ### Json
 ```java
-    public JsonSourceInfo(
-            @JsonProperty("charset") String charset,			// Character set
-            @JsonProperty("rowsNodePath") String rowsNodePath)	// Array node path of the Json protocol containing multiple data to be converted
-      );
+public JsonSourceInfo(
+    @JsonProperty("charset") String charset,			// Character set
+    @JsonProperty("rowsNodePath") String rowsNodePath)	// Array node path of the Json protocol containing multiple data to be converted
+);
 ```
 ## SinkInfo Configuration Description
 ### CSV
 ```java
-    public CsvSinkInfo(
-            @JsonProperty("charset") String charset,		// Character set
-            @JsonProperty("delimiter") String delimiter,	// Delimiter
-            @JsonProperty("escapeChar") String escapeChar,	// Escape character, if empty, no escaping operation is performed during encoding
-            @JsonProperty("fields") List<FieldInfo> fields)	// Field list, if empty, encode by default according to the Select field order of TransformSQL
-      );
+public CsvSinkInfo(
+    @JsonProperty("charset") String charset,		// Character set
+    @JsonProperty("delimiter") String delimiter,	// Delimiter
+    @JsonProperty("escapeChar") String escapeChar,	// Escape character, if empty, no escaping operation is performed during encoding
+    @JsonProperty("fields") List<FieldInfo> fields)	// Field list, if empty, encode by default according to the Select field order of TransformSQL
+);
 ```
 ### KV
 ```java
-    public KvSinkInfo(
-            @JsonProperty("charset") String charset,		// Character set
-            @JsonProperty("fields") List<FieldInfo> fields)	// Field list, if empty, encode by default using the Alias of Select fields in TransformSQL as the Key
-      );
+public KvSinkInfo(
+    @JsonProperty("charset") String charset,		// Character set
+    @JsonProperty("fields") List<FieldInfo> fields)	// Field list, if empty, encode by default using the Alias of Select fields in TransformSQL as the Key
+);
 ```
 # TransformSQL Configuration Description
 ## CSV / KV Field Reference
@@ -134,28 +131,28 @@ CrcCCg90cmFuc2Zvcm0ucHJvdG8SBHRlc3QirQEKClNka01lc3NhZ2USEAoDbXNnGAEgASgMUgNtc2cS
 - See the function description section for details.
 ## SQL Example
 ```sql
-select ftime,extinfo from source where extinfo='ok'
+SELECT ftime,extinfo FROM source WHERE extinfo='ok'
 
-select $1 ftime,$2 extinfo from source where $2!='ok'
+SELECT $1 ftime,$2 extinfo FROM source WHERE $2!='ok'
 
-select $root.sid,$root.packageID,$child.msgTime,$child.msg from source
+SELECT $root.sid,$root.packageID,$child.msgTime,$child.msg FROM source
 
-select $root.sid,$root.packageID,$root.msgs(1).msgTime,$root.msgs(0).msg from source
+SELECT $root.sid,$root.packageID,$root.msgs(1).msgTime,$root.msgs(0).msg FROM source
 
-select $root.sid,
+SELECT $root.sid,
   ($root.msgs(1).msgTime-$root.msgs(0).msgTime)/$root.packageID field2,
   $root.packageID*($root.msgs(0).msgTime*$root.packageID+$root.msgs(1).msgTime/$root.packageID)*$root.packageID field3,
   $root.msgs(0).msg field4
-from source 
-where $root.packageID<($root.msgs(0).msgTime+$root.msgs(1).msgTime+$root.msgs(0).msgTime+$root.msgs(1).msgTime)
+FROM source 
+WHERE $root.packageID<($root.msgs(0).msgTime+$root.msgs(1).msgTime+$root.msgs(0).msgTime+$root.msgs(1).msgTime)
 
-select $root.sid,
+SELECT $root.sid,
   $root.packageID,
   $child.msgTime,
   concat($root.sid,$root.packageID,$child.msgTime,$child.msg) msg,$root.msgs.msgTime.msg
-from source
+FROM source
 
-select now() from source
+SELECT now() FROM source
 ```
 # Common Issues
 - SDK calls are thread-safe.

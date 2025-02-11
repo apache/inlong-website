@@ -21,20 +21,20 @@ You can choose Apache Pulsar, Apache Kafka or InLong TubeMQ as your MessageQueue
 
 - If using Pulsar, the configuration file is `conf/audit-proxy-pulsar.conf`. Change the Pulsar Topic info.
 
-```Shell
+```shell
 agent1.sinks.pulsar-sink-msg1.topic = persistent://public/default/inlong-audit
 agent1.sinks.pulsar-sink-msg2.topic = persistent://public/default/inlong-audit
 ```
 
 - If using Kafka, the configuration file is `conf/audit-proxy-kafka.conf`. Change the Kafka Topic info.
 
-```Shell
+```shell
 agent1.sinks.kafka-sink-msg1.topic = inlong-audit
 agent1.sinks.kafka-sink-msg2.topic = inlong-audit
 ```
 
 ### Start
-```Shell
+```shell
 # By default, pulsar is used as the MessageQueue, and the audit-proxy-pulsar.conf configuration file is loaded.
 bash +x ./bin/proxy-start.sh [pulsar｜kafka]
 ```
@@ -44,7 +44,7 @@ The default listen port is `10081`.
 ### Configure
 The configuration file is `conf/application.properties`. 
 
-```Shell
+```properties
 # the MQ type for audit proxy: pulsar / kafka
 audit.config.proxy.type=pulsar
 
@@ -80,14 +80,14 @@ jdbc.password=inlong
 - If the backend database is PostgreSQL, there's no need for additional dependencies.
 
 ### Start
-```Shell
+```shell
 bash +x ./bin/store-start.sh
 ```
 
 ## Audit Service
 ### Configure
 The configuration file is `conf/audit-service.properties`
-```Shell
+```properties
 mysql.jdbc.url=jdbc:mysql://127.0.0.1:3306/apache_inlong_audit?characterEncoding=utf8&useUnicode=true&rewriteBatchedStatements=true
 mysql.username=root
 mysql.password=inlong
@@ -103,7 +103,7 @@ In the audit_id_config table used by the Audit Service, configure the audit item
 - If the backend database is PostgreSQL, there's no need for additional dependencies.
 
 ### Start
-```Shell
+```shell
 bash +x ./bin/service-start.sh
 ```
 The default listen port is `10080`.

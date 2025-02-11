@@ -25,32 +25,32 @@ sidebar_position: 6
 
 ```xml
 <build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>${plugin.shade.version}</version>
-                <executions>
-                    <execution>
-                        <id>shade-flink</id>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <phase>package</phase>
-                        <configuration>
-                            <createDependencyReducedPom>false</createDependencyReducedPom>
-                            <artifactSet>
-                                <includes>
-                                    <include>io.opentelemetry*</include>
-                                    <include>com.squareup.*</include>
-                                </includes>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>${plugin.shade.version}</version>
+            <executions>
+                <execution>
+                    <id>shade-flink</id>
+                    <goals>
+                        <goal>shade</goal>
+                    </goals>
+                    <phase>package</phase>
+                    <configuration>
+                        <createDependencyReducedPom>false</createDependencyReducedPom>
+                        <artifactSet>
+                            <includes>
+                                <include>io.opentelemetry*</include>
+                                <include>com.squareup.*</include>
+                            </includes>
+                        </artifactSet>
+                    </configuration>
+                </execution>
+            </executions>
+        </plugin>
+    </plugins>
+</build>
 ```
 
 
@@ -108,7 +108,7 @@ public class XXXSourceReader<T>
 
 也可以参考下面的内容配置，`docker-compose.yml` 文件参考如下：
 
-```yml
+```docker
 # flink jobmanager
 jobmanager:
   image: apache/flink:1.15-scala_2.12

@@ -9,7 +9,7 @@ sidebar_position: 2
 ## 启动inlong-sort-standalone应用
 有了上述编译阶段产出的tar.gz包后，解压后就可以启动inlong-sort-standalone的应用了。  
 示例：
-```
+```shell
 ./bin/sort-start.sh
 ```
 
@@ -98,7 +98,7 @@ sidebar_position: 2
 |roundRobinRouterBatchingPartitionSwitchFrequency   | N  | 10  | roundRobinRouterBatchingPartitionSwitchFrequency  |
 
 ### Hive配置样例
-```
+```json
 {
 	"data":{
 		"clusterName":"hivev3-sz-sz1",

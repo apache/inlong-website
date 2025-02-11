@@ -40,37 +40,37 @@ public class PullConsumerExample {
    
 ### 1.2 PushConsumer
 ```java
-  public class PushConsumerExample {
-  
-       public static void test(String[] args) throws Throwable {
-           final String masterHostAndPort = "localhost:8000";
-           final String topic = "test";
-           final String group = "test-group";
-           final ConsumerConfig consumerConfig = new ConsumerConfig(masterHostAndPort, group);
-           consumerConfig.setConsumePosition(ConsumePosition.CONSUMER_FROM_LATEST_OFFSET);
-           final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(consumerConfig);
-           final PushMessageConsumer pushConsumer = messageSessionFactory.createPushConsumer(consumerConfig);
-           pushConsumer.subscribe(topic, null, new MessageListener() {
-               @Override
-               public void receiveMessages(PeerInfo peerInfo, List<Message> messages) throws InterruptedException {
-                   for (Message message : messages) {
-                       System.out.println("received message : " + new String(message.getData()));
-                   }
-               }
-               @Override
-               public Executor getExecutor() {
-                   return null;
-               }
-               @Override
-               public void stop() {
-                   //
-               }
-           });
-           pushConsumer.completeSubscribe();
-           CountDownLatch latch = new CountDownLatch(1);
-           latch.await(10, TimeUnit.MINUTES);
-       }
-   }
+public class PushConsumerExample {
+
+    public static void test(String[] args) throws Throwable {
+        final String masterHostAndPort = "localhost:8000";
+        final String topic = "test";
+        final String group = "test-group";
+        final ConsumerConfig consumerConfig = new ConsumerConfig(masterHostAndPort, group);
+        consumerConfig.setConsumePosition(ConsumePosition.CONSUMER_FROM_LATEST_OFFSET);
+        final MessageSessionFactory messageSessionFactory = new TubeSingleSessionFactory(consumerConfig);
+        final PushMessageConsumer pushConsumer = messageSessionFactory.createPushConsumer(consumerConfig);
+        pushConsumer.subscribe(topic, null, new MessageListener() {
+            @Override
+            public void receiveMessages(PeerInfo peerInfo, List<Message> messages) throws InterruptedException {
+                for (Message message : messages) {
+                    System.out.println("received message : " + new String(message.getData()));
+                }
+            }
+            @Override
+            public Executor getExecutor() {
+                return null;
+            }
+            @Override
+            public void stop() {
+                //
+            }
+        });
+        pushConsumer.completeSubscribe();
+        CountDownLatch latch = new CountDownLatch(1);
+        latch.await(10, TimeUnit.MINUTES);
+    }
+}
 ```
 
 ---

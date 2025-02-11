@@ -7,45 +7,42 @@ sidebar_position: 2
 ## TransformConfig 配置说明
 ```java
 public class TransformConfig {
-
     @JsonProperty("sourceInfo")
-    private SourceInfo sourceInfo;	//数据源的解码定义
+    private SourceInfo sourceInfo;    // 数据源的解码定义
     @JsonProperty("sinkInfo")
-    private SinkInfo sinkInfo;		//数据结果的编码定义
+    private SinkInfo sinkInfo;        // 数据结果的编码定义
     @JsonProperty("transformSql")
-    private String transformSql;	//数据转换的 SQL
+    private String transformSql;    // 数据转换的 SQL
 }
 ```
 
 ## SourceInfo 配置说明
 ### CSV
 ```java
-    public CsvSourceInfo(
-            @JsonProperty("charset") String charset,		//字符集
-            @JsonProperty("delimiter") String delimiter,	//分隔符
-            @JsonProperty("escapeChar") String escapeChar,	//转义符，如果为空，则解码时不进行反转义操作
-            @JsonProperty("fields") List<FieldInfo> fields)	//字段列表，如果为空，则解码时默认按分隔符解析，字段名按 $1、$2、$3...来分配，注意从1开始；
-                                                            //如果字段定义数少于解码出来的字段数，则多出的字段数将会被丢弃
-      );
+public CsvSourceInfo(
+    @JsonProperty("charset") String charset,		// 字符集
+    @JsonProperty("delimiter") String delimiter,	// 分隔符
+    @JsonProperty("escapeChar") String escapeChar,	// 转义符，如果为空，则解码时不进行反转义操作
+    @JsonProperty("fields") List<FieldInfo> fields)	// 字段列表，如果为空，则解码时默认按分隔符解析，字段名按 $1、$2、$3...来分配，注意从1开始；
+);
 ```
 
 ### KV
 ```java
-    public KvSourceInfo(
-            @JsonProperty("charset") String charset,		//字符集
-            @JsonProperty("fields") List<FieldInfo> fields)	//字段列表，如果为空，则解码时默认按 KV 里的 Key 作为字段名
-                                                            //如果字段名不匹配解码出来的字段名，则字段值为空，多出来的字段名会被丢弃
-      );
+public KvSourceInfo(
+    @JsonProperty("charset") String charset,		// 字符集
+    @JsonProperty("fields") List<FieldInfo> fields)	// 字段列表，如果为空，则解码时默认按 KV 里的 Key 作为字段名
+);
 ```
 
 ### ProtoBuffer
 ```java
-    public PbSourceInfo(
-            @JsonProperty("charset") String charset,					//字符集
-            @JsonProperty("protoDescription") String protoDescription,	// ProtoBuf 协议描述的 Base64 编码
-            @JsonProperty("rootMessageType") String rootMessageType,	//解码源数据的 MessageType ，MessageType 需要在 ProtoBuf 协议中已定义
-            @JsonProperty("rowsNodePath") String rowsNodePath)			// ProtoBuf 协议包含多条待转换数据的数组节点路径
-      );
+public PbSourceInfo(
+    @JsonProperty("charset") String charset,					// 字符集
+    @JsonProperty("protoDescription") String protoDescription,	// ProtoBuf 协议描述的 Base64 编码
+    @JsonProperty("rootMessageType") String rootMessageType,	// 解码源数据的 MessageType ，MessageType 需要在 ProtoBuf 协议中已定义
+    @JsonProperty("rowsNodePath") String rowsNodePath)			// ProtoBuf 协议包含多条待转换数据的数组节点路径
+);
 ```
 
 #### 生成ProtoBuf 协议描述
@@ -66,7 +63,7 @@ protoc --descriptor_set_out=transform.description ./transform.proto --proto_path
 base64 transform.description |tr -d '\n' > transform.base64
 ```
 - transform.proto 样例
-```ProtoBuf
+```protobuf
 syntax = "proto3";
 package test;
 message SdkMessage {
@@ -89,27 +86,27 @@ CrcCCg90cmFuc2Zvcm0ucHJvdG8SBHRlc3QirQEKClNka01lc3NhZ2USEAoDbXNnGAEgASgMUgNtc2cS
 
 ### Json
 ```java
-    public JsonSourceInfo(
-            @JsonProperty("charset") String charset,			//字符集
-            @JsonProperty("rowsNodePath") String rowsNodePath)	// Json 协议包含多条待转换数据的数组节点路径
-      );
+public JsonSourceInfo(
+    @JsonProperty("charset") String charset,			// 字符集
+    @JsonProperty("rowsNodePath") String rowsNodePath)	// Json 协议包含多条待转换数据的数组节点路径
+);
 ```
 ## SinkInfo 配置说明
 ### CSV
 ```java
-    public CsvSinkInfo(
-            @JsonProperty("charset") String charset,		//字符集
-            @JsonProperty("delimiter") String delimiter,	//分隔符
-            @JsonProperty("escapeChar") String escapeChar,	//转义符，如果为空，则编码时不进行转义操作
-            @JsonProperty("fields") List<FieldInfo> fields)	//字段列表，如果为空，则编码时默认按 TransformSQL 的 Select 字段顺序拼接
-      );
+public CsvSinkInfo(
+    @JsonProperty("charset") String charset,		// 字符集
+    @JsonProperty("delimiter") String delimiter,	// 分隔符
+    @JsonProperty("escapeChar") String escapeChar,	// 转义符，如果为空，则编码时不进行转义操作
+    @JsonProperty("fields") List<FieldInfo> fields)	// 字段列表，如果为空，则编码时默认按 TransformSQL 的 Select 字段顺序拼接
+);
 ```
 ### KV
 ```java
-    public KvSinkInfo(
-            @JsonProperty("charset") String charset,		//字符集
-            @JsonProperty("fields") List<FieldInfo> fields)	//字段列表，如果为空，则编码时默认按 TransformSQL 的 Select 字段 Alias 作为 Key 拼接
-      );
+public KvSinkInfo(
+    @JsonProperty("charset") String charset,		// 字符集
+    @JsonProperty("fields") List<FieldInfo> fields)	// 字段列表，如果为空，则编码时默认按 TransformSQL 的 Select 字段 Alias 作为 Key 拼接
+);
 ```
 # TransformSQL 配置说明
 ## CSV / KV 字段引用
@@ -132,28 +129,28 @@ CrcCCg90cmFuc2Zvcm0ucHJvdG8SBHRlc3QirQEKClNka01lc3NhZ2USEAoDbXNnGAEgASgMUgNtc2cS
 - 详见函数说明章节。
 ## SQL 样例
 ```sql
-select ftime,extinfo from source where extinfo='ok'
+SELECT ftime,extinfo FROM source WHERE extinfo='ok'
 
-select $1 ftime,$2 extinfo from source where $2!='ok'
+SELECT $1 ftime,$2 extinfo FROM source WHERE $2!='ok'
 
-select $root.sid,$root.packageID,$child.msgTime,$child.msg from source
+SELECT $root.sid,$root.packageID,$child.msgTime,$child.msg FROM source
 
-select $root.sid,$root.packageID,$root.msgs(1).msgTime,$root.msgs(0).msg from source
+SELECT $root.sid,$root.packageID,$root.msgs(1).msgTime,$root.msgs(0).msg FROM source
 
-select $root.sid,
+SELECT $root.sid,
   ($root.msgs(1).msgTime-$root.msgs(0).msgTime)/$root.packageID field2,
   $root.packageID*($root.msgs(0).msgTime*$root.packageID+$root.msgs(1).msgTime/$root.packageID)*$root.packageID field3,
   $root.msgs(0).msg field4
-from source 
-where $root.packageID<($root.msgs(0).msgTime+$root.msgs(1).msgTime+$root.msgs(0).msgTime+$root.msgs(1).msgTime)
+FROM source 
+WHERE $root.packageID<($root.msgs(0).msgTime+$root.msgs(1).msgTime+$root.msgs(0).msgTime+$root.msgs(1).msgTime)
 
-select $root.sid,
+SELECT $root.sid,
   $root.packageID,
   $child.msgTime,
   concat($root.sid,$root.packageID,$child.msgTime,$child.msg) msg,$root.msgs.msgTime.msg
-from source
+FROM source
 
-select now() from source
+SELECT now() FROM source
 ```
 # 常见问题
 - SDK 调用是线程安全的。
