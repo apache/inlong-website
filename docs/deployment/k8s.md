@@ -45,7 +45,7 @@ kubectl port-forward $DASHBOARD_POD_NAME 80:$DASHBOARD_CONTAINER_PORT --address=
 ```
 
 And then access [http://127.0.0.1:80](http://127.0.0.1:80), and use the following default account to log in:
-```
+```properties
 User: admin
 Password: inlong
 ```

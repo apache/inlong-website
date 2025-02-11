@@ -25,7 +25,7 @@ docker-compose up -d
 
 ## Cluster Initialize
 When all containers are successfully started, you can access the Inlong dashboard address `http://localhost`, and use the following default account to log in:
-```
+```properties
 User: admin
 Password: inlong
 ```

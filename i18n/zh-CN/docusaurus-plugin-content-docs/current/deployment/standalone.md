@@ -34,7 +34,7 @@ inlong-tubemq-manager/lib/
 
 ## 配置
 在`conf/inlong.conf`文件中根据实际情况配置参数，主要包括：
-```shell
+```properties
 # 本地机器 IP
 local_ip=
 # 消息队列服务： pulsar 或者 kafka
@@ -57,7 +57,7 @@ bin/inlong-daemon start standalone
 
 ## 集群初始化
 当所有容器都成功启动后，可以访问 InLong Dashboard 地址`http://localhost`，并使用以下默认账号登录:
-```
+```properties
 User: admin
 Password: inlong
 ```

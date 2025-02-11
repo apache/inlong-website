@@ -34,7 +34,7 @@ inlong-tubemq-manager/lib/
 
 ## Configure 
 In `conf/inlong.conf`, configure the parameters according to the actual situation, mainly include:
-```shell
+```properties
 # local IP
 local_ip=
 # message queue: pulsar or kafka
@@ -57,7 +57,7 @@ bin/inlong-daemon start standalone
 
 ## Cluster Initialize
 When all containers are successfully started, you can access the Inlong dashboard address `http://localhost`, and use the following default account to log in:
-```
+```properties
 User: admin
 Password: inlong
 ```
