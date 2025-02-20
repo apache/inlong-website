@@ -28,48 +28,45 @@ It is recommended that you change the password in time after logging in.
 
 ## Data Access
 
-The data access module displays a list of all tasks connected to the system within the current user authority, and can
-view, edit, update and delete the details of these tasks.
+The data access module is responsible for aggregating data from various data sources into a unified storage service, enabling further data queries and analysis.
 
-Click [Create], there are two steps to fill in data access information: Group information, data stream.
+### Create Data Stream Group
 
-![Create Group](img/create-group.png)
+Click on [Create] button, this step requires you to fill in the basic information of the data flow group.
 
-### Data Stream Group Information
+![Create Group](img/img_1.png)
 
-![Create Group](img/group-information.png)
+- **InLong group id**: Unified lowercase English name, please try to include the product name and concise
+  specifications, such as pay_base.
+- **InLong group name**: Custom data group name.
+- **InLong group owners**: The data stream group owner can view and modify group information, 
+  add and modify all access configuration items.
+- **Description**: Simple text introduction to data stream group
+- **MQ type**: Choose message middleware of MQ.
 
-#### Access Requirements
+Currently, supports three message middleware of MQ. we use TubeMQ as an example.
+you can also check [Kafka](/docs/quick_start/data_ingestion/mysql_kafka_clickhouse_example.md) data access example
+and [Pulsar](/docs/quick_start/data_ingestion/file_pulsar_clickhouse_example.md) data access example.
 
-Access requirements require users to choose message middleware: high throughput (TUBE) or High reliability (PULSAR):
+:::info MQ Type
+- Apache Kafka: high throughput and low latency, and can handle large-scale data streams.
+- Apache Pulsar: high-reliability message transmission component, suitable for billing transmission.
+- InLong TubeMQ: high-throughput message transmission component, suitable for log message transmission.
+:::
 
-- high throughput (Inlong TubeMQ): high-throughput message transmission component, suitable for log message transmission.
-- high reliability (Apache PULSAR): high-reliability message transmission component, suitable for billing transmission.
+![Create Group](img/img_2.png)
 
-#### Group Information
+Click on [Next] button, to enter the data stream information filling step.
 
-You are required to fill in basic data stream group information for access tasks.
+### Create Data Stream
 
-- Group Name: Unified lowercase English name, please try to include the product name and concise
-  specifications, such as pay_base
-- Group Label: the label of the group, easy to use and retrieve, up to 128 characters
-- Group responsible person: at least 1 people, the group responsible person can view and modify group
-  information, add and modify all access configuration items
-- Group introduction: Cut SMS to introduce the group background and application of this access task:
+Data stream has a specific data source, data format and data sink. Click [Create] button to create a new data stream:
 
-#### Access Scale
+![Create Group](img/img_3.png)
 
-The scale of access requires users to judge the scale of access data in advance, to allocate computing and storage
-resources later.
+There are four modules for data stream information filling: basic information, data source, data information, and data stream.
 
-### Data Stream
-
-Click [Next] to enter the data stream information filling step. There are four modules for data stream information filling:
-basic information, data source, data information, and data stream.
-
-In the data stream process, you can click [Create] to create a new data stream:
-
-![Create stream](img/create-stream.png)
+![Create Group](img/img_4.png)
 
 #### Basic Information
 
