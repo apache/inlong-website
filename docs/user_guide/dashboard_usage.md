@@ -3,9 +3,26 @@ title: Dashboard Guide
 sidebar_position: 1
 ---
 
+## Overview
+The guide in this section will show you how to manage data flows through the `Inlong` dashboard and introduce some management configurations. 
+Through this guide, you will learn to perform operations such as data access, data consumption, data synchronization, and cluster management.
+
+## Getting started
+To start using the `InLong` dashboard, please deploy it first. Here are several ways to do it:
+
+- [Standalone](/docs/deployment/standalone.md)
+- [Docker](/docs/deployment/docker.md)
+- [Kubernetes](/docs/deployment/k8s.md)
+- [Bare Metal](/docs/deployment/bare_metal.md)
+
+:::tip
+We recommend using `docker` for deployment.
+:::
+
 ## User Login
 
-Requires the user to enter the account name and password of the system, default account is `admin inlong`.
+Requires the user to enter the system account name and password. The default account name is `admin` and the password is `inlong`. 
+It is recommended that you change the password in time after logging in.
 
 ![User login](img/user-login.png)
 
