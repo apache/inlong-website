@@ -1,247 +1,270 @@
 ---
-title: Dashboard Guide
+title: Dashboard
 sidebar_position: 1
 ---
 
+## Overview
+The guide in this section will show you how to manage data flows through the `Inlong` dashboard and introduce some management configurations. 
+Through this guide, you will learn to perform operations such as data access, data consumption, data synchronization, and cluster management.
+
+## Getting started
+To start using the `InLong` dashboard, please deploy it first. Here are several ways to do it:
+
+- [Standalone](/deployment/standalone.md)
+- [Docker](/deployment/docker.md)
+- [Kubernetes](/deployment/k8s.md)
+- [Bare Metal](/deployment/bare_metal.md)
+
+:::tip
+We recommend using `docker` for deployment.
+:::
+
 ## User Login
 
-Requires the user to enter the account name and password of the system, default account is `admin inlong`.
+Requires the user to enter the system account name and password. The default account name is `admin` and the password is `inlong`. 
+It is recommended that you change the password in time after logging in.
 
 ![User login](img/user-login.png)
 
 ## Data Access
 
-The data access module displays a list of all tasks connected to the system within the current user authority, and can
-view, edit, update and delete the details of these tasks.
+The data access module is responsible for aggregating data from various data sources into a unified storage service, enabling further data queries and analysis.
 
-Click [Create], there are two steps to fill in data access information: Group information, data stream.
+### Create Data Stream Group
 
-![Create Group](img/create-group.png)
+Click on [Create] button, this step requires you to fill in the basic information of the data flow group.
 
-### Data Stream Group Information
+![Create Data Stream Group](img/create-data-stream-group-next.png)
 
-![Create Group](img/group-information.png)
+- **InLong group id**: Unified lowercase English name, please try to include the product name and concise
+  specifications, such as pay_base.
+- **InLong group name**: Custom data group name.
+- **InLong group owners**: The data stream group owner can view and modify group information, 
+  add and modify all access configuration items.
+- **Description**: Simple text introduction to data stream group
+- **MQ type**: Choose message middleware of MQ.
 
-#### Access Requirements
+Currently, supports three message middleware of MQ. we use TubeMQ as an example.
+you can also check [Kafka](/quick_start/data_ingestion/mysql_kafka_clickhouse_example.md) data access example
+and [Pulsar](/quick_start/data_ingestion/file_pulsar_clickhouse_example.md) data access example.
 
-Access requirements require users to choose message middleware: high throughput (TUBE) or High reliability (PULSAR):
+:::info MQ Type
+- Apache Kafka: high throughput and low latency, and can handle large-scale data streams.
+- Apache Pulsar: high-reliability message transmission component, suitable for billing transmission.
+- InLong TubeMQ: high-throughput message transmission component, suitable for log message transmission.
+:::
 
-- high throughput (Inlong TubeMQ): high-throughput message transmission component, suitable for log message transmission.
-- high reliability (Apache PULSAR): high-reliability message transmission component, suitable for billing transmission.
+![Create Group](img/create-group-next.png)
 
-#### Group Information
+Click on [Next] button, to enter the data stream information filling step.
 
-You are required to fill in basic data stream group information for access tasks.
+### Create Data Stream
 
-- Group Name: Unified lowercase English name, please try to include the product name and concise
-  specifications, such as pay_base
-- Group Label: the label of the group, easy to use and retrieve, up to 128 characters
-- Group responsible person: at least 1 people, the group responsible person can view and modify group
-  information, add and modify all access configuration items
-- Group introduction: Cut SMS to introduce the group background and application of this access task:
+Data stream has a specific data source, data format and data sink. Click [Create] button to create a new data stream:
 
-#### Access Scale
+![Create Data Stream](img/create-data-stream-next.png)
 
-The scale of access requires users to judge the scale of access data in advance, to allocate computing and storage
-resources later.
+#### Step 1: Create Data Stream Information
 
-### Data Stream
+- **Stream id**: The prefix is automatically generated according to the product/project, which is unique in a 
+  specific group and is consistent with the stream id in the data source and the storage table.
+- **Stream name**: Custom name for a data stream, used to visually identify the purpose or type of the data stream.
+- **Description**: Simple text introduction to data stream.
+- **Data type**: The data format type transmitted in the data stream. Supported types: `CSV`, `Key-Value`, `Avro`, `JSON`
+- **Ignore parse error**: Whether to ignore data parsing errors.
+  - `Yes`: skip the invalid data and continue processing.
+  - `No`: stop processing when an error is encountered.
+- **Data encoding**: Character encoding of data, such as `UTF-8`, `GBK`.
+- **Source data separator**: The field separator of the source data.
+- **Source fields**: Schema of the source data fields. Applicable to structured data formats.
+- **Advanced options**: Additional configuration for data processing.
 
-Click [Next] to enter the data stream information filling step. There are four modules for data stream information filling:
-basic information, data source, data information, and data stream.
+![Data Stream Information](img/data-stream-info-next.png)
 
-In the data stream process, you can click [Create] to create a new data stream:
+Click on [Ok] button, to save the data stream information.
 
-![Create stream](img/create-stream.png)
+#### Step 2: Create Data Source And Data Target
 
-#### Basic Information
+The left side is the data source, and the right side is the data target.
+You can find more examples of create data source and data target in the **[Data Ingestion]** section under **[Quick Start]**.
 
-You are required to fill in the basic information of the data stream in the access task:
+![Create Data Source and Target](img/data-source-target-next.png)
 
-- Data stream id: The prefix is automatically generated according to the product/project, which is unique in a 
-  specific group and is consistent with the stream id in the data source and the storage table
-- Data stream name: interface information description, the length is limited to 64 characters (32 Chinese characters)
-- Data stream owner: The data stream owner can view and modify data stream information, add and modify all access
-  configuration items
-- Introduction to data stream: simple text introduction to data stream
+The types supported by the data source are as:
 
-#### Data Sources
+![Data Source](img/data-source-next.png)
 
-You are required to select the source of the data stream.
+The types supported by the data target are as:
 
-Currently, two methods of file and independent push are supported, and the detailed information of the data source can
-be supplemented in the advanced options.
+![Data Target](img/data-target-next.png)
 
-- File: The business data is in the file, and the business machine deploys InLong Agent, which is read according to
-  customized policy rules
-- Autonomous push: Push data to the messaging middleware through the SDK
+After create the data source and data target, click the [Submit] button to enter the [approval management](#approval-management).
 
-#### Data Information
+## Data Synchronization
 
-You are required to fill in the data-related information in the data stream.
+Data synchronization is the process of establishing consistency between source and target data stores, and the continuous harmonization of the data over time.
+Click the [Create] button to create a data synchronization group.
 
-![Data info](img/data-info.png)
+![Data Sync](img/data-sync-next.png)
 
-- Data Format
-- Data encoding
-- Source field separator
-- Source data field
+`InLong` has two data synchronization modes, one is real-time data synchronization and the other is offline data synchronization.
 
-#### Data Storage
+### Realtime Data Synchronization
 
-You are required to select the final flow direction of this data stream, this part is not currently supports both hive storage
-and autonomous push.
+Suitable for low-latency scenarios such as real-time monitoring and transaction flow synchronization
 
-Add HIVE storage:
+#### Step 1: Create Realtime Synchronization Data Stream Group
 
-![Hive info](img/hive-info.png)
+Select the synchronization type of [RealTime]
 
-- Target database: hive database name (prepared to create in advance)
-- Target table: hive table name
-- First-level partition: the field name of the first-level subdirectory of hdfs data divided by hive data
-- Secondary partition: the field name of the first-level subdirectory of hdfs data divided by hive data
-- Username: hive server connection account name
-- User password: hive server connection account password
-- HDFS url: Hive bottom HDFS connection
-- JDBC url: jdbc url of hive server
-- Field related information: source field name, source field type, HIVE field name, HIVE field type, field description,
-  and support deletion and addition
+![Realtime Sync Data Stream Group](img/sync-data-stream-group-next.png)
 
-## My Application
+- **Group ID**: Unified lowercase English name, please try to include the product name and concise specifications, such as pay_base.
+- **Group owners**: The data stream group owner can view and modify group information,
+  add and modify all access configuration items.
+- **Full database migration**: Whether to migrate the entire database.
+- **Sync Type**: Real-time or offline.
+- **Description**: Simple text introduction to data stream group.
 
-The approval management function module currently includes my application and my approval, and all tasks of data access
-and consumption application approval in the management system.
+Click the [Next] button to create data stream.
 
-![My application](img/my-application.png)
+#### Step 2: Create Realtime Synchronization Data Stream
 
-Display the current task list submitted by the applicant for data access and consumption in the system, click [Details]
-to view the current basic information and approval process of the task.
+![Realtime Sync Data Stream](img/sync-data-stream-next.png)
 
-#### Application Data Access Details
+Here are a few examples of creating real-time data synchronization:
 
-![Application detail](img/application-detail.png)
+- [MySQL to ClickHouse Example](/quick_start/realtime_data_sync/mysql_clickhouse_example.md)
+- [MySQL to StarRocks Example](/quick_start/realtime_data_sync/mysql_starrocks_example.md)
+- [MySQL to Iceberg Example](/quick_start/realtime_data_sync/mysql_iceberg_example.md)
+- [Pulsar to ClickHouse Example](/quick_start/realtime_data_sync/pulsar_clickhouse_example.md)
 
-Data access task detailed display The current basic information of the application task includes: applicant-related
-information, basic information about application access, and current approval process nodes.
+### Offline Data Synchronization
 
-## Data Consumption
+Applicable to scenarios such as data warehouse construction and historical migration.
 
-Data consumption currently does not support direct consumption access to data, and data can be consumed normally after
-the approval process.
+#### Step 1: Create Offline Synchronization Data Stream Group
 
-Click [Create] to enter the data consumption process, and you need to fill in information related to
-consumption.
+Select the synchronization type of [Offline], In addition to filling in the basic data stream group information, you also need to 
+fill in offline synchronization related information, such as scheduling rules and dependency configuration.
 
-### Consumer Information
+![Offline Sync Data Stream Group](img/offline-sync-data-stream-group-next.png)
 
-Applicants need to gradually fill in the basic consumer data stream group information related to data consumption applications in
-the information filling module
+**Scheduling Rules**:
 
-![Consumer info](img/consumer-info.png)
+- **Schedule Engine**: Choose `quartz` or `airflow` or `dolphinScheduler` engine.
+- **Schedule Type**: Choose regular or `Crontab` type.
+- **Schedule Unit**: Select minutes, hours, days, years, etc.
+- **Schedule Interval**: Fill in the schedule unit time.
+- **Delay Time**: Fill in the required delay time.
+- **Valid Time**: Configure the validity time of offline rules.
+- **Self Dependence**: Choose dependency type.
 
-- Consumer group name: The brief name of the
+#### Step 2: Create Offline Synchronization Data Stream
+
+![Offline Sync Data Stream](img/sync-data-stream-next.png)
+
+Here are a few examples of creating offline data synchronization:
+
+- [Quartz Scheduling Engine Example](/quick_start/offline_data_sync/quartz_example.md)
+- [DolphinScheduler Scheduling Engine Example](/quick_start/offline_data_sync/dolphinscheduler_example.md)
+- [Airflow Scheduling Engine Example](/quick_start/offline_data_sync/airflow_example.md)
+
+## Data Subscription
+
+Data Subscription provides subscribers bulk data feeds of the data they are entitled to access.
+
+![Data Subscription](img/data-subscription-next.png)
+
+Click [New subscribe] button to create a new data subscription.
+
+![Create New Subscribe](img/create-new-subscribe-next.png)
+
+- **Consumer group name**: The brief name of the
   consumer must be composed of lowercase letters, numbers, and underscores. The final approval will assign the consumer
-  name based on the abbreviation splicing
-- Consumer Responsible Person: At least 2 persons are required to choose the responsible person; the responsible person
-  can view and modify the consumption information
-- Consumer target data stream group id: you need to select the group id of the consumer data, you can click [Query] and 
-  select the appropriate group id in the pop-up window
-- Data usage: select data usage usage
-- Data usage description: The applicant needs to briefly explain the items used and the purpose of the data according to
-  their own consumption scenarios After completing the information, click [Submit], and the data consumption process
-  will be formally submitted to the approver before it will take effect.
+  name based on the abbreviation splicing.
+- **Subscription owners**: Owner can view and modify consumption information
+- **Target inLong group id**: Need to Select the target stream group in the drop-down box.
 
-## Synchronization
-
-The data synchronization module displays a list of all tasks in the synchronization system within the current user permissions. You can view, edit, update and delete the details of these tasks.
-Click [New Data Synchronization] to enter the data synchronization process. You need to fill in the relevant information about the synchronization information. You can choose two synchronization types: real-time or offline.
-
-![Create sync](img/create-sync.png)
-
-### Base Information
-
-#### Realtime Synchronization
-
-After filling in the relevant basic information, you can proceed to the next step.
-
-![Realtime sync](img/realtime-sync.png)
-
-- Data flow group ID: The brief name of the synchronization task, which must be composed of lowercase letters, numbers, and underscores.
-- Responsible person: The responsible person can view and modify synchronized information.
-- Entire database migration: Choose whether you need to migrate the entire database according to your own needs.
-
-#### Offline Synchronization
-
-After filling in the relevant basic information, you also need to fill in the offline synchronization related information, such as: scheduling rules and dependency configuration.
-
-![Offline sync](img/offline-sync.png)
-
-Scheduling type: Choose regular or Crontab type according to your own needs.
-
-##### Regular Type
-
-- Scheduling unit: select minutes, hours, days, weeks, etc. according to your own needs.
-- Scheduling cycle: Select the cycle according to your own needs, and its unit is determined by the selection of the scheduling unit.
-- Delay time: fill in the required delay time.
-- Validity time: Configure the validity time of offline rules.
-
-##### Crontab Type
-
-- Valid time: The time interval can be filled in, the format is: 2021-01-01 00:00-2021-12-31 23:59
-- Crontab expression: Fill in the Crontab expression according to your own needs.
-
-## Data Node
+## Data Nodes
 
 The data node module displays the list of data nodes within the current user permissions. You can view, edit, update and delete the details of these nodes.
-Click [New] to pop up a dialog box for creating a new node. You can choose different node types, such as: Redis, Kafka, MySQL, etc.
 
-![Create node](img/create-node.png)
+Click [Create] button to pop up a dialog box for create a new node. You can choose different node types, such as: `Redis`, `Kafka`, `MySQL`, etc.
 
-![create note type](img/create-node-type.png)
+![Create Node](img/create-node.png)
 
-- Node name: The brief name of the node, which must be composed of lowercase letters, numbers, and underscores.
-- Node type: Select the type of node.
-- Responsible person: The node responsible person can view and modify node information.
+![Select Node Type](img/create-node-type.png)
+
+- **Name**: The brief name of the node, which must be composed of lowercase letters, numbers, and underscores.
+- **Type**: Select the type of node.
+- **Owners**: The node responsible person can view and modify node information.
+- **Description**: Simple text introduction to data node.
 
 ## Cluster Management
 
-The cluster management module is divided into two modules: cluster label management and cluster management. Cluster label management is used to manage cluster labels, and cluster management is used to manage clusters.
+The cluster management module is divided into two modules: cluster label management and cluster management. Cluster label 
+management is used to manage cluster labels, and cluster management is used to manage clusters.
 
 ### Cluster Tag Management
 
 Cluster label management can add, delete, modify cluster labels, view the cluster list, bind clusters, etc.
 
-![Cluster tag](img/cluster-tag.png)
+![Cluster Tag](img/cluster-tag-next.png)
 
 #### Add New Cluster Label
 
-![add_cluster_tag](img/add-cluster-tag.png)
+![Add Cluster Tag](img/add-cluster-tag.png)
 
-- Cluster label: The brief name of the label, which must be composed of lowercase letters, numbers, and underscores. Modifying the cluster label name will also modify the label names in all clusters bound to this label. Make sure that this label is not used by InlongGroup. .
-- Person in charge: The person in charge can view and modify cluster label information.
-- Tenant: Select the tenant to be bound.
+- **Cluster tag**: The brief name of the label, which must be composed of lowercase letters, numbers, and underscores. 
+  Modifying the cluster label name will also modify the label names in all clusters bound to this label. 
+  Make sure that this label is not used by InLong Group.
+- **Owners**: The person in charge can view and modify cluster label information.
+- **Tenant**: Select the tenant to be bound.
+- **Description**: Simple text introduction to cluster label.
 
 #### Bind Cluster
 
-![Bind cluster](img/bind-cluster.png)
+Click [Bind cluster] button to open the Bind cluster information box and select the cluster you want to bind.
 
-![detail bind cluster](img/detail-bind-cluster.png)
+![Bind Cluster](img/bind-cluster-next.png)
 
-- Cluster name: When the cluster list is empty, you need to go to the cluster management page to create the required cluster so that the cluster label can be bound to the cluster.
+- **Cluster name**: When the cluster list is empty, you need to go to the cluster management page to create the required
+  cluster so that the cluster label can be bound to the cluster.
 
 ### Cluster Management
 
 Cluster management can add, delete, modify clusters, view the cluster list, view cluster details, view cluster nodes, etc.
 
-#### Create  New Cluster
+#### Create New Cluster
 
-Click [New Cluster] and a dialog box for creating a new cluster will pop up. You can choose different cluster types, such as Agent, Kafka, etc.
+Click [Create] button to open dialog box for creating a new cluster will pop up.
 
-![create cluster](img/create-cluster.png)
+![Create Cluster](img/create-cluster.png)
 
-![cluster detail](img/cluster-detail.png)
+![Cluster Detail](img/cluster-detail.png)
 
-- Cluster name: The brief name of the cluster, which must be composed of lowercase letters, numbers, and underscores.
-- Cluster type: Select the type of cluster.
-- Person in charge: The person in charge of the cluster can view and modify the cluster information.
-- Cluster label: Select the label to be bound.
+- **Cluster Name**: The brief name of the cluster, which must be composed of lowercase letters, numbers, and underscores.
+- **Type**: Select the type of cluster. you can choose different cluster types, such as `Agent`, `Kafka`, etc.
+- **Owners**: The person in charge of the cluster can view and modify the cluster information.
+- **Cluster label**: Select the label to be bound.
+- **Description**: Simple text introduction to cluster.
+
+## Approval Management
+
+The approval management function module currently includes my application and my approval, and all tasks of data access
+and consumption application approval in the management system.
+
+![Approval](img/approval-next.png)
+
+Click [Detail] to view the current basic information and approval process of the task,
+display the current task list submitted by the applicant for data access and consumption in the system.
+
+![Approval Detail](img/approval-detail-next.png)
+
+## FAQ
+
+### Data Stream configuration error
+
+Generally, the `MQ` or `Flink` cluster configuration. You can view the error information on the page, or enter the `Manager` 
+container to view detailed logs.
