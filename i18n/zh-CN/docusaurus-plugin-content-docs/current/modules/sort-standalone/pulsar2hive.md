@@ -124,8 +124,8 @@ sortSourceConfig.QueryConsumeConfigType=file
 
 ## SortClusterConfig.conf 配置参数
 
-- 可以从ClassPath的SortClusterConfig.conf源文件读取，但不支持实时更新
-- 可以从Inlong Manager的HTTP接口获取配置，支持实时更新
+- 可以从ClassPath的SortClusterConfig.conf源文件读取，但不支持实时更新。
+- 可以从Inlong Manager的HTTP接口获取配置，支持实时更新。
 
 | 参数名         | 是否必须 | 类型                              | 默认值 | 描述                               |
 |-------------|------|---------------------------------|-----|----------------------------------|
