@@ -9,7 +9,7 @@ sidebar_position: 3
 首先，解压压缩包`apache-inlong-sort-standalone-${project.version}-bin.tar.gz`，然后从目录 `conf/hive/` 下拷贝3个文件到目录 `conf/`。
 
 - conf/common.properties，所有组件的基本配置参数。
-- conf/SortClusterConfig.conf，所有Sort任务的sink配置。, sink configuration of all sort tasks。
+- conf/SortClusterConfig.conf，所有Sort任务的sink配置。
 - conf/sid_hive_inlong6th_v3.conf，一个Sort任务的数据源配置，文件名和配置文件SortClusterConfig.conf中的Sort任务名一致，如果SortClusterConfig.conf中配置了多个Sort任务，那么会有多个Sort任务的数据源配置。
 
 ### conf/common.properties 配置样例
