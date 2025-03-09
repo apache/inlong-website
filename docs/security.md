@@ -2,12 +2,12 @@
 
 The Apache Software Foundation takes a very active stance in eliminating security problems and denial of service attacks against its products.
 
-We strongly encourage folks to report such problems to our **private security mailing list** first, before disclosing them in a public forum.
+We strongly encourage folks to report such problems to our **developing mailing list** first, before disclosing them in a public forum.
 
-Please note that the security mailing list should only be used for reporting **undisclosed security vulnerabilities** and managing the process of fixing such vulnerabilities. Regular bug reports or other queries will be ignored.
+Please note that this mailing list should only be used for reporting **undisclosed security vulnerabilities** and managing the process of fixing such vulnerabilities. Regular bug reports or other queries should be created as an [issue](https://github.com/apache/inlong/issues).
 
-The private security mailing address is:  
-**security@inlong.apache.org**
+The security mailing address is:  
+**dev@inlong.apache.org**
 
 ## Security Model
 
