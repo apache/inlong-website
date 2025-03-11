@@ -5,7 +5,7 @@ sidebar_position: 11
 
 ## Security Issues
 
-The Apache Software Foundation takes a very active stance in eliminating security problems and denial of service attacks against its products.
+The Apache Software Foundation takes a very active stance in eliminating security issues and denial of service attacks against its products.
 
 We strongly encourage folks to report such problems to our **developing mailing list** first, before disclosing them in a public forum.
 
