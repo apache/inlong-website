@@ -7,7 +7,7 @@ sidebar_position: 11
 
 The Apache Software Foundation takes a very active stance in eliminating security issues and denial of service attacks against its products.
 
-We strongly encourage folks to report such problems to our **developing mailing list** first, before disclosing them in a public forum.
+We strongly encourage folks to report such issues to our **developing mailing list** first, before disclosing them in a public forum.
 
 Please note that this mailing list should only be used for reporting **undisclosed security vulnerabilities** and managing the process of fixing such vulnerabilities. Regular bug reports or other queries should be created as an [issue](https://github.com/apache/inlong/issues).
 
