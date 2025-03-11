@@ -1,4 +1,9 @@
-# Reporting New Security Problems with Apache InLong Components
+---
+title: Security
+sidebar_position: 12
+---
+
+## Reporting New Security Problems with Apache InLong Components
 
 The Apache Software Foundation takes a very active stance in eliminating security problems and denial of service attacks against its products.
 

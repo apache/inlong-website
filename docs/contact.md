@@ -1,6 +1,6 @@
 ---
 title: Contact Us
-sidebar_position: 11
+sidebar_position: 12
 ---
 
 - **Home Page**: https://inlong.apache.org
