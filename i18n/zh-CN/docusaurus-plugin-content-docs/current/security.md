@@ -3,7 +3,7 @@ title: 安全
 sidebar_position: 11
 ---
 
-## 报告 Apache InLong 组件的安全问题
+## 安全问题
 
 Apache 软件基金会积极致力于消除针对其产品的安全问题和拒绝服务攻击。
 
