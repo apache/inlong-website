@@ -1,6 +1,6 @@
 ---
 title: Security
-sidebar_position: 12
+sidebar_position: 11
 ---
 
 ## Reporting New Security Problems with Apache InLong Components
