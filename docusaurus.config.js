@@ -82,12 +82,12 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
                 to: "/docs/next/introduction",
               },
               {
-                label: "2.1.0",
+                label: "2.2.0",
                 to: "/docs/introduction",
               },
               {
-                label: "2.0.0",
-                to:"/docs/2.0.0/introduction",
+                label: "2.1.0",
+                to:"/docs/2.1.0/introduction",
               },
               {
                 label: "All versions",
