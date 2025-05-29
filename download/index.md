@@ -2,7 +2,7 @@
 title: Download
 ---
 
-## Current version 2.1.0
+## Current version 2.2.0
 You can download the latest version here.
 
 |                 Name                  | Version |       Date        |                                                                                                                                                                                                                                                                             Downloads                                                                                                                                                                                                                                                                             |
