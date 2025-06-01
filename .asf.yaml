@@ -25,7 +25,6 @@ github:
 staging:
   profile: ~
   whoami: master
-  foo: trigger
 
 publish:
   whoami: asf-site
