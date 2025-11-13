@@ -1,3 +1,3 @@
 export const siteVariables = {
-  inLongVersion: '2.3.0-SNAPSHOT',
+  inLongVersion: '2.4.0-SNAPSHOT',
 };
