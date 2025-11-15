@@ -124,9 +124,8 @@ Please ensure that the `key` you added to `dev` and `release` branches is the sa
 
 - Add the public key to KEYS in the dev branch to release the RC version
 ```shell
-# As this step will copy all the versions, it will take some time. If the network is broken, please use svn cleanup to delete the lock before re-execute it.
-$ svn co https://dist.apache.org/repos/dist/dev/inlong /tmp/inlong-dist-dev
-$ cd inlong-dist-dev
+$ svn co --depth=files https://dist.apache.org/repos/dist/dev/inlong /tmp/inlong-dist-dev
+$ cd /tmp/inlong-dist-dev
 # # Append your key to the KEYS file
 $ (gpg --list-sigs <key id> && gpg --armor --export <key id>) >> KEYS 
 # Later on, if you are asked to enter a username and password, just use your apache username and password.
@@ -135,8 +134,8 @@ $ svn ci -m "add gpg key for YOUR_NAME"
 
 - Add the public key to the KEYS in the release branch for releasing official version
 ```shell
-$ svn co https://dist.apache.org/repos/dist/release/inlong /tmp/inlong-dist-release
-$ cd inlong-dist-release
+$ svn co --depth=files https://dist.apache.org/repos/dist/release/inlong /tmp/inlong-dist-release
+$ cd /tmp/inlong-dist-release
 $ (gpg --list-sigs <key id> && gpg --armor --export <key id>) >> KEYS 
 $ svn ci -m "add gpg key for YOUR_NAME" 
 ```
