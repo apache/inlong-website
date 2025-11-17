@@ -1,5 +1,5 @@
 ---
-title: Function Description
+title: Function Specification
 sidebar_position: 3
 ---
 
