@@ -22,7 +22,13 @@
     height: 100vh;
     min-height: 800px;
     background-size: cover;
-    background-position: bottom;
+    background-position: center;
+    
+    @media screen and (max-width: 768px) {
+      min-height: 600px;
+      height: auto;
+      padding: 80px 0 60px;
+    }
   }
 
   .verticalMiddle {
@@ -31,18 +37,39 @@
     top: 13%;
     box-sizing: border-box;
     padding: 0 20px;
+    
+    @media screen and (max-width: 1024px) {
+      left: 10%;
+      right: 10%;
+    }
+    
+    @media screen and (max-width: 768px) {
+      position: relative;
+      left: 0;
+      top: 0;
+      padding: 0 5%;
+      width: 100%;
+    }
   }
-
 
   .productName {
     position: relative;
     display: inline-block;
     max-width: 500px;
 
+    @media screen and (max-width: 768px) {
+      max-width: 100%;
+      width: 100%;
+    }
+
     img {
       position: absolute;
       right: -7rem;
       bottom: 9rem;
+      
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
 
     .brandName {
@@ -52,14 +79,34 @@
       color: #C4C4C4;
       letter-spacing: 2px;
       white-space: nowrap;
+      
+      @media screen and (max-width: 1024px) {
+        font-size: 5rem;
+        width: auto;
+      }
+      
+      @media screen and (max-width: 768px) {
+        font-size: 3rem;
+        white-space: normal;
+      }
     }
+    
     .projectName {
       font-family: HelveticaNeue-Bold;
       width: 25rem;
       height: 10rem;
       background-size: contain;
-      position: relative;
       background-repeat: no-repeat;
+      
+      @media screen and (max-width: 1024px) {
+        width: 20rem;
+        height: 8rem;
+      }
+      
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        height: 6rem;
+      }
     }
   }
 
@@ -71,10 +118,32 @@
     margin-top: 1rem;
     font-size: 18px;
     line-height: 27px;
+    
+    @media screen and (max-width: 1024px) {
+      width: 100%;
+      max-width: 550px;
+    }
+    
+    @media screen and (max-width: 768px) {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 
   .buttonArea {
     margin-top: 40px;
+    
+    @media screen and (max-width: 768px) {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      
+      :global(button), :global(a) {
+        margin-right: 0 !important;
+        width: 100%;
+        max-width: 300px;
+      }
+    }
   }
 
   .productDesc2 {
@@ -82,16 +151,26 @@
     font-family: Helvetica;
     font-size: 1.5rem;
     color: var(--ifm-color-primary);
-    text-align: justify;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    
+    @media screen and (max-width: 768px) {
+      font-size: 1rem;
+      justify-content: flex-start;
+    }
 
     .split {
       width: 1px;
       background: var(--ifm-color-primary);
       height: 20px;
       margin: 0 5px;
+      
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
     }
   }
 
@@ -100,10 +179,18 @@
     position: relative;
     padding: 80px 15%;
     background-size: cover;
+    background-position: center;
+    
+    @media screen and (max-width: 1024px) {
+      padding: 60px 10%;
+    }
+    
+    @media screen and (max-width: 768px) {
+      padding: 40px 5%;
+    }
   }
 
   .index {
-    letter-spacing: 0;
     text-align: center;
     line-height: 36px;
     width: 60%;
@@ -111,7 +198,12 @@
     font-family: Helvetica;
     font-size: 30px;
     color: #FFFFFF;
-    letter-spacing: 0;
+    
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      margin: 0;
+      font-size: 24px;
+    }
 
     span {
       display: inline-block;
@@ -125,12 +217,19 @@
     display: inline-block;
     padding-left: 1.5rem;
     border-left: 2px solid #4982E0;
+    
+    @media screen and (max-width: 768px) {
+      padding-left: 1rem;
+    }
 
     .page1TitleL1 {
       font-family: PingFangSC-Regular;
       font-size: 30px;
       color: #FFFFFF;
-      letter-spacing: 0;
+      
+      @media screen and (max-width: 768px) {
+        font-size: 24px;
+      }
     }
 
     .page1TitleL2 {
@@ -138,7 +237,10 @@
       font-family: PingFangSC-Regular;
       font-size: 16px;
       color: #FFFFFF;
-      letter-spacing: 0;
+      
+      @media screen and (max-width: 768px) {
+        font-size: 14px;
+      }
     }
   }
 
@@ -146,10 +248,17 @@
     font-family: Helvetica;
     font-size: 5rem;
     color: var(--ifm-color-primary);
-    letter-spacing: 0;
     line-height: 5rem;
     display: inline;
     padding-right: 1.5rem;
+    
+    @media screen and (max-width: 768px) {
+      font-size: 3rem;
+      line-height: 3rem;
+      padding-right: 1rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
   }
 
   h3 {
@@ -157,8 +266,12 @@
     font-family: Helvetica;
     font-size: 2.5rem;
     color: #FFFFFF;
-    letter-spacing: 0;
     display: inline;
+    
+    @media screen and (max-width: 768px) {
+      font-size: 1.5rem;
+      margin-bottom: 20px;
+    }
   }
 
   ul {
@@ -175,51 +288,83 @@
       text-align: center;
       min-height: 26rem;
       padding-top: 4rem;
-      position: relative;
+      
+      @media screen and (max-width: 1200px) {
+        width: 33.33%;
+        min-height: 24rem;
+      }
+      
+      @media screen and (max-width: 768px) {
+        width: 100%;
+        min-height: auto;
+        padding-top: 2rem;
+        margin-bottom: 30px;
+      }
 
       .featureIcon {
         width: 56px;
         height: 56px;
         background-size: contain!important;
+        margin: 0 auto;
       }
 
       div {
         margin: auto;
         width: 80%;
+        
+        @media screen and (max-width: 768px) {
+          width: 90%;
+        }
 
         h4 {
           font-family: Helvetica;
           font-size: 1.5rem;
           color: #FFFFFF;
-          letter-spacing: 0;
           margin-top: 2rem;
           min-height: 4rem;
+          
+          @media screen and (max-width: 768px) {
+            font-size: 1.25rem;
+            min-height: auto;
+            margin-top: 1rem;
+          }
         }
+        
         p {
           margin-top: 2rem;
           text-align: left;
           font-family: Helvetica;
           font-size: 14px;
           color: #FFFFFF;
-          letter-spacing: 0;
           line-height: 21px;
+          
+          @media screen and (max-width: 768px) {
+            margin-top: 1rem;
+            font-size: 13px;
+            line-height: 20px;
+          }
         }
-      }
-    }
-    @media screen and (max-width: 768px){
-      li {
-        width: 100%;
       }
     }
   }
 
   .architectureImgWrap {
     width: 100%;
+    margin-top: 2rem;
+    overflow-x: auto;
+    
+    @media screen and (max-width: 768px) {
+      margin-top: 1.5rem;
+    }
   }
 
   .architectureImg {
     .fadeInAnimation;
     width: 100%;
+    min-width: 600px;
+    
+    @media screen and (max-width: 768px) {
+      min-width: 500px;
+    }
   }
-
 }
