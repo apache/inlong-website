@@ -18,11 +18,11 @@ The security mailing address is:
 
 Apache InLong's modules have clear divisions of responsibility regarding security boundaries based on their design intent. The following cases are not considered Apache InLong vulnerabilities and need not be reported as security issues:
 
-1. Vulnerabilities triggered by synchronized data content
+1.Vulnerabilities triggered by synchronized data content
 
 The Sort module provides real-time data synchronization capabilities, supporting the reading and writing of trusted data across various databases. Unless otherwise agreed, malicious data within databases is considered untrusted input, and users are responsible for ensuring the security of their own data sources.
 
-2. Tenant members viewing business information within their own tenant
+2.Tenant members viewing business information within their own tenant
 
 The Manager module provides tenant isolation. Any member within the same tenant can view all business information under that tenant, including Group, Sink, Stream, etc. Under the tenant permission model, only Group owners have the authority to modify and delete their Groups, Sinks, Streams, and other associated information; normal operations performed by members within their granted permissions also fall under this category. To prevent business information from being viewed by others, users simply need to ensure that unrelated personnel are not added to the current tenant.
 
