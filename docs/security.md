@@ -16,14 +16,10 @@ The security mailing address is:
 
 ## Security Model
 
-Apache InLong's modules have clear divisions of responsibility regarding security boundaries based on their design intent. The following cases are not considered Apache InLong vulnerabilities and need not be reported as security issues:
+Apache InLong modules have clearly defined responsibilities for security boundaries based on their design roles. The following scenarios are not considered vulnerabilities in Apache InLong and should not be reported as security issues:
 
-#### 1.Vulnerabilities triggered by synchronized data content
+1.The Sort module provides real-time data synchronization capabilities, responsible for reading and writing trusted data across various databases. Unless otherwise specified, malicious data within the database is considered unsafe input, and users must ensure the security of their data sources themselves, including but not limited to validating incoming data and authenticating access origins.
 
-The Sort module provides real-time data synchronization capabilities, supporting the reading and writing of trusted data across various databases. Unless otherwise agreed, malicious data within databases is considered untrusted input, and users are responsible for ensuring the security of their own data sources.
+2.The Manager module provides tenant isolation capabilities. Within the same tenant, any member can view all business information under that tenant, including Groups, Sinks, Streams, and more. Under the tenant permission model, only the Group owner has the authority to modify or delete their respective Groups, Sinks, Streams, and related data; normal operations performed by members within their granted permissions also fall under this category. To prevent business information from being accessed by others, users simply need to ensure that unauthorized individuals are not added to the current tenant.
 
-#### 2.Tenant members viewing business information within their own tenant
-
-The Manager module provides tenant isolation. Any member within the same tenant can view all business information under that tenant, including Group, Sink, Stream, etc. Under the tenant permission model, only Group owners have the authority to modify and delete their Groups, Sinks, Streams, and other associated information; normal operations performed by members within their granted permissions also fall under this category. To prevent business information from being viewed by others, users simply need to ensure that unrelated personnel are not added to the current tenant.
-
-We welcome suggestions for hardening the codebase.
+It should be noted that the above explanation aims to clarify the security boundaries. We always welcome community input on enhancing codebase security and improving boundary protection, working together to drive the project's continuous evolution.
