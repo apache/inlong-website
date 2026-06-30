@@ -16,9 +16,15 @@ The security mailing address is:
 
 ## Security Model
 
-Based on the Apache InLong security model, the following situations do not need to be reported as security vulnerabilities:
+Apache InLong Security Reporting Notice
+Each Apache InLong module defines clear security boundaries based on its design purpose. The following situations are NOT considered vulnerabilities in Apache InLong and should NOT be submitted as security reports (suggestions for hardening the codebase are always welcome):
 
-- **Malicious data in the database triggering issues** — When the Sort module synchronizes data, if vulnerabilities are triggered by malicious data content in the database, it should not be reported as a vulnerability of Apache InLong. Users are responsible for ensuring the security of their database data.
-- **Tenant members can view business information** — In the Manager module, members within the same tenant can view all business information under that tenant (such as Group, Stream, etc.). If vulnerabilities are triggered by tenant members being able to view this information, it should not be reported as a vulnerability of Apache InLong. Users only need to ensure that untrusted users do not join their tenant.
+1. Vulnerabilities triggered by the content of synchronized data (Sort module) The Sort module provides real-time synchronization, supporting reading from and writing trusted data to various types of databases. Unless otherwise specified, malicious data residing in a database is considered unsafe, and users are responsible for ensuring the data in their databases is safe. Therefore, if a vulnerability can be triggered by the content of the synchronized data itself, it should not be reported as an InLong vulnerability.
 
-We welcome suggestions for enhancing our code base.
+2. Tenant members viewing business information within their own tenant (Manager module) The Manager module provides tenant-level isolation. Any member of a tenant can view all business information (Group, Sink, Stream, etc.) under the current tenant. If a user needs to keep business information private from others, they only need to ensure that other users do not join the current tenant. Therefore, if a vulnerability stems from tenant members being able to view Group, Stream, and other information, it should not be reported as an InLong vulnerability.
+
+3. Normal operations performed within granted permissions (Manager module) Under the tenant permission model, only the owner of a Group can modify or delete Group, Sink, Stream, and related information. Normal operations performed by members within the scope of their granted permissions should not be reported as an InLong vulnerability.
+
+4. Security issues caused by the user's own misconfiguration or deployment Information disclosure or risks caused by the user's own actions — such as failing to configure tenant isolation correctly, improperly managing tenant membership, or deploying in an insecure environment — should not be reported as an InLong vulnerability.
+
+5. Issues arising when the trusted-data / trusted-environment assumption is broken InLong assumes it runs on top of trusted data sources and a trusted deployment environment. Issues that arise when this trust assumption is broken on the user's side (e.g., connecting to untrusted data sources, or exposing access entries that should not be public) should not be reported as an InLong vulnerability.
