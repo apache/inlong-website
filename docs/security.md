@@ -16,24 +16,14 @@ The security mailing address is:
 
 ## Security Model
 
-Each Apache InLong module has a clear responsibility boundary for security based on its design purpose. The following situations are not considered Apache InLong vulnerabilities and do not need to be reported as security issues (suggestions for hardening the codebase are still welcome):
+Apache InLong's modules have clear divisions of responsibility regarding security boundaries based on their design intent. The following cases are not considered Apache InLong vulnerabilities and need not be reported as security issues:
 
-1. Vulnerabilities triggered by the content of synchronized data
+1. Vulnerabilities triggered by synchronized data content
 
-The Sort module provides real-time data synchronization, supporting reading from and writing to trusted data across various databases. Unless otherwise specified, malicious data within a database is considered untrusted input, and users are responsible for ensuring the security of their data sources.
+The Sort module provides real-time data synchronization capabilities, supporting the reading and writing of trusted data across various databases. Unless otherwise agreed, malicious data within databases is considered untrusted input, and users are responsible for ensuring the security of their own data sources.
 
 2. Tenant members viewing business information within their own tenant
 
-The Manager module provides tenant isolation. Any member within a tenant can view all business information under that tenant, including Groups, Sinks, Streams, etc. To prevent business information from being viewed by others, users simply need to ensure that irrelevant personnel are not added to the tenant.
+The Manager module provides tenant isolation. Any member within the same tenant can view all business information under that tenant, including Group, Sink, Stream, etc. Under the tenant permission model, only Group owners have the authority to modify and delete their Groups, Sinks, Streams, and other associated information; normal operations performed by members within their granted permissions also fall under this category. To prevent business information from being viewed by others, users simply need to ensure that unrelated personnel are not added to the current tenant.
 
-3. Normal operations performed within the scope of authorization
-
-Under the tenant permission model, only the Group owner has the authority to modify and delete the Group, Sink, Stream, and other associated information. Normal operations performed by members within their granted permissions fall into this category.
-
-4. Security issues caused by improper user configuration or deployment
-
-Information leakage or risks arising from the user's own actions — such as failure to properly configure tenant isolation, failure to properly manage member enrollment, or an insecure deployment environment.
-
-5. Issues arising when the trusted data or trusted environment premise is broken
-
-InLong operates by default on trusted data sources and a trusted deployment environment. When this trust premise is broken on the user side — for example, by connecting untrusted data sources or exposing access points that should not be public — the resulting issues fall into this category.es arising when the trusted-data / trusted-environment assumption is broken InLong assumes it runs on top of trusted data sources and a trusted deployment environment. Issues that arise when this trust assumption is broken on the user's side (e.g., connecting to untrusted data sources, or exposing access entries that should not be public) should not be reported as an InLong vulnerability.
+We welcome suggestions for hardening the codebase.
