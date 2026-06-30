@@ -16,6 +16,9 @@ The security mailing address is:
 
 ## Security Model
 
-Apache InLong's Sort module provides real-time synchronization capabilities, supporting reading from and writing to various types of databases with trusted data. Unless specified otherwise, the presence of malicious data in the database is considered a security risk for the user. We emphasize that users are responsible for ensuring the security of their database data. Therefore, if vulnerabilities are triggered by the content of the synchronized data, such issues should not be reported as vulnerabilities of Apache InLong. We welcome suggestions for enhancing our code base.
+Based on the Apache InLong security model, the following situations do not need to be reported as security vulnerabilities:
 
-Apache InLong's Manager module provides tenant isolation capabilities, enabling permission management based on tenants. Any member of a tenant can view all business information within that tenant, while only the responsible personnel of a Group can modify or delete Group, Sink, Stream, and related entities. We believe that if users want to ensure their business data is not accessible by others, they simply need to prevent other users from joining their tenant. Therefore, if potential vulnerabilities arise due to tenant members being able to access Group, Stream, or similar information within the same tenant, such issues should not be reported as security vulnerabilities in Apache InLong. We welcome suggestions for enhancing our code base.
+- **Malicious data in the database triggering issues** — When the Sort module synchronizes data, if vulnerabilities are triggered by malicious data content in the database, it should not be reported as a vulnerability of Apache InLong. Users are responsible for ensuring the security of their database data.
+- **Tenant members can view business information** — In the Manager module, members within the same tenant can view all business information under that tenant (such as Group, Stream, etc.). If vulnerabilities are triggered by tenant members being able to view this information, it should not be reported as a vulnerability of Apache InLong. Users only need to ensure that untrusted users do not join their tenant.
+
+We welcome suggestions for enhancing our code base.
