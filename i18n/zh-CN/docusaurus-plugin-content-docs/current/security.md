@@ -12,7 +12,7 @@ Apache 软件基金会积极致力于消除针对其产品的安全问题和拒�
 请注意，该邮件列表仅应用于报告未公开的安全漏洞以及处理修复此类漏洞的流程。常规的错误报告或其他咨询请创建 [issue](https://github.com/apache/inlong/issues) 进行提交。
 
 报告安全问题的邮件地址为：
-**dev@inlong.apache.org**
+**security@apache.org**
 
 ## 安全模型
 
