@@ -5,8 +5,8 @@ import Translate, { translate } from '@docusaurus/Translate';
 
 export default function() {
 
-    const version = "2.3.0";
-    const date = "Nov. 11, 2025";
+    const version = "2.4.0";
+    const date = "Aug. 13, 2026";
 
     return (
         <Layout title={translate({ message: 'Downloads' })}>
