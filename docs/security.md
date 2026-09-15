@@ -22,4 +22,6 @@ Apache InLong modules have clearly defined responsibilities for security boundar
 
 - The Manager module provides tenant isolation capabilities. Within the same tenant, any member can view all business information under that tenant, including Groups, Sinks, Streams, and more. Under the tenant permission model, only the Group owner has the authority to modify or delete their respective Groups, Sinks, Streams, and related data; normal operations performed by members within their granted permissions also fall under this category. To prevent business information from being accessed by others, users simply need to ensure that unauthorized individuals are not added to the current tenant.
 
+- The inlong-tubemq module provides MQ-related message reception, storage, and management functions. By default, this module is deployed on a trusted network, so its implementation does not enforce authentication and authorization, but only provides an authentication framework for users to add their own authentication and authorization mechanisms as needed.
+
 It should be noted that the above explanation aims to clarify the security boundaries. We always welcome community input on enhancing codebase security and improving boundary protection, working together to drive the project's continuous evolution.
