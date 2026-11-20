@@ -19,14 +19,6 @@
     "message": "ApacheCon",
     "description": "The label of footer link with label=ApacheCon linking to https://www.apachecon.com/"
   },
-  "link.item.label.Twitter": {
-    "message": "Twitter",
-    "description": "The label of footer link with label=Twitter linking to https://twitter.com/ApacheInlong"
-  },
-  "link.item.label.WeChat": {
-    "message": "WeChat",
-    "description": "The label of footer link with label=WeChat linking to https://github.com/apache/inlong-website/blob/master/static/img/apache-inlong-wechat.jpg"
-  },
   "link.item.label.Email": {
     "message": "Email",
     "description": "The label of footer link with label=Email linking to mailto:dev@inlong.apache.org"
