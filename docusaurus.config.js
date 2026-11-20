@@ -179,14 +179,6 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
             title: 'Community',
             items: [
               {
-                label: 'Twitter',
-                href: 'https://twitter.com/ApacheInlong',
-              },
-              {
-                label: 'WeChat',
-                href: 'https://inlong.apache.org/img/apache-inlong-wechat.jpg',
-              },
-              {
                 label: 'Email',
                 to: 'mailto:dev@inlong.apache.org',
               },
